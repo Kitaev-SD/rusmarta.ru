@@ -1,0 +1,36 @@
+<?
+$MESS["EDIT_TASK_TITLE"] = "Redaguoti # #ID# prieigos lygius ";
+$MESS["NEW_TASK_TITLE"] = "Pridëti prieigos lygius ";
+$MESS["RECORD_LIST"] = "Prieigos lygiai";
+$MESS["STRING_ID"] = "Simbolinis identifikatorius:";
+$MESS["NAME"] = "Pavadinimas:";
+$MESS["DESCRIPTION"] = "Apraðymas:";
+$MESS["MODULE_ID"] = "Modulis:";
+$MESS["SYS_TITLE"] = "Sisteminis";
+$MESS["LETTER"] = "Raidë";
+$MESS["KERNEL"] = "Pagrindinë sistemos dalis";
+$MESS["SAVE"] = "Iðsaugoti pakeitimus";
+$MESS["ADD"] = "Pridëti";
+$MESS["RESET"] = "Iðvalyti";
+$MESS["DEFAULT"] = "< pagal nutylëjimà >";
+$MESS["TBL_GROUP_DATE"] = "Aktyvumo laikotarpis";
+$MESS["MAIN_NEW_RECORD"] = "Pridëti";
+$MESS["MAIN_DELETE_RECORD"] = "Trinti";
+$MESS["MAIN_DELETE_RECORD_CONF"] = "Ar tikrai norite paðalinti prieigos lygius?";
+$MESS["TAB_1"] = "Parametrai";
+$MESS["TAB_1_TITLE"] = "Prieigos lygio parametrai";
+$MESS["TAB_2"] = "Operacijos";
+$MESS["TAB_2_TITLE"] = "Operacijos, kurias kontroliuoja ðis prieigos lygis";
+$MESS["RECORD_LIST_TITLE"] = "Rodo visus prieigos lygius";
+$MESS["MAIN_NEW_RECORD_TITLE"] = "Prideda naujà prieigos lygá";
+$MESS["MAIN_COPY_RECORD"] = "Nukopijuoti";
+$MESS["MAIN_COPY_RECORD_TITLE"] = "Dubliuoja esamà prieigos lygá";
+$MESS["MAIN_DELETE_RECORD_TITLE"] = "Paðalina esamà prieigos lygá";
+$MESS["TASK_BINDING"] = "Susiejama";
+$MESS["TASK_BINDING_MODULE"] = "Modulis";
+$MESS["TASK_BINDING_FILE"] = "Byla/katalogas";
+$MESS["TASK_NAME_WARNING"] = "Simbolinis ID nebuvo pateikta arba jau yra sistemoje";
+$MESS["TASK_SAVE_ERROR"] = "Klaida iðsaugant uþduotá";
+$MESS["TASK_NONE_OPERATIONS"] = "Modulis \"#MODULE_ID#\" neturi operacijø, susijusiø \"#BINDING#\"";
+$MESS["MAIN_YES"] = "taip";
+?>

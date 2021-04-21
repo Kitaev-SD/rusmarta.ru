@@ -1,0 +1,9 @@
+<?
+$MESS['BPC_TEXT_ENTER_URL'] = 'Áveskite visà adresà (URL)';
+$MESS['BPC_TEXT_ENTER_URL_NAME'] = 'Áraðykite svetainës pavadinimà';
+$MESS['BPC_TEXT_ENTER_IMAGE'] = 'Áveskite pilnà vaizdo adresà (URL)';
+$MESS['BPC_LIST_PROMPT'] = 'Áveskite sàraðo elementà. Uþbaigti sàraðà paspauskite \"Atðaukti\" arba palikite tarpà';
+$MESS['BPC_ERROR_NO_URL'] = 'Jûs turite ávesti adresà (URL)';
+$MESS['BPC_ERROR_NO_TITLE'] = 'Turite ávesti pavadinimà';
+$MESS['BLOG_CATEGORY_NAME'] = 'Þymës pavadinimas';
+?>

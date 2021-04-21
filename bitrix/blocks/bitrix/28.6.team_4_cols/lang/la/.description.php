@@ -1,0 +1,10 @@
+<?
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--INNER"] = "Bloque";
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--MEMBER"] = "Empleado";
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--MEMBER_EMAIL"] = "Correo electrónico";
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--MEMBER_LINE"] = "Línea";
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--MEMBER_NAME"] = "Nombre";
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--MEMBER_PHOTO"] = "Foto";
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--MEMBER_POST"] = "Nombre del puesto";
+$MESS["LANDING_BLOCK_28_6_TEAM_4_COLS--NAME"] = "Fotos de empleados en un marco redondeado con texto y enlace";
+?>

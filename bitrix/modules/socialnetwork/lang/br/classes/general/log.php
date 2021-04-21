@@ -1,0 +1,29 @@
+<?
+$MESS["SONET_GL_EMPTY_DATE_CREATE"] = "A data de criação está incorreta.";
+$MESS["SONET_GL_EMPTY_ENTITY_ID"] = "O ID da entidade não foi especificado.";
+$MESS["SONET_GL_EMPTY_ENTITY_TYPE"] = "O tipo de entidade não foi especificado.";
+$MESS["SONET_GL_EMPTY_EVENT_ID"] = "O Evento não foi especificado.";
+$MESS["SONET_GL_EMPTY_TITLE"] = "O título não foi especificado.";
+$MESS["SONET_GL_ERROR_CALC_ENTITY_TYPE"] = "Erro na definição do tipo de entidade.";
+$MESS["SONET_GL_ERROR_NO_ENTITY_ID"] = "O ID da entidade está incorreto.";
+$MESS["SONET_GL_ERROR_NO_ENTITY_TYPE"] = "O tipo de entidade está incorreto.";
+$MESS["SONET_GL_ERROR_NO_FEATURE_ID"] = "O evento especificado está incorreto.";
+$MESS["SONET_GL_ERROR_NO_USER_ID"] = "O ID de usuário está incorreto.";
+$MESS["SONET_GL_SEND_EVENT_LINK"] = "Ir para:";
+$MESS["SONET_GL_TITLE_EXCLUDE_GROUP1"] = "O usuário #TITLE# foi removido do grupo.";
+$MESS["SONET_GL_TITLE_EXCLUDE_USER1"] = "O usuário foi removido o grupo #TITLE#.";
+$MESS["SONET_GL_TITLE_FRIEND1"] = "#TITLE# foi adicionado a lista de amigos";
+$MESS["SONET_GL_TITLE_GROUP1"] = "Um usuário juntou-se ao grupo #TITLE#.";
+$MESS["SONET_GL_TITLE_JOIN1"] = "Um novo membro #TITLE# juntou-se ao grupo";
+$MESS["SONET_GL_TITLE_JOIN2"] = "Novos membros #TITLE# juntaram-se ao grupo";
+$MESS["SONET_GL_TITLE_MODERATE1"] = "O moderador #TITLE# foi nomeado no grupo";
+$MESS["SONET_GL_TITLE_MODERATE2"] = "Os moderadores #TITLE# foram nomeados no grupo";
+$MESS["SONET_GL_TITLE_OWNER1"] = "Um novo proprietário foi atribuído ao grupo #TITLE#";
+$MESS["SONET_GL_TITLE_UNFRIEND1"] = "#TITLE# foi removido de seus amigos";
+$MESS["SONET_GL_TITLE_UNGROUP1"] = "Um usuário deixou o grupo #TITLE#.";
+$MESS["SONET_GL_TITLE_UNJOIN1"] = "O membro #TITLE# deixou o grupo";
+$MESS["SONET_GL_TITLE_UNJOIN2"] = "Os membros #TITLE# deixaram o grupo";
+$MESS["SONET_GL_TITLE_UNMODERATE1"] = "#TITLE# não é mais o moderador desse grupo";
+$MESS["SONET_GL_TITLE_UNMODERATE2"] = "#TITLE# não são mais moderadores desse grupo";
+$MESS["SONET_GL_WRONG_PARAMETER_ID"] = "O ID está incorreto.";
+?>

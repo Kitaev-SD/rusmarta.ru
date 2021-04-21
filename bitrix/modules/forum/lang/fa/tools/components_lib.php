@@ -1,0 +1,35 @@
+<?
+$MESS["FORUM_MONTH_1"] = "ژانویه";
+$MESS["FORUM_MONTH_2"] = "فوریه";
+$MESS["FORUM_MONTH_3"] = "مارس";
+$MESS["FORUM_MONTH_4"] = "آوریل";
+$MESS["FORUM_MONTH_5"] = "می";
+$MESS["FORUM_MONTH_6"] = "ژوئن";
+$MESS["FORUM_MONTH_7"] = "جولای";
+$MESS["FORUM_MONTH_8"] = "آگوست";
+$MESS["FORUM_MONTH_9"] = "سپتامبر";
+$MESS["FORUM_MONTH_10"] = "اکتبر";
+$MESS["FORUM_MONTH_11"] = "نوامبر";
+$MESS["FORUM_MONTH_12"] = "دسامبر";
+$MESS["FORUM_MON_1"] = "ژانویه";
+$MESS["FORUM_MON_2"] = "فوریه";
+$MESS["FORUM_MON_3"] = "مارس";
+$MESS["FORUM_MON_4"] = "آوریل";
+$MESS["FORUM_MON_5"] = "می";
+$MESS["FORUM_MON_6"] = "ژوئن";
+$MESS["FORUM_MON_7"] = "جولای";
+$MESS["FORUM_MON_8"] = "آگوست";
+$MESS["FORUM_MON_9"] = "سپتامبر";
+$MESS["FORUM_MON_10"] = "اکتبر";
+$MESS["FORUM_MON_11"] = "نوامبر";
+$MESS["FORUM_MON_12"] = "دسامبر";
+$MESS["FORUM_DOW_0"] = "یکشنبه";
+$MESS["FORUM_DOW_1"] = "دوشنبه";
+$MESS["FORUM_DOW_2"] = "سه شنبه";
+$MESS["FORUM_DOW_3"] = "چهارشنبه";
+$MESS["FORUM_DOW_4"] = "پنج شنبه";
+$MESS["FORUM_DOW_5"] = "جمعه";
+$MESS["FORUM_DOW_6"] = "شنبه";
+$MESS["FORUM_NO_ONE"] = "هیچکس";
+$MESS["F_AJAX_TYPE"] = "به کارگیری آژاکس";
+?>

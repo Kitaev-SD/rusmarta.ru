@@ -1,0 +1,30 @@
+<?
+$MESS["SEARCH_SITEMAP_BLOG_NO_COMMENTS"] = "El sitemap de google, incluye sólo envíos del blog, no comentarios";
+$MESS["SEARCH_SITEMAP_CONTINUE"] = "Continuar creando el Sitemap ";
+$MESS["SEARCH_SITEMAP_CREATE"] = "Crear el mapa del sitio web";
+$MESS["SEARCH_SITEMAP_CREATED"] = "El archivo del índice de Google Sitemap está creado y disponible en ";
+$MESS["SEARCH_SITEMAP_DOC_COUNT"] = "Documentos procesados ";
+$MESS["SEARCH_SITEMAP_ERR"] = "Hubo un error durante la creación del mapa del sitio web";
+$MESS["SEARCH_SITEMAP_ERR_COUNT"] = "Con errores ";
+$MESS["SEARCH_SITEMAP_FORUM_TOPICS_ONLY"] = "Google Sitemap incluye sólo temas del foro, no mensajes";
+$MESS["SEARCH_SITEMAP_INSTR1"] = "Estos pasos describen cómo someter un Sitemap al servicio de Google Sitemap ";
+$MESS["SEARCH_SITEMAP_INSTR2"] = "ingresar";
+$MESS["SEARCH_SITEMAP_INSTR3"] = "con su";
+$MESS["SEARCH_SITEMAP_INSTR4"] = "Seguir el link";
+$MESS["SEARCH_SITEMAP_INSTR5"] = "Type the URL to your Sitemap location in the provided field and click Submit URL button.";
+$MESS["SEARCH_SITEMAP_INSTR6"] = "Si ya envió el archivo índice de Sitemap puede volvelo a enviar usando el servicio de Google Sitemap ";
+$MESS["SEARCH_SITEMAP_INSTR7"] = "Cuenta Google";
+$MESS["SEARCH_SITEMAP_INSTR8"] = "Agregar al Mapa del sitio web";
+$MESS["SEARCH_SITEMAP_NOTE"] = "¡Advertencia! En el proceso de creación del Google Sitemap todos los archivos llamados \"sitemap_*.xml\" en la carpeta de raíz del sitio web elegido serán sobreescritos.";
+$MESS["SEARCH_SITEMAP_RECORD_LIMIT"] = "Máximo número de documentos procesados en un paso:";
+$MESS["SEARCH_SITEMAP_SESSION_ERR"] = "Un error en la verificación de la sesión ocuurió durante la creación del Sitemao. Esto sucede normalmente cuando la sesión ha expirdo. Por favor cree nuevamente el Sitemap.";
+$MESS["SEARCH_SITEMAP_SITE"] = "Cambiar el sitio:";
+$MESS["SEARCH_SITEMAP_STEP"] = "Creando por etapas:";
+$MESS["SEARCH_SITEMAP_STEP_sec"] = "Segundos";
+$MESS["SEARCH_SITEMAP_STOP"] = "Detener";
+$MESS["SEARCH_SITEMAP_TAB_TITLE"] = "Configuración";
+$MESS["SEARCH_SITEMAP_TITLE"] = "Creando Google Sitemap";
+$MESS["SEARCH_SITEMAP_USE_HTTPS"] = "Usar HTTPS";
+$MESS["SEARCH_SITEMAP_WARN"] = "Attention! There were incompatible URLs found in process of a Sitemap creating. They were stored in the separate file ";
+$MESS["SEARCH_SITEMAP_WARN1"] = "Nota, URLS incompatible exceden la longitud de 2048 caracteres o contiene caracteres ASCII extendidos.";
+?>

@@ -1,0 +1,4 @@
+<?php
+$MESS["BPSA_EMPTY_PERMS"] = "A permissão para elemento neste status não está especificada.";
+$MESS["BPSA_INVALID_CHILD"] = "Uma 'Atividade de Condição' poderá conter somente estas atividades 'Atividade de Iniciadora de Condição', 'Atividade Finalizadora de Condição' ou 'Atividade Dirigida por um Evento'.";
+$MESS["BPSA_TRACK1"] = "Permissão para elemento neste status #VAL#";

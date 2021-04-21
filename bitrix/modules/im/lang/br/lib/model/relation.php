@@ -1,0 +1,14 @@
+<?
+$MESS["RELATION_ENTITY_CALL_STATUS_FIELD"] = "Status da chamada";
+$MESS["RELATION_ENTITY_CHAT_ID_FIELD"] = "ID do bate-papo";
+$MESS["RELATION_ENTITY_ID_FIELD"] = "ID exclusivo";
+$MESS["RELATION_ENTITY_LAST_FILE_ID_FIELD"] = "ID do último arquivo";
+$MESS["RELATION_ENTITY_LAST_ID_FIELD"] = "ID da última mensagem";
+$MESS["RELATION_ENTITY_LAST_READ_FIELD"] = "ID da última mensagem lida";
+$MESS["RELATION_ENTITY_LAST_SEND_ID_FIELD"] = "ID da última mensagem enviada";
+$MESS["RELATION_ENTITY_MESSAGE_TYPE_FIELD"] = "Tipo de bate-papo";
+$MESS["RELATION_ENTITY_NOTIFY_BLOCK_FIELD"] = "Notificação";
+$MESS["RELATION_ENTITY_START_ID_FIELD"] = "ID da primeira mensagem";
+$MESS["RELATION_ENTITY_STATUS_FIELD"] = "Status";
+$MESS["RELATION_ENTITY_USER_ID_FIELD"] = "ID do usuário";
+?>

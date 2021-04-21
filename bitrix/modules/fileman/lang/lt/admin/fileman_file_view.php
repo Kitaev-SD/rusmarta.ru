@@ -1,0 +1,21 @@
+<?
+$MESS["FILEMAN_FILEVIEW_EDIT_AS_TEXT"] = "Redaguoti kaip tekstà";
+$MESS["FILEMAN_FILEVIEW_EDIT_AS_PHP"] = "Redaguoti kaip PHP";
+$MESS["FILEMAN_FILEVIEW_EDIT_AS_HTML"] = "Redaguoti kaip HTML";
+$MESS["FILEMAN_FILEVIEW_RENAME"] = "Pervadinti";
+$MESS["FILEMAN_FILEVIEW_DOWNLOAD"] = "Parsisiøsti failà";
+$MESS["FILEMAN_FILEVIEW_NAME"] = "Failo pavadinimas:";
+$MESS["FILEMAN_FILEVIEW_TYPE"] = "Tipas:";
+$MESS["FILEMAN_FILEVIEW_SIZE"] = "Dydis:";
+$MESS["FILEMAN_FILEVIEW_TIMESTAMP"] = "Atnaujinimo data:";
+$MESS["FILEMAN_FILEVIEW_LAST_ACCESS"] = "Paskutinis parodymas:";
+$MESS["FILEMAN_FILEVIEW_ENLARGE"] = "Spauskite padidinti";
+$MESS["FILEMAN_FILEVIEW_PHPERROR"] = "PHP failo perþiûrai nepakanka prieigos teisiø.";
+$MESS["FILEMAN_VIEW_TAB"] = "Failo perþiûra";
+$MESS["FILEMAN_VIEW_TAB_ALT"] = "Failo perþiûra";
+$MESS["FILEMAN_VIEW_CONT"] = "Failo turinys";
+$MESS["FILEMAN_FILE_DELETE"] = "Iðtrinti failà";
+$MESS["FILEMAN_FILE_DELETE_CONFIRM"] = "Ar tikrai norite paðalinti ðá failà?";
+$MESS["FILEMAN_FILE_EDIT"] = "Redaguoti";
+$MESS["FILEMAN_FILEVIEW_TITLE"] = "Failo perþiûra";
+?>

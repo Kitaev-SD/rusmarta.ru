@@ -1,0 +1,33 @@
+<?
+$MESS["V_USER_TYPE_DESCRIPTION"] = "Apklausa";
+$MESS["V_NEW_CHANNEL"] = "Nauja apklausos grupë";
+$MESS["V_CHANNEL_ID_COLON"] = "Apklausos grupë:";
+$MESS["V_CHANNEL_ID_EDIT"] = "redaguoti";
+$MESS["V_CHANNEL_ID_TITLE"] = "Pavadinimas:";
+$MESS["V_CHANNEL_ID_SYMBOLIC_NAME"] = "Simbolinis ID:";
+$MESS["V_CHANNEL_ID_USE_CAPTCHA"] = "Naudoti CAPTCHA";
+$MESS["V_UNIQUE_SESSION"] = "per tà paèià sesijà";
+$MESS["V_UNIQUE_COOKIE_ONLY"] = "su tokiais paèiais slapukais";
+$MESS["V_UNIQUE_IP_ONLY"] = "IP pagrindu";
+$MESS["V_UNIQUE_USER_ID_ONLY"] = "naudotojo ID pagrindu";
+$MESS["V_UNIQUE_IP_DELAY"] = "Uþdrausti pakartotinai balsuoti ið to paties IP adreso:";
+$MESS["V_UNIQUE"] = "Uþdrausti pakartotinai balsuoti:";
+$MESS["V_UNIQUE_USER_ID_NEW"] = "Atmesti naudotojø, uþregistruotø po apklausos pradþios, balsus";
+$MESS["V_SECONDS"] = "sekundës";
+$MESS["V_MINUTES"] = "minutës";
+$MESS["V_HOURS"] = "valandos";
+$MESS["V_DAYS"] = "dienos";
+$MESS["VT_UNKNOWN_ERROR_ADD_VOTE"] = "Neþinoma klaida (apklausa).";
+$MESS["VOTE_NOTIFY"] = "Praneðti autoriui apie kiekvienà balsavimà:";
+$MESS["VOTE_NOTIFY_IM"] = "Taip, momentiniu praneðimu (momentiniø praneðimø modulis (im))";
+$MESS["VOTE_NOTIFY_EMAIL"] = "Taip, el. paðtu";
+$MESS["VOTE_NOTIFY_N"] = "Nepraneðti";
+$MESS["VOTE_VOTES"] = "Balsai:";
+$MESS["VOTE_EDIT_TITLE"] = "Keisti apklausos nustatymus";
+$MESS["VOTE_ACTIVE_RED_LAMP"] = "Apklausa pasibaigë.";
+$MESS["VOTE_NOT_ACTIVE"] = "Apklausa yra neaktyvi.";
+$MESS["VOTE_IS_NOT_EXPECTED"] = "Apklausos rezultatas neatitinka iðsaugoto rezultato.";
+$MESS["VOTE_IS_NOT_FOUND"] = "Apklausa nerasta.";
+$MESS["VOTE_EDIT_ACCESS_IS_DENIED"] = "Nëra leidimo redaguoti apklausos.";
+$MESS["VOTE_READ_ACCESS_IS_DENIED"] = "Nëra leidimo perþiûrëti apklausà.";
+?>

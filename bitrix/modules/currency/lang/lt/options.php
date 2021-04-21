@@ -1,0 +1,30 @@
+<?
+$MESS["CURRENCY_SETTINGS"] = "Pagrindiniai nustatymai";
+$MESS["CURRENCY_SETTINGS_TITLE"] = "Modulio pagrindiniai nustatymai";
+$MESS["BASE_CURRENCY"] = "Bazinë valiuta:";
+$MESS["CO_TAB_RIGHTS"] = "Prieigos teisës";
+$MESS["CO_TAB_RIGHTS_TITLE"] = "Modulio prieigos teisës";
+$MESS["COP_SYS_ROU"] = "Paslaugø procedûros";
+$MESS["CUR_OPTIONS_BTN_SAVE"] = "Iðaugoti";
+$MESS["CUR_OPTIONS_BTN_RESET"] = "Anuliuoti";
+$MESS["CUR_OPTIONS_BTN_RESTORE_DEFAULT"] = "Pagal nutylëjimà";
+$MESS["CUR_OPTIONS_BTN_HINT_RESTORE_DEFAULT"] = "Nustatyti numatytàsias reikðmes";
+$MESS["CUR_OPTIONS_BTN_HINT_RESTORE_DEFAULT_WARNING"] = "Dëmësio! Visi parametrai bus nustatyti á pradines reikðmes. Ar norite tæsti?";
+$MESS["CURRENCY_PROCEDURES"] = "Paslaugø procedûros";
+$MESS["CURRENCY_BASE_RATE"] = "Dabartiniai pagrindiniai kursai";
+$MESS["CURRENCY_BASE_RATE_TITLE"] = "Faktinis bazinës valiutos keitimo kursas";
+$MESS["CUR_PROCEDURES_BTN_RECALC"] = "Perskaièiuoti";
+$MESS["CURRENCY_AGENTS"] = "Agentai";
+$MESS["CURRENCY_AGENTS_TITLE"] = "Informacija apie modulio agentø veiklà";
+$MESS["CURRENCY_BASE_RATE_AGENT"] = "Valiutos konvertavimo á bazinæ agentas";
+$MESS["CURRENCY_BASE_RATE_AGENT_ACTIVE"] = "Aktyvus";
+$MESS["CURRENCY_AGENTS_ACTIVE_YES"] = "taip";
+$MESS["CURRENCY_AGENTS_ACTIVE_NO"] = "ne";
+$MESS["CURRENCY_AGENTS_LAST_EXEC"] = "Paskutinis paleidimas";
+$MESS["CURRENCY_AGENTS_NEXT_EXEC"] = "Sekantis paleidimas";
+$MESS["CURRENCY_AGENTS_PLANNED_NEXT_EXEC"] = "Pirmas paleidimas";
+$MESS["CURRENCY_AGENTS_ACTIVATE"] = "Aktyvuoti agentà";
+$MESS["CURRENCY_AGENTS_DEACTIVATE"] = "Deaktyvuoti agentà";
+$MESS["CURRENCY_BASE_RATE_AGENT_ABSENT"] = "Dëmësio! Valiutos konvertavimo á bazinæ agentas nerastas!";
+$MESS["CURRENCY_AGENTS_CREATE_AGENT"] = "Sukurti agentà";
+?>

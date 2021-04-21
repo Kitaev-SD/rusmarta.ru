@@ -1,0 +1,6 @@
+<?
+$MESS["REPORT_JS_STATUS_ACTION_SUCCESS"] = "Sëkmingai atlikta";
+$MESS["REPORT_JS_STATUS_ACTION_ERROR"] = "Ávyko klaida.";
+$MESS["REPORT_JS_SHARING_RIGHT_READ"] = "Skaityti";
+$MESS["REPORT_JS_SHARING_RIGHT_EDIT"] = "Redaguoti";
+?>

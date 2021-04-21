@@ -1,0 +1,16 @@
+<?
+$MESS["KGP_EMPTY_ID"] = "Nenurodytas prekës ID";
+$MESS["BT_MOD_CATALOG_PROD_ERR_PRODUCT_ID_ABSENT"] = "Prekës ID nëra arba neteisingas.";
+$MESS["BT_MOD_CATALOG_PROD_ERR_QUANTITY_ABSENT"] = "Prekës kiekio nëra arba neteisingas.";
+$MESS["BT_MOD_CATALOG_PROD_ERR_ELEMENT_ID_NOT_FOUND"] = "Informacijos bloko elementas ##ID#  nerastas.";
+$MESS["BT_MOD_CATALOG_PROD_ERR_COST_CURRENCY"] = "Pirkimo valiuta yra tuðèia.";
+$MESS["BT_MOD_CATALOG_PROD_ERR_NO_RESULT_CURRENCY"] = "Skaièiavimo valiuta nenurodyta";
+$MESS["BT_MOD_CATALOG_PROD_ERR_NO_BASE_CURRENCY"] = "Nepavyko nustatyti bazinës valiutos.";
+$MESS["BT_MOD_CATALOG_PROD_PERIOD_HOUR"] = "Valanda";
+$MESS["BT_MOD_CATALOG_PROD_PERIOD_DAY"] = "Diena";
+$MESS["BT_MOD_CATALOG_PROD_PERIOD_WEEK"] = "Savaitë";
+$MESS["BT_MOD_CATALOG_PROD_PERIOD_MONTH"] = "Mënuo";
+$MESS["BT_MOD_CATALOG_PROD_PERIOD_QUART"] = "Ketvirtis";
+$MESS["BT_MOD_CATALOG_PROD_PERIOD_SEMIYEAR"] = "Pusmetis";
+$MESS["BT_MOD_CATALOG_PROD_PERIOD_YEAR"] = "Metai";
+?>

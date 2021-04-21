@@ -1,0 +1,36 @@
+<?
+$MESS["admin_index_product_name_1c_bitrix"] = "1C-Bitrix svetainës administratorius";
+$MESS["admin_index_product_name_1c_bitrix_portal"] = "1C-Bitrix Intranet'as";
+$MESS["admin_index_product_name_1c_bitrix_eduportal"] = "1C-Bitrix ðvietimo portalas";
+$MESS["admin_index_product_name_1c_bitrix_gosportal"] = "1C-Bitrix valdymo portalas";
+$MESS["admin_index_product_name_1c_bitrix_gossite"] = "1C-Bitrix valdymo portalas";
+$MESS["admin_index_menu"] = "Meniu";
+$MESS["admin_index_project"] = "Jûs esate administracinëje tinklapio dalyje";
+$MESS["admin_index_product"] = "Projektui ágyvendinti buvo panaudota licencijuota programinë áranga:";
+$MESS["admin_index_title"] = "Administravimo árankiai";
+$MESS["admin_index_product_name_bitrix"] = "Bitrix svetaitës administratorius";
+$MESS["admin_index_product_name_bitrix_portal"] = "Bitrix24";
+$MESS["admin_index_sec"] = "Aktyvi apsauga";
+$MESS["admin_index_sec_on"] = "Ájingtas";
+$MESS["admin_index_sec_check"] = "Patikrinti parametrus";
+$MESS["admin_index_sec_off"] = "Iðjungtas";
+$MESS["admin_index_sec_filter_on"] = "Aktyvus filtras (Web Application Firewall) ájungtas.";
+$MESS["admin_index_sec_filter_off"] = "Aktyvus filtras (Web Application Firewall) iðjungtas.";
+$MESS["admin_index_sec_filter_desc"] = "Iniciatyvus filtras padeda apsaugoti jûsø svetainæ nuo bet kokiø þinomø atakø tipø interneto programoms. Filtras atpaþásta ir blokuoja kenksmingas uþklausas, naudojant ásilauþimo aptikimo sistema. Rekomenduojama ájungti ðá filtrà.";
+$MESS["admin_index_sec_filter_turn_on"] = "Ájungti";
+$MESS["admin_index_sec_module"] = "Aktyvios apsaugos modulis nëra ádiegtas.";
+$MESS["admin_index_sec_module_desc"] = "Modulis padeda apsaugoti jûsø svetainæ nuo bet kokiø þinomø atakø tipø interneto programø. Rekomenduojama ádiegti Iniciatyvios apsaugos modulá, siekiant uþtikrinti maksimalø Jûsø svetainës saugumà.";
+$MESS["admin_index_sec_module_install"] = "Ádiegti";
+$MESS["admin_index_sec_level"] = "Jûs galite patikrinti dabartiná modulio saugos lygá <a href=\"security_panel.php?lang=#LANGUAGE_ID#\">Saugos skydelyje</a>.";
+$MESS["admin_index_perf_level"] = "Galite patikrinti dabartinæ veiklà modulio  <a href=\"perfmon_panel.php?lang=#LANGUAGE_ID#\">veiklos skyde</a>.";
+$MESS["admin_index_perf"] = "Veiksmingumo monitorius";
+$MESS["admin_index_perf_installed"] = "Ádiegtas";
+$MESS["admin_index_perf_check"] = "Patikrinti";
+$MESS["admin_index_perf_not_installed"] = "Nëra ádiegtas";
+$MESS["admin_index_perf_current"] = "Dabartinis standartas:";
+$MESS["admin_index_perf_no_result"] = "Veiksmingumo testas nebuvo atliktas.";
+$MESS["admin_index_perf_no_result_desc"] = "Modulis analizuoja ir tikrina jûsø sistemos naðumà. Rekomenduojama atlikti testà, norint maksimaliai kontroliuoti savo projekto rezultatus.";
+$MESS["admin_index_perf_test"] = "Testas";
+$MESS["admin_index_perf_module_inst"] = "Veiksmingumo monitoriaus modulis nëra ádiegtas.";
+$MESS["admin_index_perf_module_inst_desc"] = "Modulis analizuoja ir tikrina jûsø sistemos naðumà. Rekomenduojama ádiegti modulá, norint maksimaliai kontroliuoti jûsø projekto vykdymà.";
+?>

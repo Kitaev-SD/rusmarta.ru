@@ -1,0 +1,38 @@
+<?
+namespace Aspro\Functions;
+
+use Bitrix\Main\Application;
+use Bitrix\Main\Web\DOM\Document;
+use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Web\DOM\CssParser;
+use Bitrix\Main\Text\HtmlFilter;
+use Bitrix\Main\IO\File;
+use Bitrix\Main\IO\Directory;
+
+Loc::loadMessages(__FILE__);
+\Bitrix\Main\Loader::includeModule('sale');
+\Bitrix\Main\Loader::includeModule('catalog');
+
+if(!class_exists("CAsproSku"))
+{
+    class CAsproSku{
+        const MODULE_ID = \COptimus::moduleID;
+        
+        public static function getMeasureRatio($arParams = array(), $minPrice = array()){
+            $measure_block = '';
+            if((is_array($arParams) && $arParams)&& (is_array($minPrice) && $minPrice))
+            {
+                if($arParams["SHOW_MEASURE"]=="Y" && $arParams["SHOW_MEASURE_WITH_RATIO"] == "Y")
+                {
+                    $measure_block = "<span class=\"price_measure\">/";
+                    if(isset($minPrice["CATALOG_MEASURE_RATIO"]) && $minPrice["CATALOG_MEASURE_RATIO"] != 1)
+                        $measure_block .= $minPrice["CATALOG_MEASURE_RATIO"]." ";
+                    $measure_block .= $minPrice["CATALOG_MEASURE_NAME"];
+                     $measure_block .= "</span>";
+                }
+            }
+            return $measure_block;
+        }
+    }
+}
+?>

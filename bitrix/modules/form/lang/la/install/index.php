@@ -1,0 +1,29 @@
+<?
+$MESS["COPY_FOLDER"] = "Carpeta en la que se copiarán los archivos (en relación a la carpeta root del sitio web):";
+$MESS["COPY_PUBLIC_FILES"] = "Copie los archivos públicos";
+$MESS["FORM_ATTENTION"] = "¡Advertencia! El módulo será desinstalado.";
+$MESS["FORM_BACK"] = "Volver";
+$MESS["FORM_COMPLETE"] = "Instalación completada.";
+$MESS["FORM_DELETE"] = "Desinstalar";
+$MESS["FORM_DELETE_COMLETE"] = "Desinstalación completada.";
+$MESS["FORM_DEMO_DIR"] = "Siga este enlace para ver los archivos de demostración en acción:";
+$MESS["FORM_DENIED"] = "Denegar accesos";
+$MESS["FORM_ERRORS"] = "Errores:";
+$MESS["FORM_FULL"] = "acceso completo";
+$MESS["FORM_INSTALL"] = "Instalación";
+$MESS["FORM_INSTALL_TITLE"] = "Instalación del módulo Formularios Web";
+$MESS["FORM_LINK"] = "Enlace";
+$MESS["FORM_MODULE_DESCRIPTION"] = "Este módulo gestiona diversos formularios web, permite almacenar y filtrar los datos de los formularios completados.";
+$MESS["FORM_MODULE_NAME"] = "Formularios Web";
+$MESS["FORM_NO"] = "no";
+$MESS["FORM_OPENED"] = "acceso concedido";
+$MESS["FORM_RESET"] = "Reiniciar";
+$MESS["FORM_SAVE_TABLES"] = "Guardar tablas";
+$MESS["FORM_SELECT_INITITAL"] = "Por favor, seleccione la carpeta de archivos de demostración:";
+$MESS["FORM_SITE"] = "Sitio web";
+$MESS["FORM_UNINSTALL_TITLE"] = "Desinstalación del módulo Formularios Web";
+$MESS["FORM_URL_PUBLIC"] = "Carpeta para archivos demo:";
+$MESS["FORM_WRONG_MAIN_VERSION"] = "Para instalar este módulo tiene que actualizar el kernel del sistema a la versión #VER#";
+$MESS["FORM_YOU_CAN_SAVE_TABLES"] = "Para guardar los datos almacenados en las tablas de la base de datos, haga check en &quot;Guardar tablas&quot;";
+$MESS["INSTALL_PUBLIC_REW"] = "Sobrescribir archivos existentes";
+?>

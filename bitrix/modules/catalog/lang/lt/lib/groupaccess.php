@@ -1,0 +1,6 @@
+<?
+$MESS["GROUP_ACCESS_ENTITY_ID_FIELD"] = "Prieigos teisiø ID";
+$MESS["GROUP_ACCESS_ENTITY_CATALOG_GROUP_ID_FIELD"] = "Kainos tipo ID";
+$MESS["GROUP_ACCESS_ENTITY_GROUP_ID_FIELD"] = "Naudotojø grupës ID";
+$MESS["GROUP_ACCESS_ENTITY_ACCESS_FIELD"] = "Prieigos teisës";
+?>

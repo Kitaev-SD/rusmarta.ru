@@ -1,0 +1,5 @@
+<?
+$MESS["BIZPROC_AUTOMATION_DELAY_ACTIVITY"] = "Pausa";
+$MESS["BIZPROC_AUTOMATION_PARALLEL_ACTIVITY"] = "Ejecución en paralelo";
+$MESS["BIZPROC_AUTOMATION_TEMPLATE_NAME"] = "Plantilla de automatización (#STATUS#)";
+?>

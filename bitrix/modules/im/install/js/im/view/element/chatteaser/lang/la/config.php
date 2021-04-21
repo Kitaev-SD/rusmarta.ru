@@ -1,0 +1,6 @@
+<?php
+$MESS["IM_MESSENGER_COMMENT_OPEN"] = "Abrir";
+$MESS["IM_MESSENGER_COMMENT_PLURAL_0"] = "comentario";
+$MESS["IM_MESSENGER_COMMENT_PLURAL_1"] = "comentarios";
+$MESS["IM_MESSENGER_COMMENT_PLURAL_2"] = "comentarios";
+$MESS["IM_MESSENGER_COMMENT_ZERO"] = "No hay comentarios";

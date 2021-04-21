@@ -1,0 +1,36 @@
+<?
+$MESS["STATUS_TITLE"] = "Uþsakymo statusai";
+$MESS["ERROR_DELETE"] = "Klaida ðalinant statusà";
+$MESS["STATUS_DEL_CONF"] = "Ar tikrai norite paðalinti ðá statusà? Jei ðis statusas turi prisegtø uþsakymø, jis nebus paðalintas.";
+$MESS["STATUS_NAV"] = "Statusai";
+$MESS["STATUS_ID"] = "Kodas";
+$MESS["STATUS_SORT"] = "Rûðys.";
+$MESS["STATUS_UPD"] = "Iðsaugoti";
+$MESS["STATUS_RESET"] = "Atðaukti";
+$MESS["STATUS_F_DESCR"] = "Apraðymas:";
+$MESS["STATUS_F_NAME"] = "Pavadinimas:";
+$MESS["ERROR_ADD_REC"] = "Klaida pridedant statusà";
+$MESS["ERROR_EMPTY_NAME1"] = "Praðome nustatyti statuso pavadinimà";
+$MESS["ERROR_EMPTY_NAME2"] = "kalbai";
+$MESS["ERROR_UPDATE_REC"] = "Klaida atnaujinant statusà";
+$MESS["ERROR_EMPTY_NEW_NAME"] = "Praðome nustatyti naujo statuso pavadinimà ðiai kalbai";
+$MESS["ERROR_ADD_NEW_REC"] = "Klaida pridedant naujà statusà";
+$MESS["STATUS_DEL"] = "Paðalinti";
+$MESS["ERROR_DEL_STATUS"] = "Klaida ðalinant statusà";
+$MESS["SALE_ADD_STATUS"] = "Pridëti";
+$MESS["SALE_NAME"] = "Pavadinimas";
+$MESS["SALE_ACTIONS"] = "Veiksmai";
+$MESS["SALE_EDIT_DESCR"] = "Keisti statuso nustatymus";
+$MESS["SALE_EDIT"] = "Keisti";
+$MESS["SALE_DELETE_DESCR"] = "Paðalinti statusà";
+$MESS["SALE_NOTES1"] = "<b>N</b> yra pradinis uþsakymo statusas, taikomas steigiant. Jûs negalite ðalinti ðá statusà.";
+$MESS["SALE_NOTES2"] = "<b>F</b> yra galutinis uþsakymo statusas, taikomas nuo uþsakymo sëkmingo uþbaigimo. Jûs negalite ðalinti ðá statusà.";
+$MESS["SSAN_ADD_NEW"] = "Naujas statusas";
+$MESS["SSAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà statusà";
+$MESS["SSAN_NOTIFY"] = "Áspëjimas";
+$MESS["SSAN_NOTIFY_Y"] = "Taip";
+$MESS["SSAN_NOTIFY_N"] = "Ne";
+$MESS["SSAN_TYPE"] = "Statuso tipas";
+$MESS["SSEN_TYPE_O"] = "Uþsakymas";
+$MESS["SSEN_TYPE_D"] = "Pristatymas";
+?>

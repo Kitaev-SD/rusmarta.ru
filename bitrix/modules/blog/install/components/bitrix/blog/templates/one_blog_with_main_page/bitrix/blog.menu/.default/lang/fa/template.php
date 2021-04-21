@@ -1,0 +1,32 @@
+<?
+$MESS["BLOG_MENU_BLOGS_LIST"] = "صفحه بنیادین وبلاگ";
+$MESS["BLOG_MENU_BLOGS_LIST_TITLE"] = "Home page of the blog";
+$MESS["BLOG_MENU_CURRENT_BLOG"] = "وبلاگ";
+$MESS["BLOG_MENU_CURRENT_BLOG_TITLE"] = "وبلاگ &quot;#NAME#&quot;";
+$MESS["BLOG_MENU_MY_BLOG"] = "وبلاگ من";
+$MESS["BLOG_MENU_MY_BLOG_TITLE"] = "وبلاگ من";
+$MESS["BLOG_MENU_PROFILE"] = "پروفایل من";
+$MESS["BLOG_MENU_PROFILE_TITLE"] = "پروفایل من";
+$MESS["BLOG_MENU_FRIENDS"] = "صفحه دوستان";
+$MESS["BLOG_MENU_FRIENDS_TITLE"] = "صفحه دوستان";
+$MESS["BLOG_MENU_LOGOUT"] = "خروج";
+$MESS["BLOG_MENU_LOGOUT_TITLE"] = "خروج";
+$MESS["BLOG_MENU_LOGIN"] = "ورود";
+$MESS["BLOG_MENU_LOGIN_TITLE"] = "ورود";
+$MESS["BLOG_MENU_REGISTER"] = "ثبت نام";
+$MESS["BLOG_MENU_REGISTER_TITLE"] = "ثبت نام";
+$MESS["BLOG_MENU_ADD_MESSAGE"] = "پیغام جدید";
+$MESS["BLOG_MENU_ADD_MESSAGE_TITLE"] = "نوشتن پیغام جدید";
+$MESS["BLOG_MENU_DRAFT_MESSAGES"] = "نوشته پیش نویس";
+$MESS["BLOG_MENU_DRAFT_MESSAGES_TITLE"] = "پیغامهای پیش نویس";
+$MESS["BLOG_MENU_USER_SETTINGS"] = "تنظیمات";
+$MESS["BLOG_MENU_USER_SETTINGS_TITLE"] = "My blog users settings";
+$MESS["BLOG_MENU_GROUP_EDIT"] = "تنظیمات گروه";
+$MESS["BLOG_MENU_GROUP_EDIT_TITLE"] = "My blog groups settings";
+$MESS["BLOG_MENU_CATEGORY_EDIT"] = "ویرایش برچسپ";
+$MESS["BLOG_MENU_CATEGORY_EDIT_TITLE"] = "My blog tags settings";
+$MESS["BLOG_MENU_BLOG_EDIT"] = "تنظیمات وبلاگ";
+$MESS["BLOG_MENU_BLOG_EDIT_TITLE"] = "My Blog settings";
+$MESS["BLOG_MENU_FR_B_F"] = "دوست شوید";
+$MESS["BLOG_MENU_FR_A_F"] = "افرودن به دوستان";
+?>

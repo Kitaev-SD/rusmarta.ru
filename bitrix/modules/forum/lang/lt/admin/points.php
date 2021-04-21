@@ -1,0 +1,19 @@
+<?
+$MESS["FORUM_P_POINTS"] = "Taðkai";
+$MESS["FORUM_P_ERROR_DEL"] = "Klaida trinant taðkus";
+$MESS["FORUM_P_RANKS"] = "Balai";
+$MESS["FORUM_P_MIN_POINTS"] = "Minimalus taðkø kiekis";
+$MESS["FORUM_P_NAME"] = "Pavadinimas";
+$MESS["FORUM_P_VOTES"] = "Balsai";
+$MESS["FORUM_P_EDIT_DESC"] = "Keisti taðkø parametrus";
+$MESS["FORUM_P_DELETE_DESC"] = "Iðtrinti";
+$MESS["FORUM_P_DELETE_CONF"] = "Ar tikrai norite iðtrinti ðá rezultatà?";
+$MESS["FPAN_UPDATE_ERROR"] = "Klaida atnaujinant áraðà";
+$MESS["FPAN_ADD_NEW"] = "Nauja rangas";
+$MESS["FPAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà rangà";
+$MESS["FORUM_P_RATING_VOTES"] = "Bûtina Sunorminti balsus";
+$MESS["FORUM_P_RATING_VALUE"] = "Bûtina valdyba";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinti";
+?>

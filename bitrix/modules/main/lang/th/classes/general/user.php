@@ -1,0 +1,34 @@
+<?
+$MESS ['STATUS_ACTIVE'] = "active";
+$MESS ['STATUS_BLOCKED'] = "blocked";
+$MESS ['LOGIN_BLOCK'] = "Your login is blocked";
+$MESS ['WRONG_LOGIN'] = "Incorrect login or password";
+$MESS ['MIN_LOGIN'] = "Login must contain 3 or more characters";
+$MESS ['LOGIN_WHITESPACE'] = "Login can not start and end with a space.";
+$MESS ['MIN_PASSWORD'] = "Password must contain 6 or more characters";
+$MESS ['PROFILE_ACCESS_DENIED'] = "You do not have access rights to edit the profile";
+$MESS ['WRONG_CONFIRMATION'] = "Incorrect password confirmation";
+$MESS ['LOGIN_NOT_FOUND'] = "User under login \"#LOGIN#\" not found";
+$MESS ['CHECKWORD_INCORRECT'] = "Incorrect check word for login \"#LOGIN#\"";
+$MESS ['CHANGE_PASS_SUCC'] = "Your password successfully changed.";
+$MESS ['PASSWORD_CHANGE_OK'] = "Password successfully changed.<br>New registration information has just been sent to your E-mail address.";
+$MESS ['INFO_REQ'] = "You have requested your registration information.";
+$MESS ['ACCOUNT_INFO_SENT'] = "Control string and your registration information has just been sent to your E-mail address.";
+$MESS ['DATA_NOT_FOUND'] = "Login or E-mail not found";
+$MESS ['USER_REGISTER_OK'] = "You have successfully registered.";
+$MESS ['WRONG_EMAIL'] = "Incorrect E-Mail";
+$MESS ['FORGOT_NAME'] = "Both Name and Last name required";
+$MESS ['USER_EXIST'] = "User with login &quot;#LOGIN#&quot; already exists";
+$MESS ['REGISTRATION_OK'] = "Registration succeeded.<br>Registration information has just been sent to your E-mail address.";
+$MESS ['ACCESS_DENIED'] = "Access denied";
+$MESS ['BAD_GROUP_NAME'] = "Please enter the name.";
+$MESS ['MAIN_FUNCTION_REGISTER_NA_INADMIN'] = "You cannot use function CUser::Register in ADMIN_SECTION!";
+$MESS ['MAIN_FUNCTION_SIMPLEREGISTER_NA_INADMIN'] = "You cannot use function CUser::SimpleRegister in ADMIN_SECTION!";
+$MESS ['WRONG_PERSONAL_BIRTHDAY'] = "Incorrect date of birth.";
+$MESS ['WRONG_DATE_ACTIVE_FROM'] = "Incorrect earliest date of the active period for group # #GROUP_ID#";
+$MESS ['WRONG_DATE_ACTIVE_TO'] = "Incorrect latest date of the active period for group # #GROUP_ID#";
+$MESS ['WRONG_USER_DATE_ACTIVE_FROM'] = "Incorrect earliest date of the active period for user # #USER_ID#";
+$MESS ['WRONG_USER_DATE_ACTIVE_TO'] = "Incorrect latest date of the active period for user # #USER_ID#";
+$MESS ['CHECKWORD_EXPIRE'] = "Check word validity period has expired. You need to request it again.";
+$MESS ['MAIN_FUNCTION_REGISTER_CAPTCHA'] = "Word for protecting against automatic registration is entered incorrectly";
+?>

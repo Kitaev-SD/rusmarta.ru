@@ -1,0 +1,131 @@
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .bx-gadgets-content {
+		height:auto;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .bx-gadgets-color-config-close {
+		right:10px;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant:hover .bx-gadgets-color-config-close {
+		background-position:-2px -528px;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget{
+    background: rgba(0,0,0,0);
+    overflow: hidden;
+    position: relative;
+    margin: -15px -30px -15px -11px;
+		min-height:120px;
+    padding: 11px 20px 17px 14px;
+    border: 1px solid;
+    border-color: #fafcfe #e6f0f5 #c6cfd6 #c6cfd6;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 100%;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .show-gadget-title{
+    color: #1a1b1c;
+    font-size: 20px;
+    padding-left: 4px;
+		padding-right:24px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.1);
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .show-info-row{
+    color: #69808e;
+    font-size: 14px;
+    padding-left: 4px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    font-weight: bold;
+    height: 20px;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .show-info-row-version{
+    color: #1a1b1c;
+    font-size: 12px;
+    padding-left: 4px;
+		margin-right:20px;
+		min-height:66px;
+		max-height:140px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    height: auto;
+		overflow:hidden;
+		position:relative;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .show-info-row-version:after {
+	bottom:0;
+	content:'';
+	left:0;
+	height:40px;
+	position:absolute;
+	right:0;
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 1%, rgba(255,255,255,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .updates-more-info {
+	padding:15px 0 5px;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .updates-more-info a {
+	color:#1f67b0;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .updates-more-info a:hover {
+	text-decoration:none;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .acrit-info-widget-button{
+    border-radius: 3px;
+    display: inline-block;
+    height: 15px;
+    padding: 10px 20px;
+    position: relative;
+    float: left;
+    border: 1px solid #2980b9;
+    background: #2980b9;
+    margin: 10px 15px 0px 5px;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .acrit-info-widget-button .acrit-info-widget-button-text{
+    line-height: 16px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(106,109,111,0.3);
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .acrit-info-widget-button:hover{
+    background: #3498db;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .acrit-info-widget-button.acrit-info-widget-button-buy{
+    border: 1px solid #27ae60;
+    background: #27ae60;
+    float: none;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .acrit-info-widget-button.acrit-info-widget-button-buy:hover{
+    background: #2ecc71;
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .acrit-info-widget-button.acrit-info-widget-button-buy .acrit-info-widget-button-text{
+    text-shadow: 0 -1px 0 rgba(106,109,111,0.3);
+}
+
+.bx-gadgets-colourful.acrit-gadget-googlemerchant .acrit-info-widget .logo{
+    background: rgba(0,0,0,0) url(images/logo.png) no-repeat scroll 0 0;
+		float:right;
+    height: 50px;
+		margin-top:16px;
+		text-decoration:none;
+    width: 136px;
+}

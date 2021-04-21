@@ -1,0 +1,13 @@
+<?
+$MESS["BAD_EMAIL_FROM"] = "Áraðykite siuntëjo el. paðtà.";
+$MESS["BAD_EMAIL_TO"] = "Áraðykite gavëjo el. paðtà.";
+$MESS["BAD_EVENT_TYPE"] = "Neteisinga ávykio rûðis.";
+$MESS["MAIN_BAD_EVENT_NAME_NA"] = "Nurodykite rûðá.";
+$MESS["MAIN_BAD_SITE_NA"] = "Nurodykitæ tinklapá.";
+$MESS["MAIN_EVENT_BAD_SITE"] = "Blogai nurodytas daresas!";
+$MESS["EVENT_NAME_EMPTY"] = "Nenurodytas ávykio tipo pavadinimas";
+$MESS["LID_EMPTY"] = "Nenurodyta ávykio tipo kalba";
+$MESS["EVENT_NAME_EXIST"] = "Ávykis \"#EVENT_NAME#\" kalbai #SITE_ID# jau yra";
+$MESS["EVENT_ID_EMPTY"] = "Ávykis nenurodytas";
+$MESS["ACTION_EMPTY"] = "Veiksmas nenurodytas";
+?>

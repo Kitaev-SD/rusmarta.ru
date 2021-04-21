@@ -1,0 +1,33 @@
+<?
+$MESS["PERFMON_OPTIONS_CACHE_LOG"] = "Registro de operaciones de caché";
+$MESS["PERFMON_OPTIONS_LARGE_CACHE_LOG"] = "Registrar sólo operaciones sobre archivos de caché grandes";
+$MESS["PERFMON_OPTIONS_LARGE_CACHE_NOTE"] = "Esto no va a registrar estadísticas de las páginas que no utilizan archivos de caché de gran tamaño. Advertencias PHP no se registrarán.";
+$MESS["PERFMON_OPTIONS_LARGE_CACHE_SIZE"] = "El archivo de caché es grande si supera";
+$MESS["PERFMON_OPTIONS_LARGE_CACHE_SIZE_KB"] = "(KB)";
+$MESS["PERFMON_OPTIONS_MAX_DISPLAY_URL"] = "Número máximo de caracteres en una URL";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_LOG"] = "Registrar sólo consultas SQL lentas.";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_NOTE"] = "Con esta opción activada, estadísticas y advertencias PHP de páginas \"rápidas\" no se registrarán.";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_TIME"] = "Umbral para considerar consultas lentas";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_TIME_SEC"] = "seg.";
+$MESS["PERFMON_OPTIONS_SQL_BACKTRACE"] = "Apilar registro de consultas de llamadas SQL";
+$MESS["PERFMON_OPTIONS_SQL_LOG"] = "Registro de consultas SQL";
+$MESS["PERFMON_OPTIONS_WARNING_LOG"] = "Registro de advertencias PHP";
+$MESS["PERFMON_OPT_ACTIVE"] = "Estatus actual del monitor de actividad";
+$MESS["PERFMON_OPT_ACTIVE_N"] = "Deshabilitado";
+$MESS["PERFMON_OPT_ACTIVE_TO"] = "A ejecutarse en";
+$MESS["PERFMON_OPT_ACTIVE_Y"] = "Habilitado";
+$MESS["PERFMON_OPT_CLEAR_DATA"] = "Borrar estadísticas de monitore existentes (al guardar este formulario)";
+$MESS["PERFMON_OPT_INTERVAL_1800_SEC"] = "para 30 minutos";
+$MESS["PERFMON_OPT_INTERVAL_24_HOURS"] = "24 horas";
+$MESS["PERFMON_OPT_INTERVAL_300_SEC"] = "para 5 minutos";
+$MESS["PERFMON_OPT_INTERVAL_3600_SEC"] = "para 1 hora";
+$MESS["PERFMON_OPT_INTERVAL_4_HOURS"] = "4 horas";
+$MESS["PERFMON_OPT_INTERVAL_600_SEC"] = "para 10 minutos";
+$MESS["PERFMON_OPT_INTERVAL_60_SEC"] = "para 1 minuto";
+$MESS["PERFMON_OPT_INTERVAL_7_DAYS"] = "semana";
+$MESS["PERFMON_OPT_INTERVAL_8_HOURS"] = "8 horas";
+$MESS["PERFMON_OPT_INTERVAL_NO"] = "ninguno";
+$MESS["PERFMON_OPT_MINUTES"] = "#HOURS#:#MINUTES#:#SECONDS# (hrs:mins:secs)";
+$MESS["PERFMON_OPT_SET_ACTIVE"] = "Habilitar monitoreo";
+$MESS["PERFMON_OPT_SET_IN_ACTIVE"] = "Monitor deseable";
+?>

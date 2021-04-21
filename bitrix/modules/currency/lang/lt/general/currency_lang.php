@@ -1,0 +1,9 @@
+<?
+$MESS["BT_CUR_LANG_SEP_VARIANT_EMPTY"] = "Be skyriklio";
+$MESS["BT_CUR_LANG_SEP_VARIANT_DOT"] = "Taðkas";
+$MESS["BT_CUR_LANG_SEP_VARIANT_COMMA"] = "Kablelis";
+$MESS["BT_CUR_LANG_SEP_VARIANT_SPACE"] = "Tarpas";
+$MESS["BT_CUR_LANG_SEP_VARIANT_NBSPACE"] = "Nekeliamasis tarpas";
+$MESS["BT_CUR_LANG_CURRENCY_RUBLE"] = "RUB";
+$MESS["BT_CUR_LANG_ERR_FORMAT_STRING_IS_EMPTY"] = "Neuþpildytas laukas \"Formatas\" #LANG# kalbai.";
+?>

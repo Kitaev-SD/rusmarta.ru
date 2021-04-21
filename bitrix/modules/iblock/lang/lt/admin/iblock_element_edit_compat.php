@@ -1,0 +1,11 @@
+<?
+$MESS["IBLOCK_ACTIVE"] = "Áraðas aktyvus:";
+$MESS["IBLOCK_CODE"] = "Mnemoninis kodas:";
+$MESS["IBLOCK_CONTENT"] = "Virðutinis lygis";
+$MESS["IBLOCK_DELETE"] = "Iðtrinti";
+$MESS["IBLOCK_EXTERNAL_CODE"] = "Iðorinis kodas:";
+$MESS["IBLOCK_NAME"] = "Pavadinimas:";
+$MESS["IBLOCK_SORT"] = "Rûðiavimo indeksas:";
+$MESS["IBLOCK_TAGS"] = "Þymës:";
+$MESS["IBLOCK_WF_STATUS"] = "Statusas:";
+?>

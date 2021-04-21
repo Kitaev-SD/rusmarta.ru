@@ -1,0 +1,30 @@
+<?
+$MESS["BPATL_DESCR"] = "Descripción";
+$MESS["BPATL_DESCR_FULL"] = "Descripción total";
+$MESS["BPATL_DOCUMENT_NAME"] = "Documento";
+$MESS["BPATL_FILTER_STATUS"] = "Estados";
+$MESS["BPATL_FILTER_STATUS_ALL"] = "Todos";
+$MESS["BPATL_FILTER_STATUS_COMPLETE"] = "Completado";
+$MESS["BPATL_FILTER_STATUS_RUNNING"] = "En progreso";
+$MESS["BPATL_F_MODIFIED"] = "Modificado";
+$MESS["BPATL_F_NAME"] = "Nombre";
+$MESS["BPATL_GROUP_ACTION_DELEGATE"] = "Delegar";
+$MESS["BPATL_GROUP_ACTION_NO"] = "Declinar";
+$MESS["BPATL_GROUP_ACTION_OK"] = "Ejecutar";
+$MESS["BPATL_GROUP_ACTION_YES"] = "Aprobar";
+$MESS["BPATL_MODIFIED"] = "Modificado";
+$MESS["BPATL_NAME"] = "Nombre";
+$MESS["BPATL_NAV"] = "Tareas";
+$MESS["BPATL_OVERDUE_DATE"] = "Fecha Límite";
+$MESS["BPATL_STARTED"] = "Activo desde";
+$MESS["BPATL_STARTED_BY"] = "Iniciado por";
+$MESS["BPATL_TITLE"] = "Tareas";
+$MESS["BPATL_USER"] = "Usuario";
+$MESS["BPATL_USER_ID"] = "ID del usuario";
+$MESS["BPATL_USER_NOT_FOUND"] = "El usuraio ##USER_ID# no fue encontrado.";
+$MESS["BPATL_VIEW"] = "Ver tarea";
+$MESS["BPATL_WORKFLOW_NAME"] = "Proceso de negocio";
+$MESS["BPATL_WORKFLOW_STATE"] = "Estado";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Comprobado:";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Seleccionado:";
+?>

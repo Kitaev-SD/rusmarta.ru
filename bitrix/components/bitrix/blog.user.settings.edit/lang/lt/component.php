@@ -1,0 +1,8 @@
+<?
+$MESS['BLOG_MODULE_NOT_INSTALL'] = 'Tinklaraðèiø modulis nëra ádiegtas';
+$MESS['B_B_US_NO_RIGHT'] = 'Jums nesuteiktos teisës valdyti ðio tinklaraðèio';
+$MESS['B_B_US_NO_BLOG'] = 'Tinklaraðèio nerasta';
+$MESS['B_B_USE_TITLE'] = 'Redaguoti naudotojo teises';
+$MESS['B_B_USE_TITLE_BLOG'] = 'Redaguoti tinklaraðèio naudotojo priëjimo teises ';
+$MESS['B_B_US_NO_USER'] = 'Naudotojo nëra';
+?>

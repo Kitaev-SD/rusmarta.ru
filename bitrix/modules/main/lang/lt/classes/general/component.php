@@ -1,0 +1,5 @@
+<?
+$MESS["EDIT_ACTION_TITLE_DEFAULT"] = "Redaguoti";
+$MESS["DELETE_ACTION_TITLE_DEFAULT"] = "Paðalinti";
+$MESS["DELETE_ACTION_CONFIRM"] = "Ar tikrai norite paðalinti ðá áraðà?";
+?>

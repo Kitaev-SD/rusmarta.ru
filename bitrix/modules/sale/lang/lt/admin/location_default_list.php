@@ -1,0 +1,8 @@
+<?
+$MESS["SALE_MODULE_ACCES_DENIED"] = "Prieiga prie modulio uþdrausta";
+$MESS["SALE_LOCATION_L_ITEM_NOT_FOUND"] = "Jokiø sàsajø su ðiuo ID buvo nustatyta";
+$MESS["SALE_LOCATION_L_PAGES"] = "Interneto svetainës sàsajos";
+$MESS["SALE_LOCATION_L_EDIT_ITEM"] = "Redaguoti vietoviø sàraðà";
+$MESS["SALE_LOCATION_L_EDIT_PAGE_TITLE"] = "Mëgstamiausios vietos";
+$MESS["SALE_LOCATION_L_ITEM"] = "Vietovës";
+?>

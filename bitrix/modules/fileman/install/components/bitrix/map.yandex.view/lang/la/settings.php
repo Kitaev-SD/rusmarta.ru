@@ -1,0 +1,37 @@
+<?
+$MESS["MYMS_PARAM_INIT_MAP_NOTHING_FOUND"] = "(no encontrado)";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_HYBRID"] = "Híbrido";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_MAP"] = "Mapa";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_PUBLIC"] = "Mapa de las personas";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_PUBLIC_HYBRID"] = "Mapa de las personas de etiquetadas";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_SATELLITE"] = "Satélite";
+$MESS["MYMV_SET_ADDRESS_SEARCH"] = "Buscar lugar";
+$MESS["MYMV_SET_NONAME"] = "--- Sin título ---";
+$MESS["MYMV_SET_POINTS"] = "Las marcas de posición";
+$MESS["MYMV_SET_POINTS_ADD"] = "Agregar las marcas de posición";
+$MESS["MYMV_SET_POINTS_ADD_DESCRIPTION"] = "Haga doble clic en el mapa para añadir marcas de posición.";
+$MESS["MYMV_SET_POINTS_ADD_FINISH"] = "Finalizar";
+$MESS["MYMV_SET_POLY"] = "Mapa de Rutas";
+$MESS["MYMV_SET_POLY_ADD"] = "Agregar ruta";
+$MESS["MYMV_SET_POLY_ADD_DESCRIPTION"] = "Haga doble clic en la posición de la marca para la ruta inicial.";
+$MESS["MYMV_SET_POLY_ADD_DESCRIPTION1"] = "Ahora haga clic en el mapa para agregar más posiciones marcas a la ruta. Haga clic rápido para poner fin a la ruta.";
+$MESS["MYMV_SET_POLY_ADD_FINISH"] = "Rutas finales.";
+$MESS["MYMV_SET_POLY_COLOR"] = "Linea de Color";
+$MESS["MYMV_SET_POLY_FINISH"] = "Final";
+$MESS["MYMV_SET_POLY_OPACITY"] = "Opacidad (%)";
+$MESS["MYMV_SET_POLY_SETTINGS"] = "Configuraciones";
+$MESS["MYMV_SET_POLY_START_POINT"] = "Iniciar";
+$MESS["MYMV_SET_POLY_TITLE"] = "Título";
+$MESS["MYMV_SET_POLY_WIDTH"] = "Espesor (px)";
+$MESS["MYMV_SET_POPUP_TITLE"] = "Ajustes de mapa";
+$MESS["MYMV_SET_POPUP_WINDOW_DESCRIPTION"] = "Configurar el diseño de mapa y los objetos visibles";
+$MESS["MYMV_SET_POPUP_WINDOW_TITLE"] = "Editar Ajustes del mapa";
+$MESS["MYMV_SET_START_POS"] = "Situación inicial";
+$MESS["MYMV_SET_START_POS_FIX"] = "Bloqueo";
+$MESS["MYMV_SET_START_POS_LAT"] = "Latitud";
+$MESS["MYMV_SET_START_POS_LON"] = "Longitud";
+$MESS["MYMV_SET_START_POS_RESTORE"] = "Restaurar";
+$MESS["MYMV_SET_START_POS_SCALE"] = "Escala";
+$MESS["MYMV_SET_START_POS_VIEW"] = "Vista";
+$MESS["MYMV_SET_SUBMIT"] = "Guardar";
+?>

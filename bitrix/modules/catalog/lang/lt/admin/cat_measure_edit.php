@@ -1,0 +1,26 @@
+<?
+$MESS["CAT_MEASURE_LIST"] = "Matavimo vienetai";
+$MESS["CAT_MEASURE_CODE"] = "ID";
+$MESS["CAT_MEASURE_MEASURE_TITLE"] = "Vieneto pavadinimas";
+$MESS["CAT_MEASURE_SYMBOL_RUS"] = "Vieneto simbolis";
+$MESS["CAT_MEASURE_SYMBOL_INTL"] = "Vieneto simbolis (tarptautinis)";
+$MESS["CAT_MEASURE_IS_DEFAULT"] = "Numatytasis";
+$MESS["CAT_MEASURE_ADD"] = "Pridëti";
+$MESS["CAT_MEASURE_TITLE"] = "Matavimo vienetai";
+$MESS["CAT_MEASURE_TITLE_ADD"] = "Prideda matavimo vienetà";
+$MESS["CAT_MEASURE_DELETE_CONFIRM"] = "Ar tikrai norite paðalinti vienetà?";
+$MESS["CAT_MEASURE_DELETE"] = "Paðalinti";
+$MESS["CAT_MEASURE_DEFAULT"] = "Numatytasis";
+$MESS["CVAT_SORT"] = "Rûðiuoti";
+$MESS["CAT_MEASURE_SYMBOL_LETTER_INTL"] = "Kodo pavadinimas (tarpt.)";
+$MESS["CAT_MEASURE_CLASSIFIER_MAIN"] = "Pasirinkti registro skyriø";
+$MESS["CAT_MEASURE_CLASSIFIER_SUB"] = "Pasirinkti registro poskyrá";
+$MESS["CAT_MEASURE_CODE_EMPTY"] = "Nurodyti kodo pavadinimà matavimo vienetui";
+$MESS["CAT_MEASURE_TITLE_EMPTY"] = "Nurodyti pavadinimà matavimo vienetui";
+$MESS["CAT_MEASURE_TITLE_EDIT"] = "Redaguoti matavimo vienetà #ID#";
+$MESS["CAT_MEASURE_TITLE_NEW"] = "Naujas matavimo vienetas";
+$MESS["CAT_MEASURE_TITLE_ONE"] = "Matavimo vienetas";
+$MESS["CAT_MEASURE_TITLE_OKEI"] = "Pridëti vienetà áð registro";
+$MESS["CAT_MEASURE_NOTHING_SELECT"] = "Nepasirinktas vienetas ";
+$MESS["CAT_MEASURE_SUCCESS_ADD"] = "Vienetas buvo sëkmingai pridëtas";
+?>

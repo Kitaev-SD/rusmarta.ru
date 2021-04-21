@@ -1,0 +1,31 @@
+<?
+$MESS["VOTE_ACCESS"] = "Acesso";
+$MESS["VOTE_ACTIVE"] = "Ativo:";
+$MESS["VOTE_CHANNEL_IS_NOT_EXISTS"] = "Grupo de pesquisa ##ID# não foi encontrado.";
+$MESS["VOTE_CREATE"] = "Criar";
+$MESS["VOTE_CREATE_NEW_RECORD"] = "Criar novo canal";
+$MESS["VOTE_CREATE_VOTE"] = "Criar uma enquete";
+$MESS["VOTE_DELETE"] = "Excluir";
+$MESS["VOTE_DELETE_RECORD"] = "Excluir canal";
+$MESS["VOTE_DELETE_RECORD_CONFIRM"] = "Tem certeza de que deseja excluir tanto o canal de votação e as urnas incluídas?";
+$MESS["VOTE_EDIT_RECORD"] = "Configurações do canal Poll # #ID#";
+$MESS["VOTE_GOT_ERROR"] = "Erro ao salvar um canal";
+$MESS["VOTE_GRP_PROP"] = "Propriedades do canal";
+$MESS["VOTE_HIDDEN"] = "Ocultar:";
+$MESS["VOTE_LIST"] = "Lista";
+$MESS["VOTE_NEW_RECORD"] = "Novo canal de enquete";
+$MESS["VOTE_PROP"] = "Propriedades";
+$MESS["VOTE_RECORDS_LIST"] = "Lista de canais";
+$MESS["VOTE_RIGHTS"] = "Permissões dos grupos de usuários";
+$MESS["VOTE_SITE"] = "Sites:";
+$MESS["VOTE_SITE_EDIT"] = "Edite local";
+$MESS["VOTE_SORTING"] = "ndice de classificação:";
+$MESS["VOTE_SYMBOLIC_NAME"] = "Código Mnemônico:";
+$MESS["VOTE_TIMESTAMP"] = "Modificado:";
+$MESS["VOTE_TITLE"] = "Título:";
+$MESS["VOTE_USE_CAPTCHA"] = "Usar CAPTCHA";
+$MESS["VOTE_VOTES"] = "Enquetes:";
+$MESS["VOTE_VOTES_TITLE"] = "Pesquisas de lista para o canal";
+$MESS["VOTE_VOTE_ADD"] = "Adicionar enquete";
+$MESS["VOTE_VOTE_SINGLE"] = "Permitir apenas uma enquete atual do grupo:";
+?>

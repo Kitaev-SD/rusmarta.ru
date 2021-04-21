@@ -1,0 +1,6 @@
+<?
+$MESS["RATING_COMPONENT_PLUS"] = "Patinka";
+$MESS["RATING_COMPONENT_MINUS"] = "Nepatinka";
+$MESS["RATING_COMPONENT_HAS_VOTED"] = "Jûs jau balsavote uþ ðá elementà.";
+$MESS["RATING_COMPONENT_CANCEL"] = "Nebepatinka ðis elementas";
+?>

@@ -1,0 +1,33 @@
+<?
+$MESS["P_MONTH_1"] = "ژانویه";
+$MESS["P_MONTH_2"] = "فوریه";
+$MESS["P_MONTH_3"] = "مارس";
+$MESS["P_MONTH_4"] = "آوریل";
+$MESS["P_MONTH_5"] = "می";
+$MESS["P_MONTH_6"] = "ژوئن";
+$MESS["P_MONTH_7"] = "جولای";
+$MESS["P_MONTH_8"] = "آگوست";
+$MESS["P_MONTH_9"] = "سپتامبر";
+$MESS["P_MONTH_10"] = "اکتبر";
+$MESS["P_MONTH_11"] = "نوامبر";
+$MESS["P_MONTH_12"] = "دسامبر";
+$MESS["P_MON_1"] = "ژانویه";
+$MESS["P_MON_2"] = "فوریه";
+$MESS["P_MON_3"] = "مارس";
+$MESS["P_MON_4"] = "آوریل";
+$MESS["P_MON_5"] = "می";
+$MESS["P_MON_6"] = "ژوئن";
+$MESS["P_MON_7"] = "جولای";
+$MESS["P_MON_8"] = "آگوست";
+$MESS["P_MON_9"] = "سپتامبر";
+$MESS["P_MON_10"] = "اکتبر";
+$MESS["P_MON_11"] = "نوامبر";
+$MESS["P_MON_12"] = "دسامبر";
+$MESS["P_DOW_0"] = "یکشنبه";
+$MESS["P_DOW_1"] = "دوشنبه";
+$MESS["P_DOW_2"] = "سه شنبه";
+$MESS["P_DOW_3"] = "چهارشنبه";
+$MESS["P_DOW_4"] = "پنج شنبه";
+$MESS["P_DOW_5"] = "جمعه";
+$MESS["P_DOW_6"] = "شنبه";
+?>

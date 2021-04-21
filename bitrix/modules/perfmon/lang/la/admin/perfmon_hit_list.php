@@ -1,0 +1,29 @@
+<?
+$MESS["PERFMON_HIT_AGENTS_TIME"] = "Factor Tiempo";
+$MESS["PERFMON_HIT_CACHE_COUNT"] = "Operaciones de caché";
+$MESS["PERFMON_HIT_CACHE_COUNT_C"] = "Restablece caché";
+$MESS["PERFMON_HIT_CACHE_COUNT_R"] = "Lea caché";
+$MESS["PERFMON_HIT_CACHE_COUNT_W"] = "Escribir caché";
+$MESS["PERFMON_HIT_CACHE_SIZE"] = "Caché";
+$MESS["PERFMON_HIT_COMPONENTS"] = "Componentes";
+$MESS["PERFMON_HIT_COMPONENTS_TIME"] = "Componente de tiempo";
+$MESS["PERFMON_HIT_DATE_HIT"] = "Fecha del Hit";
+$MESS["PERFMON_HIT_EPILOG_TIME"] = "Hora del epílogo";
+$MESS["PERFMON_HIT_EVENTS_TIME"] = "Hora del evento del mail";
+$MESS["PERFMON_HIT_ID"] = "ID";
+$MESS["PERFMON_HIT_INCLUDED_FILES"] = "Archivos";
+$MESS["PERFMON_HIT_IS_ADMIN"] = "Panel de Control";
+$MESS["PERFMON_HIT_MEMORY_PEAK_USAGE"] = "Memoria";
+$MESS["PERFMON_HIT_PAGE"] = "Hits";
+$MESS["PERFMON_HIT_PAGE_TIME"] = "Tiempos de la página";
+$MESS["PERFMON_HIT_PROLOG_TIME"] = "Prolongar la hora";
+$MESS["PERFMON_HIT_QUERIES"] = "Consultas";
+$MESS["PERFMON_HIT_QUERIES_TIME"] = "Hora de la consulta";
+$MESS["PERFMON_HIT_REQUEST_METHOD"] = "Métood HTTP  ";
+$MESS["PERFMON_HIT_REQUEST_URI2"] = "Hit";
+$MESS["PERFMON_HIT_SCRIPT_NAME"] = "Script";
+$MESS["PERFMON_HIT_SERVER_NAME"] = "Nombre del Servidor";
+$MESS["PERFMON_HIT_SERVER_PORT"] = "Puerto";
+$MESS["PERFMON_HIT_TITLE"] = "Monitor de rendimiento: Hits";
+$MESS["PERFMON_HIT_WORK_AREA_TIME"] = "Hora del área de trabajo";
+?>

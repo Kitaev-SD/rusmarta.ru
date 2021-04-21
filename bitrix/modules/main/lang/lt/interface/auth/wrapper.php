@@ -1,0 +1,33 @@
+<?
+$MESS["admin_authorize_error"] = "Autentifikavimo klaida";
+$MESS["admin_forgot_password_error"] = "Klaida atstatant slaptaþodá!";
+$MESS["admin_change_password_error"] = "Klaida keièiant slaptaþodá!";
+$MESS["admin_authorize_info"] = "Informacija";
+$MESS["AUTH_LOGIN"] = "Prisijungimo vardas";
+$MESS["AUTH_PASSWORD"] = "Slaptaþodis";
+$MESS["AUTH_REMEMBER_ME"] = "Prisiminti mane";
+$MESS["AUTH_PLEASE_AUTH"] = "Praðome prisijungti";
+$MESS["AUTH_FORGOT_PASSWORD_2"] = "Pamirðote slaptaþodá?";
+$MESS["AUTH_CAPTCHA_PROMT"] = "Áveskite raides, kurias matote paveikslëlyje";
+$MESS["AUTH_CHANGE_PASSWORD"] = "Pakeisti slaptaþodá";
+$MESS["AUTH_CHANGE_PASSWORD_1"] = "Áveskite kontroliná þodá ir naujà slaptaþodá";
+$MESS["AUTH_CHANGE_PASSWORD_2"] = "Slaptaþodis buvo sëkmingai pakeistas.";
+$MESS["AUTH_CHANGE"] = "Pakeisti slaptaþodá";
+$MESS["AUTH_CHECKWORD"] = "Kontrolinis þodis";
+$MESS["AUTH_NEW_PASSWORD"] = "Naujas slaptaþodis";
+$MESS["AUTH_NEW_PASSWORD_CONFIRM"] = "Patvirtinti slaptaþodá";
+$MESS["AUTH_NEW_PASSWORD_CONFIRM_WRONG"] = "Ávesti slaptaþodþiai nesutampa.";
+$MESS["AUTH_FORGOT_PASSWORD"] = "Slaptaþodþio praðymas";
+$MESS["AUTH_FORGOT_PASSWORD_1"] = "Jei negalite prisiminti savo slaptaþodþio, áveskite savo prisijungimo vardà arba el.paðtà, kurá naudojote registracijos metu. Praneðimas su þymës þodþiu, kurá galite naudoti norëdami pakeisti slaptaþodá, bus iðsiøstas á jûsø el.paðtà.";
+$MESS["AUTH_OR"] = "arba";
+$MESS["AUTH_GOTO_AUTH_FORM"] = "Prisijungti";
+$MESS["AUTH_GOTO_AUTH_FORM_1"] = "Prisijungimo vardas";
+$MESS["AUTH_GOTO_FORGOT_FORM"] = "Priminti slaptaþodá";
+$MESS["AUTH_GOTO_CHANGE_FORM"] = "Pakeisti slaptaþodá";
+$MESS["AUTH_GET_CHECK_STRING"] = "Iðsiøsti man kontroliná þodá";
+$MESS["AUTH_GET_CHECK_STRING_SENT"] = "Kontrolinis þodis buvo iðsiøstas.";
+$MESS["AUTH_SEND"] = "Siøsti";
+$MESS["AUTH_OTP_REMEMBER_ME"] = "Iðsaugoti slaptaþodá ðiame kompiuteryje";
+$MESS["AUTH_OTP_PASS"] = "Vienkartiniai slaptaþodþiai";
+$MESS["AUTH_NW_SECTION"] = "arba prisijunkite su";
+?>

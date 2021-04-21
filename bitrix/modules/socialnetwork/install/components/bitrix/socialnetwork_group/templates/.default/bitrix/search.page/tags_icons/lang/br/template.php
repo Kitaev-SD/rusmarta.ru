@@ -1,0 +1,35 @@
+<?
+$MESS["CT_BSP_KEYBOARD_WARNING"] = "O Idioma de entrada consulta mudou para \"#query#\".";
+$MESS["SEARCH_ADDITIONAL_FILTER"] = "Pesquisa avançada";
+$MESS["SEARCH_ADDITIONAL_FILTER_DATE"] = "Por Data";
+$MESS["SEARCH_ADDITIONAL_FILTER_FEATURE"] = "Por funcionalidade";
+$MESS["SEARCH_ALL"] = "(Todos)";
+$MESS["SEARCH_AND"] = "e";
+$MESS["SEARCH_AND_ALT"] = "<i>Operador lógico e</i> está implícito e pode ser omitido: a consulta &quotInformações de contato&quot é totalmente equivalente a &quotentrar em contato e informação&quot.";
+$MESS["SEARCH_BRACKETS_ALT"] = "<i>Rodada maior</i> definir a lógica de precedência do operador.";
+$MESS["SEARCH_CONTENT_TYPE_BLOG"] = "Blog";
+$MESS["SEARCH_CONTENT_TYPE_CALENDAR"] = "Calendário";
+$MESS["SEARCH_CONTENT_TYPE_FILES"] = "Arquivos";
+$MESS["SEARCH_CONTENT_TYPE_FORUM"] = "Fórum";
+$MESS["SEARCH_CONTENT_TYPE_PHOTO"] = "Foto";
+$MESS["SEARCH_CONTENT_TYPE_TASKS"] = "Tarefas";
+$MESS["SEARCH_CORRECT_AND_CONTINUE"] = "Por favor, corrija a frase de pesquisa e tente novamente.";
+$MESS["SEARCH_DESCRIPTION"] = "Descrição";
+$MESS["SEARCH_ERROR"] = "Erro na frase de busca:";
+$MESS["SEARCH_GO"] = "Ir";
+$MESS["SEARCH_LOGIC"] = "Operadores lógicos:";
+$MESS["SEARCH_MODIFIED"] = "Modificado:";
+$MESS["SEARCH_NOT"] = "não";
+$MESS["SEARCH_NOTHING_TO_FOUND"] = "Infelizmente, a sua pesquisa não encontrou nenhum documento.";
+$MESS["SEARCH_NOT_ALT"] = "<i>Operador lógico não</i> restringe as pesquisas a páginas que não contenham o operando.";
+$MESS["SEARCH_OPERATOR"] = "Operador";
+$MESS["SEARCH_OR"] = "ou";
+$MESS["SEARCH_OR_ALT"] = "<i>Operador lógico ou</i> permite pesquisar entidades que contenham pelo menos um dos operandos.";
+$MESS["SEARCH_PATH"] = "Caminho:";
+$MESS["SEARCH_SINTAX"] = "<b>sintaxe de consulta de Pesquisa:</b> <br/> <br/> A consulta de pesquisa comum é uma ou mais palavras, por exemplo: <br/> <i>informações de contato</i> <br/> a consulta vai encontrar páginas que contenham as duas palavras da consulta <br/> <br/> Os operadores lógicos permitem a construção de consultas mais complexas, por exemplo:. <br/> <i>informações de contato ou telefone</i> <br/> Esta consulta vai encontrar páginas que contenham algumas das palavras \"contato\" e \"informação\" ou \"telefone\". <br/> <br/> informações de contato de telefone não</i> <br/> Esta consulta vai encontrar páginas que contenham palavras \"contato\" e \"informação\", mas não \"telefone\". <br/> Você pode usar parênteses para criar consultas mais complexas. <br/>";
+$MESS["SEARCH_SORTED_BY_DATE"] = "Ordenadas por data";
+$MESS["SEARCH_SORTED_BY_RANK"] = "Classificado por relevância";
+$MESS["SEARCH_SORT_BY_DATE"] = "Classificar por data";
+$MESS["SEARCH_SORT_BY_RANK"] = "Classificar por relevância";
+$MESS["SEARCH_SYNONIM"] = "Sinônimos";
+?>

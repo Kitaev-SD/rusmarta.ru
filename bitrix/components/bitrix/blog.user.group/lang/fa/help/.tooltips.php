@@ -1,0 +1,4 @@
+<?
+$MESS["SET_TITLE_TIP"] = "If the option is active, the page title will be set to <nobr><b>User Groups of</b> <i>\"blog name\"</i>.</nobr>";
+$MESS["BLOG_URL_TIP"] = "Specifies the code in which the blog ID will be passed.";
+?>

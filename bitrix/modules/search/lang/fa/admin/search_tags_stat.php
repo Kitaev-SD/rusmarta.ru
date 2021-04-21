@@ -1,0 +1,7 @@
+<?
+$MESS["SEARCH_TAGSTAT_ID"] = "شناسه";
+$MESS["SEARCH_TAGSTAT_SITE_ID"] = "سایت";
+$MESS["SEARCH_TAGSTAT_TAGS"] = "برچسپ";
+$MESS["SEARCH_TAGSTAT_URL_TO"] = "به";
+$MESS["SEARCH_TAGSTAT_COUNT"] = "مقدار";
+?>

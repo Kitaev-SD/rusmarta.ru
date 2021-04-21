@@ -1,0 +1,30 @@
+<?
+$MESS["sender_group_adm_tab_grp"] = "Grupo";
+$MESS["sender_group_adm_tab_grp_title"] = "Parámetros comunes de grupo";
+$MESS["sender_group_adm_tab_param"] = "Parámetros";
+$MESS["sender_group_adm_tab_param_title"] = "Parámetros de destinatarios";
+$MESS["sender_group_title_add"] = "Crear grupos de destinatarios";
+$MESS["sender_group_title_edit"] = "Editar grupo de destinatarios #";
+$MESS["sender_group_list"] = "Ver grupos";
+$MESS["sender_group_list_title"] = "Volver a los grupos de destinatarios";
+$MESS["sender_group_add"] = "Agregar";
+$MESS["sender_group_add_title"] = "Agregar grupo";
+$MESS["sender_group_del"] = "Eliminar";
+$MESS["sender_group_del_title"] = "Eliminar grupo";
+$MESS["sender_group_del_confirm"] = "¿Está seguro de que desea eliminar este grupo?";
+$MESS["sender_group_field_active"] = "Activo:";
+$MESS["sender_group_field_name"] = "Nombre del grupo:";
+$MESS["sender_group_field_sort"] = "Orden de clasificación:";
+$MESS["sender_group_field_desc"] = "Descripción (2000 caracteres máx.):";
+$MESS["sender_group_conn_title"] = "Elija los destinatarios para este grupo";
+$MESS["sender_group_conn_desc"] = "Grupo de diversos destinatarios en una lista de correo. Utilice los filtros para buscar y seleccionar sólo a las personas que deseas que reciban los mensajes.";
+$MESS["sender_group_conn_desc_example"] = "Por ejemplo, se puede anunciar un próximo evento de ventas sólo a los compradores frecuentes, o para cualquier persona que hizo compras en su tienda al menos una vez.";
+$MESS["sender_group_conn_add"] = "Agregar filtro";
+$MESS["group_edit_connector"] = "Tipos de destinatarios:";
+$MESS["group_edit_connector_add"] = "Agregar tipo:";
+$MESS["group_edit_connector_add_button"] = "Agregar";
+$MESS["sender_group_conn_not_availabe"] = "No hay fuente disponible del destinatario.";
+$MESS["sender_group_conn_cnt"] = "Seleccionado";
+$MESS["sender_group_conn_cnt_all"] = "Total de destinatarios seleccionados";
+$MESS["sender_group_conn_not_selected"] = "No hay filtros. Por favor, cree un filtro.";
+?>

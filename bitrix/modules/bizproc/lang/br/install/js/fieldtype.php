@@ -1,0 +1,7 @@
+<?
+$MESS["BIZPROC_JS_BP_FIELD_TYPE_ADD"] = "adicionar";
+$MESS["BIZPROC_JS_BP_FIELD_TYPE_CHOOSE_FILE"] = "Selecionar um arquivo";
+$MESS["BIZPROC_JS_BP_FIELD_TYPE_NO"] = "Não";
+$MESS["BIZPROC_JS_BP_FIELD_TYPE_NOT_SELECTED"] = "[não definido]";
+$MESS["BIZPROC_JS_BP_FIELD_TYPE_YES"] = "Sim";
+?>

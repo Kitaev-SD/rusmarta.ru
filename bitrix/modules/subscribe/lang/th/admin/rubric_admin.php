@@ -1,0 +1,29 @@
+<?
+$MESS ['rub_title'] = "Newsletter categories";
+$MESS ['rub_del_err'] = "Cannot delete category.";
+$MESS ['rub_nav'] = "Categories";
+$MESS ['rub_name'] = "Name";
+$MESS ['rub_sort'] = "Sort.";
+$MESS ['rub_act'] = "Active";
+$MESS ['rub_edit'] = "Modify";
+$MESS ['rub_del'] = "Delete";
+$MESS ['rub_site'] = "Site";
+$MESS ['rub_auto'] = "Auto.";
+$MESS ['rub_visible'] = "Public";
+$MESS ['rub_last_exec'] = "การสร้าง";
+$MESS ['rub_check'] = "ตรวจสอบ template";
+$MESS ['rub_wrong_generation_from'] = "โปรดระบุวันที่เริ่มต้น \"จาก\" ของการสร้างในตัวกรอง";
+$MESS ['rub_wrong_generation_till'] = "โปรดระบุวันที่สิ้นสุด \"ถึง\" ของการสร้างในตัวกรอง";
+$MESS ['rub_wrong_generation_from_till'] = "วันที่สิ้นสุด \"ถึง\" ต้องมากกว่าวันที่เริ่มต้นสร้าง \"จาก\" ในตัวกรอง";
+$MESS ['rub_save_error'] = "พบข้อผิดพลาดระหว่างการปรับปรุงรายการ";
+$MESS ['rub_no_rubric'] = "ไม่พบหัวข้อ";
+$MESS ['POST_ADD_TITLE'] = "คลิกเพื่อเพิ่มหัวข้อของการส่งใหม่";
+$MESS ['rub_f_site'] = "เว็บไซต์";
+$MESS ['rub_f_active'] = "Active";
+$MESS ['rub_f_public'] = "Public";
+$MESS ['rub_f_auto'] = "อัตโนมัติ";
+$MESS ['rub_f_find'] = "ค้นหา";
+$MESS ['rub_f_find_title'] = "ระบุคำสั่งในการค้นหา";
+$MESS ['rub_del_conf'] = "ลบประเภท";
+$MESS ['rub_actions'] = "Actions";
+?>

@@ -1,0 +1,34 @@
+<?
+$MESS["ADS_CLIENT_VIEW"] = "Ver destinatarios del anuncio";
+$MESS["ADS_CONNECT_CABINET"] = "Conectar cuentas publicitarias";
+$MESS["ADS_FB_INSTAGRAM_EDIT"] = "Administrar Anuncios de Facebook + Instagram";
+$MESS["ADS_GOOGLE_EDIT"] = "Administrar Google AdWords";
+$MESS["ADS_LOOK_ALIKE_FB_EDIT"] = "Administre Anuncios similares de Facebook + Instagram";
+$MESS["ADS_PAUSE_START_STOP"] = "Ejecutar, detener y pausar anuncios";
+$MESS["ADS_VIEW"] = "Ver campañas publicitarias";
+$MESS["BLACKLIST_EDIT"] = "Editar lista negra";
+$MESS["BLACKLIST_VIEW"] = "Ver lista negra";
+$MESS["MAILING_AUDIO_CALL_EDIT"] = "Crear llamadas de audio";
+$MESS["MAILING_CLIENT_VIEW"] = "Ver destinatarios de la campaña";
+$MESS["MAILING_EMAIL_EDIT"] = "Crear campañas de correo electrónico";
+$MESS["MAILING_INFO_CALL_EDIT"] = "Crear difusiones de voz";
+$MESS["MAILING_MESSENGER_EDIT"] = "Crear campañas de messegner";
+$MESS["MAILING_PAUSE_START_STOP"] = "Ejecutar, detener y pausar campañas";
+$MESS["MAILING_SMS_EDIT"] = "Crear campañas de SMS";
+$MESS["MAILING_VIEW"] = "Ver campañas";
+$MESS["RC_EDIT"] = "Crear reglas de Generador de ventas";
+$MESS["RC_PAUSE_START_STOP"] = "Ejecutar, detener y pausar Generador de ventas";
+$MESS["RC_VIEW"] = "Ver reglas de Generador de ventas";
+$MESS["SEGMENT_CLIENT_EDIT"] = "Editar clientes";
+$MESS["SEGMENT_CLIENT_OWN_CATEGORY"] = "Ver clientes de pipeline actual";
+$MESS["SEGMENT_CLIENT_PERSONAL_EDIT"] = "Subir direcciones personalizadas";
+$MESS["SEGMENT_CLIENT_VIEW"] = "Ver clientes del segmento";
+$MESS["SEGMENT_EDIT"] = "Crear y editar segmentos";
+$MESS["SEGMENT_LEAD_EDIT"] = "Editar prospectos";
+$MESS["SEGMENT_VIEW"] = "Ver segmentos existentes";
+$MESS["SETTINGS_EDIT"] = "Editar configuraciones";
+$MESS["SETTINGS_VIEW"] = "Ver configuraciones";
+$MESS["START_VIEW"] = "Ver página de inicio";
+$MESS["TEMPLATE_EDIT"] = "Editar plantillas";
+$MESS["TEMPLATE_VIEW"] = "Ver plantillas";
+?>

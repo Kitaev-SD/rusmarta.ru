@@ -1,0 +1,33 @@
+<?
+$MESS["SONET_UR_AGREE_FRIEND_MESSAGE"] = "Un usuario ha confirmado su solicitud de amistad.";
+$MESS["SONET_UR_ALREADY_BAN"] = "Este es utilizado ya en la lista negra.";
+$MESS["SONET_UR_BANUSER_MESSAGE"] = "Usted ha sido puesto en la lista negra.";
+$MESS["SONET_UR_EMPTY_DATE_CREATE"] = "La fecha de creación es incorrecta.";
+$MESS["SONET_UR_EMPTY_DATE_UPDATE"] = "La fecha de actualización es incorrecta.";
+$MESS["SONET_UR_EMPTY_FIRST_USER_ID"] = "El primer usuario no se especifica.";
+$MESS["SONET_UR_EMPTY_RELATION"] = "La relación no se especifica.";
+$MESS["SONET_UR_EMPTY_RELATION_ID"] = "Error al crear la relación del usuario.";
+$MESS["SONET_UR_EMPTY_SECOND_USER_ID"] = "El segundo usuario no se especifica.";
+$MESS["SONET_UR_EMPTY_SENDER_USER_ID"] = "La solicitud del remitente no se especifica.";
+$MESS["SONET_UR_EMPTY_TARGET_USER_ID"] = "La solicitud del remitente no se especifica.";
+$MESS["SONET_UR_ERROR_CREATE_RELATION"] = "Error al crear la relación cn el usuario.";
+$MESS["SONET_UR_ERROR_NO_FIRST_USER_ID"] = "El primer usuario es incorrecto.";
+$MESS["SONET_UR_ERROR_NO_RELATION"] = "La relación especificada es incorrecta.";
+$MESS["SONET_UR_ERROR_NO_SECOND_USER_ID"] = "El segundo usuario es incorrecto.";
+$MESS["SONET_UR_ERROR_RELATION_FRIENDS2"] = "Relaciones de Amistad ya no son compatibles";
+$MESS["SONET_UR_ERROR_UPDATE_RELATION"] = "Error de la actualización de la relación usuario.";
+$MESS["SONET_UR_IM_UNFRIEND"] = "ya no es tu amigo";
+$MESS["SONET_UR_IM_UNFRIEND_F"] = "ya no es tu amigo";
+$MESS["SONET_UR_IM_UNFRIEND_M"] = "ya no es tu amigo";
+$MESS["SONET_UR_INVALID_TARGET_USER_ID"] = "Ningún usuario con el ID del remitente se encontró";
+$MESS["SONET_UR_NO_FRIEND_REQUEST"] = "La solicitud de un amigo no fue encontrada.";
+$MESS["SONET_UR_REJECT_FRIEND_MESSAGE"] = "Un usuario ha negado su solicitud de amistad.";
+$MESS["SONET_UR_RELATION_DELETE_ERROR"] = "No se puede eliminar la relación del usuario.";
+$MESS["SONET_UR_RELATION_NOT_FOUND"] = "La relación de usuario no fue encontrada.";
+$MESS["SONET_UR_UNBANUSER_MESSAGE"] = "Usted ha sido retirado de la lista negra.";
+$MESS["SONET_UR_UNBAN_ERROR"] = "Usted no tiene permiso para eliminar este usuario de la lista negra.";
+$MESS["SONET_U_INVITE_CONFIRM"] = "Aceptar";
+$MESS["SONET_U_INVITE_CONFIRM_TEXT"] = "Solicitud de amistad: \"#TEXT#\"";
+$MESS["SONET_U_INVITE_CONFIRM_TITLE"] = "Solicitud de amistad del #USER#";
+$MESS["SONET_U_INVITE_REJECT"] = "Cancelar";
+?>

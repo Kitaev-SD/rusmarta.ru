@@ -1,0 +1,33 @@
+<?
+$MESS["BC_DATE_TIME_FORMAT"] = "Formato de fecha y hora";
+$MESS["BPC_ALLOW_IMAGE_UPLOAD"] = "Permite cargar imágenes ";
+$MESS["BPC_ALLOW_IMAGE_UPLOAD_A"] = "Todos";
+$MESS["BPC_ALLOW_IMAGE_UPLOAD_N"] = "Nadie";
+$MESS["BPC_ALLOW_IMAGE_UPLOAD_R"] = "Usuarios registrados";
+$MESS["BPC_ALLOW_VIDEO"] = "Permiten insertar un vídeo";
+$MESS["BPC_COMMENT_ID_VAR"] = "Nombre de la variable ID del comentario";
+$MESS["BPC_ID"] = "ID de la conversación";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Altura Max. de la imagen";
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Ancho Max. de la imagen";
+$MESS["BPC_NO_URL_IN_COMMENTS"] = "Deshabilitar los enlaces en comentarios";
+$MESS["BPC_NO_URL_IN_COMMENTS_A"] = "Anónimo";
+$MESS["BPC_NO_URL_IN_COMMENTS_AUTHORITY"] = "Autoridad mínima requerida para el uso de enlaces";
+$MESS["BPC_NO_URL_IN_COMMENTS_L"] = "Todos";
+$MESS["BPC_NO_URL_IN_COMMENTS_N"] = "Nadie";
+$MESS["BPC_PAGE_VAR"] = "Nombre de la variable de la página";
+$MESS["BPC_PATH_TO_BLOG"] = "Plantilla de ruta de la página de conversaciones";
+$MESS["BPC_PATH_TO_SMILE"] = "Ruta de la carpeta de emoticonos (relativo a la raíz del sitio web)";
+$MESS["BPC_PATH_TO_USER"] = "Plantilla de ruta de perfil de usuario";
+$MESS["BPC_POST_VAR"] = "Nombre de la variable de ID de la conversación";
+$MESS["BPC_SHOW_SPAM"] = "Hacer comentarios sobre el \"usuario\"/Spam\" disponible para los administradores";
+$MESS["BPC_USER_VAR"] = "Nombre de la variable de ID del usuario";
+$MESS["B_VARIABLE_ALIASES"] = "Alias de las variables";
+$MESS["RATING_TYPE"] = "Diseño de botones de calificación";
+$MESS["RATING_TYPE_CONFIG"] = "Por defecto";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Me gusta (imagen) ";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Me gusta (texto) ";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Me gusta/no me gusta (imagen)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Me gusta/no me gusta (texto)";
+$MESS["SHOW_RATING"] = "Habilitar la calificación";
+$MESS["SHOW_RATING_CONFIG"] = "Por defecto";
+?>

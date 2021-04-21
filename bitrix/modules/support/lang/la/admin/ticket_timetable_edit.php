@@ -1,0 +1,32 @@
+<?
+$MESS["MAIN_ADMIN_MENU_COPY"] = "Copiar";
+$MESS["MAIN_ADMIN_MENU_DELETE"] = "Eliminar";
+$MESS["MAIN_ADMIN_MENU_LIST"] = "List";
+$MESS["SUP_24H"] = "24h";
+$MESS["SUP_ADMIN_ROW_COPY"] = "Copiar";
+$MESS["SUP_ADMIN_ROW_DELETE"] = "Eliminar fila";
+$MESS["SUP_ADMIN_TAB1"] = "Programa";
+$MESS["SUP_ADMIN_TAB2"] = "Horas de trabajo";
+$MESS["SUP_ADMIN_TITLE"] = "Programar";
+$MESS["SUP_ADMIN_TITLE_ADD"] = "Nueva programación";
+$MESS["SUP_ADMIN_TITLE_EDIT"] = "Editar programación \"#NAME#\"";
+$MESS["SUP_ADMIN_USER_FIELDS"] = "Propiedades adicionales";
+$MESS["SUP_BACK_TO_ADMIN"] = "Atrás";
+$MESS["SUP_CLOSED"] = "Cerrar trabajo";
+$MESS["SUP_CONFIRM_DEL_MESSAGE"] = "Está seguro de que desea eliminar esta programación?";
+$MESS["SUP_CUSTOM"] = "Horas de trabajo:<br>(HH24:MI)";
+$MESS["SUP_DESCRIPTION"] = "Descripción";
+$MESS["SUP_ERROR"] = "Errores";
+$MESS["SUP_FORM_SETTINGS"] = "Configuración";
+$MESS["SUP_FORM_SETTINGS_EX"] = "Configuración";
+$MESS["SUP_HOURS"] = "Horas de trabajo";
+$MESS["SUP_NAME"] = "Nombre";
+$MESS["SUP_TIMETABLE_NOT_FOUND"] = "No se encontró programación.";
+$MESS["SUP_WEEKDAY_0"] = "Lunes";
+$MESS["SUP_WEEKDAY_1"] = "Martes";
+$MESS["SUP_WEEKDAY_2"] = "Miércoles";
+$MESS["SUP_WEEKDAY_3"] = "Jueves";
+$MESS["SUP_WEEKDAY_4"] = "Viernes";
+$MESS["SUP_WEEKDAY_5"] = "Sábado";
+$MESS["SUP_WEEKDAY_6"] = "Domingo";
+?>

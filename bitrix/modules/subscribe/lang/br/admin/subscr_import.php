@@ -1,0 +1,30 @@
+<?
+$MESS["imp_add"] = "Adicionar assinantes:";
+$MESS["imp_add_anonym"] = "AS usuários anônimos";
+$MESS["imp_add_gr"] = "Adicionar usuários a grupos:";
+$MESS["imp_add_users"] = "AS usuários registrados (Criando a conta)";
+$MESS["imp_butt"] = "Endereço de importação";
+$MESS["imp_conf"] = "Marcar inscrição como confirmada:";
+$MESS["imp_delim"] = "Endereços da lista devem ser separados com um <b>comma</b> ou iniciado em uma <b>nova linha</b>.";
+$MESS["imp_error"] = "Erro ao importar endereços";
+$MESS["imp_file"] = "Importar de arquivo:";
+$MESS["imp_fmt"] = "Formato:";
+$MESS["imp_fmt_text"] = "Texto";
+$MESS["imp_import_tab"] = "Importar:";
+$MESS["imp_import_tab_title"] = "Importar parâmetros";
+$MESS["imp_list"] = "Importar de lista:";
+$MESS["imp_results"] = "Importar resultados:";
+$MESS["imp_results_added"] = "Endereços adicionados:";
+$MESS["imp_results_err"] = "Endereços ruins:";
+$MESS["imp_results_total"] = "Total unique addresses to import:";
+$MESS["imp_send_code"] = "Enviar código de confirmação de inscrição:";
+$MESS["imp_send_reg"] = "Enviar informações de registro para usuários:";
+$MESS["imp_site"] = "Enviar e-mails usando modelos do site:";
+$MESS["imp_subscr"] = "Increver-se nas categorias:";
+$MESS["imp_title"] = "Importar e-mails";
+$MESS["imp_user"] = "Assinantes podem ser adicionados como usuários anônimos ou como usuários registrados.";
+$MESS["imp_user_anonym"] = "Assinantes anônimos não possuem conta pessoal no site. Usuários registrados possuem contas e podem participar de um ou mais grupos.";
+$MESS["subscr_imp_err1"] = "Erro ao carregar arquivo:";
+$MESS["subscr_imp_err2"] = "Código de erro";
+$MESS["subscr_send_info"] = "Total de endereços únicos a serem importados";
+?>

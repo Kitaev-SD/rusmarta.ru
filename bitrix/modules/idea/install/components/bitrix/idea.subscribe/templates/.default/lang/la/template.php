@@ -1,0 +1,7 @@
+<?
+$MESS["IDEA_SUBSCRIBE_AUTHOR"] = "Creado por";
+$MESS["IDEA_SUBSCRIBE_PUBLISHED"] = "Creado por";
+$MESS["IDEA_SUBSCRIBE_STATUS"] = "Estado";
+$MESS["IDEA_SUBSCRIBE_TITLE"] = "Nombre";
+$MESS["IDEA_SUBSCRIBE_TOTAL"] = "Suscripciones";
+?>

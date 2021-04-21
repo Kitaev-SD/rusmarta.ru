@@ -1,0 +1,4 @@
+<?
+$MESS["BLOG_MAIN_SEARCH_SEARCH"] = "Paieðka";
+$MESS["BLOG_SEARCH_BUTTON"] = "Ieðkoti";
+?>

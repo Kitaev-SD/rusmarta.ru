@@ -1,0 +1,31 @@
+<?
+$MESS["VOTE_SORTING"] = "Rûðiavimas:";
+$MESS["VOTE_SITE"] = "Svetainës:";
+$MESS["VOTE_EDIT_RECORD"] = "Apklausø grupës parametrai # #ID#";
+$MESS["VOTE_NEW_RECORD"] = "Nauja apklausø grupë";
+$MESS["VOTE_RECORDS_LIST"] = "Grupiø sàraðas";
+$MESS["VOTE_TIMESTAMP"] = "Redaguota:";
+$MESS["VOTE_ACTIVE"] = "Aktyvus:";
+$MESS["VOTE_HIDDEN"] = "Paslëpti:";
+$MESS["VOTE_VOTE_SINGLE"] = "Leisti tik vienà esamà apklausà grupëje:";
+$MESS["VOTE_SYMBOLIC_NAME"] = "Simbolinis identifikatorius:";
+$MESS["VOTE_TITLE"] = "Pavadinimas:";
+$MESS["VOTE_VOTES"] = "Apklausos";
+$MESS["VOTE_RIGHTS"] = "Naudotojø grupiø priëjimo teisës";
+$MESS["VOTE_VOTE_ADD"] = "Pridëti aplankà";
+$MESS["VOTE_CREATE_NEW_RECORD"] = "Sukurti naujà grupæ";
+$MESS["VOTE_DELETE_RECORD"] = "Iðtrinti grupæ";
+$MESS["VOTE_DELETE_RECORD_CONFIRM"] = "Ar tikrai norite paðalinti grupæ ir visas apklausas susietas su jà?";
+$MESS["VOTE_PROP"] = "Savybës";
+$MESS["VOTE_ACCESS"] = "Prieiga";
+$MESS["VOTE_GRP_PROP"] = "Grupës sàvybës";
+$MESS["VOTE_SITE_EDIT"] = "Redaguoti svetainæ";
+$MESS["VOTE_GOT_ERROR"] = "Klaida iðsaugojant grupæ";
+$MESS["VOTE_VOTES_TITLE"] = "Grupës apklausø sàraðas";
+$MESS["VOTE_CREATE_VOTE"] = "Sukurti apklausà";
+$MESS["VOTE_CREATE"] = "Sukurti";
+$MESS["VOTE_LIST"] = "Sàraðas";
+$MESS["VOTE_DELETE"] = "Paðalinti";
+$MESS["VOTE_USE_CAPTCHA"] = "Naudoti CAPTCHA";
+$MESS["VOTE_CHANNEL_IS_NOT_EXISTS"] = "Apklausos grupë ##ID# nerasta.";
+?>

@@ -1,0 +1,7 @@
+<?
+$MESS["BLOG_MODULE_NOT_INSTALL"] = "Tinklaraðèiø modulis nëra ádiegtas";
+$MESS["B_B_FR_TITLE"] = "Draugø puslapiai";
+$MESS["B_B_FR_TITLES"] = "Mano draugø puslapiai";
+$MESS["B_B_FR_TITLE_OF"] = "Naudotojo \"#NAME#\" draugø puslapiai";
+$MESS["B_B_FR_NO_USER"] = "Naudotojas nerastas";
+?>

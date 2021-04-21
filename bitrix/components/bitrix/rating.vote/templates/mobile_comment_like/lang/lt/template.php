@@ -1,0 +1,4 @@
+<?
+$MESS["RATING_COMMENT_LIST_BACK"] = "Gráþti";
+$MESS["RATING_COMMENT_LIKE"] = "Patinka";
+?>

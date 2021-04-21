@@ -1,0 +1,29 @@
+<?
+$MESS ['FORM_MODULE_NAME'] = "เว็บฟอร์ม";
+$MESS ['FORM_MODULE_DESCRIPTION'] = "โมดูลการจัดการเว็บฟอร์ม, อนุมัติไปยังส่วนที่เก็บข้อมูล และตัวกรองข้อมูลต่างๆ.";
+$MESS ['FORM_INSTALL_TITLE'] = "ติดตั้งโมดูลเว็บฟอร์ม";
+$MESS ['FORM_UNINSTALL_TITLE'] = "ถอดโมดูลเว็บฟอร์ม";
+$MESS ['FORM_SELECT_INITITAL'] = "โปรดเลือกโฟลเดอร์:";
+$MESS ['FORM_NO'] = "ไม่";
+$MESS ['FORM_ATTENTION'] = "เตือน! กำลังจะถอดโมดูลเว็บฟอร์ม.";
+$MESS ['FORM_YOU_CAN_SAVE_TABLES'] = "ในการบันทึกข้อมูลลงในฐานข้อมูล, ตรวจสอบ &quot;Save Tables&quot; checkbox";
+$MESS ['FORM_SAVE_TABLES'] = "บันทึกตาราง";
+$MESS ['FORM_DELETE'] = "ถอดโมดูล";
+$MESS ['FORM_DELETE_COMLETE'] = "ถอดโมดูลสมบูรณ์แล้ว";
+$MESS ['FORM_BACK'] = "กลับ";
+$MESS ['FORM_ERRORS'] = "ผิดพลาด:";
+$MESS ['FORM_INSTALL'] = "ติดตั้ง";
+$MESS ['FORM_COMPLETE'] = "ติดตั้งโมดูลสมบูรณ์แล้ว";
+$MESS ['FORM_WRONG_MAIN_VERSION'] = "ในการติดตั้งโมดูล คุณต้องปรับปรุงส่วนจัดการระบบไปเป็นเวอร์ชั่น #VER#";
+$MESS ['FORM_DENIED'] = "ไม่อนุมัติ";
+$MESS ['FORM_OPENED'] = "ผ่าน";
+$MESS ['FORM_FULL'] = "เชื่อมโยงทั้งหมด";
+$MESS ['FORM_URL_PUBLIC'] = "โฟลเดอร์ไฟล์ทดลอง:";
+$MESS ['FORM_DEMO_DIR'] = "เปิดดูการทำงานของไฟล์ทดลอง:";
+$MESS ['FORM_RESET'] = "ยกเลิก";
+$MESS ['FORM_SITE'] = "เว็บไซต์";
+$MESS ['FORM_LINK'] = "ลิงค์";
+$MESS ['COPY_PUBLIC_FILES'] = "Copy public files";
+$MESS ['COPY_FOLDER'] = "Folder where the files will be copied to(relating to the site root folder):";
+$MESS ['INSTALL_PUBLIC_REW'] = "Overwrite existing files";
+?>

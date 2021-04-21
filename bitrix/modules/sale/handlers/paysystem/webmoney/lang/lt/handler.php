@@ -1,0 +1,13 @@
+<?
+$MESS["SALE_HPS_WEBMONEY_TEST"] = "Testinis rëþimas";
+$MESS["SALE_HPS_WEBMONEY_PAYEE_PURSE"] = "pardavëjo piniginë - #PAYEE_PURSE#";
+$MESS["SALE_HPS_WEBMONEY_INVS_NO"] = "sàskaitos numeris - #INVS_NO#";
+$MESS["SALE_HPS_WEBMONEY_TRANS_NO"] = "mokëjimo numeris - #TRANS_NO#";
+$MESS["SALE_HPS_WEBMONEY_TRANS_DATE"] = "mokëjimo data - #TRANS_DATE#";
+$MESS["SALE_HPS_WEBMONEY_PAYER_PURSE"] = "pirkëjo piniginë - #PAYER_PURSE#";
+$MESS["SALE_HPS_WEBMONEY_PAYER_WM"] = "Pirkëjo WMId - #PAYER_WM#";
+$MESS["SALE_HPS_WEBMONEY_PAYMER_NUMBER"] = "-kortos numeris - #PAYMER_NUMBER#";
+$MESS["SALE_HPS_WEBMONEY_PAYMER_EMAIL"] = "paymer.compirkëjo el. paðtas - #PAYMER_EMAIL#";
+$MESS["SALE_HPS_WEBMONEY_TELEPAT_PHONENUMBER"] = "pirkëjo telefono nr. - #TELEPAT_PHONENUMBER#";
+$MESS["SALE_HPS_WEBMONEY_TELEPAT_ORDERID"] = "Telepat mokëjimas - #TELEPAT_ORDERID#";
+?>

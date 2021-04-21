@@ -1,0 +1,4 @@
+<?
+$MESS["MAIN_USER_CONSENT_AGREEMENT_TYPE_N"] = "Tinkintas";
+$MESS["MAIN_USER_CONSENT_AGREEMENT_TYPE_S"] = "Standartinis";
+?>

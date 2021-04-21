@@ -1,0 +1,26 @@
+<?
+$MESS["CONTRACTOR_PAGE_TITLE"] = "Tiekëjai";
+$MESS["CONTRACTOR_ADD_NEW"] = "Pridëti tiekëjà";
+$MESS["CONTRACTOR_ADD_NEW_ALT"] = "Pridëti naujà tiekëjà";
+$MESS["EDIT_CONTRACTOR_ALT"] = "Redaguoti";
+$MESS["DELETE_CONTRACTOR_ALT"] = "Paðalinti";
+$MESS["DELETE_CONTRACTOR_CONFIRM"] = "Ar tikrai norite paðalinti tiekëjà?";
+$MESS["group_admin_nav"] = "Tiekëjai";
+$MESS["CONTRACTOR_TITLE"] = "Vardas";
+$MESS["CONTRACTOR_POST_INDEX"] = "Paðto kodas";
+$MESS["CONTRACTOR_INN"] = "Mokesèio mokëtojo ID";
+$MESS["CONTRACTOR_PHONE"] = "Telefonas";
+$MESS["CONTRACTOR_EMAIL"] = "El.paðtas";
+$MESS["CONTRACTOR_TYPE"] = "Tiekëjo tipas";
+$MESS["CONTRACTOR_KPP"] = "Rangovas";
+$MESS["CONTRACTOR_INDIVIDUAL"] = "Privatus asmuo";
+$MESS["CONTRACTOR_JURIDICAL"] = "Juridinis asmuo";
+$MESS["CONTRACTOR_PERSON_NAME"] = "Vardas";
+$MESS["CONTRACTOR_PERSON_LASTNAME"] = "Pavardë";
+$MESS["CONTRACTOR_ADDRESS"] = "Adresas";
+$MESS["ERROR_UPDATING_REC"] = "Klaida atnaujinant áraðà.";
+$MESS["ERROR_DELETING_TYPE"] = "Klaida ðalinant áraðà.";
+$MESS["CONTRACTOR_PERSON_TITLE"] = "Kontaktinio asmens vardas, pavardë";
+$MESS["CONTRACTOR_COMPANY"] = "Ámonës pavadinimas";
+$MESS["CONTRACTOR_FIELD_ALL"] = "bet koks";
+?>

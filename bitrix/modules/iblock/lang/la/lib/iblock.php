@@ -1,0 +1,31 @@
+<?
+$MESS["IBLOCK_ENTITY_ID_FIELD"] = "ID";
+$MESS["IBLOCK_ENTITY_TIMESTAMP_X_FIELD"] = "Modificado el";
+$MESS["IBLOCK_ENTITY_IBLOCK_TYPE_ID_FIELD"] = "Tipo del block de información";
+$MESS["IBLOCK_ENTITY_CODE_FIELD"] = "Código mnemonico";
+$MESS["IBLOCK_ENTITY_NAME_FIELD"] = "Nombre";
+$MESS["IBLOCK_ENTITY_ACTIVE_FIELD"] = "Activo";
+$MESS["IBLOCK_ENTITY_SORT_FIELD"] = "Ordenar";
+$MESS["IBLOCK_ENTITY_LIST_PAGE_URL_FIELD"] = "URL de la página del block Información ";
+$MESS["IBLOCK_ENTITY_DETAIL_PAGE_URL_FIELD"] = "URL de los detalles de la página";
+$MESS["IBLOCK_ENTITY_SECTION_PAGE_URL_FIELD"] = "URL de la sección de la página";
+$MESS["IBLOCK_ENTITY_PICTURE_FIELD"] = "Imagen";
+$MESS["IBLOCK_ENTITY_DESCRIPTION_FIELD"] = "Descripción";
+$MESS["IBLOCK_ENTITY_DESCRIPTION_TYPE_FIELD"] = "Tipo de descripción";
+$MESS["IBLOCK_ENTITY_XML_ID_FIELD"] = "ID externo";
+$MESS["IBLOCK_ENTITY_TMP_ID_FIELD"] = "ID temporal";
+$MESS["IBLOCK_ENTITY_INDEX_ELEMENT_FIELD"] = "Agregar elementos al índice de búsqueda";
+$MESS["IBLOCK_ENTITY_INDEX_SECTION_FIELD"] = "Agregar secciones al índice de búsqueda";
+$MESS["IBLOCK_ENTITY_WORKFLOW_FIELD"] = "Habilitar el flujo de documentos";
+$MESS["IBLOCK_ENTITY_BIZPROC_FIELD"] = "Uso en los procesos de negocio";
+$MESS["IBLOCK_ENTITY_LIST_MODE_FIELD"] = "Modo de sección y vista elementos";
+$MESS["IBLOCK_ENTITY_RIGHTS_MODE_FIELD"] = "Modo de permiso de acceso";
+$MESS["IBLOCK_ENTITY_VERSION_FIELD"] = "Configuración del almacenamiento de propiedad";
+$MESS["IBLOCK_ENTITY_LAST_CONV_ELEMENT_FIELD"] = "El último elemento convertido";
+$MESS["IBLOCK_ENTITY_SOCNET_GROUP_ID_FIELD"] = "Grupo de redes sociales";
+$MESS["IBLOCK_ENTITY_EDIT_FILE_BEFORE_FIELD"] = "Elemento que permite editar el archivo para actualizar los campos antes de guardar";
+$MESS["IBLOCK_ENTITY_EDIT_FILE_AFTER_FIELD"] = "Archivo que contiene el formulario del elemento de edición";
+$MESS["IBLOCK_ENTITY_SECTION_CHOOSER_FIELD"] = "Controlando el vínculo del elemento a sección";
+$MESS["IBLOCK_ENTITY_SECTION_PROPERTY_FIELD"] = "Tienen propiedades privadas";
+$MESS["IBLOCK_ENTITY_CANONICAL_PAGE_URL_FIELD"] = "URL del elemento canónico";
+?>

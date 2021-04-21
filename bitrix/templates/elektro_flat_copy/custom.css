@@ -1,0 +1,230 @@
+/***CUSTOM CSS RULES FOR YOUR SITE***/
+
+.catalog-section-child a .child .graph {
+    width: 66px;
+    height: 56px;
+    display: table-cell;
+    vertical-align: middle;
+}
+li .last a.last2{
+    width: 236px;
+    height: 58px;
+    display: block;
+    margin: 0px!important;
+    padding: 0px!important;
+
+    text-decoration: none;
+    border: 1px solid #dee0ee;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-transition: all 0.15s ease 0s;
+    -moz-transition: all 0.15s ease 0s;
+    -o-transition: all 0.15s ease 0s;
+    transition: all 0.15s ease 0s;
+
+    font-family: "Open Sans", sans-serif!important;
+    font-size: 13px!important;
+    font-weight: 400!important;
+}
+.last{
+    width: 236px!important;
+    display: inline-block!important;
+    vertical-align: top!important;
+    margin: 0px!important;
+    padding: 0px 0px 0px 0px!important;
+}
+.last ul{
+   line-height:20px;
+}
+.last2  .child {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+.last2  .child .graph {
+    width: 66px;
+    height: 56px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.last2  .child .graph {
+    text-align: center;
+}
+
+.last2   .child .text-cont {
+    height: 56px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0px 12px;
+    text-decoration: underline;
+}
+
+.last2 .child .graph i {
+    font-size: 32px;
+
+}
+.last2 .child .text{
+    max-height: 54px;
+    display: block;
+    overflow: hidden;
+}
+.last .submenu {
+    padding: 5px 10px 10px 10px!important;
+}
+.last .submenu a{
+    display: inline!important;
+}
+
+.last2:hover {
+
+    border: 1px solid #fde037!important;
+    -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.36);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.36);
+}
+
+.last2:hover .graph{
+    color: #575b71!important;
+}
+.last2:hover .text-cont{
+    text-decoration: none;
+}
+
+li.last4 {
+    width: 236px!important;
+	padding:0!important;
+   
+}
+.catalog-section-child a{
+   padding:0!important;
+}
+ul.left-menu > li.parent > ul.submenu {
+    padding: 15px 25px 15px 5px!important;
+   
+}
+
+
+@media (min-width:1014px) and (max-width:1253px){
+	.header_2_loc {
+		position: relative;
+		width: 265px;
+		float: left;
+	}
+	.header_2_loc #header_location {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	.header_2_loc + .header_2 {
+		float: left; 
+		margin-top: 15px;
+	}
+	.content{
+	    width: 990px;
+	}
+}
+@media (min-width:788px) and (max-width:1013px){
+	.header_2_loc #header_location > *:not(.hhead){ 
+		display: none;
+	}
+	.header_2_loc #header_location {
+	    width: 226px;
+	    height: 40px;
+		padding: 0px;
+		position: absolute;
+		right: 0;
+		top: 100%;
+		transform: translate(0, -100%);
+		text-align: right;
+		line-height: 27px;
+	}
+	.header_2_loc #header_location .hhead{
+	    font-size: 12px;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	.header_2_loc #header_location .hhead:hover{
+		text-decoration: none;
+	}
+	.header_3 a.callback_anch {
+		margin-top: 21px;
+	}
+	.header_3 .schedule p {
+		margin-left: 0;
+	}
+}
+@media (min-width:1014px){
+	.header_2_loc #header_location .hhead, .header_2_loc #header_location .hhead a{
+		text-decoration: none;
+		color: #000; 
+	}
+}
+@media (max-width: 787px){
+	.header_1 .logo {
+		text-align: center;
+	}
+	.header_2_loc #header_location .hhead, .header_2_loc #header_location .hhead a{
+		text-decoration: none;
+		color: #000; 
+	}
+	.header_2_loc{
+		width: 100%;
+		display: block;
+	    text-align: center;
+		margin-top: 15px;
+	}
+	.promotions__item .promotions__item-block > *{
+		float: none;
+		text-align: center;
+		margin: 0 auto;
+	}
+	/*.header_2_loc .more{
+	    display: block;
+		text-align: right;
+	}*/
+}
+.reviews-section-childs .reviews-section-child a .child .text-cont .text{
+    display: table-cell;
+    vertical-align: middle;
+    height: 56px;
+}
+.reviews-section-childs .reviews-section-child a .child > *{
+	float: left;
+}
+.tabs__box-content table{
+    max-width: 100%;
+    display: block;
+}
+.news-detail img{
+	max-width: 100%;
+}
+
+.catalog-item-card .item-image .sticker > span > .sticker_zb{
+	width:50px;
+	height:22px;
+	display:block;
+	margin:0px 0px 2px auto;
+	padding:0px;
+	position:relative;
+}
+
+.catalog-item-card .item-image .sticker .sticker_zb {
+    width: 60px;
+}
+
+.catalog-detail-pictures .detail_picture .sticker .sticker_zb {
+    width: 60px;
+}
+
+.catalog-item-card .item-image .sticker .sticker_avtonom {
+    width: 100px;
+}
+
+.catalog-detail-pictures .detail_picture .sticker .sticker_avtonom {
+    width: 100px;
+}
+
+.productSlider2 .catalog-item-table-view, .productSlider1 .catalog-item-table-view {
+    max-width: 1041px;
+}

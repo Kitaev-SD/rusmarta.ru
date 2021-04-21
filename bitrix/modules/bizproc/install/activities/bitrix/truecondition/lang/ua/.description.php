@@ -1,0 +1,4 @@
+<?
+$MESS["BPTC_DESCR_DESCR"] = "²ÑÒÈÍÀ";
+$MESS["BPTC_DESCR_NAME"] = "²ÑÒÈÍÀ";
+?>

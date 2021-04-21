@@ -1,0 +1,6 @@
+<?
+$MESS["SCALE_GDEF_CATEGORY_DISC"] = "Discos";
+$MESS["SCALE_GDEF_CATEGORY_NET"] = "Red de trabajo";
+$MESS["SCALE_GDEF_CATEGORY_PROCESSES"] = "Procesos";
+$MESS["SCALE_GDEF_CATEGORY_SYSTEM"] = "Sistema";
+?>

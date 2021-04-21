@@ -1,0 +1,31 @@
+<?
+$MESS["TP_BSP_CNT"] = "Pela freqüência";
+$MESS["TP_BSP_COLOR_NEW"] = "Cor mais recente da marca (ex. \"C0C0C0\")";
+$MESS["TP_BSP_COLOR_OLD"] = "Última cor da etiqueta (ex. \"FEFEFE\")";
+$MESS["TP_BSP_COLOR_TYPE"] = "Usar cores gradientes";
+$MESS["TP_BSP_FONT_MAX"] = "Tamanho Maior de fonte (px)";
+$MESS["TP_BSP_FONT_MIN"] = "Tamamho menor de fonte (px)";
+$MESS["TP_BSP_NAME"] = "Por nome";
+$MESS["TP_BSP_PAGE_ELEMENTS"] = "Número de etiquetas";
+$MESS["TP_BSP_PATH_TO_USER_PROFILE"] = "Modelo do caminho do perfil de usuário";
+$MESS["TP_BSP_PERIOD"] = "Procurar etiquetas dentro de (dias)";
+$MESS["TP_BSP_PERIOD_NEW_TAGS"] = "Considerar nova etiqueta durante (dias)";
+$MESS["TP_BSP_RATING_TYPE"] = "Desing dos botões classificação";
+$MESS["TP_BSP_RATING_TYPE_CONFIG"] = "Padrão";
+$MESS["TP_BSP_RATING_TYPE_LIKE_GRAPHIC"] = "Curtir (imagem)";
+$MESS["TP_BSP_RATING_TYPE_LIKE_TEXT"] = "Curtir (texto)";
+$MESS["TP_BSP_RATING_TYPE_STANDART_GRAPHIC"] = "Curtir/Curtir(Desfazer)(imagem)";
+$MESS["TP_BSP_RATING_TYPE_STANDART_TEXT"] = "Curtir/Curtir(Desfazer)(texto)";
+$MESS["TP_BSP_SHOW_CHAIN"] = "Mostrar o indicador de navegação";
+$MESS["TP_BSP_SHOW_ITEM_DATE_CHANGE"] = "Mostrar Data de modificação";
+$MESS["TP_BSP_SHOW_ITEM_TAGS"] = "Mostrar etiquetas de documentos";
+$MESS["TP_BSP_SHOW_ORDER_BY"] = "Mostrar Ordem";
+$MESS["TP_BSP_SHOW_RATING"] = "Mostrar avaliações";
+$MESS["TP_BSP_SHOW_RATING_CONFIG"] = "Padrão";
+$MESS["TP_BSP_SHOW_TAGS_CLOUD"] = "Mostrar etiqueta de núvem";
+$MESS["TP_BSP_SORT"] = "etiquetas de Classificação";
+$MESS["TP_BSP_TAGS_INHERIT"] = "rea de pesquisa estreita";
+$MESS["TP_BSP_URL_SEARCH"] = "Caminho para a página de pesquisa (em relação à raiz do site)";
+$MESS["TP_BSP_USE_SUGGEST"] = "Mostrar avisos da frase de pesquisa";
+$MESS["TP_BSP_WIDTH"] = "Largura da etiqueta da núvem (ex. \"100%\", \"100px\", \"100pt\" ou \"100in\")";
+?>

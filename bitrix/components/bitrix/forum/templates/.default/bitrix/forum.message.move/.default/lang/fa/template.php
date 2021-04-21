@@ -1,0 +1,35 @@
+<?
+$MESS["F_BUTTON_MOVE"] = "انتقال";
+$MESS["F_TITLE_ON_FORUM"] = "در انجمن";
+$MESS["F_MOVE_TO"] = "انتقال به";
+$MESS["F_HEAD_TO_EXIST_TOPIC"] = "موضوع موجود";
+$MESS["F_HEAD_TO_NEW_TOPIC"] = "یک موضوع جدید";
+$MESS["F_TOPIC_NAME"] = "نام موضوع";
+$MESS["F_TOPIC_DESCR"] = "توضیحات";
+$MESS["F_TOPIC_TAGS"] = "برچسپ";
+$MESS["F_AUTHOR_PROFILE"] = "پروفایل نویسنده پیغام";
+$MESS["F_NUM_MESS"] = "مجموع پیغامها:";
+$MESS["F_DATE_REGISTER"] = "تاریخ ثبت نام:";
+$MESS["F_BAD_NEW_TOPIC"] = "موضوعی انتخاب نشده است. روی &laquo;<b>...</b>&raquo; کلیک کنید تا موضوع را مشخص کنید.";
+$MESS["F_BAD_TOPIC"] = "موضوع مورد نظر پیدا نشد.";
+$MESS["FORUM_MAIN_WAIT"] = "منتظر بمانید...";
+$MESS["F_EMAIL_TITLE"] = "ارسال ایمیل";
+$MESS["F_HIDE"] = "پنهان";
+$MESS["F_SHOW"] = "نمایش";
+$MESS["F_EDIT"] = "ویرایش";
+$MESS["F_DELETE"] = "حذف";
+$MESS["F_REAL_IP"] = "/ واقعی";
+$MESS["F_PRIVATE_MESSAGE"] = "پیغام";
+$MESS["F_EDIT_HEAD"] = "ویرایش شده:";
+$MESS["F_ATTACH_FILES"] = "فایلهای ضمیمه";
+$MESS["F_POINTS"] = "امتیاز:";
+$MESS["F_DELETE_MESSAGES_CONFIRM"] = "برای همیشه پاک می شود. ادامه می دهید؟";
+$MESS["F_TOPIC_ID"] = "شناسه موضوع";
+$MESS["F_TITLE"] = "انتقال مطالب";
+$MESS["F_TOPIC_NOT_FOUND"] = "موضوع پیدا نشد";
+$MESS["F_TOPIC_SEARCH_TITLE"] = "Enter the topic ID or click &laquo;...&raquo; to browse for a required topic.";
+$MESS["F_ANCHOR"] = "پیوند به این نوشته";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "ارسال پیغام خصوصی";
+$MESS["F_USER_ID"] = "شناسه مهمان";
+$MESS["F_USER_ID_USER"] = "شناسه کاربر";
+?>

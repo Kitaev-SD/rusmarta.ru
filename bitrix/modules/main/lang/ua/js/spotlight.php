@@ -1,0 +1,4 @@
+<?
+$MESS["MAIN_SPOTLIGHT_UNDERSTAND"] = "ќк";
+$MESS["MAIN_SPOTLIGHT_REMIND_LATER"] = "нагадати п≥зн≥ше";
+?>

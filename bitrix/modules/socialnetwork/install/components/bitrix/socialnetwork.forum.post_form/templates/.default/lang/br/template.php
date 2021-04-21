@@ -1,0 +1,33 @@
+<?
+$MESS["F_ADD_VOTE"] = "Adicionar enquete";
+$MESS["F_CAPTCHA_PROMT"] = "Digite o texto da imagem";
+$MESS["F_CAPTCHA_TITLE"] = "Por favor, digite a palavra que você vê na imagem";
+$MESS["F_CREATE_FORM"] = "Novo tópico";
+$MESS["F_EDIT_ADD_REASON"] = "Incluir informações sobre a modificação";
+$MESS["F_EDIT_FORM"] = "Modificar mensagem no tópico";
+$MESS["F_EDIT_REASON"] = "Razão de modificação:";
+$MESS["F_MESSAGE_TEXT"] = "Digite sua Mensagem";
+$MESS["F_REPLY_FORM"] = "Formulário de resposta";
+$MESS["F_TOPIC_DESCR"] = "Descrição";
+$MESS["F_TOPIC_NAME"] = "Título";
+$MESS["F_TOPIC_TAGS"] = "Tags";
+$MESS["F_TOPIC_TAGS_DESCRIPTION"] = "Especificar as tags que descrevem totalmente o assunto tópico";
+$MESS["F_TYPE_EMAIL"] = "Digite o seu endereço de e-mail";
+$MESS["F_TYPE_NAME"] = "Digite Seu Nome";
+$MESS["F_VIEW"] = "Ver.";
+$MESS["F_VOTE"] = "Votação";
+$MESS["F_VOTE_ADD_ANSWER"] = "Adicionar reposta";
+$MESS["F_VOTE_ADD_QUESTION"] = "Adicionar pergunta";
+$MESS["F_VOTE_DROP_ANSWER"] = "Excluir Resposta";
+$MESS["F_VOTE_DROP_ANSWER_CONFIRM"] = "Tem certeza de que deseja excluir a resposta?";
+$MESS["F_VOTE_DROP_QUESTION"] = "Excluir Pergunta";
+$MESS["F_VOTE_DROP_QUESTION_CONFIRM"] = "Tem certeza de que deseja excluir a pergunta?";
+$MESS["F_VOTE_MULTI"] = "Permitir seleção de resposta múltipla";
+$MESS["F_WANT_ALLOW_SMILES"] = "Você quer <b>usar</b> smileys nesta mensagem?";
+$MESS["JERROR_MAX_LEN"] = "Comprimento máximo da mensagem é de #MAX_LENGTH# simbolos. Total de símbolos: #LENGTH#.";
+$MESS["JERROR_NO_MESSAGE"] = "Por favor, forneça a sua mensagem.";
+$MESS["JERROR_NO_TOPIC_NAME"] = "Por favor, forneça o título da mensagem.";
+$MESS["JQOUTE_AUTHOR_WRITES"] = "escreveu";
+$MESS["MPL_HAVE_WRITTEN"] = "escreveu:";
+$MESS["VOTE_DURATION"] = "Data de encerramento da enquete:";
+?>

@@ -1,0 +1,21 @@
+<?
+$MESS['IBLOCK_ADM_HISTORY_TITLE'] = 'Pakeitimø istorija áraðo # #ID#';
+$MESS['IBLOCK_ADM_HISTORY_BAD_IBLOCK'] = 'Informacinis blokas nerastas arba trûksta prieigos teisiø.';
+$MESS['IBLOCK_ADM_HISTORY_BAD_ELEMENT'] = 'Elementas nerastas arba trûksta prieigos teisiø.';
+$MESS["IBLOCK_ADM_HISTORY_UPDERR3"] = "Klaida atnaujinant áraðà: negalima áeiti";
+$MESS['IBLOCK_ADM_HISTORY_DELETE_ERROR'] = 'Nepavyko paðalinti áraðo #';
+$MESS['IBLOCK_ADM_HISTORY_RESTORE_ERROR'] = 'Klaida atkuriant áraðà #';
+$MESS['IBLOCK_ADM_HISTORY_PAGER'] = 'Áraðø';
+$MESS['IBLOCK_ADM_HISTORY_VIEW'] = 'Perþiûra';
+$MESS['IBLOCK_ADM_HISTORY_VIEW_ALT'] = 'Áraðo perþiûra';
+$MESS['IBLOCK_ADM_HISTORY_DELETE'] = 'ðalinti';
+$MESS['IBLOCK_ADM_HISTORY_DELETE_ALT'] = 'Ðalinti áraðà';
+$MESS['IBLOCK_ADM_HISTORY_CONFIRM_DEL'] = 'Ar tikrai norite paðalinti ðá áraðà?';
+$MESS['IBLOCK_ADM_HISTORY_RESTORE'] = 'Atkurti';
+$MESS['IBLOCK_ADM_HISTORY_RESTORE_ALT'] = 'Atkurti áraðà';
+$MESS['IBLOCK_ADM_HISTORY_RESTORE_CONFIRM'] = 'Ar tikrai norite atkurti ðá áraðà?';
+$MESS['IBLOCK_ADM_HISTORY_COMPARE'] = 'Palyginti';
+$MESS['IBLOCK_ADM_HISTORY_COMPARE_ALERT'] = 'Privalote pasirinkti du dokumentus palyginimui.';
+$MESS['IBLOCK_ADM_HISTORY_ORIGINAL'] = 'Einamoji versija';
+$MESS['IBLOCK_ADM_HISTORY_ORIGINAL_TITLE'] = 'Spauskite perþiûrëti einamàjà elemento versijà';
+?>

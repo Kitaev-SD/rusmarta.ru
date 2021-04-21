@@ -1,0 +1,15 @@
+<?
+$MESS["ACCESS_DENIED"] = "Prieiga draudþiama.";
+$MESS["rub_title"] = "Redaguoti sàraðus";
+$MESS["contact_nav"] = "Sàraðai";
+$MESS["rub_name"] = "Pavadinimas";
+$MESS["rub_f_name"] = "Pavadinimas";
+$MESS["rub_code"] = "Simbolinis kodas";
+$MESS["rub_f_code"] = "Simbolinis kodas";
+$MESS["rub_sort"] = "Rûðiavimas";
+$MESS["rub_f_sort"] = "Rûðiavimas";
+$MESS["rub_f_find"] = "Ieðkoti";
+$MESS["rub_edit"] = "Redaguoti";
+$MESS["rub_del"] = "Iðtrinti";
+$MESS["rub_del_conf"] = "Ar tikrai norite iðtrinti sàraðà?";
+?>

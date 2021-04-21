@@ -1,0 +1,29 @@
+<?
+$MESS["PROPS_TYPE_TITLE"] = "Savybiø grupës";
+$MESS["PT_FILTER_NAME"] = "Mokëtojo tipas";
+$MESS["SALE_ALL"] = "visi";
+$MESS["SALE_F_FILTER"] = "Nustatyti filtrà";
+$MESS["SALE_F_DEL"] = "Paðalinti filtrà";
+$MESS["LANG_FILTER_BTN"] = "Nustatyti filtrà";
+$MESS["PERS_TYPE_DEL_CONF"] = "Visos savybës ðioje grupëje bus paðalintos. Ar tikrai norite tæsti?";
+$MESS["PERS_TYPE_NAV"] = "Savybiø grupës";
+$MESS["PERS_TYPE_ID"] = "ID";
+$MESS["PERS_TYPE_NAME"] = "Pavadinimas";
+$MESS["PERS_TYPE_TYPE"] = "Mokëtojo tipas";
+$MESS["PERS_TYPE_SORT"] = "Rûð.";
+$MESS["PERS_TYPE_DEL"] = "Paðalinti";
+$MESS["PERS_TYPE_UPD"] = "Iðsaugoti";
+$MESS["PERS_TYPE_RESET"] = "Atstatyti";
+$MESS["ERROR_ADD_REC"] = "Klaida pridedant áraðà";
+$MESS["ERROR_NAME_REC"] = "Laukas \"Pavadinimas\" yra privalomas";
+$MESS["ERROR_PERSON_TYPE_ID_REC"] = "Laukas \"Mokëtojo tipas\" yra privalomas";
+$MESS["ERROR_UPDATE_REC"] = "Klaida atnaujinant áraðà";
+$MESS["SALE_PROPS"] = "Savybës";
+$MESS["SOPGAN_DELETE_ERROR"] = "Klaida ðalinant áraðà";
+$MESS["SOPGAN_PROPS"] = "Savybës";
+$MESS["SOPGAN_EDIT_PROMT"] = "Keisti grupæ";
+$MESS["SOPGAN_DELETE_PROMT"] = "Ðalinti grupæ";
+$MESS["SOPGAN_DELETE_PROMT_CONF"] = "Ar tikrai norite paðalinti ðià savybiø grupæ?";
+$MESS["SOPGAN_ADD_NEW"] = "Nauja grupë";
+$MESS["SOPGAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà savybiø grupæ";
+?>

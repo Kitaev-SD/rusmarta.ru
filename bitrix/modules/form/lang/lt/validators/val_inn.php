@@ -1,0 +1,8 @@
+<?
+$MESS["FORM_VALIDATOR_VAL_INN_DESCRIPTION"] = "TIN patvirtinimas (Rusija)";
+$MESS["FORM_VALIDATOR_VAL_INN_SETTINGS_TYPE"] = "Identifikavimo numerio tipas";
+$MESS["FORM_VALIDATOR_VAL_INN_SETTINGS_TYPE_JUR"] = "juridinis asmuo";
+$MESS["FORM_VALIDATOR_VAL_INN_SETTINGS_TYPE_PHYS"] = "fizinis asmuo";
+$MESS["FORM_VALIDATOR_VAL_INN_SETTINGS_TYPE_BOTH"] = "abu tipai";
+$MESS["FORM_VALIDATOR_INN_ERROR"] = "#FIELD_NAME#: neteisingas TIN";
+?>

@@ -1,0 +1,3 @@
+<?php
+$MESS["SONET_COUNTER_TYPE_LIVEFEED"] = "Fluxo de Atividades";
+$MESS["SONET_COUNTER_TYPE_LIVEFEED2"] = "Feed";

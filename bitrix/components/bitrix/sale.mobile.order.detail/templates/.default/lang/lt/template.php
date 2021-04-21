@@ -1,0 +1,31 @@
+<?
+$MESS["PULL_TEXT"] = "Tempkite, norëdami atnaujinti...";
+$MESS["DOWN_TEXT"] = "Paleiskite, norëdami atnaujinti...";
+$MESS["LOAD_TEXT"] = "Atnaujinama...";
+$MESS["SMOD_CHANGE_STATUS"] = "Keisti statusà";
+$MESS["SMOD_CANCEL"] = "Atðaukti uþsakymà";
+$MESS["SMOD_ALLOW_DELIVERY"] = "Patvirtinti pristatymà";
+$MESS["SMOD_PAY_FOR_ORDER"] = "Apmokëti uþsakymà";
+$MESS["SMOD_BACK"] = "Gráþti";
+$MESS["SMOD_SAVE"] = "Iðsaugoti";
+$MESS["SMOD_STATUS"] = "Uþsakymo statusas";
+$MESS["SMOD_PAY"] = "Apmokëti";
+$MESS["SMOD_PAY_CANCEL"] = "Atðaukti mokëjimà";
+$MESS["SMOD_BUDGET"] = "Sàskaita";
+$MESS["SMOD_ACCOUNT"] = "Apmokëti ið vidaus sàskaitos";
+$MESS["SMOD_PAY_CONFIRM"] = "Patvirtinti apmokëjimà";
+$MESS["SMOD_PAYMENT"] = "Mokëjimas";
+$MESS["SMOD_PAY_BACK"] = "Perkelti pinigus atgal á vidaus sàskaità";
+$MESS["SMOD_DELIVERY"] = "Pristatymas";
+$MESS["SMOD_ALLOW"] = "Leidþiamas";
+$MESS["SMOD_DISALLOW"] = "Neleidþiamas";
+$MESS["SMOD_CANCEL_REASON"] = "Prieþastis";
+$MESS["SMOD_USER_ACCESSIBLE"] = "Motoma klientui";
+$MESS["SMOD_ORDER_N"] = "Uþsakymas #";
+$MESS["SMOD_D_STATUS"] = "Keisti statusà";
+$MESS["SMOD_CANCEL_CANCEL"] = "Neatðauktas uþsakymas";
+$MESS["SMOD_INSUFF_BUDGET"] = "Jûsø vidaus sàskaitoje nëra pakankamai lëðø atlikti mokëjimà";
+$MESS["SMOD_ORDER_DEDUCT"] = "Uþsakymo ávykdymas";
+$MESS["SMOD_DEDUCT"] = "Ávykdymas";
+$MESS["SMOD_DEDUCT_UNDO"] = "Atðaukti ávykdymà";
+?>

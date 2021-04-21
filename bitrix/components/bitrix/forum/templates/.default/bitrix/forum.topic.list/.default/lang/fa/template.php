@@ -1,0 +1,37 @@
+<?
+$MESS["F_SUBSCRIBE"] = "اشتراک";
+$MESS["F_HEAD_TOPICS"] = "موضوعات";
+$MESS["F_HEAD_POSTS"] = "مطالب";
+$MESS["F_HEAD_VIEWS"] = "مشاهده";
+$MESS["F_HEAD_LAST_POST"] = "آخرین مطلب";
+$MESS["F_HEAD_AUTHOR"] = "نویسنده";
+$MESS["F_NEW_TOPIC"] = "شروع موضوع جدید";
+$MESS["F_NEW_TOPIC_TITLE"] = "افزودن موضوع جدید به این انجمن";
+$MESS["F_PINNED"] = "مهم";
+$MESS["F_CLOSED"] = "بسته";
+$MESS["F_CLOSED_TOPIC"] = "موضوع بسته شد";
+$MESS["F_MOVED"] = "جابجا شد";
+$MESS["F_MOVED_TOPIC"] = "موضوع جابجا شد";
+$MESS["F_HAVE_NEW_MESS"] = "مطالب جدید";
+$MESS["F_NO_NEW_MESS"] = "مطلب جدیدی ارسال نشده است.";
+$MESS["F_AUTHOR"] = "نویسنده:";
+$MESS["F_MESSAGE_NOT_APPROVED"] = "پیغامهای تایید نشده";
+$MESS["F_SET_FORUM_READ"] = "همه مطالب خوانده شد";
+$MESS["F_SELECT_ALL"] = "انتخاب همه";
+$MESS["JS_DEL_TOPICS"] = "این موضوعات برای همیشه حذف شوند؟";
+$MESS["JS_NO_TOPICS"] = "هیچ موضوعی انتخاب نشده است. لطفا موضوعی را انتخاب کنید.";
+$MESS["F_SUBSCRIBE_TO_NEW_POSTS"] = "اشتراک در مطالب جدید";
+$MESS["F_PINNED_TOPIC"] = "مهم";
+$MESS["F_PINNED_CLOSED_TOPIC"] = "موضوع منتشر شده بسته شد";
+$MESS["F_MANAGE_TOPICS"] = "مدیریت موضوعات";
+$MESS["F_MANAGE_PIN"] = "موضوعات مهم";
+$MESS["F_MANAGE_UNPIN"] = "موضوعات غیر مهم شوند";
+$MESS["F_MANAGE_OPEN"] = "باز کردن موضوعات";
+$MESS["F_MANAGE_CLOSE"] = "بستن موضوعات";
+$MESS["F_MANAGE_MOVE"] = "جابجایی موضوعات";
+$MESS["F_MANAGE_DELETE"] = "حذف موضوعات";
+$MESS["JS_NO_ACTION"] = "هیچ کاری انتخاب نشده است. لطفا گزینه ای را انتخاب کنید.";
+$MESS["F_CREATE_NEW_TOPIC"] = "آغاز موضوع جدید";
+$MESS["F_NO_TOPICS_HERE"] = "هیچ موضوعی اینجا شروع نشده است.";
+$MESS["F_TOPIC_START"] = "تاریخ شروع";
+?>

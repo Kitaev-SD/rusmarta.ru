@@ -1,0 +1,4 @@
+<?
+$MESS["LANDING_BLOCK_MENU_4-PRESET-LINK"] = "Enlace";
+$MESS["LANDING_BLOCK_MENU_4-PRESET-LOGO"] = "Logotipo";
+?>

@@ -1,0 +1,31 @@
+<?
+$MESS["rub_title"] = "Gavëjø grupës";
+$MESS["rub_del_err"] = "Nepavyko iðtrinti grupës.";
+$MESS["rub_nav"] = "Grupës";
+$MESS["rub_name"] = "Pavadinimas";
+$MESS["rub_code"] = "Simbolinis kodas";
+$MESS["rub_sort"] = "Rûðiavimas";
+$MESS["rub_act"] = "Aktyvus";
+$MESS["rub_edit"] = "Redaguoti";
+$MESS["rub_del"] = "Iðtrinti";
+$MESS["rub_save_error"] = "Nepavyko redaguoti grupæ:";
+$MESS["rub_no_rubric"] = "Grupë nerasta.";
+$MESS["POST_ADD_TITLE"] = "Pridëti naujà gavëjø grupæ";
+$MESS["rub_f_active"] = "Aktyvus";
+$MESS["rub_f_find"] = "Rasti";
+$MESS["rub_f_find_title"] = "Áveskite paieðkos þodá";
+$MESS["rub_del_conf"] = "Iðtrinti grupæ?";
+$MESS["rub_f_name"] = "Pavadinimas";
+$MESS["sender_group_adm_addr_cnt"] = "Viso gavëjø";
+$MESS["sender_group_adm_flt_mailing"] = "Naujienlaiðkiai";
+$MESS["sender_group_adm_flt_mailing_include"] = "neátraukti grupes";
+$MESS["POST_U_YES"] = "Taip";
+$MESS["POST_U_NO"] = "Ne";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirikta:";
+$MESS["MAIN_ADD"] = "Pridëti";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["MAIN_ALL"] = "(visos)";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinti";
+$MESS["MAIN_ADMIN_LIST_ACTIVATE"] = "aktyvuoti";
+$MESS["MAIN_ADMIN_LIST_DEACTIVATE"] = "deaktyvuoti";
+?>

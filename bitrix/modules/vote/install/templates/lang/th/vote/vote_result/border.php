@@ -1,0 +1,13 @@
+<?
+$MESS ['VOTE_OK'] = "¢Íº¤Ø³ÊÓËÃÑº¡ÒÃâËÇµ";
+$MESS ['VOTE_ALREADY_VOTE'] = "¤Ø³äÁèÊÒÁÒÃ¶áÂ¡à»ç¹ 2 ÊèÇ¹ã¹â¾Å¹Õéä´é";
+$MESS ['VOTE_START_DATE'] = "àÃÔèÁµé¹:";
+$MESS ['VOTE_END_DATE'] = "ÊÔé¹ÊØ´:";
+$MESS ['VOTE_IS_ACTIVE'] = "â¾Å·Ó§Ò¹";
+$MESS ['VOTE_IS_NOT_ACTIVE'] = "â¾ÅäÁè·Ó§Ò¹";
+$MESS ['VOTE_COUNT'] = "âËÇµ:";
+$MESS ['VOTE_ENLARGE'] = "¢ÂÒÂ";
+$MESS ['VOTE_ACCESS_DENIED'] = "¤Ø³äÁèÁÕÊÔ·¸Ôì´Ù¼Åâ¾Å¹Õé";
+$MESS ['VOTE_NOT_FOUND'] = "äÁè¾ºâ¾Å¹Õé";
+$MESS ['VOTE_MODULE_IS_NOT_INSTALLED'] = "ÂÑ§äÁèä´éµÔ´µÑé§âÁ´ÙÅâ¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+?>

@@ -1,0 +1,15 @@
+<?
+$MESS["SALE_MODULE_ACCES_DENIED"] = "Prieiga prie modulio uþdrausta";
+$MESS["SALE_LOCATION_L_ITEM_NOT_FOUND"] = "Joks vietovës tipas su ðiuo ID nebuvo nustatytas.";
+$MESS["SALE_LOCATION_L_ITEM_SAVE_ERROR"] = "Negalima atnaujinti vietos tipà #ITEM#";
+$MESS["SALE_LOCATION_L_ITEM_DELETE_ERROR"] = "Klaida trinant vietoves tipà";
+$MESS["SALE_LOCATION_L_PAGES"] = "Tipai";
+$MESS["SALE_LOCATION_L_ADD_ITEM"] = "Pridëti tipà";
+$MESS["SALE_LOCATION_L_EDIT_ITEM"] = "Redaguoti tipà";
+$MESS["SALE_LOCATION_L_COPY_ITEM"] = "Kopijuoti tipà";
+$MESS["SALE_LOCATION_L_DELETE_ITEM"] = "Iðtrinti tipà";
+$MESS["SALE_LOCATION_L_EDIT_PAGE_TITLE"] = "Vietovës tipai";
+$MESS["SALE_LOCATION_L_ITEM"] = "Tipas";
+$MESS["SALE_LOCATION_L_CONFIRM_DELETE_ITEM"] = "Ar tikrai norite iðtrinti ðá vietovës tipà?";
+$MESS["SALE_LOCATION_L_FROM_AND_TO"] = "diapazonas";
+?>

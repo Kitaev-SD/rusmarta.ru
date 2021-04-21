@@ -1,0 +1,22 @@
+<?
+$MESS["SOP_TAB_ANALYSIS"] = "Uþsakymo dokumentai";
+$MESS["SOP_TAB_HISTORY"] = "Pakeitimø istorija";
+$MESS["SOP_TAB_PAYMENT"] = "Mokëjimas";
+$MESS["SALE_BLOCK_TITLE_FINANCEINFO"] = "Finansinë informacija";
+$MESS["SALE_BLOCK_TITLE_DELIVERY"] = "Pristatymas";
+$MESS["SALE_BLOCK_TITLE_PAYMENT"] = "Mokëjimas";
+$MESS["SALE_BLOCK_TITLE_BUYER"] = "Klientas";
+$MESS["SALE_BLOCK_TITLE_ADDITIONAL"] = "Papildoma informacija";
+$MESS["SALE_BLOCK_TITLE_STATUSORDER"] = "Uþsakymo statusas";
+$MESS["SOPE_PAYMENT_LIST"] = "Mokëjimø sàraðas";
+$MESS["SOPE_PAYMENT_LIST_TITLE"] = "Mokëjimø sàraðas";
+$MESS["SOPE_PAYMENT_DELETE"] = "Iðtrinti";
+$MESS["SOPE_PAYMENT_DELETE_TITLE"] = "Iðtrinti";
+$MESS["SOPE_PAYMENT_PRINT"] = "Atspausdinti";
+$MESS["SOPE_PAYMENT_PRINT_TITLE"] = "Atspausdinti";
+$MESS["NEW_ORDER_PAYMENT"] = "Naujas mokëjimas";
+$MESS["EDIT_ORDER_PAYMENT"] = "Redaguoti mokëjimà ##ID#";
+$MESS["SOPE_PAYMENT_TRANSITION"] = "Perþiûrëti uþsakymà";
+$MESS["SOPE_PAYMENT_TRANSITION_TITLE"] = "Perþiûrëti uþsakymà";
+$MESS["SOPE_PAYMENT_DELETE_MESSAGE"] = "Ar tikrai norite iðtrinti ðá mokëjimà?";
+?>

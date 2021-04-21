@@ -1,0 +1,9 @@
+<?
+$MESS["BLOG_BLOG_CLNDR_D_1"] = "Lun";
+$MESS["BLOG_BLOG_CLNDR_D_2"] = "Mar";
+$MESS["BLOG_BLOG_CLNDR_D_3"] = "Mié";
+$MESS["BLOG_BLOG_CLNDR_D_4"] = "Jue";
+$MESS["BLOG_BLOG_CLNDR_D_5"] = "Vie";
+$MESS["BLOG_BLOG_CLNDR_D_6"] = "Sáb";
+$MESS["BLOG_BLOG_CLNDR_D_7"] = "Dom";
+?>

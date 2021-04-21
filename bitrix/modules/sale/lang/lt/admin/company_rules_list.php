@@ -1,0 +1,12 @@
+<?
+$MESS["SALE_RDL_BUT_ADD_NEW"] = "Pridëti taisyklæ";
+$MESS["SALE_COMPANY_RULE_COL_ID"] = "ID";
+$MESS["SALE_COMPANY_RULE_COL_SORT"] = "Rûðys";
+$MESS["SALE_COMPANY_RULE_COL_CLASS_NAME"] = "Taisyklë";
+$MESS["SALE_COMPANY_RULE_COL_PARAMS"] = "Parametrai";
+$MESS["SALE_COMPANY_RULE_DELETE"] = "Paðalinti";
+$MESS["SALE_COMPANY_RULE_EDIT_DESC"] = "Redaguoti";
+$MESS["SALE_COMPANY_RULES_LIST"] = "Taisyklës";
+$MESS["SALE_COMPANY_RULES_DEL_MESSAGE"] = "Ar tikrai norite paðalinti ðià taisyklæ? ";
+$MESS["SALE_COMPANY_RULES_BUT_ADD_NEW"] = "Pridëti taisyklæ";
+?>

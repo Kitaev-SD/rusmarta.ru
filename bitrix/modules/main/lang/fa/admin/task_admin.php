@@ -1,0 +1,35 @@
+<?
+$MESS["ALL"] = "(همه)";
+$MESS["TASK_FILTER_ANY"] = "(همه)";
+$MESS["PAGES"] = "سطوح دسترسی";
+$MESS["TITLE"] = "سطوح دسترسی";
+$MESS["ACTION"] = "اقدام";
+$MESS["ACTIVE"] = "فعال";
+$MESS["MAIN_F_ACTIVE"] = "فعال";
+$MESS["DELETE"] = "حذف";
+$MESS["MAIN_DESCRIPTION"] = "توضیحات";
+$MESS["MAIN_F_DESCRIPTION"] = "توضیحات";
+$MESS["TASK_FILTER_DESCRIPTION"] = "توضیحات";
+$MESS["CHANGE"] = "ویرایش";
+$MESS["MAIN_EDIT_TITLE"] = "ویرایش";
+$MESS["F_FILTER"] = "فیلتر";
+$MESS["MAIN_F_ID"] = "شناسه";
+$MESS["TASK_FILTER_ID"] = "شناسه";
+$MESS["LETTER"] = "حرف";
+$MESS["TASK_FILTER_LETTER"] = "حرف";
+$MESS["TASK_BINDING_MEDIALIB"] = "کتابخانه رسانه";
+$MESS["TIMESTAMP"] = "ویرایش شده";
+$MESS["MAIN_F_TIMESTAMP"] = "ویرایش شده";
+$MESS["F_NAME"] = "نام";
+$MESS["Name"] = "نام";
+$MESS["TASK_FILTER_NAME"] = "نام";
+$MESS["NO"] = "خیر";
+$MESS["F_DEL"] = "حذف فیلتر";
+$MESS["SAVE"] = "ذخیره تغییرات";
+$MESS["MAIN_FLT_SEARCH"] = "جستجو";
+$MESS["F_SUBMIT"] = "اعمال فیلتر";
+$MESS["TASK_FILTER_FILEMAN"] = "ناوبری سایت";
+$MESS["MAIN_C_SORT"] = "ترتیب";
+$MESS["MENU_VIEW"] = "مشاهده";
+$MESS["YES"] = "بله";
+?>

@@ -1,0 +1,7 @@
+<?
+$MESS["BLOG_MAIN_SEARCH_SEARCH"] = "جستجو:";
+$MESS["BLOG_MAIN_SEARCH_SORT_DATE"] = "تاریخ";
+$MESS["BLOG_MAIN_SEARCH_SORT_RELEVATION"] = "محتوا";
+$MESS["BLOG_MAIN_SEARCH_SORTED_DATE"] = "به ترتیب تاریخ";
+$MESS["BLOG_MAIN_SEARCH_SORTED_RELEVATION"] = "به ترتیب محتوا";
+?>

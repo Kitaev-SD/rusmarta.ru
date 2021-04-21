@@ -1,0 +1,31 @@
+<?
+$MESS["SONET_EXT_COMMON_AJAX_ERROR"] = "Error al procesar la solicitud";
+$MESS["SONET_EXT_COMMON_B24_SONET_GROUP_FEATURES_TEXT"] = "<p>Los permisos de acceso proporcionan una manera fácil y conveniente de simplificar el flujo de trabajo en un grupo de trabajo. Podrá seleccionar las herramientas a las que sus empleados pueden acceder o no.<p>Los permisos de acceso solo están disponibles en los planes principales.";
+$MESS["SONET_EXT_COMMON_B24_SONET_GROUP_FEATURES_TITLE"] = "Obtenga más opciones para su Bitrix24";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_COPY"] = "Copiar grupo de trabajo";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_COPY_PROJECT"] = "Copiar proyecto";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_DELETE"] = "Eliminar Grupo de Trabajo";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_DELETE_PROJECT"] = "Eliminar Proyecto";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_EDIT"] = "Editar Grupo de Trabajo";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_EDIT_PROJECT"] = "Editar Proyecto";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_EXIT"] = "Dejar el Grupo de Trabajo";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_EXIT_PROJECT"] = "Dejar el Proyecto";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_FAVORITES_ADD"] = "Agregar a los favoritos";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_FAVORITES_REMOVE"] = "Eliminar de favoritos";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_FEAT"] = "Permisos de acceso";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_JOIN"] = "Unirse al Grupo de Trabajo";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_JOIN_PROJECT"] = "Unirse al Proyecto";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_MEMBERS_EDIT"] = "Editar Miembros";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_MEMBERS_VIEW"] = "Miembros";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_REQU"] = "Invitar al Grupo de Trabajo";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_REQU_PROJECT"] = "Invitar al Proyecto";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_REQ_IN"] = "Solicitudes de Membresía";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_REQ_OUT"] = "Invitaciones de Grupo de Trabajo";
+$MESS["SONET_EXT_COMMON_GROUP_MENU_REQ_OUT_PROJECT"] = "Invitaciones del Proyecto";
+$MESS["SONET_EXT_COMMON_RECALL_JOIN_POPUP_BUTTON"] = "Anular solicitud de membresía de grupo de trabajo";
+$MESS["SONET_EXT_COMMON_RECALL_JOIN_POPUP_BUTTON_PROJECT"] = "Anular la solicitud de membresía del proyecto";
+$MESS["SONET_EXT_COMMON_RECALL_JOIN_POPUP_TEXT"] = "Su solicitud de membresía del grupo de trabajo ha sido enviada. Verá el grupo de trabajo en su lista de proyectos una vez que la administración haya aprobado su solicitud.";
+$MESS["SONET_EXT_COMMON_RECALL_JOIN_POPUP_TEXT_PROJECT"] = "Su solicitud de membresía del proyecto ha sido enviada. Verá el proyecto en su lista una vez que la administración haya aprobado su solicitud.";
+$MESS["SONET_EXT_COMMON_RECALL_JOIN_POPUP_TITLE"] = "Advertencia";
+$MESS["SONET_EXT_COMMON_WAIT"] = "Por favor espere y hellip;";
+?>

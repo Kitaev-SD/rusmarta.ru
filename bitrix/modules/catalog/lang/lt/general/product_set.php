@@ -1,0 +1,19 @@
+<?
+$MESS["BT_CAT_SET_ERR_ITEMS_IS_ABSENT"] = "Nëra elementø, atrinktø rinkiniui arba ryðuliui";
+$MESS["BT_CAT_SET_ERR_PRODUCT_ID_IS_BAD"] = "Prekës ID naujam tinklui yra neteisingas";
+$MESS["BT_CAT_SET_ERR_TYPE_IS_BAD"] = "Neteisingas subjekto tipas";
+$MESS["BT_CAT_SET_ERR_ID_IS_BAD"] = "Neteisingas subjekto ID";
+$MESS["BT_CAT_SET_ERR_EMPTY_VALID_ITEMS"] = "Nëra galiojanèiø produktø ðiame objekte";
+$MESS["BT_CAT_PRODUCT_SET_ERR_ITEM_ID_IS_BAD"] = "Neteisingas prekës ID";
+$MESS["BT_CAT_PRODUCT_SET_ERR_ITEM_ID_DUBLICATE"] = "Ryðulyje arba rinkinyje yra daugiau nei vienas produkto egzempliorius ";
+$MESS["BT_CAT_PRODUCT_SET_ERR_QUANTITY_IS_BAD"] = "Ðiame rinkinyje nurodytas neteisingas prekiø kiekis ";
+$MESS["BT_CAT_PRODUCT_SET_ERR_DISCOUNT_PERCENT_IS_BAD"] = "Ðiame rinkinyje nurodyta neteisinga nuolaida";
+$MESS["BT_CAT_PRODUCT_SET_ERR_ALL_DISCOUNT_PERCENT_IS_BAD"] = "Bendra nuolaida virðija 100 procentø";
+$MESS["BT_CAT_PRODUCT_SET_ERR_ITEM_ID_IS_ABSENT"] = "Trûksta prekës ID.";
+$MESS["BT_CAT_PRODUCT_SET_ERR_QUANTITY_GROUP_IS_BAD"] = "Ðiame ryðulyje nurodytas neteisingas produkto kiekis";
+$MESS["BT_CAT_PRODUCT_SET_ERR_BAD_ITEMS_IN_SET"] = "Á rinkiná galima pridëti tik paprastus produktus ir komercinius pasiûlymus";
+$MESS["BT_CAT_PRODUCT_SET_ERR_BAD_ITEMS_IN_GROUP"] = "Á rinkiná galima pridëti tik paprastus produktus ir komercinius pasiûlymus ir rinkinius";
+$MESS["BT_CAT_PRODUCT_SET_ERR_ITEMS_IS_NOT_PRODUCT"] = "Elementai, átraukti á ðá ryðulá, turi bûti produktai";
+$MESS["BT_CAT_PRODUCT_SET_ERR_ITEMS_IS_SKU"] = "Elementai, átraukti á ðá ryðulá, turi nenaudoti SKU";
+$MESS["BT_CAT_PRODUCT_SET_ERR_ITEMS_IS_SET"] = "Ryðuliai negali bûti átraukti á kitus ryðulius";
+?>

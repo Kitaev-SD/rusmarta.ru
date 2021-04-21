@@ -1,0 +1,19 @@
+<?
+$MESS["SALE_PRODUCT_ENTITY_ID_FIELD"] = "ID";
+$MESS["SALE_PRODUCT_ENTITY_QUANTITY_FIELD"] = "Liko sandëlyje";
+$MESS["SALE_PRODUCT_ENTITY_NAME_FIELD"] = "Pavadinimas";
+$MESS["SALE_PRODUCT_ENTITY_ACTIVE_FIELD"] = "Aktyvus";
+$MESS["SALE_PRODUCT_ENTITY_PRICE_IN_SITE_CURRENCY_FIELD"] = "Bazinë kaina svetainës valiuta";
+$MESS["SALE_PRODUCT_ENTITY_SUMMARY_PRICE_IN_SITE_CURRENCY_FIELD"] = "Ið viso liko sandëlyje (bazine kaina ir svetainës valiuta)";
+$MESS["SALE_PRODUCT_ENTITY_VIEWS_IN_PERIOD_BY_SHOP_FIELD"] = "Perþiûros per nurodytà ataskaitiná laikotarpá";
+$MESS["SALE_PRODUCT_ENTITY_ORDERS_IN_PERIOD_BY_SHOP_FIELD"] = "Uþsakymai per nurodytà ataskaitiná laikotarpá";
+$MESS["SALE_PRODUCT_ENTITY_SALED_PRODUCTS_IN_PERIOD_BY_SHOP_FIELD"] = "Prekiø pardavimai per nurodytà ataskaitiná laikotarpá";
+$MESS["SALE_PRODUCT_ENTITY_CONVERSION_FIELD"] = "Konversija (%)";
+$MESS["SALE_PRODUCT_ENTITY_WEIGHT_FIELD"] = "Svoris, g";
+$MESS["SALE_PRODUCT_ENTITY_WEIGHT_IN_SITE_UNITS_FIELD"] = "Svoris, svetainës vienetai";
+$MESS["SALE_PRODUCT_ENTITY_NAME_WITH_IDENT_FIELD"] = "Pavadinimas [ID]";
+$MESS["SALE_PRODUCT_ENTITY_PURCHASING_PRICE_IN_SITE_CURRENCY_FIELD"] = "Pirkimo kaina";
+$MESS["SALE_PRODUCT_ENTITY_ARRIVED_PRODUCTS_IN_PERIOD_BY_SHOP_FIELD"] = "Prekës produktai atvyko";
+$MESS["SALE_PRODUCT_ENTITY_ARRIVED_PRODUCTS_IN_PERIOD_BY_STORE_FIELD"] = "Prekës atvyko á sandëlá per laikotarpá";
+$MESS["SALE_PRODUCT_ENTITY_EXPENSE_PRODUCTS_IN_PERIOD_BY_STORE_FIELD"] = "Prekës iðsiøsti ið sandëlio per laikotarpá";
+?>

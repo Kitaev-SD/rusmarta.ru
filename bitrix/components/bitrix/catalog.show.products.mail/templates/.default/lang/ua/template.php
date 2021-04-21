@@ -1,0 +1,4 @@
+<?
+$MESS["CATALOG_VIEWED_PRODUCTS_MAIL_TITLE"] = "Ѕлок товар≥в";
+$MESS["CATALOG_VIEWED_PRODUCTS_MAIL_YET"] = "ƒетальн≥ше";
+?>

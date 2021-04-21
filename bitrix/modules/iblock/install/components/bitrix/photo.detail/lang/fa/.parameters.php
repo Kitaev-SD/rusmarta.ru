@@ -1,0 +1,29 @@
+<?
+$MESS["IBLOCK_SORT_SHOWS"] = "average views";
+$MESS["IBLOCK_SORT_SORT"] = "ترتیب";
+$MESS["IBLOCK_SORT_TIMESTAMP"] = "modification date";
+$MESS["IBLOCK_SORT_NAME"] = "نام";
+$MESS["IBLOCK_SORT_ID"] = "شناسه";
+$MESS["IBLOCK_SORT_ACTIVE_FROM"] = "active from";
+$MESS["IBLOCK_SORT_ACTIVE_TO"] = "active to";
+$MESS["IBLOCK_SORT_ASC"] = "صعودی";
+$MESS["IBLOCK_SORT_DESC"] = "نزولی";
+$MESS["IBLOCK_TYPE"] = "نوع بلوک اطلاعات";
+$MESS["IBLOCK_IBLOCK"] = "بلوک اطلاعات";
+$MESS["IBLOCK_SECTION_URL"] = "URL of the page with the section contents";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD_NEXT_PREV_LINK"] = "Field to sort the photos (for use with links \"next\" and \"prev\")";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER_NEXT_PREV_LINK"] = "Sort order of the photos (for use with links \"next\" and \"prev\")";
+$MESS["IBLOCK_DETAIL_URL"] = "URL of the page with the detail contents";
+$MESS["IBLOCK_ELEMENT_CODE"] = "Element code";
+$MESS["IBLOCK_ELEMENT_ID"] = "Element ID";
+$MESS["IBLOCK_SECTION_CODE"] = "Section code";
+$MESS["IBLOCK_SECTION_ID"] = "شناسه بخش";
+$MESS["T_IBLOCK_DESC_NEWS_PANEL"] = "Display panel buttons for this component";
+$MESS["IBLOCK_FIELD"] = "Fields";
+$MESS["IBLOCK_PROPERTY"] = "مشخصات";
+$MESS["T_IBLOCK_DESC_KEYWORDS"] = "Set page keywords from property";
+$MESS["T_IBLOCK_DESC_DESCRIPTION"] = "Set page description from property";
+$MESS["CP_BPD_SET_STATUS_404"] = "Set 404 status if no element or section was found";
+$MESS["CP_BPD_BROWSER_TITLE"] = "Set browser window title from property value";
+$MESS["CP_BPD_CACHE_GROUPS"] = "Respect Access Permissions";
+?>

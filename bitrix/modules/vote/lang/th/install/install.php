@@ -1,0 +1,23 @@
+<?
+$MESS ['VOTE_MODULE_NAME'] = "â¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+$MESS ['VOTE_MODULE_DESCRIPTION'] = "âÁ´ÙÅ¹Õéà»ç¹¡ÒÃà¾ÔèÁâ¾ÅáÅÐ¼ÅÊÓÃÇ¨º¹àÇçºä«µì";
+$MESS ['VOTE_INSTALL_TITLE'] = "¡ÒÃµÔ´µÑé§âÁ´ÙÅâ¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+$MESS ['VOTE_UNINSTALL_TITLE'] = "¶Í´âÁ´ÙÅâ¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+$MESS ['VOTE_SELECT_INITITAL'] = "â»Ã´¡ÓË¹´¤èÒã¹¡ÒÃµÔ´µÑé§âÁ´ÙÅ:";
+$MESS ['VOTE_URL_PUBLIC'] = "â¿Åà´ÍÃìâ¾Å(â´ÂäÁèãªéâ¿Åà´ÍÃì·ÕèÁÕÍÂÙèáÅéÇã¹àÇçºä«µì):";
+$MESS ['VOTE_NO'] = "äÁèãªè";
+$MESS ['VOTE_ATTENTION'] = "¤Óàµ×Í¹! âÁ´ÙÅ¹Õé¡ÓÅÑ§¨Ð¶Ù¡¶Í´.";
+$MESS ['VOTE_YOU_CAN_SAVE_TABLES'] = "ã¹¡ÒÃºÑ¹·Ö¡¢éÍÁÙÅÅ§ã¹°Ò¹¢éÍÁÙÅ, µÃÇ¨ÊÍº &quot;Save Tables&quot; ã¹àªç¤ºêÍ¡«ì";
+$MESS ['VOTE_SAVE_TABLES'] = "ºÑ¹·Ö¡µÒÃÒ§";
+$MESS ['VOTE_DELETE'] = "¶Í´âÁ´ÙÅ";
+$MESS ['VOTE_DELETE_COMLETE'] = "¶Í´âÁ´ÙÅÊÁºÙÃ³ìáÅéÇ";
+$MESS ['VOTE_BACK'] = "¡ÅÑº";
+$MESS ['VOTE_ERRORS'] = "¼Ô´¾ÅÒ´:";
+$MESS ['VOTE_INSTALL'] = "µÔ´µÑé§";
+$MESS ['VOTE_COMPLETE'] = "µÔ´µÑé§âÁ´ÙÅÊÁºÙÃ³ìáÅéÇ";
+$MESS ['VOTE_WRONG_MAIN_VERSION'] = "ã¹¡ÒÃµÔ´µÑé§âÁ´ÙÅ¤Ø³µéÍ§·Ó¡ÒÃ»ÃÑº»ÃØ§àÇÍÃìªÑè¹¢Í§ÃÐººã¹¡ÒÃ¨Ñ´¡ÒÃÃÐººà»ç¹àÇÍÃìªÑè¹ #VER#";
+$MESS ['VOTE_RESET'] = "Â¡àÅÔ¡";
+$MESS ['VOTE_DEMO_DIR'] = "ÅÔ§¤ìä»ÂÑ§µÑÇÍÂèÒ§ä¿Åì·Õè·Ó§Ò¹:";
+$MESS ['VOTE_SITE'] = "àÇçºä«µì";
+$MESS ['VOTE_LINK'] = "ÅÔ§¤ì";
+?>

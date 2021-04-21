@@ -1,0 +1,31 @@
+<?
+$MESS["STAT_AVERAGE_HITS"] = "Promedio<br>de hits:";
+$MESS["STAT_BY_LINK"] = "link";
+$MESS["STAT_BY_SERVER"] = "dominio";
+$MESS["STAT_DATE_HIT"] = "Fecha";
+$MESS["STAT_EDIT_SITE"] = "Editar parámetros del sitio web";
+$MESS["STAT_FL_LGC"] = "Lógica";
+$MESS["STAT_FL_PRD"] = "Periodo";
+$MESS["STAT_FL_SID"] = "Sesión";
+$MESS["STAT_FL_URL"] = "A";
+$MESS["STAT_F_DOMAIN"] = "Domen";
+$MESS["STAT_F_FROM"] = "URL de referencia:";
+$MESS["STAT_F_GROUP"] = "Grupo por:";
+$MESS["STAT_F_ID"] = "ID:";
+$MESS["STAT_F_PAGE"] = "Página";
+$MESS["STAT_F_PROTOCOL"] = "Protocolo";
+$MESS["STAT_F_SESSION"] = "ID de sesión";
+$MESS["STAT_F_TO"] = "A:";
+$MESS["STAT_GO_LINK"] = "Link navegado";
+$MESS["STAT_GRAPH"] = "Gráfico";
+$MESS["STAT_NO_GROUP"] = "(no)";
+$MESS["STAT_NUM"] = "Número";
+$MESS["STAT_PAGE_TO"] = "A";
+$MESS["STAT_PERCENT"] = "%";
+$MESS["STAT_QUANTITY"] = "Número";
+$MESS["STAT_RECORDS_LIST"] = "Referir sitios web";
+$MESS["STAT_REF_PAGES"] = "Registros";
+$MESS["STAT_SESSION"] = "Sesión";
+$MESS["STAT_SESS_OPEN"] = "Lista de sesiones";
+$MESS["STAT_URL_FROM"] = "Desde";
+?>

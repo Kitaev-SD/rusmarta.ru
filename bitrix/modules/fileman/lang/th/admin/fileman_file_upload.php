@@ -1,0 +1,13 @@
+<?
+$MESS ['FILEMAN_FILEUPLOAD_NAME'] = "ª×èÍä¿Åì:";
+$MESS ['FILEMAN_FILEUPLOAD_FILE'] = "ÍÑ¾âËÅ´ä¿Åì:";
+$MESS ['FILEMAN_FILEUPLOAD_UPLOAD'] = "ÍÑ¾âËÅ´ä¿Åì";
+$MESS ['FILEMAN_FILEUPLOAD_ACCESS_DENIED'] = "äÁèä´éÃÑºÊÔ·¸ÔìãËéÊÃéÒ§ä¿Åì";
+$MESS ['FILEMAN_FILEUPLOAD_FILE_EXISTS1'] = "â»Ã´ÃÐºØª×èÍä¿Åì";
+$MESS ['FILEMAN_FILEUPLOAD_FILE_EXISTS2'] = "ÁÕÍÂÙèáÅéÇ";
+$MESS ['FILEMAN_FILEUPLOAD_FILE_CREATE_ERROR'] = "¾º¢éÍ¼Ô´¾ÅÒ´¢³ÐÊÃéÒ§ä¿Åì";
+$MESS ['FILEMAN_FILEUPLOAD_PHPERROR'] = "äÁèä´éÃÑºÊÔ·¸ÔìãËéÍÑ¾âËÅ´ä¿Åì PHP";
+$MESS ['FILEMAN_FILE_UPLOAD_TITLE'] = "¡ÓÅÑ§ÍÑ¾âËÅ´ä¿Åì";
+$MESS ['FILEMAN_UPL_TAB'] = "âËÅ´ä¿Åì";
+$MESS ['FILEMAN_UPL_TAB_ALT'] = "âËÅ´ä¿Åì";
+?>

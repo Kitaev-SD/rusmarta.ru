@@ -1,0 +1,4 @@
+<?
+	$MESS["placeholder"] = "Ïîèñê ïî ñàéòó";
+	$MESS["CATEGORY_PRODUÑTCS_SEARCH_NAME"] = "Òîâàðû";
+?>

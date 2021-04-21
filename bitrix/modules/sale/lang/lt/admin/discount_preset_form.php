@@ -1,0 +1,11 @@
+<?
+$MESS["BX_SALE_DISCOUNT_PRESET_TITLE_EDIT_DISCOUNT"] = "Pakeisti taisyklæ su ID #ID#";
+$MESS["BX_SALE_DISCOUNT_PRESET_TITLE_ADD_DISCOUNT"] = "Sukurti naujà taisyklæ";
+$MESS["BX_SALE_DISCOUNT_PRESET_CONTEXT_DISCOUNT_LIST"] = "Taisykliø sàraðas";
+$MESS["BX_SALE_DISCOUNT_PRESET_CONTEXT_NEW"] = "Sukurti naujà taisyklæ";
+$MESS["BX_SALE_DISCOUNT_PRESET_CONTEXT_DELETE"] = "Iðtrinti taisyklæ";
+$MESS["BX_SALE_DISCOUNT_PRESET_CONTEXT_DELETE_CONFIRM"] = "Ar tikrai norite iðtrinti ðià taisyklæ?";
+$MESS["BX_SALE_DISCOUNT_PRESET_FORM_EDIT_TAB_NAME_COMMON"] = "Parametrai";
+$MESS["BX_SALE_DISCOUNT_PRESET_FORM_EDIT_TAB_TITLE_COMMON"] = "Taisyklës parametrai";
+$MESS["BX_SALE_DISCOUNT_PRESET_ABSENT"] = "Nustatymai pagal nutylëjimà";
+?>

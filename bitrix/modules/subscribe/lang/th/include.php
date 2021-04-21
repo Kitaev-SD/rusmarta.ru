@@ -1,0 +1,36 @@
+<?
+$MESS ['POST_ALL'] = "(all)";
+$MESS ['POST_TEXT'] = "text";
+$MESS ['POST_HTML'] = "html";
+$MESS ['POST_STATUS_DRAFT'] = "Draft";
+$MESS ['POST_STATUS_SENT'] = "Sent";
+$MESS ['POST_STATUS_PART'] = "Partly sent";
+$MESS ['POST_STATUS_ERROR'] = "Error";
+$MESS ['POST_STATUS_WAIT'] = "หยุด";
+$MESS ['POST_YES'] = "yes";
+$MESS ['POST_NO'] = "no";
+$MESS ['POST_U_YES'] = "ใช้";
+$MESS ['POST_U_NO'] = "ไม่ใช้";
+$MESS ['POST_WRONG_UPDATE_FROM'] = "Enter correct date of change \"from\"";
+$MESS ['POST_WRONG_UPDATE_TILL'] = "Enter correct date of change \"till\"";
+$MESS ['POST_WRONG_INSERT_FROM'] = "Enter correct date of adding \"from\"";
+$MESS ['POST_WRONG_INSERT_TILL'] = "Enter correct date of adding \"till\"";
+$MESS ['POST_WRONG_TIMESTAMP_FROM'] = "Enter correct timestamp \"from\"";
+$MESS ['POST_WRONG_TIMESTAMP_TILL'] = "Enter correct timestamp \"till\"";
+$MESS ['POST_WRONG_DATE_SENT_FROM'] = "Enter correct sent date \"from\"";
+$MESS ['POST_WRONG_DATE_SENT_TILL'] = "Enter correct sent date \"till\"";
+$MESS ['POST_WRONG_AUTO_FROM'] = "Enter correct scheduled time of the issue \"from\"";
+$MESS ['POST_WRONG_AUTO_TILL'] = "Enter correct scheduled time of the issue \"till\"";
+$MESS ['POST_LIST'] = "รายการ";
+$MESS ['POST_ADD'] = "Add";
+$MESS ['POST_DELETE'] = "ลบ";
+$MESS ['POST_EDIT'] = "แก้ไข";
+$MESS ['POST_TILL'] = "ถึง";
+$MESS ['POST_F_SET_FILTER'] = "ตั้งค่าตัวกรอง";
+$MESS ['POST_F_DEL_FILTER'] = "ถอดตัวกรอง";
+$MESS ['POST_SAVE'] = "บันทึก";
+$MESS ['POST_RESET'] = "ยกเลิก";
+$MESS ['POST_TOTAL'] = "รวม:";
+$MESS ['POST_MODULE_TITLE'] = "หัวข้อย่อย, รายการอีเมล์";
+$MESS ['POST_APPLY'] = "ตกลง";
+?>

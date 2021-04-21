@@ -1,0 +1,32 @@
+<?
+$MESS["SBBL_PATH_TO_BASKET"] = "Krepðelio puslapis";
+$MESS["SBBL_PATH_TO_PERSONAL"] = "Asmeninis skyrius";
+$MESS["SBBL_SHOW_PERSONAL_LINK"] = "Rodyti nuorodà á asmeniná skyriø";
+$MESS["SBBL_SHOW_NUM_PRODUCTS"] = "Rodyti prekiø kieká";
+$MESS["SBBL_SHOW_TOTAL_PRICE"] = "Rodyti bendrà prekiø sumà";
+$MESS["SBBL_SHOW_PRODUCTS"] = "Rodyti prekiø sàraðà";
+$MESS["SBBL_POSITION_FIXED"] = "Rodyti komponentà per kitus elementus";
+$MESS["SBBL_POSITION_VERTICAL"] = "Vertikalus lygiavimas";
+$MESS["SBBL_POSITION_VERTICAL_TOP"] = "á virðø";
+$MESS["SBBL_POSITION_VERTICAL_BOTTOM"] = "þemyn";
+$MESS["SBBL_POSITION_HORIZONTAL"] = "Horizontalus lygiavimas";
+$MESS["SBBL_POSITION_HORIZONTAL_LEFT"] = "á kairæ";
+$MESS["SBBL_POSITION_HORIZONTAL_RIGHT"] = "á deðinæ";
+$MESS["SBBL_PATH_TO_ORDER"] = "Uþsakymo puslapis";
+$MESS["SBBL_SHOW_DELAY"] = "Rodyti pageidavimø sàraðà";
+$MESS["SBBL_SHOW_NOTAVAIL"] = "Rodyti neprieinamas prekes";
+$MESS["SBBL_SHOW_SUBSCRIBE"] = "Rodyti prekes ið naudotojo pageidavimø sàraðo";
+$MESS["SBBL_SHOW_IMAGE"] = "Rodyti prekës vaizdà";
+$MESS["SBBL_SHOW_PRICE"] = "Rodyti prekës kainà";
+$MESS["SBBL_SHOW_SUMMARY"] = "Rodyti tarpinë sumà kiekvienoje eilutëje";
+$MESS["SBBL_SHOW_EMPTY_VALUES"] = "Rodyti nulines reikðmes tuðèiame krepðelyje";
+$MESS["SBBL_POSITION_CENTER"] = "centras";
+$MESS["SBBL_PATH_TO_REGISTER"] = "Registracijos puslapis";
+$MESS["SBBL_PATH_TO_PROFILE"] = "Profilio puslapis";
+$MESS["SBBL_PERSONAL"] = "Asmeninis skyrius";
+$MESS["SBBL_AUTHOR"] = "Autorizavimas";
+$MESS["SBBL_SHOW_AUTHOR"] = "Leisti autorizavimà krepðelyje";
+$MESS["SBBL_LIST"] = "Prekiø sàraðas";
+$MESS["SBBL_HIDE_ON_BASKET_PAGES"] = "Nerodyti krepðelio ir uþsakymo apiforminimo puslapiuose";
+$MESS["HIDE_ON_BASKET_PAGES_TIP"] = "Ði parinktis leidþia jums paslëpti komponentà krepðelio ir uþsakymo apiforminimo puslapiuose. Rekomenduojama palikti ðià parinktá ájungta norint iðvengti papildomos apkrovos ðiuose puslapiuose.";
+?>

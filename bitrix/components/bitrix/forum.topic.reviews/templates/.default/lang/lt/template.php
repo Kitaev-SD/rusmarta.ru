@@ -1,0 +1,30 @@
+<?
+$MESS["OPINIONS_NAME"] = "Jûsø vardas";
+$MESS["OPINIONS_EMAIL"] = "Jûsø el. paðtas";
+$MESS["OPINIONS_SEND"] = "Siøsti";
+$MESS["OPINIONS_PREVIEW"] = "Perþiûrëti";
+$MESS["F_C_GOTO_FORUM"] = "Pereiti á forumà >>";
+$MESS["F_CAPTCHA_TITLE"] = "Boto apsauga nuo nepageidaujamo paðto (CAPTCHA)";
+$MESS["F_CAPTCHA_PROMT"] = "CAPTCHA vaizdo simboliai";
+$MESS["F_QUOTE_FULL"] = "Cituoti";
+$MESS["F_WANT_ALLOW_SMILES"] = "Ar ðiame praneðime norite <b>ájungti</b> ðypsniukus?";
+$MESS["F_WANT_SUBSCRIBE_TOPIC"] = "Prenumeruoti naujus praneðimus ðioje temoje";
+$MESS["F_LOAD_FILE"] = "Ákelti failà";
+$MESS["F_LOAD_IMAGE"] = "Ákelti nuotraukà";
+$MESS["F_QUOTE_HINT"] = "Jei atsakymo formoje norite cituoti praneðimà, paþymëkite tekstà ir spustelëkite èia";
+$MESS["F_NAME"] = "Vardas";
+$MESS["JQOUTE_AUTHOR_WRITES"] = "raðo";
+$MESS["JERROR_NO_TOPIC_NAME"] = "Turite ávesti pavadinimà";
+$MESS["JERROR_NO_MESSAGE"] = "Turite ávesti praneðimà.";
+$MESS["JERROR_MAX_LEN"] = "Didþiausias praneðimo ilgis yra #MAX_LENGTH# simboliø. Ið viso simboliø: #LENGTH#.";
+$MESS["F_FILE_SIZE"] = "failo dydis neturi virðyti #SIZE#";
+$MESS["F_PREVIEW"] = "Perþiûra";
+$MESS["F_DOWNLOAD"] = "Atsisiøsti";
+$MESS["F_FILE_EXTENSION"] = "Leidþiami failai: #EXTENSION#.";
+$MESS["F_HIDE"] = "Paslëti";
+$MESS["F_SHOW"] = "Rodyti";
+$MESS["F_WAIT"] = "Praðome palaukti...";
+$MESS["F_DELETE"] = "Iðtrinti";
+$MESS["F_DELETE_CONFIRM"] = "Jûsø þinutë bus iðtrinta negráþtamai. Tæsti?";
+$MESS["F_ATTACH_FILES"] = "Prikabinti failai";
+?>

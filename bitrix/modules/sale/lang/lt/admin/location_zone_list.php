@@ -1,0 +1,8 @@
+<?
+$MESS["SALE_MODULE_ACCES_DENIED"] = "Prieiga prie modulio uþdrausta";
+$MESS["SALE_LOCATION_L_ITEM_NOT_FOUND"] = "Su ðiuo ID nebuvo nustatyta jokiø sàryðiø";
+$MESS["SALE_LOCATION_L_PAGES"] = "Interneto svetainë sàryðiai";
+$MESS["SALE_LOCATION_L_EDIT_ITEM"] = "Redaguoti vietovës sàraðà";
+$MESS["SALE_LOCATION_L_EDIT_PAGE_TITLE"] = "Tinklapiø vietovës";
+$MESS["SALE_LOCATION_L_ITEM"] = "Sàryðiai";
+?>

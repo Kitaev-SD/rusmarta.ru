@@ -1,0 +1,33 @@
+<?
+$MESS["customrank_of"] = "ið";
+$MESS["customrank_continue"] = "Tæsti";
+$MESS["customrank_site"] = "Tinklapis";
+$MESS["customrank_all"] = "(viskà)";
+$MESS["customrank_module"] = "Modulis";
+$MESS["customrank_param1"] = "Parametras 1";
+$MESS["customrank_add"] = "Pridëti";
+$MESS["customrank_param2"] = "Parametras 2";
+$MESS["customrank_param3"] = "Parametras 3";
+$MESS["customrank_edit"] = "Redaguoti";
+$MESS["customrank_delete"] = "Ðalinti";
+$MESS["customrank_id"] = "ID";
+$MESS["customrank_title"] = "Rûðiavimo taisykliø sàraðas";
+$MESS["customrank_applied"] = "Apdorota";
+$MESS["customrank_saved"] = "Taisyklës iæsaugotos.";
+$MESS["customrank_rules"] = "Taisyklës";
+$MESS["customrank_sort"] = "Svarba";
+$MESS["customrank_update"] = "Atnaujinti";
+$MESS["customrank_step2"] = "Þingsnis 2. Paieðkos indekso atnaujinimas";
+$MESS["customrank_step1"] = "Þingsnis 1. Rûðiavimo taisykliø valdymas";
+$MESS["customrank_save_note"] = "Po taisykliø pakeitimø arba ðalinimo reikia spausti mygtukà \\\"Atnaujinti\\\" kad pakeitimai ásigaliotu.";
+$MESS["customrank_no"] = "(nenustatyta)";
+$MESS["customrank_edit_error"] = "Ávyko klaida. Nepavyko atnaujinti áraðo:";
+$MESS["customrank_no_rule"] = "Taisyklë nerasta";
+$MESS["customrank_add_title"] = "Spauskyte pridëti naujà rûðiavimo taisyklæ";
+$MESS["customrank_find"] = "Ieðkoti";
+$MESS["customrank_find_title"] = "Áraðykite paieðkos þodþius";
+$MESS["customrank_stop"] = "Sustabdyti";
+$MESS["customrank_error_delete"] = "Klaida ðalinant taisyklæ.";
+$MESS["customrank_delete_confirm"] = "Ar tikrai norite paðalinti ðià taisyklæ?";
+$MESS["customrank_progress"] = "Atnaujinti paieðkos indeksà.";
+?>

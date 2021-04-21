@@ -1,0 +1,35 @@
+<?
+$MESS["BPABL_BACK"] = "Regresar";
+$MESS["BPABL_DESCRIPTION"] = "Descripción de la plantilla Proceso de negocio";
+$MESS["BPABL_ERROR"] = "Error";
+$MESS["BPABL_ID"] = "ID Proceso de negocio";
+$MESS["BPABL_INVALID_WF"] = "El proceso de negocio no fue encontrado";
+$MESS["BPABL_LOG"] = "Historial Proceso de negocio";
+$MESS["BPABL_NAME"] = "Nombre de la plantilla Proceso de negocio";
+$MESS["BPABL_NO_PERMS"] = "Usted no tiene permiso para acceder al documento del proceso de negocio";
+$MESS["BPABL_RES2ADMINMODE"] = "Modo Avanzado";
+$MESS["BPABL_RES2SIMPLEMODE"] = "Modo simple";
+$MESS["BPABL_RES_1"] = "No";
+$MESS["BPABL_RES_2"] = "éxito";
+$MESS["BPABL_RES_3"] = "Cancelado";
+$MESS["BPABL_RES_4"] = "Error";
+$MESS["BPABL_RES_5"] = "No instalado";
+$MESS["BPABL_RES_6"] = "Indefinido";
+$MESS["BPABL_STATE_MODIFIED"] = "fecha del Estado actual";
+$MESS["BPABL_STATE_NAME"] = "Estado actual del Proceso de negocio";
+$MESS["BPABL_STATUS_1"] = "Instalado";
+$MESS["BPABL_STATUS_2"] = "En progreso";
+$MESS["BPABL_STATUS_3"] = "Cancelando";
+$MESS["BPABL_STATUS_4"] = "completado";
+$MESS["BPABL_STATUS_5"] = "Error";
+$MESS["BPABL_STATUS_6"] = "Indefinido";
+$MESS["BPABL_TAB_TITLE"] = "Proceso de negocio";
+$MESS["BPABL_TITLE"] = "Proceso de negocio #ID#";
+$MESS["BPABL_TYPE_1"] = "Acción lanzada '#ACTIVITY#'#NOTE#";
+$MESS["BPABL_TYPE_2"] = "Acción Completada  '#ACTIVITY#'	 retornar al estado: '#STATUS#'	 resultado: '#RESULT#'#NOTE#";
+$MESS["BPABL_TYPE_3"] = "Acción cancelado '#ACTIVITY#'#NOTE#";
+$MESS["BPABL_TYPE_4"] = "Error en la Acción '#ACTIVITY#'#NOTE#";
+$MESS["BPABL_TYPE_5"] = "Acción '#ACTIVITY#'#NOTE#";
+$MESS["BPABL_TYPE_6"] = "Una acción desconocida asociada con '#ACTIVITY#'#NOTE# ha sido realizada";
+$MESS["BPABL_WF_TAB"] = "Proceso de negocio";
+?>

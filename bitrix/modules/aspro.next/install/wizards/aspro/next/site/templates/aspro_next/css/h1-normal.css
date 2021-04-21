@@ -1,0 +1,26 @@
+body h1 { font-weight: normal; }
+body h1, body h2, body h3, body h4, body h5, body h6 { font-weight: normal; }
+body h3.title_block, body h4.title_block, body h5.title_block, body h6.title_block { font-weight: normal; }
+body .group-content h3{font-weight:normal;}
+body .soc-avt .title, .landings_list .title_block{ font-weight: normal; }
+body .news_akc_block .item .info .name{font-weight: normal;}
+body .catalog_item .item-title a, .catalog_item .item-title a span, .view-item .item-title a span{font-weight:normal;}
+body .sections_wrapper .list .item .name{font-weight:normal;}
+body .banners-small .item .title{font-weight:normal;}
+body .specials_slider_wrapp ul.tabs > li span, body .tab_slider_wrapp ul.tabs > li span{font-weight:normal;}
+body .catalog_section_list .section_item li.name a span{font-weight:normal;}
+body .top_slider_wrapp .flexslider .banner_title span{font-weight:normal;}
+body .top_big_banners .wrap_tizer .preview{font-weight:normal;}
+body .tabs .nav.nav-tabs a{font-weight:normal;}
+body .btn-lg, body .btn.bold{font-weight:normal;}
+body .basket_sort ul.tabs li span{font-weight:normal;}
+body .basket_wrapp .basket_fly .basket_title{font-weight:normal;}
+body .cart_empty .title{font-weight:normal;}
+body .popup .popup-intro .pop-up-title{font-weight:normal;}
+body .item-views .item .title, body .item-views.table-elements .item .body-info .title, body .item-views.table .item .title a{font-weight:normal;}
+body .shops.list .item .title{font-weight:normal;}
+body .title_block{font-weight:normal;}
+body .accordion-head{font-weight:normal;}
+body .container .bx_item_list_you_looked_horizontal .bx_item_list_title{font-weight:normal;}
+body .bx_item_list_you_looked_horizontal .bx_catalog_item .bx_catalog_item_title a{font-weight:normal;}
+body #bx-soa-order .bx-soa-section .bx-soa-section-title{font-weight:normal;}

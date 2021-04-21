@@ -1,0 +1,39 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Помощь", 
+		"#SITE_DIR#help/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Блог", 
+		"#SITE_DIR#blog/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Вопрос-ответ", 
+		"#SITE_DIR#info/faq/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Бренды", 
+		"#SITE_DIR#info/brands/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Обзоры", 
+		"#SITE_DIR#landings/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+);
+?>

@@ -1,0 +1,31 @@
+<?
+$MESS ['calend_title'] = "ปฏิทิน";
+$MESS ['calend_feb'] = "กุมภาพันธ์";
+$MESS ['calend_mar'] = "มีนาคม";
+$MESS ['calend_may'] = "พฤษภาคม";
+$MESS ['calend_jun'] = "มิถุนายน";
+$MESS ['calend_sep'] = "กันยายน";
+$MESS ['calend_okt'] = "ตุลาคม";
+$MESS ['calend_nov'] = "พฤศจิกายน";
+$MESS ['calend_prev_mon'] = "Previous month";
+$MESS ['calend_per_mon'] = "Period: month";
+$MESS ['calend_next_mon'] = "Next month";
+$MESS ['calend_prev_year'] = "Previous year";
+$MESS ['calend_next_year'] = "Next year";
+$MESS ['calend_curr'] = "Go to the current month";
+$MESS ['calend_mo'] = "จ.";
+$MESS ['calend_we'] = "พ.";
+$MESS ['calend_th'] = "พฤ.";
+$MESS ['calend_fr'] = "ศ.";
+$MESS ['calend_sa'] = "ส.";
+$MESS ['calend_su'] = "อา.";
+$MESS ['calend_per_week'] = "Period: week";
+$MESS ['calend_date'] = "Insert date";
+$MESS ['calend_jan'] = "มกราคม";
+$MESS ['calend_apr'] = "เมษายน";
+$MESS ['calend_jul'] = "กรกฎาคม";
+$MESS ['calend_aug'] = "สิงหาคม";
+$MESS ['calend_des'] = "ธันวาคม";
+$MESS ['calend_per_year'] = "Period: year";
+$MESS ['calend_tu'] = "อ.";
+?>

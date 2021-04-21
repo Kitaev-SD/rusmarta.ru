@@ -1,0 +1,4 @@
+<?
+$MESS["IBLOCK_SITE_ENTITY_IBLOCK_ID_FIELD"] = "Informacinio bloko ID";
+$MESS["IBLOCK_SITE_ENTITY_SITE_ID_FIELD"] = "Svetainës ID";
+?>

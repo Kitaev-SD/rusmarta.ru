@@ -1,0 +1,29 @@
+<?
+$MESS["LHE_GROUP_ADDITIONAL_SETTINGS"] = "Configurações adicionais";
+$MESS["LHE_GROUP_BASE_SETTINGS"] = "Configurações principais";
+$MESS["LHE_GROUP_VIDEO_SETTINGS"] = "Definições de Vídeo";
+$MESS["LHE_PAR_ADVANCED_MODE"] = "Ativar Configurações Avançadas";
+$MESS["LHE_PAR_AUTO_RESIZE"] = "Auto-redimensionar (ampliar) área do editor para ajustar texto";
+$MESS["LHE_PAR_CONTENT"] = "Texto HTML";
+$MESS["LHE_PAR_HEIGHT"] = "Altura do editor";
+$MESS["LHE_PAR_ID"] = "ID de Controle";
+$MESS["LHE_PAR_INPUT_ID"] = "ID de Controle";
+$MESS["LHE_PAR_INPUT_NAME"] = "Nome do controle";
+$MESS["LHE_PAR_JS_OBJ_NAME"] = "Nome do objeto JavaScript";
+$MESS["LHE_PAR_RESIZABLE"] = "rea de Editor redimensionável";
+$MESS["LHE_PAR_USE_FILE_DIALOGS"] = "Ativar diálogo de arquivo";
+$MESS["LHE_PAR_VIDEO_ALLOW_VIDEO"] = "Permitir embedding do vídeo";
+$MESS["LHE_PAR_VIDEO_BUFFER"] = "Tamanho do buffer do player (seg.)";
+$MESS["LHE_PAR_VIDEO_LOGO"] = "Caminho do arquivo de imagem do logotipo";
+$MESS["LHE_PAR_VIDEO_MAX_HEIGHT"] = "Altura máxima de vídeo";
+$MESS["LHE_PAR_VIDEO_MAX_WIDTH"] = "Largura máxima de vídeo";
+$MESS["LHE_PAR_VIDEO_ONLY_FLV"] = "(Somente para Flash player)";
+$MESS["LHE_PAR_VIDEO_ONLY_WMV"] = "(Somente para Silverlight player)";
+$MESS["LHE_PAR_VIDEO_SKIN"] = "Caminho da skin do vídeo";
+$MESS["LHE_PAR_VIDEO_WINDOWLESS"] = "Modo de janela (sem janelas)";
+$MESS["LHE_PAR_VIDEO_WMODE"] = "Modo de janela (WMode)";
+$MESS["LHE_PAR_WIDTH"] = "Largura do editor";
+$MESS["LHE_PAR_WMODE_OPAQUE"] = "Opaco";
+$MESS["LHE_PAR_WMODE_TRANSPARENT"] = "Transparente";
+$MESS["LHE_PAR_WMODE_WINDOW"] = "Normal";
+?>

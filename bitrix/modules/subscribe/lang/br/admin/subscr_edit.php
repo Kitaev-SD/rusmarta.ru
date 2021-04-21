@@ -1,0 +1,30 @@
+<?
+$MESS["subs_save_error"] = "Erro ao salvar o endereço de inscrições";
+$MESS["subs_saved"] = "O endereço de incrição foi adicionado com sucesso:";
+$MESS["subscr_active"] = "Inscrição ativa:";
+$MESS["subscr_add_text"] = "Adicionar";
+$MESS["subscr_anonym"] = "Inscrito Anônimo";
+$MESS["subscr_conf"] = "Assinatura confirmada:";
+$MESS["subscr_conf_code"] = "Digite o código de confirmação de inscrição";
+$MESS["subscr_date_add"] = "Adicionado:";
+$MESS["subscr_date_conf"] = "Data da geração do código de confirmação:";
+$MESS["subscr_date_upd"] = "Modificado em:";
+$MESS["subscr_del_text"] = "Excluir";
+$MESS["subscr_fmt"] = "Formato preferível";
+$MESS["subscr_fmt_text"] = "Texto";
+$MESS["subscr_list"] = "Lista de endereços";
+$MESS["subscr_list_text"] = "Lista";
+$MESS["subscr_mnu_add"] = "Adicionar um novo inscrito";
+$MESS["subscr_mnu_del"] = "Excluir esse inscrito";
+$MESS["subscr_mnu_del_conf"] = "Remover o endereço do inscrito?";
+$MESS["subscr_rub"] = "Categorias do Boletim Informativo";
+$MESS["subscr_send_conf"] = "Enviar código de confirmação para o inscrito caso tenha alteração no endereço ou caso seja adicionado um novo.";
+$MESS["subscr_tab_subscriber"] = "Assinante";
+$MESS["subscr_tab_subscriber_title"] = "Parâmetros de inscrição";
+$MESS["subscr_tab_subscription"] = "Assinaturas";
+$MESS["subscr_tab_subscription_title"] = "Tópicos de incrições";
+$MESS["subscr_templ"] = "Enviar mensagem usando um modelo do site:";
+$MESS["subscr_title_add"] = "Adicionar o endereço de inscrição";
+$MESS["subscr_title_edit"] = "Editar os parâmetros de inscrição";
+$MESS["subscr_user"] = "Assinante";
+?>

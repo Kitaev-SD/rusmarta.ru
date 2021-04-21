@@ -1,0 +1,17 @@
+<svg class="prediction_svg" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <defs>
+    <style>
+      .prediction_svg .cls-1 {
+        fill: #ffd02e;
+      }
+
+      .prediction_svg .cls-2 {
+        fill: #1d2029;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="11" cy="11" r="11"/>
+  <path class="cls-2" d="M14.5,12A2.5,2.5,0,1,1,12,14.5,2.5,2.5,0,0,1,14.5,12Zm0,1.563a0.938,0.938,0,1,1-.937.938A0.937,0.937,0,0,1,14.5,13.563ZM7.5,5A2.5,2.5,0,1,1,5,7.5,2.5,2.5,0,0,1,7.5,5Zm0,1.563a0.938,0.938,0,1,1-.937.938A0.937,0.937,0,0,1,7.5,6.563Z"/>
+  <path class="cls-2" d="M7.256,13.358l6.1-6.1a0.959,0.959,0,1,1,1.356,1.356l-6.1,6.1A0.959,0.959,0,1,1,7.256,13.358Z"/>
+</svg>

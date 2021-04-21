@@ -1,0 +1,35 @@
+<?
+$MESS["BB_BLOG_URL"] = "URL do blog";
+$MESS["BB_BLOG_VAR"] = "Variável de identificação do blog";
+$MESS["BB_CACHE_TIME_LONG"] = "Duração de cache da página";
+$MESS["BB_CATEGORY_ID"] = "Filtrar por ID da tag";
+$MESS["BB_DAY"] = "Filtrar por dia";
+$MESS["BB_FILTER_NAME_IN"] = "Nome do arranjo com os valores utilizados para os filtros de posts";
+$MESS["BB_MESSAGE_COUNT"] = "Mensagens por página";
+$MESS["BB_MONTH"] = "Filtrar por mês";
+$MESS["BB_NAV_TEMPLATE"] = "Nome do template de paginação";
+$MESS["BB_PAGE_VAR"] = "Variável da Página";
+$MESS["BB_PATH_TO_BLOG"] = "Caminho para o template de página do blog";
+$MESS["BB_PATH_TO_BLOG_CATEGORY"] = "Caminho para o template da página do blog com filtro de tag";
+$MESS["BB_PATH_TO_POST"] = "Template da página de mensagens do blog";
+$MESS["BB_PATH_TO_POST_EDIT"] = "Caminho para o template da página de edição de mensagens do blog";
+$MESS["BB_PATH_TO_SMILE"] = "Caminho para a pasta de smileys, relativa à raiz do site";
+$MESS["BB_PATH_TO_USER"] = "Caminho para o template da página de usuário do blog";
+$MESS["BB_POST_VAR"] = "Variável de identificação de mensagem do blog";
+$MESS["BB_SET_NAV_CHAIN"] = "Adicionar item à cadeia de navegação";
+$MESS["BB_USER_VAR"] = "Variável de identificação de usuário do blog";
+$MESS["BB_YEAR"] = "Filtrar por ano";
+$MESS["BC_DATE_TIME_FORMAT"] = "Formato de Hora e Data";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Altura máxima da imagem";
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Largura máxima da imagem";
+$MESS["B_VARIABLE_ALIASES"] = "Pseudônimos de Variáveis";
+$MESS["POST_PROPERTY_LIST"] = "Exibir propriedades adicionais de posts no blog";
+$MESS["RATING_TYPE"] = "Design dos botões de classificação";
+$MESS["RATING_TYPE_CONFIG"] = "padrão";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Curti (imagem)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Curti (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Curti/Não Curti (imagem)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Curti/Não Curti (texto)";
+$MESS["SHOW_RATING"] = "Permitir classificação";
+$MESS["SHOW_RATING_CONFIG"] = "padrão";
+?>

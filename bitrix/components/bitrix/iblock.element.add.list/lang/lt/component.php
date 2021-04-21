@@ -1,0 +1,5 @@
+<?
+$MESS['IBLOCK_LIST_PAGES_TITLE'] = 'Puslapiai';
+$MESS['IBLOCK_FORM_STATUS_ACTIVE'] = 'aktyvus';
+$MESS['IBLOCK_FORM_STATUS_INACTIVE'] = 'neaktyvus';
+?>

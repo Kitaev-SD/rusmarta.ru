@@ -1,0 +1,36 @@
+<?
+$MESS["SALE_INSTALL_DEFAULT"] = "Praðome pasirinkti El.parduotuvës modulio pavyzdþio failus, norëdami ádiegti";
+$MESS["SALE_INSTALL_NAME"] = "El.parduotuvë";
+$MESS["SALE_INSTALL_DESCRIPTION"] = "Suteikia el.parduotuvës funkcionalumà parduoti produktus svetainës lankytojams.";
+$MESS["SALE_INSTALL_BASKET"] = "Pirkimo krepðelis";
+$MESS["SALE_INSTALL_PERSON"] = "Asmeninis skyrius";
+$MESS["SALE_INSTALL_PUBLIC"] = "Diegimo bendras aplankas";
+$MESS["SALE_INSTALL_TITLE"] = "El.parduotuvës modulio diegimas";
+$MESS["SALE_INSTALL_PUBLIC_DIR"] = "Bendras aplankas";
+$MESS["SALE_INSTALL_SETUP"] = "Ádiegti";
+$MESS["SALE_INSTALL_COMPLETE_OK"] = "Diegimas atliktas. Daugiau informacijos galima rasti pagalbos skyriuje. ";
+$MESS["SALE_INSTALL_COMPLETE_ERROR"] = "Diegimas atliktas su klaidomis";
+$MESS["SALE_INSTALL_ERROR"] = "Diegimo klaidos";
+$MESS["SALE_INSTALL_BACK"] = "Gráþti prie modulio valdymo";
+$MESS["SALE_UNINSTALL_WARNING"] = "Dëmesio!Modulis bus paðalintas ið sistemos.";
+$MESS["SALE_UNINSTALL_SAVEDATA"] = "Norëdami iðsaugoti duomenis, saugomus duomenø bazës lentelëse, paþymëkite &quot;Save Tables&quot; langelá";
+$MESS["SALE_UNINSTALL_SAVECURRENCY"] = "Iðsaugoti valiutø lenteles (naudojamas tiek komercinis katalogas, tiek el.parduotuvës moduliai)";
+$MESS["SALE_UNINSTALL_SAVETABLE"] = "Iðsaugoti lenteles";
+$MESS["SALE_UNINSTALL_DEL"] = "Paðalinti";
+$MESS["SALE_UNINSTALL_ERROR"] = "Ðalinimo klaidos:";
+$MESS["SALE_UNINSTALL_COMPLETE"] = "Ðalinimas atliktas.";
+$MESS["SALE_INSTALL_PUBLIC_SETUP"] = "Ádiegti";
+$MESS["SALE_INSTALL_PUBLIC_REW"] = "Perraðyti bendrus failus";
+$MESS["SALE_INST_PUB_VAR"] = "Bendrø failø versijos";
+$MESS["SALE_VARIANT_NUM"] = "Versijos";
+$MESS["SALE_VARIANT1_DESCR"] = "Rekomenduojama. Universalûs skriptai.";
+$MESS["SALE_VARIANT2_DESCR"] = "Dviejø etapø uþsakymas. Bûtina padaryti papildomà ðio skripto rankiná nustatymà prieð naudojant (daugiau informacijos order.php skripte).";
+$MESS["SIM_COPY_PUBLIC_FILES"] = "Kopijuoti bendrus failus";
+$MESS["SIM_COPY_FOLDER"] = "Paskirties aplankas (susijæs su svetainës ðaknimi):";
+$MESS["SIM_REWRITE_ADD"] = "Perraðyti pagalbinius failus";
+$MESS["SINS_PERM_D"] = "Atsisakyta";
+$MESS["SINS_PERM_R"] = "Tik skaitymui";
+$MESS["SINS_PERM_U"] = "Tvarkyti uþsakymus";
+$MESS["SINS_PERM_W"] = "Pilna prieiga";
+$MESS["SALE_INSTALL_CURRENCY"] = "El.parduotuvës modulis reikalauja, kad bûtø ádiegtas valiutos modulis<br/> Praðome pirmiausia ádiegti valiutos modulá.";
+?>

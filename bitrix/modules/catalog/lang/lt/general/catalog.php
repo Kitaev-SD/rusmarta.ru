@@ -1,0 +1,29 @@
+<?
+$MESS["BT_MOD_CATALOG_ERR_UPDATE_BAD_ID"] = "Neteisingas katalogo ID.";
+$MESS["BT_MOD_CATALOG_ERR_IBLOCK_ID_FIELD_ABSENT"] = "Informacijos blokas nenurodytas.";
+$MESS["BT_MOD_CATALOG_ERR_IBLOCK_ID_INVALID"] = "Neteisingas informacijos bloko ID.";
+$MESS["BT_MOD_CATALOG_ERR_IBLOCK_ID_ABSENT"] = "Nurodytas informacijos blokas neegzistuoja. ";
+$MESS["BT_MOD_CATALOG_ERR_PRODUCT_ID_INVALID"] = "Neteisingas prekës informacijos bloko ID. ";
+$MESS["BT_MOD_CATALOG_ERR_PRODUCT_ID_ABSENT"] = "Nurodytas prekës informacijos blokas neegzistuoja. ";
+$MESS["BT_MOD_CATALOG_ERR_PRODUCT_ID_SELF"] = "Komercinis katalogas negali bûti be SKU informacijos bloko. ";
+$MESS["BT_MOD_CATALOG_ERR_SKU_PROP_ID_INVALID"] = "Neteisingas prekës informacijos bloko susiejimo savybës ID";
+$MESS["BT_MOD_CATALOG_ERR_PRODUCT_WITHOUT_SKU_PROP"] = "Prekës informacijos bloko ID yra nurodytas, taèiau trûksta informacijos bloko susiejimo savybës ID.";
+$MESS["BT_MOD_CATALOG_ERR_SKU_PROP_WITHOUT_PRODUCT"] = "Prekës informacijos bloko susiejimo savybës ID yra nurodytas, taèiau trûksta prekës informacijos bloko ID.";
+$MESS["BT_MOD_CATALOG_ERR_SKU_PROP_NOT_FOUND"] = "Nurodyta susiejimo savybë neegzistuoja arba iðjungta. ";
+$MESS["BT_MOD_CATALOG_ERR_PRODUCT_ID_CANT_CHANGE"] = "SKU informacijos blokas negali bûti naudojamas su kitu katalogu. ";
+$MESS["BT_MOD_CATALOG_ERR_SKU_PROPERTY_ID_CANT_CHANGE"] = "Susiejimo savybës ID negali bûti pakeistas nekeièiant informacijos bloko. ";
+$MESS["BT_MOD_CATALOG_ERR_SKU_PROP_BAD_SETTINGS"] = "Nurodyta susiejimo savybë neturi nuorodos á informacijos bloko elementà arba prisegta prie kito informacijos bloko. ";
+$MESS["BT_MOD_CATALOG_ERR_PRODUCT_ID_AND_SKU_PROPERTY_ID_NEED"] = "Komercinio katalogo ID ir atitinkamos susiejimo savybës ID turi bûti naudojami kartu.";
+$MESS["BT_MOD_CATALOG_ERR_CANNOT_DELETE_SKU_IBLOCK"] = "SKU informacijos blokas negali bûti paðalintas. ";
+$MESS["BT_MOD_CATALOG_ERR_CANNOT_DELETE_PRODUCTS_INFO"] = "Negalima iðtrinti komercinio katalogo elementø informacijos";
+$MESS["BT_MOD_CATALOG_ERR_PRODUCT_ID_IS_PRODUCT"] = "Infoblokas jau yra produktø informaciniu bloku.";
+$MESS["BT_MOD_CATALOG_ERR_OFFERS_ID_INVALID"] = "Neteisingas SKU informacijos bloko ID.";
+$MESS["BT_MOD_CATALOG_ERR_CANNOT_DELETE_OFFERS"] = "SKU negali bûti paðalintas.  ";
+$MESS["BT_MOD_CATALOG_ERR_CANNOT_DELETE_PRODUCT_IBLOCK"] = "Informacijos blokas, turintis SKU, negali bûti paðalintas.  ";
+$MESS["BT_MOD_CATALOG_MESS_SKU_PROP_NAME"] = "Katalogo prekë";
+$MESS["BT_MOD_CATALOG_ERR_CREATE_SKU_PROPERTY"] = "Infobloko pasiûlymo prekiø sàryðio savybës sukûrimo metu ávyko klaida: #ERROR#";
+$MESS["BT_MOD_CATALOG_ERR_UPDATE_SKU_PROPERTY"] = "Sàryðio savybës pasiûlymo prekiø infobloko atnaujinimo metu ávyko klaida: #ERROR#";
+$MESS["BT_MOD_CATALOG_ERR_CANNOT_DELETE_SKU_PROPERTY"] = "Negalima iðtrinti savybës ##SKU_PROPERTY_ID#, nes ji yra sàryðis tarp prekiø katalogo ##PRODUCT_IBLOCK_ID# ir pasiûlymø prekiø ##IBLOCK_ID#.";
+$MESS["BT_MOD_CATALOG_ERR_IBLOCK_REQUIRED"] = "Kmercinio katalogo modulis reikalauja  informacijos blokø modulio.";
+$MESS["BT_MOD_CATALOG_ERR_BEFORE_DEL_TITLE"] = "Ðalinimo klaida";
+?>

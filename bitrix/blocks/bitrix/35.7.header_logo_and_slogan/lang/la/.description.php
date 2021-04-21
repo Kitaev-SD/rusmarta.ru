@@ -1,0 +1,6 @@
+<?
+$MESS["LANDING_BLOCK_35_7_HEADER--CONTAINER"] = "Bloque";
+$MESS["LANDING_BLOCK_35_7_HEADER--LOGO"] = "Logotipo";
+$MESS["LANDING_BLOCK_35_7_HEADER--NAME"] = "Encabezado con logo y lema";
+$MESS["LANDING_BLOCK_35_7_HEADER--SLOGAN"] = "Lema";
+?>

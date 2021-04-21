@@ -1,0 +1,44 @@
+<?
+$MESS["export_save_err"] = "Ошибка сохранения выгрузки";
+$MESS["export_del_err"] = "Ошибка удаления выгрузки";
+$MESS["profile_save_error"] = "Ошибка сохранения выгрузки";
+$MESS["parser_active"] = "Активность";
+$MESS["parser_name"] = "Название";
+$MESS["parser_type"] = "Тип экспорта";
+$MESS["parser_type_run"] = "Тип запуска";
+$MESS["parser_updated"] = "Изменения";
+$MESS["parser_start_last_time"] = "Последний запуск";
+$MESS["parser_start_next_time"] = "Следующий запуск";
+$MESS["parser_unloaded_offers"] = "Выгружено товарных предложений";
+$MESS["parser_unloaded_offers_correct"] = "Выгружено товарных предложений (без ошибок)";
+$MESS["parser_unloaded_offers_error"] = "Выгружено товарных предложений (с ошибками)";
+$MESS["parser_unloaded_offers_stat"] = "Статус экспорта";
+$MESS["parser_unloaded_offers_site"] = "Сайт";
+$MESS["parser_unloaded_offers_stat_unactive"] = "Выгрузка не активна";
+$MESS["parser_unloaded_offers_stat_generate"] = "Ожидает генерации";
+$MESS["parser_unloaded_offers_stat_regenerate"] = "Ожидает перегенерации";
+$MESS["parser_unloaded_offers_stat_finished"] = "Выгрузка завершена";
+$MESS["parser_unloaded_offers_stat_in_process"] = "Выгрузка выполняется";
+$MESS["parser_unloaded_offers_stat_in_process_begin"] = "Выгружено ";
+$MESS["parser_unloaded_offers_stat_in_process_end"] = "товаров. Процент выгрузки: ";
+$MESS["parser_nav"] = "Список выгрузок";
+$MESS["parser_act_edit"] = "Изменить";
+$MESS["parser_act_del"] = "Удалить";
+$MESS["parser_act_del_conf"] = "Удалить выгрузку?";
+$MESS["parser_act_copy"] = "Копировать";
+$MESS["parser_act_export"] = "Создать Backup";
+$MESS["parser_act_unlock"] = "Разблокировать";
+$MESS["parser_act_run"] = "Запустить экспорт";
+$MESS["PARSER_ADD_TITLE"] = "Добавить";
+$MESS["ACRIT_GOOGLEMERCHANT_NEW_MIGRATE"] = "Перевод профилей на новый модуль";
+$MESS["post_title"] = "Выгрузки на торговые порталы";
+$MESS["ACRIT_GOOGLEMERCHANT_LIST_IMPORT_SUCCESS"] = "Выгрузки успешно экспортированы<br/><a href=\"/upload/acrit_googlemerchant/#FILENAME#\">/upload/acrit_googlemerchant/#FILENAME#</a>";
+$MESS["ACRIT_GOOGLEMERCHANT_LIST_IMPORT_FAIL"] = "Экспорт выгрузок завершился неудачей";
+$MESS["ACRIT_GOOGLEMERCHANT_PROFILE_EXPORT_SHORT"] = "экспорт";
+$MESS["ACRIT_GOOGLEMERCHANT_RUN_TYPE_COMPONENT"] = "Ручной";
+$MESS["ACRIT_GOOGLEMERCHANT_RUN_TYPE_CRON"] = "Автоматический";
+$MESS["ACRIT_GOOGLEMERCHANT_JQUERY_REQUIRE"] = "Отсутствует либо неисправна библиотека jQuery";
+
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_DEMOEND_PERIOD_INFO"] = "Срок использования демо-версии закончился.";
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_DEMOEND_BUY_LICENCE_INFO"] = "Купить лицензию";
+?>

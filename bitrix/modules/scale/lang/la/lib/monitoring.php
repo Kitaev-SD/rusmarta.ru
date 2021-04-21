@@ -1,0 +1,15 @@
+<?
+$MESS["SCALE_ITS_AVG_LOAD_CURR"] = "Actual";
+$MESS["SCALE_ITS_AVG_LOAD_MAX"] = "Máximo";
+$MESS["SCALE_ITS_AVG_LOAD_MIN"] = "Mínimo";
+$MESS["SCALE_ITS_AVG_LOAD_NAME"] = "Carga";
+$MESS["SCALE_MONITORING_HDD"] = "Discos";
+$MESS["SCALE_MONITORING_HDDACT"] = "Activo";
+$MESS["SCALE_MONITORING_HDDACT_PARAMS"] = "(lectura/escritura)";
+$MESS["SCALE_MONITORING_HDD_PARAMS"] = "(total/usado/libre)";
+$MESS["SCALE_MONITORING_MEMORY"] = "Memoria";
+$MESS["SCALE_MONITORING_MEMORY_PARAMS"] = "total/usado/libre";
+$MESS["SCALE_MONITORING_NET"] = "Red de trabajo";
+$MESS["SCALE_MONITORING_NET_PARAMS"] = "(salida/entrada)";
+$MESS["SCALE_MONITORING_NET_SEC"] = "por segundo";
+?>

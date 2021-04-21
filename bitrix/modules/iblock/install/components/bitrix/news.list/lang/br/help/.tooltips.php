@@ -1,0 +1,37 @@
+<?
+$MESS["ACTIVE_DATE_FORMAT_TIP"] = "Selecione aqui o formato da data desejada. Se você selecionar <i><b>outro</b></i>, você pode criar seu próprio formato usando a função PHP <i><b>data</b></i>.";
+$MESS["ADD_SECTIONS_CHAIN_TIP"] = "Se a opção estiver ativa e o bloco de informação atual contém seções, seus nomes serão mostrados na cadeia de navegação.";
+$MESS["AJAX_MODE_TIP"] = "Ativa AJAX no componente.";
+$MESS["AJAX_OPTION_HISTORY_TIP"] = "Permite botões \"Voltar\" e \"Avançar\" do navegador para transições AJAX.";
+$MESS["AJAX_OPTION_JUMP_TIP"] = "Especifica para rolar o componente quando a transição AJAX termina.";
+$MESS["AJAX_OPTION_SHADOW_TIP"] = "Especifica para sombrear área modificável na transição AJAX.";
+$MESS["AJAX_OPTION_STYLE_TIP"] = "Especifica para baixar e processar estilos CSS do componente em transição AJAX .";
+$MESS["CACHE_FILTER_TIP"] = "Se selecionado, o sistema irá armazenar em cache a cada resultado do filtro. Isto pode ser útil se muitos visitantes freqüentemente usam as mesmas configurações de filtro.";
+$MESS["CACHE_TIME_TIP"] = "Especifique aqui o período de tempo durante o qual o cache é válido.";
+$MESS["CACHE_TYPE_TIP"] = "<i>Automático</i>: o cache é válido durante o tempo pré-definido nas configurações de cache; <br/><i>Cache</i>: sempre faz cache para o período especificado no campo seguinte; <br/><i>Não fazer cache</i>: nenhum cache é executado.";
+$MESS["CHECK_DATES_TIP"] = "Especifica que somente elementos ativos serão mostrados.";
+$MESS["DETAIL_URL_TIP"] = "A URL de uma página de visualização de detalhes. Por exemplo: <b>news_detail.php?ID=#ELEMENT_ID#</b>";
+$MESS["DISPLAY_BOTTOM_PAGER_TIP"] = "Se marcado, os links de navegação do elemento serão exibidos na parte inferior-topo da página.";
+$MESS["DISPLAY_PANEL_TIP"] = "Se selecionado, os botões do editor irão mostrar no modo Edição de Sites na Barra de Ferramentas do Painel de controle e na área da caixa de ferramentas do componente.";
+$MESS["DISPLAY_TOP_PAGER_TIP"] = "Se marcado, os links de navegação do elemento serão exibidos no topo da página";
+$MESS["FIELD_CODE_TIP"] = "Aqui você pode escolher os campos de um elemento do bloco de informação obrigatório pelo qual o filtro pode ser aplicado. Você pode adicionar campos personalizados como códigos nos campos de entrada abaixo.";
+$MESS["FILTER_NAME_TIP"] = "O nome de uma variável em que as configurações de filtro serão passados. Você pode deixar o campo em branco para usar o nome padrão.";
+$MESS["HIDE_LINK_WHEN_NO_DETAIL_TIP"] = "Especifica para ocultar o link se os detalhes do item não estão disponíveis, ou se um usuário não tem permissões suficientes.";
+$MESS["IBLOCK_ID_TIP"] = "Selecione aqui um dos blocos de informação existentes. Se você selecionar <b><i>(outro)</i></b>, você terá que especificar o ID do bloco de informação no campo ao lado. Por exemplo: <b>={\$_REQUEST[\"IBLOCK_ID\"]}</b>";
+$MESS["IBLOCK_TYPE_TIP"] = "Escolha um dos tipos de blocos de informação existentes na lista e clique em <b>OK</b>. Isso irá carregar blocos de informação do tipo selecionado. No entanto, neste componente este parâmetro é opcional.";
+$MESS["INCLUDE_IBLOCK_INTO_CHAIN_TIP"] = "Se selecionado, o nome do bloco de informações será adicionado à navegação em cadeia.";
+$MESS["NEWS_COUNT_TIP"] = "Especifica o número de elementos por página.";
+$MESS["PAGER_DESC_NUMBERING_CACHE_TIME_TIP"] = "Especifica o tempo de cache para páginas (em segundos) ao usar navegação reversa.";
+$MESS["PAGER_DESC_NUMBERING_TIP"] = "Use esta opção se você quer novos elementos para serem colocados em cima. Assim, somente uma página na estrutura de navegação em trilha foi modificada. Todas as outras páginas podem ser armazenadas por um tempo consideravelmente longo.";
+$MESS["PAGER_SHOW_ALWAYS_TIP"] = "Se não marcado, os links de navegação de trilha não estarão presentes se todo os itens couberem em uma única página. Caso contrário, os links de navegação serão sempre mostrados.";
+$MESS["PAGER_TEMPLATE_TIP"] = "O nome do modelo de navegação de trilha. Você pode deixar o campo vazio para usar o modelo padrão (<b><i>Padrão</i></b>). (O sistema proporciona uma modelo alternativo: <i>laranja</i>)";
+$MESS["PAGER_TITLE_TIP"] = "O nome de uma unidade de item para navegação. Por exemplo: página, capítulo, etc.";
+$MESS["PARENT_SECTION_TIP"] = "Especifica o ID da seção principal que pode ser usada para limitar os elementos selecionados para essa seção.";
+$MESS["PREVIEW_TRUNCATE_LEN_TIP"] = "Se a mídia de visualização do bloco de informação é texto, você pode especificar o número máximo de símbolos aqui. Qualquer texto além deste limite será truncado.";
+$MESS["PROPERTY_CODE_TIP"] = "Selecione as propriedades de blocos de informações que você deseja exibir no filtro. Você também pode adicionar seus próprios campos nos campos abaixo.";
+$MESS["SET_TITLE_TIP"] = "Marcar esta opção irá definir o título para o nome de uma bloco de informação atual.";
+$MESS["SORT_BY1_TIP"] = "Selecione aqui o campo pelo qual as notícias são classificados. Você pode selecione <b><i>(outros)</i></b> e especificar o ID do campo no campo ao lado.";
+$MESS["SORT_BY2_TIP"] = "Selecione aqui o campo pelo qual as notícias são classificadas na segunda passagem. Você pode selecionar <b><i>(outro)</i></b> e especificar o ID do campo no campo ao lado.";
+$MESS["SORT_ORDER1_TIP"] = "Ascendente ou descendente.";
+$MESS["SORT_ORDER2_TIP"] = "Ascendente ou descendente.";
+?>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="apply_settings_error.svg" class="cls-1" d="M8,0A8,8,0,1,1,0,8,8,8,0,0,1,8,0ZM8,2A6,6,0,1,1,2,8,6,6,0,0,1,8,2ZM8,4A1,1,0,0,1,9,5V8A1,1,0,1,1,7,8V5A1,1,0,0,1,8,4Zm0,6a1,1,0,1,1-1,1A1,1,0,0,1,8,10Z"/>
+</svg>

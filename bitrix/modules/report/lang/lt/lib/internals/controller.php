@@ -1,0 +1,4 @@
+<?
+$MESS["REPORT_CONTROLLER_ERROR_REQUIRED_PARAMETER"] = "Nenurodytas bûtinas parametras #PARAM#.";
+$MESS["REPORT_CONTROLLER_ERROR_UNKNOWN_ACTION"] = "Neþinomas veiksmas: #ACTION#.";
+?>

@@ -1,0 +1,8 @@
+<?
+$MESS["VISUALCONSTRUCTOR_DASHBOARD_DEMO_MODE_OFF_TITLE"] = "Desabilitar o modo de demonstração";
+$MESS["VISUALCONSTRUCTOR_DASHBOARD_DEMO_MODE_ON_TITLE"] = "Habilitar o modo de demonstração";
+$MESS["VISUALCONSTRUCTOR_DASHBOARD_DESIGN_MODE_OFF_TITLE"] = "Desabilitar o modo de configuração";
+$MESS["VISUALCONSTRUCTOR_DASHBOARD_DESIGN_MODE_ON_TITLE"] = "Habilitar o modo de configuração";
+$MESS["VISUALCONSTRUCTOR_DASHBOARD_GO_TO_DEFAULT"] = "Redefinir para padrão";
+$MESS["VISUALCONSTUCTOR_ADD_WIDGET_TO_BOARD"] = "Adicionar widget";
+?>

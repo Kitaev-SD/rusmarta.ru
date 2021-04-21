@@ -1,0 +1,1 @@
+<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/bxmaker.geoip/admin/domain_edit.php");?>

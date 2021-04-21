@@ -1,0 +1,9 @@
+<?
+$MESS["MAIN_MENU_PUBLIC"] = "Vieðasis skyrius";
+$MESS["MAIN_MENU_PUBLIC_ALT"] = "Eiti á vieðàjá skyriø";
+$MESS["admin_index"] = "Darbalaukis";
+$MESS["admin_index_alt"] = "Pagrindinis administracinio skyriaus puslapis ";
+$MESS["MAIN_MENU_INDEX_ALT"] = "Eiti á administraciná skyriø";
+$MESS["MAIN_MENU_HELP"] = "Pagalba";
+$MESS["MAIN_MENU_HELP_ALT"] = "Pagalba dël sistemos naudojimosi";
+?>

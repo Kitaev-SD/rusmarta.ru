@@ -1,0 +1,29 @@
+<?
+$MESS["F_REPLY"] = "پاسخ";
+$MESS["F_AUTHOR_PROFILE"] = "پروفایل کاربر";
+$MESS["F_NUM_MESS"] = "مطالب:";
+$MESS["F_DATE_REGISTER"] = "عضویت:";
+$MESS["F_QUOTE"] = "نقل قول";
+$MESS["F_EMAIL_TITLE"] = "ارسال ایمیل";
+$MESS["F_NO_VOTE_DO"] = "رای";
+$MESS["F_NO_VOTE_UNDO"] = "لغو رای";
+$MESS["F_HIDE"] = "پنهان";
+$MESS["F_SHOW"] = "نمایش";
+$MESS["F_EDIT"] = "ویرایش";
+$MESS["F_DELETE"] = "حذف";
+$MESS["F_REAL_IP"] = "/ واقعی";
+$MESS["F_PRIVATE_MESSAGE"] = "پیغام";
+$MESS["F_EDIT_HEAD"] = "ویرایش شده:";
+$MESS["F_ATTACH_FILES"] = "فایلهای ضمیمه";
+$MESS["F_DELETE_TOPIC"] = "حذف موضوع";
+$MESS["F_EDIT_TOPIC"] = "ویرایش موضوع";
+$MESS["F_HIDE_TOPIC"] = "عدم نمایش موضوع";
+$MESS["F_POINTS"] = "امتیاز:";
+$MESS["F_SHOW_TOPIC"] = "نمایش موضوع";
+$MESS["F_ANCHOR"] = "پیوند به این موضوع";
+$MESS["F_INSERT_NAME"] = "تکرار نام کاربری در پاسخ";
+$MESS["F_NAME"] = "نام";
+$MESS["F_USER_ID"] = "شناسه مهمان";
+$MESS["F_USER_ID_USER"] = "شناسه کاربر";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "ارسال پیغام خصوصی";
+?>

@@ -1,0 +1,3 @@
+<?
+$MESS["argument_null_exception_message"] = "'#PARAMETER# reikðmë neturi bûti tuðèia. ";
+?>

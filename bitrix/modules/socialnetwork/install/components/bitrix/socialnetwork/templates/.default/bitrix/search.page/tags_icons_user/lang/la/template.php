@@ -1,0 +1,35 @@
+<?
+$MESS["CT_BSP_KEYBOARD_WARNING"] = "Idioma de entrada de consulta cambiado por \"#query#\".";
+$MESS["SEARCH_ADDITIONAL_FILTER"] = "Búsqueda avanzada";
+$MESS["SEARCH_ADDITIONAL_FILTER_DATE"] = "por fecha";
+$MESS["SEARCH_ADDITIONAL_FILTER_FEATURE"] = "por característica";
+$MESS["SEARCH_ALL"] = "(todo)";
+$MESS["SEARCH_AND"] = "and";
+$MESS["SEARCH_AND_ALT"] = "El operador <i>lógico and</i> esta implicado y puede ser omitido: una consulta de \"información de contacto\" es equivalente al \"contacto y a la información\".";
+$MESS["SEARCH_BRACKETS_ALT"] = "<i>Rodeados de paréntesis</i> define la precedencia del operador lógico.";
+$MESS["SEARCH_CONTENT_TYPE_BLOG"] = "Blog";
+$MESS["SEARCH_CONTENT_TYPE_CALENDAR"] = "Calendario";
+$MESS["SEARCH_CONTENT_TYPE_FILES"] = "Archivos";
+$MESS["SEARCH_CONTENT_TYPE_FORUM"] = "Foros";
+$MESS["SEARCH_CONTENT_TYPE_PHOTO"] = "Fotos";
+$MESS["SEARCH_CONTENT_TYPE_TASKS"] = "Tareas";
+$MESS["SEARCH_CORRECT_AND_CONTINUE"] = "Por favor corregir la búsqueda de frases y volver a intentar.";
+$MESS["SEARCH_DESCRIPTION"] = "Descripción";
+$MESS["SEARCH_ERROR"] = "Error en la búsqueda de frases:";
+$MESS["SEARCH_GO"] = "Buscar";
+$MESS["SEARCH_LOGIC"] = "Operadores logicos:";
+$MESS["SEARCH_MODIFIED"] = "Modificado:";
+$MESS["SEARCH_NOT"] = "not";
+$MESS["SEARCH_NOTHING_TO_FOUND"] = "Lamentablemente, su búsqueda ";
+$MESS["SEARCH_NOT_ALT"] = "Operador <i>lógico not</i> restringe la búsqueda de páginas que no contengan el operando.";
+$MESS["SEARCH_OPERATOR"] = "Operador";
+$MESS["SEARCH_OR"] = "or";
+$MESS["SEARCH_OR_ALT"] = "El operador <i>lógico or</i> permite la búsqueda de entidades que contengan al menos uno de los que están operando.";
+$MESS["SEARCH_PATH"] = "Ruta de acceso:";
+$MESS["SEARCH_SINTAX"] = "<b>Sintáxis de consultas de búsquedas:</b> <br /> <br /> Una consulta de búsqueda común es de una o más palabras, por ejemplo: <br /> contacto <i>información</i><br /> Esta consulta encontrará páginas que contengan ambas palabras de la consulta. <br /><br /> Los operadores lógicos permiten construir búsquedas más complejas, por ejemplo: <br /> información de contacto o por teléfono <i></i> <br /> Esta consulta encontrar páginas que contengan cualquiera de las palabras \"contacto\" e \"información\" o \"teléfono\". <br /> <br /> información de contacto no de <i>teléfono</i> <br /> Esta consulta encontrará páginas que contengan palabras \"contacto\" e \"información\" pero no \"teléfono\". <br /> Puede utilizar paréntesis para construir búsquedas más complejas. <br />";
+$MESS["SEARCH_SORTED_BY_DATE"] = "Ordenado por fecha";
+$MESS["SEARCH_SORTED_BY_RANK"] = "Ordenados por relevancia";
+$MESS["SEARCH_SORT_BY_DATE"] = "Ordenar por fecha";
+$MESS["SEARCH_SORT_BY_RANK"] = "Ordenar por ";
+$MESS["SEARCH_SYNONIM"] = "Sinonimos";
+?>

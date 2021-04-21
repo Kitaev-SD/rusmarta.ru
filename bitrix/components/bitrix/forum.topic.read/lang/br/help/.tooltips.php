@@ -1,0 +1,34 @@
+<?
+$MESS["AJAX_TYPE_TIP"] = "Usar AJAX";
+$MESS["CACHE_TIME_TIP"] = "Tempo de cache (seg.)";
+$MESS["CACHE_TYPE_TIP"] = "Tipo de cache";
+$MESS["DATE_FORMAT_TIP"] = "Formato da Data";
+$MESS["DATE_TIME_FORMAT_TIP"] = "Formato de data e hora";
+$MESS["FID_TIP"] = "ID do fórum";
+$MESS["IMAGE_SIZE_TIP"] = "Tamanho da imagem em anexo (px)";
+$MESS["MESSAGES_PER_PAGE_TIP"] = "Número de mensagens por página";
+$MESS["MID_TIP"] = "ID do post";
+$MESS["PAGE_NAVIGATION_SHOW_ALL_TIP"] = "Ativar opção Mostrar todas as Páginas";
+$MESS["PAGE_NAVIGATION_TEMPLATE_TIP"] = "Modelo de Navegação Breadcrumb";
+$MESS["PAGE_NAVIGATION_WINDOW_TIP"] = "Páginas nos breadcrumbs";
+$MESS["SET_NAVIGATION_TIP"] = "Mostrar Breadcrumbs";
+$MESS["SET_PAGE_PROPERTY_TIP"] = "Adicione palavras-chave e descrição do tópico para a tag de cabeçalho da página";
+$MESS["SET_TITLE_TIP"] = "Definir Título da página";
+$MESS["SHOW_FIRST_POST_TIP"] = "Mostrar post inicial em cada página";
+$MESS["SHOW_RATING_TIP"] = "Mostrar classificação";
+$MESS["TID_TIP"] = "ID do tópico";
+$MESS["URL_TEMPLATES_INDEX_TIP"] = "Página de Fóruns";
+$MESS["URL_TEMPLATES_LIST_TIP"] = "Página Tópicos";
+$MESS["URL_TEMPLATES_MESSAGE_MOVE_TIP"] = "Página para mover mensagem";
+$MESS["URL_TEMPLATES_MESSAGE_SEND_TIP"] = "Página de criação de mensagens";
+$MESS["URL_TEMPLATES_MESSAGE_TIP"] = "Página de exibição da mensagem (com ID da menssagem)";
+$MESS["URL_TEMPLATES_PM_EDIT_TIP"] = "Página de mensagens pessoais";
+$MESS["URL_TEMPLATES_PROFILE_VIEW_TIP"] = "Modelo de URL do perfil de usuário";
+$MESS["URL_TEMPLATES_READ_TIP"] = "Página Visualização do Tópico";
+$MESS["URL_TEMPLATES_RSS_TIP"] = "Página RSS";
+$MESS["URL_TEMPLATES_SUBSCR_LIST_TIP"] = "Página de Inscrição";
+$MESS["URL_TEMPLATES_TOPIC_MOVE_TIP"] = "Página Mover Tópico";
+$MESS["URL_TEMPLATES_TOPIC_NEW_TIP"] = "Página de criação de novo Tópico";
+$MESS["URL_TEMPLATES_USER_POST_TIP"] = "Página Mensagens do Usuário";
+$MESS["WORD_LENGTH_TIP"] = "Comprimento palavra";
+?>

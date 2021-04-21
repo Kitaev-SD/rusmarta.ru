@@ -1,0 +1,34 @@
+<?
+$MESS ['FILEMAN_MENU_EDIT_DEF'] = "(ค่าพื้นฐาน)";
+$MESS ['FILEMAN_MENU_EDIT_ENTER_TYPE'] = "โปรดระบุประเภทเมนู!";
+$MESS ['FILEMAN_MENU_EDIT_EXISTS_ERROR'] = "โฟลเดอร์มีเมนูนี้อยู่แล้ว!";
+$MESS ['FILEMAN_MENU_EDIT_TITLE'] = "แก้ไขเมนู";
+$MESS ['FILEMAN_MENU_EDIT_TITLE_ADD'] = "เพิ่มเมนูใหม่";
+$MESS ['FILEMAN_MENU_EDIT_EXT'] = "แบบพิเศษ";
+$MESS ['FILEMAN_MENU_EDIT_SIMPLE'] = "แบบทั่วไป";
+$MESS ['FILEMAN_MENU_EDIT_AS_TEXT'] = "แก้ไขไฟล์";
+$MESS ['FILEMAN_MENU_EDIT_DELETE'] = "ลบเมนู";
+$MESS ['FILEMAN_MENU_EDIT_ADD_ITEM'] = "แทรกไอเท็ม &gt;&gt;";
+$MESS ['FILEMAN_MENU_EDIT_NAME'] = "ชื่อไฟล์:";
+$MESS ['FILEMAN_MENU_EDIT_LINK'] = "การเชื่อมโยงหลายมิติ";
+$MESS ['FILEMAN_MENU_EDIT_SORT'] = "ลำดับเมนู";
+$MESS ['FILEMAN_MENU_EDIT_DEL'] = "ลบ";
+$MESS ['FILEMAN_MENU_EDIT_ADDITIONAL_LINK'] = "ทำไฮไลท์ลิงค์ที่เพิ่ม:";
+$MESS ['FILEMAN_MENU_EDIT_CONDITION'] = "เงื่อนไข:";
+$MESS ['FILEMAN_MENU_EDIT_CONDITION_TYPE'] = "ประเภทของเงื่อนไข:";
+$MESS ['FILEMAN_MENU_EDIT_PARAMS'] = "ตัวบ่งชี้:";
+$MESS ['FILEMAN_MENU_EDIT_PARAM_NAME'] = "ชื่อ";
+$MESS ['FILEMAN_MENU_EDIT_PARAM_VALUE'] = "ค่า";
+$MESS ['FILEMAN_MENU_EDIT_TYPE'] = "ประเภทเมนู:";
+$MESS ['FILEMAN_MENU_EDIT_TEMPLATE'] = "รูปแบบเมนูสำเร็จรูป:";
+$MESS ['FILEMAN_MENU_EDIT_LEFT_MENU'] = "เมนูด้านซ้าย";
+$MESS ['FILEMAN_MENU_EDIT_TOP_MENU'] = "เมนูด้านบน";
+$MESS ['FILEMAN_MENU_EDIT_SAVE'] = "บันทึก";
+$MESS ['FILEMAN_MENU_EDIT_APPLY'] = "ตกลง";
+$MESS ['FILEMAN_MENU_EDIT_RESET'] = "ยกเลิก";
+$MESS ['FILEMAN_MENU_EDIT_ITEMS'] = "เมนูไอเท็ม:";
+$MESS ['FILEMAN_BACK'] = "โฟลเดอร์";
+$MESS ['FILEMAN_DEL_CONF'] = "คุณต้องการลบเมนูนี้หรือไม่?";
+$MESS ['FILEMAN_TAB1'] = "เมนู";
+$MESS ['FILEMAN_TAB1_ALT'] = "Parameters ของเมนู";
+?>

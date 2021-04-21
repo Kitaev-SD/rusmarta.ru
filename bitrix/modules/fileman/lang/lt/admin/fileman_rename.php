@@ -1,0 +1,17 @@
+<?
+$MESS["FILEMAN_RENAME_TITLE"] = "Pervadinimas";
+$MESS["FILEMAN_RENAME_SAVE"] = "Pervadinti";
+$MESS["FILEMAN_RENAME_RESET"] = "Iðvalyti";
+$MESS["FILEMAN_RENAME_LIST_EMPTY"] = "Bylø sàraðas pervadinimui yra tuðèias";
+$MESS["FILEMAN_RENAME_ACCESS_DENIED"] = "Truksta teisiø keisti priejimo teises prie";
+$MESS["FILEMAN_RENAME_NEW_NAME"] = "Áveskite naujà pavadinimà";
+$MESS["FILEMAN_RENAME_ACCESS_ERROR"] = "Truksta teisiø pervadinti!";
+$MESS["FILEMAN_RENAME_FILE"] = "Byla (katalogas)";
+$MESS["FILEMAN_RENAME_ERROR"] = "Klaida pervadinant";
+$MESS["FILEMAN_RENAME_IN"] = "á";
+$MESS["FILEMAN_RENAME_NOT_FOUND"] = "nerasta";
+$MESS["FILEMAN_RENAME_TOPHPFILE_ERROR"] = "Truksta teisiø pervadinti byla ið nevykdomosios á PHP bylà.";
+$MESS["FILEMAN_RENAME_FROMPHPFILE_ERROR"] = "Truksta teisiø pervadinti byla ið PHP bylos á nevykdomàjà.";
+$MESS["FILEMAN_RENAME_TITLE2"] = "Pervadinti bylà";
+$MESS["FILEMAN_RENAME_FILE_EXISTS"] = "Byla su tokiu pavadinimu jau yra.";
+?>

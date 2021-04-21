@@ -1,0 +1,29 @@
+<?
+$MESS ['GROUP_TITLE'] = "กลุ่มเว็บบอร์ด";
+$MESS ['ERROR_DELETE'] = "พบข้อผิดพลาดขณะลบกลุ่ม";
+$MESS ['GROUP_DEL_CONF'] = "Are you sure you want to delete this group? If there are some forums in the group then the group won't be deleted.";
+$MESS ['GROUP_NAV'] = "กลุ่ม";
+$MESS ['GROUP_ID'] = "รหัส";
+$MESS ['GROUP_SORT'] = "ลำดับ";
+$MESS ['GROUP_UPD'] = "บันทึก";
+$MESS ['GROUP_RESET'] = "ยกเลิก";
+$MESS ['GROUP_F_DESCR'] = "รายละเอียด:";
+$MESS ['GROUP_F_NAME'] = "ชื่อ:";
+$MESS ['ERROR_ADD_REC'] = "พบข้อผิดพลาดขณะเพิ่มกลุ่ม";
+$MESS ['ERROR_UPDATE_REC'] = "พบข้อผิดพลาดขณะปรับปรุงกลุ่ม";
+$MESS ['GROUP_DEL'] = "ลบ";
+$MESS ['ERROR_DEL_GROUP'] = "พบข้อผิดพลาดขณะลบกลุ่ม";
+$MESS ['FORUM_ADD_GROUP'] = "เพิ่มกลุ่มใหม่";
+$MESS ['FORUM_NAME'] = "ชื่อ";
+$MESS ['FORUM_ACTIONS'] = "จัดการ";
+$MESS ['FORUM_EDIT_DESCR'] = "ปรับปรุงการตั้งค่ากลุ่ม";
+$MESS ['FORUM_EDIT'] = "ปรับปรุง";
+$MESS ['FORUM_DELETE_DESCR'] = "ลบกลุ่ม";
+$MESS ['FG_SUCCESS_DEL'] = "กลุ่มเว็บบอร์ดถูกลบสมบูรณ์แล้ว";
+$MESS ['ERROR_EMPTY_NAME1'] = "โปรดระบุชื่อกลุ่ม";
+$MESS ['ERROR_EMPTY_NAME2'] = "ภาษา";
+$MESS ['ERROR_EMPTY_NEW_NAME'] = "โปรดระบุชื่อกลุ่มใหม่ของภาษา";
+$MESS ['ERROR_ADD_NEW_REC'] = "พบข้อผิดพลาดขณะเพิ่มกลุ่มใหม่";
+$MESS ['FGAN_ADD_NEW'] = "กลุ่มเว็บบอร์ดใหม่";
+$MESS ['FGAN_ADD_NEW_ALT'] = "คลิ๊กเพื่อเพิ่มกลุ่มเว็บบอร์ดใหม่";
+?>

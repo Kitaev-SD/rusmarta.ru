@@ -1,0 +1,173 @@
+.subscription {
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+
+.subscription-title {	
+	margin:0px 0px 2px 0px;
+	padding:9px 0px 9px 14px;
+	font-size:14px;
+	font-weight:700;
+	color:#575b71;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+	background:#edeef8;
+}
+
+.subscription-form {
+	margin:0px;
+	padding:10px;
+	border:1px solid #dee0ee;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+}
+
+table.subscription-layout {
+	width:100%;
+	border-collapse:collapse;
+}
+
+table.subscription-layout td {
+	margin:0px;
+	padding:0px 0px 12px 0px;
+}
+
+table.subscription-layout td.field-name {
+	width:70px;
+	text-align:right;
+	padding-right:7px;
+}
+
+input.subscription-email,
+input.subscription-textbox { 
+	width:220px;
+	height:30px;
+	margin:0px;
+	padding:0px 9px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	font-family:"Open Sans", serif;
+	font-size:14px;
+	color:#8184a1;
+	text-align:left;
+	border:1px solid #dee0ee;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+	background:#fff;
+}
+
+.subscription-format {
+	float:right;
+	margin:0px;
+	padding:0px;
+}
+
+.subscription-rubric {
+	width:100%;
+	float:left;
+	margin:0px 0px 12px 0px;
+	padding:0px;
+}
+
+.subscription-rubric input {
+	float:left;
+	margin:2px 5px 2px 0px;
+	padding:0px;
+}
+
+.subscription-rubric label {
+	float:left;
+	margin:0px;
+	padding:0px;
+}
+
+.subscription-rubric span {
+	font-size:11px;
+	display:block;
+	margin:5px 0px 0px 0px;
+	padding:0px;
+}
+
+.subscription-notes {
+	width:100%;
+	float:left;
+	margin:0px 0px 12px 0px;
+	padding:0px;
+}
+
+.subscription-buttons {
+	width:100%;
+	float:left;
+	margin:0px 0px -12px 0px;
+	padding:0px;
+}
+
+.subscription-buttons button[type="submit"],
+.subscription-utility button[type="submit"] {
+	height:31px;
+	margin:0px;
+	padding:0px 20px;
+}
+
+.subscription-utility {
+	margin:0px;
+	padding:10px;
+}
+
+
+/***240px***/
+@media screen and (max-width:787px) {
+	table.subscription-layout td {
+		width:100%;
+		display:block;
+		-moz-box-sizing:border-box;
+		-webkit-box-sizing:border-box;
+		box-sizing:border-box;
+	}
+
+	table.subscription-layout td.field-name {
+		width:auto;
+		text-align:left;
+		padding:0px 0px 5px 0px;
+	}
+
+	table.subscription-layout td.field-form {
+		display:table;
+		margin:0px 0px 12px 0px;
+		padding:0px;
+	}
+
+	div.subscription-format {
+		float:none;
+		display:table-footer-group;
+	}
+
+	input.subscription-email,
+	input.subscription-textbox {
+		width:100%;
+		height:27px;
+		display:table-header-group;
+		margin:0px 0px 12px 0px;
+		padding:0px 7px;
+		-moz-box-sizing:border-box;
+		-webkit-box-sizing:border-box;
+		box-sizing:border-box;
+		font-size:12px;
+	}
+
+	div.subscription-buttons button[type="submit"],
+	div.subscription-utility button[type="submit"] {
+		height:28px;
+		padding:0px 9px;
+		font-size:11px;
+		font-weight:400;
+	}
+}

@@ -1,0 +1,12 @@
+<?
+$MESS["SENDER_CHAIN_STATUS_N"] = "Paruoðtas siuntymui";
+$MESS["SENDER_CHAIN_STATUS_S"] = "Siunèiama..";
+$MESS["SENDER_CHAIN_STATUS_W"] = "Laukiama siuntymo";
+$MESS["SENDER_CHAIN_STATUS_Y"] = "Iðsiøsta";
+$MESS["SENDER_ENTITY_MAILING_CHAIN_FIELD_TITLE_SUBJECT"] = "Tema";
+$MESS["SENDER_ENTITY_MAILING_CHAIN_FIELD_TITLE_MESSAGE"] = "Laiðko turinys";
+$MESS["SENDER_ENTITY_MAILING_CHAIN_VALID_EMAIL_FROM"] = "Lauke \"Nuo\" nurodytas ne el. paðto adresas.";
+$MESS["SENDER_ENTITY_MAILING_CHAIN_FIELD_TITLE_EMAIL_FROM1"] = "Siuntëjas";
+$MESS["SENDER_CHAIN_STATUS_P"] = "Pauzë";
+$MESS["SENDER_ENTITY_MAILING_CHAIN_FIELD_TITLE_TITLE"] = "Naujienlaiðkio praneðimo pavadinimas";
+?>

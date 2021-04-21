@@ -1,0 +1,4 @@
+<?php
+$MESS["BLOCK_USER_ENTITY_CHAT_ID_FIELD"] = "ID do Bate-papo";
+$MESS["BLOCK_USER_ENTITY_ID_FIELD"] = "ID exclusivo";
+$MESS["BLOCK_USER_ENTITY_USER_ID_FIELD"] = "ID do usuário";

@@ -1,0 +1,29 @@
+<?
+$MESS["SALE_DH_UP_NAME"] = "Pavadinimas";
+$MESS["SALE_DH_UP_DESCR1"] = "Apraðymas";
+$MESS["SALE_DH_UP_DESCR2"] = "Apraðymas";
+$MESS["SALE_DH_UP_WARE_TITLE"] = "Prekës pavadinimas";
+$MESS["SALE_DH_UP_WARE_DESCR"] = "Prekës apraðymas";
+$MESS["SALE_DH_UP_DOOR_TITLE"] = "Pristatymas iki namø";
+$MESS["SALE_DH_UP_DOOR_DESCR"] = "Siuntinys bus pristatytas tiesiai á nurodytà vietà";
+$MESS["SALE_DH_UP_GROUPS_COMMON"] = "Bendri tarifai";
+$MESS["SALE_DH_UP_GROUPS_WARE"] = "Pristatymas iki paðto skyriaus";
+$MESS["SALE_DH_UP_GROUPS_DOOR"] = "Pristatymas iki kliento durø";
+$MESS["SALE_DH_UP_DTP"] = "Pristatymo á paðtà bûdai";
+$MESS["SALE_DH_UP_DTP_WARE"] = "Savarankiðkas pristatymas iki paðto (\"Sandëlis-Sandëlis\", \"Sandëlis-Durys\")";
+$MESS["SALE_DH_UP_DTP_DOOR"] = "Siuntiná pasiima paðto kurjeris (\"Duris-Sandëlis\",\"Duris-Duris\")";
+$MESS["SALE_DH_UP_TARIF_WW"] = "Pristatymo tarifas pagal technologijà \"Sandëlis-Sandëlis\"";
+$MESS["SALE_DH_UP_TARIF_REG"] = "Apiforminimo kaina";
+$MESS["SALE_DH_UP_TARIF_T1"] = "Kaina uþ 1kg";
+$MESS["SALE_DH_UP_TARIF_WD"] = "Papildomas mokestis paslaugai \"Sandëlis-Sandëlis\" uþ paslaugà \"Sandëlis-Durys\" arba \"Durys-Sandëlis\"";
+$MESS["SALE_DH_UP_KG"] = "kg";
+$MESS["SALE_DH_UP_TARIF_DD"] = "Tarifas pristatymo paslaugai \"Durys-Durys\"";
+$MESS["SALE_DH_UP_TARIF_DV"] = "Komisiniai uþ nurodomà vertæ";
+$MESS["SALE_DH_UP_TARIF_DV_VALUE"] = "Komisiniø dydis";
+$MESS["SALE_DH_UP_TARIF_DV_MIN"] = "Minimalus komisiniø didis";
+$MESS["SALE_DH_UP_OVERLOAD"] = "Virðytas leistinas svoris arba nëra reikiamø matmenø pakuotës";
+$MESS["SALE_DH_UP_STNRD_BOX"] = "Pakuotës matmenys mm.";
+$MESS["SALE_DH_UP_SHIPPING_HANDLING"] = "Siuntimo tvarkymas";
+$MESS["SALE_DH_UP_FEATURE_VALUE"] = "Reikðmë";
+$MESS["SALE_DH_UP_FEATURE_ENABLED"] = "Ájungti";
+?>

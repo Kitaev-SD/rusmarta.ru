@@ -1,0 +1,38 @@
+<?
+$MESS["IBLOCK_TYPE_TIP"] = "Iðskleidþiamajame sàraðe galite pasirinkti vienà ið sukurtø sistemoje informaciniø blokø tipø. Paspaudus mygtukà OK bus ákelti visi pasirinkto tipo informaciniai blokai. Parametras nëra bûtinas.";
+$MESS["IBLOCK_ID_TIP"] = "Sàraðe randasi visi informaciniai blokai sukurti nurodytam tipui arba visi sistemos informaciniai blokai, jei tipas nepasirinktas. Pasirinkite vienà ið esanèiø informaciniø blokø. Pasirinkus (kitas) gretimame lange turësite nurodyti informacinio bloko ID, pvz.: <b>={\$_REQUEST[\"IBLOCK_ID\"]}</b>";
+$MESS["NEWS_COUNT_TIP"] = "Elementø skaièius viename puslapyje.";
+$MESS["SORT_BY1_TIP"] = "Iðvardinti laukai pagal kuriuos galima rûðiuoti naujienas. Taip pat galima pasirinkti elementà <i>kitas</i> ðalia nurodant lauko kodà.";
+$MESS["SORT_ORDER1_TIP"] = "Didëjanèiai arba maþëjanèiai.";
+$MESS["SORT_BY2_TIP"] = "Iðvardinti laukai pagal kuriuos toliau galima rûðiuoti naujienas, jeigu pirmojo rûðiavimo metu buvo rastos vienodos reikðmës. Taip pat galima pasirinkti elementà <i>kitas</i> ðalia nurodant lauko kodà.";
+$MESS["SORT_ORDER2_TIP"] = "Didëjanèiai arba maþëjanèiai.";
+$MESS["FILTER_NAME_TIP"] = "Kintamojo pavadinimas á kurá ið filtro perduodamas parametrø masyvas. Naudojamas nustatyti iðeinanèius ið filtro elementus. Laukas gali bûti nepildomas, tada bus naudojama reikðmë pagal nutylëjimà.";
+$MESS["FIELD_CODE_TIP"] = "Galima pasirinkti informacinio bloko elementø laukus kuriuose galima filtracijà. Taip pat galima pridëti kitus laukus kodo pavidalu (laukuose þemiau).";
+$MESS["PROPERTY_CODE_TIP"] = "Pasirinktame lauke nurodytos informacinio bloko elementø savybës kur galima pasirinkti, pagal kurias ið jø galima filtracija. Taip pat galima pridëti kitas savybes kodo pavidalu (laukuose þemiau).";
+$MESS["DETAIL_URL_TIP"] = "Nurodomas kelio ðablonas á detalø perþiûros puslapá. Pvz.: news_detail.php?ID=#ELEMENT_ID#";
+$MESS["PREVIEW_TRUNCATE_LEN_TIP"] = "Jei informacinio bloko elemento trumpo apraðymo tipas tekstas - galima nurodyti maksimalø ilgá, virðijus kurá tekstas bus nukerpamas.";
+$MESS["ACTIVE_DATE_FORMAT_TIP"] = "Pasirinkite reikiamà datos formatà. Jeigu nurodote <i>kitas</i>, galite sukurti savo formatà naudojant PHP funkcijà <i>date</i>.";
+$MESS["DISPLAY_PANEL_TIP"] = "Jei paþymëta, mygtukas bus rodomas svetainës redagavimo rëþimu svetainës administravimo skydelyje bei komponentø redagavimo mygtukø rinkinyje.";
+$MESS["SET_TITLE_TIP"] = "Jeigu paþymëta tinklalapio antraðtës pavadinimas bus nustatomas pagal esamo informacinio bloko pavadinimà.";
+$MESS["INCLUDE_IBLOCK_INTO_CHAIN_TIP"] = "Jeigu paþymëta á navigacijos grandinæ bus pridëtas punktas su informacinio bloko pavadinimu.";
+$MESS["ADD_SECTIONS_CHAIN_TIP"] = "Jeigu paþymëta informaciniame bloke sukurti skyriai. Jø pavadinimai bus atvaizduojami navigacijos grandinëje.";
+$MESS["HIDE_LINK_WHEN_NO_DETAIL_TIP"] = "Parametras leidþia slëpti nuorodà, jei nëra elemento detalaus apraðymo arba naudotojas neturi teisiø jos perþiûrëti. ";
+$MESS["PARENT_SECTION_TIP"] = "Lauke galima nurodyti skyriaus ID, kuriam priklauso esamas tam, kad neleisti iðrinkti elementø ið jo.";
+$MESS["CACHE_TYPE_TIP"] = "<i>Auto</i>: podëlis (cache) galioja  podëlio nustatymuose nurodytà laiko tarpà;<br /><i>Keðuoti</i>:Visada keðuoti nurodytà laiko tarpà;<br /><i>Nekeðuoti</i>:podëlis nenaudojamas";
+$MESS["CACHE_TIME_TIP"] = "Lauke nurodomas podëlio (cache) naudojimo laikas sekundëmis.";
+$MESS["CACHE_FILTER_TIP"] = "Jeigu paþymëta - bus keðuojamas kiekvienas ið filtro gautas rezultatas. Turi prasmës, jei daugybë naudotojø naudoja tà patá filtrà.";
+$MESS["DISPLAY_TOP_PAGER_TIP"] = "Navigacijos nuorodos atvaizduojamos puslapio virðuje, virð sàraðo.";
+$MESS["DISPLAY_BOTTOM_PAGER_TIP"] = "Navigacijos nuorodos atvaizduojamos puslapio apaèioje, po sàraðu.";
+$MESS["PAGER_TITLE_TIP"] = "Kategorijos pavadinimas naudojamas navigacijoje (pvz.: naujienos, straipsniai ir t.t.)";
+$MESS["PAGER_SHOW_ALWAYS_TIP"] = "Atvaizduoti navigacijos grandinæ ir tuo atveju jeigu visi elementai telpa puslapyje.";
+$MESS["PAGER_TEMPLATE_TIP"] = "Navigacijos grandinës ðablono pavadinimas. Pagal nutylëjimà (.default) ðablonas yra naudojamas. Sistemoje ádiegtas ðablonas orange.";
+$MESS["PAGER_DESC_NUMBERING_TIP"] = "Atvaizduoti naujus elementus sàraðo virðuje. Keèiasi tik paskutinis navigacijos puslapis. Visi ankstesni puslapiai gali bûti keðuojami ilgam laikui.";
+$MESS["PAGER_DESC_NUMBERING_CACHE_TIME_TIP"] = "Puslapiø keðavimo laikas naudojant atgalinæ navigacijà sekundëmis.";
+$MESS["AJAX_MODE_TIP"] = "AJAX ájungiamas komponente.";
+$MESS["AJAX_OPTION_SHADOW_TIP"] = "Sritis kuri turi pasikeisti bus uþtamsinta. ";
+$MESS["AJAX_OPTION_JUMP_TIP"] = "Pasibaigus AJAX perëjimui pasislinks á komponento pradþià.";
+$MESS["AJAX_OPTION_STYLE_TIP"] = "Pasibaigus AJAX perëjimams bus pakrauti ir apdoroti komponento CSS stiliai.";
+$MESS["AJAX_OPTION_HISTORY_TIP"] = "Vykdant AJAX perëjimus leisti naudoti narðyklës \"Atgal\" ir \"Pirmyn\" mygtukus.";
+$MESS["CHECK_DATES_TIP"] = "Atvaizduoja tik aktyvius informacinio bloko elementus";
+$MESS["SET_BROWSER_TITLE_TIP"] = "Jei pasirinkta, informacinio bloko elemento pavadinimas (arba SEO antraðtë jei aktyvi) bus naudojamas kaip narðyklës lango pavadinimas.";
+?>

@@ -1,0 +1,1 @@
+<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/bxmaker.smsnotice/admin/template_type_edit.php");?>

@@ -1,0 +1,37 @@
+<?
+$MESS['IBLOCK_TYPE_TIP'] = 'Iðskleidþiamajame sàraðe galite pasirinkti vienà ið sukurtø sistemoje informaciniø blokø tipø. Paspaudus mygtukà OK bus ákelti visi pasirinkto tipo informaciniai blokai.';
+$MESS['IBLOCK_ID_TIP'] = 'Pasirinkite vienà ið esanèiø informaciniø blokø. Pasirinkus (kitas) gretimame lange turësite nurodyti informacinio bloko ID.';
+$MESS['SECTION_ID_TIP'] = 'Laukas nurodo kodà kuriuo perduodamas skyriaus ID. Reikðmë pagal nutylëjimà ={$_REQUEST[\"SECTION_ID\"]}. Laukà galima palikti tuðèiu, jei nurodytas <i>skyriaus kodas</i>';
+$MESS['SECTION_CODE_TIP'] = 'Nurodomas skyriaus kodas, galite nenurodyti jeigu nurodytas <i>Skyriaus ID</i>';
+$MESS['ELEMENT_SORT_FIELD_TIP'] = 'Nurodomas laukas pagal kurá bus surûðiuotos nuotraukos kiekvieno skyriaus viduje.';
+$MESS['ELEMENT_SORT_ORDER_TIP'] = 'Didëjanèiai arba maþëjanèiai nukreiptas bus nuotraukø rûðiavimas kiekviename skyriuje.';
+$MESS['FILTER_NAME_TIP'] = 'Kintamojo pavadinimas á kurá ið filtro perduodamas parametrø masyvas. Laukas gali bûti nepildomas';
+$MESS['FIELD_CODE_TIP'] = 'Atvaizduojami papildomi laukai elementø sàraðe skyriaus viduje. Pasirinkus <b><i>nenurodyta</i></b> ir nenurodþius laukø kodus puslapyje bus atvaizduojami numatytieji laukai. ';
+$MESS['PROPERTY_CODE_TIP'] = 'Tarp infobloko savybiø pasirinkite tas kurios bus atvaizduojamos elementø sàraðe skyriaus viduje. Pasirinkus <b><i>nenurodyta</i></b> ir nenurodþius laukø kodus savybës nebus atvaizduojamos.';
+$MESS['SECTION_URL_TIP'] = 'URL, vedantis á puslapá su skyriaus turiniu';
+$MESS['DETAIL_URL_TIP'] = 'Kelias á detalaus informacinio bloko apraðymo puslapá.';
+$MESS['PAGE_ELEMENT_COUNT_TIP'] = 'Elementø skaièius puslapyje. Likæ elementai bus atvaizduojami navigacijos grandinës pagalba.';
+$MESS['LINE_ELEMENT_COUNT_TIP'] = 'Atvaizduojant skyriaus elementus nurodomas vienos eilutës nuotraukø skaièius.';
+$MESS['DISPLAY_PANEL_TIP'] = 'Jei paþymëta, mygtukai bus atvaizduojami svetainës redagavimo rëþimu svetainës administravimo skydelyje bei komponentø redagavimo mygtukø rinkinyje.';
+$MESS['SET_TITLE_TIP'] = 'Jeigu paþymëta tinklalapio antraðtë bus nustatyta pagal skyriaus pavadinimà.';
+$MESS['ADD_SECTIONS_CHAIN_TIP'] = 'Pridëti skyriaus pavadinimà á navigacijos grandinæ.';
+$MESS['CACHE_TYPE_TIP'] = '<i>Auto</i>: podëlis (cache) galioja  podëlio nustatymuose nurodytà laiko tarpà;
+<i>Keðuoti</i>:Visada keðuoti nurodytà laiko tarpà;
+<i>Nekeðuoti</i>:podëlis nenaudojamas';
+$MESS['CACHE_TIME_TIP'] = 'Lauke nurodomas podëlio (cache) naudojimo laikas sekundëmis.';
+$MESS['CACHE_FILTER_TIP'] = 'Jeigu paþymëta - bus keðuojamas kiekvienas ið filtro gautas rezultatas.';
+$MESS['DISPLAY_TOP_PAGER_TIP'] = 'Navigacijos nuorodos atvaizduojamos puslapio virðuje.';
+$MESS['DISPLAY_BOTTOM_PAGER_TIP'] = 'Navigacijos nuorodos atvaizduojamos puslapio apaèioje.';
+$MESS['PAGER_TITLE_TIP'] = 'Vieneto pavadinimas naudojamas navigacijoje. Pvz. fotografijos, paveiksliukai ir t.t.';
+$MESS['PAGER_SHOW_ALWAYS_TIP'] = 'Atvaizduoti navigacijos grandinæ ir tuo atveju jeigu visi elementai telpa puslapyje.';
+$MESS['PAGER_TEMPLATE_TIP'] = 'Navigacijos grandinës ðablono pavadinimas. Pagal nutylëjimà (.<i>default</i>) ðablonas yra naudojamas. Sistemoje ádiegtas ðablonas <i>orange</i>.';
+$MESS['PAGER_DESC_NUMBERING_TIP'] = 'Atvaizduoti naujus elementus sàraðo virðuje. Keèiasi tik paskutinis navigacijos puslapis. Visi ankstesni puslapiai gali bûti keðuojami ilgam laikui.';
+$MESS['PAGER_DESC_NUMBERING_CACHE_TIME_TIP'] = 'Nurodo pirmø puslapiø keðavimo laikà sekundëse naudojant atgalinæ navigacijà. ';
+$MESS['META_KEYWORDS_TIP'] = 'Nustatyti puslapio raktinius þodþius ið savybës';
+$MESS['META_DESCRIPTION_TIP'] = 'Nustatyti puslapio apraðymà ið savybës';
+$MESS['AJAX_MODE_TIP'] = 'AJAX ájungiamas komponente.';
+$MESS['AJAX_OPTION_SHADOW_TIP'] = 'Sritis kuri turi pasikeisti bus uþtamsinta. ';
+$MESS['AJAX_OPTION_JUMP_TIP'] = 'Pasibaigus AJAX perëjimui pasislinks á komponento pradþià.';
+$MESS['AJAX_OPTION_STYLE_TIP'] = 'Pasibaigus AJAX perëjimams bus pakrauti ir apdoroti komponento CSS stiliai.';
+$MESS['AJAX_OPTION_HISTORY_TIP'] = 'Vykdant AJAX perëjimus leisti naudoti narðyklës \"Atgal\" ir \"Pirmyn\" mygtukus.';
+?>

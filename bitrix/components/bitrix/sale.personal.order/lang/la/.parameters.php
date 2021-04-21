@@ -1,0 +1,34 @@
+<?
+$MESS["SPOL_NAV_TEMPLATE"] = "Plantilla de los Breadcrumbs de Navegción";
+$MESS["SPO_ACTIVE_DATE_FORMAT"] = "Formato de fecha";
+$MESS["SPO_ALLOW_INNER"] = "Habilitar el pago mediante la cuenta interna";
+$MESS["SPO_CACHE_GROUPS"] = "Respetar permisos de acceso";
+$MESS["SPO_CANCEL_DESC"] = "Cancelación del pedido";
+$MESS["SPO_DESC_NO"] = "No";
+$MESS["SPO_DESC_YES"] = "Si";
+$MESS["SPO_DETAIL_DESC"] = "Detalles del pedido";
+$MESS["SPO_HISTORIC_STATUSES"] = "Historial de estatus";
+$MESS["SPO_LIST_DESC"] = "Lista de pedidos";
+$MESS["SPO_NOT_CHOSEN"] = "(no seleccionado)";
+$MESS["SPO_ONLY_INNER_FULL"] = "Permitir que solo se pague el importe total del pedido con la cuenta interna";
+$MESS["SPO_ORDERS_PER_PAGE"] = "Número de pedidos por página";
+$MESS["SPO_ORDER_HIDE_USER_INFO"] = "No mostrar en el área de información del usuario";
+$MESS["SPO_ORDER_LIST_DEFAULT_SORT"] = "Clasificación de pedidos";
+$MESS["SPO_ORDER_LIST_SORT_ACCOUNT_NUMBER"] = "Pedido #";
+$MESS["SPO_ORDER_LIST_SORT_DATE_CREATE"] = "Creado el";
+$MESS["SPO_ORDER_LIST_SORT_ID"] = "ID del pedido";
+$MESS["SPO_ORDER_LIST_SORT_PRICE"] = "Total del pedido";
+$MESS["SPO_ORDER_LIST_SORT_STATUS"] = "Estados";
+$MESS["SPO_PARAM_CUSTOM_SELECT_PROPS"] = "Propiedades extra del Blok de información";
+$MESS["SPO_PATH_TO_BASKET"] = "Página de la cesta ";
+$MESS["SPO_PATH_TO_CATALOG"] = "Ruta del catálogo";
+$MESS["SPO_PATH_TO_PAYMENT"] = "Página de la integración de sistema del pago";
+$MESS["SPO_PROPS_NOT_SHOW"] = "Ocultar Propiedades para el Tipo de Pagador";
+$MESS["SPO_REFRESH_PRICE_AFTER_PAYSYSTEM_CHANGE"] = "Recalcular el pedido cuando cambia el estado del sistema de pago";
+$MESS["SPO_RESTRICT_CHANGE_PAYSYSTEM"] = "Los pedidos en estos estados no pueden cambiar el estado";
+$MESS["SPO_SAVE_IN_SESSION"] = "Almacenar configuraciones del filtro en la sesión del usuario";
+$MESS["SPO_SHOW_ALL"] = "(mostrar todo)";
+$MESS["SPO_USER_INFO_EMAIL"] = "Dirección de e-mail";
+$MESS["SPO_USER_INFO_LOGIN"] = "Iniciar sesión";
+$MESS["SPO_USER_INFO_PERSON_TYPE_NAME"] = "Tipo de pagador";
+?>

@@ -1,0 +1,26 @@
+<?php
+$MESS["SEC_SCANNER_ADDITIONAL_INFO_BUTTON_ON"] = "Ocultar";
+$MESS["SEC_SCANNER_CRITICAL_ERROR"] = "Importante!";
+$MESS["SEC_SCANNER_CRITICAL_ERRORS_TITLE"] = "Erros do scanner:";
+$MESS["SEC_SCANNER_CRITICAL_FIRST_START"] = "Você não analisa o seu sistema a mais de um mês. <br> É recomendado que você escaneie o sistema agora.";
+$MESS["SEC_SCANNER_CRITICAL_HIGHT"] = "Alto";
+$MESS["SEC_SCANNER_CRITICAL_LOW"] = "Baixo";
+$MESS["SEC_SCANNER_CRITICAL_MIDDLE"] = "Média";
+$MESS["SEC_SCANNER_CRITICAL_PROBLEMS_COUNT"] = ",crítico:";
+$MESS["SEC_SCANNER_CURRENT_TEST"] = "Digitalização atual:";
+$MESS["SEC_SCANNER_FAST_LOCAL_TESTS"] = "Executar varredura interna rápida";
+$MESS["SEC_SCANNER_INIT"] = "Inicialização ...";
+$MESS["SEC_SCANNER_MAIN_TAB"] = "Escanear";
+$MESS["SEC_SCANNER_NO_PROBLEMS"] = "Nenhuma ameaça detectada.";
+$MESS["SEC_SCANNER_PROBLEMS_COUNT"] = "Ameaças encontradas:";
+$MESS["SEC_SCANNER_REMOTE_TESTS"] = "Executar verificação externa";
+$MESS["SEC_SCANNER_SETTINGS_TAB"] = "Configurações";
+$MESS["SEC_SCANNER_SETTINGS_TITLE"] = "Configurações do scanner";
+$MESS["SEC_SCANNER_SLOW_LOCAL_TESTS"] = "Executar varredura interna complexa";
+$MESS["SEC_SCANNER_START_BUTTON"] = "Começar";
+$MESS["SEC_SCANNER_STOP_BUTTON"] = "Parar";
+$MESS["SEC_SCANNER_TESTING_FAILURE"] = "Scanner de segurança encontrou um erro irreparável e não pode continuar. Entre em contato com o suporte técnico.";
+$MESS["SEC_SCANNER_TESTING_FAILURE_CODE"] = "(Código de erro: #CODE#)";
+$MESS["SEC_SCANNER_TEST_DATE"] = "Escaneado pela última vez em #DATA#";
+$MESS["SEC_SCANNER_TIP_BUTTON_ON"] = "Ocultar";
+$MESS["SEC_SCANNER_TITLE"] = "Scanner de segurança";

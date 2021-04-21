@@ -1,0 +1,32 @@
+<?
+$MESS["GD_IBEL_IBLOCK_TYPE"] = "Informacinios bloko tipas";
+$MESS["GD_IBEL_IBLOCK_ID"] = "Informacinio bloko";
+$MESS["GD_IBEL_SORT_ORDER_ASC"] = "Didëjanèia tvarka";
+$MESS["GD_IBEL_SORT_ORDER_DESC"] = "Maþëjanèia tvarka";
+$MESS["GD_IBEL_SORT_BY_ID"] = "ID";
+$MESS["GD_IBEL_SORT_BY_NAME"] = "Pavadinimas";
+$MESS["GD_IBEL_SORT_BY_DATE_ACTIVE_FROM"] = "Aktyvumo pradþios data";
+$MESS["GD_IBEL_SORT_BY_DATE_CREATE"] = "Sukurimo data";
+$MESS["GD_IBEL_SORT_BY_TIMESTAMP_X"] = "Regadavimo data";
+$MESS["GD_IBEL_SELECT_ID"] = "ID";
+$MESS["GD_IBEL_SELECT_NAME"] = "Pavadinimas";
+$MESS["GD_IBEL_SELECT_DATE_ACTIVE_FROM"] = "Aktyvumo pradþios data";
+$MESS["GD_IBEL_SELECT_DATE_CREATE"] = "Sukurimo data";
+$MESS["GD_IBEL_SELECT_TIMESTAMP_X"] = "Regadavimo data";
+$MESS["GD_IBEL_SELECT_PREVIEW_PICTURE"] = "Anonso nuotrauka";
+$MESS["GD_IBEL_SELECT_PREVIEW_TEXT"] = "Anonso tekstas";
+$MESS["GD_IBEL_SELECT_DETAIL_PICTURE"] = "Detali nuotrauka";
+$MESS["GD_IBEL_SELECT_DETAIL_TEXT"] = "Detalus apraðymas";
+$MESS["GD_IBEL_EMPTY"] = "-- pasirinkti --";
+$MESS["GD_IBEL_DONOTUSE"] = "-- nenaudokite --";
+$MESS["GD_IBEL_ITEMS_COUNT"] = "Elementø skaièius";
+$MESS["GD_IBEL_THUMBNAIL_SIZE"] = "Nuotraukos dydis";
+$MESS["GD_IBEL_SORT_BY"] = "Rûðiuoti pagal";
+$MESS["GD_IBEL_SORT_ORDER"] = "Rûðiavimo tvarka";
+$MESS["GD_IBEL_ADDITIONAL_FIELDS"] = "Taip pat rodyti laukus ir savybës";
+$MESS["GD_IBEL_TITLE_FIELD"] = "Naudoti kaip pavadinimà";
+$MESS["GD_IBEL_DATE_FIELD"] = "Naudoti kaip datà";
+$MESS["GD_IBEL_PICTURE_FIELD"] = "Naudoti kaip nuotraukà";
+$MESS["GD_IBEL_DESCRIPTION_FIELD"] = "Naudoti kaip apraðymà";
+$MESS["GD_IBEL_DESCRIPTION_CUT"] = "Sutrumpinti apraðymà; bus rodomas maksimalus simboliø skaièius";
+?>

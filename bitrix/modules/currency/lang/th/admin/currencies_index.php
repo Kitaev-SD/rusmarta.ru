@@ -1,0 +1,3 @@
+<?
+$MESS ['currencies_index_title'] = "¡ÒÃ¨Ñ´¡ÒÃÊ¡ØÅà§Ô¹";
+?>

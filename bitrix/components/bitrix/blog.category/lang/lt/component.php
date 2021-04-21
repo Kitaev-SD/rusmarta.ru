@@ -1,0 +1,8 @@
+<?
+$MESS['BLOG_MODULE_NOT_INSTALL'] = 'Tinklaraðèiø modulis nëra ádiegtas';
+$MESS['BLOG_ERR_NO_RIGHTS'] = 'Klaida! Jums nesuteiktos teisës raðyti tinklaraðtyje';
+$MESS['BLOG_ERR_NO_BLOG'] = 'Klaida! Tinklaraðèio nerasta';
+$MESS['BLOG_CATEGORY_TITLE'] = 'Tinklaraðèio þymos';
+$MESS['BLOG_CATEGORY_EXIST_1'] = 'Þymë';
+$MESS['BLOG_CATEGORY_EXIST_2'] = 'jau egzistuoja.';
+?>

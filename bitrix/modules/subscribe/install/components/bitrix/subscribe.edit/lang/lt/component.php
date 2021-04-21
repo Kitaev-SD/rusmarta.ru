@@ -1,0 +1,16 @@
+<?
+$MESS['subscr_title_edit'] = 'Prenumeratos parametrø redagavimas';
+$MESS['subscr_title_add'] = 'Pridëti prenumeratos adresà';
+$MESS['adm_upd_mess'] = 'Prenumeratos parametrai iðsaugoti.';
+$MESS['adm_sent_mess'] = 'Patvirtinimo kodas iðsiøstas á prenumeratos adresà.';
+$MESS['adm_conf_mess'] = 'Aèiû, prenumerata patvirtinta';
+$MESS['adm_unsubscr_mess'] = 'Prenumerata paþymëta kaip neaktyvi. Informaciniai biuleteniai á ðá adresà nebus siunèiami';
+$MESS['adm_auth_err'] = 'Jûs turite prisiregistruoti tam kad valdyti prenumeratà.';
+$MESS['SUBSCR_MODULE_NOT_INSTALLED'] = 'Prenumeratos modulis ðiuo metu neprieinamas';
+$MESS['subscr_active_mess'] = 'Prenumerata aktyvuota';
+$MESS['subscr_pass_mess'] = 'Informacija slaptaþodþio pakeitimui iðsiøsta á registracijos metu nurodytà adresà.';
+$MESS['adm_auth_err_rub'] = 'Bûtina nurodyti bent vienà prenumeratos rubrikà.';
+$MESS['subscr_send_pass_mess'] = 'Jûs uþklausëte slaptaþodþio pakeitimo informacijà.';
+$MESS['subscr_email_not_found'] = 'Prenumeratos adresas nerastas.';
+$MESS['subscr_wrong_rubric'] = 'Neteisingai nurodyta prenumeratos rubrika.';
+?>

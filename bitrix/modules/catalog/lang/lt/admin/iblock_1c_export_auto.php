@@ -1,0 +1,6 @@
+<?
+$MESS["IB1C_ERROR_WRONG_GET"] = "Neteisinga GET uþklausa.";
+$MESS["IB1C_ERROR_NO_PP"] = "Truksta PostPrices parametrø.";
+$MESS["IB1C_ERROR_WRONG_AUTH"] = "Neteisingas prisijungimo vardas arba slaptaþodis.";
+$MESS["IB1C_ERROR_NO_RIGHTS"] = "Nepakankamos teisës atlikti ðá veiksmà.";
+?>

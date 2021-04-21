@@ -1,0 +1,35 @@
+<?
+$MESS ['MAIN_DUMP_FILE_CNT'] = "Files compressed:";
+$MESS ['MAIN_DUMP_FILE_SIZE'] = "ขนาดไฟล์:";
+$MESS ['MAIN_DUMP_FILE_FINISH'] = "Backup สมบูรณ์แล้ว";
+$MESS ['MAIN_DUMP_FILE_MAX_SIZE'] = "Do not include files which size exceeds: ";
+$MESS ['MAIN_DUMP_FILE_STEPPED'] = "Back up gradually:";
+$MESS ['MAIN_DUMP_FILE_STEP'] = "ขั้นตอน:";
+$MESS ['MAIN_DUMP_FILE_STEP_sec'] = "วินาที";
+$MESS ['MAIN_DUMP_FILE_MAX_SIZE_kb'] = "kB";
+$MESS ['MAIN_DUMP_FILE_DUMP_BUTTON'] = "Back up";
+$MESS ['MAIN_DUMP_FILE_STOP_BUTTON'] = "หยุด";
+$MESS ['MAIN_DUMP_FILE_KERNEL'] = "Back up kernel files:";
+$MESS ['MAIN_DUMP_FILE_NAME'] = "ชื่อไฟล์";
+$MESS ['MAIN_DUMP_FILE_SIZE_FIELD'] = "ขนาดไฟล์, Mb";
+$MESS ['MAIN_DUMP_FILE_TIMESTAMP'] = "ปรับปรุงเมื่อ";
+$MESS ['MAIN_DUMP_FILE_PUBLIC'] = "Back up public files:";
+$MESS ['MAIN_DUMP_FILE_TITLE'] = "ไฟล์";
+$MESS ['MAIN_DUMP_BASE_STAT'] = "สถิติ";
+$MESS ['MAIN_DUMP_BASE_SINDEX'] = "search index";
+$MESS ['MAIN_DUMP_BASE_IGNORE'] = "Exclude from archive:";
+$MESS ['MAIN_DUMP_BASE_TRUE'] = "Back up ฐานข้อมูล:";
+$MESS ['MAIN_DUMP_BASE_TITLE'] = "ฐานข้อมูล";
+$MESS ['MAIN_DUMP_BASE_SIZE'] = "Mb";
+$MESS ['MAIN_DUMP_PAGE_TITLE'] = "Backup";
+$MESS ['MAIN_DUMP_TAB'] = "Backup";
+$MESS ['MAIN_DUMP_TAB_TITLE'] = "การตั้งค่า Backup";
+$MESS ['MAIN_DUMP_SITE_PROC'] = "Compressing...";
+$MESS ['MAIN_DUMP_ARC_SIZE'] = "Archive size:";
+$MESS ['MAIN_DUMP_TABLE_FINISH'] = "Tables processed:";
+$MESS ['MAIN_DUMP_ACTION_DOWNLOAD'] = "ดาว์นโหลด";
+$MESS ['MAIN_DUMP_DELETE'] = "ลบ";
+$MESS ['MAIN_DUMP_ACTIONS'] = "Action";
+$MESS ['MAIN_DUMP_ALERT_DELETE'] = "คุณต้องการลบไฟล์หรือไม่?";
+$MESS ['MAIN_DUMP_FILE_PAGES'] = "Backup copies";
+?>

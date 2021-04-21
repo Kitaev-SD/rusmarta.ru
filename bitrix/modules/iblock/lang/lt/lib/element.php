@@ -1,0 +1,37 @@
+<?
+$MESS["ELEMENT_ENTITY_ID_FIELD"] = "ID";
+$MESS["ELEMENT_ENTITY_NAME_FIELD"] = "Pavadinimas";
+$MESS["ELEMENT_ENTITY_TIMESTAMP_X_FIELD"] = "Modifikavimo data";
+$MESS["ELEMENT_ENTITY_MODIFIED_BY_FIELD"] = "Modifikavo";
+$MESS["ELEMENT_ENTITY_DATE_CREATE_FIELD"] = "Sukurta";
+$MESS["ELEMENT_ENTITY_CREATED_BY_FIELD"] = "Sukurë";
+$MESS["ELEMENT_ENTITY_IBLOCK_ID_FIELD"] = "Informacinio bloko ID";
+$MESS["ELEMENT_ENTITY_IBLOCK_SECTION_ID_FIELD"] = "Pagrindinis skyrius";
+$MESS["ELEMENT_ENTITY_ACTIVE_FIELD"] = "Aktyvus";
+$MESS["ELEMENT_ENTITY_ACTIVE_FROM_FIELD"] = "Aktyvumo pradþia";
+$MESS["ELEMENT_ENTITY_ACTIVE_TO_FIELD"] = "Aktyvumo pabaiga";
+$MESS["ELEMENT_ENTITY_SORT_FIELD"] = "Rûðiavimo indeksas";
+$MESS["ELEMENT_ENTITY_PREVIEW_PICTURE_FIELD"] = "Anonso nuotrauka";
+$MESS["ELEMENT_ENTITY_PREVIEW_TEXT_FIELD"] = "Anonso tekstas";
+$MESS["ELEMENT_ENTITY_PREVIEW_TEXT_TYPE_FIELD"] = "Anonso teksto tipas";
+$MESS["ELEMENT_ENTITY_DETAIL_PICTURE_FIELD"] = "Visa nuotrauka";
+$MESS["ELEMENT_ENTITY_DETAIL_TEXT_FIELD"] = "Detalus apraðymas";
+$MESS["ELEMENT_ENTITY_DETAIL_TEXT_TYPE_FIELD"] = "Detalaus apraðymo tipas";
+$MESS["ELEMENT_ENTITY_SEARCHABLE_CONTENT_FIELD"] = "Paieðkos indeksas";
+$MESS["ELEMENT_ENTITY_WF_STATUS_ID_FIELD"] = "Dokumento srauto bûsena";
+$MESS["ELEMENT_ENTITY_WF_PARENT_ELEMENT_ID_FIELD"] = "Pirminis elementas";
+$MESS["ELEMENT_ENTITY_WF_NEW_FIELD"] = "\"Paskelbtas juodraðtis\" þymë";
+$MESS["ELEMENT_ENTITY_WF_LOCKED_BY_FIELD"] = "Uþrakino";
+$MESS["ELEMENT_ENTITY_WF_DATE_LOCK_FIELD"] = "Uþrakinimo data";
+$MESS["ELEMENT_ENTITY_WF_COMMENTS_FIELD"] = "Dokumento srauto komentaras";
+$MESS["ELEMENT_ENTITY_IN_SECTIONS_FIELD"] = "Átraukta á informacinios bloko skyriø";
+$MESS["ELEMENT_ENTITY_XML_ID_FIELD"] = "Iðorinis ID";
+$MESS["ELEMENT_ENTITY_CODE_FIELD"] = "Simbolinis kodas";
+$MESS["ELEMENT_ENTITY_TAGS_FIELD"] = "Þymës";
+$MESS["ELEMENT_ENTITY_TMP_ID_FIELD"] = "Laikinas ID";
+$MESS["ELEMENT_ENTITY_SHOW_COUNTER_FIELD"] = "Parodymø skaièius";
+$MESS["ELEMENT_ENTITY_SHOW_COUNTER_START_FIELD"] = "Pirmojo parodymo data";
+$MESS["ELEMENT_ENTITY_MESS_ADD_BLOCKED"] = "Iðkvieskite CIBlockElement::Add() pridëti informacinio bloko elementus";
+$MESS["ELEMENT_ENTITY_MESS_UPDATE_BLOCKED"] = "Iðkvieskite CIBlockElement::Update() pakeisti informacinio bloko elementus";
+$MESS["ELEMENT_ENTITY_MESS_DELETE_BLOCKED"] = "Iðkvieskite CIBlockElement::Delete() iðtrinti informacinio bloko elementus";
+?>

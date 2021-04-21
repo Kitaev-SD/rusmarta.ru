@@ -1,0 +1,3 @@
+<?
+$MESS["SALE_QH_SEND_PHONE"] = "OK";
+?>

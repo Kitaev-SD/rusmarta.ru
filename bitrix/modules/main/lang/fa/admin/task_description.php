@@ -1,0 +1,7 @@
+<?
+$MESS["TASK_NAME_FM_FOLDER_ACCESS_DENIED"] = "دسترسی ندارد.";
+$MESS["TASK_NAME_MAIN_DENIED"] = "دسترسی ندارد.";
+$MESS["TASK_NAME_FM_FOLDER_ACCESS_READ"] = "خواندن";
+$MESS["TASK_NAME_FM_FOLDER_ACCESS_WORKFLOW"] = "گردش کار";
+$MESS["TASK_NAME_FM_FOLDER_ACCESS_WRITE"] = "نوشتن";
+?>

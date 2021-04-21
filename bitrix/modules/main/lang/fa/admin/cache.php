@@ -1,0 +1,6 @@
+<?
+$MESS["MAIN_OPTION_CLEAR_CACHE_ALL"] = "همه";
+$MESS["MCACHE_TITLE"] = "Cache Settings";
+$MESS["MAIN_OPTION_CLEAR_CACHE_CLEAR"] = "پاک کردن";
+$MESS["MAIN_OPTION_HTML_CACHE_STAT"] = "آمار";
+?>

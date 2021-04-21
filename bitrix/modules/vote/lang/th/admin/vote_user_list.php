@@ -1,0 +1,36 @@
+<?
+$MESS ['VOTE_WRONG_START_DATE_FROM'] = "โปรดระบุวันที่เริ่มต้นที่ถูกต้อง \"จาก\" ในตัวกรอง \"วันที่เริ่มต้น\"";
+$MESS ['VOTE_WRONG_START_DATE_TILL'] = "โปรดระบุวันที่เริ่มต้นที่ถูกต้อง \"ถึง\" ในตัวกรอง \"วันที่เริ่มต้น\"";
+$MESS ['VOTE_WRONG_START_FROM_TILL'] = "วันที่สิ้นสุด \"ถึง\" ต้องมากกว่าวันที่เริ่มต้น\"จาก\" ในตัวกรอง \"วันที่เริ่มต้น\"";
+$MESS ['VOTE_WRONG_END_DATE_FROM'] = "โปรดระบุวันที่สิ้นสุดที่ถูกต้อง \"จาก\" ในตัวกรอง \"วันที่สิ้นสุด\"";
+$MESS ['VOTE_WRONG_END_DATE_TILL'] = "โปรดระบุวันที่สิ้นสุดที่ถูกต้อง \"ถึง\" ในตัวกรอง \"วันที่สิ้นสุด\"";
+$MESS ['VOTE_WRONG_END_FROM_TILL'] = "วันที่สิ้นสุด\"ถึง\" ต้องมากกว่าวันที่เริ่มต้น\"จาก\" ในตัวกรอง \"วันที่สิ้นสุด\"";
+$MESS ['VOTE_PAGE_TITLE'] = "Visitors participated in polls";
+$MESS ['VOTE_F_DATE_START'] = "วันที่เริ่มต้นโพล";
+$MESS ['VOTE_F_DATE_END'] = "วันที่สิ้นสุดโพล";
+$MESS ['VOTE_F_COUNTER'] = "จำนวนโหวต:";
+$MESS ['VOTE_F_USER'] = "รหัส, เข้าระบบ, ชื่อหรือนามสกุล:";
+$MESS ['VOTE_F_GUEST_ID'] = "รหัสผู้เยี่ยมชมในโมดูลสถิติ:";
+$MESS ['VOTE_F_VOTE'] = "โพล:";
+$MESS ['VOTE_PAGES'] = "ผู้เยี่ยมชม";
+$MESS ['VOTE_DATE_START'] = "เริ่มต้น";
+$MESS ['VOTE_DATE_END'] = "สิ้นสุด";
+$MESS ['VOTE_COUNTER'] = "จำนวนโหวต";
+$MESS ['VOTE_USER'] = "ผู้เยี่ยมชม";
+$MESS ['VOTE_EDIT_USER'] = "ข้อมูลผู้ใช้งาน";
+$MESS ['VOTE_NOT_AUTHORIZED'] = "(ไม่ให้ปรับปรุง)";
+$MESS ['VOTE_USER_VOTES'] = "รายการโพลที่มีผู้เยี่ยมชม";
+$MESS ['VOTE_DELETE_SELECTED'] = "ลบรายการที่ถูกเลือก";
+$MESS ['VOTE_DELETE_CONFIRMATION'] = "คุณต้องการลบผู้ใช้งานที่เลือกหรือไม่?";
+$MESS ['VOTE_SELECT_USERS'] = "โปรดเลือกผู้ใช้งานที่คุณต้องการลบ.";
+$MESS ['VOTE_GUEST_USER_INFO'] = "ข้อมูลผู้ใช้งาน";
+$MESS ['VOTE_FL_ID'] = "รหัสผู้ใช้งาน";
+$MESS ['VOTE_FL_DATE_ST'] = "Date of the first poll";
+$MESS ['VOTE_FL_DATE_LS'] = "Date of the last poll";
+$MESS ['VOTE_FL_ID_STAT'] = "Visitor ID in statistics";
+$MESS ['VOTE_FL_IP'] = "IP address";
+$MESS ['VOTE_FL_COUNTER'] = "จำนวนโหวต";
+$MESS ['VOTE_FL_VOTE'] = "โพล";
+$MESS ['VOTE_CONFIRM_DEL'] = "ลบผู้เยี่ยมชมหรือไม่?";
+$MESS ['VOTE_DELETE'] = "ลบ";
+?>

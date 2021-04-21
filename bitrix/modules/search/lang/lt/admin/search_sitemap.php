@@ -1,0 +1,30 @@
+<?
+$MESS["SEARCH_SITEMAP_STEP"] = "Þingsnis:";
+$MESS["SEARCH_SITEMAP_STEP_sec"] = "sek";
+$MESS["SEARCH_SITEMAP_DOC_COUNT"] = "Dokumentø apdorota";
+$MESS["SEARCH_SITEMAP_ERR_COUNT"] = "Ið jø su klaidom";
+$MESS["SEARCH_SITEMAP_CONTINUE"] = "Tæsti";
+$MESS["SEARCH_SITEMAP_CREATED"] = "Byla Google Sitemap sukurta ir pasiekiama ardesu";
+$MESS["SEARCH_SITEMAP_CREATE"] = "Sukurti";
+$MESS["SEARCH_SITEMAP_SITE"] = "Tinklapis:";
+$MESS["SEARCH_SITEMAP_ERR"] = "Sitemap sukûrimo metu ávyko klaida";
+$MESS["SEARCH_SITEMAP_NOTE"] = "Dëmesio! Google Sitemap bylø kûrimo metu visos bylos \"sitemap_*.xml\" ðakniniame pasirinktos svetainës kataloge bus perraðytos";
+$MESS["SEARCH_SITEMAP_WARN"] = "Dëmesio! Google Sitemap bylø kûrimo metu buvo rasti netinkami URL adresai, kurie buvo áraðyti á atskirà bylà";
+$MESS["SEARCH_SITEMAP_WARN1"] = "Netinkami URL adresai skaitomi tokie, kuriø ilgis virðija 2048 simboliø arba turi iðplëstø ASCII simboliø";
+$MESS["SEARCH_SITEMAP_INSTR5"] = "Áveskite á laukà <b>\"URL\"</b> Jûsø Sitemap indekso bylos adresà ir spauskyte mygtukà <b>\"Siøsti URL\"</b>";
+$MESS["SEARCH_SITEMAP_INSTR1"] = "Jei dar nesate uþsiregistravæs Google Sitemaps servise, reikia atlikti ðiuos þingsnius";
+$MESS["SEARCH_SITEMAP_INSTR2"] = "Prisijunkyte";
+$MESS["SEARCH_SITEMAP_INSTR3"] = "naudojant Jûsø";
+$MESS["SEARCH_SITEMAP_INSTR4"] = "Spauskyte nuorodà";
+$MESS["SEARCH_SITEMAP_INSTR6"] = "Jei Jus jau pridëjote indekso bylà, galyte atnaujinti nuorodà á bylà naudojant Google Sitemaps servisà ";
+$MESS["SEARCH_SITEMAP_INSTR7"] = "Google paskira";
+$MESS["SEARCH_SITEMAP_INSTR8"] = "Pridëti svetainës þemëlapá";
+$MESS["SEARCH_SITEMAP_TITLE"] = "Google sitemap sukûrimas";
+$MESS["SEARCH_SITEMAP_TAB_TITLE"] = "Nustatymai";
+$MESS["SEARCH_SITEMAP_STOP"] = "Sustabdyti";
+$MESS["SEARCH_SITEMAP_RECORD_LIMIT"] = "Maksimalus dokumentø kiekis apdorojamas per vienà þingsná:";
+$MESS["SEARCH_SITEMAP_FORUM_TOPICS_ONLY"] = "Átraukti á Google Sitemap tik forumo temas, bet ne praneðimus";
+$MESS["SEARCH_SITEMAP_SESSION_ERR"] = "Sitemap kûrimo metu ávyko sesijos patikrinimo klaida. Tikëtina, jog pasibaigë jûsø sesija. Sukurkite Sitemap dar kartà.";
+$MESS["SEARCH_SITEMAP_BLOG_NO_COMMENTS"] = "Ákelti tik tinklaraðèio praneðimus á Google Sitemap, be komentarø";
+$MESS["SEARCH_SITEMAP_USE_HTTPS"] = "Naudoti HTTPS";
+?>

@@ -1,0 +1,5 @@
+<?php
+$MESS["IM_MESSENGER_MESSAGE_DELETED"] = "Esta mensagem foi excluída.";
+$MESS["IM_MESSENGER_MESSAGE_DOWNLOAD"] = "Baixar";
+$MESS["IM_MESSENGER_MESSAGE_LIKE"] = "Curtiu";
+$MESS["IM_MESSENGER_MESSAGE_SAVE_TO_DISK"] = "Salvar no Drive";

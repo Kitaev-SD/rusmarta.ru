@@ -1,0 +1,33 @@
+<?
+$MESS ['VOTE_SORTING'] = "ลำดับหน้า:";
+$MESS ['VOTE_SITE'] = "เว็บไซต์:";
+$MESS ['VOTE_FORGOT_TITLE'] = "โปรดระบุ \"ชื่อ\"";
+$MESS ['VOTE_EDIT_RECORD'] = "ตั้งค่า Channel # #ID#";
+$MESS ['VOTE_SYMBOLIC_NAME_ALREADY_IN_USE'] = " \"รหัสที่ใช้จดจำ\" ถูกใช้งานในกลุ่มโพลแล้ว # #ID#.";
+$MESS ['VOTE_RECORDS_LIST'] = "รายการ Channel";
+$MESS ['VOTE_TIMESTAMP'] = "ปรับปรุงเมื่อ:";
+$MESS ['VOTE_ACTIVE'] = "ใช้งาน:";
+$MESS ['VOTE_SYMBOLIC_NAME'] = "รหัสที่ใช้จดจำ:";
+$MESS ['VOTE_TITLE'] = "ชื่อ:";
+$MESS ['VOTE_VOTES'] = "โพล:";
+$MESS ['VOTE_RIGHTS'] = "สิทธิ์ของกลุ่มผู้ใช้งาน";
+$MESS ['VOTE_DENIED'] = "ปฏิเสธ";
+$MESS ['VOTE_READ'] = "ดูผลโหวต";
+$MESS ['VOTE_WRITE'] = "โหวต";
+$MESS ['VOTE_FORGOT_SYMBOLIC_NAME'] = "โปรดระบุ \"รหัสที่ใช้จดจำ\"";
+$MESS ['VOTE_NEW'] = "Channel ใหม่";
+$MESS ['VOTE_INCORRECT_SYMBOLIC_NAME'] = "รหัสที่ใช้จดจำผิด (เฉพาะอักษรลาติน, ตัวเลขและขีดเส้นใต้ \"_\" เท่านั้นที่อนุญาต).";
+$MESS ['VOTE_VOTE_COUNT'] = "Polls";
+$MESS ['VOTE_VOTE_ADD'] = "Add poll";
+$MESS ['VOTE_CREATE_NEW_RECORD'] = "สร้างรายการเชื่อมโยงโพลใหม่";
+$MESS ['VOTE_DELETE_RECORD'] = "ลบรายการเชื่อมโยงโพล";
+$MESS ['VOTE_DELETE_RECORD_CONFIRM'] = "คุณต้องการลบโพลที่เพิ่มและการเชื่อมโยงโพลทั้งคู่หรือไม่?";
+$MESS ['VOTE_NEW_RECORD'] = "poll channel ใหม่";
+$MESS ['VOTE_PROP'] = "คุณสมบัติ";
+$MESS ['VOTE_ACCESS'] = "Access";
+$MESS ['VOTE_GRP_PROP'] = "คุณสมบัติ Channel";
+$MESS ['VOTE_SITE_EDIT'] = "แก้ไข site";
+$MESS ['VOTE_GOT_ERROR'] = "พบข้อผิดพลาดในการบันทึก Channel";
+$MESS ['VOTE_VOTES_TITLE'] = "Polls list for the current channel";
+$MESS ['VOTE_CREATE_VOTE'] = "สร้างโพล";
+?>

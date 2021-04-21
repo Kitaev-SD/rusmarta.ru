@@ -1,0 +1,32 @@
+<?
+$MESS["BMNP_MESSAGE_PER_PAGE"] = "Praneðimø puslapyje";
+$MESS["BMNP_PATH_TO_BLOG"] = "Blogo puslapio kelio ðablonas";
+$MESS["BMNP_PATH_TO_POST"] = "Blogo praneðimo puslapio ðablonas";
+$MESS["BMNP_PATH_TO_USER"] = "Blogo naudotojo puslapio kelio ðablonas";
+$MESS["BMNP_PATH_TO_SMILE"] = "Kelias á aplankà su ðypsenëlëmis, susijusá su svetainës ðaknimi";
+$MESS["BMNP_BLOG_VAR"] = "Blogo identifikatoriaus kintamasis";
+$MESS["BMNP_POST_VAR"] = "Blogo praneðimo identifikatoriaus kintamasis";
+$MESS["BMNP_USER_VAR"] = "Blogo naudotojo identifikatoriaus kintamasis";
+$MESS["BMNP_PAGE_VAR"] = "Puslapio kintamasis";
+$MESS["B_VARIABLE_ALIASES"] = "Kintamøjø slapyvardþiai";
+$MESS["BC_DATE_TIME_FORMAT"] = "Datos ir laiko formatas";
+$MESS["BLG_GROUP_ID"] = "Blogø grupës";
+$MESS["BLG_BLOG_URL"] = "Blogo URL";
+$MESS["BMNP_PATH_TO_GROUP_BLOG_POST"] = "Grupës blogo praneðimø puslapio URL ðablonas";
+$MESS["BB_PATH_TO_BLOG_CATEGORY"] = "Grupës blogo puslapio URL ðablonas (filtruoti pagal þymæ)";
+$MESS["BB_NAV_TEMPLATE"] = "Puslapiø ðablono pavadinimas";
+$MESS["POST_PROPERTY_LIST"] = "Rodyti iðplëstas praneðimno savybës bloge";
+$MESS["BMNP_NAME_TEMPLATE"] = "Vardo formato atvaizdavimas";
+$MESS["BMNP_NAME_TEMPLATE_DEFAULT"] = "#NOBR##NAME# #LAST_NAME##/NOBR#";
+$MESS["BMNP_SHOW_LOGIN"] = "Rodyti prisijungimo vardas, jei vardas nenurodytas";
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Max. paveikslëlio plotis";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Max. paveikslëlio aukðtis";
+$MESS["SHOW_RATING"] = "Ájungti reitingà";
+$MESS["SHOW_RATING_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE"] = "Reitingo mygtuko dizainas";
+$MESS["RATING_TYPE_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Patinka / Nepatinka (tekstas)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Patinka / Nepatinka (paveikslëlis)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Patinka (tekstas)";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Patinka (paveikslëlis)";
+?>

@@ -1,0 +1,9 @@
+<?
+$MESS["SEC_REDIRECT_PARAMETERS_TAB"] = "پارامترها";
+$MESS["SEC_REDIRECT_SYSTEM"] = "سیستم";
+$MESS["SEC_REDIRECT_USER"] = "کاربران";
+$MESS["SEC_REDIRECT_ADD"] = "افزودن";
+$MESS["SEC_REDIRECT_ACTIONS_HEADER"] = "اقدامات";
+$MESS["SEC_REDIRECT_MESSAGE"] = "پیغام:";
+$MESS["SEC_REDIRECT_TIMEOUT_SEC"] = "ثانیه";
+?>

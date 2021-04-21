@@ -1,0 +1,31 @@
+<?
+$MESS["VOTE_ACTIVE_RED_LAMP"] = "A pesquisa está expirado.";
+$MESS["VOTE_EDIT_TITLE"] = "Modificar as configurações de pesquisa ";
+$MESS["VOTE_NOTIFY"] = "Notificar o autor a cada voto:";
+$MESS["VOTE_NOTIFY_EMAIL"] = "Sim, por e-mail";
+$MESS["VOTE_NOTIFY_IM"] = "Sim, por mensagem instantânea (Módulo de Mensagem Instantânea (im))";
+$MESS["VOTE_NOTIFY_N"] = "Não notificar";
+$MESS["VOTE_NOT_ACTIVE"] = "A pesquisa está inativo.";
+$MESS["VOTE_VOTES"] = "Votos: ";
+$MESS["VT_UNKNOWN_ERROR_ADD_VOTE"] = "Erro desconhecido (Enquete)";
+$MESS["V_CHANNEL_ID"] = "ID de grupo";
+$MESS["V_CHANNEL_ID_COLON"] = "Grupo de enquete:";
+$MESS["V_CHANNEL_ID_EDIT"] = "editar";
+$MESS["V_CHANNEL_ID_SYMBOLIC_NAME"] = "ID simbólico:";
+$MESS["V_CHANNEL_ID_TITLE"] = "Título:";
+$MESS["V_CHANNEL_ID_USE_CAPTCHA"] = "Usar CAPTCHA";
+$MESS["V_DAYS"] = "dias";
+$MESS["V_HOURS"] = "horas";
+$MESS["V_MINUTES"] = "minutos";
+$MESS["V_NEW_CHANNEL"] = "Novo grupo de enquete";
+$MESS["V_SECONDS"] = "segundos";
+$MESS["V_UNIQUE"] = "Negar votos repetidos";
+$MESS["V_UNIQUE_COOKIE_ONLY"] = "dentro do mesmo cookie";
+$MESS["V_UNIQUE_IP_DELAY"] = "Não permitir votos repetidos do mesmo IP:";
+$MESS["V_UNIQUE_IP_ONLY"] = "Baseado em IP'a";
+$MESS["V_UNIQUE_SESSION"] = "dentro da mesma sessão";
+$MESS["V_UNIQUE_USER_ID_NEW"] = "Negar votos de usuários registrados após uma enquete já ter sido iniciada";
+$MESS["V_UNIQUE_USER_ID_ONLY"] = "Baseado em ID's de usuários";
+$MESS["V_USER_TYPE_DESCRIPTION"] = "Votação";
+$MESS["V_VOTE_ID"] = "ID de enquete";
+?>

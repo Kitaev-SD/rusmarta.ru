@@ -1,0 +1,30 @@
+<?
+$MESS["IBSEC_A_UPDERR"] = "Error updating the record:";
+$MESS["IBSEC_A_NAME"] = "نام";
+$MESS["IBSEC_A_ACTIVE"] = "فعال";
+$MESS["IBSEC_A_SORT"] = "ترتیب";
+$MESS["IBSEC_A_CODE"] = "کد سمبلیک";
+$MESS["IBSEC_A_XML_ID"] = "کد خارجی";
+$MESS["IBSEC_A_ELEMENT_CNT"] = "المانها";
+$MESS["IBSEC_A_SECTION_CNT"] = "اشتراک";
+$MESS["IBSEC_A_TIMESTAMP"] = "ویرایش شده";
+$MESS["IBSEC_A_MODIFIED_BY"] = "ویرایش شده توسط";
+$MESS["IBSEC_A_DATE_CREATE"] = "ساخته شده";
+$MESS["IBSEC_A_CREATED_BY"] = "ساخته شده توسط";
+$MESS["IBSEC_A_ID"] = "شناسه بخش";
+$MESS["IBSEC_A_LIST"] = "View the list of subsections";
+$MESS["IBSEC_A_EDIT"] = "ویرایش";
+$MESS["IBSEC_A_ELLIST"] = "View the list of section elements";
+$MESS["IBSEC_A_ELLIST_TITLE"] = "View the list of section elements including subsections";
+$MESS["IBSEC_A_ELADD_TITLE"] = "Add element to the section";
+$MESS["IBSEC_A_SECTADD_TITLE"] = "Add subsection";
+$MESS["IBSEC_A_CHANGE"] = "ویرایش";
+$MESS["IBSEC_A_DELETE"] = "حذف";
+$MESS["IBSEC_A_LISTEL_TITLE"] = "Click to view the section elements";
+$MESS["IBSEC_A_SECTADD_PRESS"] = "Click to add a new subsection";
+$MESS["IBSEC_A_ADDEL_TITLE"] = "Click to add a new element";
+$MESS["IBSEC_A_PARENT"] = "بخش مادر";
+$MESS["IBSEC_A_SECTION"] = "بخش";
+$MESS["IBSEC_A_ROOT_SECTION"] = "بالاترین سطح";
+$MESS["IBSEC_A_NOT_TREE"] = "فهرست";
+?>

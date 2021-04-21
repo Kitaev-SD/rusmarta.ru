@@ -1,0 +1,14 @@
+<?
+$MESS["ASPRO_NEXT_CATALOG_TYPE_NAME"] = "Каталог (aspro.next)";
+$MESS["ASPRO_NEXT_CATALOG_ELEMENT_NAME"] = "Товары";
+$MESS["ASPRO_NEXT_CATALOG_SECTION_NAME"] = "Разделы";
+$MESS["ASPRO_NEXT_CONTENT_TYPE_NAME"] = "Контент (aspro.next)";
+$MESS["ASPRO_NEXT_CONTENT_ELEMENT_NAME"] = "Элементы";
+$MESS["ASPRO_NEXT_CONTENT_SECTION_NAME"] = "Разделы";
+$MESS["ASPRO_NEXT_ADV_TYPE_NAME"] = "Реклама (aspro.next)";
+$MESS["ASPRO_NEXT_ADV_ELEMENT_NAME"] = "Баннеры";
+$MESS["ASPRO_NEXT_ADV_SECTION_NAME"] = "Разделы";
+$MESS["ASPRO_NEXT_REGIONALITY_TYPE_NAME"] = "Региональность (aspro.next)";
+$MESS["ASPRO_NEXT_REGIONALITY_ELEMENT_NAME"] = "Города";
+$MESS["ASPRO_NEXT_REGIONALITY_SECTION_NAME"] = "Области, округа";
+?>

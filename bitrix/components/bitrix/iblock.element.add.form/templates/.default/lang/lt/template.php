@@ -1,0 +1,15 @@
+<?
+$MESS["IBLOCK_FORM_SUBMIT"] = "Iðsaugoti";
+$MESS["IBLOCK_FORM_APPLY"] = "Pritaikyti";
+$MESS["IBLOCK_FORM_RESET"] = "Iðvalyti";
+$MESS["IBLOCK_FORM_BACK"] = "Atgal á sàraðà";
+$MESS["IBLOCK_FORM_DATE_FORMAT"] = "Formatas:";
+$MESS["IBLOCK_FORM_FILE_NAME"] = "Byla";
+$MESS["IBLOCK_FORM_FILE_SIZE"] = "Dydis";
+$MESS["IBLOCK_FORM_FILE_DOWNLOAD"] = "parsisiøsti";
+$MESS["IBLOCK_FORM_FILE_DELETE"] = "Iðtrinti bylà";
+$MESS["IBLOCK_FORM_CAPTCHA_TITLE"] = "Apsauga nuo automatiniø uþpildymø";
+$MESS["IBLOCK_FORM_CAPTCHA_PROMPT"] = "Áveskite tekstà ið paveikslëlio";
+$MESS["CT_BIEAF_PROPERTY_VALUE_NA"] = "(nenurodyta)";
+$MESS["IBLOCK_FORM_CANCEL"] = "Atðaukti";
+?>

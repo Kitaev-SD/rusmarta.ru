@@ -1,0 +1,7 @@
+<?
+$MESS["SENDER_TEMPLATES_CATEGORY_ADDITIONAL"] = "Mais";
+$MESS["SENDER_TEMPLATES_CATEGORY_BASE"] = "Standard";
+$MESS["SENDER_TEMPLATES_CATEGORY_CASES"] = "Modelos de campanha de marketing testados pelo tempo";
+$MESS["SENDER_TEMPLATES_CATEGORY_RECENT"] = "Usado recentemente";
+$MESS["SENDER_TEMPLATES_CATEGORY_USER"] = "Meus Modelos";
+?>

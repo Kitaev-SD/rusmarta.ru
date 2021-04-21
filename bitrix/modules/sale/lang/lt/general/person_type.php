@@ -1,0 +1,8 @@
+<?
+$MESS["SKGP_NO_NAME_TP"] = "Nenurodytas mokëtojo tipo pavadinimas";
+$MESS["SKGP_NO_SITE"] = "Nepavyko rasti svetainës ##ID#";
+$MESS["SKGP_ERROR_PERSON_HAS_ORDER"] = "Klaida ðalinant áraðà. Yra uþsakymø, kurie naudoja ðá asmens tipà.";
+$MESS["SKGP_BAD_SITE_NA"] = "Nenurodyta svetainë.";
+$MESS["SKGP_PERSON_TYPE_NOT_FOUND"] = "Mokëtojo tipas yra neteisingas.";
+$MESS["SKGP_PERSON_TYPE_EMPTY"] = "Nëra mokëtojo tipo.";
+?>

@@ -1,0 +1,29 @@
+<?
+$MESS["FORM_COPY"] = "Copiar";
+$MESS["FORM_COPY_ALT"] = "Copiar estatus";
+$MESS["FORM_C_SORT"] = "Ordenamiento";
+$MESS["FORM_DEFAULT"] = "Por defecto";
+$MESS["FORM_DELETE_STATUS_CONFIRM"] = "¿Está seguro que desea eliminar este estatus?";
+$MESS["FORM_DESCRIPTION"] = "Descripción";
+$MESS["FORM_EDIT_ALT"] = "Cambiar parámetros de estatus";
+$MESS["FORM_ERROR"] = "Error! ";
+$MESS["FORM_FL_ACTIVE"] = "Activar";
+$MESS["FORM_FL_DESCR"] = "Descripción";
+$MESS["FORM_FL_ID"] = "ID del estado";
+$MESS["FORM_FL_RESULTS"] = "Contar resultados";
+$MESS["FORM_FORM_EDIT"] = "Parámetros del formulario # #ID#";
+$MESS["FORM_FORM_EDIT_TITLE"] = "Modificar parámetros del formulario";
+$MESS["FORM_FORM_LIST"] = "Lista de formularios";
+$MESS["FORM_FORM_NAME"] = "Formulario:";
+$MESS["FORM_F_ACTIVE"] = "Activo:";
+$MESS["FORM_F_DESCRIPTION"] = "Descripción:";
+$MESS["FORM_F_RESULTS"] = "Resultados:";
+$MESS["FORM_F_TITLE"] = "Título:";
+$MESS["FORM_NOT_FOUND"] = "Formulario Web no encontrado";
+$MESS["FORM_PAGES"] = "estatus";
+$MESS["FORM_PAGE_TITLE"] = "Lista de estatus para los rsultados del formulario # #ID#";
+$MESS["FORM_RESULT_TITLE"] = "Abrir resultados del formulario";
+$MESS["FORM_STATUS_DELETE"] = "Borrar";
+$MESS["FORM_STATUS_DELETE_ALT"] = "Borrar estado";
+$MESS["FORM_TIMESTAMP"] = "Modificado";
+?>

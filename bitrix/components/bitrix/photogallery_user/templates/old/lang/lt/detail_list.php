@@ -1,0 +1,36 @@
+<?
+$MESS["P_UP"] = "Galerija";
+$MESS["P_UP_TITLE"] = "Pereiti á pagrindiná galerijos puslapá";
+$MESS["P_PHOTO_SORT_ID"] = "Nauji";
+$MESS["P_PHOTO_SORT_ID_TITLE"] = "pagal sukûrimo datà";
+$MESS["P_PHOTO_SORT_SHOWS"] = "Populiarûs";
+$MESS["P_PHOTO_SORT_SHOWS_TITLE"] = "pagal perþiûrø skaièiø";
+$MESS["P_PHOTO_SORT_RATING"] = "Geriausi";
+$MESS["P_PHOTO_SORT_RATING_TITLE"] = "pagal balsø skaièiø";
+$MESS["P_PHOTO_SORT_COMMENTS"] = "Labiausiai komentuojami";
+$MESS["P_PHOTO_SORT_COMMENTS_TITLE"] = "pagal komentarø skaièiø";
+$MESS["P_FILTER_SHOW"] = "Parodyti";
+$MESS["P_FILTER_RESET"] = "Iðvalyti";
+$MESS["P_PHOTO_ORDER_BY_DATE_CREATE"] = "Naujos nuotraukos";
+$MESS["P_PHOTO_ORDER_BY_SHOWS"] = "Populiarios nuotraukos";
+$MESS["P_PHOTO_ORDER_BY_RATING"] = "Geriausios nuotraukos";
+$MESS["P_PHOTO_ORDER_BY_COMMENTS"] = "Labiausiai komentuojamos nuotraukos";
+$MESS["P_SELECT_PHOTO_FROM_PERIOD"] = "Atvaizduoti nuotraukas ákeltas per";
+$MESS["P_GROUP_BY_DATE_CREATE"] = "Grupuoti nuotraukas pagal ákëlimo datà.";
+$MESS["P_OPEN_FILTER"] = "Atvaizduoti filtrà";
+$MESS["P_CLOSE_FILTER"] = "Paslëpti filtrà";
+$MESS["P_NO_PHOTO"] = "Nuotraukø nerasta.";
+$MESS["P_DELETE_CONFIRM"] = "Ar tikrai norite paðalinti nuotraukas negráþtamai?";
+$MESS["P_SHOW_FILTER"] = "Redaktoriaus filtras";
+$MESS["P_SHOW_ONLY_NOT_ACTIVE"] = "nepatvirtintos nuotraukos";
+$MESS["P_SHOW_ONLY_NOT_ACTIVE_TILTE"] = "Nepatvirtintos nuotraukos yra tos, kurios yra dar nemoderuotos. Jos yra nematomos niekam, iðskyrus savininko ir moderatoriaus.";
+$MESS["P_SHOW_ONLY_NOT_PUBLIC"] = "neskelbtos nuotraukos";
+$MESS["P_SHOW_ONLY_NOT_PUBLIC_TITLE"] = "Neskelbtos nuotraukos yra tos, kurios bus pateiktos pagrindiniame puslapyje ir sàraðuose, taèiau vis dar nepatvirtintos.";
+$MESS["P_SHOW_ONLY_NOT_PUBLIC_TITLE1"] = "Neskelbtos nuotraukos yra tos, kurios bus pateiktos pagrindiniame puslapyje ir sàraðuose, taèiau vis dar nepatvirtintos.";
+$MESS["P_SHOW_SIMPLE"] = "paskelbtos ir patvirtintos nuotraukos";
+$MESS["P_SHOW_SIMPLE_TITLE"] = "Rodo visas nuotraukas, kurios yra matomos visiems lankytojams.";
+$MESS["P_PUBLIC"] = "Paskelbti";
+$MESS["P_NOT_PUBLIC"] = "Neskelbti";
+$MESS["P_SHOW"] = "Rodyti";
+$MESS["P_DELETE"] = "Paðalinti";
+?>

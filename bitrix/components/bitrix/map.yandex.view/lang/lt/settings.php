@@ -1,0 +1,37 @@
+<?
+$MESS["MYMV_SET_POPUP_TITLE"] = "Þemëlapio nustatymai";
+$MESS["MYMV_SET_POPUP_WINDOW_TITLE"] = "Redaguoti þemëlapio nustatymus";
+$MESS["MYMV_SET_POPUP_WINDOW_DESCRIPTION"] = "Konfigûruoti þemëlapio iðdëstymà ir matomus objektus";
+$MESS["MYMV_SET_START_POS"] = "Pradinë þemëlapio vieta";
+$MESS["MYMV_SET_START_POS_FIX"] = "Uþraktas";
+$MESS["MYMV_SET_START_POS_RESTORE"] = "Atstatyti";
+$MESS["MYMV_SET_START_POS_LAT"] = "Platuma";
+$MESS["MYMV_SET_START_POS_LON"] = "Ilguma";
+$MESS["MYMV_SET_START_POS_SCALE"] = "Skalë";
+$MESS["MYMV_SET_START_POS_VIEW"] = "Atvaizdas";
+$MESS["MYMV_SET_POINTS"] = "Vietos þymekliai";
+$MESS["MYMV_SET_POINTS_ADD"] = "Pridëti vietos þymeklius";
+$MESS["MYMV_SET_POINTS_ADD_DESCRIPTION"] = "Dvikartis spustelëjimas ant þemëlapio norint pridëti vietos þymeklius";
+$MESS["MYMV_SET_POINTS_ADD_FINISH"] = "Uþbaigti";
+$MESS["MYMV_SET_SUBMIT"] = "Iðsaugoti";
+$MESS["MYMV_SET_NONAME"] = "--- Be pavadinimo ---";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_MAP"] = "Þemëlapis";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_SATELLITE"] = "Palydovas";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_HYBRID"] = "Hibridas";
+$MESS["MYMS_PARAM_INIT_MAP_NOTHING_FOUND"] = "(nerasta)";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_PUBLIC"] = "liaudies þemëlapis";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_PUBLIC_HYBRID"] = "liaudies þemëlapis su etiketëmis";
+$MESS["MYMV_SET_ADDRESS_SEARCH"] = "Rasti vietà";
+$MESS["MYMV_SET_POLY"] = "Þemëlapis marðrutai";
+$MESS["MYMV_SET_POLY_ADD"] = "Pridëti marðrutà";
+$MESS["MYMV_SET_POLY_START_POINT"] = "Pradëti";
+$MESS["MYMV_SET_POLY_ADD_DESCRIPTION"] = "Dukart spustelëkite pradinio marðruto vietos þymekliui.";
+$MESS["MYMV_SET_POLY_ADD_DESCRIPTION1"] = "Dabar paspauskite ant þemëlapio, norëdami pridëti daugiau vietos þymekliø á marðrutà. Spustelëkite ant baliono, norëdami baigti marðrutà.";
+$MESS["MYMV_SET_POLY_ADD_FINISH"] = "Baigti marðrutus.";
+$MESS["MYMV_SET_POLY_SETTINGS"] = "Nustatymai ";
+$MESS["MYMV_SET_POLY_TITLE"] = "Antraðtë";
+$MESS["MYMV_SET_POLY_COLOR"] = "Linijos spalva";
+$MESS["MYMV_SET_POLY_WIDTH"] = "Storis (piks.)";
+$MESS["MYMV_SET_POLY_OPACITY"] = "Neaiðkumas (%)";
+$MESS["MYMV_SET_POLY_FINISH"] = "Baigtti";
+?>

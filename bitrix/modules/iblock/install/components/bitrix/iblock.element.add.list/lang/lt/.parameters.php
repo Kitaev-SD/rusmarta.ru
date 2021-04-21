@@ -1,0 +1,29 @@
+<?
+$MESS['IBLOCK_ACCESS'] = 'Prieigos parametrai';
+$MESS['IBLOCK_SEF_EDIT'] = 'redaguoti';
+$MESS['IBLOCK_TYPE'] = 'Informacinio bloko tipas';
+$MESS['IBLOCK_IBLOCK'] = 'Informacinis blokas';
+$MESS['IBLOCK_GROUPS'] = 'Naudotojø grupës kurioms leidþiama pridëti/redaguoti';
+$MESS['IBLOCK_ADD_NAME'] = '- pavadinimas -';
+$MESS['IBLOCK_ADD_TAGS'] = '- þymës -';
+$MESS['IBLOCK_ADD_IBLOCK_SECTION'] = '- informacinio bloko skyrius -';
+$MESS['IBLOCK_ADD_PREVIEW_TEXT'] = '- anonso tekstas -';
+$MESS['IBLOCK_ADD_PREVIEW_PICTURE'] = '- anonso paveiksliukas -';
+$MESS['IBLOCK_ADD_DETAIL_TEXT'] = '- detalus tekstas -';
+$MESS['IBLOCK_ADD_DETAIL_PICTURE'] = '- detalus paveiksliukas -';
+$MESS['IBLOCK_ELEMENT_ASSOC'] = 'Suriðti su naudotoju';
+$MESS['IBLOCK_ELEMENT_ASSOC_PROPERTY'] = 'pagal infobloko savybæ -->';
+$MESS['CP_BIEAL_IBLOCK_STATUS'] = 'Redaguoti galima esant statusui';
+$MESS['IBLOCK_S_ACTIVE'] = 'Redaguoti galima';
+$MESS['IBLOCK_STATUS_ANY'] = 'bet kuriuos elementus';
+$MESS['IBLOCK_STATUS_INCATIVE'] = 'neaktyvûs elementai';
+$MESS['IBLOCK_ADD_EDIT_URL'] = 'Elemento redagavimo puslapis';
+$MESS['IBLOCK_ALLOW_EDIT'] = 'Leisti redagavimà';
+$MESS['IBLOCK_ALLOW_DELETE'] = 'Leisti ðalinimà';
+$MESS['IBLOCK_ALLOW_N'] = 'niekam';
+$MESS['IBLOCK_CREATED_BY'] = 'autoriui';
+$MESS['IBLOCK_PROPERTY_ID'] = 'pagal infobloko savybæ -->';
+$MESS['IBLOCK_PARAMS'] = 'Komponento parametrai';
+$MESS['IBLOCK_MAX_USER_ENTRIES'] = 'Apriboti vieno naudotojo elementø skaièiø';
+$MESS['IBLOCK_NAV_ON_PAGE'] = 'Elementø skaièius puslapyje';
+?>

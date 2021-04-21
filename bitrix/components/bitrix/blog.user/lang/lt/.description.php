@@ -1,0 +1,5 @@
+<?
+$MESS['BU_DEFAULT_TEMPLATE_NAME'] = 'Naudotojo profilis';
+$MESS['BU_DEFAULT_TEMPLATE_DESCRIPTION'] = 'Leidþia perþiûrëti bei redaguoti naudotojo profilá';
+$MESS['BU_NAME'] = 'Tinklaraðèiai';
+?>

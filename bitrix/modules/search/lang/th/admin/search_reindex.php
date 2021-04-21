@@ -1,0 +1,23 @@
+<?
+$MESS ['SEARCH_REINDEX_REINDEX_CHANGED'] = "Re-index modified content only";
+$MESS ['SEARCH_REINDEX_REINDEX_BUTTON'] = "Re-index àÇçºä«µì";
+$MESS ['SEARCH_REINDEX_TOTAL'] = "Indexed documents:";
+$MESS ['SEARCH_REINDEX_COMPLETE'] = "Re-index ÊÁºÙÃ³ì";
+$MESS ['SEARCH_REINDEX_MAX_SIZE'] = "¢¹Ò´ä¿ÅìÊÙ§ÊØ´¢Í§àÍ¡ÊÒÃã¹ index:";
+$MESS ['SEARCH_REINDEX_MAX_SIZE_kb'] = "kB";
+$MESS ['SEARCH_REINDEX_STEPPED'] = "Stepwise indexing:";
+$MESS ['SEARCH_REINDEX_STEP'] = "¢Ñé¹µÍ¹:";
+$MESS ['SEARCH_REINDEX_STEP_sec'] = "ÇÔ¹Ò·Õ";
+$MESS ['SEARCH_REINDEX_TITLE'] = "Site reindexing";
+$MESS ['SEARCH_REINDEX_TAB'] = "Reindexing";
+$MESS ['SEARCH_REINDEX_TAB_TITLE'] = "Reindexing parameters";
+$MESS ['SEARCH_REINDEX_SITE'] = "àÇçºä«µì";
+$MESS ['SEARCH_REINDEX_ALL'] = "(·Ñé§ËÁ´)";
+$MESS ['SEARCH_REINDEX_MODULE'] = "âÁ´ÙÅ";
+$MESS ['SEARCH_REINDEX_MAIN'] = "ä¿ÅìÊ¶ÔµÔ";
+$MESS ['SEARCH_REINDEX_IBLOCKS'] = "Information blocks";
+$MESS ['SEARCH_REINDEX_FORUM'] = "àÇçººÍÃì´";
+$MESS ['SEARCH_REINDEX_CONTINUE'] = "µèÍä»";
+$MESS ['SEARCH_REINDEX_STOP'] = "ËÂØ´";
+$MESS ['SEARCH_REINDEX_BLOG'] = "Blogs";
+?>

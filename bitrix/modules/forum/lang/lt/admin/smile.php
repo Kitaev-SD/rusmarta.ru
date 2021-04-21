@@ -1,0 +1,22 @@
+<?
+$MESS["SMILE_TITLE"] = "Forumo ðypsenëles";
+$MESS["SMILE_DEL_CONF"] = "Ar tikrai norite iðtrinti ðià ðypsenëlæ?";
+$MESS["SMILE_NAV"] = "Ðypsenëlës";
+$MESS["SMILE_ID"] = "ID";
+$MESS["SMILE_SORT"] = "Rûðiavimas";
+$MESS["SMILE_TYPE"] = "Tipas";
+$MESS["FORUM_TYPING"] = "Raðymas";
+$MESS["FORUM_SMILE_ICON"] = "Paveikslëlis";
+$MESS["FORUM_IMAGE_FILE"] = "Failas";
+$MESS["SMILE_TYPE_ICON"] = "Piktograma";
+$MESS["SMILE_TYPE_SMILE"] = "Ðypsenëlë";
+$MESS["FORUM_NAME"] = "Pavadinimas";
+$MESS["FORUM_DELETE_DESCR"] = "Iðtrinti ðypsenëlæ";
+$MESS["FORUM_EDIT_DESCR"] = "Keisti ðypsenëlës nustatymus";
+$MESS["ERROR_DEL_SMILE"] = "Klaida trinant ðypsenëlæ.";
+$MESS["FSAN_ADD_NEW"] = "Nauja ðypsenëlë";
+$MESS["FSAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà ðypsenëlæ";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinti";
+?>

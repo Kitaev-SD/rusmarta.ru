@@ -1,0 +1,35 @@
+<?
+$MESS["BB_BLOG_URL"] = "URL de blog";
+$MESS["BB_BLOG_VAR"] = "Variable identificador de blog";
+$MESS["BB_CACHE_TIME_LONG"] = "Duracion del cache de la página";
+$MESS["BB_CATEGORY_ID"] = "filtrar por categoria ID";
+$MESS["BB_DAY"] = "Filtrar por dia";
+$MESS["BB_FILTER_NAME_IN"] = "Nombre del array con los valores utilizados para filtrar los envíos";
+$MESS["BB_MESSAGE_COUNT"] = "Mensajes por páginas";
+$MESS["BB_MONTH"] = "Filtrar por mes";
+$MESS["BB_NAV_TEMPLATE"] = "Buscapersonas nombre de la plantilla";
+$MESS["BB_PAGE_VAR"] = "variable de página";
+$MESS["BB_PATH_TO_BLOG"] = "Ruta de la plantilla de la página de blog";
+$MESS["BB_PATH_TO_BLOG_CATEGORY"] = "Plantilla de la trayectoria de la página de Blog con el filtro de la categoría";
+$MESS["BB_PATH_TO_POST"] = "Plantilla de la página de mensajes del blog";
+$MESS["BB_PATH_TO_POST_EDIT"] = "Plantilla de la trayectoria de la página el editor de mensaje del blog";
+$MESS["BB_PATH_TO_SMILE"] = "Trayectoria a la carpeta con smiley, concerniente a la raíz del sitio web";
+$MESS["BB_PATH_TO_USER"] = "Plantilla de la trayectoria de la página del usuario del blog";
+$MESS["BB_POST_VAR"] = "Variable identificador de mensaje de blog";
+$MESS["BB_SET_NAV_CHAIN"] = "Agregar el artículo a la cadena de la navegación";
+$MESS["BB_USER_VAR"] = "variable identificador de usuario de blog";
+$MESS["BB_YEAR"] = "Filtrat por año";
+$MESS["BC_DATE_TIME_FORMAT"] = "Formato de fecha y hora";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Alto Máx. de la Imagen";
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Ancho Máx. de la imagen";
+$MESS["B_VARIABLE_ALIASES"] = "Alias variables";
+$MESS["POST_PROPERTY_LIST"] = "Visualizar propiedades adicionales del envío en el blog";
+$MESS["RATING_TYPE"] = "Diseño de botones de calificación";
+$MESS["RATING_TYPE_CONFIG"] = "predeterminado";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Me gusta (imagen)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Me gusta (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Me gusta/No me gusta (imagen)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Me gusta/No me gusta (texto)";
+$MESS["SHOW_RATING"] = "Habilitar calificación";
+$MESS["SHOW_RATING_CONFIG"] = "predeterminado";
+?>

@@ -1,0 +1,16 @@
+<?
+$MESS["FORUM_PP_TITLE"] = "Taðkai uþ praneðimà";
+$MESS["FORUM_PP_ERROR_DELETE"] = "Klaida trinant áraðà";
+$MESS["FORUM_PP_POINTS_PER_MES"] = "Taðkai uþ praneðimà";
+$MESS["FORUM_PP_MIN_MES"] = "Minimalus praneðimø skaièius";
+$MESS["FORUM_PP_POINTS"] = "Taðkai uþ praneðimà";
+$MESS["FORUM_PP_EDIT_DESCR"] = "Keisti áraðà";
+$MESS["FORUM_PP_DEL_DESCR"] = "Iðtrinti";
+$MESS["FORUM_PP_DEL_CONF"] = "Ar tikrai norite iðtrinti ðá áraðà?";
+$MESS["FP2PAN_UPDATE_ERROR"] = "Klaida atnaujinant áraðà";
+$MESS["FP2PAN_ADD_NEW"] = "Naujas áraðas";
+$MESS["FP2PAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà áraðà";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinti";
+?>

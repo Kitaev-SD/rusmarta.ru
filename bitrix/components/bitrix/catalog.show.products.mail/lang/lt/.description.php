@@ -1,0 +1,5 @@
+<?
+$MESS["CVPM_DEFAULT_TEMPLATE_NAME"] = "Prekiø apraðymai el. paðtui";
+$MESS["CVPM_DEFAULT_TEMPLATE_DESCRIPTION"] = "Rodyti prekes ar prekiø sàraðà pagal prekës ID nurodytà nustaymuose.";
+$MESS["CVPM_NAME"] = "Prekiø apraðymai el. paðtui";
+?>

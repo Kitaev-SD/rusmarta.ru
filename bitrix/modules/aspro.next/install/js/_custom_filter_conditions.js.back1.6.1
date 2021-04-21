@@ -1,0 +1,66 @@
+BX.ready(function(){
+	console.log('ready');
+
+	function init(delay){
+		if(typeof FilterConditionsParameterControl === 'function'){
+			console.log('init');
+
+			FilterConditionsParameterControl.prototype.modifyCondValueGroup_old = FilterConditionsParameterControl.prototype.modifyCondValueGroup;
+			FilterConditionsParameterControl.prototype.modifyCondValueGroup = function(ctrl){
+				if (!ctrl || !ctrl.children || !ctrl.children.length)
+					return;
+
+				var propertyPrefix = 'CondIBProp',
+					allowedFields = [
+						'CondIBXmlID', 'CondIBIBlock', 'CondIBCode', 'CondIBName', 'CondIBElement', 'CondIBSection', 'CondIBDateActiveFrom', 'CondIBDateActiveTo',
+						'CondIBSort', 'CondIBDateCreate', 'CondIBCreatedBy', 'CondIBTimestampX', 'CondIBModifiedBy',
+						'CondIBTags', 'CondCatQuantity', 'CondCatWeight'
+					],
+					del, current, name;
+
+				for (var k in ctrl.children)
+				{
+					if (ctrl.children.hasOwnProperty(k))
+					{
+						current = ctrl.children[k];
+						del = true;
+
+						if (BX.util.in_array(current.controlId, allowedFields))
+						{
+							del = false;
+						}
+						else
+						{
+							name = current.controlId.split(':');
+							if (name[1] && name[1] != this.data.iblockId && name[1] != this.data.offersIblockId)
+							{
+								return true;
+							}
+
+							if (name[0] === propertyPrefix && name[2])
+							{
+								del = false;
+							}
+						}
+
+						if (del)
+						{
+							delete ctrl.children[k];
+						}
+					}
+				}
+
+				ctrl.children = ctrl.children.filter(function(val){return val});
+
+				return false;
+			}
+		}
+		else{
+			setTimeout(function(){
+				init(delay);
+			}, delay);
+		}
+	}
+
+	init(100);
+});

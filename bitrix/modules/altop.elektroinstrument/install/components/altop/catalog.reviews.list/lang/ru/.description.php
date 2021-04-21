@@ -1,0 +1,5 @@
+<?
+$MESS["CATALOG_REVIEWS_LIST_COMPONENT_NAME"] = "Список отзывов";
+$MESS["CATALOG_REVIEWS_LIST_COMPONENT_DESCR"] = "Список отзывов для товара";
+$MESS["ALTOP_TOOLS"] = "ALTOP TOOLS";
+?>

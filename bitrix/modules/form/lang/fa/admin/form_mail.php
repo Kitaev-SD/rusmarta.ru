@@ -1,0 +1,29 @@
+<?
+$MESS["FORM_FILLING"] = "فرم پر شده";
+$MESS["FORM_FILLING_S"] = "فرم پر شده";
+$MESS["FORM_GENERATING_FINISHED"] = "تمپلت ایمیل ساخت شد.";
+$MESS["FORM_L_FORM_ID"] = "شناسه فرم";
+$MESS["FORM_L_NAME"] = "نام فرم";
+$MESS["FORM_L_SID"] = "SID فرم";
+$MESS["FORM_L_RESULT_ID"] = "شناسه نتایج";
+$MESS["FORM_L_DATE_CREATE"] = "تاریخ ارسال فرم";
+$MESS["FORM_L_USER_ID"] = "شناسه کاربر";
+$MESS["FORM_L_USER_EMAIL"] = "ایمیل کاربر";
+$MESS["FORM_L_USER_NAME"] = "نام و نام خانوادگی کاربر";
+$MESS["FORM_L_USER_AUTH"] = "ورود به سایت کاربر؟";
+$MESS["FORM_L_STAT_GUEST_ID"] = "شناسه بیننده";
+$MESS["FORM_L_STAT_SESSION_ID"] = "شناسه جلسه";
+$MESS["FORM_DATE_CREATE"] = "تاریخ - ";
+$MESS["FORM_RESULT_ID"] = "نتایج - ";
+$MESS["FORM_USER"] = "کاربر - ";
+$MESS["FORM_STAT_GUEST_ID"] = "بیننده - ";
+$MESS["FORM_STAT_SESSION_ID"] = "جلسه - ";
+$MESS["FORM_GENERATED_AUTOMATICALLY"] = "پیغام به طور خودکار ساخت شد.";
+$MESS["FORM_VIEW"] = "این پیوند را برای دیدن دنبال کنید:";
+$MESS["FORM_VIEW_TEMPLATE"] = "دیدن تمپلت";
+$MESS["FORM_PAGE_TITLE"] = "درحال ساخت تمپلت ایمیل";
+$MESS["FORM_NOT_REGISTERED"] = "ثبت نام نشده";
+$MESS["FORM_AUTHORIZED"] = "ورود به سایت شده";
+$MESS["FORM_NOT_AUTHORIZED"] = "ورود به سایت نشده";
+$MESS["FORM_WEB_FORMS"] = "[فرم ها]";
+?>

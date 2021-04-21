@@ -1,0 +1,36 @@
+<?
+$MESS["TR_REWRITE_LANG_FILES"] = "همه فایلهای زبان رونویسی شود";
+$MESS["TR_UPLOAD_FILE"] = "آوردن فایل سی.اس.وی";
+$MESS["TR_UPLOAD_CSV_FILE"] = "فایل CSV:";
+$MESS["TRANS_FILE_NAME"] = "نام فایل/فولدر";
+$MESS["TR_FILEUPLFORM_TAB1"] = "آوردن";
+$MESS["TR_FILE_ACTIONS"] = "کارهای فایل:";
+$MESS["TRANS_NOT_TRANSLATED"] = "برگردان نشده";
+$MESS["TR_CSV_UPLOAD_OK"] = "فایل به درستی آورده شد.";
+$MESS["TRANS_TOTAL"] = "همه";
+$MESS["TRANS_TOTAL_MESSAGES"] = "همه پیغامها";
+$MESS["TR_UPLOAD_SUBMIT_BUTTON"] = "آوردن";
+$MESS["TR_FILE_TITLE"] = "ویرایش فایل";
+$MESS["TR_UP_TITLE"] = "رفتن به لایه بالاتر";
+$MESS["TR_FOLDER_TITLE"] = "رفتن به فولدر";
+$MESS["TR_NO_REWRITE_LANG_FILES"] = "تنها پیغامهای جدید آورده شود";
+$MESS["TRANS_PATH"] = "مسیر:";
+$MESS["TRANS_TITLE"] = "ترجمه و بومی سازی";
+$MESS["TR_SHOW_DIFF_TEXT"] = "نمایش اختلافات";
+$MESS["TR_SHOW_DIFF_TITLE"] = "نمایش اختلافات";
+$MESS["TR_NO_SHOW_DIFF_TITLE"] = "پنهان نمودن اختلافات";
+$MESS["TR_NO_SHOW_DIFF_TEXT"] = "پنهان نمودن اختلافات";
+$MESS["TRANS_GO"] = "بگرد";
+$MESS["TR_DOWNLOAD_CSV_TEXT"] = "بردن با فایل سی.اس.وی";
+$MESS["TR_DOWNLOAD_CSV_TITLE"] = "بردن با فایل سی.اس.وی";
+$MESS["TRANS_BACK"] = "بازگشت";
+$MESS["TR_DOWNLOAD_SUBMIT_BUTTON"] = "بردن";
+$MESS["TR_CHECK_FILES_TEXT"] = "چک کردن فایلها";
+$MESS["TR_FILEDOWNFORM_TAB2"] = "بردن فایلها";
+$MESS["TR_DOWNLOAD_LANG"] = "بردن همه رشته ها";
+$MESS["TR_DOWNLOAD_NO_TRANSLATE"] = "بردن رشته های ترجمه نشده";
+$MESS["TR_MESSAGE_EDIT"] = "ویرایش رشته ها";
+$MESS["TR_NEW_SEARCH"] = "جستجوی جدید";
+$MESS["TR_SEARCH"] = "جستجو";
+$MESS["TR_SEARCH_TITLE"] = "جستجو";
+?>

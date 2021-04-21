@@ -1,0 +1,16 @@
+<?
+$MESS["CHAT_ENTITY_AUTHOR_ID_FIELD"] = "ID del credaor del chat";
+$MESS["CHAT_ENTITY_CALL_NUMBER_FIELD"] = "Número";
+$MESS["CHAT_ENTITY_CALL_TYPE_FIELD"] = "Tipo de llamada";
+$MESS["CHAT_ENTITY_COLOR_FIELD"] = "Color de chat";
+$MESS["CHAT_ENTITY_DESCRIPTION_FIELD"] = "Descripción de chat";
+$MESS["CHAT_ENTITY_ENTITY_DATA_1_FIELD"] = "Datos de entidad 1";
+$MESS["CHAT_ENTITY_ENTITY_DATA_2_FIELD"] = "Datos de entidad 2";
+$MESS["CHAT_ENTITY_ENTITY_DATA_3_FIELD"] = "Datos de entidad 3";
+$MESS["CHAT_ENTITY_ENTITY_ID_FIELD"] = "ID de la entidad";
+$MESS["CHAT_ENTITY_ENTITY_TYPE_FIELD"] = "Entidad";
+$MESS["CHAT_ENTITY_EXTRANET_FIELD"] = "Extranet";
+$MESS["CHAT_ENTITY_ID_FIELD"] = "ID";
+$MESS["CHAT_ENTITY_TITLE_FIELD"] = "Título del chat";
+$MESS["CHAT_ENTITY_TYPE_FIELD"] = "Tipo de chat";
+?>

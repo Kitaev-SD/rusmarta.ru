@@ -1,0 +1,4 @@
+<?
+$MESS["FORM_VALIDATOR_VAL_NUM_DESCRIPTION"] = "ÚÏÏ";
+$MESS["FORM_VALIDATOR_VAL_NUM_ERROR"] = "#FIELD_NAME#: ãÞÏÇÑ æÇÑÏ ÔÏå ÈÇíÏ ÚÏÏ ÈÇÔÏ";
+?>

@@ -1,0 +1,51 @@
+<?
+$MESS["PRESET_MAILBLOCK_unsub_TEXT_UNSUB_LINK"] = "enlace";
+$MESS["PRESET_MAILBLOCK_unsub_TEXT_UNSUB_TEXT"] = "Para darse de baja por favor siga esto";
+$MESS["PRESET_TEMPLATE_1column1"] = "1 columna-1";
+$MESS["PRESET_TEMPLATE_1column2"] = "1 columna-2";
+$MESS["PRESET_TEMPLATE_2column1"] = "2 columna-1";
+$MESS["PRESET_TEMPLATE_2column2"] = "2 columna-2";
+$MESS["PRESET_TEMPLATE_2column3"] = "2 columna-3";
+$MESS["PRESET_TEMPLATE_2column4"] = "2 columna-4";
+$MESS["PRESET_TEMPLATE_2column5"] = "2 columna-5";
+$MESS["PRESET_TEMPLATE_2column6"] = "2 columna-6";
+$MESS["PRESET_TEMPLATE_2column7"] = "2 columnas-7";
+$MESS["PRESET_TEMPLATE_3column1"] = "3 columna-1";
+$MESS["PRESET_TEMPLATE_3column2"] = "3 columna-2";
+$MESS["PRESET_TEMPLATE_3column3"] = "3 columna-3";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_BUTTON"] = "Abrir sitio web";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_HEADER"] = "Encabezamiento";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_MENU_ABOUT"] = "Sobre nosotros";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_MENU_CONTACTS"] = "Contactos";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_MENU_DELIVERY"] = "Terminos de envio";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_MENU_GUARANTEE"] = "Garantía";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_MENU_HOWTO"] = "Cómo comprar";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_SCHEDULE_DETAIL"] = "De lunes a viernes de 09:00 a 20:00, sábados, domingos, cerrado";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_SCHEDULE_NAME"] = "Horas de trabajo";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_TEXT1"] = "Pero debo explicar a usted cómo nació toda esta idea equivocada de la denuncia de placer y alabar dolor, una cuenta completa del sistema, y exponer las enseñanzas reales del gran explorador de la verdad y a desarrollarse en el maestro de obras de la felicidad humana. Nadie lo es.
+Referencias cruzadas ninguno de placer, ya que es el dolor o la evita, sino por aquellos que no saben cómo buscar el placer....";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_TEXT2"] = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_TEXT3"] = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_TEXT4"] = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_TEXT5"] = "Pero debo explicar a usted cómo nació toda esta idea equivocada de la denuncia de placer y alabar dolor, una cuenta completa del sistema, y exponer las enseñanzas reales del gran explorador de la verdad y a desarrollarse en el maestro de obras de la felicidad humana. Nadie lo es.
+Ninguno de placer, ya que es el dolor o la evita, pero eso.";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_TEXT6"] = "Pero debo explicar a usted cómo nació toda esta idea equivocada de la denuncia de placer y alabar dolor, una cuenta completa del sistema, y exponer las enseñanzas reales del gran explorador de la verdad y a desarrollarse en el maestro de obras de la felicidad humana. Ninguno.";
+$MESS["PRESET_TEMPLATE_LIST_BLANK_UNSUB_LINK"] = "Darse de baja";
+$MESS["PRESET_TEMPLATE_LIST_SITE_DEF_TEXT"] = "Agregar texto e imágenes para su mensaje aquí";
+$MESS["PRESET_TEMPLATE_dynamic1"] = "dynamics-1";
+$MESS["PRESET_TEMPLATE_dynamic2"] = "dynamics-2";
+$MESS["PRESET_TEMPLATE_empty"] = "Plantilla vacía";
+$MESS["SENDER_PRESET_TEMPLATE_BTN_CLOSE"] = "Cierra y vuelve al mensaje";
+$MESS["SENDER_PRESET_TEMPLATE_BTN_PREVIEW"] = "Vista previa";
+$MESS["SENDER_PRESET_TEMPLATE_LIST_TMPL"] = "Plantillas";
+$MESS["SENDER_PRESET_TEMPLATE_NO_TMPL"] = "No hya plantillas";
+$MESS["SENDER_PRESET_TEMPLATE_OLD_EDITOR"] = "Editor heredado";
+$MESS["SENDER_PRESET_TEMPLATE_SELECT"] = "Seleccionar plantillas";
+$MESS["TYPE_PRESET_TEMPLATE_ADDITIONAL"] = "Plantillas adicionales";
+$MESS["TYPE_PRESET_TEMPLATE_BASE"] = "Plantillas estándar";
+$MESS["TYPE_PRESET_TEMPLATE_LAST"] = "Recientemente usado";
+$MESS["TYPE_PRESET_TEMPLATE_MAILING"] = "Mensajes recientes";
+$MESS["TYPE_PRESET_TEMPLATE_MARKETPLACE"] = "Marketplace";
+$MESS["TYPE_PRESET_TEMPLATE_SITE_TMPL"] = "Temas visuales";
+$MESS["TYPE_PRESET_TEMPLATE_USER"] = "Mis plantillas";
+?>

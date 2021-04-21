@@ -1,0 +1,35 @@
+<?
+$MESS["FORUM_MESSAGE_APPROVE"] = "Rodyti praneðimà";
+$MESS["FORUM_MESSAGE_UNAPPROVE"] = "Paslëpti praneðimà";
+$MESS["FORUM_MESSAGE_MOVE"] = "Perkelti praneðimà";
+$MESS["FORUM_MESSAGE_EDIT"] = "Redaguoti praneðimà";
+$MESS["FORUM_MESSAGE_DELETE"] = "Iðtrinti praneðimà";
+$MESS["FORUM_TOPIC_APPROVE"] = "Rodyti temà";
+$MESS["FORUM_TOPIC_UNAPPROVE"] = "Paslëpti temà";
+$MESS["FORUM_TOPIC_STICK"] = "Prikabinti temà";
+$MESS["FORUM_TOPIC_UNSTICK"] = "Atkabinti temà";
+$MESS["FORUM_TOPIC_OPEN"] = "Atidaryti temà";
+$MESS["FORUM_TOPIC_CLOSE"] = "Uþdaryti temà";
+$MESS["FORUM_TOPIC_MOVE"] = "Perkelti temà";
+$MESS["FORUM_TOPIC_EDIT"] = "Redaguoti temà";
+$MESS["FORUM_TOPIC_DELETE"] = "Iðtrinti temà";
+$MESS["FORUM_FORUM_EDIT"] = "Redaguoti forumà";
+$MESS["FORUM_FORUM_DELETE"] = "Iðtrinti forumà";
+$MESS["FORUM_MESSAGE_SPAM"] = "Praneðimas iðtrintas kaip spamas.";
+$MESS["FORUM_TOPIC_SPAM"] = "Tema iðtrinta kaip spamas.";
+$MESS["LOG_FORUM"] = "Forumas";
+$MESS["LOG_FORUM_MESSAGE_APPROVE"] = "Parodytas praneðimas temoje #NAME#";
+$MESS["LOG_FORUM_MESSAGE_UNAPPROVE"] = "Paslëptas praneðimas temoje #NAME#";
+$MESS["LOG_FORUM_MESSAGE_MOVE"] = "Praneðimas perkeltas á #NAME#";
+$MESS["LOG_FORUM_MESSAGE_EDIT"] = "Temoje #NAME# pakeistas praneðimas";
+$MESS["LOG_FORUM_MESSAGE_DELETE"] = "Temoje #NAME# iðtrintas praneðimas";
+$MESS["LOG_FORUM_TOPIC_APPROVE"] = "Rodoma tema #NAME#";
+$MESS["LOG_FORUM_TOPIC_UNAPPROVE"] = "Paslëpta tema #NAME#";
+$MESS["LOG_FORUM_TOPIC_STICK"] = "Tema #NAME# prikabinta";
+$MESS["LOG_FORUM_TOPIC_UNSTICK"] = "Tema #NAME# atkabinta";
+$MESS["LOG_FORUM_TOPIC_OPEN"] = "Atidaryta tema #NAME#";
+$MESS["LOG_FORUM_TOPIC_CLOSE"] = "Uþdaryta tema #NAME#";
+$MESS["LOG_FORUM_TOPIC_DELETE"] = "Tema #NAME# iðtrinta";
+$MESS["LOG_FORUM_TOPIC_MOVE"] = "Tema #NAME# perkelta á forumà \"#FORUM#\"";
+$MESS["LOG_FORUM_TOPIC_EDIT"] = "Pakeista tema #NAME# ";
+?>

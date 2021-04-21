@@ -1,0 +1,21 @@
+<?
+$MESS['P_GALLERY_CREATE'] = 'Sukurti mano galerijà';
+$MESS['P_GALLERY_CREATE_TITLE'] = 'Sukurti asmeninæ galerijà';
+$MESS['P_UPLOAD'] = 'Ákelti nuotraukas';
+$MESS['P_PHOTO_VIEW'] = 'Mano nuotraukos';
+$MESS['P_PHOTO_VIEW_TITLE'] = 'Perþiûrëti mano nuotraukas';
+$MESS['P_GALLERY_VIEW'] = 'Mano galerija';
+$MESS['P_GALLERY_VIEW_TITLE'] = 'Redaguoti mano galerijà';
+$MESS['P_GALLERIES_VIEW'] = 'Mano galerijos';
+$MESS['P_GALLERIES_VIEW_TITLE'] = 'Perþiûrëti mano galerijø sàraðà';
+$MESS['P_GALLERY_SIZE'] = '	
+Dydis';
+$MESS['P_GALLERY_SIZE_RECALC'] = 'Perskaièiuoti';
+$MESS['P_GALLERY_SIZE_RECALC_NEW'] = 'Perskaièiuoti';
+$MESS['P_GALLERY_SIZE_RECALC_CONTINUE'] = 'Tæsti';
+$MESS['P_GALLERY_SIZE_RECOUNT'] = 'Perskaièiuoti';
+$MESS['P_GALLERY'] = 'Galerija';
+$MESS['P_GALLERY_TITLE'] = 'Pereiti á pagrindiná galerijos puslapá';
+$MESS['P_LOGIN'] = 'Prisijungti';
+$MESS['P_LOGIN_TITLE'] = 'Autorizuotis svetainëje';
+?>

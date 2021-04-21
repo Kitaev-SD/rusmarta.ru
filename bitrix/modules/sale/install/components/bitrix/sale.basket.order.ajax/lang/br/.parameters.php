@@ -1,0 +1,29 @@
+<?
+$MESS["SBB_BDELAY"] = "Adicionar à lista de desejos";
+$MESS["SBB_BDELETE"] = "Deletar";
+$MESS["SBB_BDISCOUNT"] = "Desconto";
+$MESS["SBB_BNAME"] = "Nome do produto";
+$MESS["SBB_BPRICE"] = "Preçõ";
+$MESS["SBB_BPROPS"] = "Propriedades do produto";
+$MESS["SBB_BQUANTITY"] = "Quantidade";
+$MESS["SBB_BTYPE"] = "Tipo de preço";
+$MESS["SBB_BWEIGHT"] = "Peso";
+$MESS["SBB_COLUMNS_LIST"] = "Exibir colunas";
+$MESS["SBB_DESC_NO"] = "Não";
+$MESS["SBB_DESC_YES"] = "Sim";
+$MESS["SBB_HIDE_COUPON"] = "Ocultar campo de cupom";
+$MESS["SBB_ORDER_SHOW"] = "Exibir processamento do pedido";
+$MESS["SBB_QUANTITY_FLOAT"] = "Utilizar quantidades fracionadas";
+$MESS["SBB_TAX_SHOW_VALUE"] = "Exibir total de impostos";
+$MESS["SBB_TEMPLATE_LOCATION"] = "Template de local";
+$MESS["SBB_TMP_DEFAULT"] = "Padrão";
+$MESS["SBB_TMP_POPUP"] = "Pesquisar string";
+$MESS["SBB_VAT_INCLUDE"] = "Incluir imposto no preço";
+$MESS["SBB_VAT_SHOW_VALUE"] = "Exibir valor do imposto";
+$MESS["SBB_WEIGHT_KOEF"] = "Especifica a contagem de unidades em gramas";
+$MESS["SBB_WEIGHT_UNIT"] = "Unidade de peso";
+$MESS["SBB_WEIGHT_UNIT_G"] = "g";
+$MESS["SOA_PATH_TO_PAYMENT"] = "Página do sistema de pagamento";
+$MESS["SOA_PATH_TO_PERSONAL"] = "Página de conta do cliente";
+$MESS["SOA_SEND_NEW_USER_NOTIFY"] = "Enviar notificação \"usuário registrado\"";
+?>

@@ -1,0 +1,6 @@
+<?
+$MESS["SALE_BVAL_MAIL_PARAM_PROVIDER"] = "Duomenø ðaltinis";
+$MESS["SALE_BVAL_MAIL_PARAM_GROUP"] = "Laukø grupë";
+$MESS["SALE_BVAL_MAIL_PARAM_FIELD"] = "Laukai";
+$MESS["SALE_BVAL_MAIL_PARAM_FIELD_ORDER_ID"] = "Uþsakymo ID";
+?>

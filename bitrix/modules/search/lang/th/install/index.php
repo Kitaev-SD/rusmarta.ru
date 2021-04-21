@@ -1,0 +1,9 @@
+<?
+$MESS ['SEARCH_MODULE_NAME'] = "¡ÒÃ¤é¹ËÒ¢éÍÁÙÅ";
+$MESS ['SEARCH_MODULE_DESC'] = "âÁ´ÙÅ¡ÒÃ¤é¹ËÒ¢éÍÁÙÅÍ¹Ø­ÒµãËé¨Ñ´ÊÒÃºÑ­¢Í§àÇçºä«µì áÅÐ·Ó¡ÒÃ¤é¹ËÒ";
+$MESS ['SEARCH_INSTALL_TITLE'] = "µÔ´µÑé§âÁ´ÙÅ¤é¹ËÒ";
+$MESS ['SEARCH_UNINSTALL_TITLE'] = "¶Í´âÁ´ÙÅ¤é¹ËÒ";
+$MESS ['SEARCH_DEMO_DIR'] = "You can check sample search pages at the following links:";
+$MESS ['SEARCH_SITE'] = "àÇçºä«µì";
+$MESS ['SEARCH_LINK'] = "ÅÔ§¤ì";
+?>

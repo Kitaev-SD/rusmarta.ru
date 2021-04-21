@@ -1,0 +1,11 @@
+<svg id="Search_mask.svg" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Rounded_Rectangle_115_copy_2" data-name="Rounded Rectangle 115 copy 2" class="cls-1" d="M1546.76,48.311l-3.3-3.3A7.469,7.469,0,0,0,1537.5,33h9.5V48.766A0.935,0.935,0,0,0,1546.76,48.311ZM1543,40.5a5.5,5.5,0,1,1-5.5-5.5A5.5,5.5,0,0,1,1543,40.5Zm-13,0V33h7.5A7.5,7.5,0,0,0,1530,40.5Zm7.5,7.5a7.45,7.45,0,0,0,4.55-1.572l3.29,3.3a0.975,0.975,0,0,0,.62.275H1530V40.5A7.5,7.5,0,0,0,1537.5,48Zm9.26,1.725a0.935,0.935,0,0,0,.24-0.455V50h-0.86A1.022,1.022,0,0,0,1546.76,49.725Z" transform="translate(-1530 -33)"/>
+</svg>

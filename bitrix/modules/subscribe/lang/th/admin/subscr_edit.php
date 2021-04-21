@@ -1,0 +1,31 @@
+<?
+$MESS ['subscr_title_edit'] = "Edit address #";
+$MESS ['subscr_title_add'] = "Add address";
+$MESS ['subscr_list'] = "Address list";
+$MESS ['subscr_conf'] = "Subscription confirmed:";
+$MESS ['subscr_conf_code'] = "Subscription confirmation code:";
+$MESS ['subscr_date_conf'] = "Date of generating a confirmation code:";
+$MESS ['subscr_user'] = "User (ID):";
+$MESS ['subscr_active'] = "Subscription active:";
+$MESS ['subscr_send_conf'] = "Send the confirmation code to the subscriber if the address changes or a new one is added:";
+$MESS ['subscr_rub'] = "Newsletter categories:";
+$MESS ['subscr_fmt'] = "Format:";
+$MESS ['subscr_fmt_text'] = "Text";
+$MESS ['subscr_date_add'] = "Created:";
+$MESS ['subscr_date_upd'] = "Modified:";
+$MESS ['subscr_anonym'] = "Anonymous subscriber:";
+$MESS ['subscr_mnu_add'] = "Add a new subscriber";
+$MESS ['subscr_mnu_del'] = "Delete this subscriber";
+$MESS ['subscr_mnu_del_conf'] = "Remove the subscriber's address?";
+$MESS ['subscr_templ'] = "Send message based on a template of the site:";
+$MESS ['subscr_tab_subscriber'] = "ผู้รับ";
+$MESS ['subscr_tab_subscriber_title'] = "Parameters ของการรับจดหมายข่าว";
+$MESS ['subscr_tab_subscription'] = "การรับจดหมายข่าว";
+$MESS ['subscr_tab_subscription_title'] = "หัวข้อการรับจดหมายข่าว";
+$MESS ['subs_save_error'] = "พบข้อผิดพลาดในการบันทึกที่อยู่ผู้รับ";
+$MESS ['subscr_list_text'] = "รายการ";
+$MESS ['subscr_add_text'] = "เพิ่ม";
+$MESS ['subscr_del_text'] = "ลบ";
+$MESS ['subs_saved'] = "ที่อยู่ในการส่งจดหมายข่าวถูกบันทึกแล้ว";
+$MESS ['subscr_req'] = "บังคับ";
+?>

@@ -1,0 +1,27 @@
+<?
+$MESS["FORUM_EDIT_RECORD"] = "Ðypsenëlës N#ID# redagvimas";
+$MESS["FORUM_NEW_RECORD"] = "Naujà ðypsenëlæ";
+$MESS["ERROR_EDIT_SMILE"] = "Nepavyko atnaujinti ðypssenëlæ";
+$MESS["ERROR_ADD_SMILE"] = "Nepavyko sukurti naujà ðypsenëlæ";
+$MESS["ERROR_BAD_SESSID"] = "Jûsø sesija pasibaigë. Bandykite dar kartà.";
+$MESS["FORUM_SORT"] = "Rûðiavimas";
+$MESS["FORUM_CODE"] = "ID";
+$MESS["ERROR_COPY_IMAGE"] = "Nepavyko ákelti ðypsenëlæ. Galimai trûksta teisiø áraðymui.";
+$MESS["ERROR_EXISTS_IMAGE"] = "Vaizdas #FILE# jau yra.";
+$MESS["FORUM_TYPE"] = "Ðypsenëlës tipas";
+$MESS["FORUM_TYPING"] = "Ðypsenëlës raðymas";
+$MESS["FORUM_TYPING_NOTE"] = "(visi raðymo budai turëtø bûti atskirti tarpais)";
+$MESS["FORUM_IMAGE"] = "Ðypsenëlës vaizdas";
+$MESS["FORUM_IMAGE_NOTE"] = "(rekomenduojamas ðypsenëlës dydis: 16x16, piktogramos: 15x15)";
+$MESS["FORUM_IMAGE_NAME"] = "Ðypsenëlës pavadinimas";
+$MESS["FSE_SMILE"] = "Ðypsenëlë";
+$MESS["FSE_ICON"] = "Piktograma";
+$MESS["FSN_2FLIST"] = "Ðypsenëlës";
+$MESS["FSN_NEW_SMILE"] = "Pridëti naujà ðypsenëlæ";
+$MESS["FSN_DELETE_SMILE"] = "Iðtrinti ðypsenëlæ";
+$MESS["FSN_DELETE_SMILE_CONFIRM"] = "Ar tikrai norite iðtrinti ðià ðypsenëlæ?";
+$MESS["FSN_TAB_SMILE"] = "Forumo ðypsenëlë";
+$MESS["FSN_TAB_SMILE_DESCR"] = "Forumo ðypsenëlë";
+$MESS["FE_NO_PERMS2UPDATE"] = "Nepakanka teisiø ðypsenëliø redagavimui.";
+$MESS["FE_NO_PERMS2ADD"] = "Nepakanka teisiø ðypsenëliø ákëlimui.";
+?>

@@ -1,0 +1,12 @@
+<?
+$MESS["SEARCH_TAGSTAT_TITLE"] = "Paieðkos fraziø statistikà";
+$MESS["SEARCH_TAGSTAT_ID"] = "ID";
+$MESS["SEARCH_TAGSTAT_DATE"] = "Data";
+$MESS["SEARCH_TAGSTAT_SITE_ID"] = "Svetainë";
+$MESS["SEARCH_TAGSTAT_SITE"] = "(svetainë)";
+$MESS["SEARCH_TAGSTAT_TAGS"] = "Þymës";
+$MESS["SEARCH_TAGSTAT_STAT_SESS_ID"] = "Sesijos ID";
+$MESS["SEARCH_TAGSTAT_URL_TO"] = "Kur atëjo";
+$MESS["SEARCH_TAGSTAT_404"] = "(404 klaida)";
+$MESS["SEARCH_TAGSTAT_COUNT"] = "Kiekis";
+?>

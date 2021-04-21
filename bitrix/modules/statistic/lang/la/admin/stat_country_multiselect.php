@@ -1,0 +1,10 @@
+<?
+$MESS["STAT_COUNTRY_MSEL_FIND"] = "Buscar";
+$MESS["STAT_COUNTRY_MSEL_ID"] = "ID";
+$MESS["STAT_COUNTRY_MSEL_NAME"] = "Nombre";
+$MESS["STAT_COUNTRY_MSEL_PAGES"] = "Países";
+$MESS["STAT_COUNTRY_MSEL_SELECT"] = "Seleccionar";
+$MESS["STAT_COUNTRY_MSEL_SELECT_TITLE"] = "Agregar países seleccionados";
+$MESS["STAT_COUNTRY_MSEL_SHORT_NAME"] = "Nombre corto";
+$MESS["STAT_COUNTRY_MSEL_TITLE"] = "Países";
+?>

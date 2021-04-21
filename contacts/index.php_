@@ -1,0 +1,103 @@
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Контакты");?><p>
+ <strong>Реквизиты компании</strong>
+</p>
+<table width="900px" cellspacing="0" cellpadding="0" align="center" height="512">
+    <tbody>
+    <tr>
+        <td bgcolor="#E8EBF6">
+            <br>
+        </td>
+        <td colspan="2" bgcolor="#E8EBF6">
+            <p>
+                &nbsp;&nbsp;&nbsp; ООО "Петросервис", ИНН 7804417799, ОГРН 1097847179430
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2">
+            <p>
+            </p>
+            <br>
+            <br>
+            Адрес<br>
+        </td>
+        <td rowspan="2" colspan="2">
+            <br>
+            &nbsp;
+            <blockquote>
+            </blockquote>
+            <p>
+                <br>
+            </p>
+            <p>
+                195269 г. Санкт-Петербург, м.Гражданский проспект ул. Учительская д.23, Бизнес центр Атолл, офис 445
+            </p>
+            <blockquote>
+            </blockquote>
+        </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+            <p>
+                Email: (для информационных писем)
+            </p>
+        </td>
+        <td colspan="2">
+            &nbsp; <a href="mailto:Info@rusmarta.ru">Info@rusmarta.ru</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+            <p>
+                Email: (для вопросов только по технической поддержке)
+            </p>
+        </td>
+        <td colspan="2">
+            &nbsp; <a href="mailto:support@rusmarta.ru">support@rusmarta.ru</a>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#E8EBF6">
+            <p>
+                <strong>Время работы</strong>
+            </p>
+        </td>
+        <td colspan="2" bgcolor="#E8EBF6">
+            <p>
+                &nbsp;&nbsp;&nbsp; Пн-Пт 09.30-19.00, Сб 10.00-17.00 (заказы на сайте принимаются круглосуточно)
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>
+                <strong>Телефоны:</strong>
+            </p>
+        </td>
+        <td colspan="2">
+            <p>
+                &nbsp;&nbsp;&nbsp; +7 (812) 309-76-71 (Отдел продаж, многоканальный)
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp; +7 (812) 374-50-01 (Техподдержка)
+            </p>
+            <p>
+                &nbsp; &nbsp; +7 (921) 961-52-59 (Техподдержка)
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp; 8 (800) 333-53-51 (Бесплантая линия по России)
+            </p>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    <h1>&nbsp;Как добраться?</h1>
+    <p style="text-align: center;">
+        <iframe frameborder="0" src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7971.616837750786!2d30.401886195087943!3d60.03324067865281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x469633471ba5d14f%3A0xb8693ea13e80f3f0!2z0JzQtdGC0YDQviDQk9GA0LDQttC00LDQvdGB0LrQuNC5INC_0YDQvtGB0L_QtdC60YIsINCh0LDQvdC60YIt0J_QtdGC0LXRgNCx0YPRgNCzLCDQs9C-0YDQvtC0INCh0LDQvdC60YIt0J_QtdGC0LXRgNCx0YPRgNCz!3m2!1d60.035137999999996!2d30.4195532!4m5!1s0x469633426c052041%3A0x1f073f6aa045492b!2z0KPRh9C40YLQtdC70YzRgdC60LDRjyDRg9C7LiwgMjMsINCh0LDQvdC60YIt0J_QtdGC0LXRgNCx0YPRgNCzLCAxOTUyNjk!3m2!1d60.031777999999996!2d30.403554999999997!5e0!3m2!1sru!2sru!4v1481100567445" width="950" height="600"></iframe>
+    </p>
+    <h1 style="text-align: left;">&nbsp;&nbsp;</h1><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php")?>

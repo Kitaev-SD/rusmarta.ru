@@ -1,0 +1,8 @@
+<?
+$MESS["SENDER_SUBSCR_MODULE_NOT_INSTALLED"] = "El. marketingo modulis yra neprieinamas.";
+$MESS["SENDER_SUBSCR_TITLE"] = "Prenumeratos";
+$MESS["SENDER_SUBSCR_ERR_EMAIL"] = "Nurodytas neteisingas el. paðto adresas.";
+$MESS["SENDER_SUBSCR_NOTE_SUCCESS"] = "Jûs tapote prenumeratoriumi.";
+$MESS["SENDER_SUBSCR_NOTE_CONFIRM"] = "Patvirtinimo paðtas iðsiøstas á jûsø paðto dëþutæ. Paspauskite nuorodà prenumeratos patvirtinimui.";
+$MESS["SENDER_SUBSCR_ERR_SECURITY"] = "Prenumeratos patvirtinimo metu ávyko klaida. Neteisinga nuoroda.";
+?>

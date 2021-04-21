@@ -1,0 +1,36 @@
+<?
+$MESS["SENDER_LETTER_LIST_BTN_ADD"] = "Criar campanha";
+$MESS["SENDER_LETTER_LIST_BTN_COPY"] = "Copiar";
+$MESS["SENDER_LETTER_LIST_BTN_COPY_TITLE"] = "Copiar";
+$MESS["SENDER_LETTER_LIST_BTN_EDIT"] = "Editar";
+$MESS["SENDER_LETTER_LIST_BTN_EDIT_TITLE"] = "Editar";
+$MESS["SENDER_LETTER_LIST_BTN_REMOVE"] = "Excluir";
+$MESS["SENDER_LETTER_LIST_BTN_REMOVE_TITLE"] = "Excluir";
+$MESS["SENDER_LETTER_LIST_BTN_VIEW"] = "Visualizar";
+$MESS["SENDER_LETTER_LIST_BTN_VIEW_TITLE"] = "Visualizar";
+$MESS["SENDER_LETTER_LIST_BUTTON_RECIPIENT"] = "Destinatários";
+$MESS["SENDER_LETTER_LIST_BUTTON_STAT"] = "Estatísticas";
+$MESS["SENDER_LETTER_LIST_DURATION"] = "Tempo necessário para que as mensagens de e-mail sejam enviadas se iniciadas agora.";
+$MESS["SENDER_LETTER_LIST_DUR_DATE_CREATE"] = "Criada em";
+$MESS["SENDER_LETTER_LIST_DUR_DATE_FINISH"] = "Até terminar";
+$MESS["SENDER_LETTER_LIST_RECIPIENTS_ALL"] = "Número de destinatários.";
+$MESS["SENDER_LETTER_LIST_RECIPIENTS_SENT"] = "Número de destinatários para os quais as mensagens de e-mail foram enviadas.";
+$MESS["SENDER_LETTER_LIST_ROW_FROM"] = "de";
+$MESS["SENDER_LETTER_LIST_ROW_RECIPIENT"] = "destinatários";
+$MESS["SENDER_LETTER_LIST_ROW_STATS"] = "estatísticas";
+$MESS["SENDER_LETTER_LIST_SENDING_LOADER_TITLE"] = "A campanha de e-mail está em andamento, estamos indo bem.";
+$MESS["SENDER_LETTER_LIST_SENDING_TITLE"] = "Mensagens de e-mail foram enviadas para %count% destinatários.";
+$MESS["SENDER_LETTER_LIST_SPEED_TITLE"] = "Limite de mensagem diária atingido. O envio continuará amanhã.";
+$MESS["SENDER_LETTER_LIST_STATE_IS_PAUSED"] = "Interrompido";
+$MESS["SENDER_LETTER_LIST_STATE_IS_SENT"] = "Concluída";
+$MESS["SENDER_LETTER_LIST_STATE_IS_STOPPED"] = "Interrompido";
+$MESS["SENDER_LETTER_LIST_STATE_PAUSE"] = "Pausar";
+$MESS["SENDER_LETTER_LIST_STATE_PAUSE_TITLE"] = "Suspender o envio. Você pode retomá-lo a qualquer momento.";
+$MESS["SENDER_LETTER_LIST_STATE_RESUME"] = "Retomar";
+$MESS["SENDER_LETTER_LIST_STATE_RESUME_TITLE"] = "Continuar enviando as mensagens de e-mail para os destinatários restantes";
+$MESS["SENDER_LETTER_LIST_STATE_SEND"] = "Enviar";
+$MESS["SENDER_LETTER_LIST_STATE_SEND_TITLE"] = "Começar a enviar mensagens de campanha de e-mail agora";
+$MESS["SENDER_LETTER_LIST_STATE_STOP"] = "Cancelar";
+$MESS["SENDER_LETTER_LIST_STATE_STOP_TITLE"] = "Interromper e terminar a campanha.";
+$MESS["SENDER_LETTER_LIST_STATE_WILL_SEND"] = "Será lançado";
+?>

@@ -1,0 +1,31 @@
+<?
+$MESS["SEC_SCANNER_ADDITIONAL_INFO_BUTTON_ON"] = "Ocultar";
+$MESS["SEC_SCANNER_ADDITIONAL_INFO_TITLE"] = "Detalles";
+$MESS["SEC_SCANNER_CRITICAL_ERROR"] = "Importante!";
+$MESS["SEC_SCANNER_CRITICAL_ERRORS_TITLE"] = "Errores del escáner:";
+$MESS["SEC_SCANNER_CRITICAL_FIRST_START"] = "No has escaneado su sistema por más de un mes.<br>Se recomienda que analice el sistema en este momento.";
+$MESS["SEC_SCANNER_CRITICAL_HIGHT"] = "Alto";
+$MESS["SEC_SCANNER_CRITICAL_LOW"] = "Bajo";
+$MESS["SEC_SCANNER_CRITICAL_MIDDLE"] = "Promedio";
+$MESS["SEC_SCANNER_CRITICAL_PROBLEMS_COUNT"] = ", críticas:";
+$MESS["SEC_SCANNER_CURRENT_TEST"] = "Exploración actual:";
+$MESS["SEC_SCANNER_EXECUTION_TIME_DESCRIPTION"] = "Su configuración especifica un parámetro demasiado pequeño de tiempo para correr un script PHP antes de que ser terminado (el parámetro max_execution_time). El valor recomendado es no menos de #MIN# sec.";
+$MESS["SEC_SCANNER_EXECUTION_TIME_TITLE"] = "No es posible iniciar el Escaner de Seguridad";
+$MESS["SEC_SCANNER_FAST_LOCAL_TESTS"] = "Ejecutar rápidamente el escanner interno";
+$MESS["SEC_SCANNER_INIT"] = "Inicializando ...";
+$MESS["SEC_SCANNER_MAIN_TAB"] = "Escanear";
+$MESS["SEC_SCANNER_NO_PROBLEMS"] = "No hay amenazas detectadas.";
+$MESS["SEC_SCANNER_PROBLEMS_COUNT"] = "Amenazas encontradas:";
+$MESS["SEC_SCANNER_REMOTE_TESTS"] = "Ejecutar exploración externa";
+$MESS["SEC_SCANNER_SETTINGS_TAB"] = "Configuración";
+$MESS["SEC_SCANNER_SETTINGS_TITLE"] = "Configuración de escaner ";
+$MESS["SEC_SCANNER_SLOW_LOCAL_TESTS"] = "Ejecutar captura interna compleja";
+$MESS["SEC_SCANNER_START_BUTTON"] = "Inicio";
+$MESS["SEC_SCANNER_STOP_BUTTON"] = "Stop";
+$MESS["SEC_SCANNER_TESTING_FAILURE"] = "El escáner de Seguridad ha encontrado un error irreparable y no puede continuar. Póngase en contacto con el soporte técnico.";
+$MESS["SEC_SCANNER_TESTING_FAILURE_CODE"] = "(error de código: #CODE#)";
+$MESS["SEC_SCANNER_TEST_DATE"] = "Analizado por última vez en: #DATE#";
+$MESS["SEC_SCANNER_TIP_BUTTON_ON"] = "Ocultar";
+$MESS["SEC_SCANNER_TIP_TITLE"] = "Recomendaciones";
+$MESS["SEC_SCANNER_TITLE"] = "Escaner de seguridad";
+?>

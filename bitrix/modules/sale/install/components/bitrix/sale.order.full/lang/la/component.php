@@ -1,0 +1,37 @@
+<?
+$MESS["INFO_REQ"] = "Tu orden se ha registrado con éxito.";
+$MESS["SALE_BASKET_EMPTY"] = "Tu cesta es vacía ";
+$MESS["SALE_DELIVERY_NOT_FOUND"] = "Método del envío no encontrado.";
+$MESS["SALE_DELIV_PERIOD"] = "Período del envío ";
+$MESS["SALE_EMPTY_FIELD"] = "Este campo está vacío: ";
+$MESS["SALE_ERROR_ADD_ORDER"] = "Método del pago no encontrado.";
+$MESS["SALE_FROM"] = "de";
+$MESS["SALE_MODULE_NOT_INSTALL"] = "El módulo e-Store no está instalado";
+$MESS["SALE_NO"] = "No";
+$MESS["SALE_NO_PAY_SYS"] = "Método del pago no seleccionado.";
+$MESS["SALE_NO_PERS_TYPE"] = "Tipo de pagador no seleccionado.";
+$MESS["SALE_PAY_SYS_NOT_FOUND"] = "Método del pago no encontrado.";
+$MESS["SALE_PERS_TYPE_NOT_FOUND"] = "Tipo de pagador no seleccionado.";
+$MESS["SALE_PER_DAY"] = "días";
+$MESS["SALE_PER_HOUR"] = "horas";
+$MESS["SALE_PER_MONTH"] = "meses ";
+$MESS["SALE_PROFILE_NAME"] = "Perfil";
+$MESS["SALE_QUANTITY_UNIT"] = "pz.(s)";
+$MESS["SALE_TAX_INPRICE"] = "está incluído en el precio ";
+$MESS["SALE_TO"] = "para";
+$MESS["SALE_YES"] = "Si";
+$MESS["STOF_AUTH"] = "Autorización ";
+$MESS["STOF_ERROR_AUTH"] = "Error de la autorización";
+$MESS["STOF_ERROR_AUTH_LOGIN"] = "Error de la autorización: incorporar por favor tu conexión";
+$MESS["STOF_ERROR_REG"] = "Error de registro ";
+$MESS["STOF_ERROR_REG_BAD_EMAIL"] = "Error de registro: comprobar por favor si tu E-mail está mecanografiado correctamente ";
+$MESS["STOF_ERROR_REG_CONFIRM"] = "Se ha registrado correctamente. El mensaje de confirmación de registro ha sido enviado a su dirección de correo electrónico.";
+$MESS["STOF_ERROR_REG_EMAIL"] = "Error de registro: incorporar por favor tu dirección del E-mail ";
+$MESS["STOF_ERROR_REG_FLAG"] = "Error de registro: incorporar por favor la conexión deseada o dejar al sistema generarlo automáticamente ";
+$MESS["STOF_ERROR_REG_FLAG1"] = "Error de registro: incorporar por favor la contraseña deseada o dejar el sistema generarlo automáticamente ";
+$MESS["STOF_ERROR_REG_LASTNAME"] = "Error de registro: incorporar por favor tu apellido";
+$MESS["STOF_ERROR_REG_NAME"] = "Error de registro: incorporar por favor tu nombre";
+$MESS["STOF_ERROR_REG_PASS"] = "Error de registro: la confirmación de la contraseña no empareja la contraseña ";
+$MESS["STOF_MAKING_ORDER"] = "Su pedido";
+$MESS["STOF_VAT"] = "IMPUESTO";
+?>

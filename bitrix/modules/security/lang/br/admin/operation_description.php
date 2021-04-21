@@ -1,0 +1,22 @@
+<?
+$MESS["OP_NAME_SECURITY_ANTIVIRUS_SETTINGS_READ"] = "Começar";
+$MESS["OP_NAME_SECURITY_ANTIVIRUS_SETTINGS_WRITE"] = "Pare";
+$MESS["OP_NAME_SECURITY_FILE_VERIFIER_COLLECT"] = "Recomendações";
+$MESS["OP_NAME_SECURITY_FILE_VERIFIER_SIGN"] = "Importante!";
+$MESS["OP_NAME_SECURITY_FILE_VERIFIER_VERIFY"] = "Esconder";
+$MESS["OP_NAME_SECURITY_FILTER_SETTINGS_WRITE"] = "Configurações de IP proibição";
+$MESS["OP_NAME_SECURITY_FRAME_SETTINGS_READ"] = "Visualizar quadro de inserção de parâmetros de proteção.";
+$MESS["OP_NAME_SECURITY_FRAME_SETTINGS_WRITE"] = "Editar quadro de inserção de parâmetros de proteção.";
+$MESS["OP_NAME_SECURITY_IPRULE_ADMIN_SETTINGS_READ"] = "Salvar eventos para Syslog";
+$MESS["OP_NAME_SECURITY_IPRULE_ADMIN_SETTINGS_WRITE"] = "Salvar eventos para apresentar";
+$MESS["OP_NAME_SECURITY_IPRULE_SETTINGS_READ"] = "Configurações";
+$MESS["OP_NAME_SECURITY_IPRULE_SETTINGS_WRITE"] = "Configurações do scanner";
+$MESS["OP_NAME_SECURITY_OTP_SETTINGS_READ"] = "Parâmetros de registo";
+$MESS["OP_NAME_SECURITY_OTP_SETTINGS_WRITE"] = "Registrar eventos";
+$MESS["OP_NAME_SECURITY_REDIRECT_SETTINGS_READ"] = "Caminho de arquivo absoluto";
+$MESS["OP_NAME_SECURITY_REDIRECT_SETTINGS_WRITE"] = "Inclua as informações do usuário";
+$MESS["OP_NAME_SECURITY_SESSION_SETTINGS_READ"] = "Registro facilidade";
+$MESS["OP_NAME_SECURITY_SESSION_SETTINGS_WRITE"] = "Nível de log";
+$MESS["OP_NAME_SECURITY_STAT_ACTIVITY_SETTINGS_READ"] = "Esquadrinhar";
+$MESS["OP_NAME_SECURITY_STAT_ACTIVITY_SETTINGS_WRITE"] = "Scanner de segurança";
+?>

@@ -1,0 +1,3 @@
+<?
+$MESS["PUSH_ENTITY_ID_FIELD"] = "ID";
+?>

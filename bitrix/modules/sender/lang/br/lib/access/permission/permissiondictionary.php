@@ -1,0 +1,34 @@
+<?
+$MESS["ADS_CLIENT_VIEW"] = "Visualizar destinatários da campanha";
+$MESS["ADS_CONNECT_CABINET"] = "Conectar contas de anúncios";
+$MESS["ADS_FB_INSTAGRAM_EDIT"] = "Gerenciar Anúncios do Facebook+Instagram";
+$MESS["ADS_GOOGLE_EDIT"] = "Gerenciar Google AdWords";
+$MESS["ADS_LOOK_ALIKE_FB_EDIT"] = "Gerenciar Anúncios de Públicos Semelhantes no Facebook+Instagram";
+$MESS["ADS_PAUSE_START_STOP"] = "Executar, parar e pausar campanhas";
+$MESS["ADS_VIEW"] = "Visualizar campanhas de anúncios";
+$MESS["BLACKLIST_EDIT"] = "Editar listas de contatos bloqueados";
+$MESS["BLACKLIST_VIEW"] = "Visualizar listas de contatos bloqueados";
+$MESS["MAILING_AUDIO_CALL_EDIT"] = "Criar chamadas de áudio";
+$MESS["MAILING_CLIENT_VIEW"] = "Visualizar destinatários da campanha";
+$MESS["MAILING_EMAIL_EDIT"] = "Criar campanhas de e-mail";
+$MESS["MAILING_INFO_CALL_EDIT"] = "Criar transmissões de voz";
+$MESS["MAILING_MESSENGER_EDIT"] = "Criar campanhas de messenger";
+$MESS["MAILING_PAUSE_START_STOP"] = "Executar, parar e pausar campanhas";
+$MESS["MAILING_SMS_EDIT"] = "Criar campanhas de SMS";
+$MESS["MAILING_VIEW"] = "Visualizar campanhas";
+$MESS["RC_EDIT"] = "Criar regras de Incentivo de Vendas";
+$MESS["RC_PAUSE_START_STOP"] = "Executar, parar e pausar Incentivo de Vendas";
+$MESS["RC_VIEW"] = "Visualizar regras de Incentivo de Vendas";
+$MESS["SEGMENT_CLIENT_EDIT"] = "Editar clientes";
+$MESS["SEGMENT_CLIENT_OWN_CATEGORY"] = "Visualizar clientes no pipeline atual";
+$MESS["SEGMENT_CLIENT_PERSONAL_EDIT"] = "Carregar endereços personalizados";
+$MESS["SEGMENT_CLIENT_VIEW"] = "Visualizar clientes no segmento";
+$MESS["SEGMENT_EDIT"] = "Criar e editar segmentos";
+$MESS["SEGMENT_LEAD_EDIT"] = "Editar leads";
+$MESS["SEGMENT_VIEW"] = "Visualizar segmentos existentes";
+$MESS["SETTINGS_EDIT"] = "Editar configurações";
+$MESS["SETTINGS_VIEW"] = "Visualizar configurações";
+$MESS["START_VIEW"] = "Visualizar página inicial";
+$MESS["TEMPLATE_EDIT"] = "Editar modelos";
+$MESS["TEMPLATE_VIEW"] = "Visualizar modelos";
+?>

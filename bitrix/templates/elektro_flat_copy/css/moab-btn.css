@@ -1,0 +1,9 @@
+﻿.call-button-container{position:fixed;bottom:0;left:0;right:0;will-change:transform;z-index:1030}
+@media screen and (min-device-width:320px) and (max-device-width:667px) and (orientation:landscape)
+{.call-button-container{display:none}}
+@media (min-width:768px){.call-button-container{display:none}}
+.call-button{display:block;margin:10px;background:#299D30;color:#fff;padding:5px;text-align:center}
+.call-button:hover{color:#fff}
+.call-button_icon{font-size:36px;vertical-align:middle;margin-right:10px}
+.call-button_text{display:inline-block;vertical-align:middle;font-size:12px}
+.call-button_text span{display:block;font-size:18px}

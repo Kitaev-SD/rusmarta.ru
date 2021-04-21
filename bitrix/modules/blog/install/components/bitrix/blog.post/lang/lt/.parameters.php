@@ -1,0 +1,31 @@
+<?
+$MESS['BP_BLOG_URL'] = 'Tinklaraðèio URL adresas';
+$MESS['BP_PATH_TO_BLOG'] = 'Kelio ðablonas á tinklaraðèio puslapá';
+$MESS['BP_PATH_TO_BLOG_CATEGORY'] = 'Kelio ðablonas á tinklaraðèio puslapá su filtru pagal þymæ';
+$MESS['BP_PATH_TO_POST_EDIT'] = 'Kelio á tinklaraðèio praneðimo redagavimo puslapá ðablonas.';
+$MESS['BP_PATH_TO_USER'] = 'Kelio ðablonas á tinklaraðèio naudotojo puslapá';
+$MESS['BP_BLOG_VAR'] = 'Tinklaraðèio identifikavimo kintamasis';
+$MESS['BP_POST_VAR'] = 'Kintamojo pavadinimas kuriame saugomas tinklaraðèio praneðimo identifikatorius';
+$MESS['BP_USER_VAR'] = 'Kintamojo pavadinimas kuriame saugomas tinklaraðèio naudotojo identifikatorius';
+$MESS['BP_PAGE_VAR'] = 'Puslapio kintamojo pavadinimas';
+$MESS['BP_SET_NAV_CHAIN'] = 'Pridëti punktà á navigacijos grandinæ';
+$MESS['BP_ID'] = 'Praneðimo ID';
+$MESS['POST_PROPERTY'] = 'Atvaizduoti praneðimo papildomas savybes';
+$MESS['BB_PATH_TO_SMILE'] = 'Kelias á aplankà su ðypsenëlëmis, svetainës ðakninio aplanko atþvilgiu';
+$MESS['B_VARIABLE_ALIASES'] = 'Kintamøjø vardai';
+$MESS['BC_DATE_TIME_FORMAT'] = 'Datos ir laiko atvaizdavimo formatas';
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Maks. Vaizdo plotis";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Maks. Vaizdo aukðtis";
+$MESS["SHOW_RATING"] = "Ájungti reitingà";
+$MESS["SHOW_RATING_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE"] = "Reitingo mygtukø dizainas";
+$MESS["RATING_TYPE_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Patinka / Nepatinka (tekstas)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Patinka / Nepatinka (paveikslëlis)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Patinka (tekstas)";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Patinka (paveikslëlis)";
+$MESS["BC_SEO_USE"] = "Naudoti SEO";
+$MESS["BC_SEO_N"] = "niekada";
+$MESS["BC_SEO_Y"] = "naudoti atskirus laukus apraðymui";
+$MESS["BC_SEO_D"] = "numatytieji laukai"
+?>

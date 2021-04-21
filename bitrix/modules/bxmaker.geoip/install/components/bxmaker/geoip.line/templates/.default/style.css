@@ -1,0 +1,222 @@
+.c-bxmaker_geoip_line_default_box {
+  margin: 0 auto;
+  position: relative;
+  font-size: 14px;
+}
+.c-bxmaker_geoip_line_default_box * {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: normal;
+  box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -khtml-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.c-bxmaker_geoip_line_default_box .clearfix {
+  clear: both;
+  float: none;
+}
+.c-bxmaker_geoip_line_default_box .city_title_box {
+  text-transform: initial;
+}
+.c-bxmaker_geoip_line_default_box .city_box {
+  position: relative;
+}
+.c-bxmaker_geoip_line_default_box .city_box > span {
+  cursor: pointer;
+  border-bottom: 1px dashed #3585CC;
+  color: #3585CC;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box {
+  display: none;
+  position: absolute;
+  z-index: 1009;
+  top: 35px;
+  background: #fff;
+  width: 200px;
+  -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -khtml-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box.active {
+  display: block;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  margin-left: -12px;
+  width: 0;
+  height: 0;
+  border: 12px solid;
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border: 10px solid;
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fff rgba(0, 0, 0, 0);
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box .city_question_title_box {
+  padding: 15px 10px;
+  text-align: center;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box .city_question_title_box span {
+  color: #444;
+  cursor: pointer;
+  border-bottom: none;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box .btn_box {
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  -o-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -ms-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -khtml-text_shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-text_shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box .btn_box .btn_no {
+  float: left;
+  width: 50%;
+  text-align: center;
+  padding: 8px 0;
+  border-right: 1px solid #1363aa;
+  margin-right: -1px;
+  background: #3585CC;
+  -o-border-radius: 0 0 0 3px;
+  -ms-border-radius: 0 0 0 3px;
+  -moz-border-radius: 0 0 0 3px;
+  -khtml-border-radius: 0 0 0 3px;
+  -webkit-border-radius: 0 0 0 3px;
+  border-radius: 0 0 0 3px;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box .btn_box .btn_no:hover {
+  background: #2474bb;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box .btn_box .btn_yes {
+  float: right;
+  width: 50%;
+  text-align: center;
+  padding: 8px 0;
+  border-left: 1px solid #4696dd;
+  margin-left: -1px;
+  background: #3585CC;
+  -o-border-radius: 0 0 3px 0;
+  -ms-border-radius: 0 0 3px 0;
+  -moz-border-radius: 0 0 3px 0;
+  -khtml-border-radius: 0 0 3px 0;
+  -webkit-border-radius: 0 0 3px 0;
+  border-radius: 0 0 3px 0;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_question_box .btn_box .btn_yes:hover {
+  background: #2474bb;
+  border-left: 1px solid #2474bb;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box {
+  display: none;
+  position: absolute;
+  z-index: 1009;
+  top: 35px;
+  background: #fff;
+  width: 200px;
+  -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -khtml-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  margin-left: -12px;
+  width: 0;
+  height: 0;
+  border: 12px solid;
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border: 10px solid;
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fff rgba(0, 0, 0, 0);
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box .city_info_content {
+  padding: 20px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box .city_info_content .btn-delivery-info {
+  border-bottom: 1px dashed black;
+  cursor: pointer;
+  color: #444;
+  text-decoration: none;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box .city_info_content .btn-delivery-info:hover {
+  border-color: transparent;
+  color: #444;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box .btn_box {
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  -o-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -ms-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -khtml-text_shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-text_shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box .btn_box .btn-city-change {
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0;
+  border-right: 1px solid #1363aa;
+  background: #3585CC;
+  -o-border-radius: 0 0 3px 3px;
+  -ms-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  -khtml-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+}
+.c-bxmaker_geoip_line_default_box .city_box .city_info_box .btn_box .btn-city-change:hover {
+  background: #2474bb;
+}

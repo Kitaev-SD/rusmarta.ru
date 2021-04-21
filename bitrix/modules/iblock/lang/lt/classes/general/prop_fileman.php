@@ -1,0 +1,6 @@
+<?
+$MESS["IBLOCK_PROP_FILEMAN_VIEW"] = "Parinkti...";
+$MESS["IBLOCK_PROP_FILEMAN_ADD"] = "Pridëti";
+$MESS["IBLOCK_PROP_FILEMAN_DESCRIPTION_TITLE"] = "Savybës reikðmës apraðymas";
+$MESS["IBLOCK_PROP_FILEMAN_DESCRIPTION_LABEL"] = "Apraðymas";
+?>

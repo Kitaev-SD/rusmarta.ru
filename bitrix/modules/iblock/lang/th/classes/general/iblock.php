@@ -1,0 +1,4 @@
+<?
+$MESS ['IBLOCK_BAD_SITE_ID_NA'] = "â»Ã´ÃÐºØàÇçºä«µì";
+$MESS ['IBLOCK_BAD_SITE_ID'] = "àÇçºä«µì¼Ô´!";
+?>

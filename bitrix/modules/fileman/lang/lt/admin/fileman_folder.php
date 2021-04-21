@@ -1,0 +1,29 @@
+<?
+$MESS["FILEMAN_FOLDER_TITLE"] = "Katalogo savybës";
+$MESS["FILEMAN_FOLDER_SECTION_NAME"] = "Pavadinimas:";
+$MESS["FILEMAN_FOLDER_ACCESS"] = "Prieigos teisës";
+$MESS["FILEMAN_FOLDER_ACCESS_GROUP"] = "Grupë";
+$MESS["FILEMAN_FOLDER_ACCESS_LEVEL"] = "Priëjimo teisës";
+$MESS["FM_FOLDER_ACCESS_DENIED"] = "Prieigos teisës nesuteiktos";
+$MESS["FM_FOLDER_ACCESS_READ"] = "Galima tik perþiûrëti";
+$MESS["FM_FOLDER_ACCESS_WRITE"] = "áraðymas";
+$MESS["FM_FOLDER_ACCESS_FULL"] = "Pilnas priëjimas";
+$MESS["FM_FOLDER_ACCESS_WORKFLOW"] = "Dokumentø apyvarta";
+$MESS["FILEMAN_FOLDER_ACCESS_INHERIT"] = "Paveldëti";
+$MESS["FILEMAN_FOLDER_ACCESS_FOR_INHERIT"] = "Visos grupës su \\\"paveldëti\\\" priëjimo teisëmis";
+$MESS["FILEMAN_FOLDER_SAVE"] = "Iðsaugoti";
+$MESS["FILEMAN_FOLDER_APPLY"] = "Pritaikyti";
+$MESS["FILEMAN_FOLDER_RESET"] = "Iðvalyti";
+$MESS["FILEMAN_FOLDER_FILEPROPS"] = "Katalogo savybës";
+$MESS["FILEMAN_FOLDER_PROPSCODE"] = "Kodas";
+$MESS["FILEMAN_FOLDER_PROPSVAL"] = "Reikðmë";
+$MESS["FILEMAN_FOLDER_PROPSDEL"] = "Iðtrinti";
+$MESS["FILEMAN_FOLDER_PROPSMORE"] = "Daugiau...";
+$MESS["FILEMAN_FOLDER_CURVAL"] = "Dabartinë reikðmë:";
+$MESS["FILEMAN_FOLDER_BACK"] = "Katalogas";
+$MESS["FILEMAN_TAB"] = "Katalogo savybës";
+$MESS["FILEMAN_TAB_ALT"] = "Katalogo savybës";
+$MESS["FILEMAN_ACCESS"] = "Prieiga";
+$MESS["FILEMAN_OPTION_PROPS_DESCR"] = "Apraðymas";
+$MESS["FILEMAN_OPTION_PROPS_KEYW"] = "Raktiniai þodþiai";
+?>

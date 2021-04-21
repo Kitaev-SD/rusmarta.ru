@@ -1,0 +1,30 @@
+<?
+$MESS["BLBE_TAB_BLOG_PERMS"] = "مجوزهای دسترسی";
+$MESS["BLBE_ACTIVE"] = "فعال";
+$MESS["BLBE_P_ALL"] = "همه کاربران";
+$MESS["BLBE_ALLOW_HTML"] = "استفاده از ویرایشگر وب";
+$MESS["BLBE_ENABLE_IMG_VERIF"] = "Anti-bot protection enabled (CAPTCHA)";
+$MESS["BLBE_DELETE_BLOG_CONFIRM"] = "آیا وبلاگ را حذف می کنید؟";
+$MESS["BLBE_P_AUTH"] = "کاربران وارد سایت شده";
+$MESS["BLBE_GROUP"] = "گروه وبلاگ";
+$MESS["BLBE_2FLIST"] = "فهرست وبلاگها";
+$MESS["BLBE_OWNER_ID"] = "نویسنده وبلاگ";
+$MESS["BLBE_TAB_BLOG"] = "تنظیمات وبلاگ";
+$MESS["BLBE_TAB_BLOG_DESCR"] = "تنظیمات وبلاگ";
+$MESS["BLBE_UPDATING"] = "تنظیمات وبلاگ";
+$MESS["BLBE_P_COMMENT"] = "اجازه کامنت دارد";
+$MESS["BLBE_ENABLE_COMMENTS"] = "می توان در آن کامنت گذاشت";
+$MESS["BLBE_DELETE_BLOG"] = "حذف وبلاگ";
+$MESS["BLBE_DESCRIPTION"] = "توضیحات";
+$MESS["BLBE_TAB_BLOG_PERMS_DESCR"] = "مجوزهای ویرایش برای دسترسی به ولاگ";
+$MESS["BLBE_SAVE_ERROR"] = "Error saving blog settings";
+$MESS["BLBE_ENABLE_RSS"] = "Export to RSS .92, RSS 2.0 and Atom.03 enabled";
+$MESS["BLBE_NAME"] = "نام";
+$MESS["BLBE_URL"] = "نام با حروف لاتین";
+$MESS["BLBE_NEW_BLOG"] = "وبلاگ جدید";
+$MESS["BLBE_ADDING"] = "وبلاگ جدید";
+$MESS["BLBE_URL_HINT"] = "Only Latin letters, digits, dashes and underscores are allowed";
+$MESS["BLBE_P_POST"] = "اجازه ارسال نوشته دارد";
+$MESS["BLBE_REAL_URL"] = "Relative path to the blog folder";
+$MESS["BLBE_EMAIL_NOTIFY"] = "اعلانها با ایمیل فرستاده شود";
+?>

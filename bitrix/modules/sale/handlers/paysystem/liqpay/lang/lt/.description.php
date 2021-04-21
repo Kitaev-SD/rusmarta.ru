@@ -1,0 +1,15 @@
+<?
+$MESS["SALE_HPS_LIQPAY_MERCHANT_ID"] = "Merchant ID";
+$MESS["SALE_HPS_LIQPAY_MERCHANT_ID_DESC"] = "Praðome kreiptis á https://www.liqpay.com/?do=shop_access";
+$MESS["SALE_HPS_LIQPAY_SIGN"] = "Paraðas";
+$MESS["SALE_HPS_LIQPAY_SIGN_DESC"] = "Praðome kreiptis á https://www.liqpay.com/?do=shop_access";
+$MESS["SALE_HPS_LIQPAY_PATH_TO_SERVER_URL"] = "Kelias á rezulatato apdorojimo bylà (handler)";
+$MESS["SALE_HPS_LIQPAY_PATH_TO_SERVER_URL_DESC"] = "Puslapis á kurá mokëjimo sistema perduos rezultatà.";
+$MESS["SALE_HPS_LIQPAY_PATH_TO_RESULT_URL"] = "Kelias iki failo gràþinantá pirkëjà á svetainæ";
+$MESS["SALE_HPS_LIQPAY_PATH_TO_RESULT_URL_DESC"] = "Puslapis, á kurá klientas nukreiptas.";
+$MESS["SALE_HPS_LIQPAY_ORDER_ID"] = "Uþsakymas #";
+$MESS["SALE_HPS_LIQPAY_CURRENCY"] = "Uþsakymo valiuta";
+$MESS["SALE_HPS_LIQPAY_SHOULD_PAY"] = "Viso";
+$MESS["SALE_HPS_LIQPAY_PHONE"] = "Kliento telefonas";
+$MESS["SALE_HPS_LIQPAY_PAYMENT_PM"] = "Apmokëjimo bûdas";
+?>

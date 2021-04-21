@@ -1,0 +1,4 @@
+<?
+$MESS["GD_SONET_BLOG_NAME"] = "Áëîã";
+$MESS["GD_SONET_BLOG_DESC"] = "Áëîã/Çâ³òè";
+?>

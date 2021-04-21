@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+  <defs>
+    <style>
+      .sscls-1 {
+        fill: #222;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path data-name="Rounded Rectangle 106" class="sscls-1" d="M1590.71,131.709a1,1,0,0,1-1.42,0l-4.68-4.677a9.069,9.069,0,1,1,1.42-1.427l4.68,4.678A1,1,0,0,1,1590.71,131.709ZM1579,113a7,7,0,1,0,7,7A7,7,0,0,0,1579,113Z" transform="translate(-1570 -111)"/>
+</svg>

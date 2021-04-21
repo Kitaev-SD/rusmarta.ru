@@ -1,0 +1,31 @@
+<?
+$MESS['BLB_DELETE_ERROR'] = 'Klaida ðalinant tinklaraðtá';
+$MESS['BLB_GROUP_NAV'] = 'Tinklaraðèiai';
+$MESS['BLB_NAME'] = 'Pavadinimas';
+$MESS['BLB_DATE_CREATE'] = 'Sukurta';
+$MESS['BLB_DATE_UPDATE'] = 'Paskutinis atnaujinimas';
+$MESS['BLB_ACTIVE'] = 'Aktyvus:';
+$MESS['BLB_OWNER_ID'] = 'Naudotojas';
+$MESS['BLB_URL'] = 'Adresas';
+$MESS['BLB_GROUP_ID'] = 'Grupë';
+$MESS['BLB_UPDATE_ALT'] = 'Keisti tinklaraðèio nustatymus';
+$MESS['BLB_DELETE_ALT'] = 'Paðalinti tinklaraðtá';
+$MESS['BLB_DELETE_CONF'] = 'Ar tikrai norite paðalinti ðá tinklaraðtá?';
+$MESS['BLB_ADD_NEW'] = 'Naujas blogas';
+$MESS['BLB_ADD_NEW_ALT'] = 'Spauskyte pridëti naujà tinklaraðtá';
+$MESS['BLB_TITLE'] = 'Tinklaraðèiai';
+$MESS['BLB_FILTER_ACTIVE'] = 'Aktyvus:';
+$MESS['BLB_FILTER_URL'] = 'Adresas';
+$MESS['BLB_FILTER_GROUP_ID'] = 'Grupë';
+$MESS['BLB_FILTER_OWNER'] = 'Naudotojas';
+$MESS['BLB_FILTER_NAME'] = 'Pavadinimas';
+$MESS['BLB_F_ALL'] = '(viskà)';
+$MESS['BLB_YES'] = 'Taip';
+$MESS['BLB_NO'] = 'Ne';
+$MESS['BLB_ALLOW_HTML'] = 'html';
+$MESS['BLB_SOCNET_GROUP_ID'] = 'Tinklaraðèio savininko grupë ';
+$MESS["BLB_USE_SOCNET"] = "Soc. tinklas";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinti";
+?>

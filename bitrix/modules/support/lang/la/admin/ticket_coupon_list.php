@@ -1,0 +1,37 @@
+<?
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Comprobado:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "eliminar";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Seleccionado:";
+$MESS["SUP_CL_ACTIVE"] = "Activar";
+$MESS["SUP_CL_ACTIVE_FROM"] = "Activo desde";
+$MESS["SUP_CL_ACTIVE_TO"] = "Activo hasta";
+$MESS["SUP_CL_ADD"] = "Nuevo cupón";
+$MESS["SUP_CL_ADD_TITLE"] = "Generar nuevo cupón";
+$MESS["SUP_CL_COUNT_TICKETS"] = "Usos";
+$MESS["SUP_CL_COUNT_USED"] = "Usado";
+$MESS["SUP_CL_COUPON"] = "Cupón";
+$MESS["SUP_CL_CREATED_FIRST_NAME"] = "Creador del primer nombre";
+$MESS["SUP_CL_CREATED_LAST_NAME"] = "Creador del apellido";
+$MESS["SUP_CL_CREATED_LOGIN"] = "Creador de la sesión del usuario";
+$MESS["SUP_CL_CREATED_USER_ID"] = "Creador del ID de usuario";
+$MESS["SUP_CL_DATE_CREATE"] = "Creado";
+$MESS["SUP_CL_DELETE"] = "Borrar";
+$MESS["SUP_CL_DELETE_CONFIRMATION"] = "¿Realmente desea borrar el cupón?";
+$MESS["SUP_CL_EDIT"] = "Editar cupón";
+$MESS["SUP_CL_EXACT_MATCH"] = "Coincidencia exacta";
+$MESS["SUP_CL_FLT_COUPON"] = "Cupón";
+$MESS["SUP_CL_GENERATE_CONFIRM"] = "Usted ya tiene creado un cupón durante esta sesión. Generar otro más?";
+$MESS["SUP_CL_GENERATE_ERROR"] = "Error al generar un cupón";
+$MESS["SUP_CL_GENERATE_MESS_OK"] = "El cupón %COUPON% ha sido generado.";
+$MESS["SUP_CL_LOG"] = "Uso diario";
+$MESS["SUP_CL_PAGES"] = "Cupones";
+$MESS["SUP_CL_SLA_ID"] = "ID SLA";
+$MESS["SUP_CL_SLA_NAME"] = "SLA";
+$MESS["SUP_CL_TIMESTAMP_X"] = "Modificado";
+$MESS["SUP_CL_TITLE"] = "Cupones";
+$MESS["SUP_CL_UPDATED_FIRST_NAME"] = "Editor del primer nombre del usuario";
+$MESS["SUP_CL_UPDATED_LAST_NAME"] = "Editor del apellido del usuario";
+$MESS["SUP_CL_UPDATED_LOGIN"] = "Editor de la sesión del usuario";
+$MESS["SUP_CL_UPDATED_USER_ID"] = "Editor del ID del usuario";
+$MESS["SUP_GL_PAGES"] = "Cupones";
+?>

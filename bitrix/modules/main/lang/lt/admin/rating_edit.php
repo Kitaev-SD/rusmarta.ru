@@ -1,0 +1,33 @@
+<?
+$MESS["MAIN_RATING_EDIT_RECORD"] = "Redaguoti reitingà # #ID#";
+$MESS["MAIN_RATING_NEW_RECORD"] = "Nuajas Reitingas";
+$MESS["RATING_LIST"] = "Vis reitingai";
+$MESS["RATING_LIST_TITLE"] = "Þiûrëti visus reitingus";
+$MESS["RATING_EDIT_ADD"] = "Pridëti";
+$MESS["RATING_EDIT_ADD_TITLE"] = "Pridëti naujà reitingà";
+$MESS["RATING_EDIT_DEL"] = "Paðalinti";
+$MESS["RATING_EDIT_DEL_TITLE"] = "Paðalinti ðá reitingà";
+$MESS["RATING_EDIT_DEL_CONF"] = "Ar tikrai norite paðalinti ðá reitingà?";
+$MESS["RATING_EDIT_TAB_MAIN"] = "Pagrindiniai parametrai";
+$MESS["RATING_EDIT_TAB_MAIN_TITLE"] = "Pavadinimas, objektas ir reitingo kriterijus";
+$MESS["RATING_EDIT_FRM_ACTIVE"] = "Aktyvus:";
+$MESS["RATING_EDIT_FRM_NAME"] = "Pavadinimas:";
+$MESS["RATING_EDIT_FRM_TYPE_ID"] = "Ávertintas objektas:";
+$MESS["RATING_EDIT_FRM_CUR_VAL"] = "Papildomas dabartinës vertës laukas:";
+$MESS["RATING_EDIT_FRM_PREV_VAL"] = "Papildomas ankstesnës vertës laukas:";
+$MESS["RATING_EDIT_FRM_CALC_METHOD"] = "Skaièiavimo metodas:";
+$MESS["RATING_EDIT_CALC_METHOD_SUM"] = "Suma";
+$MESS["RATING_EDIT_CALC_METHOD_AVG"] = "Vidutinë";
+$MESS["RATING_EDIT_SUCCESS"] = "Áraðas buvo sëkmingai áraðytas.";
+$MESS["RATING_EDIT_ERROR"] = "Klaida áraðant áraðà.";
+$MESS["RATING_DEF_NAME"] = "Naudotojo reitingas";
+$MESS["RATING_FIELDS_DEF_NAME"] = "Koeficientas:";
+$MESS["RATING_FIELDS_DEF_DESC"] = "Vertë priklauso nuo balsavimo rezultatø.";
+$MESS["RATING_FIELDS_DEF_FORMULA"] = "Ið viso * K";
+$MESS["RATING_FIELDS_DEF_FORMULA_DESC"] = "Ið viso - balsavimo rezultatai, K - naudotojo nustatytas koeficientas.";
+$MESS["RATING_EDIT_FRM_POSITION"] = "Apskaièiuoti Reitingo pozicijas";
+$MESS["RATING_EDIT_FRM_AUTHORITY"] = "Naudokite ðá reitingà autoritetui apskaièiuoti";
+$MESS["RATING_EDIT_FRM_NEW_CALC"] = "Atstatyti reitingo rezultatus áraðæ parametrus";
+$MESS["RATING_EDIT_CAT_RATING_COMPONENT"] = "Reitingo kriterijus";
+$MESS["RATING_EDIT_CAT_WHAT_NEW_CALC"] = "Reitingo rezultatas";
+?>

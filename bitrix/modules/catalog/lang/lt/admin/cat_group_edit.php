@@ -1,0 +1,23 @@
+<?
+$MESS["CAT_EDIT_RECORD"] = "Keisti kainos tipà # #ID#";
+$MESS["CAT_NEW_RECORD"] = "Naujas kainos tipas";
+$MESS["NAME"] = "Pavadinimas";
+$MESS["CODE"] = "Kodas:";
+$MESS["CAT_GROUPS"] = "Naudotojø grupës, kurioms leidþiama perþiûrëti ðá kainos tipà:";
+$MESS["CAT_GROUPS_BUY"] = "Naudotojø grupës, kurioms leidþiama pirkti pagal ðá kainos tipà:";
+$MESS["BASE"] = "Bazë:";
+$MESS["BASE_COMMENT"] = "Tik vienas kainos tipas gali bûti nustatytas, kaip bazinis. Jei nustatysite ðá vëliavà kainø tipui, jis bus automatiðkai atjungtas nuo dabartinio bazinio kainos tipo.";
+$MESS["BASE_COMMENT_Y"] = "Turi bûti bent vienas bazinis kainos tipas. Jei norite keisti numatytàjá Baziná kainos tipà, nustatykite vëliavà á tà kainos tipà, kurá norite naudoti kaip baziná.";
+$MESS["BASE_YES"] = "Taip";
+$MESS["SORT2"] = "Rûðiavimo tvarka:";
+$MESS["ERROR_UPDATING_TYPE"] = "Klaida atnaujinant kainos tipà.";
+$MESS["ERROR_ADDING_TYPE"] = "Klaida pridedant kainos tipà.";
+$MESS["CGEN_2FLIST"] = "Kainos tipai";
+$MESS["CGEN_NEW_GROUP"] = "Pridëti naujà kainos tipà";
+$MESS["CGEN_DELETE_GROUP"] = "Paðalinti kainos tipà";
+$MESS["CGEN_DELETE_GROUP_CONFIRM"] = "Ar tikrai norite paðalinti ðá kainos tipà?";
+$MESS["CGEN_TAB_GROUP"] = "Kainos tipas";
+$MESS["CGEN_TAB_GROUP_DESCR"] = "Kainos tipo parametrai";
+$MESS["BT_CAT_GROUP_EDIT_FIELDS_XML_ID"] = "Iðorinis ID";
+$MESS["CAT_FEATURE_NOT_ALLOW"] = "Jûsø versija negali naudoti ðios funkcijos.";
+?>

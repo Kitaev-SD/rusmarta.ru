@@ -1,0 +1,4 @@
+<?
+$MESS["BLOG_MODULE_NOT_INSTALL"] = "Tinklaraðèiø modulis nëra ádiegtas";
+$MESS["BLOG_BLOG_BLOG_NO_BLOG"] = "Tinklaraðèio nerasta";
+?>

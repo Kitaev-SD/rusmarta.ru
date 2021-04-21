@@ -1,0 +1,10 @@
+<?
+$MESS["SOL_BUTTON_TEST_TEXT"] = "Testuoti naujà#BR#sprendimà";
+$MESS["SOL_BUTTON_TEST_TITLE"] = "Sukurti naujà svetainæ ir paleisti naujo sprendimo vedlá";
+$MESS["SOL_BUTTON_DEL_TEXT"] = "Paðalinti mygtukà";
+$MESS["SOL_BUTTON_DEL_TITLE"] = "Paðalinti mygtukà ið skydelio";
+$MESS["SOL_BUTTON_CONFIRM_W2"] = "Dëmesio: Paðalinus ðá mygtukà, galite pradëti naujo sprendimo vedlá ið valdymo skydelio, naudojant vedlio puslapá arba formà \"Pridëti naujà svetainæ\" . Ar norite paðalinti ðá mygtukà ið skydelio?";
+$MESS["SOL_BUTTON_GOTOSITE"] = "Eiti á svetainæ";
+$MESS["SOL_BUTTON_TEST_TEXT_HINT"] = "Pasirinkti naujà sprendimà ádiegti.";
+$MESS["SOL_BUTTON_TEST_MENU_HINT"] = "Spustelëkite ðá mygtukà, norëdami pasirinkti sprendimà ádiegti, paðalinti ðá mygtukà arba atidaryti kità svetainæ.";
+?>

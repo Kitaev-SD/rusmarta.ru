@@ -1,0 +1,35 @@
+<?
+$MESS["FORM_FORGOT_TITLE"] = "لطفا\" فیلد \"عنوان\" را پر کنید";
+$MESS["FORM_FORM_LIST"] = "فهرست فرم";
+$MESS["FORM_NOT_FOUND"] = "فرمی پیدا نشد";
+$MESS["FORM_EDIT_RECORD"] = "ویرایش وضعیت # #ID#";
+$MESS["FORM_NEW_RECORD"] = "وضعیت جدید";
+$MESS["FORM_RECORDS_LIST"] = "فهرست وضعیت";
+$MESS["FORM_TIMESTAMP"] = "ویرایش شده:";
+$MESS["FORM_RESULTS_STATUS"] = "نتایج";
+$MESS["FORM_ACTIVE"] = "فعال:";
+$MESS["FORM_SORTING"] = "ترتیب:";
+$MESS["FORM_DEFAULT_VALUE"] = "تنظیم این وضعیت <br> به صورت پیش فرض برای همه فایلها";
+$MESS["FORM_TITLE"] = "عنوان:";
+$MESS["FORM_DESCRIPTION"] = "توضیحات:";
+$MESS["FORM_OWNER"] = "<result creator>";
+$MESS["FORM_VIEW_RIGHTS"] = "می تواند نتایج را<br>در این وضعیت دیدن کند:";
+$MESS["FORM_MOVE_RIGHTS"] = "می تواند برای نتایج<br>این وضعیت را تعریف کند";
+$MESS["FORM_EDIT_RIGHTS"] = "می توانید برای نتایج <br> این وضعیت را ویرایش کنید";
+$MESS["FORM_DELETE_RIGHTS"] = "می تواند نتایج<br>دارای این وضعیت را حذف کند";
+$MESS["FORM_NEW"] = "ساخت یک وضعیت جدید";
+$MESS["FORM_FORM_NAME"] = "فرم:";
+$MESS["FORM_CSS"] = "کلاس CSS  استفاده شده برای نمایش عنوان وضعیت:";
+$MESS["FORM_HANDLER_OUT"] = "فایل نگهدارنده بمحض تغییر در وضعیت و یا حذف نتایج فراخوانده می شود  ";
+$MESS["FORM_HANDLER_IN"] = "فایل نگهدارنده بمحض تغییر در وضعیت به حالت جاری (و یا افزودن نتایج) فراخوانده می شود  ";
+$MESS["FORM_COPY"] = "کپی کردن وضعیت";
+$MESS["FORM_DELETE_TITLE"] = "حذف وضعیت";
+$MESS["FORM_CONFIRM_DELETE"] = "آیا این وضعیت را حذف می کنید؟";
+$MESS["FORM_CREATE_TITLE"] = "وضعیت جدید";
+$MESS["FORM_ACCESS_TITLE"] = "مدیریت دسترسی";
+$MESS["FORM_RESULTS_TITLE"] = "باز کردن فهرست نتایج";
+$MESS["FORM_DELETE"] = "حذف وضعیت";
+$MESS["FORM_CREATE"] = "وضعیت جدید";
+$MESS["FORM_MAIL"] = "اعلان";
+$MESS["FORM_DELETE_MAIL_TEMPLATE"] = "حذف";
+?>

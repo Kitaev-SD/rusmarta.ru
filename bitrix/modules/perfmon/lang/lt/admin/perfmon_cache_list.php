@@ -1,0 +1,36 @@
+<?
+$MESS["PERFMON_CACHE_ID"] = "ID";
+$MESS["PERFMON_CACHE_HIT_ID"] = "Perþiûra";
+$MESS["PERFMON_CACHE_NN"] = "Nr.";
+$MESS["PERFMON_CACHE_COMPONENT_NAME"] = "Komponentas";
+$MESS["PERFMON_CACHE_MODULE_NAME"] = "Modulis";
+$MESS["PERFMON_CACHE_CACHE_SIZE"] = "Dydis";
+$MESS["PERFMON_CACHE_OP_MODE"] = "Operacija";
+$MESS["PERFMON_CACHE_BASE_DIR"] = "Tipas";
+$MESS["PERFMON_CACHE_INIT_DIR"] = "Katalogas";
+$MESS["PERFMON_CACHE_FILE_NAME"] = "Failas";
+$MESS["PERFMON_CACHE_CACHE_PATH"] = "Talpyklos failo kelias";
+$MESS["PERFMON_CACHE_TITLE"] = "Veiklos monitorius. Talpykla";
+$MESS["PERFMON_CACHE_COMPONENT_ID"] = "Sudëtin4 partija ";
+$MESS["PERFMON_CACHE_FIND"] = "Ieðkoti";
+$MESS["PERFMON_CACHE_OP_MODE_R"] = "Skaityti";
+$MESS["PERFMON_CACHE_OP_MODE_W"] = "Raðyti";
+$MESS["PERFMON_CACHE_OP_MODE_C"] = "Atkûrti";
+$MESS["PERFMON_CACHE_GROUP_NONE"] = "Negrupuota";
+$MESS["PERFMON_CACHE_GROUP_COMP"] = "Grupuoti pagal komponentus";
+$MESS["PERFMON_CACHE_GROUP_BASE_DIR"] = "Grupuoti pagal tipus";
+$MESS["PERFMON_CACHE_GROUP_INIT_DIR"] = "Grupuoti pagal katalogus";
+$MESS["PERFMON_CACHE_GROUP_FILE_NAME"] = "Grupuoti pagal failà";
+$MESS["PERFMON_CACHE_COUNT"] = "Talpyklos operacijos";
+$MESS["PERFMON_CACHE_COUNT_R"] = "Talpyklos skaitymai";
+$MESS["PERFMON_CACHE_COUNT_W"] = "Talpyklos áraðymai";
+$MESS["PERFMON_CACHE_COUNT_C"] = "Talpyklos atkûrimai";
+$MESS["PERFMON_CACHE_MAX_CACHE_SIZE"] = "Talpykla (maks)";
+$MESS["PERFMON_CACHE_MIN_CACHE_SIZE"] = "Talpykla (min)";
+$MESS["PERFMON_CACHE_SUM_CACHE_SIZE"] = "Talpykla (ið viso)";
+$MESS["PERFMON_CACHE_AVG_CACHE_SIZE"] = "Talpykla (vid)";
+$MESS["PERFMON_CACHE_HIT_RATIO"] = "Perþiûrø rodiklis";
+$MESS["PERFMON_CACHE_MANAGED"] = "valdoma";
+$MESS["PERFMON_CACHE_UNMANAGED"] = "nevaldoma";
+$MESS["PERFMON_CACHE_PAGE"] = "talpykla";
+?>

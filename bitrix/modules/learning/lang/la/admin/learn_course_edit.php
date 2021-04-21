@@ -1,0 +1,29 @@
+<?
+$MESS["LEARNING_ACCESS"] = "Accesso";
+$MESS["LEARNING_ADD"] = "Agregar curso";
+$MESS["LEARNING_ADMIN_TAB1"] = "Curso";
+$MESS["LEARNING_ADMIN_TAB1_EX"] = "Cinfiguración del curso";
+$MESS["LEARNING_ADMIN_TAB2"] = "Acceso";
+$MESS["LEARNING_ADMIN_TAB2_EX"] = "Derechas de acceso";
+$MESS["LEARNING_ADMIN_TAB3"] = "Anuncio";
+$MESS["LEARNING_ADMIN_TAB3_EX"] = "Descripción corta";
+$MESS["LEARNING_ADMIN_TAB4"] = "Descripción";
+$MESS["LEARNING_ADMIN_TAB4_EX"] = "Descripción corta";
+$MESS["LEARNING_ADMIN_TAB5"] = "Dependencias";
+$MESS["LEARNING_ADMIN_TAB5_EX"] = "Dependencias de curso";
+$MESS["LEARNING_CONFIRM_DEL_MESSAGE"] = "¿Está seguro que desea eliminar este curso?";
+$MESS["LEARNING_DESCRIPTION"] = "Detalles";
+$MESS["LEARNING_EDIT_TITLE1"] = "Nuevo curso";
+$MESS["LEARNING_EDIT_TITLE2"] = "Editar curso ##ID#";
+$MESS["LEARNING_ERROR"] = "Error guardando curso";
+$MESS["LEARNING_GROUP_ID_TITLE"] = "Editar grupo de usuario";
+$MESS["LEARNING_PREVIEW_TEXT"] = "Anterior";
+$MESS["LEARNING_RATING"] = "Permitir calificación";
+$MESS["LEARNING_RATING_CONFIG"] = "predeterminado";
+$MESS["LEARNING_RATING_TYPE"] = "Diseño de botones de calificación";
+$MESS["LEARNING_RATING_TYPE_CONFIG"] = "predeterminado";
+$MESS["LEARNING_RATING_TYPE_LIKE"] = "Me gusta (texto)";
+$MESS["LEARNING_RATING_TYPE_LIKE_GRAPHIC"] = "Me gusta (imagen)";
+$MESS["LEARNING_RATING_TYPE_STANDART"] = "Me gusta/No me gusta (imagen)";
+$MESS["LEARNING_RATING_TYPE_STANDART_TEXT"] = "Me gusta/No me gusta (texto)";
+?>

@@ -1,0 +1,11 @@
+<?
+$MESS["USER_TYPE_ENUM_DESCRIPTION"] = "Sàraðas";
+$MESS["USER_TYPE_ENUM_DISPLAY"] = "Dizainas:";
+$MESS["USER_TYPE_ENUM_CHECKBOX"] = "Þymimasis langelis";
+$MESS["USER_TYPE_ENUM_LIST"] = "Sàraðas";
+$MESS["USER_TYPE_ENUM_LIST_HEIGHT"] = "Sàraðo aukðtis";
+$MESS["USER_TYPE_ENUM_CAPTION_NO_VALUE"] = "Naudoti antraðtæ, kai reikðmë yra tuðèia";
+$MESS["USER_TYPE_ENUM_UI"] = "Ávairiø pasirinkimø sàraðas";
+$MESS["USER_TYPE_ENUM_NO_VALUE"] = "nepasirinkta";
+$MESS["MAIN_NO"] = "ne";
+?>

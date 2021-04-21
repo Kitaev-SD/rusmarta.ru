@@ -1,0 +1,5 @@
+<?
+$MESS['BITRIXTVBIG_COMPONENT_NAME'] = 'Vaizdo áraðø biblioteka';
+$MESS['BITRIXTVBIG_COMPONENT_DESCRIPTION'] = 'Atvaizduoti vaizdo áraðø filmø medá';
+$MESS['BITRIXTVBIG_COMPONENTS'] = 'Media';
+?>

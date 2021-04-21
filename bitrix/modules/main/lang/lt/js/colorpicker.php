@@ -1,0 +1,5 @@
+<?
+$MESS["MAIN_COLORPICKER_BY_DEFAULT"] = "Numatytasis";
+$MESS["MAIN_COLORPICKER_SPECIFY_HEX_COLOR"] = "Tinkinta spalva";
+$MESS["MAIN_COLORPICKER_HEX_COLOR"] = "Hex spalvos vertë";
+?>

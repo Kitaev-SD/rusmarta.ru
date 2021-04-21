@@ -1,0 +1,30 @@
+<?
+$MESS["SEO_ROBOTS_CHOOSE_SITE"] = "Seleccione el sitio web:";
+$MESS["SEO_ROBOTS_COMMON"] = "Todos los robots";
+$MESS["SEO_ROBOTS_EDIT"] = "Editar";
+$MESS["SEO_ROBOTS_EDIT_TITLE"] = "Gestionar robots.txt";
+$MESS["SEO_ROBOTS_ERROR_NO_ROBOTS"] = "El archivo #PATH#  no fue encontrado!";
+$MESS["SEO_ROBOTS_ERROR_NO_ROBOTS_MESSAGE"] = "Crear este archivo tan pronto como sea posible.";
+$MESS["SEO_ROBOTS_GOOGLEBOT"] = "Bot web";
+$MESS["SEO_ROBOTS_GOOGLEBOT_IMAGE"] = "<a href=\"http://images.google.com/\" target=\"_blank\">Imágenes de Google</a> bot";
+$MESS["SEO_ROBOTS_GOOGLEBOT_MOBILE"] = "Bot móvil";
+$MESS["SEO_ROBOTS_GOOGLEBOT_NEWS"] = "<a href=\"http://news.google.com/\" target=\"_blank\">Noticias Google</a> bot";
+$MESS["SEO_ROBOTS_GOOGLEBOT_VIDEO"] = "<a href=\"http://video.google.com/\" target=\"_blank\">Video de Google</a> bot";
+$MESS["SEO_ROBOTS_HINT"] = "<a href=\"https://support.google.com/webmasters/answer/156449?hl=en\" target=\"_blank\">Lea sobre robots.txt en Google</a>";
+$MESS["SEO_ROBOTS_HINT_1C"] = "<a href=\"http://help.yandex.ru/webmaster/controlling-robot/robots-txt.xml\" target=\"_blank\">Lea sobre robots.txt en Yandex</a><br /><a href=\"https://support.google.com/webmasters/answer/156449?hl=en\" target=\"_blank\">Lea sobre robots.txt en Google</a>";
+$MESS["SEO_ROBOTS_TITLE_EDIT"] = "Editar robots.txt";
+$MESS["SEO_ROBOTS_TITLE_common"] = "Normas comunes a todos los motores de búsqueda";
+$MESS["SEO_ROBOTS_TITLE_google"] = "Reglas para los Google bots";
+$MESS["SEO_ROBOTS_TITLE_yandex"] = "Reglas para los bots Yandex";
+$MESS["SEO_ROBOTS_YANDEX"] = "Todos los bots Yandex";
+$MESS["SEO_ROBOTS_YANDEXBLOGS"] = "<a href=\"http://blogs.yandex.ru/\" target=\"_blank\">Envíos del Blog y comentarios</a> bot";
+$MESS["SEO_ROBOTS_YANDEXBOT"] = "Bot principal";
+$MESS["SEO_ROBOTS_YANDEXIMAGES"] = "<a href=\"http://images.yandex.ru/\" target=\"_blank\">Yandex.Image</a> bot";
+$MESS["SEO_ROBOTS_YANDEXMARKET"] = "<a href=\"http://market.yandex.ru/\" target=\"_blank\">Yandex.Market</a> bot";
+$MESS["SEO_ROBOTS_YANDEXMEDIA"] = "Bot Multimedia";
+$MESS["SEO_ROBOTS_YANDEXMETRIKA"] = "<a href=\"http://metrika.yandex.ru/\" target=\"_blank\">Yandex.Metrix</a> bot";
+$MESS["SEO_ROBOTS_YANDEXNEWS"] = "<a href=\"http://news.yandex.ru/\" target=\"_blank\">Yandex.News</a> bot";
+$MESS["SEO_ROBOTS_common"] = "Normas comunes";
+$MESS["SEO_ROBOTS_google"] = "Google";
+$MESS["SEO_ROBOTS_yandex"] = "Yandex";
+?>

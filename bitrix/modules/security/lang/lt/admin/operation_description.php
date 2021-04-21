@@ -1,0 +1,28 @@
+<?
+$MESS["OP_NAME_SECURITY_EDIT_USER_OTP"] = "Tvarkyti vienkartinius slaptaþodþius";
+$MESS["OP_NAME_SECURITY_FILTER_BYPASS"] = "Ignoruoti proaktyvø filtrà";
+$MESS["OP_NAME_SECURITY_MODULE_SETTINGS_READ"] = "Perþiûrëti modulio nustatymus";
+$MESS["OP_NAME_SECURITY_MODULE_SETTINGS_WRITE"] = "Redaguoti modulio nustatymus";
+$MESS["OP_NAME_SECURITY_PANEL_VIEW"] = "Perþiûrëti valdymo skydelá";
+$MESS["OP_NAME_SECURITY_FILTER_SETTINGS_READ"] = "Perþiûrëti proaktyvaus filtro nustatymus";
+$MESS["OP_NAME_SECURITY_FILTER_SETTINGS_WRITE"] = "Redaguoti proaktyvaus filtro nustatymus";
+$MESS["OP_NAME_SECURITY_OTP_SETTINGS_READ"] = "Perþiûrëti vienkartinio slaptaþodþio nustatymus";
+$MESS["OP_NAME_SECURITY_OTP_SETTINGS_WRITE"] = "Redaguoti vienkartinio slaptaþodþio nustatymus";
+$MESS["OP_NAME_SECURITY_IPRULE_ADMIN_SETTINGS_READ"] = "Preþiûrëti valdymo skydelio apsaugos nustatymus";
+$MESS["OP_NAME_SECURITY_IPRULE_ADMIN_SETTINGS_WRITE"] = "Redaguoti valdymo skydelio apsaugos nustatymus";
+$MESS["OP_NAME_SECURITY_SESSION_SETTINGS_READ"] = "Preþiûrëti sesijos apsaugos nustatymus";
+$MESS["OP_NAME_SECURITY_SESSION_SETTINGS_WRITE"] = "Redaguoti sesijos apsaugos nustatymus";
+$MESS["OP_NAME_SECURITY_REDIRECT_SETTINGS_READ"] = "Preþiûrëti nukreipimo apsaugos nustatymus";
+$MESS["OP_NAME_SECURITY_REDIRECT_SETTINGS_WRITE"] = "Redaguoti nukreipimo apsaugos nustatymus";
+$MESS["OP_NAME_SECURITY_STAT_ACTIVITY_SETTINGS_READ"] = "Preþiûrëti veiklos kontrolës nustatymus";
+$MESS["OP_NAME_SECURITY_STAT_ACTIVITY_SETTINGS_WRITE"] = "Redaguot veiklos kontrolës nustatymus";
+$MESS["OP_NAME_SECURITY_IPRULE_SETTINGS_READ"] = "Preþiûrëti Stop-sàraðà";
+$MESS["OP_NAME_SECURITY_IPRULE_SETTINGS_WRITE"] = "Tvarkyti Stop-sàraðà";
+$MESS["OP_NAME_SECURITY_FILE_VERIFIER_SIGN"] = "Pasiraðiti vientisumo patikrinimo skriptà";
+$MESS["OP_NAME_SECURITY_FILE_VERIFIER_COLLECT"] = "Rinkti duomenis vientisumo patikrinimui";
+$MESS["OP_NAME_SECURITY_FILE_VERIFIER_VERIFY"] = "Atlikti vientisumo patikrinimà";
+$MESS["OP_NAME_SECURITY_ANTIVIRUS_SETTINGS_READ"] = "Perþiûrëti antiviruso nustatymus";
+$MESS["OP_NAME_SECURITY_ANTIVIRUS_SETTINGS_WRITE"] = "Keisti antiviruso nustatymus";
+$MESS["OP_NAME_SECURITY_FRAME_SETTINGS_READ"] = "Perþiûrëti iframe injekcijos apsaugos parametrus";
+$MESS["OP_NAME_SECURITY_FRAME_SETTINGS_WRITE"] = "Redaguoti iframe injekcijos apsaugos parametrus";
+?>

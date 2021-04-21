@@ -1,0 +1,7 @@
+<?
+$MESS['F_SET_NAVIGATION'] = 'Rodyti navigacijà';
+$MESS['F_URL_TEMPLATES'] = 'Tinklapiø URL administravimas';
+$MESS['F_INDEX_TEMPLATE'] = 'Forumø sàraðo puslapis';
+$MESS['F_CONTENT'] = 'Skyriaus tekstas (naudoti tekstà pagal nutylëjimà - tuðèia)';
+$MESS['F_DISPLAY_PANEL'] = 'Atvaizduoti ðio komponento valdymo mygtukus';
+?>

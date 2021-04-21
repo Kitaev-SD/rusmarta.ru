@@ -1,0 +1,3 @@
+<?
+$MESS["CT_BCT_CATALOG_BTN_MESSAGE_CLOSE"] = "Fechar";
+?>

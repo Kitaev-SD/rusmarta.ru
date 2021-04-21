@@ -1,0 +1,37 @@
+<?
+$MESS["VOTE_WRONG_START_DATE_FROM"] = "لطفا تاریخ آغاز درستی را برای فیلد اولین رای انتخاب نمایید";
+$MESS["VOTE_WRONG_START_DATE_TILL"] = "لطفا تاریخ پایان درستی را برای فیلد اولین رای انتخاب نمایید";
+$MESS["VOTE_WRONG_START_FROM_TILL"] = "تاریخ پایان باید بزرگتر از تاریخ آغاز باشد.";
+$MESS["VOTE_WRONG_END_DATE_FROM"] = "لطفا تاریخ آغاز درستی را برای فیلد آخرین رای انتخاب نمایید";
+$MESS["VOTE_WRONG_END_DATE_TILL"] = "لطفا تاریخ پایان درستی را برای فیلد آخرین رای انتخاب نمایید";
+$MESS["VOTE_WRONG_END_FROM_TILL"] = "تاریخ پایان باید بزرگتر از تاریخ آغاز باشد.";
+$MESS["VOTE_PAGE_TITLE"] = "بینندگانی که در نظرسنجی شرکت کرده اند";
+$MESS["VOTE_F_DATE_START"] = "تاریخ اولین رای";
+$MESS["VOTE_F_DATE_END"] = "تاریخ آخرین رای";
+$MESS["VOTE_F_COUNTER"] = "تعداد آرا:";
+$MESS["VOTE_F_USER"] = "شناسه، نام کاربری، نام و نام خانوادگی:";
+$MESS["VOTE_F_GUEST_ID"] = "شناسه بیننده در ماژول آمار:";
+$MESS["VOTE_F_VOTE"] = "رای:";
+$MESS["VOTE_PAGES"] = "بینندگان";
+$MESS["VOTE_DATE_START"] = "اولین";
+$MESS["VOTE_DATE_END"] = "آخرین";
+$MESS["VOTE_COUNTER"] = "تعداد آرا";
+$MESS["VOTE_USER"] = "بیننده";
+$MESS["VOTE_EDIT_USER"] = "پروفایل کاربر";
+$MESS["VOTE_NOT_AUTHORIZED"] = "(ورود به سایت نشده)";
+$MESS["VOTE_USER_VOTES"] = "فهرست نظرسنجی هایی که کاربر در آن شرکت کرده است";
+$MESS["VOTE_GUEST_USER_INFO"] = "اطلاعات کاربر";
+$MESS["VOTE_FL_ID"] = "شناسه کاربر";
+$MESS["VOTE_FL_DATE_ST"] = "تاریخ اولین رای دادن";
+$MESS["VOTE_FL_DATE_LS"] = "تاریخ آخرین رای دادن";
+$MESS["VOTE_FL_ID_STAT"] = "شناسه بیننده در ماژول آماره";
+$MESS["VOTE_FL_IP"] = "آی.پی";
+$MESS["VOTE_FL_COUNTER"] = "تعداد آرا";
+$MESS["VOTE_FL_VOTE"] = "رای";
+$MESS["VOTE_CONFIRM_DEL"] = "کاربر حذف شود؟";
+$MESS["VOTE_DELETE"] = "حذف";
+$MESS["VOTE_ALL"] = "(همه)";
+$MESS["VOTE_F_IP"] = "آدرس آی.پی:";
+$MESS["VOTE_TILL"] = "تا";
+$MESS["VOTE_EXACT_MATCH"] = "همانندی درست";
+?>

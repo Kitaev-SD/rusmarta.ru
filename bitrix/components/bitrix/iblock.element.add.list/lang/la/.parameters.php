@@ -1,0 +1,29 @@
+<?
+$MESS["CP_BIEAL_IBLOCK_STATUS"] = "Ediciones permitidas para estado";
+$MESS["IBLOCK_ACCESS"] = "Parámetros de acceso";
+$MESS["IBLOCK_ADD_DETAIL_PICTURE"] = "- cuadro detallado -";
+$MESS["IBLOCK_ADD_DETAIL_TEXT"] = "- texto detallado -";
+$MESS["IBLOCK_ADD_EDIT_URL"] = "Página de edición de elementos";
+$MESS["IBLOCK_ADD_IBLOCK_SECTION"] = "- sección del Block de Información -";
+$MESS["IBLOCK_ADD_NAME"] = "- nombre -";
+$MESS["IBLOCK_ADD_PREVIEW_PICTURE"] = "- cuadro previo -";
+$MESS["IBLOCK_ADD_PREVIEW_TEXT"] = "- texto previo -";
+$MESS["IBLOCK_ADD_TAGS"] = "- etiquetas -";
+$MESS["IBLOCK_ALLOW_DELETE"] = "Permitir borrar elemento";
+$MESS["IBLOCK_ALLOW_EDIT"] = "Permitir editar elemento";
+$MESS["IBLOCK_ALLOW_N"] = "nadie";
+$MESS["IBLOCK_CREATED_BY"] = "creador";
+$MESS["IBLOCK_ELEMENT_ASSOC"] = "Link a usuario";
+$MESS["IBLOCK_ELEMENT_ASSOC_PROPERTY"] = "por propiedad del Block de Información -->";
+$MESS["IBLOCK_GROUPS"] = "Grupo de usuarios permitidos para agregar/editar";
+$MESS["IBLOCK_IBLOCK"] = "Block de Información";
+$MESS["IBLOCK_MAX_USER_ENTRIES"] = "Ingresos máximos por usuario";
+$MESS["IBLOCK_NAV_ON_PAGE"] = "Elementos por página";
+$MESS["IBLOCK_PARAMS"] = "Parámetros del componente";
+$MESS["IBLOCK_PROPERTY_ID"] = "Por la propiedad del Block de Información -->";
+$MESS["IBLOCK_SEF_EDIT"] = "edición";
+$MESS["IBLOCK_STATUS_ANY"] = "algunos elementos";
+$MESS["IBLOCK_STATUS_INCATIVE"] = "elementos no activados";
+$MESS["IBLOCK_S_ACTIVE"] = "Edición permitida para";
+$MESS["IBLOCK_TYPE"] = "Tipo de Block de Información";
+?>

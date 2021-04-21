@@ -1,0 +1,36 @@
+<?
+$MESS["SALE_SLSS_LOCATION_SELECTOR_TITLE"] = "Pasirinkite vietoves";
+$MESS["SALE_SLSS_CHOICE_DO"] = "Pasirinkti";
+$MESS["SALE_SLSS_CHOICE_REDO"] = "Pasirinkite vël";
+$MESS["SALE_SLSS_NONE_IS_SELECTED"] = "Nepasirinkta vietovë";
+$MESS["SALE_SLSS_LOCATIONS"] = "Vietovës";
+$MESS["SALE_SLSS_LOCATION_AVAILABLE"] = "Prieinamos vietovës";
+$MESS["SALE_SLSS_LOCATION"] = "Vietovë";
+$MESS["SALE_SLSS_LOCATION_GROUPS"] = "Vietoviø grupës";
+$MESS["SALE_SLSS_FIND_LOCATION"] = "Ieðkoti vietovæ";
+$MESS["SALE_SLSS_SELECTED_LOCATIONS"] = "Pasirinktos vietovës";
+$MESS["SALE_SLSS_NAME_COLUMN"] = "Pavadinimas";
+$MESS["SALE_SLSS_RESET_FILTER"] = "Nustatyti filtrà ið naujo";
+$MESS["SALE_SLSS_APPLY_FILTER"] = "Ieðkoti";
+$MESS["SALE_SLSS_TYPE_NOT_SELECTED"] = "tipas nepasirinktas";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_BUTTON_SAVE"] = "Taikyti";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_BUTTON_CANCEL"] = "Atðaukti";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_ERROR_OCCURED"] = "Ávyko klaida";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_NOTHING_FOUND"] = "Deja paieðka nedavë jokiø rezultatø";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_SELECT_PROMPT"] = "Praðome pasirinkti vietoves ið vietoviø medþio arba naudojant paieðkos langelá.";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_NOTHING_SELECTED"] = "Vietovë nepasirinkta.";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_CHOOSE"] = "Pasirinkti paþymëtà vietovæ";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_UNCHOOSE"] = "Nepasirinkti";
+$MESS["SALE_SLSS_AND_N_LOCATIONS_TO_GO"] = "ir dar #CNT# #PLURAL_FORM# ";
+$MESS["SALE_SLSS_LOCATION_ELEMENT"] = "vietovës";
+$MESS["SALE_SLSS_LOCATION_ELEMENTA"] = "vietovës";
+$MESS["SALE_SLSS_LOCATION_ELEMENTOV"] = "vietovës";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_SURE_CLEAN"] = "Ar tikrai norite iðtrinti sàraðà?";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_LOC_TOTAL_SELECTED"] = "Pasirinktos vietovës";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_GRP_TOTAL_SELECTED"] = "Pasirinktos grupës";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_CLEAN_SELECTION"] = "Iðvalyti pasirinkimà";
+$MESS["SALE_SLSS_AJAX_LOADING"] = "Kraunasi ...";
+$MESS["SALE_SLSS_AJAX_RETRY"] = "Bandykite dar kartà";
+$MESS["SALE_SLSS_AJAX_LOAD_MORE"] = "Ákelti papildomai ...";
+$MESS["SALE_SLSS_NO_LOCATIONS"] = "Vietoviø duomenø bazë tusèia #ANCHOR_IMPORT#Importuoti vietoves dabar#ANCHOR_END#";
+?>

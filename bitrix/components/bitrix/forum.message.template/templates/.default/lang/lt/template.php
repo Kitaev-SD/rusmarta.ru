@@ -1,0 +1,34 @@
+<?
+$MESS["F_REPLY"] = "Atsakyti";
+$MESS["F_QUOTE"] = "Citata";
+$MESS["F_ANCHOR"] = "Nuoroda á ðá praneðimà";
+$MESS["F_EDIT"] = "Redaguoti";
+$MESS["F_EDIT_TOPIC"] = "Redaguoti temà";
+$MESS["F_DELETE"] = "Iðtrinti";
+$MESS["F_DELETE_TOPIC"] = "Iðtrinti temà";
+$MESS["F_HIDE"] = "Paslëpti";
+$MESS["F_HIDE_TOPIC"] = "Paslëpti temà";
+$MESS["F_SHOW"] = "Rodyti";
+$MESS["F_AUTHOR_PROFILE"] = "Naudotojo profilis";
+$MESS["F_ATTACH_FILES"] = "Prikabintos bylos";
+$MESS["F_POINTS"] = "Taðkai:";
+$MESS["F_NUM_MESS"] = "Praneðimai:";
+$MESS["F_DATE_REGISTER"] = "Tapo nariu:";
+$MESS["F_PRIVATE_MESSAGE"] = "Praneðimas";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "Siøsti privaèià þinutæ";
+$MESS["F_EMAIL_TITLE"] = "Siøsti praneðimà el. paðtu";
+$MESS["F_NO_VOTE_DO"] = "Balsuoti";
+$MESS["F_NO_VOTE_UNDO"] = "Atðaukti balsavimà";
+$MESS["F_REAL_IP"] = "/ tikras";
+$MESS["F_EDIT_HEAD"] = "Redaguota:";
+$MESS["F_INSERT_NAME"] = "Pridëti naudotojo vardà atsakyme";
+$MESS["F_NAME"] = "Vardas";
+$MESS["F_SHOW_TOPIC"] = "Rodyti temà";
+$MESS["F_USER_ID"] = "Sveèio ID";
+$MESS["F_USER_ID_USER"] = "Naudotojo ID";
+$MESS["F_QUOTE_HINT"] = "Praneðimo citavimui atsakymo formoje, pasirinkite tekstà ir paspauskite èia";
+$MESS["F_DELETE_CONFIRM"] = "Praneðimas bus iðtrintas negráþtamai. Tæsti?";
+$MESS["F_DELETE_TOPIC_CONFIRM"] = "Tai negráþtamai iðtrins praneðimà. Tæsti?";
+$MESS["F_GOTO"] = "Pereiti";
+$MESS["F_USER_PROFILE"] = "Naudotojo profilis";
+?>

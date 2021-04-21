@@ -1,0 +1,36 @@
+<?
+$MESS["mnu_sender_report"] = "Statistika";
+$MESS["mnu_sender_report_alt"] = "Statistika";
+$MESS["mnu_sender_group"] = "Gavëjø grupës";
+$MESS["mnu_sender_group_alt"] = "Gavëjø grupiø valdymas";
+$MESS["mnu_sender_contact_admin"] = "Gavëjai";
+$MESS["mnu_sender_contact_admin_alt"] = "Perþiûrëti ir importuoti gavëjus";
+$MESS["mnu_sender_template_admin"] = "Mano ðablonai";
+$MESS["mnu_sender_template_admin_alt"] = "Redaguoti iðsaugotus ðablonus";
+$MESS["mnu_sender_mailing_admin"] = "Naujienlaiðkio vedlys";
+$MESS["mnu_sender_mailing_admin_alt"] = "Naujienlaiðkio vedlys";
+$MESS["mnu_sender_site_mailing"] = "Naujienlaiðkiai";
+$MESS["mnu_sender_site_mailing_alt"] = "Naujienlaiðkiai";
+$MESS["mnu_sender_site_mailing_one_alt"] = "Naujienlaiðkis";
+$MESS["mnu_sender_site_mailing_chain"] = "Leidiniai";
+$MESS["mnu_sender_site_mailing_chain_alt"] = "Leidiniai";
+$MESS["mnu_sender_site_mailing_stat"] = "Leidiniø statistika";
+$MESS["mnu_sender_site_mailing_stat_alt"] = "Leidiniø statistika";
+$MESS["mnu_sender_site_mailing_addr"] = "Gavëjai";
+$MESS["mnu_sender_site_mailing_addr_alt"] = "Gavëjai";
+$MESS["mnu_sender_sect"] = "Elektroninio paðto rinkodara";
+$MESS["mnu_sender_sect_title"] = "Elektroninio paðto rinkodara";
+$MESS["mnu_sender_mailing_trig_admin"] = "Sàraðas";
+$MESS["mnu_sender_mailing_admin_trig_alt"] = "Automatiniø laiðkø siuntimo valdymas";
+$MESS["mnu_sender_mailing_trig"] = "Automatiniø laiðkø siuntimas";
+$MESS["mnu_sender_mailing_trig_alt"] = "Automatiniø laiðkø perþiûra ir valdymas";
+$MESS["mnu_sender_site_mailing_trig"] = "Naujienlaiðkiai";
+$MESS["mnu_sender_site_mailing_trig_alt"] = "Naujienlaiðkiai";
+$MESS["mnu_sender_site_mailing_trig_one_alt"] = "Automatiniø laiðkø siuntimas";
+$MESS["mnu_sender_site_mailing_trig_chain"] = "Laiðkai";
+$MESS["mnu_sender_site_mailing_trig_chain_alt"] = "Laiðkø redagavimas ir jø testinis siuntimas";
+$MESS["mnu_sender_site_mailing_trig_stat"] = "Statistika";
+$MESS["mnu_sender_site_mailing_trig_stat_alt"] = "Statistika";
+$MESS["mnu_sender_stat"] = "Pradëti";
+$MESS["mnu_sender_stat_alt"] = "Visø naujienlaiðkiø statistika";
+?>

@@ -1,0 +1,33 @@
+<?
+$MESS["CP_BPS_BROWSER_TITLE"] = "Establecer título de la ventana de navegación desde el valor de la propiedad";
+$MESS["CP_BPS_CACHE_GROUPS"] = "Respetar los permisos de acceso";
+$MESS["CP_BPS_SECTION_USER_FIELDS"] = "Propiedades de la sección";
+$MESS["CP_BPS_SET_LAST_MODIFIED"] = "Fijar fecha de la última modificación de encabezado de respuesta en la página";
+$MESS["IBLOCK_CACHE_FILTER"] = "Cache si el filtro está activo";
+$MESS["IBLOCK_DETAIL_URL"] = "URL de la página con contenido de detalles";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD"] = "Campo para clasificar fotos";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER"] = "Orden de clasificación de las fotos en la sección";
+$MESS["IBLOCK_FIELD"] = "Campos";
+$MESS["IBLOCK_FILTER_NAME_IN"] = "Nombre del conjunto con valores usados para filtrar elementos";
+$MESS["IBLOCK_IBLOCK"] = "Block de Información";
+$MESS["IBLOCK_LINE_ELEMENT_COUNT"] = "Número de fotos para mostrar en una fila de la tabla";
+$MESS["IBLOCK_PAGE_ELEMENT_COUNT"] = "Números de elementos por página";
+$MESS["IBLOCK_PROPERTY"] = "Propiedades";
+$MESS["IBLOCK_SECTION_CODE"] = "Código";
+$MESS["IBLOCK_SECTION_ID"] = "ID de la sección";
+$MESS["IBLOCK_SECTION_URL"] = "URL de la página con contenidos de la sección";
+$MESS["IBLOCK_SORT_ACTIVE_FROM"] = "activo desde";
+$MESS["IBLOCK_SORT_ACTIVE_TO"] = "activo hasta";
+$MESS["IBLOCK_SORT_ASC"] = "ascendente";
+$MESS["IBLOCK_SORT_DESC"] = "descendente";
+$MESS["IBLOCK_SORT_ID"] = "ID";
+$MESS["IBLOCK_SORT_NAME"] = "nombre";
+$MESS["IBLOCK_SORT_SHOWS"] = "promedio de vistas";
+$MESS["IBLOCK_SORT_SORT"] = "clasificación de índice";
+$MESS["IBLOCK_SORT_TIMESTAMP"] = "modificación de fecha";
+$MESS["IBLOCK_TYPE"] = "Tipo de Block de Información";
+$MESS["T_IBLOCK_DESC_ADD_SECTIONS_CHAIN"] = "Agregar nombre de la sección para el breadcrumb de navegación";
+$MESS["T_IBLOCK_DESC_DESCRIPTION"] = "Fijar descripción de página desde la propiedad";
+$MESS["T_IBLOCK_DESC_KEYWORDS"] = "Fijar página de palabras clave desde la propiedad";
+$MESS["T_IBLOCK_DESC_PAGER_PHOTO"] = "Imágenes";
+?>

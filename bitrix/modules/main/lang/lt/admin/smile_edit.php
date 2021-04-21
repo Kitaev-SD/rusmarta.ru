@@ -1,0 +1,36 @@
+<?
+$MESS["SMILE_EDIT_RECORD"] = "Redaguoti ðypsenëlæ";
+$MESS["SMILE_NEW_RECORD"] = "Pridëti ðypsenëlæ";
+$MESS["ERROR_EDIT_SMILE"] = "Klaida redaguojant ðypsenëlæ.";
+$MESS["ERROR_ADD_SMILE"] = "Klaida pridedant ðypsenëlæ.";
+$MESS["ERROR_BAD_SESSID"] = "Jûsø sesija pasibaigë. Praðome bandyti dar kartà.";
+$MESS["ERROR_COPY_IMAGE"] = "Paveikslëlio ákëlimo klaida (nepakankamas raðymo leidimas?)";
+$MESS["ERROR_EXISTS_IMAGE"] = "Failas  #FILE#  jau yra diske. <br> Jis gali bûti naudojamas vienos ið ðypsenëliø.";
+$MESS["SMILE_SET_ID"] = "Rinkinys";
+$MESS["SMILE_IMAGE_HR"] = "Aukðta rezoliucija ";
+$MESS["SMILE_IMAGE_HR_TITLE"] = "Vaizdas atrodys ryðkesnis dël padidinto pikseliø tankio.";
+$MESS["SMILE_SORT"] = "Rûðiavimas";
+$MESS["SMILE_TYPE"] = "Tipas";
+$MESS["SMILE_TYPING"] = "Spausdinimas (ðypsenëlës kodas)";
+$MESS["SMILE_TYPING_NOTE"] = "Atskirkite kelis spausdinimus tarpeliu";
+$MESS["SMILE_IMAGE"] = "Paveiksliukas";
+$MESS["SMILE_IMAGE_UPLOAD"] = "Naujas paveiksliukas";
+$MESS["SMILE_IMAGE_NOTE_2"] = "Ðypsenëlës rekomenduojamas dydis: 20x20 arba 40x40 - HD, 8080 - Ultra HD<br> piktogramoms: 15x15, 3030 - HD, 60x60 - Ultra HD";
+$MESS["SMILE_IMAGE_NAME"] = "Ðypsenëlës pavadinimas";
+$MESS["SMILE_IMAGE_NAME_EN"] = "Angliðkas";
+$MESS["SMILE_IMAGE_NAME_DE"] = "Vokiðkas";
+$MESS["SMILE_IMAGE_NAME_RU"] = "Rusiðkas";
+$MESS["SMILE_TYPE_SMILE"] = "Ðypsenëlë";
+$MESS["SMILE_TYPE_ICON"] = "Piktograma";
+$MESS["SMILE_BTN_BACK"] = "Ðypsenëlës";
+$MESS["SMILE_BTN_NEW"] = "Pridëti naujà";
+$MESS["SMILE_BTN_DELETE"] = "Paðalinti";
+$MESS["SMILE_BTN_DELETE_CONFIRM"] = "Ar tikrai norite paðalinti ðià ðypsenëlæ?";
+$MESS["SMILE_TAB_SMILE"] = "Parametrai";
+$MESS["SMILE_TAB_SMILE_DESCR"] = "Ðypsenëlës parametrai";
+$MESS["SMILE_IMAGE_SD"] = "Standartinë raiðka (SD)";
+$MESS["SMILE_IMAGE_HD"] = "Aukðta raiðka (HD)";
+$MESS["SMILE_IMAGE_UHD"] = "Itin didelë raiðka (Ultra HD)";
+$MESS["SMILE_IMAGE_HR_TITLE_2"] = "Ákelti HD ir Ultra HD vaizdus. Jie atrodys þymei geriau HD monitoriuose.";
+$MESS["SMILE_HIDDEN"] = "Paslëptos ðypsenëlës";
+?>

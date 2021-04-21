@@ -1,0 +1,35 @@
+<?
+$MESS["CommerceInfo"] = "Komercinë informacija";
+$MESS["Document"] = "Dokumentas";
+$MESS["Operation"] = "Operacija";
+$MESS["NumberDoc"] = "Dokumento numeris";
+$MESS["DateDoc"] = "Dokumento data";
+$MESS["TimeDoc"] = "Dokumento laikas";
+$MESS["PaymentDate"] = "Mokëjimo data";
+$MESS["Sum"] = "Suma";
+$MESS["Comment"] = "Komentaras";
+$MESS["Currency"] = "Valiuta";
+$MESS["CompanyInDocument"] = "Ámonë dokumente";
+$MESS["Role"] = "Vaidmuo";
+$MESS["Company"] = "Ámonë";
+$MESS["Article"] = "Straipsnis";
+$MESS["Catalog"] = "Katalogas";
+$MESS["Product"] = "Prekë";
+$MESS["Unit"] = "Vienetas";
+$MESS["Amount"] = "Suma";
+$MESS["Price"] = "Kaina";
+$MESS["Description"] = "Apraðymas";
+$MESS["ID"] = "ID";
+$MESS["Name"] = "Pavadinimas";
+$MESS["DisplayName"] = "Rodyti pavadinimà";
+$MESS["Address"] = "Adresas";
+$MESS["JuridicAddress"] = "Juridinias adresas";
+$MESS["WWW"] = "www";
+$MESS["Contact"] = "Kontaktas";
+$MESS["ContactMan"] = "Kontaktinis asmuo";
+$MESS["E-mail"] = "El.paðtas";
+$MESS["Tax"] = "Mokestis";
+$MESS["TaxSum"] = "Mokesèio suma";
+$MESS["TaxRate"] = "Mokesèio tarifas";
+$MESS["IncludedInSum"] = "Átraukta á sumà";
+?>

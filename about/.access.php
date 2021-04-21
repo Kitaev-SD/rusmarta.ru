@@ -1,0 +1,12 @@
+<?
+$PERM["history"]["2"]="R";
+$PERM["history"]["5"]="R";
+$PERM["history"]["3"]="R";
+$PERM["history"]["4"]="R";
+$PERM["employees"]["2"]="D";
+$PERM["employees"]["5"]="D";
+$PERM["employees"]["3"]="D";
+$PERM["employees"]["4"]="D";
+$PERM["employees"]["8"]="D";
+$PERM["employees"]["6"]="X";
+?>

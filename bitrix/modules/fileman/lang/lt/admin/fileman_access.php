@@ -1,0 +1,30 @@
+<?
+$MESS['FILEMAN_ACCESS_TITLE'] = 'Prieigos teisës';
+$MESS['FM_FOLDER_ACCESS_DENIED'] = 'Prieigos teisës nesuteiktos';
+$MESS['FM_FOLDER_ACCESS_READ'] = 'Galima tik perþiûrëti';
+$MESS['FM_FOLDER_ACCESS_WRITE'] = 'Áraðymas';
+$MESS['FM_FOLDER_ACCESS_FULL'] = 'Pilnas priëjimas';
+$MESS['FM_FOLDER_ACCESS_WORKFLOW'] = 'Dokumentø apyvarta';
+$MESS['FILEMAN_FOLDER_ACCESS_INHERIT'] = 'Paveldëti';
+$MESS['FILEMAN_ACCESS_TO_DENIED'] = 'Truksta teisiø keisti priejimo teises prie';
+$MESS['FILEMAN_ACCESS_CHANGE_TO'] = 'Priejimo teisiø keitimas á';
+$MESS['FILEMAN_ACCESS_FOLDERS_FILES'] = 'bylos/katalogai:';
+$MESS['FILEMAN_ACCESS_DIFFERENT'] = 'Ðios grupës priejimo teisës tûri skirtingas teises katalogams! Iðsaugojus visi katalogai turës vienodas priejimo teises ðiai grupei.';
+$MESS['FILEMAN_ACCESS_GROUP'] = 'Grupë';
+$MESS['FILEMAN_ACCESS_LEVEL'] = 'Priëjimo teisës';
+$MESS['FILEMAN_ACCESS_LEVEL_CUR'] = 'Esamos prieigos teisës';
+$MESS['FILEMAN_ACCESS_LEVEL_NOTCH'] = '(palikti be pakeitimø)';
+$MESS['FILEMAN_ACCESS_DIFF_GROUP'] = 'Kaikurios bylos arba katalogai ðiuo metu turi skirtingus prieigos lygius ðiai grupei:';
+$MESS['FILEMAN_ACCESS_GROUP_INHERIT'] = 'Visos grupës su \"paveldëti\" priëjimo teisëmis';
+$MESS['FILEMAN_ACCESS_DIFF_LEVEL'] = 'Kaikurios bylos arba katalogai ðiuo metu turi skirtingus prieigos lygius:';
+$MESS['FILEMAN_ACCESS_SAVE'] = 'Iðsaugoti';
+$MESS['FILEMAN_ACCESS_APPLY'] = 'Pritaikyti';
+$MESS['FILEMAN_ACCESS_RESET'] = 'Iðvalyti';
+$MESS['FILEMAN_ACCESS_FOR_GROUP'] = 'Naudotojø grupei';
+$MESS['FILEMAN_ACCESS_FOR_GROUP2'] = 'áraðymo teisës pridëtos. Kiekvienas uþsiregistravæs naudotojas galës keisti ðias bylas/katalogus. Iðsaugoti pakeitimus?';
+$MESS['FILEMAN_ACCESS_FILE'] = 'Byla';
+$MESS['FILEMAN_CMENU_CAT'] = 'Katalogas';
+$MESS['FILEMAN_TAB'] = 'Prieigos teisës';
+$MESS['FILEMAN_TAB_ALT'] = 'Prieigos teisiø nustatymas';
+$MESS['FILEMAN_FILE_OR_FOLDER'] = 'Byla/katalogas';
+?>

@@ -1,0 +1,5 @@
+<?
+$MESS['IBLOCK_NAME'] = 'Albumas (sàraðas)';
+$MESS['IBLOCK_DESCRIPTION'] = 'Iðveda albumø sàraðà';
+$MESS['T_IBLOCK_DESC_PHOTO'] = 'Nuotraukø galerija 2.0';
+?>

@@ -1,0 +1,3 @@
+<?
+$MESS["VOTE_ID_IS_EMPTY"] = "Apklausos grupës ID negali bûti tuðèias.";
+?>

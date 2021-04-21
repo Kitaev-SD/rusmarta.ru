@@ -1,0 +1,4 @@
+<?
+$MESS["SALE_BASKET_ITEM_REMOVE_IMPOSSIBLE_BECAUSE_SHIPPED"] = "Negalite iðtrinti atkrautà prekæ \"#PRODUCT_NAME#\"";
+$MESS["SALE_BASKET_ITEM_NOT_UPDATED_BECAUSE_NOT_EXISTS"] = "Prekë \"#PRODUCT_NAME#\" nebuvo atnaujinta, nes ji buvo iðtrinta ankðèiau.";
+?>

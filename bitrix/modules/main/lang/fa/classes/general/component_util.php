@@ -1,0 +1,7 @@
+<?
+$MESS["COMP_PROP_CACHE_TYPE_AUTO"] = "اتوماتیک";
+$MESS["COMP_PROP_CACHE_TYPE_YES"] = "کش";
+$MESS["VRT_COMP_CAT_CONTENT"] = "محتوا";
+$MESS["COMP_PROP_SEF_MODE_NO"] = "خیر";
+$MESS["COMP_PROP_SEF_MODE_YES"] = "بله";
+?>

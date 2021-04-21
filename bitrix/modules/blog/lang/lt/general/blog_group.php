@@ -1,0 +1,7 @@
+<?
+$MESS['BLG_GG_EMPTY_NAME'] = 'Nenurodytas tinklaraðèiø grupës pavadinimas';
+$MESS['BLG_GG_DUBLICATE_NAME'] = 'Tinklaraðèiø grupë su tokiu pavadinimu jau yra';
+$MESS['BLG_GG_EMPTY_SITE_ID'] = 'Nenurodytas tinklaraðèiø grupës tinklalapis';
+$MESS['BLG_GG_ERROR_NO_SITE'] = 'Svetainë su ID \"#ID#\" nerasta';
+$MESS['BLG_GG_ERROR_NOT_EMPTY'] = 'Tinklaraðèiø grupëje su kodu \"#ID#\" yra tinklaraðtis';
+?>

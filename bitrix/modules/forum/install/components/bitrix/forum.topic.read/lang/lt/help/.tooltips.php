@@ -1,0 +1,34 @@
+<?
+$MESS["FID_TIP"] = "Forumo ID";
+$MESS["TID_TIP"] = "Temos ID";
+$MESS["MID_TIP"] = "Praneðimo ID";
+$MESS["URL_TEMPLATES_READ_TIP"] = "Forumo temos skaitymo puslapis";
+$MESS["URL_TEMPLATES_MESSAGE_TIP"] = "Praneðimo perþiûros puslapis (su praneðimo ID)";
+$MESS["URL_TEMPLATES_LIST_TIP"] = "Temø puslapis";
+$MESS["URL_TEMPLATES_MESSAGE_MOVE_TIP"] = "Praneðimø perneðimo puslapis";
+$MESS["URL_TEMPLATES_PROFILE_VIEW_TIP"] = "Vartotojo profilio URL ðablonas";
+$MESS["URL_TEMPLATES_TOPIC_NEW_TIP"] = "Naujos temos sukûrimo puslapis";
+$MESS["URL_TEMPLATES_SUBSCR_LIST_TIP"] = "Prenumeratos puslapis";
+$MESS["URL_TEMPLATES_TOPIC_MOVE_TIP"] = "Temø perneðimo puslapis";
+$MESS["URL_TEMPLATES_INDEX_TIP"] = "Forumø puslapis";
+$MESS["URL_TEMPLATES_PM_EDIT_TIP"] = "Asmeniniø praneðimø puslapis";
+$MESS["URL_TEMPLATES_MESSAGE_SEND_TIP"] = "Praneðimo sukûrimo puslapis";
+$MESS["URL_TEMPLATES_RSS_TIP"] = "Praneðimo ðablonas";
+$MESS["URL_TEMPLATES_USER_POST_TIP"] = "Naudotojo praneðimø puslapis";
+$MESS["MESSAGES_PER_PAGE_TIP"] = "Praneðimø skaièius puslapyje";
+$MESS["DATE_FORMAT_TIP"] = "Datos formatas";
+$MESS["DATE_TIME_FORMAT_TIP"] = "Datos ir laiko formatas";
+$MESS["PAGE_NAVIGATION_TEMPLATE_TIP"] = "Narðymo kelio navigacijos ðablono pavadinimas";
+$MESS["PAGE_NAVIGATION_WINDOW_TIP"] = "Narðymo kelio puslapiai";
+$MESS["PAGE_NAVIGATION_SHOW_ALL_TIP"] = "Ájungti \"Rodyti visus puslapius\" opcijà";
+$MESS["WORD_LENGTH_TIP"] = "Þodþio ilgis";
+$MESS["IMAGE_SIZE_TIP"] = "Prisegtos nuotraukos dydis (px)";
+$MESS["SHOW_FIRST_POST_TIP"] = "Rodyti pirmà temos þinutæ kiekviename puslapyje";
+$MESS["SET_NAVIGATION_TIP"] = "Rodyti navigacinæ grandinëlæ";
+$MESS["AJAX_TYPE_TIP"] = "Naudoti AJAX";
+$MESS["SET_PAGE_PROPERTY_TIP"] = "Prie puslapio antraðtës þymës pridëkite raktaþodþiø ir temos apraðymà";
+$MESS["SET_TITLE_TIP"] = "Nustatyti puslapio pavadinimà";
+$MESS["CACHE_TYPE_TIP"] = "Talpyklos tipas";
+$MESS["CACHE_TIME_TIP"] = "Talpyklos galiojimo laikas (sek.)";
+$MESS["SHOW_RATING_TIP"] = "Rodyti vertinimà";
+?>

@@ -1,0 +1,32 @@
+<?
+$MESS["F_ANCHOR"] = "Link para esse post";
+$MESS["F_ATTACH_FILES"] = "Arquivos anexados";
+$MESS["F_AUTHOR_PROFILE"] = "Perfil do usuário";
+$MESS["F_DATE_REGISTER"] = "Cadastrado em:";
+$MESS["F_DELETE"] = "Excluir";
+$MESS["F_DELETE_TOPIC"] = "Deletar tópico";
+$MESS["F_EDIT"] = "Modificar";
+$MESS["F_EDIT_HEAD"] = "Editado:";
+$MESS["F_EDIT_TOPIC"] = "Modificar Tópico";
+$MESS["F_EMAIL_ADD_INFO"] = "Informações adicionais";
+$MESS["F_EMAIL_TITLE"] = "Enviar mensagem de e-mail";
+$MESS["F_HIDE"] = "Ocultar";
+$MESS["F_HIDE_TOPIC"] = "Ocultar tópico";
+$MESS["F_INSERT_NAME"] = "Colar o nome de usuário na resposta";
+$MESS["F_NAME"] = "Nome";
+$MESS["F_NO_VOTE_DO"] = "Votar";
+$MESS["F_NO_VOTE_UNDO"] = "Cancelar o voto";
+$MESS["F_NUM_MESS"] = "Mensagens:";
+$MESS["F_ORIGINAL_MESSAGE"] = "Mensagem original";
+$MESS["F_POINTS"] = "Points:";
+$MESS["F_QUOTE"] = "Citar";
+$MESS["F_QUOTE_HINT"] = "Para citar a mensagem no formulário de resposta, selecione o texto e clique aqui";
+$MESS["F_REAL_IP"] = "/real";
+$MESS["F_REPLY"] = "Responder";
+$MESS["F_SHOW"] = "Mostrar";
+$MESS["F_SHOW_TOPIC"] = "Mostrar tópico";
+$MESS["F_SOURCE_ID"] = "Fonte";
+$MESS["F_SPAM"] = "Spam";
+$MESS["F_USER_ID"] = "ID de convidado";
+$MESS["F_USER_ID_USER"] = "ID do usuário";
+?>

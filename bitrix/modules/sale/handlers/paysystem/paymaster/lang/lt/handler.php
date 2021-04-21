@@ -1,0 +1,15 @@
+<?
+$MESS["SALE_HPS_PAYMASTER_ERROR_PARAMS_VALUE"] = "Mokëjimo parametrai nesutampa;";
+$MESS["SALE_HPS_PAYMASTER_SIM_MODE_TEST"] = "testinis reþimas, pinigai realiai nepervedami;";
+$MESS["SALE_HPS_PAYMASTER_DESC_MERCHANT_ID"] = "Pardavëjo piniginë - # MERCHANT_ID #;";
+$MESS["SALE_HPS_PAYMASTER_DESC_SYS_INVS_NO"] = "Sàskaitos numeris - #SYS_INVS_NO#;";
+$MESS["SALE_HPS_PAYMASTER_DESC_SYS_TRANS_NO"] = "mokëjimo numeris - #SYS_TRANS_NO#;";
+$MESS["SALE_HPS_PAYMASTER_DESC_SYS_TRANS_DATE"] = "mokëjimo data - #SYS_TRANS_DATE# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAY_SYSTEM"] = "mokëjimo data - #PAY_SYSTEM# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_PURSE"] = "pirkëjo sàskaita - #PAYER_PURSE# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_WM"] = "WMId pirkëjo - #PAYER_WM#;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_NUMBER"] = "-kortos numeris - #PAYMER_NUMBER# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_EMAIL"] = "paymer.com pirkëjo el. paðtas - #PAYMER_EMAIL# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_TELEPAT_PHONENUMBER"] = "pirkëjo telefonas - #TELEPAT_PHONENUMBER#;";
+$MESS["SALE_HPS_PAYMASTER_DESC_TELEPAT_ORDERID"] = "Telepat mokëjimas - #TELEPAT_ORDERID# ;";
+?>

@@ -1,0 +1,38 @@
+<?
+$MESS["CATEGORY_NAME"] = "Categoria";
+$MESS["FILE_NAME"] = "Arquivo";
+$MESS["IBLOCK_MODULE_NOT_INSTALLED"] = "O módulo Informação Blocos não está instalado.";
+$MESS["IBLOCK_NOT_ASSIGNED"] = "No bloco de informação é selecionado.";
+$MESS["SOCNET_MODULE_NOT_INSTALLED"] = "O módulo de rede social não está instalado.";
+$MESS["WIKI_ACCESS_DENIED"] = "Acesso negado.";
+$MESS["WIKI_BUTTON_DELETE"] = "Excluir";
+$MESS["WIKI_CHOISE_CATEGORY"] = "Selecione a categoria";
+$MESS["WIKI_DEFAULT_DETAIL_TEXT"] = "%NEWLINE%%HEAD%%NEWLINE%%NEWLINE% Não há nenhum texto nesta página.";
+$MESS["WIKI_DELETE_CONFIRM"] = "Tem certeza de que deseja excluí-la?";
+$MESS["WIKI_DELETE_ERROR"] = "Erro ao excluir a página";
+$MESS["WIKI_DELETE_PAGE"] = "Tem certeza de que deseja excluir totalmente a página e o log de alteração?";
+$MESS["WIKI_DEL_SONET_LOG_TITLE_TEMPLATE"] = "Wiki artigo \"#TITLE#\" excluído";
+$MESS["WIKI_DIALOG_RENAME_BUT_RENAME"] = "Renomear";
+$MESS["WIKI_DIALOG_RENAME_ERROR"] = "Não é possível renomear.";
+$MESS["WIKI_DIALOG_RENAME_PAGE_NAME"] = "Novo nome";
+$MESS["WIKI_DIALOG_RENAME_TITLE"] = "Renomear";
+$MESS["WIKI_ERROR_NAME_BAD_SYMBOL"] = "O nome contém símbolos inválidos (/)";
+$MESS["WIKI_ERROR_NAME_EMPTY"] = "O título da página está faltando.";
+$MESS["WIKI_ERROR_RENAME"] = "Uma página com esse nome já existe.";
+$MESS["WIKI_ERROR_TEXT_EMPTY"] = "O texto da página está vazio.";
+$MESS["WIKI_IMAGE_INSERT"] = "Inserir imagem";
+$MESS["WIKI_IMAGE_UPLOAD_ERROR"] = "Apenas as imagens podem ser transferidas (JPG, JPEG, JPE, PNG, GIF, BMP).";
+$MESS["WIKI_MODIFY_COMMENT"] = "Comente sobre atualização";
+$MESS["WIKI_MODIFY_COMMENT_ABSENT"] = "nenhum";
+$MESS["WIKI_MODULE_NOT_INSTALLED"] = "O módulo Wiki não está instalado.";
+$MESS["WIKI_PAGE_NOT_FIND"] = "Não há texto, ou a página não existe. Você pode <a href=\"%LINK%\">criar uma nova página com este título agora</a>.";
+$MESS["WIKI_PAGE_RENAMED"] = "Página %OLD_NAME% foi renomeado para %NEW_NAME%.";
+$MESS["WIKI_REDIRECT"] = "Redirecionar";
+$MESS["WIKI_SESS_TIMEOUT"] = "Sua sessão expirou. Por favor, salve a página novamente.";
+$MESS["WIKI_SOCNET_INITIALIZING_FAILED"] = "Rede social falhou ao inicializar.";
+$MESS["WIKI_SONET_IM_ADD"] = "Uma nova página Wiki \"#title#\", adicionada a #group_name#.";
+$MESS["WIKI_SONET_IM_DELETE"] = "Página Wiki \"#title#\" removida em #group_name#.";
+$MESS["WIKI_SONET_IM_EDIT"] = "Página Wiki \"#title#\" removida em #group_name#.";
+$MESS["WIKI_SONET_IM_RENAME"] = "Página Wiki \"#title_old#\" renomeada para \"#title_new#\" em #group_name#.";
+$MESS["WIKI_SONET_LOG_TITLE_TEMPLATE"] = "Artigo \"#TITLE#\" ou atualizados";
+?>

@@ -1,0 +1,23 @@
+<?
+$MESS["IBLOCK_XML2_CATALOG_SECTION_NAME"] = "بخش";
+$MESS["IBLOCK_XML2_TYPE"] = "نوع";
+$MESS["IBLOCK_XML2_TYPE_LIST"] = "فهرست";
+$MESS["IBLOCK_XML2_OWNER"] = "مالک";
+$MESS["IBLOCK_XML2_GROUP"] = "بخش";
+$MESS["IBLOCK_XML2_GROUPS"] = "بخشها";
+$MESS["IBLOCK_XML2_VALUE"] = "مقدار";
+$MESS["IBLOCK_XML2_ID"] = "شناسه";
+$MESS["IBLOCK_XML2_NAME"] = "عنوان";
+$MESS["IBLOCK_XML2_START_TIME"] = "زمان شروع";
+$MESS["IBLOCK_XML2_END_TIME"] = "زمان پایان";
+$MESS["IBLOCK_XML2_DESCRIPTION"] = "توضیحات";
+$MESS["IBLOCK_XML2_VIEW"] = "مشاهده";
+$MESS["IBLOCK_XML2_PROPERTIES"] = "مشخصات";
+$MESS["IBLOCK_XML2_SYMBOL_CODE"] = "کد";
+$MESS["IBLOCK_XML2_SORT"] = "ترتیب";
+$MESS["IBLOCK_XML2_STATUS"] = "وضعیت";
+$MESS["IBLOCK_XML2_POSITIONS"] = "المانها";
+$MESS["IBLOCK_XML2_WEIGHT"] = "وزن";
+$MESS["IBLOCK_XML2_FILE"] = "فایل";
+$MESS["IBLOCK_XML2_FILES"] = "فایل";
+?>

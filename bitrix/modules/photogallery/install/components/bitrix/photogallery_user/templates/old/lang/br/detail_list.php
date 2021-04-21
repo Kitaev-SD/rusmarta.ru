@@ -1,0 +1,36 @@
+<?
+$MESS["P_CLOSE_FILTER"] = "Ocultar";
+$MESS["P_DELETE"] = "Deletar";
+$MESS["P_DELETE_CONFIRM"] = "Você tem certeza que deseja deletar as fotos irreversivelmente?";
+$MESS["P_FILTER_RESET"] = "Resetar";
+$MESS["P_FILTER_SHOW"] = "Exibir";
+$MESS["P_GROUP_BY_DATE_CREATE"] = "Fotos de grupos por data de criação";
+$MESS["P_NOT_PUBLIC"] = "Não publicar";
+$MESS["P_NO_PHOTO"] = "Não foi encontrada nenhuma foto.";
+$MESS["P_OPEN_FILTER"] = "Exibir";
+$MESS["P_PHOTO_ORDER_BY_COMMENTS"] = "Fotos mais comentadas";
+$MESS["P_PHOTO_ORDER_BY_DATE_CREATE"] = "Novas fotos";
+$MESS["P_PHOTO_ORDER_BY_RATING"] = "Melhores fotos";
+$MESS["P_PHOTO_ORDER_BY_SHOWS"] = "Fotos populares";
+$MESS["P_PHOTO_SORT_COMMENTS"] = "Mais comentados";
+$MESS["P_PHOTO_SORT_COMMENTS_TITLE"] = "pelo número de votos";
+$MESS["P_PHOTO_SORT_ID"] = "Novo";
+$MESS["P_PHOTO_SORT_ID_TITLE"] = "por data de criação";
+$MESS["P_PHOTO_SORT_RATING"] = "Melhor";
+$MESS["P_PHOTO_SORT_RATING_TITLE"] = "pelo número de votos";
+$MESS["P_PHOTO_SORT_SHOWS"] = "Mais visualizados";
+$MESS["P_PHOTO_SORT_SHOWS_TITLE"] = "por número de visualizações";
+$MESS["P_PUBLIC"] = "Publicar";
+$MESS["P_SELECT_PHOTO_FROM_PERIOD"] = "Exibir fotos adicionadas durante";
+$MESS["P_SHOW"] = "Exibir";
+$MESS["P_SHOW_FILTER"] = "Filtro de edição";
+$MESS["P_SHOW_ONLY_NOT_ACTIVE"] = "fotos não aprovadas";
+$MESS["P_SHOW_ONLY_NOT_ACTIVE_TILTE"] = "Fotos não aprovadas são aquelas que ainda estão sendo analisadas. Estão invisíveis para todos exceto para o proprietário e o moderador.";
+$MESS["P_SHOW_ONLY_NOT_PUBLIC"] = "foto não publicadas ";
+$MESS["P_SHOW_ONLY_NOT_PUBLIC_TITLE"] = "Fotos não publicadas são aquelas que aparecerão na página inicial e nas listas mais que ainda não foram aprovadas.";
+$MESS["P_SHOW_ONLY_NOT_PUBLIC_TITLE1"] = "Fotos não publicadas são aquelas que aparecerão na página inicial e nas listas mais que ainda não foram aprovadas.";
+$MESS["P_SHOW_SIMPLE"] = "fotos aprovadas e publicadas";
+$MESS["P_SHOW_SIMPLE_TITLE"] = "Exibe todas as fotos que estejam visíveis para um visitante comum.";
+$MESS["P_UP"] = "Acima";
+$MESS["P_UP_TITLE"] = "Um nível acima";
+?>

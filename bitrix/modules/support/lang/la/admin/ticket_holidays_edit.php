@@ -1,0 +1,31 @@
+<?
+$MESS["MAIN_ADMIN_MENU_LIST"] = "Lista";
+$MESS["SUP_ADMIN_TAB1"] = "Excepción";
+$MESS["SUP_ADMIN_TITLE"] = "Excepción";
+$MESS["SUP_ADMIN_USER_FIELDS"] = "Propiedades adicionales";
+$MESS["SUP_BACK_TO_ADMIN"] = "Atrás";
+$MESS["SUP_CONFIRM_DEL_MESSAGE"] = "Está seguro de que desea eliminar esta excepción?";
+$MESS["SUP_DATE_FROM"] = "Activo desde";
+$MESS["SUP_DATE_TILL"] = "A través de";
+$MESS["SUP_DESCRIPTION"] = "Descripción";
+$MESS["SUP_ERROR"] = "Errores";
+$MESS["SUP_FORM_SETTINGS"] = "Configuración";
+$MESS["SUP_FORM_SETTINGS_EX"] = "Configuración";
+$MESS["SUP_NAME"] = "Nombre";
+$MESS["SUP_OPEN_TIME"] = "Acción";
+$MESS["SUP_OPEN_TIME_HOLIDAY"] = "Día genérico off";
+$MESS["SUP_OPEN_TIME_HOLIDAY_G"] = "R&R";
+$MESS["SUP_OPEN_TIME_HOLIDAY_H"] = "Descanso en función del tiempo";
+$MESS["SUP_OPEN_TIME_WORKDAY_0"] = "Día laborable en lugar del Lunes";
+$MESS["SUP_OPEN_TIME_WORKDAY_1"] = "Día laborable en lugar del Martes";
+$MESS["SUP_OPEN_TIME_WORKDAY_2"] = "Día laborable en lugar del Miercoles";
+$MESS["SUP_OPEN_TIME_WORKDAY_3"] = "Día laborable en lugar del Jueves";
+$MESS["SUP_OPEN_TIME_WORKDAY_4"] = "Día laborable en lugar del Viernes";
+$MESS["SUP_OPEN_TIME_WORKDAY_5"] = "Día laborable en lugar del Sábado";
+$MESS["SUP_OPEN_TIME_WORKDAY_6"] = "Día laborable en lugar del Domingo";
+$MESS["SUP_OPEN_TIME_WORKDAY_G"] = "Trabajar";
+$MESS["SUP_OPEN_TIME_WORKDAY_H"] = "En función del tiempo en horario especial de trabajo";
+$MESS["SUP_SLA"] = "SLA";
+$MESS["SUP_SLA_ID"] = "Aplicable a los SLA's";
+$MESS["SUP_TIMETABLE_NOT_FOUND"] = "No se ha encontrado una excepción.";
+?>

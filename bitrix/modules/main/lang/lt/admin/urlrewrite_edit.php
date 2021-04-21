@@ -1,0 +1,19 @@
+<?
+$MESS['MURL_NO_USL'] = '';
+$MESS['MURL_DUPL_CONDITION'] = '';
+$MESS['MURL_EDIT'] = 'Redaguoti áraðà';
+$MESS['MURL_ADD'] = 'Pridëti áraðà';
+$MESS['MURL_2_LIST'] = 'Áraðø sàraðas';
+$MESS['MURL_2_LIST_ALT'] = 'Pereiti prie áraðu saraðo';
+$MESS['MURL_ACT_ADD'] = 'Pridëti';
+$MESS['MURL_ACT_ADD_ALT'] = 'Pridëti naujà áraðà';
+$MESS['MURL_ACT_DEL'] = 'Trinti';
+$MESS['MURL_ACT_DEL_CONF'] = 'Ar tikrai norite paðalinti ðá áraðà?';
+$MESS['MURL_TAB'] = 'Parametrai';
+$MESS['MURL_TAB_ALT'] = 'Áraðo parametrai';
+$MESS['MURL_USL'] = 'Sàlyga';
+$MESS['MURL_COMPONENT'] = 'Komponentas';
+$MESS['MURL_FILE'] = 'Byla';
+$MESS['MURL_RULE'] = 'Taisyklë';
+$MESS['SAE_ERROR'] = '';
+?>

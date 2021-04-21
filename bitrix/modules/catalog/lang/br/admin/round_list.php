@@ -1,0 +1,12 @@
+<?
+$MESS["PRICE_ROUND_HEADER_NAME_CATALOG_GROUP_ID"] = "Tipo de preço";
+$MESS["PRICE_ROUND_HEADER_NAME_CREATED_BY"] = "Criado por";
+$MESS["PRICE_ROUND_HEADER_NAME_DATE_CREATE"] = "Criado em";
+$MESS["PRICE_ROUND_HEADER_NAME_DATE_MODIFY"] = "Data de modificação";
+$MESS["PRICE_ROUND_HEADER_NAME_MODIFIED_BY"] = "Modificado por";
+$MESS["PRICE_ROUND_HEADER_NAME_PRICE"] = "Preço de";
+$MESS["PRICE_ROUND_HEADER_NAME_ROUND_PRECISION"] = "Precisão de arredondamento";
+$MESS["PRICE_ROUND_HEADER_NAME_ROUND_TYPE"] = "Tipo de arredondamento";
+$MESS["PRICE_ROUND_LIST_MESS_NEW_RULE"] = "Adicionar";
+$MESS["PRICE_ROUND_LIST_TITLE"] = "Regras de arredondamento de preços";
+?>

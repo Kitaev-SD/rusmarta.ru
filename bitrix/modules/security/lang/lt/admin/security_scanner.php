@@ -1,0 +1,31 @@
+<?
+$MESS["SEC_SCANNER_MAIN_TAB"] = "Skenuoti";
+$MESS["SEC_SCANNER_TITLE"] = "Apsaugos skeneris";
+$MESS["SEC_SCANNER_SETTINGS_TAB"] = "Nustatymai";
+$MESS["SEC_SCANNER_SETTINGS_TITLE"] = "Skenavimo nustatymai";
+$MESS["SEC_SCANNER_CRITICAL_ERROR"] = "Svarbu!";
+$MESS["SEC_SCANNER_TIP_TITLE"] = "Rekomendacijos";
+$MESS["SEC_SCANNER_TIP_BUTTON_ON"] = "Paslëpti";
+$MESS["SEC_SCANNER_START_BUTTON"] = "Pradëti";
+$MESS["SEC_SCANNER_STOP_BUTTON"] = "Nustoti";
+$MESS["SEC_SCANNER_PROBLEMS_COUNT"] = "Rastos grësmës: ";
+$MESS["SEC_SCANNER_CRITICAL_PROBLEMS_COUNT"] = ", kritinës: ";
+$MESS["SEC_SCANNER_CURRENT_TEST"] = "Ðiuo metu skenuojama: ";
+$MESS["SEC_SCANNER_TEST_DATE"] = "Paskutinis skenavimas:  #DATE#";
+$MESS["SEC_SCANNER_INIT"] = "Pradedama...";
+$MESS["SEC_SCANNER_CRITICAL_LOW"] = "Þemas";
+$MESS["SEC_SCANNER_CRITICAL_MIDDLE"] = "Vidutinis";
+$MESS["SEC_SCANNER_CRITICAL_HIGHT"] = "Aukðtas";
+$MESS["SEC_SCANNER_CRITICAL_FIRST_START"] = "Jûs neskenavote jûsø sistemos virð mënesio. <br> Rekomenduojama skenuoti sistemà dabar.";
+$MESS["SEC_SCANNER_FAST_LOCAL_TESTS"] = "Paleisti greità vidiná skenavimà";
+$MESS["SEC_SCANNER_SLOW_LOCAL_TESTS"] = "Paleisti kompleksiðkà vidiná skenavimà";
+$MESS["SEC_SCANNER_REMOTE_TESTS"] = "Paleisti iðoriná skenavimà";
+$MESS["SEC_SCANNER_CRITICAL_ERRORS_TITLE"] = "Skenavimo klaidos: ";
+$MESS["SEC_SCANNER_TESTING_FAILURE"] = "Saugumo skeneris susidûrë su nepataisoma klaida ir negali tæsti. Praðome susisiekti su technine pagalba.";
+$MESS["SEC_SCANNER_NO_PROBLEMS"] = "Grësmiø nerasta.";
+$MESS["SEC_SCANNER_TESTING_FAILURE_CODE"] = "(klaidos kodas: #CODE#)";
+$MESS["SEC_SCANNER_ADDITIONAL_INFO_BUTTON_ON"] = "Slëpti";
+$MESS["SEC_SCANNER_ADDITIONAL_INFO_TITLE"] = "Detali informacija";
+$MESS["SEC_SCANNER_EXECUTION_TIME_TITLE"] = "Nepavyko paleisti Apsaugos skenerá.";
+$MESS["SEC_SCANNER_EXECUTION_TIME_DESCRIPTION"] = "Jus nustatëte per maþà vertæ ilgiausiam php skripto atlikimo laikui (max_execution_time). Rekomenduojama nemaþiau nei #MIN# s.";
+?>

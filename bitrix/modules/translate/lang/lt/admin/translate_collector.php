@@ -1,0 +1,34 @@
+<?
+$MESS["TRANS_TITLE"] = "Vertimø surinkimas";
+$MESS["TRANS_TITLE_TITLE"] = "Vertimø surinkimas";
+$MESS["TRANS_DOWNLOAD"] = "Vertimø ákëlimas";
+$MESS["TRANS_DOWNLOAD_TITLE"] = "Vertimø ákëlimas";
+$MESS["TRANS_UPLOAD"] = "Vertimø surinkimas ir eksportas";
+$MESS["TRANS_UPLOAD_TITLE"] = "Vertimø surinkimas ir eksportas";
+$MESS["TR_SELECT_LANGUAGE"] = "Pasirinkite kalbà";
+$MESS["TR_SELECT_LANGUAGE_DESCRIPTION"] = "(jei negalite rasti norimos kalbos, tuomet <a href=\"lang_edit.php?lang=en\">pridëkite</a> jà)";
+$MESS["TR_COLLECT_DATE"] = "Pasirinkite sàrankos datà (YYYY-MM-DD)";
+$MESS["TR_COLLECT_LOADING"] = "Kûriama...";
+$MESS["TR_PACK_FILES"] = "Supakuoti failus (tar.gz)";
+$MESS["TR_COLLECT_LANGUAGE"] = "Surinkti lokalizacijà";
+$MESS["TR_DOWNLOAD_LANGUAGE"] = "Ákelti lokalizacijà";
+$MESS["TR_CONVERT_UTF8"] = "Konvertuoti á UTF-8";
+$MESS["TR_CONVERT_FROM_UTF8"] = "Konvertuoti ið UTF-8";
+$MESS["TR_CONVERT_NATIONAL"] = "Konvertuoti á nacionalinæ koduotæ";
+$MESS["TR_CONVERT_FROM_NATIONAL"] = "Konvertuoti ið nacionalinës koduotës";
+$MESS["TR_CONVERT_ENCODING"] = "Pasirinkite koduotæ";
+$MESS["TR_ERROR_LANGUAGE_DATE"] = "Pasirinkite lokalizacijos datà";
+$MESS["TR_ERROR_CREATE_TARGET_FOLDER"] = "Galutinis katalogas \"%PATH%\" negali bûti sukurtas.";
+$MESS["TR_ERROR_DELETE_TARGET_FOLDER"] = "Galutinis katalogas \"%PATH%\" negali bûti iðtrintas.";
+$MESS["TR_ERROR_CREATE_TEMP_FOLDER"] = "Laikinas katalogas \"%PATH%\" negali bûti sukurtas.";
+$MESS["TR_ERROR_DELETE_TEMP_FOLDER"] = "Laikinas katalogas \"%PATH%\" negali bûti iðtrintas.";
+$MESS["TR_ERROR_SELECT_LANGUAGE"] = "Pasirinkite sàrankos kalbà.";
+$MESS["TR_ERROR_TARFILE"] = "Byla nepasirinkta.";
+$MESS["TR_ERROR_ENCODING"] = "Pasirinkite teisingà koduotæ.";
+$MESS["TR_ERROR_OPEN_FILE"] = "Nepavyko atidaryti bylà \"%FILE%\".";
+$MESS["TR_ERROR_ARCHIVE"] = "Archyvo klaida";
+$MESS["TR_LANGUAGE_COLLECTED_ARCHIVE"] = "Lokalizacija \\\"%LANG%\\\" surinkta á archyvà \\\"%FILE_PATH%\\\". <br> atsisiøsti: %LINK%";
+$MESS["TR_LANGUAGE_COLLECTED_FOLDER"] = "Lokalizacija \\\"%LANG%\\\" surinkta kataloge \\\"%PATH%\\\"";
+$MESS["TR_UPLOAD_FILE"] = "Lokalizacijos byla (tar.gz)";
+$MESS["TR_LANGUAGE_DOWNLOADED"] = "Lokalizacija ákelta";
+?>

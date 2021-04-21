@@ -1,0 +1,10 @@
+<?
+$MESS["SALE_FUSER_ENTITY"] = "Visitante";
+$MESS["SALE_FUSER_ENTITY_DATE_INS"] = "Criado em";
+$MESS["SALE_FUSER_ENTITY_DATE_INSERT"] = "Criado em";
+$MESS["SALE_FUSER_ENTITY_DATE_UPD"] = "Modificado em";
+$MESS["SALE_FUSER_ENTITY_DATE_UPDATE"] = "Modificado em";
+$MESS["SALE_FUSER_ENTITY_ID"] = "ID";
+$MESS["SALE_FUSER_ENTITY_USER"] = "Cliente";
+$MESS["SALE_FUSER_ENTITY_USER_ID"] = "ID do cliente";
+?>

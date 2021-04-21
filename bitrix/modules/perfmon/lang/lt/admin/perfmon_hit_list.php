@@ -1,0 +1,29 @@
+<?
+$MESS["PERFMON_HIT_TITLE"] = "Veiklos monitorius: Perþiûros";
+$MESS["PERFMON_HIT_PAGE"] = "Perþiûros";
+$MESS["PERFMON_HIT_ID"] = "ID";
+$MESS["PERFMON_HIT_DATE_HIT"] = "Perþiûros data";
+$MESS["PERFMON_HIT_SERVER_NAME"] = "Serverio pavadinimas";
+$MESS["PERFMON_HIT_SERVER_PORT"] = "Jungtis";
+$MESS["PERFMON_HIT_SCRIPT_NAME"] = "Skriptas";
+$MESS["PERFMON_HIT_REQUEST_URI2"] = "Perþiûra";
+$MESS["PERFMON_HIT_INCLUDED_FILES"] = "Failai";
+$MESS["PERFMON_HIT_MEMORY_PEAK_USAGE"] = "Atmintis";
+$MESS["PERFMON_HIT_CACHE_SIZE"] = "Talpykla";
+$MESS["PERFMON_HIT_QUERIES"] = "Uþklausos";
+$MESS["PERFMON_HIT_QUERIES_TIME"] = "Uþklausos laikas";
+$MESS["PERFMON_HIT_PAGE_TIME"] = "Puslapio laikas";
+$MESS["PERFMON_HIT_IS_ADMIN"] = "Valdymo skydelis";
+$MESS["PERFMON_HIT_REQUEST_METHOD"] = "HTTP metodas";
+$MESS["PERFMON_HIT_COMPONENTS"] = "Komponentai";
+$MESS["PERFMON_HIT_COMPONENTS_TIME"] = "Komponento laikas";
+$MESS["PERFMON_HIT_PROLOG_TIME"] = "Prologo laikas";
+$MESS["PERFMON_HIT_AGENTS_TIME"] = "Agento laikas";
+$MESS["PERFMON_HIT_WORK_AREA_TIME"] = "Darbo srities laikas";
+$MESS["PERFMON_HIT_EPILOG_TIME"] = "Epilogo laikas";
+$MESS["PERFMON_HIT_EVENTS_TIME"] = "Paðto ávykio laikas";
+$MESS["PERFMON_HIT_CACHE_COUNT"] = "Talpyklos operacijos";
+$MESS["PERFMON_HIT_CACHE_COUNT_R"] = "Talpyklos skaitymai";
+$MESS["PERFMON_HIT_CACHE_COUNT_W"] = "Talpyklos áraðymai";
+$MESS["PERFMON_HIT_CACHE_COUNT_C"] = "Talpyklos atstatymai";
+?>

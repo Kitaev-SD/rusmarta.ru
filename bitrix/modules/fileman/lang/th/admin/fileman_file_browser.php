@@ -1,0 +1,7 @@
+<?
+$MESS ['FILEMAN_FILE_BROWSER_NEW_SAVE'] = "ºÑ¹·Ö¡";
+$MESS ['FILEMAN_FILE_BROWSER_FN'] = "ª×èÍä¿Åì:";
+$MESS ['FILEMAN_FILE_BROWSER_S'] = "à»Ô´¨Ò¡àÇçºä«µì";
+$MESS ['FILEMAN_FILE_BROWSER_L'] = "ÍÑ¾âËÅ´ä»ÂÑ§à«ÔÃì¿àÇÍÃì";
+$MESS ['FILEMAN_FILE_BROWSER_NEW_FN'] = "ª×èÍä¿ÅìËÅÑ§¨Ò¡ÍÑ¾âËÅ´ä»ÂÑ§à«ÔÃì¿àÇÍÃì:";
+?>

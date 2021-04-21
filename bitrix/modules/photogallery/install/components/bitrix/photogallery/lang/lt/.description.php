@@ -1,0 +1,5 @@
+<?
+$MESS["IBLOCK_PHOTO_NAME"] = "Nuotraukø galerija 2.0";
+$MESS["IBLOCK_PHOTO_DESCRIPTION"] = "Pilna nuotraukø galerija";
+$MESS["T_IBLOCK_DESC_PHOTO"] = "Nuotraukø galerija 2.0";
+?>

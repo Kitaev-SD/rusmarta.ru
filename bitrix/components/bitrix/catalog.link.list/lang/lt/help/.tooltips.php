@@ -1,0 +1,41 @@
+<?
+$MESS['IBLOCK_TYPE_TIP'] = 'Iðskleidþiamajame sàraðe galite pasirinkti vienà ið sukurtø sistemoje informaciniø blokø tipø. Paspaudus mygtukà OK bus ákelti visi pasirinkto tipo informaciniai blokai.';
+$MESS['IBLOCK_ID_TIP'] = 'Pasirinkite vienà ið esanèiø informaciniø blokø. Pasirinkus (kitas) gretimame lange turësite nurodyti informacinio bloko ID.';
+$MESS['LINK_PROPERTY_SID_TIP'] = 'Elemento suryðimo savybë pasirenkama ið sàraðo, arba gretimame lauke nurodomas jos kodas. ';
+$MESS['ELEMENT_ID_TIP'] = 'Laukas nurodo kintamojo pavadinimà kuriame saugomas elemento ID, kuriam atvaizduojamas sàraðas susijusiø elementø.';
+$MESS['ELEMENT_SORT_FIELD_TIP'] = 'Nurodomas laukas pagal kurá bus surûðiuoti elementai.';
+$MESS['ELEMENT_SORT_ORDER_TIP'] = 'Didëjanèiai arba maþëjanèiai nukreiptas elementø rûðiavimas.';
+$MESS['FILTER_NAME_TIP'] = 'Kintamojo pavadinimas á kurá ið filtro perduodamas parametrø masyvas. Laukas gali bûti nepildomas';
+$MESS['SECTION_URL_TIP'] = 'Kelias á informacinio bloko skyriaus apraðymo puslapá.';
+$MESS['DETAIL_URL_TIP'] = 'Kelias á detalaus informacinio bloko apraðymo puslapá.';
+$MESS['BASKET_URL_TIP'] = 'Kelias á pirkëjo krepðelio puslapá.';
+$MESS['ACTION_VARIABLE_TIP'] = 'Nurodomas kintamojo pavadinimas kuriuo perduodamas veiksmas ADD_TO_COMPARE_LIST, ADD2BASKET ir t.t.
+Reikðmë pagal nutylëjimà <i>action</i>';
+$MESS['PRODUCT_ID_VARIABLE_TIP'] = 'Kintamojo pavadinimas kuriuo perduodamas prekës ID';
+$MESS['SECTION_ID_VARIABLE_TIP'] = 'Kintamojo pavadinimas kuriuo perduodamas infobloko skyriaus ID';
+$MESS['DISPLAY_PANEL_TIP'] = 'Jei paþymëta, mygtukai bus atvaizduojami svetainës redagavimo rëþimu svetainës administravimo skydelyje bei komponentø redagavimo mygtukø rinkinyje.';
+$MESS['SET_TITLE_TIP'] = 'Jeigu paþymëta tinklalapio antraðtë bus nustatyta pagal susijusio informacinio bloko skyriø.';
+$MESS['PAGE_ELEMENT_COUNT_TIP'] = 'Elementø skaièius puslapyje';
+$MESS['PROPERTY_CODE_TIP'] = 'Tarp infobloko savybiø pasirinkite tas kurios bus atvaizduojamos elementø sàraðe skyriaus viduje. Pasirinkus <b><i>nenurodyta</i></b> ir nenurodþius laukø kodus savybës nebus atvaizduojamos.';
+$MESS['PRICE_CODE_TIP'] = 'Katalogo kainø tipas. Nenurodþius elemento kaina ir mygtukai <i>Á krepðelá</i> ir <i>Pirkti</i> nebus atvaizduojami ';
+$MESS['USE_PRICE_COUNT_TIP'] = 'Atvaizduojamos visø tipø kainos';
+$MESS['SHOW_PRICE_COUNT_TIP'] = 'Nurodoma kaina prekiø vienetø skaièiui, pvz., (1 arba 10) priklausomai nuo produkto specifikos.';
+$MESS['CACHE_TYPE_TIP'] = '<i>Auto</i>: podëlis (cache) galioja  podëlio nustatymuose nurodytà laiko tarpà;
+<i>Keðuoti</i>:Visada keðuoti nurodytà laiko tarpà;
+<i>Nekeðuoti</i>:podëlis nenaudojamas';
+$MESS['CACHE_TIME_TIP'] = 'Lauke nurodomas podëlio (cache) naudojimo laikas sekundëmis.';
+$MESS['CACHE_FILTER_TIP'] = 'Jeigu paþymëta - bus keðuojamas kiekvienas ið filtro gautas rezultatas.';
+$MESS['DISPLAY_TOP_PAGER_TIP'] = 'Navigacijos nuorodos atvaizduojamos puslapio virðuje.';
+$MESS['DISPLAY_BOTTOM_PAGER_TIP'] = 'Navigacijos nuorodos atvaizduojamos puslapio apaèioje.';
+$MESS['PAGER_TITLE_TIP'] = 'Kategorijos pavadinimas naudojamas navigacijoje.';
+$MESS['PAGER_SHOW_ALWAYS_TIP'] = 'Atvaizduoti navigacijos grandinæ ir tuo atveju jeigu visi elementai telpa puslapyje.';
+$MESS['PAGER_TEMPLATE_TIP'] = 'Navigacijos grandinës ðablono pavadinimas. Pagal nutylëjimà (<i>.default</i>) ðablonas yra naudojamas. Sistemoje ádiegtas ðablonas <i>orange</i>.';
+$MESS['PAGER_DESC_NUMBERING_TIP'] = 'Atvaizduoti naujus elementus sàraðo virðuje. Keèiasi tik paskutinis navigacijos puslapis. Visi ankstesni puslapiai gali bûti keðuojami ilgam laikui.';
+$MESS['PAGER_DESC_NUMBERING_CACHE_TIME_TIP'] = 'Nurodo pirmø puslapiø keðavimo laikà sekundëse naudojant atgalinæ navigacijà. ';
+$MESS['AJAX_MODE_TIP'] = 'Komponente ájungiamas AJAX.';
+$MESS['AJAX_OPTION_SHADOW_TIP'] = 'Sritis kuri turi pasikeisti bus uþtamsinta. ';
+$MESS['AJAX_OPTION_JUMP_TIP'] = 'Pasibaigus AJAX perëjimui pasislinks á komponento pradþià.';
+$MESS['AJAX_OPTION_STYLE_TIP'] = 'Pasibaigus AJAX perëjimams bus pakrauti ir apdoroti komponento CSS stiliai.';
+$MESS['AJAX_OPTION_HISTORY_TIP'] = 'Vykdant AJAX perëjimus leisti naudoti narðyklës \"Atgal\" ir \"Pirmyn\" mygtukus.';
+$MESS['PRICE_VAT_INCLUDE_TIP'] = 'Kainas nurodyti su PVM.';
+?>

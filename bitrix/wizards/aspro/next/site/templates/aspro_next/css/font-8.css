@@ -1,0 +1,96 @@
+/* 14px Ubuntu (Default) */
+body, body .bx-soa-section-title{font: 14px/22px "Ubuntu", Arial, sans-serif;}
+#bx-soa-order .bx-sls .bx-ui-sls-fake, #bx-soa-order .bx-sls .bx-ui-sls-route{font-family: "Ubuntu", Arial, Helvetica, sans-serif;}
+.personal_wrapper .orders_wrapper .sale-order-list-button, .personal_wrapper .orders_wrapper .sale-order-detail-about-order-inner-container-repeat > a, .sale-order-detail-payment-options-methods-button-element, .sale-order-detail-payment-options-methods-button-element-new-window{font-family: "Ubuntu", Arial, Helvetica, sans-serif;}
+h1,h2,h3,h4,h5,h6{font-family: "Ubuntu", Arial, sans-serif;}
+.tooltip{font-family: "Ubuntu", Arial, sans-serif;}
+
+/*menu*/
+.side-menu .submenu > li > a{font-size: 14px; line-height: 14px;}
+.mega-menu table td .wrap > a{font-size:15px;}
+.side-menu > li > a{font-size:15px;}
+.side-menu .submenu{font-size:14px;}
+.dropdown-menu{font-size:15px;}
+.menu-row.middle-block.bglight .mega-menu td .wrap > a .line-wrapper .line{bottom: -21px;}
+
+.phone .more_phone{font-size:13px;}
+.subscribe-block-wrapper .text{font-size:16px;}
+
+.banners-small .item .image .type-block{font-size:12px;}
+.banners-small .item .title{ font-size: 14px; }
+
+.stickers .stickers-wrapper > div{font-size:10px;line-height: 17px;}
+.main-block .prop_title_table .item .prop-block, .main-block .item .prop-block{font-size:12px;}
+
+body .items-services.item-views .item .body-info .previewtext, .item-views.table-elements .item .body-info .previewtext, .item-views .item .previewtext p{font-size:13px;}
+.introtext, .preview-text-detail{font-size:14px;}
+
+/*catalog*/
+.breadcrumbs .drop .separator{top:10px;}
+.bx_filter .bx_filter_parameters_box_title:after{top:4px;}
+.item-views.sections .item .title a{line-height:20px;}
+.bx_item_detail_inc_two .list-type-block.item-views .item > .body-info .title{font-size:12px;}
+.item-views .item .price .price_old .price_val, .item-views .item .price .price_old .fa, .order-block .price .price_old .price_val, .order-block .price .price_old .fa{font-size:13px;}
+.item-views .item .price .price_val, .order-block .price .price_val{font-size:17px;}
+.properties .inner-wrapper{font-size:13px;}
+body .buy_block .counter input, body .footer-button .buy_block .counter input{height:38px;}
+.btn-inline.sm{font-size:13px;}
+.select-outer select{font-size:12px;}
+.additional_block p{font-size:14px;}
+.item-views.table-elements .item .body-info .previewtext, .item-views .item .previewtext p{font-size:14px;}
+.catalog_detail .item-stock > span{font-size:13px;}
+
+/*filter*/
+.bx_filter_select_popup ul li label,.bx_filter_select_popup ul li a{font-family: "Ubuntu", Arial, sans-serif;}
+
+/*basket*/
+.top-block .top-block-item .basket-link  .count{}
+
+/*news*/
+.item-views .item .period span, .detail .period span{font-size:12px;}
+
+/*services*/
+.item-views.sections.front .item .title a, .item-views.sections .row_block .item .title a{font-size:15px;}
+
+/*staff*/
+.item-views.staff-items.table-type-block .item .post{font-size:13px;}
+.staff.item-views.list .item .post{font-size:13px;}
+
+/*reviews*/
+.reviews.item-views .item .post{}
+.reviews.item-views .item .text{font-size:14px;}
+
+/*search path*/
+.search-page .path{font-size:10px;}
+
+/*contacts*/
+.form.contacts .title{font-size:20px;}
+.contacts.contacts-page-map-overlay table td{font-size:11px;}
+
+/*fast view*/
+.inner_wrap .fast_view_block{font-size:13px;}
+
+/*basket*/
+.bx_ordercart .bx_ordercart_order_table_container .bx_ordercart_itemtitle,
+.bx_ordercart .bx_ordercart_order_table_container tbody td.price .current_price,
+.bx_ordercart .bx_ordercart_order_table_container tbody td.custom>div:not(.centered){font-size:15px;}
+
+/*basket2*/
+#basket-root .basket-item-info-name, #basket-root .basket-item-info-name-link,
+#basket-root .basket-items-list-header-filter-item, #basket-root .basket-item-property-value, #basket-root .basket-item-property-custom-value,
+#basket-root .basket-item-property-name, #basket-root .basket-item-property-custom-name, #basket-root .basket-item-price-current-text,
+#basket-root .basket-item-price-title, #basket-root .basket-item-amount-field-description,
+#basket-root .basket-coupon-block-field-description, #basket-root .basket-coupon-alert, #basket-root .basket-coupon-alert .close-link,
+#basket-root .basket-checkout-block-total-title, #basket-root .basket-checkout-block-total-description, #basket-root .basket-coupon-block-total-price-current,
+#basket-root .basket-coupon-block-total-price-difference, #basket-root .basket-coupon-block-total-price-old,
+#basket-root .basket-item-price-old-text, #basket-root .basket-item-price-difference, #basket-root .basket-item-property-scu-text .basket-item-scu-item-inner{font-family: "Ubuntu", Arial, sans-serif;}
+
+/*order*/
+#bx-soa-order .bx-sls .bx-ui-sls-fake, #bx-soa-order .bx-sls .bx-ui-sls-route{font-family: "Ubuntu", Arial, Helvetica, sans-serif;}
+.personal_wrapper .orders_wrapper .sale-order-list-button, .personal_wrapper .orders_wrapper .sale-order-detail-about-order-inner-container-repeat > a, .sale-order-detail-payment-options-methods-button-element, .sale-order-detail-payment-options-methods-button-element-new-window{font-family: "Ubuntu", Arial, Helvetica, sans-serif;}
+.personal_wrapper .orders_wrapper .row.col-md-12.col-sm-12 > a,
+.sale-order-list-accomplished-date, .sale-order-list-accomplished-date-number,
+.personal_wrapper .orders_wrapper .sale-order-title,
+.personal_wrapper .orders_wrapper .sale-order-list-container .sale-order-list-accomplished-title, .personal_wrapper .orders_wrapper .sale-order-list-container .sale-order-list-title, .personal_wrapper .orders_wrapper .sale-order-detail-general-item,
+.personal_wrapper .orders_wrapper .sale-order-list-inner-row > div > a, .personal_wrapper .sale-personal-account-wallet-container .sale-personal-account-wallet-title,
+.btn.sale-account-pay-button, .bx-sls .bx-ui-sls-fake, .bx-sls .bx-ui-sls-route{font-family: "Ubuntu", Arial, Helvetica, sans-serif;}

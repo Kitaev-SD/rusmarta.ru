@@ -1,0 +1,32 @@
+<?
+$MESS["SEC_MENU_ACTIVITY_ITEM"] = "Controle de Atividades";
+$MESS["SEC_MENU_ACTIVITY_TITLE"] = "Configurar limites de actividade utilizando o módulo de Web Analytics";
+$MESS["SEC_MENU_ADMINIP_ITEM"] = "Proteção do Painel de Controle";
+$MESS["SEC_MENU_ADMINIP_TITLE"] = "Filtrar o acesso ao painel de controle por endereço IP";
+$MESS["SEC_MENU_ANTIVIRUS_ITEM"] = "Antivírus Web";
+$MESS["SEC_MENU_ANTIVIRUS_TITLE"] = "Gestão e configuração de Antivírus ";
+$MESS["SEC_MENU_FILE_ITEM"] = "Controle de integridade";
+$MESS["SEC_MENU_FILE_TITLE"] = "Verificar a integridade de arquivos";
+$MESS["SEC_MENU_FILTER_ITEM"] = "Filtro Proativo";
+$MESS["SEC_MENU_FILTER_LOG_ITEM"] = "Log de intrusão";
+$MESS["SEC_MENU_FILTER_LOG_TITLE"] = "Ver o registo de intrusão";
+$MESS["SEC_MENU_FILTER_TITLE"] = "Gerenciar Filtros Proativos";
+$MESS["SEC_MENU_FRAME_ITEM"] = "Proteção Anti-frame";
+$MESS["SEC_MENU_FRAME_TITLE"] = "Permite proteção anti-frame";
+$MESS["SEC_MENU_HOSTS_ITEM"] = "Hosts / domínios ";
+$MESS["SEC_MENU_HOSTS_TITLE"] = "Host preferências de restrição";
+$MESS["SEC_MENU_IP_ITEM"] = "Parar lista";
+$MESS["SEC_MENU_IP_TITLE"] = "Regras de bloqueio de IP";
+$MESS["SEC_MENU_ITEM"] = "Proteção proativa";
+$MESS["SEC_MENU_PANEL_ITEM"] = "Painel de Segurança";
+$MESS["SEC_MENU_PANEL_TITLE"] = "Resumo das configurações do painel de segurança.";
+$MESS["SEC_MENU_PHP_ITEM"] = "Recomendações sobre configuração do PHP";
+$MESS["SEC_MENU_PHP_TITLE"] = "Recomendações sobre configuração do PHP";
+$MESS["SEC_MENU_REDIRECT_ITEM"] = "Redirecionar proteção";
+$MESS["SEC_MENU_REDIRECT_TITLE"] = "Permitindo redirecionar proteção contra ataques de phishing.";
+$MESS["SEC_MENU_SCANNER_ITEM"] = "Scanner de Segurança";
+$MESS["SEC_MENU_SCANNER_TITLE"] = "Executar scaner de Segurança";
+$MESS["SEC_MENU_SESSION_ITEM"] = "Proteção da sessão";
+$MESS["SEC_MENU_SESSION_TITLE"] = "Proteção dos parâmetros da sessão";
+$MESS["SEC_MENU_TITLE"] = "Configurar a proteção proativa";
+?>

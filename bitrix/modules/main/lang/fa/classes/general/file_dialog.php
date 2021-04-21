@@ -1,0 +1,32 @@
+<?
+$MESS["BX_FD_ACCESS_DENIED"] = "دسترسی ندارد.";
+$MESS["FD_BYTE"] = "بایت";
+$MESS["FD_GO_BACK"] = "بازگشت";
+$MESS["FD_BUT_CANCEL"] = "لغو";
+$MESS["FD_CLOSE"] = "ببند";
+$MESS["FD_SORT_BY_DATE"] = "تاریخ";
+$MESS["FD_SORT_DATE"] = "تاریخ";
+$MESS["FD_DELETE"] = "حذف";
+$MESS["FD_VIEW_DETAIL"] = "جزییات";
+$MESS["FD_FILE"] = "فایل";
+$MESS["FD_FOLDER"] = "فولدر";
+$MESS["FD_GO_TO"] = "بگرد";
+$MESS["FD_IMAGE"] = "تصویر";
+$MESS["FD_VIEW_LIST"] = "فهرست";
+$MESS["FD_SORT_NAME"] = "نام";
+$MESS["FD_SORT_BY_NAME"] = "نام";
+$MESS["FD_NEW_FOLDER"] = "فولدر جدید";
+$MESS["FD_REFRESH"] = "نوسازی";
+$MESS["FD_BUT_SAVE"] = "ذخیره";
+$MESS["FD_SORT_SIZE"] = "اندازه";
+$MESS["FD_SORT_BY_SIZE"] = "اندازه";
+$MESS["FD_SORT_BY"] = "مرتب سازی با";
+$MESS["FD_VIEW_PREVIEW"] = "تصاویر کوچک";
+$MESS["FD_SORT_TYPE"] = "نوع";
+$MESS["FD_SORT_BY_TYPE"] = "نوع";
+$MESS["FD_GO_UP"] = "بالا";
+$MESS["FD_BUT_LOAD"] = "آپلود";
+$MESS["FD_LOAD_FILE"] = "آپلود فایل";
+$MESS["FD_LOAD_TAB_TITLE"] = "آپلود فایل";
+$MESS["FD_SELECT_VIEW"] = "مشاهده";
+?>

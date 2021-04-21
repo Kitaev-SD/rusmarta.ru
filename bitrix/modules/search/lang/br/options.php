@@ -1,0 +1,36 @@
+<?
+$MESS["SEARCH_OPTIONS_AGENT_DURATION"] = "Máximo tempo de operação do agente (seg):";
+$MESS["SEARCH_OPTIONS_AGENT_STEMMING"] = "Retransmitir decorrencias para o agente:";
+$MESS["SEARCH_OPTIONS_FULL_TEXT_ENGINE"] = "Utilize completo busca de texto:";
+$MESS["SEARCH_OPTIONS_FULL_TEXT_ENGINE_BITRIX"] = "Bitrix";
+$MESS["SEARCH_OPTIONS_FULL_TEXT_ENGINE_SPHINX"] = "Sphinx";
+$MESS["SEARCH_OPTIONS_LETTERS"] = "Tratar esses caracteres como alfabéticos (não-delimitação de caracteres):";
+$MESS["SEARCH_OPTIONS_MASK_EXC"] = "Excluir arquivos e pastas:";
+$MESS["SEARCH_OPTIONS_MASK_INC"] = "Incluir tipos de arquivo:";
+$MESS["SEARCH_OPTIONS_MAX_RESULT_SIZE"] = "O número máximo de documentos no resultado da pesquisa:";
+$MESS["SEARCH_OPTIONS_PAGE_PROPERTY"] = "Código de propriedade de página contendo Tags de busca:";
+$MESS["SEARCH_OPTIONS_REINDEX"] = "Re-indexar site agora";
+$MESS["SEARCH_OPTIONS_REINDEX_MAX_SIZE"] = "Tamanho máximo do arquivo indexável (KBytes):";
+$MESS["SEARCH_OPTIONS_REINDEX_TITLE"] = "Clique para reindexar o site manualmente";
+$MESS["SEARCH_OPTIONS_REINSTALL_MODULE"] = "Habilitar esta opção requer que você reinstale o módulo completamente (excluindo as tabelas do banco de dados) e depois faça uma reindexação completa.";
+$MESS["SEARCH_OPTIONS_SITEMAP"] = "Criar mapa do site google";
+$MESS["SEARCH_OPTIONS_SITEMAP_TITLE"] = "Clique para ir para o formulário de criação de Mapa do site Google";
+$MESS["SEARCH_OPTIONS_SPHINX_CONNECTION"] = "String de conexão para o monitoramento do índice (protocolo MySQL): ";
+$MESS["SEARCH_OPTIONS_SPHINX_ERROR"] = "Erro ao conectar servidor Sphinx:";
+$MESS["SEARCH_OPTIONS_SPHINX_INDEX_NAME"] = "ndice ID: ";
+$MESS["SEARCH_OPTIONS_STAT_PHRASE"] = "Coletar estatísticas de pesquisa";
+$MESS["SEARCH_OPTIONS_STAT_PHRASE_SAVE_DAYS"] = "Dias para manter estatísticas de pesquisa:";
+$MESS["SEARCH_OPTIONS_SUGGEST_SAVE_DAYS"] = "Dias para manter consultas de pesquisa para sugestões instantâneas:";
+$MESS["SEARCH_OPTIONS_TAB_INDEX"] = "Indexação";
+$MESS["SEARCH_OPTIONS_TAB_SEARCH"] = "Pesquisar";
+$MESS["SEARCH_OPTIONS_TAB_STATISTIC"] = "Estatística";
+$MESS["SEARCH_OPTIONS_TAB_STEMMING"] = "Morfologia";
+$MESS["SEARCH_OPTIONS_TAB_TITLE_INDEX_2"] = "Parâmetros de indexação de conteúdo estático";
+$MESS["SEARCH_OPTIONS_TAB_TITLE_SEARCH"] = "Parâmetros de Pesquisa";
+$MESS["SEARCH_OPTIONS_TAB_TITLE_STATISTIC"] = "Parâmetros de Estatísticas";
+$MESS["SEARCH_OPTIONS_TAB_TITLE_STEMMING"] = "Parâmetros de morfologia";
+$MESS["SEARCH_OPTIONS_USE_SOCIAL_RATING"] = "Respeitar a classificação quando colocar os resultados de busca em um ranking";
+$MESS["SEARCH_OPTIONS_USE_STEMMING"] = "Ativar morfologia";
+$MESS["SEARCH_OPTIONS_USE_TF_CACHE"] = "Usar a pesquisa rápida (ranking simplificado)";
+$MESS["SEARCH_OPTIONS_USE_WORD_DISTANCE"] = "Respeite a distância da palavra na classificação dos resultados de busca";
+?>

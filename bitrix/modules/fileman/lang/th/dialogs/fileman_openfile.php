@@ -1,0 +1,3 @@
+<?
+$MESS ['FILEMAN_OPENFILE_FOLDER'] = "â¿Åà´ÍÃì:";
+?>

@@ -1,0 +1,12 @@
+/* ADMIN MENU */
+#global_menu_global_menu_aspro .adm-main-menu-item-icon{height:48px;background:rgba(0, 0, 0, 0) url("../../images/aspro.next/global.png") no-repeat scroll 21px 12px;opacity:1;}
+#global_menu_global_menu_aspro.adm-main-menu-item-active .adm-main-menu-item-icon, #global_menu_global_menu_aspro:hover .adm-main-menu-item-icon{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/global_active.png") no-repeat scroll 21px 12px;}
+#global_menu_global_menu_aspro .adm-main-menu-item-text{line-height: 11px;}
+#_global_menu_aspro_items .imi_next{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll -184px 3px;}
+#_global_menu_aspro_items .imi_control_center{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll 8px 3px;}
+#_global_menu_aspro_items .imi_typography{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll -23px 3px;}
+#_global_menu_aspro_items .imi_pwa{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll -213px 3px;}
+#_global_menu_aspro_items .imi_pages{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll -55px 3px;}
+#_global_menu_aspro_items .imi_contacts{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll -151px 4px;}
+#_global_menu_aspro_items .imi_sale{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll -119px 4px;}
+#_global_menu_aspro_items .imi_marketing{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/menu.png?ver=1.5") no-repeat scroll -87px 3px;}

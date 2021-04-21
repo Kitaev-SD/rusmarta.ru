@@ -1,0 +1,36 @@
+<?
+$MESS["CT_BSP_ALL"] = "(visi)";
+$MESS["CT_BSP_GO"] = "Ieðkoti";
+$MESS["CT_BSP_ITEM_TAGS"] = "Þymës";
+$MESS["CT_BSP_DATE_CHANGE"] = "Pakeista";
+$MESS["CT_BSP_FOUND"] = "Ákurta";
+$MESS["CT_BSP_ORDER"] = "Rûðiuota pagal";
+$MESS["CT_BSP_ORDER_BY_RANK"] = "svarbumà";
+$MESS["CT_BSP_ORDER_BY_DATE"] = "datà";
+$MESS["CT_BSP_ADVANCED_SEARCH"] = "Papildoma paieðka";
+$MESS["CT_BSP_WHERE_LABEL"] = "Kur";
+$MESS["CT_BSP_TAGS"] = "þymës";
+$MESS["CT_BSP_WHERE"] = "skyrius";
+$MESS["CT_BSP_EVERYWHERE"] = "visi";
+$MESS["CT_BSP_WHEN"] = "data";
+$MESS["CT_BSP_DATES_FROM_TO"] = "nuo #FROM# iki #TO#";
+$MESS["CT_BSP_DATES_FROM"] = "nuo #FROM#";
+$MESS["CT_BSP_DATES_TO"] = "iki  #TO#";
+$MESS["CT_BSP_DATES_ALL"] = "visi";
+$MESS["CT_BSP_ERROR"] = "Klaida paieðkos frazëje:";
+$MESS["CT_BSP_CORRECT_AND_CONTINUE"] = "Praðome iðtaisyti paieðkos frazæ ir pabandyti dar kartà.";
+$MESS["CT_BSP_SINTAX"] = "<b>Paieðkos uþklausos sintaksë: </b> <br/> <br/> Bendra paieðkos uþklausà yra vienas ar keli þodþiai, pavyzdþiui: <br/> <i> kontaktinë informacija, </i> <br/> Ði uþklausa ras puslapius, kuriuose yra abu uþklausos þodþiai <br/> <br/> Loginiai operatoriai leidþia kurti sudëtingesnius klausimus, pavyzdþiui:. <br/> <i> kontaktinë informacija arba telefonas </i> <br/> Ði uþklausa ras puslapius, kuriuose yra þodþiai &quot;contact&quot; ir &quot;information&quot; arba &quot;phone&quot;.<br /><br/> <i>kontaktinë informacija ne telefonas, </i> <br/> Ði uþklausa ras puslapius, kuriuose yra þodþiai &quot;contact&quot; ir &quot;information&quot; bet ne &quot;phone&quot;. <br/> Jûs galite naudoti skliaustus, norëdami kurti sudëtingesnes uþklausas. <br/>";
+$MESS["CT_BSP_LOGIC"] = "Loginiai operatoriai:";
+$MESS["CT_BSP_OPERATOR"] = "Operatorius";
+$MESS["CT_BSP_SYNONIM"] = "Sinonimai";
+$MESS["CT_BSP_DESCRIPTION"] = "Apraðymas";
+$MESS["CT_BSP_AND"] = "ir";
+$MESS["CT_BSP_AND_ALT"] = "Operatorius <i>logiðkas ir </i> yra numanomas ir gali bûti praleidþiamas: u=klausa &quot;contact information&quot; yra identiðka &quot;contact ir information&quot;.";
+$MESS["CT_BSP_OR"] = "ar";
+$MESS["CT_BSP_OR_ALT"] = "Operatorius <i>logiðkas arba </i> leidþia ieðkoti objektø, kuriuose yra bent vienas ið operandø.";
+$MESS["CT_BSP_NOT"] = "ne";
+$MESS["CT_BSP_NOT_ALT"] = "Operatorius <i>logiðkas ne</i> apriboja paieðkos puslapius, kuriose nëra operando.";
+$MESS["CT_BSP_BRACKETS_ALT"] = "<i>Apvalûs skliaustai</i> apibrëþia loginio operatoriaus eiliðkumà.";
+$MESS["CT_BSP_NOTHING_TO_FOUND"] = "Deja, Jûsø paieðkos neatitiko jokie dokumentai.";
+$MESS["CT_BSP_KEYBOARD_WARNING"] = "Uþklausos ávesties kalba pasikeitë \"#query#\".";
+?>

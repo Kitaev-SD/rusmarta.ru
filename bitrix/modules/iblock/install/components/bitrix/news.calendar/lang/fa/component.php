@@ -1,0 +1,29 @@
+<?
+$MESS["IBL_NEWS_CAL_M_1"] = "ژانویه";
+$MESS["IBL_NEWS_CAL_M_2"] = "فوریه";
+$MESS["IBL_NEWS_CAL_M_3"] = "مارچ";
+$MESS["IBL_NEWS_CAL_M_4"] = "آوریل";
+$MESS["IBL_NEWS_CAL_M_5"] = "می";
+$MESS["IBL_NEWS_CAL_M_6"] = "ژوئن";
+$MESS["IBL_NEWS_CAL_M_7"] = "جولای";
+$MESS["IBL_NEWS_CAL_M_8"] = "آگوست";
+$MESS["IBL_NEWS_CAL_M_9"] = "سپتامبر";
+$MESS["IBL_NEWS_CAL_M_10"] = "اکتبر";
+$MESS["IBL_NEWS_CAL_M_11"] = "نوامبر";
+$MESS["IBL_NEWS_CAL_M_12"] = "دسامبر";
+$MESS["IBL_NEWS_CAL_D_0"] = "1ش";
+$MESS["IBL_NEWS_CAL_D_1"] = "2ش";
+$MESS["IBL_NEWS_CAL_D_2"] = "3ش";
+$MESS["IBL_NEWS_CAL_D_3"] = "4ش";
+$MESS["IBL_NEWS_CAL_D_4"] = "5ش";
+$MESS["IBL_NEWS_CAL_D_5"] = "ج";
+$MESS["IBL_NEWS_CAL_D_6"] = "ش";
+$MESS["IBL_NEWS_CAL_S_0"] = "1ش";
+$MESS["IBL_NEWS_CAL_S_1"] = "2ش";
+$MESS["IBL_NEWS_CAL_S_2"] = "3ش";
+$MESS["IBL_NEWS_CAL_S_3"] = "4ش";
+$MESS["IBL_NEWS_CAL_S_4"] = "5ش";
+$MESS["IBL_NEWS_CAL_S_5"] = "ج";
+$MESS["IBL_NEWS_CAL_S_6"] = "ش";
+$MESS["IBLOCK_MODULE_NOT_INSTALLED"] = "بلوک اطلاعات از کار افتاده است.";
+?>

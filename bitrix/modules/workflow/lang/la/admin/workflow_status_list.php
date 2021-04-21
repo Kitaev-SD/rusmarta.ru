@@ -1,0 +1,30 @@
+<?
+$MESS["FLOW_ACTIVE"] = "Activo";
+$MESS["FLOW_ADD"] = "Agregar";
+$MESS["FLOW_CANNOT_DELETE_STATUS"] = "El estatus que usted estña intentando eliminar está actualmente asignado a algunos documentos";
+$MESS["FLOW_CANNOT_DELETE_STATUS_IBLOCK"] = "El estatus que usted estña intentando eliminar está actualmente asignado a algunos Blocks de Información";
+$MESS["FLOW_C_SORT"] = "Clasi.";
+$MESS["FLOW_DELETE"] = "Eliminar";
+$MESS["FLOW_DELETE_STATUS_CONFIRM"] = "¿Está seguro que desea eliminar este status?";
+$MESS["FLOW_DESCRIPTION"] = "Descripción";
+$MESS["FLOW_DOCUMENTS"] = "Documentos";
+$MESS["FLOW_EDIT"] = "Modificar";
+$MESS["FLOW_FORGOT_NAME"] = "El título no fue especificado para el ingreso ##ID#";
+$MESS["FLOW_F_ACTIVE"] = "Activo:";
+$MESS["FLOW_F_DESCRIPTION"] = "Descripción:";
+$MESS["FLOW_F_DOCUMENTS"] = "Documentos:";
+$MESS["FLOW_F_LOGIC"] = "Lógica entre los campos ";
+$MESS["FLOW_PAGES"] = "Estatus";
+$MESS["FLOW_PAGE_TITLE"] = "Estatus de documentos";
+$MESS["FLOW_TILL"] = "hasta";
+$MESS["FLOW_TIMESTAMP"] = "Modificado";
+$MESS["FLOW_TITLE"] = "Título";
+$MESS["MAIN_ADMIN_LIST_ACTIVATE"] = "activar";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Comprobado:";
+$MESS["MAIN_ADMIN_LIST_DEACTIVATE"] = "desactivar";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "eliminar";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Seleccionado:";
+$MESS["MAIN_ALL"] = "(todos)";
+$MESS["MAIN_FIND"] = "Buscar";
+$MESS["MAIN_FIND_TITLE"] = "Introduzca el texto a buscar";
+?>

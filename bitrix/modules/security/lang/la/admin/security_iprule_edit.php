@@ -1,0 +1,31 @@
+<?
+$MESS["SEC_IP_EDIT_ACTIVE"] = "Activar";
+$MESS["SEC_IP_EDIT_ACTIVE_FROM"] = "Activar desde";
+$MESS["SEC_IP_EDIT_ACTIVE_TO"] = "Activar hasta";
+$MESS["SEC_IP_EDIT_ADD_TITLE"] = "Nueva Regla";
+$MESS["SEC_IP_EDIT_ADMIN_SECTION"] = "Para páginas del Panel de Control";
+$MESS["SEC_IP_EDIT_EDIT_TITLE"] = "Editar regla";
+$MESS["SEC_IP_EDIT_EXCL_IPS"] = "Excepto IP´s";
+$MESS["SEC_IP_EDIT_EXCL_MASKS"] = "Excepto las rutas (máscara)";
+$MESS["SEC_IP_EDIT_ID"] = "ID";
+$MESS["SEC_IP_EDIT_INCL_IPS"] = "Bloque de direcciones IP y rangos";
+$MESS["SEC_IP_EDIT_INCL_IPS_SAMPLE"] = "Ejemplos: 192.168.0.7; 192.168.0.1-192.168.0.100";
+$MESS["SEC_IP_EDIT_INCL_MASKS"] = "Bloquear el acceso a las rutas (máscara)";
+$MESS["SEC_IP_EDIT_INCL_MASKS_SAMPLE"] = "Ejemplos: /* or /bitrix/admin/*";
+$MESS["SEC_IP_EDIT_MENU_ADD"] = "Agregar";
+$MESS["SEC_IP_EDIT_MENU_ADD_TITLE"] = "Añadir una nueva regla";
+$MESS["SEC_IP_EDIT_MENU_DELETE"] = "Borrar";
+$MESS["SEC_IP_EDIT_MENU_DELETE_CONF"] = "¿Está seguro de que desea eliminar la regla?";
+$MESS["SEC_IP_EDIT_MENU_DELETE_TITLE"] = "Eliminar regla";
+$MESS["SEC_IP_EDIT_MENU_LIST"] = "Reglas";
+$MESS["SEC_IP_EDIT_MENU_LIST_TITLE"] = "Reglas de bloqueo";
+$MESS["SEC_IP_EDIT_NAME"] = "Título";
+$MESS["SEC_IP_EDIT_ROW_ADD"] = "Agregar";
+$MESS["SEC_IP_EDIT_SAVE_ERROR"] = "Error al guardar la regla.";
+$MESS["SEC_IP_EDIT_SAVE_ERROR_EMPTY_INCL_IPS"] = "Se requieren las direcciones de IP para bloquear.";
+$MESS["SEC_IP_EDIT_SAVE_ERROR_EMPTY_INCL_MASKS"] = "Se requieren los comodines de direcciones para ser bloqueados.";
+$MESS["SEC_IP_EDIT_SITE_ID"] = "Para páginas de panel de control ";
+$MESS["SEC_IP_EDIT_SORT"] = "Ordenar";
+$MESS["SEC_IP_EDIT_TAB"] = "Regla";
+$MESS["SEC_IP_EDIT_TAB_TITLE"] = "Editar regla del IP del block ";
+?>

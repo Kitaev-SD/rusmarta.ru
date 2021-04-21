@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17">
+  <defs>
+    <style>
+      .loccls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path data-name="Ellipse 72 copy 6" class="loccls-1" d="M1205,50V48a2,2,0,0,0,2,2h12a2,2,0,0,0,2-2v2h-16Zm14-11h-1V37a4,4,0,0,0-4-4h7v8A2,2,0,0,0,1219,39Zm-6-4c1.66,0,3,.62,3,2l0.01,2h-6.02l0.01-2C1210,35.62,1211.34,35,1213,35Zm6,13h-12V41h12v7Zm-5-5a1,1,0,1,0-2,0v2a1,1,0,0,0,2,0V43Zm-6-6v2h-1a2,2,0,0,0-2,2V33h7A4,4,0,0,0,1208,37Z" transform="translate(-1205 -33)"/>
+</svg>

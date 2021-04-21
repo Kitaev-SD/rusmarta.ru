@@ -1,0 +1,31 @@
+<?
+$MESS["PERFMON_MNU_CACHE_LIST"] = "armazenamento ";
+$MESS["PERFMON_MNU_CACHE_LIST_ALT"] = "armazenamento de relatorios";
+$MESS["PERFMON_MNU_COMP_LIST"] = "Componentes";
+$MESS["PERFMON_MNU_COMP_LIST_ALT"] = "Relatório dos componentes";
+$MESS["PERFMON_MNU_DB_SERVER"] = "Servidor DB";
+$MESS["PERFMON_MNU_DB_SERVER_ALT"] = "Resumo do desempenho do servidor de banco de dados.";
+$MESS["PERFMON_MNU_ERROR_LIST"] = "Erros PHP";
+$MESS["PERFMON_MNU_ERROR_LIST_ALT"] = "Log de erro do PHP";
+$MESS["PERFMON_MNU_HISTORY"] = "Histórico";
+$MESS["PERFMON_MNU_HISTORY_ALT"] = "Visualizar todos as pontuações já medidas pelo Monitor de Desempenho";
+$MESS["PERFMON_MNU_HIT_LIST"] = "Acessos";
+$MESS["PERFMON_MNU_HIT_LIST_ALT"] = "Relatório de Acesso";
+$MESS["PERFMON_MNU_INDEXES"] = "ndices de banco de dados";
+$MESS["PERFMON_MNU_INDEX_COMPLETE"] = "ndices existentes";
+$MESS["PERFMON_MNU_INDEX_COMPLETE_ALT"] = "Ver índices existentes";
+$MESS["PERFMON_MNU_INDEX_SUGGEST"] = "Analisar índices";
+$MESS["PERFMON_MNU_INDEX_SUGGEST_ALT"] = "Mostra recomendações sobre a criação de índices para consultas SQL acumulados";
+$MESS["PERFMON_MNU_PAGES"] = "Páginas";
+$MESS["PERFMON_MNU_PAGES_ALT"] = "Páginas mostrando relatórios resumidos";
+$MESS["PERFMON_MNU_PANEL"] = "Painel de Desempenho";
+$MESS["PERFMON_MNU_PANEL_ALT"] = "Ver principais parâmetros relacionados ao desempenho";
+$MESS["PERFMON_MNU_PHP"] = "PHP";
+$MESS["PERFMON_MNU_PHP_ALT"] = "Configurações PHP";
+$MESS["PERFMON_MNU_SECT"] = "Atuação";
+$MESS["PERFMON_MNU_SECT_TITLE"] = "Monitor de Performance";
+$MESS["PERFMON_MNU_SQL_LIST2"] = "Consultas SQL";
+$MESS["PERFMON_MNU_SQL_LIST_ALT"] = "Relatório de consulta SQL";
+$MESS["PERFMON_MNU_TABLES"] = "Tabelas";
+$MESS["PERFMON_MNU_TABLES_ALT"] = "Mostrar conteúdo das tabelas";
+?>

@@ -1,0 +1,33 @@
+<?
+$MESS["NO_LOC_FILE"] = "O arquivo de locais não foi baixado.";
+$MESS["WSL_CANCELSTEP_BUTTONTITLE"] = "Fechar";
+$MESS["WSL_CANCELSTEP_CONTENT"] = "O wizard foi interrompido. Nenhum dado foi importado.";
+$MESS["WSL_CANCELSTEP_TITLE"] = "O wizard foi interrompido";
+$MESS["WSL_FINALSTEP_BUTTONTITLE"] = "Terminar";
+$MESS["WSL_FINALSTEP_CONTENT"] = "Parabéns! O wizard de importação de locais foi concluído com sucesso.";
+$MESS["WSL_FINALSTEP_TITLE"] = "O wizard foi concluído";
+$MESS["WSL_STEP1_CONTENT"] = "Bem vindo ao Wizard de importação de locais! Este wizard irá auxiliá-lo a importar locais para o <br /><b>Administrador de Site do Bitrix</b><br /><br />Clique em \"Próximo\" para escolher as opções de importação.";
+$MESS["WSL_STEP1_TITLE"] = "Wizard de importação de locais";
+$MESS["WSL_STEP2_GFILE_CNTR"] = "Mundo (países)";
+$MESS["WSL_STEP2_GFILE_ERROR"] = "O arquivo fonte não está especificado";
+$MESS["WSL_STEP2_GFILE_FILE"] = "fazer upload de arquivo";
+$MESS["WSL_STEP2_GFILE_NONE"] = "nenhum";
+$MESS["WSL_STEP2_GFILE_TITLE"] = "Arquivo fonte:";
+$MESS["WSL_STEP2_GFILE_USA"] = "EUA (cidades)";
+$MESS["WSL_STEP2_GFILE_USSR"] = "Rússia e PC(países e cidades)";
+$MESS["WSL_STEP2_GFILE_ZIP"] = "carregar base de códigos postais (Somente Rússia)";
+$MESS["WSL_STEP2_GSYNC_HINT"] = "A base de dados de códigos postais não pode ser sincronizada";
+$MESS["WSL_STEP2_GSYNC_N"] = "remover dados existentes";
+$MESS["WSL_STEP2_GSYNC_TITLE"] = "Sincronização:";
+$MESS["WSL_STEP2_GSYNC_Y"] = "sincronize dados existentes e novos";
+$MESS["WSL_STEP2_TITLE"] = "Arquivos fonte";
+$MESS["WSL_STEP3_ERROR_TRY"] = "Tente novamente";
+$MESS["WSL_STEP3_LOADING"] = "Carregando";
+$MESS["WSL_STEP3_TITLE"] = "Importando arquivos fonte.";
+$MESS["WSL_STEP4_LOADING"] = "Processando...";
+$MESS["WSL_STEP4_TITLE"] = "Processando dados";
+$MESS["WSL_STEP5_STEP_LENGTH_ERROR"] = "A duração da etapa não pode ser nula.";
+$MESS["WSL_STEP5_STEP_LENGTH_HINT"] = "Especifique aqui a duração desejada da etapa única de processamento. Modifique este parâmetro somente se você tiver certeza que a página será executada no período a ser especificado.";
+$MESS["WSL_STEP5_STEP_LENGTH_TITLE"] = "Duração da etapa (seg)";
+$MESS["WSL_STEP5_TITLE"] = "Parâmetros";
+?>

@@ -1,0 +1,34 @@
+<?
+$MESS["CATALOG_NO_VAT"] = "sin impuestos";
+$MESS["CATALOG_PRICE_NOVAT"] = "sin impuesto";
+$MESS["CATALOG_PRICE_VAT"] = "incluido impuesto";
+$MESS["CATALOG_QUANTITY"] = "Cantidad";
+$MESS["CATALOG_QUANTITY_FROM"] = "#FROM# y más";
+$MESS["CATALOG_QUANTITY_FROM_TO"] = "de #FROM# para #TO#";
+$MESS["CATALOG_QUANTITY_TO"] = "hasta #TO#";
+$MESS["CATALOG_VAT"] = "Tasa de impuestos";
+$MESS["CATALOG_VAT_INCLUDED"] = "Tasa de impuesto incluido en el precio";
+$MESS["CATALOG_VAT_NOT_INCLUDED"] = "Tasa de impuesto no incluye en el precio";
+$MESS["COMMENTARY"] = "Comentarios";
+$MESS["CT_BCE_CATALOG_ADD"] = "Agregrar al carrito";
+$MESS["CT_BCE_CATALOG_ADD_TO_BASKET_OK"] = "Agregado al carrito de compras";
+$MESS["CT_BCE_CATALOG_BASKET_UNKNOWN_ERROR"] = "Error desconocido al agregar un elemento al carrito de compras";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_BASKET_REDIRECT"] = "Ver el carrito de compras";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_CLOSE"] = "Cerrar";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_CLOSE_POPUP"] = "Seguir comprando";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_COMPARE_REDIRECT"] = "Comparar productos";
+$MESS["CT_BCE_CATALOG_BTN_SEND_PROPS"] = "Seleccionar";
+$MESS["CT_BCE_CATALOG_BUY"] = "Comprar";
+$MESS["CT_BCE_CATALOG_COMPARE"] = "Comparar";
+$MESS["CT_BCE_CATALOG_ECONOMY_INFO"] = "(Ahorros - #ECONOMY#)";
+$MESS["CT_BCE_CATALOG_MESS_BASIS_PRICE"] = "#PRICE# de 1 #MEASURE#";
+$MESS["CT_BCE_CATALOG_MESS_COMPARE_OK"] = "Producto se ha agregado al gráfico de comparación";
+$MESS["CT_BCE_CATALOG_MESS_COMPARE_TITLE"] = "Comparación de productos";
+$MESS["CT_BCE_CATALOG_MESS_COMPARE_UNKNOWN_ERROR"] = "Error al agregar el producto a tabla de comparación";
+$MESS["CT_BCE_CATALOG_NOT_AVAILABLE"] = "No está disponible en stock";
+$MESS["CT_BCE_CATALOG_TITLE_BASKET_PROPS"] = "Propiedades del elemento para pasar al carrito de compras";
+$MESS["CT_BCE_CATALOG_TITLE_ERROR"] = "Error";
+$MESS["CT_BCE_QUANTITY"] = "Cantidad";
+$MESS["FULL_DESCRIPTION"] = "Descripción completa";
+$MESS["OSTATOK"] = "Cantidad en stock";
+?>

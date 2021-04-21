@@ -1,0 +1,33 @@
+<?
+$MESS["customrank_add"] = "Agregar";
+$MESS["customrank_add_title"] = "Click para agregar una nueva regla";
+$MESS["customrank_all"] = "(todo)";
+$MESS["customrank_applied"] = "Procesado ";
+$MESS["customrank_continue"] = "Continuar";
+$MESS["customrank_delete"] = "Borrar";
+$MESS["customrank_delete_confirm"] = "Esta acción es irreversible. ¿Desea borrar la regla?";
+$MESS["customrank_edit"] = "Modificar";
+$MESS["customrank_edit_error"] = "Error al modificar registro:";
+$MESS["customrank_error_delete"] = "Error al borrar regla";
+$MESS["customrank_find"] = "Encontrado";
+$MESS["customrank_find_title"] = "Ingrese cadena de búsqueda";
+$MESS["customrank_id"] = "ID";
+$MESS["customrank_module"] = "Módulo";
+$MESS["customrank_no"] = "(no)";
+$MESS["customrank_no_rule"] = "regla no encontrada";
+$MESS["customrank_of"] = "de";
+$MESS["customrank_param1"] = "Parámetro 1";
+$MESS["customrank_param2"] = "Parámetro 2";
+$MESS["customrank_param3"] = "Parámetro 3";
+$MESS["customrank_progress"] = "Actualizar índice de búsqueda.";
+$MESS["customrank_rules"] = "Reglas";
+$MESS["customrank_save_note"] = "Después de modificar o de suprimir una regla necesita hacer click en el botón de \"Actualizar\" para hacer efectivos todos los cambios hechos.";
+$MESS["customrank_saved"] = "Reglas guardadas.";
+$MESS["customrank_site"] = "Sitio web";
+$MESS["customrank_sort"] = "Fila ";
+$MESS["customrank_step1"] = "Paso 1. Ranking rules management.";
+$MESS["customrank_step2"] = "Paso 2. Actualización del índice de búsqueda.";
+$MESS["customrank_stop"] = "Detener";
+$MESS["customrank_title"] = "Ordenar lista de reglas";
+$MESS["customrank_update"] = "Actualizar";
+?>

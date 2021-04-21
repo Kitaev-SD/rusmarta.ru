@@ -1,0 +1,6 @@
+<?
+$MESS["LANDING_HOOK_PIXEL_VK_COUNTER"] = "¬контакт≥";
+$MESS["LANDING_HOOK_PIXEL_VK_HELP"] = "ƒетальн≥ше";
+$MESS["LANDING_HOOK_PIXEL_VK_PLACEHOLDER2"] = "¬вед≥ть код п≥ксел€ (VK-AAAA-123456-BBBBB)";
+$MESS["LANDING_HOOK_PIXEL_VK_USE"] = "¬контакт≥";
+?>

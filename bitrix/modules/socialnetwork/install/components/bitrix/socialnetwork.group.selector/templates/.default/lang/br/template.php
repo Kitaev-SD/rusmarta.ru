@@ -1,0 +1,6 @@
+<?
+$MESS["SONET_GROUP_BUTTON_CLOSE"] = "Fechar";
+$MESS["SONET_GROUP_TABS_LAST"] = "Passado";
+$MESS["SONET_GROUP_TABS_MY"] = "Meus grupos";
+$MESS["SONET_GROUP_TABS_SEARCH"] = "Pesquisar";
+?>

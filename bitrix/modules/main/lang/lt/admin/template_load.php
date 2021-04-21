@@ -1,0 +1,17 @@
+<?
+$MESS["MAIN_T_EDIT_TEMPL_LIST"] = "Tinklapio ðablonø sàraðas";
+$MESS["MAIN_T_EDIT_IMP_ERR"] = "Importuojant ðablonà ávyko klaida";
+$MESS["MAIN_TEMPLATE_LOAD_ERR_LOAD"] = "Pasirinkite bylà";
+$MESS["MAIN_TEMPLATE_LOAD_ERR_ID"] = "Áraðykite ðablono ID";
+$MESS["MAIN_TEMPLATE_LOAD_ERR_EX"] = "Ðablonas pavadinimu #TEMPLATE_NAME# jau yra.";
+$MESS["MAIN_TEMPLATE_LOAD_OK"] = "Ðablonas pavadinimu #TEMPLATE_NAME# ákeltas sëkmingai.";
+$MESS["MAIN_TEMPLATE_LOAD_TITLE"] = "Importuoti ðablonà";
+$MESS["MAIN_TEMPLATE_LOAD_FILE"] = "Ðablono byla, kurià reikia ákelti (*.gz):";
+$MESS["MAIN_TEMPLATE_LOAD_ID"] = "Ðablono ID:";
+$MESS["MAIN_TEMPLATE_LOAD_SITE_ID"] = "Taikyti ðá ðablonà pagal nutylëjimà ðiam tinklapiui:";
+$MESS["MAIN_TEMPLATE_LOAD_SITE_ID_N"] = "(netaikyti)";
+$MESS["MAIN_TEMPLATE_LOAD_GOTO_EDIT"] = "Po duomenø iðsaugojimo prisijungti prie ðablonø redagavimo skyriaus:";
+$MESS["MAIN_TEMPLATE_LOAD_SUBMIT"] = "Ákelti";
+$MESS["MAIN_TEMPLATE_LOAD_WARN_UTF"] = "Atkreipkite dëmesá, kad visi svetainës ðablono failai turi bûti UTF-8 koduotës.";
+$MESS["MAIN_TEMPLATE_LOAD_WARN_NON_UTF"] = "Atkreipkite dëmesá, kad svetainës ðablonø failø kodavimas turi sutapti su svetainës kodavimu.";
+?>

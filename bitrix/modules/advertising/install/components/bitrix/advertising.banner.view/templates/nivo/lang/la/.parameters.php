@@ -1,0 +1,32 @@
+<?
+$MESS["ADV_NIVO_PARAMETER_ANNOUNCEMENT"] = "Descripción";
+$MESS["ADV_NIVO_PARAMETER_ANNOUNCEMENT_MOBILE_HIDE"] = "Ocultar descripción en los teléfonos";
+$MESS["ADV_NIVO_PARAMETER_ANNOUNCEMENT_SHOW"] = "Mostrar descripción";
+$MESS["ADV_NIVO_PARAMETER_ANNOUNCEMENT_TEXT"] = "Descripción del texto";
+$MESS["ADV_NIVO_PARAMETER_BG_COLOR"] = "Color de fondo";
+$MESS["ADV_NIVO_PARAMETER_BG_OPACITY"] = "Opacidad de fondo";
+$MESS["ADV_NIVO_PARAMETER_BUTTON"] = "Mostrar botón";
+$MESS["ADV_NIVO_PARAMETER_BUTTON_BG_COLOR"] = "Color del botón";
+$MESS["ADV_NIVO_PARAMETER_BUTTON_LINK_URL"] = "Botón de enlace";
+$MESS["ADV_NIVO_PARAMETER_BUTTON_TEXT"] = "Texto del botón";
+$MESS["ADV_NIVO_PARAMETER_BUTTON_TEXT_DEF"] = "Detalles";
+$MESS["ADV_NIVO_PARAMETER_EFFECT"] = "Transición";
+$MESS["ADV_NIVO_PARAMETER_FONT_COLOR"] = "Color del texto";
+$MESS["ADV_NIVO_PARAMETER_FONT_SIZE"] = "Tamaño del texto";
+$MESS["ADV_NIVO_PARAMETER_HEADING"] = "Título";
+$MESS["ADV_NIVO_PARAMETER_HEADING_SHOW"] = "Mostrar título";
+$MESS["ADV_NIVO_PARAMETER_HEADING_TEXT"] = "Texto del título";
+$MESS["ADV_NIVO_PARAMETER_IMG"] = "Imagen del slide";
+$MESS["ADV_NIVO_PARAMETER_LINK_TARGET"] = "Vínculo de destino";
+$MESS["ADV_NIVO_PARAMETER_LINK_TARGET_BLANK"] = "nueva ventana";
+$MESS["ADV_NIVO_PARAMETER_LINK_TARGET_PARENT"] = "marco principal";
+$MESS["ADV_NIVO_PARAMETER_LINK_TARGET_SELF"] = "propio";
+$MESS["ADV_NIVO_PARAMETER_LINK_TARGET_TOP"] = "ventana superior del navegador";
+$MESS["ADV_NIVO_PARAMETER_LINK_TITLE"] = "Texto de Información sobre herramientas";
+$MESS["ADV_NIVO_PARAMETER_LINK_URL"] = "Vínculo del slide";
+$MESS["ADV_NIVO_PARAMETER_NO"] = "(sin definir)";
+$MESS["ADV_NIVO_PARAMETER_OVERLAY"] = "Fondo";
+$MESS["ADV_NIVO_PARAMETER_OVERLAY_COLOR"] = "Color de fondo";
+$MESS["ADV_NIVO_PARAMETER_OVERLAY_OPACITY"] = "Opacidad de fondo";
+$MESS["ADV_NIVO_PARAMETER_PRESET"] = "Plantilla de banner";
+?>

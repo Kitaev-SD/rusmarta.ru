@@ -1,0 +1,17 @@
+<svg id="Staff_noimage2.svg" xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f8f8f8;
+        fill-opacity: 0;
+      }
+
+      .cls-2 {
+        fill: #222;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="150" height="150"/>
+  <path id="Ellipse_52_copy_2" data-name="Ellipse 52 copy 2" class="cls-2" d="M1012.65,6547a52.991,52.991,0,0,0-105.3,0h-3.023a56,56,0,0,1,111.356,0h-3.03ZM960,6490a28,28,0,1,1,28-28A28,28,0,0,1,960,6490Zm0-53a25,25,0,1,0,25,25A25,25,0,0,0,960,6437Z" transform="translate(-885 -6397)"/>
+</svg>

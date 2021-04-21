@@ -1,0 +1,37 @@
+<?
+$MESS["PERSON_TYPE_TITLE"] = "Mokëtojo tipas";
+$MESS["ERROR_ADD_REC"] = "Klaida pridedant áraðà";
+$MESS["ERROR_NAME_REC"] = "Laukas \"Pavadinimas\" nenustatytas ðiame áraðe";
+$MESS["ERROR_LID_REC"] = "Laukas \"Svetainë\" nenustatytas ðiame áraðe";
+$MESS["ERROR_UPDATE_REC"] = "Klaida atnaujinant áraðà";
+$MESS["SALE_F_FILTER"] = "Filtras";
+$MESS["LANG_FILTER_NAME"] = "Svetainë";
+$MESS["LANG_FILTER_BTN"] = "Nustatyti filtrà";
+$MESS["SALE_F_DEL"] = "Paðalinti filtrà";
+$MESS["LANG_ALL"] = "Visos svetainës";
+$MESS["PERS_TYPE_NAV"] = "Mokëtojo tipas";
+$MESS["PERS_TYPE_NAME"] = "Pavadinimas";
+$MESS["PERS_TYPE_LID"] = "Svetainë";
+$MESS["PERS_TYPE_SORT"] = "Rûð.";
+$MESS["PERS_TYPE_DEL"] = "Paðalinti";
+$MESS["PERS_TYPE_UPD"] = "Iðsaugoti";
+$MESS["PERS_TYPE_RESET"] = "Atstatyti";
+$MESS["PERS_TYPE_ID"] = "ID";
+$MESS["PERS_TYPE_DEL_CONF"] = "Paðalinus mokëtojo tipà, bus paðalinti visos jo savybes ir parametrai. Jei ðisi mokëtojo tipas turi uþsakymø, ji nebus paðalintas.";
+$MESS["SALE_PROPS"] = "Savybës";
+$MESS["SPT_ALL"] = "(visi)";
+$MESS["SPT_UNSET"] = "Atstatyti";
+$MESS["SPTAN_ERROR_UPDATE"] = "Klaida keièiant áraðà";
+$MESS["SPTAN_ERROR_DELETE"] = "Klaida ðalinant áraðà";
+$MESS["PERS_PROPS"] = "Savybës";
+$MESS["SPTAN_UPDATE_ALT"] = "Redaguoti mokëtojo tipà";
+$MESS["SPTAN_DELETE_ALT1"] = "Paðalinti mokëtojo tipà";
+$MESS["SPTAN_ADD_NEW"] = "Naujas mokëtojo tipas";
+$MESS["SPTAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà mokëtojo tipà";
+$MESS["SPTAN_VIEW_PROPS"] = "Á savybiø sàraðà";
+$MESS["PERS_ACTIVE"] = "Aktyvus";
+$MESS["SALE_YES"] = "Taip";
+$MESS["SALE_NO"] = "Ne";
+$MESS["SALE_FIELD_ACTIVE"] = "Aktyvus";
+$MESS["SALE_ALL"] = "visi";
+?>

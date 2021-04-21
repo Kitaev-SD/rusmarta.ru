@@ -1,0 +1,12 @@
+<?
+$MESS["main_epilog_before_menu_edit"] = "Redaguoti puslapá redaktoriuje";
+$MESS["main_epilog_before_menu_edit_title"] = "Redaguoti puslapá vizualiajame redaktoriuje";
+$MESS["main_epilog_before_menu_edit_html"] = "Redaguoti puslapá kaip HTML";
+$MESS["main_epilog_before_menu_edit_html_title"] = "Redaguoti puslapio HTML kodà";
+$MESS["main_epilog_before_menu_title"] = "Redaguoti dabartiná puslapá";
+$MESS["main_epilog_before_menu_prop"] = "Redaguoti puslapio savybes";
+$MESS["main_epilog_before_menu_prop_title"] = "Redaguoti puslapio antraðtæ ir kitas savybes";
+$MESS["main_epilog_before_remove_panel"] = "Slëpti ðià juostà";
+$MESS["main_epilog_before_remove_panel_title"] = "Nerodyti ðio puslapio redagavimo juostos";
+$MESS["main_epilog_before_remove_panel_confirm"] = "Jûs norite paslëpti puslapio redaktoriaus juostà? Jûs visada galite gràþinti jà á naudotojo sàsajos nustatymø formà.";
+?>

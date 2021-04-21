@@ -1,0 +1,5 @@
+<?
+$MESS ['SUBSCR_MODULE_NOT_INSTALLED'] = "âÁ´ÙÅ¨´ËÁÒÂ¢èÒÇäÁèÁÕÍÂÙè¢³Ð¹Õé";
+$MESS ['SUBSCR_NO_RUBRIC_FOUND'] = "äÁè¾º»ÃÐàÀ·¨´ËÁÒÂ¢èÒÇ";
+$MESS ['SUBSCR_PAGE_TITLE'] = "¨´ËÁÒÂ¢èÒÇ";
+?>

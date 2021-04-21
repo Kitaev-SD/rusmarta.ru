@@ -1,0 +1,17 @@
+<?
+$MESS["SALE_BASKET_ENTITY_BASKET"] = "Pirkiniø krepðelis";
+$MESS["SALE_BASKET_ENTITY_ID"] = "Áraðo ID";
+$MESS["SALE_BASKET_ENTITY_FUSER_ID"] = "Lankytojo ID";
+$MESS["SALE_BASKET_ENTITY_DATE_INSERT"] = "Prekë pridëta";
+$MESS["SALE_BASKET_ENTITY_DATE_UPDATE"] = "Prekë pakeista";
+$MESS["SALE_BASKET_ENTITY_DATE_INS"] = "Prekë pridëta";
+$MESS["SALE_BASKET_ENTITY_DATE_UPD"] = "Prekë pakeista";
+$MESS["SALE_BASKET_ENTITY_PRODUCT_ID"] = "Prekës ID";
+$MESS["SALE_BASKET_ENTITY_NAME"] = "Prekës pavadinimas";
+$MESS["SALE_BASKET_ENTITY_ORDER_ID"] = "Uþsakymo ID";
+$MESS["SALE_BASKET_ENTITY_PRICE"] = "Kaina";
+$MESS["SALE_BASKET_ENTITY_QUANTITY"] = "Kiekis";
+$MESS["SALE_BASKET_ENTITY_SUMMARY_PRICE"] = "Ið viso prekiø";
+$MESS["SALE_BASKET_ENTITY_SUBSCRIBE"] = "Ði prekë turi prenumeratà";
+$MESS["SALE_BASKET_ENTITY_N_SUBSCRIBE"] = "Prenumeratos";
+?>

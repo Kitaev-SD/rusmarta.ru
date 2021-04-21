@@ -1,0 +1,40 @@
+Options -Indexes 
+ErrorDocument 404 /404.php
+
+  php_flag allow_call_time_pass_reference 1
+  php_flag session.use_trans_sid off
+  php_value max_input_vars 10000  
+  php_value auto_prepend_file "/home/r/rusmartar2/rusmarta.ru/bitrix/modules/security/tools/start.php"
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !(.*)/$
+  RewriteRule ^(.*[^/])$ $1/ [L,R=301]
+
+  RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+  RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+  
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+  RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+</IfModule>
+
+<IfModule mod_dir.c>
+  DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresByType image/jpeg "access plus 3 day"
+  ExpiresByType image/gif "access plus 3 day"
+</IfModule> 
+
+RewriteCond %{HTTP:HTTPS} !=on [NC]
+RewriteRule ^(.*)$ https://rusmarta.ru/$1 [R=301,L]
+SetEnvIf X-Forwarded-Proto https HTTPS=on

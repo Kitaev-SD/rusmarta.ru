@@ -1,0 +1,31 @@
+<?
+$MESS["BPWI_DELETE_CONFIRM"] = "¿Seguro que quieres eliminar el proceso y todos los datos asociados?";
+$MESS["BPWI_DELETE_LABEL"] = "Eliminar";
+$MESS["BPWI_DOCUMENT_NAME"] = "Documento";
+$MESS["BPWI_FILTER_DOCTYPE_ALL"] = "Todo";
+$MESS["BPWI_FILTER_DOCTYPE_CLAIMS"] = "Flujos de trabajo";
+$MESS["BPWI_FILTER_DOCTYPE_CRM"] = "CRM";
+$MESS["BPWI_FILTER_DOCTYPE_DISK"] = "Archivos";
+$MESS["BPWI_FILTER_DOCTYPE_LISTS"] = "Listas";
+$MESS["BPWI_FILTER_PRESET_LOCKED"] = "Suspendido";
+$MESS["BPWI_FILTER_STATUS"] = "Estados";
+$MESS["BPWI_IS_LOCKED"] = "Cerrado";
+$MESS["BPWI_MODIFIED"] = "Modificado el";
+$MESS["BPWI_MODULE_CRM"] = "CRM";
+$MESS["BPWI_MODULE_DISK"] = "Drive";
+$MESS["BPWI_MODULE_IBLOCK"] = "Listas";
+$MESS["BPWI_MODULE_LISTS"] = "Flujo de trabajo";
+$MESS["BPWI_NO"] = "No";
+$MESS["BPWI_NO_ACCESS"] = "Sólo los administradores del portal pueden acceder a esta página.";
+$MESS["BPWI_NO_DOCUMENT"] = "No se encontró el documento.";
+$MESS["BPWI_NO_MATTER"] = "(no importante)";
+$MESS["BPWI_OPEN_DOCUMENT"] = "Documento (en una nueva ventana)";
+$MESS["BPWI_OWNED_UNTIL"] = "Cerrado hasta";
+$MESS["BPWI_PAGE_TITLE"] = "Ejecución de flujos de trabajo";
+$MESS["BPWI_WORKFLOW_ID_ANY"] = "(cualquiera)";
+$MESS["BPWI_WS_MODULE_ID"] = "Módulo";
+$MESS["BPWI_WS_STARTED"] = "Iniciado el";
+$MESS["BPWI_WS_STARTED_BY"] = "Iniciado por";
+$MESS["BPWI_WS_WORKFLOW_TEMPLATE_ID"] = "Flujo de trabajo";
+$MESS["BPWI_YES"] = "Si";
+?>

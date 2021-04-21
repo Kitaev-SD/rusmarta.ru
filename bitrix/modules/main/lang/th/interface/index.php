@@ -1,0 +1,7 @@
+<?
+$MESS ['admin_index_product_name'] = "ÃÐºº¨Ñ´¡ÒÃ¢éÍÁÙÅàÇçºä«µìÍÍ¹äÅ¹ì Pegasus";
+$MESS ['admin_index_menu'] = "àÁ¹Ù";
+$MESS ['admin_index_project'] = "Welcome to the Site Administrator Control Panel of";
+$MESS ['admin_index_product'] = "Powered by";
+$MESS ['admin_index_title'] = "Control Panel";
+?>

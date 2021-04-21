@@ -1,0 +1,30 @@
+<?
+$MESS['imp_title'] = 'Adresø importas';
+$MESS['imp_results'] = 'Importavimo rezultatai:';
+$MESS['imp_results_total'] = 'Viso unikaliø adresø importavimui:';
+$MESS['imp_results_added'] = 'Áterpta adresø:';
+$MESS['imp_results_err'] = 'Klaidingø adresø:';
+$MESS['imp_delim'] = 'Adresai sàraðe turi bûti atskirti <b>kabliataðkiø</b> arba <b>ið naujos eilutës</b> keikvienas.';
+$MESS['imp_file'] = 'Importuoti ið bylos:';
+$MESS['imp_list'] = 'Importuoti ið sàraðo:';
+$MESS['imp_send_code'] = 'Iðsiøsti prenumeratos parvirtinimo kodà:';
+$MESS['imp_conf'] = 'Paþymëti prenumeratas patvirtinimui:';
+$MESS['imp_user'] = 'Prenumeruoti gali svetainës naudotojai bei anonimûs svetainës lankytojai.';
+$MESS['imp_user_anonym'] = 'Anonimûs prenumeratoriai neturi paskyros svetainëje. Sukuriant vartotojus kuriamos paskyros su galimybe susieti su vartotojø grupëmis. ';
+$MESS['imp_add'] = 'Pridëti prenumeratorius:';
+$MESS['imp_add_anonym'] = 'Kaip anoniminius lankytojus';
+$MESS['imp_add_users'] = 'Kaip naudotojus (sukuriant paskyrà)';
+$MESS['imp_send_reg'] = 'Iðsiøsti registracijos informacijà naudotojui:';
+$MESS['imp_add_gr'] = 'Pridëti naudotojui á grupes:';
+$MESS['imp_subscr'] = 'Uþsiprenumeruoti:';
+$MESS['imp_fmt'] = 'Formatas:';
+$MESS['imp_fmt_text'] = 'Tekstas';
+$MESS['imp_butt'] = 'Importuoti adresus';
+$MESS['imp_site'] = 'Siøsti laiðkus naudojant svetainës ðablonus:';
+$MESS['subscr_imp_err1'] = 'Klaida ákeliant bylà.';
+$MESS['subscr_imp_err2'] = 'klaidos kodas';
+$MESS['subscr_send_info'] = 'Jus bûvote registruoti.';
+$MESS['imp_import_tab'] = 'Importas';
+$MESS['imp_import_tab_title'] = 'Importo parametrai';
+$MESS['imp_error'] = 'Klaida importuojant adresus.';
+?>

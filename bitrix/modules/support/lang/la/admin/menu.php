@@ -1,0 +1,33 @@
+<?
+$MESS["SUP_M_CATEGORY"] = "Categoría";
+$MESS["SUP_M_COUPONS"] = "Cupones VIP";
+$MESS["SUP_M_COUPONS_LOG"] = "Conexión del cupón usado";
+$MESS["SUP_M_COUPONS_LOG_TITLE"] = "Conexión del cupón usado";
+$MESS["SUP_M_COUPONS_TITLE"] = "Crear y editar cupones VIP";
+$MESS["SUP_M_CRITICALITY"] = "Prioridad";
+$MESS["SUP_M_DICT"] = "Libro de referencias";
+$MESS["SUP_M_DICT_TITLE"] = "Configurar libro de referencias";
+$MESS["SUP_M_DIFFICULTY"] = "Dificultad";
+$MESS["SUP_M_DIFFICULTY_TITLE"] = "Nivel de dificultad";
+$MESS["SUP_M_FUA"] = "Respuestas usadas frecuentemente";
+$MESS["SUP_M_GROUPS"] = "Grupos";
+$MESS["SUP_M_GROUPS_TITLE"] = "Editar grupos";
+$MESS["SUP_M_HOLIDAYS"] = "Excepciones";
+$MESS["SUP_M_MARK"] = "Satisfacción en la respuesta";
+$MESS["SUP_M_REPORT_GRAPH"] = "Diagramas";
+$MESS["SUP_M_REPORT_GRAPH_ALT"] = "Reporte gráfico de parámetros de estadísticas de soporte técnico";
+$MESS["SUP_M_REPORT_TABLE"] = "Escritorio";
+$MESS["SUP_M_REPORT_TABLE_ALT"] = "Tabla de distribución de tickets por varios parámetros";
+$MESS["SUP_M_SHEDULE"] = "Programados";
+$MESS["SUP_M_SHEDULE_TITLE"] = "Programados";
+$MESS["SUP_M_SLA"] = "Niveles de soporte";
+$MESS["SUP_M_SOURCE"] = "Source";
+$MESS["SUP_M_STATUS"] = "Estatus";
+$MESS["SUP_M_SUPPORT"] = "Soporte en Línea";
+$MESS["SUP_M_SUPPORT_TITLE"] = "Administrar Soporte Técnico";
+$MESS["SUP_M_TICKETS"] = "Ticket";
+$MESS["SUP_M_TICKETS_ALT"] = "Visitante de ticket";
+$MESS["SUP_M_TIMETABLE"] = "Programados";
+$MESS["SUP_M_USER_IN_GROUPS"] = "Usuarios en grupos";
+$MESS["SUP_M_USER_IN_GROUPS_TITLE"] = "Usuarios en grupos";
+?>

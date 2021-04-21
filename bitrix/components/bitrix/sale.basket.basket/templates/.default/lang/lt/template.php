@@ -1,0 +1,37 @@
+<?
+$MESS["SALE_ORDER"] = "Uþsakymas";
+$MESS["SALE_OR"] = "arba";
+$MESS["SALE_NAME"] = "Pavadinimas";
+$MESS["SALE_PROPS"] = "Savybës";
+$MESS["SALE_PRICE"] = "Kaina";
+$MESS["SALE_TYPE"] = "Kainos tipas";
+$MESS["SALE_QUANTITY"] = "Kiekis";
+$MESS["SALE_SUM"] = "Ið viso";
+$MESS["SALE_DELETE"] = "Trinti";
+$MESS["SALE_DELAY"] = "Laikyti per";
+$MESS["SALE_ADD_TO_BASKET"] = "Á krepðelá";
+$MESS["SALE_WEIGHT"] = "Svoris";
+$MESS["SALE_TOTAL_WEIGHT"] = "Bendras svoris:";
+$MESS["SALE_WEIGHT_G"] = "g";
+$MESS["SALE_DELAYED_TITLE"] = "Atidëta";
+$MESS["SALE_UNAVAIL_TITLE"] = "Ðiuo metu nëra";
+$MESS["STB_ORDER_PROMT"] = "Spustelëkite „Pirkti“, jei norite uþbaigti savo uþsakymà";
+$MESS["STB_COUPON_PROMT"] = "Jei turite specialø kupono kodà ir norite gauti nuolaidà, áveskite já èia:";
+$MESS["SALE_VAT"] = "Mokestis:";
+$MESS["SALE_VAT_EXCLUDED"] = "Bendra kaina:";
+$MESS["SALE_VAT_INCLUDED"] = "Su mokesèiu:";
+$MESS["SALE_TOTAL"] = "Viso:";
+$MESS["SALE_CONTENT_DISCOUNT"] = "Nuolaida";
+$MESS["SALE_DISCOUNT"] = "Nuolaida";
+$MESS["SALE_NOTIFY_TITLE"] = "Uþlaikytas";
+$MESS["SALE_REFRESH_NOTIFY_DESCR"] = "Paspauskite ðá mygtukà, norëdami paðalinti prekes.";
+$MESS["SALE_ITEMS"] = "Pirkiniø krepðelis:";
+$MESS["SALE_BASKET_ITEMS"] = "Prieinama";
+$MESS["SALE_BASKET_ITEMS_DELAYED"] = "Iþsaugoti vëlesniam laikui";
+$MESS["SALE_BASKET_ITEMS_SUBSCRIBED"] = "Greitai bus sandëlyje";
+$MESS["SALE_BASKET_ITEMS_NOT_AVAILABLE"] = "Neprieinama";
+$MESS["SALE_NO_ITEMS"] = "Jûsø krepðelyje dar nëra prekiø.";
+$MESS["SALE_REFRESH"] = "Atkurti";
+$MESS["SALE_COUPON_APPLY"] = "OK";
+$MESS["SALE_COUPON_APPLY_TITLE"] = "Taikyti naujà kuponà";
+?>

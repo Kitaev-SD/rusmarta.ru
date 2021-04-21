@@ -1,0 +1,15 @@
+<?
+$MESS["IBLOCK_ELSEARCH_TITLE"] = "جستجوی المان";
+$MESS["IBLOCK_ELSEARCH_LOCK_BY"] = "قفل شده توسط";
+$MESS["IBLOCK_ELSEARCH_SELECT"] = "انتخاب";
+$MESS["IBLOCK_ELSEARCH_NOT_SET"] = "(تنظیم نشده)";
+$MESS["IBLOCK_ELSEARCH_F_DATE"] = "تاریخ";
+$MESS["IBLOCK_ELSEARCH_F_STATUS"] = "وضعیت";
+$MESS["IBLOCK_ELSEARCH_F_SECTION"] = "بخش";
+$MESS["IBLOCK_ELSEARCH_F_ACTIVE"] = "فعال";
+$MESS["IBLOCK_ELSEARCH_F_TITLE"] = "عنوان";
+$MESS["IBLOCK_ELSEARCH_F_DSC"] = "توضیحات";
+$MESS["IBLOCK_ELSEARCH_IBLOCK"] = "بلوک اطلاعات";
+$MESS["IBLOCK_ELSEARCH_DESC"] = "توضیحات:";
+$MESS["IBLOCK_ELSEARCH_ELEMENTS"] = "المانها";
+?>

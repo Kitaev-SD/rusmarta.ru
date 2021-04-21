@@ -1,0 +1,32 @@
+<?
+$MESS["OP_NAME_CATALOG_READ"] = "Skaityti modulio nustatymus";
+$MESS["OP_NAME_CATALOG_SETTINGS"] = "Redaguoti modulio nustatymus";
+$MESS["OP_NAME_CATALOG_PRICE"] = "Tvarkyti prekiø kainas";
+$MESS["OP_NAME_CATALOG_GROUP"] = "Tvarkyti prekiø tipus";
+$MESS["OP_NAME_CATALOG_DISCOUNT"] = "Tvarkyti nuolaidas";
+$MESS["OP_NAME_CATALOG_VAT"] = "Tvarkyti mokesèio tarifus";
+$MESS["OP_NAME_CATALOG_STORE"] = "Tvarkyti sandëlio atsargas";
+$MESS["OP_NAME_CATALOG_EXPORT_EDIT"] = "Redaguoti eksporto parametrus";
+$MESS["OP_NAME_CATALOG_EXPORT_EXEC"] = "Inicijuoti eksportà";
+$MESS["OP_NAME_CATALOG_IMPORT_EDIT"] = "Redaguoti importo parametrus";
+$MESS["OP_NAME_CATALOG_IMPORT_EXEC"] = "Inicijuoti importà";
+$MESS["OP_NAME_CATALOG_PURCHAS_INFO"] = "Rodyti pirkimo kainà";
+$MESS["OP_DESC_CATALOG_READ"] = "Naudotojas gali perskaityti (perþiûrëti) modulio parametrus";
+$MESS["OP_DESC_CATALOG_SETTINGS"] = "Naudotojas gali tvarkyti modulio parametrus";
+$MESS["OP_DESC_CATALOG_GROUP"] = "Naudotojas gali tvarkyti kainø tipus";
+$MESS["OP_DESC_CATALOG_DISCOUNT"] = "Naudotojas gali tvarkyti nuolaidas";
+$MESS["OP_DESC_CATALOG_VAT"] = "Naudotojas gali tvarkyti mokesèiø tarifus";
+$MESS["OP_DESC_CATALOG_EXPORT_EDIT"] = "Naudotojas gali redaguoti eksporto parametrus";
+$MESS["OP_DESC_CATALOG_EXPORT_EXEC"] = "Naudotojas gali inicijuoti eksportà";
+$MESS["OP_DESC_CATALOG_IMPORT_EDIT"] = "Naudotojas gali redaguoti importo parametrus";
+$MESS["OP_DESC_CATALOG_IMPORT_EXEC"] = "Naudotojas gali inicijuoti importà";
+$MESS["OP_DESC_CATALOG_PURCHAS_INFO"] = "Klientas gali perþiûrëti prekës pirkimo kainas";
+$MESS["OP_NAME_CATALOG_EXTRA"] = "Tvarkyti antkainius";
+$MESS["OP_NAME_CATALOG_MEASURE"] = "Tvarkyti matavimo vienetus";
+$MESS["OP_DESC_CATALOG_PRICE"] = "Naudotojas gali tvarkyti prekës kainas";
+$MESS["OP_DESC_CATALOG_EXTRA"] = "Naudotojas gali redaguoti antkainiø reikðmes";
+$MESS["OP_DESC_CATALOG_STORE"] = "Naudotojas gali tvarkyti sandëlio atsargø kontrolës dokumentus";
+$MESS["OP_DESC_CATALOG_MEASURE"] = "Naudotojas gali tvarkyti matavimo vienetus";
+$MESS["OP_NAME_CATALOG_VIEW"] = "Prekiø perþiûra";
+$MESS["OP_DESC_CATALOG_VIEW"] = "Prekiø perþiûra vadybininkams dirbanèiais su uþsakymais";
+?>

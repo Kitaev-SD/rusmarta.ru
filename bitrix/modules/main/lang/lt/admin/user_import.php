@@ -1,0 +1,59 @@
+<?
+$MESS["USER_IMPORT_TITLE"] = "Naudotojø importas";
+$MESS["USER_IMPORT_SOURCE_TAB"] = "Duomenø ğaltinis";
+$MESS["USER_IMPORT_SOURCE_TAB_DESC"] = "Pasirinkite duomenø ğaltiná";
+$MESS["USER_IMPORT_SETTINGS_TAB"] = "Importo parametrai";
+$MESS["USER_IMPORT_SETTINGS_TAB_DESC"] = "Importo parametrø nustatymas";
+$MESS["USER_IMPORT_RESULT_TAB"] = "Importas";
+$MESS["USER_IMPORT_RESULT_TAB_DESC"] = "Naudotojø importas";
+$MESS["LDAP_MODULE_NOT_INSTALLED"] = "Bûtina ádiegti AD/LDAP modulá";
+$MESS["IMPORT_FROM_1C_REQ_NOTES"] = "reikalingi moduliai \\\"Intranet portalas\\\" ir \\\"Informaciniai blokai\\\"";
+$MESS["USER_IMPORT_NEXT_BUTTON"] = "Sekantis";
+$MESS["USER_IMPORT_PREV_BUTTON"] = "Gráşti";
+$MESS["USER_IMPORT_BACK_TO_START"] = "Gráşti á pradşià";
+$MESS["USER_IMPORT_OPEN_DIALOG"] = "Atidaryti";
+$MESS["USER_IMPORT_FROM"] = "Importuoti iğ";
+$MESS["USER_IMPORT_DATA_FILE"] = "Duomenø failas";
+$MESS["USER_IMPORT_FROM_CSV"] = "CSV failas";
+$MESS["USER_IMPORT_FROM_LDAP"] = "Active Directory / LDAP";
+$MESS["USER_IMPORT_FROM_1C"] = "1C: Atlyginimas ir personalo valdymas";
+$MESS["USER_IMPORT_DELIMETER"] = "Laukø skirtukas";
+$MESS["USER_IMPORT_DELIMETER_SEMICOLON"] = "Kabliatağkis";
+$MESS["USER_IMPORT_DELIMETER_COMMA"] = "kablelis";
+$MESS["USER_IMPORT_DELIMETER_TABULATION"] = "Tabuliavimo şymë";
+$MESS["USER_IMPORT_DELIMETER_SPACE"] = "Tarpas";
+$MESS["USER_IMPORT_ATTTACH_GROUP"] = "Prijungti naudotojus prie grupiø";
+$MESS["USER_IMPORT_SEND_MAIL"] = "Informuoti naudotojà jeigu buvo nurodytas e-mail";
+$MESS["USER_IMPORT_IGNORE_DUPLICATE"] = "Ignoruoti naudotojus kurie jau egzistuoja sistemoje";
+$MESS["USER_IMPORT_IMAGE_PATH"] = "Kelias á atvaizdus svetainës ğakninio katalogo atşvilgiu";
+$MESS["USER_IMPORT_LDAP_SERVER"] = "LDAP tarnybinë stotis";
+$MESS["USER_IMPORT_SELECT_FROM_LIST"] = "pasirinkite iğ sàrağo";
+$MESS["USER_IMPORT_NEW_LDAP_SERVER"] = "Sukurti";
+$MESS["USER_IMPORT_LDAP_SERVER_NOT_FOUND"] = "LDAP tarnybinë stotis nerasta";
+$MESS["USER_IMPORT_LDAP_SERVER_CONN_ERROR"] = "Klaida jungiantis prie tarnybinës stoties";
+$MESS["USER_IMPORT_LDAP_SERVER_AUTH_ERROR"] = "Tarnybinës stoties autorizavimo klaida.";
+$MESS["USER_IMPORT_CREATE_1C_USER"] = "Sukurti naudotojà turinti teisæ importuoti iğ 1C: Atlyginimas ir personalo valdymas";
+$MESS["USER_IMPORT_1C_USER_LOGIN"] = "Naudotojo vardas (3 ar daugiau simboliø)";
+$MESS["USER_IMPORT_1C_USER_PASS"] = "Slaptaşodis (6 ar daugiau simboliø)";
+$MESS["USER_IMPORT_1C_USER_CONFIRM_PASS"] = "Slaptaşodşio patikrinimas";
+$MESS["USER_IMPORT_1C_USER_EMAIL"] = "El. pağtas";
+$MESS["USER_IMPORT_CSV_NOT_FOUND"] = "Duomenø failas nerastas";
+$MESS["USER_IMPORT_GROUP_PERM_NAME"] = "Naudotojø importas iğ 1C";
+$MESS["USER_IMPORT_1C_HELP"] = "Naudotojai iğ 1C: Atlyginimas ir personalo valdymas importuojami dviem şingsniais:<br />
+1. nustatomi Intranet portalo parametrai<br />
+2. Importas iğ 1C: Atlyginimas ir personalo valdymas<br />
+Intraneto parametrai gali bûti nustatomi per <a target=\\\"_blank\\\" href=\\\"/bitrix/admin/settings.php?mid=intranet>test</a>";
+$MESS["USER_IMPORT_ATTACH_TO_IBLOCK"] = "Sukungti naudotojus á informaciniø blokø skyrius";
+$MESS["USER_IMPORT_SELECT_IBLOCK"] = "pasirinkti informacijos blokà";
+$MESS["USER_IMPORT_ALLOW_LDAP_AUTH"] = "Leisti LDAP autorizavimà";
+$MESS["USER_IMPORT_FINISHED"] = "Importas uşbaigtas";
+$MESS["USER_IMPORT_USERS_COUNT"] = "Importuoti naudotojai";
+$MESS["USER_IMPORT_EMAIL_TEMPLATE1"] = "El. pağto ğablonø svetainë";
+$MESS["USER_IMPORT_CSV_SAMPLE"] = "Pavyzdys";
+$MESS["USER_IMPORT_NO"] = "(nëra laisvø laukø)";
+$MESS["USER_IMPORT_ALL"] = "(visi)";
+$MESS["USER_IMPORT_LDAP_IMP_DEF"] = "Importuoti laukai:";
+$MESS["USER_IMPORT_LDAP_IMP_DEF_NOTE"] = "(iğ serverio nustatymø)";
+$MESS["USER_IMPORT_LDAP_IMP_ADD"] = "Importuoti papildomus laukus:";
+$MESS["USER_IMPORT_UTF"] = "Dëmesio! Duomenø failas turi bûti UTF-8 koduotës.";
+?>

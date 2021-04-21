@@ -1,0 +1,30 @@
+<?
+$MESS["MPF_INSERT_FILE"] = "Paspauskite bylos ákëlimui";
+$MESS["MPF_TAGS"] = "Þymës:";
+$MESS["MPF_SPOILER"] = "Áterpti santraukà";
+$MESS["MPF_ADD_TAG"] = "Pridëti daugiau";
+$MESS["MPF_DESTINATION"] = "Kam:";
+$MESS["MPF_DESTINATION_1"] = "Pridëti asmenis, grupes ar departamentus";
+$MESS["MPF_DESTINATION_2"] = "Pridëti daugiau";
+$MESS["MPF_DESTINATION_3"] = "Visi darbuotojai";
+$MESS["MPF_DESTINATION_4"] = "Visi naudotojai";
+$MESS["MPF_FILE_TITLE"] = "Ákelti bylas";
+$MESS["MPF_MORE"] = "Daugiau";
+$MESS["MPF_TAG_TITLE"] = "Pridëti þymæ";
+$MESS["MPF_ADD_TAG1"] = "Pridëti";
+$MESS["MPF_MENTION_TITLE"] = "Pridëti paminëjimà";
+$MESS["MPF_IMAGE_TITLE"] = "Ákelti vaizdà";
+$MESS["MPF_FILE_INSERT_IN_TEXT"] = "Ákelti á tekstà";
+$MESS["MPF_FILE_IN_TEXT"] = "Tekste";
+$MESS["MPF_BUTTON_SEND"] = "Siøsti";
+$MESS["MPF_BUTTON_CANCEL"] = "Atðaukti";
+$MESS["MPF_SMILE_SET"] = "rinkiniai";
+$MESS["BLOG_LINK_SHOW_NEW"] = "Paraðyti praneðimà &hellip;";
+$MESS["MPF_SELECT_ATTACHMENTS"] = "Ákelti bylas ir vaizdus";
+$MESS["MPF_DROP_ATTACHMENTS"] = "Vilkite bylas ákëlimui èia";
+$MESS["MPF_DRAG_ATTACHMENTS"] = "Vilkite bylas èia";
+$MESS["MPF_DRAG_ATTACHMENTS2"] = "Ákelti bylas?";
+$MESS["MPF_PIN_EDITOR_PANNEL"] = "Pritvirtinti skydelá su mygtukais";
+$MESS["MPF_PIN_EDITOR_PANNEL_OFF"] = "Atsegti skydelá su mygtukais";
+$MESS["MPF_IMPORTANT_TITLE"] = "Svarbi þinutë";
+?>

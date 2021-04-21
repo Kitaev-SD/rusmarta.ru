@@ -1,0 +1,29 @@
+<?
+$MESS["IM_CALL_CHAT_BUSY_F"] = "Llamada no completada: #USER_NAME# se encuentra actualmente en otra llamada.";
+$MESS["IM_CALL_CHAT_BUSY_M"] = "Llamada no completada: #USER_NAME# se encuentra actualmente con una llamada diferente.";
+$MESS["IM_CALL_CHAT_CLOSE_F"] = "#USER_NAME# llamada culminada";
+$MESS["IM_CALL_CHAT_CLOSE_M"] = "#USER_NAME# llamada culminada";
+$MESS["IM_CALL_CHAT_DECLINE_F"] = "Llamada no completada: #USER_NAME# llamada cancelada.";
+$MESS["IM_CALL_CHAT_DECLINE_M"] = "Llamada no completada: #USER_NAME# llamada cancelada.";
+$MESS["IM_CALL_CHAT_END"] = "Llamada finalizada";
+$MESS["IM_CALL_CHAT_END_F"] = "#USER_NAME#  ha dejado la llamada";
+$MESS["IM_CALL_CHAT_END_M"] = "#USER_NAME# ha dejado la llamada";
+$MESS["IM_CALL_CHAT_ERROR"] = "Llamada no completada: #USER_NAME# está experimentando dificultades técnicas.";
+$MESS["IM_CALL_CHAT_ERROR_F"] = "#USER_NAME# no se puede conectar debido a dificultades técnicas";
+$MESS["IM_CALL_CHAT_ERROR_M"] = "#USER_NAME# no se puede conectar debido a dificultades técnicas";
+$MESS["IM_CALL_CHAT_G_BUSY_F"] = "#USER_NAME# está ocupado en otra llamada";
+$MESS["IM_CALL_CHAT_G_BUSY_M"] = "#USER_NAME# está ocupado en otra llamada";
+$MESS["IM_CALL_CHAT_G_DECLINE_F"] = "#USER_NAME# no aceptó la llamada";
+$MESS["IM_CALL_CHAT_G_DECLINE_M"] = "#USER_NAME# no aceptó la llamada";
+$MESS["IM_CALL_CHAT_INIT_F"] = "#USER_NAME# llamada iniciada";
+$MESS["IM_CALL_CHAT_INIT_M"] = "#USER_NAME# llamada iniciada";
+$MESS["IM_CALL_CHAT_OFFLINE"] = "Llamada no completada: #USER_NAME# no está en linea o no está utilizando una aplicación compatible con las llamadas";
+$MESS["IM_CALL_CHAT_START"] = "Llamada iniciada";
+$MESS["IM_CALL_CHAT_START_F"] = "#USER_NAME# se ha unido a la llamada";
+$MESS["IM_CALL_CHAT_START_M"] = "#USER_NAME# se ha unido a la llamada";
+$MESS["IM_CALL_CHAT_TIMEOUT"] = "Llamada no completada: el usuario no respondió";
+$MESS["IM_CALL_CHAT_WAIT"] = "Llamada no completada: #USER_NAME# no respondió.";
+$MESS["IM_CALL_INVITE"] = "Llamada desde #USER_NAME#";
+$MESS["IM_CALL_INVITE_NA"] = "Usuario Bitrix24";
+$MESS["IM_ERROR_CALL_PRIVACY"] = "No se pudo realizar la llamada debido a que el destinatario de la llamada sólo acepta llamadas de personas de su lista de contactos.";
+?>

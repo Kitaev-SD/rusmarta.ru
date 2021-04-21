@@ -1,0 +1,13 @@
+<?
+$MESS ['FILEMAN_D_INSIMG_ERROR'] = "â»Ã´ÃÐºØª×èÍä¿Åì!";
+$MESS ['FILEMAN_D_INSIMG_FOLDER'] = "µÓáË¹è§·ÕèµÑé§:";
+$MESS ['FILEMAN_D_INSIMG_UP'] = "¢Öé¹Ë¹Öè§ÃÐ´Ñº";
+$MESS ['FILEMAN_D_INSIMG_REFRESH'] = "ÃÕà¿Ãªâ¿Åà´ÍÃìáÅÐÃÒÂ¡ÒÃË¹éÒàÇçºä«µì";
+$MESS ['FILEMAN_D_INSIMG_ROOT'] = "ÃÙ·¢Í§àÇçºä«µì";
+$MESS ['FILEMAN_D_INSIMG_OPEN_FROM_SITE'] = "à»Ô´¨Ò¡àÇçºä«µì";
+$MESS ['FILEMAN_D_INSIMG_UPLOAD_TO_SERV'] = "âËÅ´¨Ò¡à«ÔÃì¿àÇÍÃì";
+$MESS ['FILEMAN_D_INSIMG_FROM_WF'] = "àÅ×Í¡¨Ò¡¡ÒÃäËÅ¢Í§§Ò¹";
+$MESS ['FILEMAN_D_INSIMG_FILENAME'] = "ª×èÍä¿Åì:";
+$MESS ['FILEMAN_D_INSIMG_UPLOAD_FILEPATH'] = "âËÅ´ä¿Åì:";
+$MESS ['FILEMAN_D_INSIMG_UPLOAD_FILENAME'] = "ª×èÍä¿Åìà»éÒËÁÒÂ:";
+?>

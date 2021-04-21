@@ -1,0 +1,29 @@
+<?
+$MESS["GROUP_TITLE"] = "Типи цін";
+$MESS["ADD_GROUP"] = "Додати";
+$MESS["GROUP_PAGES"] = "Типи";
+$MESS["ACTIONS"] = "Дії";
+$MESS["NAME"] = "Назва";
+$MESS["BASE"] = "Базовий";
+$MESS["BASE_YES"] = "Так";
+$MESS["EDIT_STATUS_ALT"] = "Змінити тип цін";
+$MESS["EDIT"] = "Змінити";
+$MESS["DELETE_STATUS_ALT"] = "Видалити тип цін";
+$MESS["DELETE"] = "Видалити";
+$MESS["DELETE_STATUS_CONFIRM"] = "Ви впевнені, що хочете видалити цей тип ціни?";
+$MESS["RESET"] = "Скинути";
+$MESS["SAVE"] = "Зберегти";
+$MESS["SORT"] = "Сорт.";
+$MESS["ERROR_DELETING_TYPE"] = "Помилка видалення типу цін.";
+$MESS["ERROR_UPDATING_REC"] = "Помилка зміни запису";
+$MESS["CODE"] = "Код";
+$MESS["CGAN_ADD_NEW"] = "Новий тип цін";
+$MESS["CGAN_ADD_NEW_ALT"] = "Натисніть для додавання нового типу цін";
+$MESS["group_admin_nav"] = "Типи цін";
+$MESS["BT_CAT_GROUP_ADM_TITLE_XML_ID"] = "Зовнішній код";
+$MESS["BT_CAT_GROUP_ADM_LANG_MESS"] = "#LANG#: #VALUE#";
+$MESS["BT_CAT_GROUP_ADM_TITLE_MODIFIED_BY"] = "Ким змінено";
+$MESS["BT_CAT_GROUP_ADM_TITLE_TIMESTAMP_X"] = "Дата зміни";
+$MESS["BT_CAT_GROUP_ADM_TITLE_CREATED_BY"] = "Ким створено";
+$MESS["BT_CAT_GROUP_ADM_TITLE_DATE_CREATE"] = "Дата створення";
+?>

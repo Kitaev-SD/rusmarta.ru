@@ -1,0 +1,6 @@
+<?
+$MESS["CC_EMPTY_ADDRESS"] = "Adresas yra tuðèias.";
+$MESS["CC_WRONG_PERSON_LASTNAME"] = "Praðome ávesti tiekëjo vardà.";
+$MESS["CC_EMPTY_COMPANY"] = "Praðome ávesti ámonës pavadinimà.";
+$MESS["CC_CONTRACTOR_HAVE_DOCS"] = "Tiekëjas turi dokumentus.";
+?>

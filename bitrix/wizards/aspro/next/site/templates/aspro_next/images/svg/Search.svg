@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #222;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Search" class="cls-1" d="M7.5,0A7.5,7.5,0,1,1,0,7.5,7.5,7.5,0,0,1,7.5,0Zm0,2A5.5,5.5,0,1,1,2,7.5,5.5,5.5,0,0,1,7.5,2Z"/>
+  <path id="Line" class="cls-1" d="M13.417,12.035l3.3,3.3a0.978,0.978,0,1,1-1.382,1.382l-3.3-3.3A0.978,0.978,0,0,1,13.417,12.035Z"/>
+</svg>

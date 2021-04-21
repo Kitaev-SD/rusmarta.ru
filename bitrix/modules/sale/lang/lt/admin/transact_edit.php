@@ -1,0 +1,29 @@
+<?
+$MESS["STE_EMPTY_USER"] = "Laukas \"Naudotojas\" yra tuðèias";
+$MESS["STE_EMPTY_CURRENCY"] = "Laukas \"Valiuta\" yra tuðèias";
+$MESS["STE_EMPTY_SUM"] = "Laukas \"Suma\" yra tuðèias";
+$MESS["STE_EMPTY_DATE"] = "Laukas \"Transakcijos data\" yra tuðèias";
+$MESS["STE_ERROR_SAVE_ACCOUNT"] = "Klaida iðsaugant sàskaità";
+$MESS["STE_TITLE"] = "Nauja transakcija";
+$MESS["STE_TO_LIST"] = "Transakcijos";
+$MESS["STE_USER"] = "Naudotojas:";
+$MESS["STE_DATE"] = "Transakcijos data";
+$MESS["STE_SUM"] = "Suma:";
+$MESS["STE_CURRENCY"] = "Valiuta:";
+$MESS["STE_TYPE"] = "%ra6o tipas:";
+$MESS["STE_DEBET"] = "kredituoti naudotojo sàskaità";
+$MESS["STE_KREDIT"] = "keisti naudotojo sàskaità";
+$MESS["STE_ORDER_ID"] = "Uþsakymo ID (transakcijoms, susijusioms su uþsakymu): ";
+$MESS["STE_DESCR"] = "Apraðymas:";
+$MESS["STE_NOTES"] = "Pastabos:";
+$MESS["STE_SAVE"] = "Iðsaugoti";
+$MESS["STE_APPLY"] = "Pritaikyti";
+$MESS["STE_CANCEL"] = "Atðaukti";
+$MESS["STE_USER_PROFILE"] = "Naudotojo profilis";
+$MESS["STEN_2FLIST"] = "Transakcijø sàraðas";
+$MESS["STEN_2FLIST_TITLE"] = "Perþiûrëti transakcijø sàraðà";
+$MESS["STEN_TAB_TRANSACT"] = "Transakcija";
+$MESS["STEN_TAB_TRANSACT_DESCR"] = "Transakcija";
+$MESS["STE_CANCEL1"] = "Atðaukti";
+$MESS["STE_ERROR"] = "Iðsaugojimo klaida!";
+?>

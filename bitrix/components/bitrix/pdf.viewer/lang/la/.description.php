@@ -1,0 +1,5 @@
+<?
+$MESS["FILEMAN_PDFVIEWER_COMPONENT_DESCRIPTION"] = "Muestra archivos en PDF";
+$MESS["FILEMAN_PDFVIEWER_COMPONENT_NAME"] = "Visor de PDF";
+$MESS["MEDIA"] = "Media";
+?>

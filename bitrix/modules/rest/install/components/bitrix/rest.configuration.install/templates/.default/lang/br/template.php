@@ -1,0 +1,24 @@
+<?php
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_ACCEPT_CLEAR"] = "Quero substituir as configurações atuais do Bitrix24 pelas configurações da solução predefinida de CRM baixada.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_ACCEPT_CLEAR_ROLLBACK"] = "Quero substituir as configurações atuais do Bitrix24 pelas configurações da solução predefinida de CRM baixada.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_APP_DESCRIPTION"] = "Ao clicar em \"Continuar\", você concorda que algumas ou todas as configurações atuais do Bitrix24 podem ser alteradas pela solução predefinida de CRM importada e não podem ser restauradas mais tarde.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_APP_DESCRIPTION_ROLLBACK"] = "Ao clicar em \"Continuar\", você concorda que ao excluir o aplicativo, algumas ou todas as configurações atuais do Bitrix24 serão redefinidas e alguns dados existentes do CRM serão excluídos, e que você não poderá desfazer essa ação mais tarde.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_CONFIRM_POPUP_BTN_CANCEL"] = "Cancelar";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_CONFIRM_POPUP_BTN_CONTINUE"] = "Continuar";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_CONFIRM_POPUP_CHECKBOX_LABEL"] = "Sim, entendo. Excluir os dados existentes.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_CONFIRM_POPUP_TEXT"] = "Se você continuar com a instalação, alguns ou todos os dados existentes serão excluídos. Deseja continuar e excluir os dados?";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_DESCRIPTION"] = "Ao clicar em \"Continuar\", você concorda que algumas ou todas as configurações atuais do Bitrix24 podem ser alteradas pela solução predefinida de CRM importada e não podem ser restauradas mais tarde.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_DESCRIPTION_ROLLBACK"] = "Ao clicar em \"Continuar\", você concorda que a recuperação redefinirá algumas ou todas as configurações do Bitrix24 e excluirá alguns dados existentes do CRM, e que você não poderá desfazer essa ação mais tarde.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_FATAL_ERROR"] = "Erro interno. Por favor, recarregue a página e tente de novo. Se o problema persistir, entre em contato com o suporte.";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_FINISH_TEXT"] = "A solução predefinida selecionada foi importada com sucesso";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_LATER_BTN"] = "Vou importar depois";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_LATER_POPUP_CLOSE_BTN"] = "OK";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_PROGRESSBAR_TITLE"] = "Importando as configurações";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_START_BTN"] = "Continuar";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_STEP"] = "Importando as configurações";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_STEP_CLEAR"] = "Preparando o seu Bitrix24 para a importação de dados";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_STEP_FINISH"] = "Finalizando";
+$MESS["REST_CONFIGURATION_IMPORT_INSTALL_STEP_START"] = "Coletando informações";
+$MESS["REST_CONFIGURATION_IMPORT_PRE_INSTALL_APP_DESCRIPTION"] = "Clique em \"Continuar\" para instalar a solução predefinida \"#APP_NAME#\".";
+$MESS["REST_CONFIGURATION_IMPORT_PRE_INSTALL_LATER_APP_POPUP_DESCRIPTION"] = "Você pode instalar a solução predefinida \"#APP_NAME#\" a qualquer momento, basta localizá-la na lista de soluções. Saiba mais #HELP_DESK_LINK#.";
+$MESS["REST_CONFIGURATION_IMPORT_PRE_INSTALL_LATER_APP_POPUP_HELP_DESK_LINK_LABEL"] = "aqui";

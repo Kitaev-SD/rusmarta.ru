@@ -1,0 +1,36 @@
+<?
+$MESS["FL_FORUM_CHAIN"] = "Fórum";
+$MESS["FL_FORUM_GROUP_CHAIN"] = "Discussões";
+$MESS["FL_FORUM_USER_CHAIN"] = "Fórum";
+$MESS["IBLOCK_DEFAULT_UF"] = "Galeria padrão";
+$MESS["SONET_CONTENT_SEARCH_CHAIN"] = "Pesquisar";
+$MESS["SONET_CREATE_WEBDAV"] = "Criar Biblioteca";
+$MESS["SONET_FILES"] = "Arquivos";
+$MESS["SONET_FILES_IS_NOT_ACTIVE"] = "O recurso \"Arquivos\" não está habilitado.";
+$MESS["SONET_GALLERIES_IS_NOT_ACTIVE"] = "Suas galerias de fotos estão inativas. Por favor, contate o administrador.";
+$MESS["SONET_GALLERY_IS_NOT_ACTIVE"] = "Sua galeria de fotos está inativa. Por favor, contate o administrador.";
+$MESS["SONET_GALLERY_NOT_FOUND"] = "Não há fotos.";
+$MESS["SONET_GROUP"] = "Grupo";
+$MESS["SONET_GROUP_NOT_EXISTS"] = "O grupo não existe.";
+$MESS["SONET_GROUP_PREFIX"] = "Grupo:";
+$MESS["SONET_IBLOCK_ID_EMPTY"] = "O bloco de informação não foi especificada.";
+$MESS["SONET_IB_MODULE_IS_NOT_INSTALLED"] = "O módulo do bloco de informações não foi instalado";
+$MESS["SONET_LOADING"] = "Carregando ...";
+$MESS["SONET_LOG_GUEST"] = "Convidado";
+$MESS["SONET_LOG_TEMPLATE_AUTHOR"] = "Autor: <a href=\"#AUTHOR_URL#\">#AUTHOR_NAME#</a>.";
+$MESS["SONET_LOG_TEMPLATE_AUTHOR_MAIL"] = "Autor: #AUTHOR_NAME# (#AUTHOR_URL#).";
+$MESS["SONET_LOG_TEMPLATE_GUEST"] = "Autor: #AUTHOR_NAME#.";
+$MESS["SONET_MODULE_NOT_INSTALL"] = "O módulo da rede social não está instalado.";
+$MESS["SONET_NAME_TEMPLATE_DEFAULT"] = "#NOBR##NAME# #LAST_NAME##/NOBR#";
+$MESS["SONET_PANEL_REINDEX"] = "Reindex";
+$MESS["SONET_PANEL_REINDEX_TITLE"] = "Dados da pesquisa REINDEX de rede social";
+$MESS["SONET_PHOTO"] = "Foto";
+$MESS["SONET_PHOTO_IS_NOT_ACTIVE"] = "O Recurso \"Fotos\" não está habilitado.";
+$MESS["SONET_PHOTO_LOG_1"] = "#AUTHOR_NAME# Adicionou um arquivo #TITLE#";
+$MESS["SONET_PHOTO_LOG_2"] = "Fotos (#COUNT#)";
+$MESS["SONET_PHOTO_LOG_MAIL_TEXT"] = "Novas fotos: #LINKS# e outros.";
+$MESS["SONET_PHOTO_LOG_TEXT"] = "Nova fotos: <div class=\"notificationlog\">#LINKS#</div> <a href=\"#HREF#\">álbum aberto</a>.";
+$MESS["SONET_P_MODULE_IS_NOT_INSTALLED"] = "O módulo da Galeria de Fotos não está instalado.";
+$MESS["SONET_WD_MODULE_IS_NOT_INSTALLED"] = "O módulo da biblioteca de documentos não está instalado ..";
+$MESS["SONET_WEBDAV_NOT_EXISTS"] = "Não há documentos";
+?>

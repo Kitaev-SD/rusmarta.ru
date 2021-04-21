@@ -1,0 +1,31 @@
+<?
+$MESS["MAIN_T_ADMIN_TITLE"] = "Svetainës ðablonai";
+$MESS["MAIN_T_ADMIN_NAME"] = "Pavadinimas";
+$MESS["MAIN_T_ADMIN_DESCRIPTION"] = "Apraðymas";
+$MESS["MAIN_T_ADMIN_ACTION"] = "Veiksmai";
+$MESS["MAIN_T_ADMIN_EDIT"] = "Redaguoti";
+$MESS["MAIN_T_ADMIN_COPY"] = "Nukopijuoti ðablonà";
+$MESS["MAIN_T_ADMIN_COPY_1"] = "Nukopijuoti";
+$MESS["MAIN_T_ADMIN_DEL_ALT"] = "Iðtrinti ðablonà";
+$MESS["MAIN_T_ADMIN_DEL"] = "Iðtrinti";
+$MESS["MAIN_T_ADMIN_DEL_CONF"] = "Ar tikrai norite iðtrinti tinklapio ðablonà?";
+$MESS["MAIN_T_IMPORT"] = "Importuoti ðablonà";
+$MESS["MAIN_T_LOAD"] = "Ákelti >>";
+$MESS["MAIN_T_EXPORT"] = "Eksportuoti ðablonà";
+$MESS["MAIN_T_DOWNLOAD"] = "Parsisiøsti";
+$MESS["PAGES"] = "Ðablonai";
+$MESS["MAIN_ADD_TEMPL"] = "Áraðyti aujà ðablonà";
+$MESS["MAIN_ADD_TEMPL_TITLE"] = "Naujo ðablono pavadinimas";
+$MESS["MAIN_LOAD"] = "Ákelti ablonà";
+$MESS["MAIN_ADMIN_LIST_EXPORT"] = "Parsisiøsti";
+$MESS["EXPORT_ERROR"] = "Eksportuojant duomenis ávyko klaida";
+$MESS["MAIN_EDIT_TITLE"] = "Redaguoti ðablonà ";
+$MESS["MAIN_ADMIN_MENU_VIEW"] = "Perþiûrëti";
+$MESS["site_templ_edit_screen"] = "Ekranvaizdis";
+$MESS["site_templ_edit_sort"] = "Rûðiavimo tvarka";
+$MESS["MAIN_ADMIN_MENU_EDIT"] = "Redaguoti";
+$MESS["MAIN_ADMIN_MENU_COPY"] = "Kopijuoti";
+$MESS["MAIN_T_ADMIN_TITLE_THEME"] = "Apiforminimo temos";
+$MESS["MAIN_ADD_TEMPL_THEME"] = "Pridëti temà";
+$MESS["MAIN_LOAD_THEME"] = "Ákelti temà";
+?>

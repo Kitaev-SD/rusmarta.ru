@@ -1,0 +1,39 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Новости", 
+		"#SITE_DIR#company/news/", 
+		Array(), 
+		Array(),
+		"" 
+	),
+	Array(
+		"Сотрудники", 
+		"#SITE_DIR#company/staff/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Вакансии", 
+		"#SITE_DIR#company/vacancy/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Лицензии", 
+		"#SITE_DIR#company/licenses/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Политика", 
+		"#SITE_DIR#include/licenses_detail.php", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+);
+?>

@@ -1,0 +1,6 @@
+<?
+$MESS["MARKETPLACE_BUYS"] = "Ïîêóïêè";
+$MESS["RMP_APP_TIME_LIMIT_3"] = "3 ì³ñÿö³";
+$MESS["RMP_APP_TIME_LIMIT_6"] = "6 ì³ñÿö³â";
+$MESS["RMP_APP_TIME_LIMIT_12"] = "12 ì³ñÿö³â";
+?>

@@ -1,0 +1,33 @@
+<?
+$MESS["POST_ADD_TITLE"] = "Clique para adicionar um novo problema";
+$MESS["POST_U_NO"] = "Não";
+$MESS["POST_U_YES"] = "Sim";
+$MESS["rub_act"] = "Ativo";
+$MESS["rub_auto"] = "Auto.";
+$MESS["rub_check"] = "Verificar o modelo";
+$MESS["rub_code"] = "Código Mnemônico";
+$MESS["rub_del"] = "Excluir";
+$MESS["rub_del_conf"] = "Deletar essa categoria?";
+$MESS["rub_del_err"] = "Não é possivel deletar a categoria";
+$MESS["rub_edit"] = "Modify";
+$MESS["rub_f_active"] = "Ativa";
+$MESS["rub_f_auto"] = "Automática";
+$MESS["rub_f_code"] = "Código Mnemônico";
+$MESS["rub_f_find"] = "Encontrar";
+$MESS["rub_f_find_title"] = "Digitar pesquisa de questão";
+$MESS["rub_f_name"] = "Nome";
+$MESS["rub_f_public"] = "Pública";
+$MESS["rub_f_site"] = "Site";
+$MESS["rub_last_exec"] = "Geração";
+$MESS["rub_name"] = "Nome";
+$MESS["rub_nav"] = "Categorias";
+$MESS["rub_no_rubric"] = "Categoria não encontrada";
+$MESS["rub_save_error"] = "Erro ao salvar a inscrição";
+$MESS["rub_site"] = "Site";
+$MESS["rub_sort"] = "Classificar.";
+$MESS["rub_title"] = "Categorias de Newsletter";
+$MESS["rub_visible"] = "Público";
+$MESS["rub_wrong_generation_from"] = "Por favor defina o \"de\" correto na data de geração do filtro";
+$MESS["rub_wrong_generation_from_till"] = "A data \"até\" deve ser maior do que a data \"de\" no filtro";
+$MESS["rub_wrong_generation_till"] = "Por favor defina o \"até\" correto na data de geração do filtro";
+?>

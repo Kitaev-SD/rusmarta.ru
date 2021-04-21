@@ -1,0 +1,32 @@
+<?
+$MESS["REST_SCOPE_BIZPROC"] = "Business Processes";
+$MESS["REST_SCOPE_CALENDAR"] = "Calendario";
+$MESS["REST_SCOPE_CALL"] = "Telefonía (llamadas salientes)";
+$MESS["REST_SCOPE_CRM"] = "CRM";
+$MESS["REST_SCOPE_DEPARTMENT"] = "Estructura de la compañía";
+$MESS["REST_SCOPE_DISK"] = "Drive";
+$MESS["REST_SCOPE_ENTITY"] = "Almacenamiento de datos";
+$MESS["REST_SCOPE_FACEID"] = "Reconocimiento facial";
+$MESS["REST_SCOPE_FORUM"] = "Foro";
+$MESS["REST_SCOPE_IM"] = "Chat y Notificaciones";
+$MESS["REST_SCOPE_IMBOT"] = "Creación y administración de bots de chat";
+$MESS["REST_SCOPE_IMOPENLINES"] = "Canales Abiertos";
+$MESS["REST_SCOPE_LANDING"] = "Sitios web";
+$MESS["REST_SCOPE_LISTS"] = "Listas";
+$MESS["REST_SCOPE_LOG"] = "Flujo de actividad";
+$MESS["REST_SCOPE_MAILSERVICE"] = "Servicios de correo electrónico";
+$MESS["REST_SCOPE_MESSAGESERVICE"] = "Servicio de mensajería";
+$MESS["REST_SCOPE_MOBILE"] = "Aplicación movil";
+$MESS["REST_SCOPE_PAY_SYSTEM"] = "Sistemas de pago";
+$MESS["REST_SCOPE_PLACEMENT"] = "Incorporación de aplicaciones";
+$MESS["REST_SCOPE_PULL"] = "Mensajes instantáneos del sistema (sin acceso al canal de usuario del servicio)";
+$MESS["REST_SCOPE_PULL_CHANNEL"] = "Canal de servicio para mensajes instantáneos del sistema (suscripción para obtener información sobre actualizaciones de todos los elementos disponibles del sistema)";
+$MESS["REST_SCOPE_SALESCENTER"] = "Ventas habilitadas por chat";
+$MESS["REST_SCOPE_SONET_GROUP"] = "Grupos de Trabajo";
+$MESS["REST_SCOPE_TASK"] = "Tareas";
+$MESS["REST_SCOPE_TASKS_EXTENDED"] = "Tareas (permisos ampliados)";
+$MESS["REST_SCOPE_TELEPHONY"] = "Telefonía";
+$MESS["REST_SCOPE_TIMEMAN"] = "Gestión de Tiempo de Trabajo";
+$MESS["REST_SCOPE_USER"] = "Usuarios";
+$MESS["REST_SCOPE_USERCONSENT"] = "Acuerdos";
+?>

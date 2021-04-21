@@ -1,0 +1,30 @@
+<?
+$MESS["BLOG_TITLE"] = "نام وبلاگ:";
+$MESS["BLOG_TITLE_DESCR"] = "Specify a unique name which would describe your blog";
+$MESS["BLOG_DESCR"] = "درباره وبلاگ:";
+$MESS["BLOG_DESCR_TITLE"] = "Arbitrary description for your blog";
+$MESS["BLOG_URL"] = "آدرس وبلاگ (حروف لاتین):";
+$MESS["BLOG_GRP"] = "گروه وبلاگ:";
+$MESS["BLOG_GRP_TITLE"] = "Blog group to which your blog relates";
+$MESS["BLOG_AUTO_MSG"] = "پیغام خودکار:";
+$MESS["BLOG_AUTO_MSG_TITLE"] = "Use automated message submission protection";
+$MESS["BLOG_CAPTHA"] = "باید کدی از روی تصویر وارد شود تا نظر کاربر غیرهموند پذیرفته شود";
+$MESS["BLOG_OPENED_GRPS"] = "گروه های فعال:";
+$MESS["BLOG_OPENED_TITLE"] = "Specify groups to which any person can be added without your approval";
+$MESS["BLOG_DEF_PERMS"] = "دسترسی پیش فرض:";
+$MESS["BLOG_GROUPS"] = "گروه";
+$MESS["BLOG_MESSAGES"] = "مطالب";
+$MESS["BLOG_COMMENTS"] = "نظرات";
+$MESS["BLOG_ALL_USERS"] = "همه کاربران";
+$MESS["BLOG_REGISTERED"] = "کاربران هموند";
+$MESS["BLOG_PERMS_TITLE"] = "Assign access permissions to user groups for your blog. If required, you can specify permissions for each message individually.";
+$MESS["BLOG_SAVE"] = "ذخیره";
+$MESS["BLOG_CREATE"] = "ساخت وبلاگ";
+$MESS["BLOG_URL_TITLE"] = "Specify pseudo name for your blog (with Latin letters). The pseudo name will be used to build an URL to your blog in the form <nobr>http://this-site.com/blog/[blog name]</nobr>";
+$MESS["BLOG_APPLY"] = "اعمال";
+$MESS["BLOG_CANCEL"] = "لغو";
+$MESS["BLOG_EMAIL_NOTIFY"] = "اعلانها";
+$MESS["BLOG_EMAIL_NOTIFY_TITLE"] = "Send notifications by email";
+$MESS["BLOG_EMAIL_NOTIFY_HELP"] = "Turning this option on means that you will receive notifications about comments and new posts in your blog.";
+$MESS["STOF_REQUIED_FIELDS_NOTE"] = "فیلدهای لازم با (<font color=\"#FF0000\">*</font>) مشخص شده اند.";
+?>

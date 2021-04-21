@@ -1,0 +1,6 @@
+<?php
+$MESS['LANDING_DEMO_STORE_CLOTHES-NEWS2--NAME'] = 'Ќовость 2';
+$MESS["NOTTRANSLATE--LANDING_DEMO_STORE_CLOTHES-NEWS2--TEXT_1"] = "Ќовости";
+$MESS["NOTTRANSLATE--LANDING_DEMO_STORE_CLOTHES-NEWS2--TEXT_2"] = "ћеждународна€ выставка одежды Salon de Fashion";
+$MESS["NOTTRANSLATE--LANDING_DEMO_STORE_CLOTHES-NEWS2--TEXT_3"] = "¬ас ждет много интересного!";
+$MESS["NOTTRANSLATE--LANDING_DEMO_STORE_CLOTHES-NEWS2--TEXT_4"] = "<p>¬ следующем году выставка Salon De Fashion обещает быть еще более расширенной и интересной. Ќа выставке Salon De Fashion будут представлены все типы одежды дл€ офиса и дома от платьев и шорт до VIP-аксессуаров, включа€ оборудование дл€ производства и детской одежды. <br /><br /><span style=\"\">«а€вки на участие подали более чем 1 500 компаний со всего мира. ѕредполагаетс€, что за врем€ проведени€ выставки ее посет€т более 300 000 тыс€ч человек. Ёкспозици€ выставки разместитс€ на общей площади 149 871 кв.м. ¬ следующем году эта поистине грандиозна€ выставка будет проводитьс€ уже в 14-й раз.</span></p>";

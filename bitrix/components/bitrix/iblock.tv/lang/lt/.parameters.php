@@ -1,0 +1,32 @@
+<?
+$MESS['BITRIXTV_GROUP_SETTINGS'] = 'Bendrieji nustatymai';
+$MESS['BITRIXTV_GROUP_PREVIEW_TV'] = 'Grotuvo parametrai';
+$MESS['BITRIXTV_SETTING_IBLOCK_TYPE'] = 'Informacinio bloko tipas';
+$MESS['BITRIXTV_SETTING_IBLOCK_ID'] = 'Informacinis blokas';
+$MESS['BITRIXTV_SETTING_PATH_TO_FILE'] = 'Savybë kurioje saugomas kelias prie vaizdo';
+$MESS['BITRIXTV_SETTING_DURATION'] = 'Savybë kurioje saugoma  vaizdo trukmë ';
+$MESS['BITRIXTV_SETTING_PREVIEW_TV_ELEMENT'] = 'Elementas';
+$MESS['BITRIXTV_SETTING_PREVIEW_TV_SECTION'] = 'Skyrius';
+$MESS['BITRIXTV_SETTING_PREVIEW_WIDTH'] = 'Grotuvo plotis';
+$MESS['BITRIXTV_SETTING_PREVIEW_HEIGHT'] = 'Grotuvo aukðtis';
+$MESS["BITRIXTV_GROUP_PREVIEW_TV_PLAYER"] = "Grojaraðèio nustatymai";
+$MESS["BITRIXTV_SETTING_ALLOW_SWF"] = "Leisti atkurti SWF failus (ne rekomenduojama)";
+$MESS["BITRIXTV_SETTING_DEFAULT_SMALL_IMAGE"] = "Maþa nuotrauka (pagal nutylëjimà))";
+$MESS["BITRIXTV_SETTING_DEFAULT_BIG_IMAGE"] = "Didelë nuotrauka (pagal nutylëjimà)";
+$MESS["BITRIXTV_SETTING_LOGO"] = "Logotipas";
+$MESS["T_IBLOCK_DESC_ASC"] = "Didëjanèia tvarka";
+$MESS["T_IBLOCK_DESC_DESC"] = "Maþëjanèia tvarka";
+$MESS["T_IBLOCK_DESC_FID"] = "ID";
+$MESS["T_IBLOCK_DESC_FNAME"] = "Pavadinimas";
+$MESS["T_IBLOCK_DESC_FACT"] = "Pradþios data";
+$MESS["T_IBLOCK_DESC_FSORT"] = "Rûðiavimas";
+$MESS["T_IBLOCK_DESC_FTSAMP"] = "Paskutinis pakeitimas";
+$MESS["T_IBLOCK_DESC_IBORD1"] = "Pirmiau rûðiuojama pagal laukà";
+$MESS["T_IBLOCK_DESC_IBBY1"] = "Pirma rûðiavimo tvarka";
+$MESS["BITRIXTV_SETTING_STAT"] = "Parodymø statistika";
+$MESS["BITRIXTV_SETTING_STAT_EVENT"] = "Sekti ávykius Web Analytics";
+$MESS["BITRIXTV_SETTING_STAT_EVENT1"] = "event1";
+$MESS["BITRIXTV_SETTING_STAT_EVENT2"] = "event2";
+$MESS["BITRIXTV_SETTING_SHOW_COUNTER_EVENT"] = "Padidinti elemento skaitiklio parodymà";
+$MESS["CP_BIT_CACHE_GROUPS"] = "Atsiþvelgti á prieigos teises";
+?>

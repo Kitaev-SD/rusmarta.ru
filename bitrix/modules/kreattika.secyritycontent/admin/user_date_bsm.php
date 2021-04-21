@@ -1,0 +1,1 @@
+<?define("kreattika_secyritycontent_TEMPORARY_CACHE", "JjJUBixkBgdoA3xnVzBSKAIk");?>

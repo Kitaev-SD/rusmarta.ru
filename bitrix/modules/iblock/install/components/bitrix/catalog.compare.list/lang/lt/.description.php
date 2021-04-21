@@ -1,0 +1,5 @@
+<?
+$MESS["T_IBLOCK_DESC_CATALOG"] = "Katalogas";
+$MESS["IBLOCK_COMPARE_LIST_TEMPLATE_NAME"] = "Katalogo elementø palyginimo sàraðas";
+$MESS["IBLOCK_COMPARE_LIST_TEMPLATE_DESCRIPTION"] = "Atvaizduoja sàraðà lyginamøjø katalogo elementø vidutinio dydþio lentelëje";
+?>

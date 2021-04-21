@@ -1,0 +1,35 @@
+<?
+$MESS["BT_UT_EAUTOCOMPLETE_DESCR"] = "Sàryðis su elementais su automatiniu uþpildymu";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_TITLE"] = "Automatinio uþpildymo parametrai";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_SHOW_ADD"] = "Rodyti Pridëti elemntà mygtukà";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_IBLOCK_MESS"] = "Naudoti informacinio bloko elemento pavadinimà, kaip mygtuko tekstà";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_MAX_WIDTH"] = "Maksimalus plotas pikseliais (0 - be apribojimø)";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_COMMENT_MAX_WIDTH"] = "px";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_MIN_HEIGHT"] = "Ávesties lauko minimalus aukðtis (keliems pasirinkimams)";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_COMMENT_MIN_HEIGHT"] = "px";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_MAX_HEIGHT"] = "Ávesties laukos maksimalus aukðtis (keliems pasirinkimams)";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_COMMENT_MAX_HEIGHT"] = "px";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_VIEW"] = "Sàsajos valdymas";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_BAN_SYMBOLS"] = "Pakeisti draudþiamus simbolius";
+$MESS["BT_UT_EAUTOCOMPLETE_SETTING_REP_SYMBOL"] = "Atvaizduoti draudþiamus simbolius kaip";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_INVITE"] = "áveskite tesktà";
+$MESS["BT_UT_EAUTOCOMPLETE_VIEW_AUTO"] = "Eilutë su automatiniu uþpildymu";
+$MESS["BT_UT_EAUTOCOMPLETE_VIEW_TREE"] = "Eilutë su automatiniu uþpildymu ir pasirinkimo sàraðu";
+$MESS["BT_UT_EAUTOCOMPLETE_VIEW_ELEMENT"] = "Eilutë su automatiniu uþpildymu ir paieðkos langu";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_LIST_INVITE"] = "(áveskite pavadinimà)";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_NO_SEARCH_RESULT_TEXT"] = "nieko nerasta";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_CHOOSE_ELEMENT"] = "Sàraðas";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_CHOOSE_ELEMENT_DESCR"] = "Elemento ið sàraðo pasirinkimas";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_CHOOSE_ELEMENT_MULTI_DESCR"] = "Keliø elementø ið sàraðo pasirinkimas";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_SPACE"] = "Tarpas";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_GRID"] = "#";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_STAR"] = "*";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_UNDERLINE"] = "_";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_OTHER"] = "Kita";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_SEARCH_ELEMENT"] = "...";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_SEARCH_ELEMENT_DESCR"] = "Elemento pasirinkimas paieðkos lange";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_SEARCH_ELEMENT_MULTI_DESCR"] = "Elemento pasirinkimas paieðkos lange";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_NEW_ELEMENT"] = "Pridëti elemntà";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_NEW_ELEMENT_DESCR"] = "Pridëti naujà elementà ir já pasirinkti";
+$MESS["BT_UT_EAUTOCOMPLETE_MESS_ELEMENT_EDIT"] = "Pereiti á elemento redagavimo puslapá";
+?>

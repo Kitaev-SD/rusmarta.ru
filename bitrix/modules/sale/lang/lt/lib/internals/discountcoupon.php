@@ -1,0 +1,32 @@
+<?
+$MESS["DISCOUNT_COUPON_ENTITY_ID_FIELD"] = "Kupono ID";
+$MESS["DISCOUNT_COUPON_ENTITY_DISCOUNT_ID_FIELD"] = "Kupono krepðelio taisyklë";
+$MESS["DISCOUNT_COUPON_ENTITY_ACTIVE_FIELD"] = "Aktivus";
+$MESS["DISCOUNT_COUPON_ENTITY_ACTIVE_FROM_FIELD"] = "Aktyvi forma";
+$MESS["DISCOUNT_COUPON_ENTITY_ACTIVE_TO_FIELD"] = "Aktyvus iki";
+$MESS["DISCOUNT_COUPON_ENTITY_COUPON_FIELD"] = "Kuponas";
+$MESS["DISCOUNT_COUPON_ENTITY_TYPE_FIELD"] = "Kupono tipas";
+$MESS["DISCOUNT_COUPON_ENTITY_MAX_USE_FIELD"] = "Daigiausia naudojimø";
+$MESS["DISCOUNT_COUPON_ENTITY_USE_COUNT_FIELD"] = "Naaudotà kartø";
+$MESS["DISCOUNT_COUPON_ENTITY_USER_ID_FIELD"] = "Kupono savininkas";
+$MESS["DISCOUNT_COUPON_ENTITY_DATE_APPLY_FIELD"] = "Paskutinis naudojimas";
+$MESS["DISCOUNT_COUPON_ENTITY_TIMESTAMP_X_FIELD"] = "Pakeista";
+$MESS["DISCOUNT_COUPON_ENTITY_MODIFIED_BY_FIELD"] = "Pakeitë";
+$MESS["DISCOUNT_COUPON_ENTITY_DATE_CREATE_FIELD"] = "Sukurta";
+$MESS["DISCOUNT_COUPON_ENTITY_CREATED_BY_FIELD"] = "Sukûrë";
+$MESS["DISCOUNT_COUPON_TABLE_TYPE_BASKET_ROW"] = "Vienam uþsakymo elementui";
+$MESS["DISCOUNT_COUPON_TABLE_TYPE_ONE_ORDER"] = "Vienas naudojimas";
+$MESS["DISCOUNT_COUPON_TABLE_TYPE_MULTI_ORDER"] = "Naudojimas kelis kartus";
+$MESS["DISCOUNT_COUPON_VALIDATOR_DISCOUNT_ID"] = "Neteisingas krepðelio taisyklës ID (maþiau nei arba lygus nuliui)";
+$MESS["DISCOUNT_COUPON_VALIDATOR_TYPE"] = "Netinkamas kupono tipas";
+$MESS["DISCOUNT_COUPON_ENTITY_DESCRIPTION_FIELD"] = "Komentaras";
+$MESS["DISCOUNT_COUPON_VALIDATOR_COUPON_EMPTY"] = "Kuponas nenurodytas";
+$MESS["DISCOUNT_COUPON_VALIDATOR_COUPON_EXIST"] = "Toks kuponas jau yra";
+$MESS["DISCOUNT_COUPON_VALIDATOR_PERIOD"] = "Kupono neteisingas aktyvumo periodas.";
+$MESS["DISCOUNT_COUPON_PACKET_COUNT_ERR"] = "Kuponø skaièius nenurodytas.";
+$MESS["DISCOUNT_COUPON_PACKET_DISCOUNT_ERR"] = "Nerasta taisyklë, kuriai sukurti nauji kuponai";
+$MESS["DISCOUNT_COUPON_PACKET_NEW_GENERATE_COUPON_ZERO_ERR"] = "Nepavyko sukurti kuponø. Deaktyvuokite taisyklæ ir bandykite dar kartà.";
+$MESS["DISCOUNT_COUPON_PACKET_GENERATE_COUPON_ZERO_ERR"] = "Nepavyko sukurti kuponø";
+$MESS["DISCOUNT_COUPON_PACKET_GENERATE_COUPON_COUNT_ERR"] = "Pavyko sukurti kuponø #RESULT# ið #COUNT# per #ALL# kartà(-us).";
+$MESS["DISCOUNT_COUPON_PACKET_EMPTY"] = "Nenurodyti parametrai naujiems kuponams.";
+?>

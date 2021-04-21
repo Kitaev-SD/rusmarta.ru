@@ -1,0 +1,8 @@
+<?
+$MESS["subscr_form_title_desc"] = "Âèáåð³òü ðîçñèëêó";
+$MESS["subscr_form_email_title"] = "Ââåä³òü âàø e-mail";
+$MESS["subscr_form_button"] = "Ï³äïèñàòèñÿ";
+$MESS["subscr_form_response_ERROR"] = "Ùîñü ï³øëî íå òàê";
+$MESS["subscr_form_response_NOTE"] = "Â³òàºìî!";
+$MESS["subscr_form_button_sent"] = "ÃÎÒÎÂÎ";
+?>

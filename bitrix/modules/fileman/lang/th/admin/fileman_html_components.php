@@ -1,0 +1,3 @@
+<?
+$MESS ['FILEMAN_HTML_COMP_PHP'] = "¡®à¡³±ìã¹¡ÒÃãªéÊ¤ÃÔ»·ì PHP";
+?>

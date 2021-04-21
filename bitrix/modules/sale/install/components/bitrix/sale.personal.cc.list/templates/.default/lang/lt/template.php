@@ -1,0 +1,15 @@
+<?
+$MESS['STPCL_NEW'] = 'Pridëti naujà áraðà';
+$MESS['STPCL_TYPE'] = 'Kortelës tipas';
+$MESS['STPCL_PAY_SYS'] = 'Mokëjimo sistema';
+$MESS['STPCL_CEXP'] = 'Galiojimo data (mën./m.)';
+$MESS['STPCL_ACTIV'] = 'Kortelë aktyvi';
+$MESS['STPCL_ACTIONS'] = 'Veiksmai';
+$MESS['STPCL_YES'] = 'Taip';
+$MESS['STPCL_NO'] = 'Ne';
+$MESS['STPCL_UPDATE_ALT'] = 'Redaguoti kredito kortelës parametrus';
+$MESS['STPCL_UPDATE'] = 'Redaguoti';
+$MESS['STPCL_DELETE_ALT'] = 'Trinti kredito kortelës áraðus';
+$MESS['STPCL_DELETE'] = 'Trinti';
+$MESS['STPCL_DELETE_PROMT'] = 'Ar tikrai noite iðtrinti ðios kortelës registracijos informacijà?';
+?>

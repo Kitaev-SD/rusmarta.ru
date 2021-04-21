@@ -1,0 +1,28 @@
+<?
+$MESS["SEC_IP_LIST_TITLE"] = "Stop-sàraðas";
+$MESS["SEC_IP_LIST_UPDATE_ERROR"] = "Klaida atnaujinant stop-sàraðo áraðà.";
+$MESS["SEC_IP_LIST_DELETE_ERROR"] = "Klaida ðalinant stop-sàraðo áraðà.";
+$MESS["SEC_IP_LIST_ID"] = "ID";
+$MESS["SEC_IP_LIST_PAGER"] = "Áraðai";
+$MESS["SEC_IP_LIST_RULE_TYPE"] = "Tipas";
+$MESS["SEC_IP_LIST_ACTIVE"] = "Aktyvus";
+$MESS["SEC_IP_LIST_ADMIN_SECTION"] = "Valdymo skydelis";
+$MESS["SEC_IP_LIST_SITE_ID"] = "Svetainë";
+$MESS["SEC_IP_LIST_SORT"] = "Rûðis";
+$MESS["SEC_IP_LIST_ACTIVE_FROM"] = "Aktyvus nuo";
+$MESS["SEC_IP_LIST_ACTIVE_TO"] = "Aktyvus iki";
+$MESS["SEC_IP_LIST_NAME"] = "Antraðtë";
+$MESS["SEC_IP_LIST_INCL_PATH"] = "Átraukti kelius";
+$MESS["SEC_IP_LIST_EXCL_PATH"] = "Iðskirti kelius";
+$MESS["SEC_IP_LIST_INCL_IP"] = "IP adresai";
+$MESS["SEC_IP_LIST_EXCL_IP"] = "Iðskirti IP adresus";
+$MESS["SEC_IP_LIST_RULE_TYPE_M"] = "Rankinis";
+$MESS["SEC_IP_LIST_RULE_TYPE_A"] = "Automatinis";
+$MESS["SEC_IP_LIST_EDIT"] = "Redaguoti";
+$MESS["SEC_IP_LIST_DELETE"] = "^alinti";
+$MESS["SEC_IP_LIST_DELETE_CONF"] = "Ar tikrai norite paðalinti ðá stop-sàraðo áraðà?";
+$MESS["SEC_IP_LIST_ADD_TITLE"] = "Pridëti naujà stop-sàraðo áraðà";
+$MESS["SEC_IP_LIST_FIND"] = "Ieðkoti";
+$MESS["SEC_IP_LIST_PATH"] = "Puslapis";
+$MESS["SEC_IP_LIST_IP"] = "IP";
+?>

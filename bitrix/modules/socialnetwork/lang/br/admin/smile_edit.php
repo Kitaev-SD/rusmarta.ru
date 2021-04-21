@@ -1,0 +1,37 @@
+<?
+$MESS["ERROR_ADD_SMILE"] = "Erro ao criar um smiley.";
+$MESS["ERROR_COPY_IMAGE"] = "Erro de upload de imagem (Permissões de escrita insuficiente?)";
+$MESS["ERROR_EDIT_SMILE"] = "Erro ao modificar o smiley.";
+$MESS["ERROR_EXISTS_IMAGE"] = "Uma imagem com esse nome já existe.";
+$MESS["ERROR_NO_IMAGE"] = "A imagem do smiley não foi especificada.";
+$MESS["ERROR_NO_MIN_NUM_POSTS"] = "O número mínimo de mensagens para esta classificação não foi especificado.";
+$MESS["ERROR_NO_NAME"] = "O título Smiley não foi especificado em";
+$MESS["ERROR_NO_TYPE"] = "O tipo de emoticon não foi especificado.";
+$MESS["FSE_ERROR_EXT"] = "A extensão de arquivo de imagem é inválido.";
+$MESS["FSE_ICON"] = "cone";
+$MESS["FSE_SMILE"] = "Smiley";
+$MESS["FSN_2FLIST"] = "Smileys";
+$MESS["FSN_DELETE_SMILE"] = "Excluir Smiley";
+$MESS["FSN_DELETE_SMILE_CONFIRM"] = "Tem certeza que deseja excluir esse smiley?";
+$MESS["FSN_NEW_SMILE"] = "Novo Smiley";
+$MESS["FSN_TAB_SMILE"] = "Smiley de rede social";
+$MESS["FSN_TAB_SMILE_DESCR"] = "Smiley de rede social";
+$MESS["SONET_ADD"] = "Adicionar";
+$MESS["SONET_APPLY"] = "Aplicar";
+$MESS["SONET_CODE"] = "Código";
+$MESS["SONET_CODE_LEN"] = "carta";
+$MESS["SONET_DESCR"] = "Descrição";
+$MESS["SONET_EDIT_RECORD"] = "Editar Smiley N#ID#";
+$MESS["SONET_IMAGE"] = "Imagem do Smiley";
+$MESS["SONET_IMAGE_NOTE"] = "(tamanho recomendado de smiley: 16x16, icons: 15x15)";
+$MESS["SONET_NAME"] = "Título";
+$MESS["SONET_NEW_RECORD"] = "Novo Smiley";
+$MESS["SONET_PT_PROPS"] = "Parâmetros";
+$MESS["SONET_RECORDS_LIST"] = "Smileys";
+$MESS["SONET_RESET"] = "Cancelar";
+$MESS["SONET_SAVE"] = "Salvar";
+$MESS["SONET_SORT"] = "Tipo";
+$MESS["SONET_TYPE"] = "Tipo do Smiley";
+$MESS["SONET_TYPING"] = "Digitação do Smiley";
+$MESS["SONET_TYPING_NOTE"] = "(separar múltiplas digitações com espaço)";
+?>

@@ -1,0 +1,27 @@
+<?
+$MESS["SALE_OVIEW_TO_ARCHIVE_LIST"] = "Uþsakymø archyvas";
+$MESS["SALE_OVIEW_TO_ARCHIVE_LIST_TITLE"] = "Perþiûrëti uþsakymø archyvà";
+$MESS["SALE_OVIEW_TO_EDIT"] = "Redaguoti uþsakymà";
+$MESS["SALE_OVIEW_TO_EDIT_TITLE"] = "Redaguoti uþsakymà";
+$MESS["SALE_OVIEW_TO_RESTORE"] = "Atstatyti uþsakymà";
+$MESS["SALE_OVIEW_TO_RESTORE_TITLE"] = "Atstatyti uþsakymà";
+$MESS["SALE_OVIEW_TO_PRINT"] = "Spausdinti uþsakymà";
+$MESS["SALE_OVIEW_TO_PRINT_TITLE"] = "Spausdinti uþsakymà";
+$MESS["SALE_OVIEW_DELETE"] = "Paðalinti uþsakymà";
+$MESS["SALE_OVIEW_DELETE_TITLE"] = "Paðalinti uþsakymà";
+$MESS["SALE_OVIEW_DEL_MESSAGE"] = "Ar tikrai norite paðalinti ðá uþsakymà? Ðis veiksmas negali bûti atðauktas.";
+$MESS["SALE_OVIEW_BLOCK_TITLE_STATUSORDER"] = "Uþsakymo parametrai ";
+$MESS["SALE_OVIEW_BLOCK_TITLE_BUYER"] = "Klientas";
+$MESS["SALE_OVIEW_BLOCK_TITLE_DELIVERY"] = "Siuntimas";
+$MESS["SALE_OVIEW_BLOCK_TITLE_PAYMENT"] = "Mokëjimas";
+$MESS["SALE_OVIEW_BLOCK_TITLE_ADDITIONAL"] = "papildoma informacija";
+$MESS["SALE_OVIEW_BLOCK_TITLE_BASKET"] = "Uþsakymo turinys";
+$MESS["SALE_OVIEW_BLOCK_TITLE_FINANCEINFO"] = "Mokëjimo informacija";
+$MESS["SALE_OVIEW_ERROR"] = "Klaida";
+$MESS["SALE_OVIEW_TAB_ORDER"] = "Uþsakymas";
+$MESS["SALE_OVIEW_TAB_HISTORY"] = "Patikrinimø istorija";
+$MESS["SALE_OVIEW_TAB_ANALYSIS"] = "Uþsakymo analizë";
+$MESS["SALE_OVIEW_ORDER_COPY"] = "Kopijuoti uþsakymà";
+$MESS["SALE_OVIEW_ORDER_COPY_TITLE"] = "Kopijuoti uþsakymà";
+$MESS["SALE_OVIEW_UNLOCK"] = "Atrakinti uþsakymà";
+?>

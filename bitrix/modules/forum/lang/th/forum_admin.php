@@ -1,0 +1,34 @@
+<?
+$MESS ['ERROR_DELETE_FORUM1'] = "พบข้อผิดพลาดในการลบเว็บบอร์ด";
+$MESS ['ERROR_DELETE_FORUM'] = "พบข้อผิดพลาดในการลบเว็บบอร์ด";
+$MESS ['FORUMS'] = "เว็บบอร์ด";
+$MESS ['ADD'] = "เพิ่มเว็บบอร์ดใหม่ >>";
+$MESS ['ACTIVE'] = "ทำงาน";
+$MESS ['LAND'] = "เว็บไซต์";
+$MESS ['SORT'] = "ลำดับ";
+$MESS ['NAME'] = "ชื่อ";
+$MESS ['ACTIONS'] = "จัดการ";
+$MESS ['FORUM_MODERATE'] = "ระดับความสำคัญของเว็บบอร์ด";
+$MESS ['MODERATE'] = "ระดับความสำคัญ";
+$MESS ['FORUM_EDIT'] = "ปรับปรุงการติดตั้งเว็บบอร์ด";
+$MESS ['EDIT'] = "ปรับปรุง";
+$MESS ['FORUM_DELETE'] = "ลบเว็บบอร์ด";
+$MESS ['DELETE_CONFIRM'] = "เว็บบอร์ดจะถูกลบอย่างถาวร  คุณต้องการลบใช่หรือไม่?";
+$MESS ['DELETE'] = "ลบ";
+$MESS ['SAVE'] = "บันทึก";
+$MESS ['FA_NO_NAME'] = "ยังไม่ได้ระบุชื่อรหัสของเว็บบอร์ด = ";
+$MESS ['FA_NO_PERMS2UPDATE'] = "ไม่ได้รับอนุญาตให้ปรับปรุงรหัสเว็บบอร์ด = ";
+$MESS ['FA_ERROR_UPDATE'] = "พบข้อผิดพลาดในการปรับปรุงรหัสเว็บบอร์ด = ";
+$MESS ['FA_SUCCESS_UPDATE1'] = "รหัสเว็บบอร์ด = ";
+$MESS ['FA_SUCCESS_UPDATE2'] = "ปรับปรุงเป็นผลสำเร็จ";
+$MESS ['FA_DELETE_NO_PERMS'] = "ยังไม่ได้รับอนุญาติให้ลบเว็บบอร์ด";
+$MESS ['FA_DELETE_ERROR'] = "พบข้อผิดพลาดในการลบเว็บบอร์ด  เหตุผลอาจเกิดจาก : ลิงค์ข้อมูลเว็บบอร์ดถูกป้องกันจากการลบ";
+$MESS ['FFAN_ADD_NEW'] = "เว็บบอร์ดใหม่";
+$MESS ['FFAN_ADD_NEW_ALT'] = "คลิ๊กเพื่อเพิ่มเว็บบอร์ดใหม่";
+$MESS ['FFAN_SITE_ID'] = "เว็บไซต์";
+$MESS ['FFAN_ALL'] = "ทั้งหมด";
+$MESS ['FFAN_YES'] = "ใช่";
+$MESS ['FFAN_NO'] = "ไม่ใช่";
+$MESS ['FFAN_ACTIVE'] = "ทำงาน";
+$MESS ['FFAN_GROUP_ID'] = "กลุ่มเว็บบอร์ด";
+?>

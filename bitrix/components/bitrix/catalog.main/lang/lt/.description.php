@@ -1,0 +1,5 @@
+<?
+$MESS["T_IBLOCK_DESC_CATALOG"] = "Katalogas";
+$MESS["IBLOCK_MAIN_TEMPLATE_NAME"] = "Nurodyto tipo informaciniø blokø sàraðas";
+$MESS["IBLOCK_MAIN_TEMPLATE_DESCRIPTION"] = "Atvaizduoja visø nurodyto tipo  informaciniø blokø sàraðà";
+?>

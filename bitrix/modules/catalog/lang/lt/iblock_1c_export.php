@@ -1,0 +1,25 @@
+<?
+$MESS["C_ERROR_NO_DATAFILE"] = "Duomenø failas neákeltas ir nepasirinktas. Negalima importuoti.";
+$MESS["C_ERROR_NO_IBLOCKTYPE"] = "Nepasirinktas informacijos bloko tipas. Negalima importuoti.";
+$MESS["C_DATA_LOADING"] = "Duomenø importas";
+$MESS["C_LOAD_TIME1"] = "Duomenø ákëlimas trunka";
+$MESS["C_LOAD_TIME2"] = "sek";
+$MESS["C_LOAD_CATALOG"] = "Ið viso ákelta katalogø:";
+$MESS["C_LOAD_NEW"] = "nauji:";
+$MESS["C_LOAD_CHANGED"] = "pakeisti:";
+$MESS["C_LOAD_ERROR"] = "Ið viso neteisingø áraðø:";
+$MESS["C_LOAD_GROUP"] = "Ið viso ákelta skyriø:";
+$MESS["C_LOAD_PROPS"] = "Ið viso ákelta savybiø:";
+$MESS["C_LOAD_PRODUCT"] = "Ið viso ákelta prekiø:";
+$MESS["C_F_TITLE"] = "Importuoti duomenis á CommerceML formatà";
+$MESS["C_F_DATAFILE"] = "XML duomenø failas ið vietinio kompiutero:";
+$MESS["C_F_DATAFILE1"] = "ARBA XML duomenø failas ið svetainës:";
+$MESS["C_F_DATAFILE1_NOTE"] = "(pasirinkti ið disko)";
+$MESS["C_F_IBLOCK"] = "Informacijos bloko tipas:";
+$MESS["C_F_LOAD"] = "Ákelti duomenis";
+$MESS["C_F_OUTFILEACTION"] = "Prekës, kuriø nëra duomenø faile";
+$MESS["CATI_OF_DEL"] = "paðalinti";
+$MESS["CATI_OF_DEACT"] = "nuaktyvuoti";
+$MESS["CATI_OF_KEEP"] = "palikti kaip yra";
+$MESS["C_F_IBLOCK_SELECT"] = "pasirinkti";
+?>

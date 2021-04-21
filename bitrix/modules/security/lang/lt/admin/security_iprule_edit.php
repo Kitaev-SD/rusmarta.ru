@@ -1,0 +1,31 @@
+<?
+$MESS["SEC_IP_EDIT_TAB"] = "Taisyklë";
+$MESS["SEC_IP_EDIT_TAB_TITLE"] = "Redaguoti IP blokavimo taisyklë";
+$MESS["SEC_IP_EDIT_SAVE_ERROR"] = "Klaida iðsaugant taisyklæ.";
+$MESS["SEC_IP_EDIT_EDIT_TITLE"] = "Redaguoti taisyklæ";
+$MESS["SEC_IP_EDIT_ADD_TITLE"] = "Nauja taisyklë";
+$MESS["SEC_IP_EDIT_MENU_LIST"] = "Taisyklës";
+$MESS["SEC_IP_EDIT_MENU_LIST_TITLE"] = "Blokavimo taisyklës";
+$MESS["SEC_IP_EDIT_MENU_ADD"] = "Pridëti";
+$MESS["SEC_IP_EDIT_MENU_ADD_TITLE"] = "Pridëti naujà taisyklæ";
+$MESS["SEC_IP_EDIT_MENU_DELETE"] = "Paðalinti";
+$MESS["SEC_IP_EDIT_MENU_DELETE_TITLE"] = "Paðalinti taisyklæ";
+$MESS["SEC_IP_EDIT_MENU_DELETE_CONF"] = "Ar tikrai norite paðalinti ðià taisyklæ? ";
+$MESS["SEC_IP_EDIT_ID"] = "ID";
+$MESS["SEC_IP_EDIT_ACTIVE"] = "Aktyvus";
+$MESS["SEC_IP_EDIT_ADMIN_SECTION"] = "Valdymo skydelio puslapiai";
+$MESS["SEC_IP_EDIT_SITE_ID"] = "Vieðojo skyriaus puslapiai";
+$MESS["SEC_IP_EDIT_SORT"] = "Rûðis";
+$MESS["SEC_IP_EDIT_NAME"] = "Antraðtë";
+$MESS["SEC_IP_EDIT_ACTIVE_FROM"] = "Aktyvus nuo";
+$MESS["SEC_IP_EDIT_ACTIVE_TO"] = "Aktyvus iki";
+$MESS["SEC_IP_EDIT_INCL_IPS"] = "Blokuoja IP adresus ir diapazonus";
+$MESS["SEC_IP_EDIT_INCL_IPS_SAMPLE"] = "Pavyzdþiai: 192.168.0.7; 192.168.0.1-192.168.0.100";
+$MESS["SEC_IP_EDIT_EXCL_IPS"] = "Iðskyrus IP";
+$MESS["SEC_IP_EDIT_INCL_MASKS"] = "Blokuoja prieigà prie keliø (kaukë) ";
+$MESS["SEC_IP_EDIT_INCL_MASKS_SAMPLE"] = "Pavyzdþiai:  /* arba /bitrix/admin/*";
+$MESS["SEC_IP_EDIT_EXCL_MASKS"] = "Iðskyrus kelius (kaukë)";
+$MESS["SEC_IP_EDIT_ROW_ADD"] = "Pridëti";
+$MESS["SEC_IP_EDIT_SAVE_ERROR_EMPTY_INCL_IPS"] = "IP adresai blokavimui yra privalomi.";
+$MESS["SEC_IP_EDIT_SAVE_ERROR_EMPTY_INCL_MASKS"] = "Adreso pakaitos blokavimui yra privalomi.";
+?>

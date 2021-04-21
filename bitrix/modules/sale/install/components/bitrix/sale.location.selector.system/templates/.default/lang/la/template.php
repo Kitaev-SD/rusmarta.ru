@@ -1,0 +1,36 @@
+<?
+$MESS["SALE_SLSS_AJAX_LOADING"] = "Cargando...";
+$MESS["SALE_SLSS_AJAX_LOAD_MORE"] = "Ver más";
+$MESS["SALE_SLSS_AJAX_RETRY"] = "Inténtalo nuevamente";
+$MESS["SALE_SLSS_AND_N_LOCATIONS_TO_GO"] = "#CNT# more #PLURAL_FORM# ";
+$MESS["SALE_SLSS_APPLY_FILTER"] = "Buscar";
+$MESS["SALE_SLSS_CHOICE_DO"] = "Seleccionar";
+$MESS["SALE_SLSS_CHOICE_REDO"] = "Seleccione nuevamente";
+$MESS["SALE_SLSS_FIND_LOCATION"] = "Buscar ubicación";
+$MESS["SALE_SLSS_LOCATION"] = "Ubicación";
+$MESS["SALE_SLSS_LOCATIONS"] = "Ubicaciones";
+$MESS["SALE_SLSS_LOCATION_AVAILABLE"] = "Ubicaciones disponibles";
+$MESS["SALE_SLSS_LOCATION_ELEMENT"] = "ubicación";
+$MESS["SALE_SLSS_LOCATION_ELEMENTA"] = "ubicaciones";
+$MESS["SALE_SLSS_LOCATION_ELEMENTOV"] = "ubicaciones";
+$MESS["SALE_SLSS_LOCATION_GROUPS"] = "Grupos de Ubicación";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_BUTTON_CANCEL"] = "Cancelar";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_BUTTON_SAVE"] = "Aplicar";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_CHOOSE"] = "Seleccionar ubicaciones marcadas";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_CLEAN_SELECTION"] = "Borrar selección";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_ERROR_OCCURED"] = "Se ha producido un error";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_GRP_TOTAL_SELECTED"] = "Grupos seleccionados";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_LOC_TOTAL_SELECTED"] = "Ubicaciones seleccionadas";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_NOTHING_FOUND"] = "Desafortunadamente su búsqueda no produjo resultados";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_NOTHING_SELECTED"] = "No hay ubicaciones seleccionadas.";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_SELECT_PROMPT"] = "Por favor, seleccione las ubicaciones del tree de ubicación o use la búsqueda.";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_SURE_CLEAN"] = "Está seguro de que desea borrar de la lista?";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_TITLE"] = "Seleccione las ubicaciones";
+$MESS["SALE_SLSS_LOCATION_SELECTOR_UNCHOOSE"] = "Ninguno seleccionado";
+$MESS["SALE_SLSS_NAME_COLUMN"] = "Nombre";
+$MESS["SALE_SLSS_NONE_IS_SELECTED"] = "No hay ubicaciones seleccionadas";
+$MESS["SALE_SLSS_NO_LOCATIONS"] = "Base de datos de ubicación está vacía.#ANCHOR_IMPORT#Importar ahora ubicación#ANCHOR_END#";
+$MESS["SALE_SLSS_RESET_FILTER"] = "Restablecer filtro";
+$MESS["SALE_SLSS_SELECTED_LOCATIONS"] = "Ubicaciones seleccionadas";
+$MESS["SALE_SLSS_TYPE_NOT_SELECTED"] = "No hay tipo seleccionado";
+?>

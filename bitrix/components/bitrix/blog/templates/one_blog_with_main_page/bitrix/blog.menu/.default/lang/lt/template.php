@@ -1,0 +1,32 @@
+<?
+$MESS['BLOG_MENU_BLOGS_LIST'] = 'Pagrindinis tinklaraðèio puslapis';
+$MESS['BLOG_MENU_BLOGS_LIST_TITLE'] = 'Pagrindinis tinklaraðèio puslapis';
+$MESS['BLOG_MENU_CURRENT_BLOG'] = 'Tinklaraðtis';
+$MESS['BLOG_MENU_CURRENT_BLOG_TITLE'] = 'Tinklaraðtis "#NAME#"';
+$MESS['BLOG_MENU_MY_BLOG'] = 'Mano tinklaraðtis';
+$MESS['BLOG_MENU_MY_BLOG_TITLE'] = 'Mano tinklaraðtis';
+$MESS['BLOG_MENU_PROFILE'] = 'Mano profilis';
+$MESS['BLOG_MENU_PROFILE_TITLE'] = 'Mano profilis';
+$MESS['BLOG_MENU_FRIENDS'] = 'Draugø puslapiai';
+$MESS['BLOG_MENU_FRIENDS_TITLE'] = 'Draugø puslapiai';
+$MESS['BLOG_MENU_LOGOUT'] = 'Atsijungti';
+$MESS['BLOG_MENU_LOGOUT_TITLE'] = 'Atsijungti';
+$MESS['BLOG_MENU_LOGIN'] = 'Prisijungti';
+$MESS['BLOG_MENU_LOGIN_TITLE'] = 'Prisijungti';
+$MESS['BLOG_MENU_REGISTER'] = 'Registracija';
+$MESS['BLOG_MENU_REGISTER_TITLE'] = 'Registracija';
+$MESS['BLOG_MENU_ADD_MESSAGE'] = 'Naujas praneðimas';
+$MESS['BLOG_MENU_ADD_MESSAGE_TITLE'] = 'Pridëti naujà praneðimà';
+$MESS['BLOG_MENU_DRAFT_MESSAGES'] = 'Nebaigti praneðimai';
+$MESS['BLOG_MENU_DRAFT_MESSAGES_TITLE'] = 'Nebaigti praneðimai';
+$MESS['BLOG_MENU_USER_SETTINGS'] = 'Naudotojø nustatymai';
+$MESS['BLOG_MENU_USER_SETTINGS_TITLE'] = 'Mano tinklaraðèio lankytojø nustatymai';
+$MESS['BLOG_MENU_GROUP_EDIT'] = 'Grupiø nustatymai';
+$MESS['BLOG_MENU_GROUP_EDIT_TITLE'] = 'Mano tinklaraðèio grupiø nustatymai';
+$MESS['BLOG_MENU_CATEGORY_EDIT'] = 'Þymiø nustatymai';
+$MESS['BLOG_MENU_CATEGORY_EDIT_TITLE'] = 'Mano tinklaraðèio þymiø nustatymai';
+$MESS['BLOG_MENU_BLOG_EDIT'] = 'Tinklaraðèio nustatymai';
+$MESS['BLOG_MENU_BLOG_EDIT_TITLE'] = 'Mano tinklaraðèio nustatymai';
+$MESS['BLOG_MENU_FR_B_F'] = 'Tapk draugu';
+$MESS['BLOG_MENU_FR_A_F'] = 'Pridëti prie draugø';
+?>

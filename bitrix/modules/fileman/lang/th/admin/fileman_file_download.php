@@ -1,0 +1,3 @@
+<?
+$MESS ['FILEMAN_FILE_DOWNLOAD_PHPERROR'] = "äÁèä´éÃÑºÊÔ·¸ÔìãËéÍÑ¾âËÅ´ä¿Åì PHP";
+?>

@@ -1,0 +1,3 @@
+<?
+$MESS["SENDER_INTEGRATION_MAIL_TRANSPORT_NAME"] = "Remitente de email";
+?>

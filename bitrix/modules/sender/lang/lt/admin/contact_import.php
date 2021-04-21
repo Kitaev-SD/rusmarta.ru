@@ -1,0 +1,25 @@
+<?
+$MESS["sender_imp_title"] = "Pridëti gavëjus";
+$MESS["sender_imp_results"] = "Importo rezultatai:";
+$MESS["sender_imp_results_total"] = "Viso gavëjø importui:";
+$MESS["sender_imp_results_added"] = "Pridëta gavëjø:";
+$MESS["sender_imp_results_exist"] = "Jau esami gavëjai:";
+$MESS["sender_imp_results_err"] = "Neteisingø adresø:";
+$MESS["sender_imp_delim"] = "Adresø sàraðas turi bûti atskirtas kableliu arba ið naujos linijos.";
+$MESS["sender_imp_file"] = "Ákelti ið bylos:";
+$MESS["sender_imp_list"] = "Pridëti gavëjus:";
+$MESS["sender_imp_add"] = "Átraukti gavëjus á sàraðà:";
+$MESS["sender_imp_butt"] = "Pridëti adresus";
+$MESS["sender_imp_file_err1"] = "Bylos ákëlimo klaida...";
+$MESS["sender_imp_file_err2"] = "klaidos kodas";
+$MESS["sender_imp_add_list_exist"] = "esamas sàraðas:";
+$MESS["sender_imp_add_list_new"] = "naujas sàraðas su pavadinimu:";
+$MESS["sender_imp_import_tab"] = "Adresai";
+$MESS["sender_imp_import_tab_title"] = "Parametrai";
+$MESS["sender_imp_error"] = "Nepavyko ákelti gavëjø.";
+$MESS["sender_imp_addr_add_err"] = "Nepavyko ákelti gavëjo.";
+$MESS["sender_imp_add_list"] = "Priedëti prie sàraðo";
+$MESS["sender_imp_list_new_error"] = "Nenurodytas naujo sàraðo pavadinimas.";
+$MESS["sender_imp_back_to_list"] = "Gráþti á sàraðà";
+$MESS["sender_imp_back_to_list_title"] = "Gráþti á adresø sàraðà";
+?>

@@ -1,0 +1,25 @@
+<?
+$MESS["SALE_HPS_SBERBANK_TITLE"] = "SberBank Mokëjimo kvitancija (Rusija)";
+$MESS["SALE_HPS_SBERBANK_COMPANY_NAME_DESC"] = "Gavëjo pavadinimas";
+$MESS["SALE_HPS_SBERBANK_INN_DESC"] = "Gavëjo INN";
+$MESS["SALE_HPS_SBERBANK_KPP_DESC"] = "Gavëjo KPP";
+$MESS["SALE_HPS_SBERBANK_SETTLEMENT_ACC_DESC"] = "Gavëjo sàskaitos numeris";
+$MESS["SALE_HPS_SBERBANK_BANK_NAME_DESC"] = "Banko pavadinimas";
+$MESS["SALE_HPS_SBERBANK_BANK_BIC_DESC"] = "BIC";
+$MESS["SALE_HPS_SBERBANK_BANK_COR_ACC_DESC"] = "Gavëjo bankas korespondentinë sàskaita";
+$MESS["SALE_HPS_SBERBANK_PAYMENT_ID_DESC"] = "Mokëjimo numeris";
+$MESS["SALE_HPS_SBERBANK_DATA_INSERT_DESC"] = "Mokëjimo data";
+$MESS["SALE_HPS_SBERBANK_FIO_DESC"] = "Mokëtojo vardas, pavardë";
+$MESS["SALE_HPS_SBERBANK_PAYER_ZIP_CODE_DESC"] = "Mokëtojo paðto indeksas";
+$MESS["SALE_HPS_SBERBANK_PAYER_COUNTRY_DESC"] = "Mokëtojo ðalis";
+$MESS["SALE_HPS_SBERBANK_PAYER_VILLAGE_DESC"] = "Mokëtojo kaimas";
+$MESS["SALE_HPS_SBERBANK_PAYER_STREET_DESC"] = "Mokëtojo gatvë";
+$MESS["SALE_HPS_SBERBANK_PAYER_REGION_DESC"] = "Mokëtojo regionas";
+$MESS["SALE_HPS_SBERBANK_PAYER_CITY_DESC"] = "Mokëtojo miestas";
+$MESS["SALE_HPS_SBERBANK_PAYER_ADDRESS_FACT_DESC"] = "Mokëtojo adresas";
+$MESS["SALE_HPS_SBERBANK_SUM_DESC"] = "Mokëjimo suma";
+$MESS["SALE_HPS_SBERBANK_CURRENCY_DESC"] = "Valiuta";
+$MESS["SALE_HPS_SBERBANK_GROUP_PAYER"] = "Mokëtojo duomenys";
+$MESS["SALE_HPS_SBERBANK_GROUP_DEST"] = "Gavëjo duomenys";
+$MESS["SALE_HPS_SBERBANK_GROUP_ORDER"] = "Mokëjimo duomenys";
+?>

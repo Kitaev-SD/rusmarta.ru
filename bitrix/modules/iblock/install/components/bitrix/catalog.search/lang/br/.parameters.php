@@ -1,0 +1,53 @@
+<?
+$MESS["CHECK_DATES_TIP"] = "Especifica para procurar apenas os documento ativos (não vencidos).";
+$MESS["CP_BCSE_ELEMENT_SORT_FIELD"] = "Campo para classificar elementos";
+$MESS["CP_BCSE_ELEMENT_SORT_FIELD2"] = "Segundo campo de classificação ";
+$MESS["CP_BCSE_GROUPS_PRICES"] = "Preços";
+$MESS["CP_BCSE_GROUPS_SEARCH"] = "Pesquisar";
+$MESS["CP_BCSE_IBLOCK_ID"] = "Infoblock";
+$MESS["CP_BCSE_IBLOCK_TYPE"] = "Tipo de Infoblock";
+$MESS["CP_BCSE_SORT_ASC"] = "ascendente";
+$MESS["CP_BCSE_SORT_DESC"] = "descendente";
+$MESS["CP_BCS_CONVERT_CURRENCY"] = "Usar apenas uma moeda para mostrar os preços";
+$MESS["CP_BCS_CURRENCY_ID"] = "Converter todos os preços para a moeda";
+$MESS["CP_BCS_HIDE_NOT_AVAILABLE"] = "Ocultar itens que não estão no estoque";
+$MESS["CP_BCS_OFFERS_CART_PROPERTIES"] = "Propriedades SKU no carrinho de compras";
+$MESS["CP_BCS_OFFERS_FIELD_CODE"] = "Campos SKU";
+$MESS["CP_BCS_OFFERS_LIMIT"] = "SKU máximo para mostrar (use 0 para mostrar todos)";
+$MESS["CP_BCS_OFFERS_PROPERTY_CODE"] = "Propriedades SKU";
+$MESS["CP_BCS_OFFERS_SORT_FIELD"] = "Ordenar SKU por Campo";
+$MESS["CP_BCS_OFFERS_SORT_FIELD2"] = "Segundo campo de classificação para as 
+Unidades de Manutenção de Estoque (UME)";
+$MESS["CP_BCS_OFFERS_SORT_ORDER"] = "Ordenação SKU";
+$MESS["CP_BCS_OFFERS_SORT_ORDER2"] = "Segunda ordem de classificação para as 
+Unidades de Manutenção de Estoque (UME)";
+$MESS["CP_BCS_PRODUCT_PROPERTIES"] = "Propriedades do produto";
+$MESS["CP_BCS_PRODUCT_PROPS_VARIABLE"] = "Nome do parâmetro de propriedade do produto";
+$MESS["CP_BCS_PRODUCT_QUANTITY_VARIABLE"] = "Nome do parâmetro de quantidade do produto";
+$MESS["CP_BCS_PROPERTY_CODE"] = "Propriedades";
+$MESS["CP_BCS_USE_PRODUCT_QUANTITY"] = "Ativar Campo Quantidade do Produto";
+$MESS["CP_BSP_NO_WORD_LOGIC"] = "Desativar o processamento de palavras comuns como operadores lógicos";
+$MESS["CP_BSP_USE_LANGUAGE_GUESS"] = "Autodetectar layout do teclado";
+$MESS["HIDE_NOT_AVAILABLE_TIP"] = "Se selecionado: os produtos cujos estoques nos depósitos sejam zero ou menos serão ocultados; o controle de estoque será ativado; itens fora de estoque estarão disponíveis para compra.";
+$MESS["IBLOCK_ACTION_VARIABLE"] = "Nome do parâmetro \"Ações\"";
+$MESS["IBLOCK_BASKET_URL"] = "URL da página com o carrinho de cliente";
+$MESS["IBLOCK_DETAIL_URL"] = "URL da página com o conteúdo de detalhes";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER"] = "Ordem de classificação dos elementos";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER2"] = "Segunda ordem de classificação ";
+$MESS["IBLOCK_LINE_ELEMENT_COUNT"] = "Número de elementos a serem exibidos em uma linha da tabela";
+$MESS["IBLOCK_PAGE_ELEMENT_COUNT"] = "Número de elementos por página";
+$MESS["IBLOCK_PRICE_CODE"] = "Tipo de preço";
+$MESS["IBLOCK_PRODUCT_ID_VARIABLE"] = "Nome do parâmetro \"Código do produto\" ";
+$MESS["IBLOCK_SECTION_ID_VARIABLE"] = "Nome do parâmetro \"Código da seção\"";
+$MESS["IBLOCK_SECTION_URL"] = "URL da página com o conteúdo de seção";
+$MESS["IBLOCK_SHOW_PRICE_COUNT"] = "Ver preço para quantidade";
+$MESS["IBLOCK_USE_PRICE_COUNT"] = "Mostrar preços na variação de quantidade";
+$MESS["IBLOCK_VAT_INCLUDE"] = "Incluir taxa de imposto no preço";
+$MESS["RESTART_TIP"] = "Se selecionado, o primeiro passe de pesquisa vai usar morfologia. Se a busca de morfologia não produzir resultados, a busca simples será realizada.";
+$MESS["SEARCH_CHECK_DATES"] = "Procurar somente em documentos ativos na data da pesquisa";
+$MESS["SEARCH_RESTART"] = "Tente pesquisar sem suporte de morfologia (se não houver resultados encontrados)";
+$MESS["SEARCH_USE_TITLE_RANK"] = "Respeitar títulos na classificação de resultados de busca";
+$MESS["T_IBLOCK_DESC_DISPLAY_COMPARE"] = "Mostrar botão Compare";
+$MESS["T_IBLOCK_DESC_PAGER_CATALOG"] = "Produtos";
+$MESS["USE_TITLE_RANK_TIP"] = "Com esta opção ativada, os objetos com títulos relevantes serão mostrados no topo da lista de resultados.";
+?>

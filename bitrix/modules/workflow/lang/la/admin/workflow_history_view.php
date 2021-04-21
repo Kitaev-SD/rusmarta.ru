@@ -1,0 +1,30 @@
+<?
+$MESS["FLOW_BACK"] = "Regresar a la lista";
+$MESS["FLOW_COMMENTS"] = "Comentario:";
+$MESS["FLOW_CURRENT_SETTINGS"] = "Configuración del actual documento:";
+$MESS["FLOW_DOCUMENT_DATE_ENTER"] = "Creado:";
+$MESS["FLOW_DOCUMENT_DATE_LOCK"] = "Bloqueado: ";
+$MESS["FLOW_DOCUMENT_DATE_MODIFY"] = "Modificado:";
+$MESS["FLOW_DOCUMENT_FILENAME"] = "Nombre del archivo:";
+$MESS["FLOW_DOCUMENT_ID"] = "ID del documento";
+$MESS["FLOW_DOCUMENT_LIST"] = "Lista de documentos";
+$MESS["FLOW_DOCUMENT_STATUS"] = "Estados:";
+$MESS["FLOW_DOCUMENT_TITLE"] = "Título:";
+$MESS["FLOW_FILENAME"] = "Nombre del archivo:";
+$MESS["FLOW_HISTORY"] = "Historial";
+$MESS["FLOW_HIST_VIEW_SITE"] = "Sitio:";
+$MESS["FLOW_PAGE_DIFF_TITLE"] = "Comparar documentos ##ID# y ##PREV_ID#";
+$MESS["FLOW_PAGE_PARAM_TITLE"] = "Configuración de los documentos actuales";
+$MESS["FLOW_PAGE_TITLE"] = "Registro # #ID#";
+$MESS["FLOW_RECORD_NOT_FOUND"] = "ID incorrecto del registro, o registro no encontrado";
+$MESS["FLOW_RECORD_SETTINGS"] = "Configuración del registro";
+$MESS["FLOW_SITE_ALT"] = "Ver información del sitio web";
+$MESS["FLOW_STATUS"] = "Estados:";
+$MESS["FLOW_STATUS_ALT"] = "Ver la información de estado";
+$MESS["FLOW_TEXT"] = "Texto";
+$MESS["FLOW_TIMESTAMP"] = "Modificado:";
+$MESS["FLOW_TITLE"] = "Título:";
+$MESS["FLOW_USER_ALT"] = "Ver información del usuario";
+$MESS["FLOW_VIEW_DOC_ALT"] = "Ver documento original";
+$MESS["FLOW_VIEW_FILE_ALT"] = "Ver un archivo";
+?>

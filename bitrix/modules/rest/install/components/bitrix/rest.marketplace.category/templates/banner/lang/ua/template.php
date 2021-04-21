@@ -1,0 +1,4 @@
+<?
+$MESS["REST_MARKETPLACE_CATEGORY_BANNER_TITLE_APP"] = "Ð³øåííÿ â³ä ïàðòíåð³â";
+$MESS["REST_MARKETPLACE_CATEGORY_INSTALL_LINK_NAME"] = "ÓÑÒÀÍÎÂÈÒÈ";
+?>

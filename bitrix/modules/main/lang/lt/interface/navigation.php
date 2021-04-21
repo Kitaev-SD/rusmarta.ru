@@ -1,0 +1,9 @@
+<?
+$MESS["navigation_first"]="Pirmas";
+$MESS["navigation_prev"]="Ankstesnis";
+$MESS["navigation_next"]="Kitas";
+$MESS["navigation_last"]="Paskutinis";
+$MESS["navigation_records"]="Puslapyje:";
+$MESS["navigation_records_all"]="visi";
+$MESS["navigation_records_of"]="ið";
+?>

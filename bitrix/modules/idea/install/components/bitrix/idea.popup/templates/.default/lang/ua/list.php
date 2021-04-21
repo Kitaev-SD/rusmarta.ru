@@ -1,0 +1,5 @@
+<?
+$MESS["IDEA_PATH_IDEA_INDEX"] = "Ùå";
+$MESS["IDEA_INPUT_TITLE_IDEA"] = "Âàø â³äãóê...";
+$MESS["IDEA_POPUP_CATEGORY_ALL"] = "Âñ³";
+?>

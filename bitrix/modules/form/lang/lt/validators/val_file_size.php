@@ -1,0 +1,7 @@
+<?
+$MESS["FORM_VALIDATOR_FILE_SIZE_DESCRIPTION"] = "Failo dydis";
+$MESS["FORM_VALIDATOR_FILE_SIZE_SETTINGS_SIZE_FROM"] = "Minimalus dydis (baitai)";
+$MESS["FORM_VALIDATOR_FILE_SIZE_SETTINGS_SIZE_TO"] = "Maksimalus dydis (baitai)";
+$MESS["FORM_VALIDATOR_FILE_SIZE_ERROR_LESS"] = "#FIELD_NAME#: failas yra per maþas ";
+$MESS["FORM_VALIDATOR_FILE_SIZE_ERROR_MORE"] = "#FIELD_NAME#: failas yra per dydelis";
+?>

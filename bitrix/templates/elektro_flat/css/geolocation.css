@@ -1,0 +1,22 @@
+.header_2 #header_location{
+    padding: 0 10px 10px;
+}
+#cdek{
+    width: 100%;
+}
+#cdek .contactList{
+    width: 44%;
+    float: left;
+}
+#cdek .contactMap{
+    width: 55%;
+    float: right;
+}
+#cdek .contactList .contact > div,
+#cdek .contactList > div{
+    padding: 10px 10px 0px;
+}
+#cdek .contactList .contact > div p strong,
+#cdek .contactList > div p strong{
+    padding-right: 6px;
+}

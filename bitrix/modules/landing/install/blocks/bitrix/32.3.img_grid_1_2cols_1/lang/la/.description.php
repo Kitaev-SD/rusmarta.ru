@@ -1,0 +1,7 @@
+<?
+$MESS["LANDING_BLOCK_32.1.IMG_GRID_1_NAME_NEW"] = "Dos imágenes panorámicas y una imagen de retrato a la izquierda, todas rellenas";
+$MESS["LANDING_BLOCK_32.1.IMG_GRID_1_NODES_LANDINGBLOCKNODEIMG"] = "Imagen";
+$MESS["LANDING_BLOCK_32.1.IMG_GRID_1_NODES_LANDINGBLOCKNODEIMG1"] = "Imagen izquierda";
+$MESS["LANDING_BLOCK_32.1.IMG_GRID_1_NODES_LANDINGBLOCKNODEIMG2"] = "Imagen superior derecha";
+$MESS["LANDING_BLOCK_32.1.IMG_GRID_1_NODES_LANDINGBLOCKNODETXT"] = "Título";
+?>

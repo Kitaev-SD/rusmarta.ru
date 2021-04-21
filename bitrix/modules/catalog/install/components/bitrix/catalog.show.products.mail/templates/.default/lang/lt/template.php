@@ -1,0 +1,4 @@
+<?
+$MESS["CATALOG_VIEWED_PRODUCTS_MAIL_TITLE"] = "Prekiø blokas";
+$MESS["CATALOG_VIEWED_PRODUCTS_MAIL_YET"] = "Iðsamiau";
+?>

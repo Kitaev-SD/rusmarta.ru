@@ -1,0 +1,5 @@
+<?
+$MESS["T_IBLOCK_DESC_CATALOG"] = "Katalogas";
+$MESS["IBLOCK_LINK_ELEMENT_LIST_TEMPLATE_NAME"] = "Susijusiø elementø sàraðas";
+$MESS["IBLOCK_LINK_ELEMENT_LIST_TEMPLATE_DESCRIPTION"] = "Atvaizduoja su esamø elementu susijusiø elementø sàraðà";
+?>

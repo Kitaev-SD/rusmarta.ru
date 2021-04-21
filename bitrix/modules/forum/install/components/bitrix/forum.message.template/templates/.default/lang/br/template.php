@@ -1,0 +1,34 @@
+<?
+$MESS["F_ANCHOR"] = "Ler a mensagem em <a href='#MESSAGE_URL#'>fórum</a> ou no o <a href='#SITE_URL#'>site</a>.";
+$MESS["F_ATTACH_FILES"] = "Multiplicador de classificação para posts de hoje:";
+$MESS["F_AUTHOR_PROFILE"] = "Página Lista de Usuários Registrados no Fórum";
+$MESS["F_DATE_REGISTER"] = "Ler a mensagem em <a href='#MESSAGE_URL#'>fórum</a> ou no o <a href='#SITE_URL#'>site</a>.";
+$MESS["F_DELETE"] = "Parâmetros de classificação";
+$MESS["F_DELETE_CONFIRM"] = "Não foram encontrados usuários registrados no fórum.";
+$MESS["F_DELETE_TOPIC"] = "Parâmetros de classificação";
+$MESS["F_DELETE_TOPIC_CONFIRM"] = "Não foram encontrados usuários registrados no fórum.";
+$MESS["F_EDIT"] = "Página de tópicos recentes";
+$MESS["F_EDIT_HEAD"] = "Re:";
+$MESS["F_EDIT_TOPIC"] = "Registros";
+$MESS["F_EMAIL_TITLE"] = "Vermelho";
+$MESS["F_GOTO"] = "membros registados";
+$MESS["F_HIDE"] = "Ler";
+$MESS["F_HIDE_TOPIC"] = "ler";
+$MESS["F_INSERT_NAME"] = "Reciclados";
+$MESS["F_NAME"] = "Reciclados";
+$MESS["F_NO_VOTE_DO"] = "Página Lista de Usuários Registrados no Fórum";
+$MESS["F_NO_VOTE_UNDO"] = "Parâmetros de classificação";
+$MESS["F_NUM_MESS"] = "Reciclados";
+$MESS["F_POINTS"] = "Reciclados";
+$MESS["F_PRIVATE_MESSAGE"] = "Receber notificações por e-mail sobre";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "Registrar";
+$MESS["F_QUOTE"] = "Citar";
+$MESS["F_QUOTE_HINT"] = "Para citar a mensagem no formulário de resposta, selecione o texto e clique aqui";
+$MESS["F_REAL_IP"] = "Multiplicador de classificação para posts de semanas recentes:";
+$MESS["F_REPLY"] = "Vermelho";
+$MESS["F_SHOW"] = "Data de registro:";
+$MESS["F_SHOW_TOPIC"] = "Data de registro:";
+$MESS["F_USER_ID"] = "Confirmação de leitura";
+$MESS["F_USER_ID_USER"] = "A confirmação de leitura foi enviada com sucesso";
+$MESS["F_USER_PROFILE"] = "Perfil do usuário";
+?>

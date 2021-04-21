@@ -1,0 +1,34 @@
+<?
+$MESS["JSADM_FAV_ADD"] = "Pridëti prie mëgstamiausiøjø";
+$MESS["JSADM_FAV_DEL"] = "Paðalinti ið mëgstamiausiøjø";
+$MESS["JSADM_FAV_ADD_SUC"] = "Nuoroda buvo pridëta prie mëgstamiausiøjø.";
+$MESS["JSADM_FAV_ADD_ERR"] = "Klaida pridedant nuorodà prie mëgstamiausiøjø.";
+$MESS["JSADM_FAV_DEL_SUC"] = "Nuoroda buvo paðalinta ið mëgstamiausiøjø.";
+$MESS["JSADM_FAV_DEL_ERR"] = "Klaida ðalinant nuorodà ið mëgstamiausiøjø.";
+$MESS["JSADM_LIST_SELECTEDALL"] = "visi";
+$MESS["JSADM_FLT_NO_NAME"] = "Bevardis";
+$MESS["JSADM_FLT_NEW_NAME"] = "Naujas filtras";
+$MESS["JSADM_FLT_SAVE_TITLE"] = "Iðsaugoti filtrà";
+$MESS["JSADM_FLT_SAVE"] = "Iðsaugoti ";
+$MESS["JSADM_FLT_DEL_CONFIRM"] = "Ar tikrai norite paðalinti ðá filtrà?";
+$MESS["JSADM_FLT_DEL_ERROR"] = "Klaida ðalinant filtrà.";
+$MESS["JSADM_FLT_SAVE_ERROR"] = "Klaida áraðant filtrà.";
+$MESS["JSADM_FLT_SAVE_AS"] = "Iðsaugoti kaip";
+$MESS["JSADM_FLT_DELETE"] = "Paðalinti";
+$MESS["JSADM_FLT_SHOW_ALL"] = "Rodyti visus filtrus";
+$MESS["JSADM_FLT_HIDE_ALL"] = "Slëpti visus filtrus";
+$MESS["JSADM_CALEND_PREV"] = "Ankstesnis";
+$MESS["JSADM_CALEND_CURR"] = "Dabartinis";
+$MESS["JSADM_CALEND_NEXT"] = "Kitas";
+$MESS["JSADM_CALEND_PREV_WEEK"] = "Ankstesnis";
+$MESS["JSADM_CALEND_CURR_WEEK"] = "Dabartinis";
+$MESS["JSADM_CALEND_NEXT_WEEK"] = "Kitas";
+$MESS["JSADM_TABS_EXPAND"] = "Iðplësti skirtukus";
+$MESS["JSADM_TABS_COLLAPSE"] = "Sutraukti skirtukus";
+$MESS["JSADM_FILE"] = "Pridëti failà";
+$MESS["JSADM_FILE_M"] = "Pridëti failus";
+$MESS["JSADM_PIN_ON"] = "Prisegti juostà";
+$MESS["JSADM_PIN_OFF"] = "Atsegti juostà";
+$MESS["JSADM_FLT_FOLD"] = "Slëpti filtrà";
+$MESS["JSADM_FLT_UNFOLD"] = "Rodyti filtrà";
+?>

@@ -1,0 +1,13 @@
+<?
+$MESS["EVENT_LIST_SUBMIT"] = "Pasirinkti";
+$MESS["EVENT_LIST_FILTER_CREATED_BY"] = "Sukurë";
+$MESS["EVENT_LIST_FILTER_DATE"] = "Data";
+$MESS["EVENT_LIST_FILTER_FEATURES_TITLE"] = "Ávykiai";
+$MESS["EVENT_LIST_FILTER_TITLE"] = "Nustatyti filtrà";
+$MESS["EVENT_LIST_NO_UPDATES"] = "Nëra atnaujinimø.";
+$MESS["EVENT_LIST_PAGE_NAV"] = "Rodomi áraðai";
+$MESS["EVENT_LIST_DATE_FILTER_DAYS"] = "dienos";
+$MESS["EVENT_LIST_FILTER_SHOW"] = "rodyti";
+$MESS["EVENT_LIST_FILTER_HIDE"] = "slëpti";
+$MESS["EVENT_LIST_NO_ACTIVE_FEATURES_ERROR"] = "Nëra ávykiø, pasirinktø filtre.";
+?>

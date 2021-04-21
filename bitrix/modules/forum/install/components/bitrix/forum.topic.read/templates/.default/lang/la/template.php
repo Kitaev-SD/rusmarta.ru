@@ -1,0 +1,35 @@
+<?
+$MESS["F_CLOSED"] = "cerrado";
+$MESS["F_CLOSE_TOPIC"] = "Cerrar tema";
+$MESS["F_COLLAPSE"] = "Ocultar";
+$MESS["F_DELETE_CONFIRM"] = "El mensaje podría ser irreversiblemente borrado. Continuar?";
+$MESS["F_DELETE_MESSAGES"] = "Borrar mensajes";
+$MESS["F_DELETE_MESSAGES_CONFIRM"] = "¿Esto podrìa borrar irreversiblemente los mensajes. Continuar?";
+$MESS["F_DELETE_TOPIC"] = "Borrar Tema";
+$MESS["F_DELETE_TOPIC_CONFIRM"] = "¿Esto podrìa borrar irreversiblemente el tema. Continuar?";
+$MESS["F_EDIT_TOPIC"] = "Modificar tema";
+$MESS["F_HIDE"] = "Ocultar";
+$MESS["F_HIDE_MESSAGES"] = "Ocultar mensajes";
+$MESS["F_HIDE_TOPIC"] = "Ocultar tema";
+$MESS["F_MANAGE_MESSAGES"] = "Administrar mensajes";
+$MESS["F_MANAGE_TOPIC"] = "Administrar tema";
+$MESS["F_MOVE_MESSAGES"] = "Mover tema";
+$MESS["F_MOVE_TOPIC"] = "Mover tema";
+$MESS["F_OPEN_TOPIC"] = "Abrir tema";
+$MESS["F_PINN_TOPIC"] = "Pegar tema";
+$MESS["F_POSTS"] = "Mensajes";
+$MESS["F_REPLY"] = "Responder";
+$MESS["F_SELECT_ALL"] = "Seleccionar todo";
+$MESS["F_SHOW"] = "Mostrar";
+$MESS["F_SHOW_MESSAGES"] = "Mostrar mensajes";
+$MESS["F_SHOW_TOPIC"] = "Mostrar tema";
+$MESS["F_SUBSCRIBE"] = "Suscribir";
+$MESS["F_SUBSCRIBE_TITLE"] = "Suscribirse para nuevos correos";
+$MESS["F_UNPINN_TOPIC"] = "Temas no pegados";
+$MESS["F_UNSUBSCRIBE"] = "Cancelar la suscripción";
+$MESS["F_UNSUBSCRIBE_TITLE"] = "Dejar de recibir notificaciones de nuevo mensaje";
+$MESS["F_WAIT"] = "Por favor espere...";
+$MESS["JQOUTE_AUTHOR_WRITES"] = "escribió";
+$MESS["JS_NO_ACTION"] = "No hay ninguna acción seleccionada. Por favor seleccione una acción.";
+$MESS["JS_NO_MESSAGES"] = "No ha seleccionado ningún mensaje. Por favor seleccione mensajes.";
+?>

@@ -1,0 +1,6 @@
+<?
+$MESS["IBLOCK_FIELD_ENTITY_IBLOCK_ID_FIELD"] = "Informacinio bloko ID";
+$MESS["IBLOCK_FIELD_ENTITY_FIELD_ID_FIELD"] = "Lauko ID";
+$MESS["IBLOCK_FIELD_ENTITY_IS_REQUIRED_FIELD"] = "Bûtinas";
+$MESS["IBLOCK_FIELD_ENTITY_DEFAULT_VALUE_FIELD"] = "Numatytoji reiðkmë / Lauko parametrai";
+?>

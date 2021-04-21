@@ -1,0 +1,5 @@
+<?
+$MESS['BLOG_MODULE_NOT_INSTALL'] = 'Tinklaraðèiø modulis nëra ádiegtas';
+$MESS['RESULT_BLOG'] = 'Tinklaraðèiai';
+$MESS['BC_NAME_TEMPLATE_DEFAULT'] = "#NOBR##NAME# #LAST_NAME##/NOBR#";
+?>

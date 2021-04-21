@@ -1,0 +1,34 @@
+<?
+$MESS["FILEMAN_MENU_EDIT_DEF"] = "(پیش فرض)";
+$MESS["FILEMAN_MENU_EDIT_ENTER_TYPE"] = "لطفا\" نوع منو را بنویسید!";
+$MESS["FILEMAN_MENU_EDIT_EXISTS_ERROR"] = "این فولدر این نوع منو را دارد!";
+$MESS["FILEMAN_MENU_EDIT_TITLE"] = "ویرایش منو";
+$MESS["FILEMAN_MENU_EDIT_TITLE_ADD"] = "افزودن منو";
+$MESS["FILEMAN_MENU_EDIT_EXT"] = "مد پیشرفته";
+$MESS["FILEMAN_MENU_EDIT_SIMPLE"] = "مد ساده";
+$MESS["FILEMAN_MENU_EDIT_AS_TEXT"] = "Edit as file";
+$MESS["FILEMAN_MENU_EDIT_DELETE"] = "حذف منو";
+$MESS["FILEMAN_MENU_EDIT_ADD_ITEM"] = "افزودن آیتم &gt;&gt;";
+$MESS["FILEMAN_MENU_EDIT_NAME"] = "نام:";
+$MESS["FILEMAN_MENU_EDIT_LINK"] = "پیوند";
+$MESS["FILEMAN_MENU_EDIT_SORT"] = "ترتیب";
+$MESS["FILEMAN_MENU_EDIT_DEL"] = "حذف";
+$MESS["FILEMAN_MENU_EDIT_ADDITIONAL_LINK"] = "پیوندهای دیگر:";
+$MESS["FILEMAN_MENU_EDIT_CONDITION"] = "سامه:";
+$MESS["FILEMAN_MENU_EDIT_CONDITION_TYPE"] = "نوع شرط:";
+$MESS["FILEMAN_MENU_EDIT_PARAMS"] = "پارامترها:";
+$MESS["FILEMAN_MENU_EDIT_PARAM_NAME"] = "نام";
+$MESS["FILEMAN_MENU_EDIT_PARAM_VALUE"] = "مقدار";
+$MESS["FILEMAN_MENU_EDIT_TYPE"] = "نوع منو:";
+$MESS["FILEMAN_MENU_EDIT_TEMPLATE"] = "تمپلت منو:";
+$MESS["FILEMAN_MENU_EDIT_LEFT_MENU"] = "منوی چپ";
+$MESS["FILEMAN_MENU_EDIT_TOP_MENU"] = "منوی بالا";
+$MESS["FILEMAN_MENU_EDIT_SAVE"] = "ذخیره";
+$MESS["FILEMAN_MENU_EDIT_APPLY"] = "اعمال";
+$MESS["FILEMAN_MENU_EDIT_RESET"] = "نوسازی";
+$MESS["FILEMAN_MENU_EDIT_ITEMS"] = "آیتمهای منو:";
+$MESS["FILEMAN_BACK"] = "فولدر";
+$MESS["FILEMAN_DEL_CONF"] = "آیا این منو حذف شود؟";
+$MESS["FILEMAN_TAB1"] = "منو";
+$MESS["FILEMAN_TAB1_ALT"] = "Menu parameters";
+?>

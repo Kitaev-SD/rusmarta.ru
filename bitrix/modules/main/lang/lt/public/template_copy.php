@@ -1,0 +1,33 @@
+<?
+$MESS["comp_prop_close"] = "Uþdaryti langà";
+$MESS["comp_prop_err_param"] = "Neteisingi ávesties parametrai.";
+$MESS["comp_prop_err_file"] = "Nepakanka leidimo pasiekti scenarijø, turinti komponentø skambutá.";
+$MESS["comp_prop_err_open"] = "Nepavyko atidaryti skripto, turinèio komponento iðkvietimà.";
+$MESS["comp_prop_err_save"] = "Klaida iðsaugant skripto failà. Pakeitimai neiðsaugoti.";
+$MESS["comp_prop_name"] = "Pavadinimas";
+$MESS["comp_prop_desc"] = "Apraðymas";
+$MESS["comp_prop_path"] = "Komponento iðkvietimo kelias";
+$MESS["comp_prop_save"] = "Iðsaugoti";
+$MESS["comp_prop_save_title"] = "Iðsaugoti komponento parametrus";
+$MESS["comp_prop_cancel"] = "Atðaukti";
+$MESS["comp_prop_cancel_title"] = "Uþdaryti langà ir neiðsaugoti pakeitimø";
+$MESS["comp_prop_close_w"] = "Uþdaryti ";
+$MESS["comp_prop_err_comp"] = "Nepavyko rasti komponento iðkvietimo kodà.";
+$MESS["comp_prop_template"] = "Ðablonas";
+$MESS["comp_prop_template_sys"] = "Sistema";
+$MESS["comp_templ_template"] = "Komponento ðablonas";
+$MESS["comp_templ_error_copy"] = "Klaida kopijuojant ðablonà";
+$MESS["comp_templ_cur_site_template"] = "Naudojant svetainës ðablonà:";
+$MESS["comp_templ_system"] = "sistemos ðablonas";
+$MESS["comp_templ_cur_template"] = "Dabartinio komponento ðablonas";
+$MESS["comp_templ_new_template"] = "Kopijuoti á svetainës ðablonà";
+$MESS["comp_templ_new_tpl"] = "Naujo komponento ðablono pavadinimas";
+$MESS["comp_templ_use"] = "Pritaikyti naujà konponento ðablonà";
+$MESS["comp_templ_edit"] = "Redaguoti ðablonà";
+$MESS["template_copy_title"] = "Kopijuoti komponento ðablonà";
+$MESS["template_copy_def"] = "numatytasis";
+$MESS["template_copy_cur"] = "dabartinis";
+$MESS["template_copy_sel"] = "pasirinktas:";
+$MESS["copy_comp_sys_templ"] = "Komponento sistemos ðablonas turi bûti nukopijuotas á svetainës ðablonà, kad galëtumëte já modifikuoti.";
+$MESS["comp_templ_def_templ"] = "Numatytasis ðablonas";
+?>

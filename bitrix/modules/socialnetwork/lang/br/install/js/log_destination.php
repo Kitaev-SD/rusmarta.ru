@@ -1,0 +1,35 @@
+<?
+$MESS["LM_CREATE_SONETGROUP_BUTTON_CANCEL"] = "Cancelar";
+$MESS["LM_CREATE_SONETGROUP_BUTTON_CREATE"] = "Criar";
+$MESS["LM_CREATE_SONETGROUP_TITLE"] = "Não existe grupo com esse nome. Você quer criar um grupo \"#TITLE#\"?";
+$MESS["LM_EMPTY_LIST"] = "Não há itens";
+$MESS["LM_INVITE_EMAIL_CRM_CREATE_CONTACT"] = "Criar contato de CRM";
+$MESS["LM_INVITE_EMAIL_USER_BUTTON_OK"] = "OK";
+$MESS["LM_INVITE_EMAIL_USER_PLACEHOLDER_LAST_NAME"] = "Sobrenome";
+$MESS["LM_INVITE_EMAIL_USER_PLACEHOLDER_NAME"] = "Nome";
+$MESS["LM_INVITE_EMAIL_USER_TITLE"] = "Esta mensagem será compartilhada por e-mail com";
+$MESS["LM_PLEASE_WAIT"] = "Carregando... Por favor aguarde";
+$MESS["LM_POPUP_CHECK_STRUCTURE"] = "Todos os departamentos e sub-departamentos";
+$MESS["LM_POPUP_SEARCH_NETWORK"] = "Pesquisar Bitrix24.Network";
+$MESS["LM_POPUP_TAB_CRMEMAIL"] = "Usuários de e-mail de CRM";
+$MESS["LM_POPUP_TAB_EMAIL"] = "Usuários de e-mail";
+$MESS["LM_POPUP_TAB_LAST"] = "Recentes";
+$MESS["LM_POPUP_TAB_LAST_COMPANIES"] = "Empresas";
+$MESS["LM_POPUP_TAB_LAST_CONTACTS"] = "Contatos";
+$MESS["LM_POPUP_TAB_LAST_CRMEMAILS"] = "Usuários de e-mail de CRM";
+$MESS["LM_POPUP_TAB_LAST_DEALS"] = "Negócios";
+$MESS["LM_POPUP_TAB_LAST_LEADS"] = "Leads";
+$MESS["LM_POPUP_TAB_LAST_NETWORK"] = "Bitrix24.Network";
+$MESS["LM_POPUP_TAB_LAST_SG"] = "Grupos";
+$MESS["LM_POPUP_TAB_LAST_SG_PROJECT"] = "Projetos";
+$MESS["LM_POPUP_TAB_LAST_STRUCTURE"] = "Departamentos";
+$MESS["LM_POPUP_TAB_LAST_USERS"] = "Pessoas";
+$MESS["LM_POPUP_TAB_SEARCH"] = "Pesquisar";
+$MESS["LM_POPUP_TAB_SG"] = "Meus Grupos";
+$MESS["LM_POPUP_TAB_SG_PROJECT"] = "Meus Projetos";
+$MESS["LM_POPUP_TAB_STRUCTURE"] = "Colaboradores e departamentos";
+$MESS["LM_POPUP_TAB_STRUCTURE_EXTRANET"] = "Usuários externos";
+$MESS["LM_POPUP_TITLE"] = "Título";
+$MESS["LM_POPUP_WAITER_TEXT"] = "Procurando resultados adicionais...";
+$MESS["LM_SEARCH_PLEASE_WAIT"] = "Buscando... Por favor aguarde";
+?>

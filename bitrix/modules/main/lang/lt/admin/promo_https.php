@@ -1,0 +1,32 @@
+<?
+$MESS["HTTPS_PROMO__ADMIN_TITLE"] = "Atnaujinkite savo svetainæ, kad galëtumëte naudoti HTTPS";
+$MESS["HTTPS_PROMO__SUBTITLE"] = "HTTPS - jûsø duomenø saugumas ";
+$MESS["HTTPS_PROMO__TITLE"] = "HTTPS nustatymas jûsø svetainei";
+$MESS["HTTPS_PROMO__PREPARE_SITE"] = "Atnaujinkite savo svetainæ, kad galëtumëte naudoti HTTPS";
+$MESS["HTTPS_PROMO__CHANGE_LINKS_NEW"] = "Pakeisti visas absoliuèias svetainës hipernuorodas á santykines.";
+$MESS["HTTPS_PROMO__CHECK_PROTOCOL_NEW"] = "Patikrinkite turinio ið iðoriniø iðtekliø protokolo nustatymus (vaizdo áraðai, vaizdai).";
+$MESS["HTTPS_PROMO__EXTERNAL_SCRIPTS"] = "Pakeisti visø iðoriniø skriptø nuorodas ið absoliuèiø á santykines.";
+$MESS["HTTPS_PROMO__CERTIFICATE_INSTALL_NEW"] = "Ádiekite SSL sertifikatà á serverá";
+$MESS["HTTPS_PROMO__CERTIFICATE_CHOICE_NEW"] = "Pasirinkite ir nusipirkite sertifikatà.";
+$MESS["HTTPS_PROMO__CERTIFICATES_FEATURES"] = "Svarbi sertifikato informacija";
+$MESS["HTTPS_PROMO__CERTIFICATE_REGULAR"] = "Paprastas sertifikatas";
+$MESS["HTTPS_PROMO__CERTIFICATE_REGULAR_ALT"] = "Paprastas sertifikatas";
+$MESS["HTTPS_PROMO__TO_MOST_SITES"] = "- tinka daugeliui svetainiø.";
+$MESS["HTTPS_PROMO__WILDCART"] = "Pakaitos simbolis";
+$MESS["HTTPS_PROMO__TO_SEVERAL_DOMAINS"] = "dinamiðki subdomenai";
+$MESS["HTTPS_PROMO__TO_SEVERAL_DOMAINS_ALT"] = "- saugiam ðaltiniui su daugeliu dinaminiø subdomenø.";
+$MESS["HTTPS_PROMO__CERTIFICATE_IDN"] = "Su IDN palaikymu";
+$MESS["HTTPS_PROMO__CERTIFICATE_IDN_ALT"] = "- domenams su Cyrillic.";
+$MESS["HTTPS_PROMO__MULTIDOMAINS_CERTIFICATE"] = "Keliø domenø sertifikatas";
+$MESS["HTTPS_PROMO__MULTIDOMAINS_CERTIFICATE_ALT"] = "- keliems gerai þinomiems saugiems ðaltiniams.";
+$MESS["HTTPS_PROMO__CERTIFICATE_VENDORS"] = "Bendrieji SSL sertifikatø teikëjai";
+$MESS["HTTPS_PROMO__INSTALL_CERTIFICATE_NEW"] = "Ádiekite SSL sertifikatà savo prieglobai.";
+$MESS["HTTPS_PROMO__CHECK_ACTIVE_NEW"] = "Patikrinkite svetainës pasiekiamumà per HTTPS.";
+$MESS["HTTPS_PROMO__SITE_SETTINGS_NEW"] = "Atlikite visus svarbius svetainës pakeitimus";
+$MESS["HTTPS_PROMO__HOST_AND_ROBOTS_NEW"] = "Nustatyti HTTPS prieglogos direktyvà robots.txt faile.";
+$MESS["HTTPS_PROMO__REDIRECT_NEW"] = "Nustatyti 301 peradresavimà ið HTTP á HTTPS.";
+$MESS["HTTPS_PROMO__SITEMAP_NEW"] = "Pakeiskite nuorodas faile sitemap.xml.";
+$MESS["HTTPS_PROMO__SEARCHERS_NEW"] = "Atnaujinti pasaulinës paieðkos indeksà";
+$MESS["HTTPS_PROMO__GOOGLE"] = "Pridëti HTTPS svetainës versijà á \"Google\" paieðkos konsolæ.";
+$MESS["HTTPS_PROMO__YANDEX_NEW"] = "Pakeisti adresà Yandex.Webmaste ir \"Google\" paieðkos konsolëje.";
+?>

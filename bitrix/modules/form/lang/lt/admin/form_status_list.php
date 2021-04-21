@@ -1,0 +1,29 @@
+<?
+$MESS["FORM_FORM_LIST"] = "Formos sàraðas";
+$MESS["FORM_NOT_FOUND"] = "Web forma nerasta";
+$MESS["FORM_ERROR"] = "Klaida!";
+$MESS["FORM_PAGE_TITLE"] = "Statuø sàraðas formos rezultatams # #ID#";
+$MESS["FORM_FORM_EDIT"] = "Formos parametrai";
+$MESS["FORM_EDIT_ALT"] = "Pakeisti formos parametrus ";
+$MESS["FORM_FORM_NAME"] = "Forma:";
+$MESS["FORM_F_ACTIVE"] = "Aktyvus:";
+$MESS["FORM_F_TITLE"] = "Antraðtë:";
+$MESS["FORM_F_DESCRIPTION"] = "Apraðymas:";
+$MESS["FORM_F_RESULTS"] = "Rezultatas:";
+$MESS["FORM_PAGES"] = "Statusai";
+$MESS["FORM_TIMESTAMP"] = "Pakeista";
+$MESS["FORM_C_SORT"] = "Rûð.";
+$MESS["FORM_DESCRIPTION"] = "Apraðymas";
+$MESS["FORM_DELETE_STATUS_CONFIRM"] = "Ar tikrai norite paðalinti ðá statusà?";
+$MESS["FORM_DEFAULT"] = "Numatytasis";
+$MESS["FORM_COPY_ALT"] = "Kopijuoti statusà ";
+$MESS["FORM_COPY"] = "Kopijuoti ";
+$MESS["FORM_RESULT_TITLE"] = "Atidaryti formos rezultatus";
+$MESS["FORM_FL_ID"] = "Statuso ID";
+$MESS["FORM_FL_ACTIVE"] = "Aktyvi";
+$MESS["FORM_FL_DESCR"] = "Apraðymas";
+$MESS["FORM_FL_RESULTS"] = "Rezultatø kiekis";
+$MESS["FORM_FORM_EDIT_TITLE"] = "Pakeisti formos parametrus";
+$MESS["FORM_STATUS_DELETE"] = "Paðalinti";
+$MESS["FORM_STATUS_DELETE_ALT"] = "Paðalinti statusà";
+?>

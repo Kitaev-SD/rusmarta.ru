@@ -1,0 +1,25 @@
+<?
+$MESS["SENDER_STATS_CHART_CLICK"] = "Cliques";
+$MESS["SENDER_STATS_CHART_EFFICIENCY"] = "Dinâmica de eficiência";
+$MESS["SENDER_STATS_CHART_READ"] = "Visualizações";
+$MESS["SENDER_STATS_CHART_UNSUB"] = "Descadastrados";
+$MESS["SENDER_STATS_COUNTER_CLICK"] = "Cliques";
+$MESS["SENDER_STATS_COUNTER_POSTINGS"] = "Contagem de mensagens";
+$MESS["SENDER_STATS_COUNTER_READ"] = "Visualizações";
+$MESS["SENDER_STATS_COUNTER_SEND_ALL"] = "Total de mensagens enviadas";
+$MESS["SENDER_STATS_COUNTER_SUBS"] = "Cadastrados";
+$MESS["SENDER_STATS_COUNTER_UNSUB"] = "Descadastrados";
+$MESS["SENDER_STATS_CREATE_NEW"] = "Criar nova mensagem de anúncio";
+$MESS["SENDER_STATS_EFFICIENCY_LEVEL_1"] = "Ruim";
+$MESS["SENDER_STATS_EFFICIENCY_LEVEL_2"] = "Razoável";
+$MESS["SENDER_STATS_EFFICIENCY_LEVEL_3"] = "Aceitável";
+$MESS["SENDER_STATS_EFFICIENCY_LEVEL_4"] = "Boa";
+$MESS["SENDER_STATS_EFFICIENCY_LEVEL_5"] = "Excelente";
+$MESS["SENDER_STATS_EFFICIENCY_TITLE"] = "Eficiência do anúncio";
+$MESS["SENDER_STATS_FILTER_FROM_AUTHOR"] = "de";
+$MESS["SENDER_STATS_FILTER_PERIOD_FOR"] = "para";
+$MESS["SENDER_STATS_IN"] = "em";
+$MESS["SENDER_STATS_NO_DATA"] = "Não há dados";
+$MESS["SENDER_STATS_RECENT_POSTINGS"] = "Mensagens de anúncios recentes";
+$MESS["SENDER_STATS_TITLE"] = "Iniciar";
+?>

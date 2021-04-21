@@ -1,0 +1,12 @@
+<?
+$MESS["SEARCH_TAGSTAT_404"] = "(Erro 404)";
+$MESS["SEARCH_TAGSTAT_COUNT"] = "Quantidade";
+$MESS["SEARCH_TAGSTAT_DATE"] = "Dados";
+$MESS["SEARCH_TAGSTAT_ID"] = "ID";
+$MESS["SEARCH_TAGSTAT_SITE"] = "(Site)";
+$MESS["SEARCH_TAGSTAT_SITE_ID"] = "Local";
+$MESS["SEARCH_TAGSTAT_STAT_SESS_ID"] = "ID da sessão";
+$MESS["SEARCH_TAGSTAT_TAGS"] = "Tags";
+$MESS["SEARCH_TAGSTAT_TITLE"] = "Estatísticas de frase de pesquisa";
+$MESS["SEARCH_TAGSTAT_URL_TO"] = "Para";
+?>

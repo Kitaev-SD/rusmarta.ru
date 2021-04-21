@@ -1,0 +1,3 @@
+<?php
+$MESS['LANDING_BLOCK_MENU_4-PRESET-LINK'] = '—сылка';
+$MESS['LANDING_BLOCK_MENU_4-PRESET-LOGO'] = 'Ћоготип';

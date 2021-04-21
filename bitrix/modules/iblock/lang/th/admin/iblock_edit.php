@@ -1,0 +1,30 @@
+<?
+$MESS ['IBLOCK_PROP_IBLOCK'] = "พื้นที่ประชาสัมพันธ์:";
+$MESS ['IBLOCK_PROP_IBLOCK_ANY'] = "(ทั้งหมด)";
+$MESS ['IBLOCK_LINK_TO_SECTION'] = "ลิงค์ไปยังพื้นที่ประชาสัมพันธ์";
+$MESS ['IBLOCK_LINK_TO_ELEMENTS'] = "ลิงค์ไปยังส่วนงาน";
+$MESS ['IBLOCK_PROP_WITH_DESC'] = "แสดงรายละเอียด:";
+$MESS ['IBLOCK_PROP_FILTRABLE'] = "Use property in a filter on an element list page:";
+$MESS ['IBLOCK_PROP_SEARCHABLE'] = "Property values will be used in search:";
+$MESS ['IBLOCK_INDEX_ELEMENT'] = "Index elements for the Search module:";
+$MESS ['IBLOCK_INDEX_SECTION'] = "Index sections for the Search module:";
+$MESS ['IBLOCK_SECTION_PAGE_URL'] = "Section page URL:";
+$MESS ['IB_E_TAB'] = "Property details";
+$MESS ['IB_E_TAB2'] = "Inf. block";
+$MESS ['IB_E_TAB2_T'] = "พื้นที่ประชาสัมพันธ์";
+$MESS ['IB_E_TAB3'] = "คุณสมบัติ";
+$MESS ['IB_E_TAB3_T'] = "คุณสมบัติของ Element";
+$MESS ['IB_E_TAB4'] = "Access";
+$MESS ['IB_E_TAB4_T'] = "Access permissions";
+$MESS ['IB_E_EDITPROP'] = "Click to edit property details";
+$MESS ['IB_E_URL_POPUP_SITE_DIR'] = "Site Root folder";
+$MESS ['IB_E_URL_POPUP_SERVER_NAME'] = "Server URL";
+$MESS ['IB_E_URL_POPUP_IBLOCK_ID'] = "Information Block ID";
+$MESS ['IB_E_URL_POPUP_SEC_ID'] = "Section ID";
+$MESS ['IB_E_URL_POPUP_EXT_SEC_ID'] = "External Section ID";
+$MESS ['IB_E_URL_POPUP_IBLOCK_CODE'] = "Mnemonic Information Block code ";
+$MESS ['IB_E_URL_POPUP_IBLOCK_EXT'] = "External Information Block ID";
+$MESS ['IB_E_URL_POPUP_IBLOCK_TYPE'] = "Information Block Type";
+$MESS ['IB_E_URL_POPUP_EL_ID'] = "Element ID";
+$MESS ['IB_E_URL_POPUP_EL_EXT_ID'] = "External Element ID ";
+?>

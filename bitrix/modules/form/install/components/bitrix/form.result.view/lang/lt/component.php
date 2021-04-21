@@ -1,0 +1,13 @@
+<?
+$MESS['FORM_NOT_FOUND'] = 'Web forma nerasta';
+$MESS['FORM_ACCESS_DENIED'] = 'Jûs neturite teisiø perþiûrëti formà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM'] = 'Jûs neturite teisiø perþiûrëti formà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM_RESULTS'] = 'Jûs neturite teisiø perþiûrëti ðá rezultatà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM_RESULTS_EDITING'] = 'Jûs neturite teisiø redaguoti ðá rezultatà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM_WRITE'] = 'Jûs neturite teisiø uþpildyti formà.';
+$MESS['FORM_INCORRECT_DATE_FORMAT'] = 'Neteisingas datos formatas laukui \"#FIELD_NAME#\".';
+$MESS['FORM_INCORRECT_FILE_TYPE'] = 'Neteisingas bylos tipas laukui \"#FIELD_NAME#\" (bylà reikia pasirinkti ið naujo).';
+$MESS['FORM_EMPTY_REQUIRED_FIELDS'] = 'Neuþpildyti ðie bûtini laukai:';
+$MESS['FORM_INCORRECT_FORM_ID'] = 'Neteisingas formos ID.';
+$MESS['FORM_PUBLIC_ICON_EDIT'] = 'Redaguoti web formos parametrus';
+?>

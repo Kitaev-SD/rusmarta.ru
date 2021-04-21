@@ -1,0 +1,32 @@
+<?
+$MESS["user_sett_mess_del_common"] = "تمام تنظیمات پیش فرض زدوده شد.";
+$MESS["user_sett_mess_del"] = "تمام تنظیمات شخصی زدوده شد.";
+$MESS["user_sett_mess_del_user"] = "تمام تنظیمات کاربری زدوده شد.";
+$MESS["user_sett_del_common_conf"] = "آیا تمام تنظیمات پیش فرض حذف شود؟";
+$MESS["user_sett_del_user_conf"] = "آیا تنظیمات شخصی همه کاربران را پاک می کنید؟";
+$MESS["user_sett_del_pers_conf"] = "آیا همه تنظیمات شخصی شما حذف شود؟";
+$MESS["user_sett_sounds_button_title"] = "ناوبری";
+$MESS["user_sett_mess_title"] = "تغییرات به درستی انجام شد.";
+$MESS["user_sett_common"] = "تنظیمات عمومی";
+$MESS["user_sett_mess_save"] = "تنظیمات پیش فرض ذخیره شد.";
+$MESS["user_sett_context"] = "فعال کردن منوی متنی در فهرستها";
+$MESS["user_sett_err_title"] = "خطا در ذخیره تنظیمات";
+$MESS["user_sett_files"] = "فایلها";
+$MESS["user_sett_files_title"] = "برو به مدیریت فایلهای تم";
+$MESS["user_sett_tab_title"] = "تنظیمات واسط کاربری";
+$MESS["user_sett_theme"] = "تم ویژوال واسط کاربری";
+$MESS["user_sett_name"] = "نام";
+$MESS["user_sett_mess_head"] = "اعلان";
+$MESS["user_sett_personal"] = "تنظیمات شخصی";
+$MESS["user_sett_del"] = "نوسازی تنظیمات";
+$MESS["user_sett_del_title"] = "حذف تنظیمات واسط کاربری";
+$MESS["user_sett_context_ctrl_val1"] = "دکمه راست موس";
+$MESS["user_sett_context_ctrl_val2"] = "دکمه راست موس + دکمه کنترل";
+$MESS["user_sett_common_set"] = "این تنظیمات برای همه کاربران اعمال شود:";
+$MESS["user_sett_tab"] = "تنظیمات";
+$MESS["user_sett_mess_save1"] = "تنظیمات ذخیره شد.";
+$MESS["user_sett_context_ctrl"] = "نمایش دادن منوی متنی با کلیک کردن بر:";
+$MESS["user_sett_err"] = "تعیین تم ویژوال";
+$MESS["user_sett_title"] = "واسط کاربری کاربر";
+$MESS["user_sett_screen"] = "دیدن تصاویر";
+?>

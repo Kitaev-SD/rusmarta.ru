@@ -1,0 +1,30 @@
+<?
+$MESS["FM_ML"] = "Librería Media";
+$MESS["FM_ML_UPL_ACCESS_DENIED"] = "Permisos insuficientes para cargar archivos a esta colección.";
+$MESS["FM_ML_UPL_LOACATE"] = "Seleccionar colección";
+$MESS["FM_ML_UPL_NOTICE"] = "Usted puede forzar el colocar los nuevos item en una colección luego de que la carga esté completa.";
+$MESS["FM_ML_UPL_NOTICE_CYR"] = "El nombre del archivo puede incluir letras Latinas, números, guiones, puntos y guiones bajos. Otros caracteres serán extraidos.";
+$MESS["FM_ML_UPL_NO_COLS_WARN"] = "El item debe pertenecer por lo menos a ua coleccion.";
+$MESS["FM_ML_UPL_NO_NAME_WARN"] = "El nombre del item no se especificó.";
+$MESS["FM_ML_UPL_TITLE1"] = "Cargar múltiples archivos a la Librería Media";
+$MESS["FM_ML_UPL_TITLE2"] = "Parámetros de los nuevos elementos";
+$MESS["MEDIALIB_UPLOADER_ADD"] = "Agregar más";
+$MESS["MEDIALIB_UPLOADER_APPLET"] = "Ir a carga masiva";
+$MESS["MEDIALIB_UPLOADER_CANCEL"] = "Cancelar";
+$MESS["MEDIALIB_UPLOADER_COUNT2"] = "Archivos seleccionados";
+$MESS["MEDIALIB_UPLOADER_DEL"] = "Eliminar";
+$MESS["MEDIALIB_UPLOADER_DESCRIPTION"] = "Descripción";
+$MESS["MEDIALIB_UPLOADER_DND"] = "Arrastre imágenes aquí";
+$MESS["MEDIALIB_UPLOADER_EDIT"] = "Editar";
+$MESS["MEDIALIB_UPLOADER_HAS_BEEN_UPLOADED"] = "Cargando";
+$MESS["MEDIALIB_UPLOADER_INTO"] = "Cargar a la colección";
+$MESS["MEDIALIB_UPLOADER_NORMAL"] = "Vista normal";
+$MESS["MEDIALIB_UPLOADER_SIMPLIFIED"] = "Vista simplificada";
+$MESS["MEDIALIB_UPLOADER_TITLE1"] = "Cargador HTML5";
+$MESS["MEDIALIB_UPLOADER_TITLE2"] = "Cargador Java";
+$MESS["MEDIALIB_UPLOADER_TURN"] = "Gire hacia la derecha";
+$MESS["MEDIALIB_UPLOADER_UPLOAD"] = "Cargar";
+$MESS["MEDIALIB_UPLOADER_UPLOAD1"] = "Cargar archivos";
+$MESS["MEDIALIB_UPLOADER_UPLOAD_FROM"] = "de";
+$MESS["ML_ADD_COL2ITEM"] = "Agregar elementos a la Nueva Colección";
+?>

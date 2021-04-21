@@ -1,0 +1,29 @@
+<?
+$MESS ['VOTE_C_SORT'] = "ลำดับ";
+$MESS ['VOTE_F_SITE'] = "เว็บไซต์:";
+$MESS ['VOTE_SITE'] = "เว็บไซต์";
+$MESS ['VOTE_PAGE_TITLE'] = "รายการการเชื่อมโยงโพล";
+$MESS ['VOTE_F_SID'] = "รหัสที่ใช้จดจำ:";
+$MESS ['VOTE_PAGES'] = "การเชื่อมโยง";
+$MESS ['VOTE_SID'] = "รหัสที่ใช้จดจำ";
+$MESS ['VOTE_CHANGE_CHANNEL'] = "แก้ไขการตั้งค่าการเชื่อมโยงโพล";
+$MESS ['VOTE_DELETE_CHANNEL'] = "ลบทั้งโพลที่เพิ่มและการเชื่อมโยงโพล";
+$MESS ['VOTE_CONFIRM_DEL_CHANNEL'] = "คุณต้องการลบโพลที่เพิ่มและการเชื่อมโยงโพลทั้งคู่หรือไม่?";
+$MESS ['VOTE_VOTES'] = "โพล";
+$MESS ['VOTE_TIMESTAMP'] = "ปรับปรุงเมื่อ";
+$MESS ['VOTE_F_ACTIVE'] = "ใช้งาน:";
+$MESS ['VOTE_FLT_ID'] = "Group ID";
+$MESS ['VOTE_FLT_SITES'] = "Site list";
+$MESS ['VOTE_FLT_ACTIVE'] = "Activity";
+$MESS ['VOTE_FLT_TITLE'] = "Title";
+$MESS ['VOTE_ADD_GROUP'] = "เพิ่ม a poll channel";
+$MESS ['VOTE_ADD_GROUP_TITLE'] = "คลิ๊กเพื่อเพิ่ม poll channel ใหม่";
+$MESS ['VOTE_SITE_EDIT'] = "ปรับปรุงการตั้งค่า";
+$MESS ['VOTE_OPEN_VOTES'] = "Open polls list";
+$MESS ['VOTE_ADD_VOTE'] = "เพิ่ม poll ไปยัง poll channel";
+$MESS ['VOTE_SAVE_ERROR'] = "พบข้อผิดพลาดในการบันทึกข้อมูล";
+$MESS ['VOTE_DELETE'] = "ลบ";
+$MESS ['VOTE_ACTIVATE'] = "ทำงาน";
+$MESS ['VOTE_DEACTIVATE'] = "ไม่ทำงาน";
+$MESS ['VOTE_EDIT_TITLE'] = "ปรับปรุงการตั้งค่า poll channel ";
+?>

@@ -1,0 +1,29 @@
+<?
+$MESS["PERFMON_OPTIONS_CACHE_LOG"] = "Entrar operações de cache";
+$MESS["PERFMON_OPTIONS_MAX_DISPLAY_URL"] = "O número máximo de caracteres de URL";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_LOG"] = "Log de consultas SQL lentos somente";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_NOTE"] = "Com esta opção marcada, as estatísticas e os avisos de páginas PHP \"rápidas\" não serão registadas.";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_TIME"] = "Limite de consultas lentas";
+$MESS["PERFMON_OPTIONS_SLOW_SQL_TIME_SEC"] = "seg.";
+$MESS["PERFMON_OPTIONS_SQL_BACKTRACE"] = "Log de SQL pilha de chamadas de consulta";
+$MESS["PERFMON_OPTIONS_SQL_LOG"] = "Log de consultas SQL";
+$MESS["PERFMON_OPTIONS_WARNING_LOG"] = "Log de avisos do PHP";
+$MESS["PERFMON_OPT_ACTIVE"] = "Status do Monitor atual";
+$MESS["PERFMON_OPT_ACTIVE_N"] = "Inválido";
+$MESS["PERFMON_OPT_ACTIVE_TO"] = "Ativo através";
+$MESS["PERFMON_OPT_ACTIVE_Y"] = "Ativado";
+$MESS["PERFMON_OPT_CLEAR_DATA"] = "Limpar estatísticas do monitor existentes (ao salvar este formulário)";
+$MESS["PERFMON_OPT_INTERVAL_1800_SEC"] = "durante 30 minutos";
+$MESS["PERFMON_OPT_INTERVAL_24_HOURS"] = "24 horas";
+$MESS["PERFMON_OPT_INTERVAL_300_SEC"] = "durante 5 minutos";
+$MESS["PERFMON_OPT_INTERVAL_3600_SEC"] = "durante 1 hora";
+$MESS["PERFMON_OPT_INTERVAL_4_HOURS"] = "4 horas";
+$MESS["PERFMON_OPT_INTERVAL_600_SEC"] = "durante 10 minutos";
+$MESS["PERFMON_OPT_INTERVAL_60_SEC"] = "por 1 minuto";
+$MESS["PERFMON_OPT_INTERVAL_7_DAYS"] = "semana";
+$MESS["PERFMON_OPT_INTERVAL_8_HOURS"] = "8 horas";
+$MESS["PERFMON_OPT_INTERVAL_NO"] = "não";
+$MESS["PERFMON_OPT_MINUTES"] = "#HOURS#:#MINUTES#:#SECONDS# (hrs:mins:secs)";
+$MESS["PERFMON_OPT_SET_ACTIVE"] = "Permitir monitorar";
+$MESS["PERFMON_OPT_SET_IN_ACTIVE"] = "Desativar monitor";
+?>

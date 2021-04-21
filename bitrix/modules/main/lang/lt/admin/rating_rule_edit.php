@@ -1,0 +1,24 @@
+<?
+$MESS["MAIN_RATING_RULE_EDIT_RECORD"] = "Redaguoti apdorojimo taisykles # #ID#";
+$MESS["MAIN_RATING_RULE_NEW_RECORD"] = "Nauja apdorojimo taisyklë";
+$MESS["RATING_RULE_LIST"] = "Taisyklë";
+$MESS["RATING_RULE_LIST_TITLE"] = "Perþiûrëti visas apdorojimo taisykles";
+$MESS["RATING_RULE_EDIT_ADD"] = "Nauja taisyklë";
+$MESS["RATING_RULE_EDIT_ADD_TITLE"] = "Sukurti naujà apdorjimo taisyklæ";
+$MESS["RATING_RULE_EDIT_DEL"] = "Paðalinti";
+$MESS["RATING_RULE_EDIT_DEL_TITLE"] = "Paðalinti";
+$MESS["RATING_RULE_EDIT_DEL_CONF"] = "Ar tikrai norite paðalinti ðià taisyklæ?";
+$MESS["RATING_RULE_EDIT_TAB_MAIN"] = "Pagrindiniai parametrai";
+$MESS["RATING_RULE_EDIT_TAB_MAIN_TITLE"] = "Pavadinimas, tikslinis objektas, bûklë ir veiksmas";
+$MESS["RATING_RULE_EDIT_FRM_ACTIVE"] = "Aktyvus:";
+$MESS["RATING_RULE_EDIT_FRM_NAME"] = "Pavadinimas:";
+$MESS["RATING_RULE_EDIT_FRM_TYPE_ID"] = "Tikslinis objektas:";
+$MESS["RATING_RULE_EDIT_CAT_HOW_ACTIVATE"] = "Aktyvinimas";
+$MESS["RATING_RULE_EDIT_CAT_WHAT_DO"] = "Veiksmas";
+$MESS["RATING_RULE_EDIT_SUCCESS"] = "Áraðas buvo sekmingai áraðytas.";
+$MESS["RATING_RULE_EDIT_ERROR"] = "Klaida áraðant áraðà.";
+$MESS["RATING_RULE_DEF_NAME"] = "Nauja apdorojimo taisyklë";
+$MESS["RATING_RULE_EDIT_FRM_CONDITION_NAME"] = "Bûklë";
+$MESS["RATING_RULE_EDIT_FRM_ACTION_NAME"] = "Veiksmas";
+$MESS["RATING_RULE_EDIT_FRM_ACTION_DESC"] = "Veiksmas bus vykdomas, jei bûklë bus teisinga. <br>Veiksmas bus atðauktas, jei bûklë taps neteisinga.";
+?>

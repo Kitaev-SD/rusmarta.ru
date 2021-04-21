@@ -1,0 +1,35 @@
+<?
+$MESS["TITLE"] = "Modulio valdymas";
+$MESS["MOD_SETUP"] = "Statusas";
+$MESS["MOD_ACTION"] = "Veiksmas";
+$MESS["MOD_NAME"] = "Pavadinimas";
+$MESS["MOD_VERSION"] = "Versija";
+$MESS["SAVE"] = "Iðsaugoti pakeitimus";
+$MESS["RESET"] = "Iðvalyti";
+$MESS["MOD_INSTALL"] = "Ádiegti";
+$MESS["MOD_INSTALL_BUTTON"] = "Ádiegti";
+$MESS["MOD_DELETE"] = "Iðtrinti";
+$MESS["MOD_INSTALLED"] = "Ádiegta";
+$MESS["MOD_NOT_INSTALLED"] = "Neádiegta";
+$MESS["MOD_MAIN_MODULE"] = "Pagrindinis modulis";
+$MESS["MOD_MAIN_DESCRIPTION"] = "Sistemos „Bitrix Site Manager“ branduolys su sistemos autnaujininø galimybe #A1#\\\"SiteUpdate\\\"#A2#.";
+$MESS["MOD_DATE_UPDATE"] = "Atnaujinimo data";
+$MESS["MOD_UNINST_WARN"] = "Dëmesio!<br>Modulis bus paðalintas ið sistemos";
+$MESS["MOD_UNINST_SAVE"] = "Jûs galite iðsaugoti duomenis duomenø bazës lentelëse:";
+$MESS["MOD_UNINST_SAVE_TABLES"] = "Iðsaugoti lenteles";
+$MESS["MOD_UNINST_SAVE_EVENTS"] = "Iðsaugoti preneðimø tipus ir ðablonus";
+$MESS["MOD_UNINST_DEL"] = "Iðtrinti modulá";
+$MESS["MOD_UNINST_OK"] = "Modulis sëkmingai iðtrintas";
+$MESS["MOD_BACK"] = "Gráþti á sàraðà";
+$MESS["MOD_UNINST_ERR"] = "Nepavyko iðtrinti. Ávyko klaida. :";
+$MESS["MOD_INST_ERR"] = "Diegimo klaidos:";
+$MESS["MOD_INST_OK"] = "Modulis sëkmingai ádiegtas";
+$MESS["COPY_PUBLIC_FILES"] = "Kopijuoti tinklapio vieðosios dalies bylas";
+$MESS["COPY_FOLDER"] = "Katalogas, kur bus nukopijuotos bylos:";
+$MESS["INSTALL_PUBLIC_REW"] = "Perraðyti esamas bylas";
+$MESS["MOD_DEMO_DIR"] = "Norëdami perþiûrëti darbà, spauskite ðias nuorodas:";
+$MESS["MOD_DEMO_SITE"] = "Svetainë";
+$MESS["MOD_DEMO_LINK"] = "Nuoroda";
+$MESS["MOD_PARTNER_NAME"] = "Ámonë <a target='_blank' href='#URI#'>#NAME#</a>";
+$MESS["MOD_UNINST_DEN"] = "Ðis modulis negali bûti ádiegtas.";
+?>

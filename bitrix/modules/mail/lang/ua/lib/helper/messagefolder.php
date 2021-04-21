@@ -1,0 +1,3 @@
+<?
+$MESS["MAIL_CLIENT_INBOX_ALIAS"] = "Âõ³äí³";
+?>

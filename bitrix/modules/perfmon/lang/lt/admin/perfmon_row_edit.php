@@ -1,0 +1,17 @@
+<?
+$MESS["PERFMON_ROW_EDIT_MODULE_ERROR"] = "Klaida jungiantis prie veiklos modulio.";
+$MESS["PERFMON_ROW_EDIT_TABLE_ERROR"] = "Nurodyta lentelë (#TABLE_NAME#) neegzistuoja.";
+$MESS["PERFMON_ROW_EDIT_PK_ERROR"] = "Ðiø rakto reikðmiø nepakanka vienareikðmiðkam áraðø identifikavimui.";
+$MESS["PERFMON_ROW_EDIT_NOT_FOUND"] = "Áraðas nerastas.";
+$MESS["PERFMON_ROW_EDIT_SAVE_ERROR"] = "Duomenø iðsaugojimo klaida.";
+$MESS["PERFMON_ROW_EDIT_TITLE"] = "Redaguoti áraðà: #TABLE_NAME#";
+$MESS["PERFMON_ROW_EDIT_MENU_LIST_TITLE"] = "Gráþti prie lentelës áraðø";
+$MESS["PERFMON_ROW_EDIT_TAB"] = "Áraðai";
+$MESS["PERFMON_ROW_EDIT_TAB_TITLE"] = "Redaguoti áraðà lentelëje #TABLE_NAME#";
+$MESS["PERFMON_ROW_CACHE_TAB"] = "Valdoma talpykla";
+$MESS["PERFMON_ROW_CACHE_TAB_TITLE"] = "Valdomos talpyklos atstatymo parametrai";
+$MESS["PERFMON_ROW_CACHE_CLEAR"] = "Atstatyti valdomà talpyklà";
+$MESS["PERFMON_ROW_EDIT_MENU_DELETE"] = "Iðtrinti";
+$MESS["PERFMON_ROW_EDIT_MENU_DELETE_TITLE"] = "Iðtrinti áraðà";
+$MESS["PERFMON_ROW_EDIT_MENU_DELETE_CONF"] = "Ar tikrai norite iðtrinti ðá áraðà?";
+?>

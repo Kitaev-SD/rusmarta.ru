@@ -1,0 +1,34 @@
+<?
+$MESS["SAPE1_NO_SITE"] = "Nenurodyta plano svetainë";
+$MESS["SAPE1_NO_NAME"] = "Nenurodytas plano pavadinimas";
+$MESS["SAPE1_NO_RATE_CURRENCY"] = "Nenurodyta plano tarifo valiuta";
+$MESS["SAPE1_NO_SECTION"] = "Nenurodyta prekiø grupë";
+$MESS["SAPE1_NO_MODULE"] = "Nenurodytas prekiø grupës modulis";
+$MESS["SAPE1_ERROR_SAVE"] = "Klaida iğsaugant planà";
+$MESS["SAPE1_ERROR_SAVE_SECTION"] = "Klaida iğsaugant plano prekiø grupæ";
+$MESS["SAPE1_TITLE_UPDATE"] = "Redaguoti planà #ID#";
+$MESS["SAPE1_TITLE_ADD"] = "Naujas planas";
+$MESS["SAPE1_LIST"] = "Planai";
+$MESS["SAPE1_ADD"] = "Naujas planas";
+$MESS["SAPE1_DELETE"] = "Pağalinti planà";
+$MESS["SAPE1_DELETE_CONF"] = "Ar tikrai norite pağalinti ğá planà?";
+$MESS["SAPE1_PLAN"] = "Planas";
+$MESS["SAPE1_PLAN_PARAM"] = "Plano parametrai";
+$MESS["SAPE1_SECTIONS"] = "Prekiø grupës";
+$MESS["SAPE1_SECTIONS_ALT"] = "Specialaus tarifo prekiø grupës";
+$MESS["SAPE1_TIMESTAMP_X"] = "Paskutinio pakeitimo data:";
+$MESS["SAPE1_SITE"] = "Svetainë:";
+$MESS["SAPE1_NAME"] = "Plano pavadinimas:";
+$MESS["SAPE1_DESCR"] = "Plano aprağymas:";
+$MESS["SAPE1_ACTIVE"] = "Aktyvus:";
+$MESS["SAPE1_RATE"] = "Tarifas:";
+$MESS["SAPE1_LIMIT"] = "Planas yra aktyvus pardavimams virğ (vnt.)";
+$MESS["SAPE1_LIMIT_HINT"] = "Planas yra aktyvus pardavimams su suma virğ <br><small>svetainës bazine valiuta</small>";
+$MESS["SAPE1_NO"] = "(Ne)";
+$MESS["SAPE1_DELETE1"] = "Pağalinti";
+$MESS["SAPE1_MODULE"] = "Modulis";
+$MESS["SAPE1_SECTION"] = "Grupë";
+$MESS["SAPE1_RATE1"] = "Tarifas";
+$MESS["SAPE1_ADD1"] = "Pridëti";
+$MESS["SAPE1_DELETE1_CONF"] = "Ar tikrai norite pağalinti ğá árağà?";
+?>

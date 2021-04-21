@@ -1,0 +1,8 @@
+<?
+$MESS['BLOG_MODULE_NOT_INSTALL'] = 'Tinklaraðèiø modulis nëra ádiegtas';
+$MESS['BLOG_ERR_NO_RIGHTS'] = 'Klaida! Jums nesuteiktos teisës raðyti tinklaraðtyje';
+$MESS['BLOG_ERR_NO_BLOG'] = 'Klaida! Tinklaraðèio nerasta';
+$MESS['BLOG_USER_GROUP_TITLE'] = 'Tinklaraðèiø naudotojø grupës';
+$MESS['BLOG_GROUP_EXIST_1'] = 'Grupë';
+$MESS['BLOG_GROUP_EXIST_2'] = 'jau egzistuoja.';
+?>

@@ -1,0 +1,33 @@
+<?
+$MESS["VOTE_ACTIVE_RED_LAMP"] = "A pesquisa expirou.";
+$MESS["VOTE_EDIT_ACCESS_IS_DENIED"] = "Sem permissão para editar a pesquisa.";
+$MESS["VOTE_EDIT_TITLE"] = "Modificar as configurações de pesquisa";
+$MESS["VOTE_IS_NOT_EXPECTED"] = "O resultado da pesquisa não corresponde ao resultado salvo.";
+$MESS["VOTE_IS_NOT_FOUND"] = "A pesquisa não foi encontrada.";
+$MESS["VOTE_NOTIFY"] = "Notificar o autor em cada voto:";
+$MESS["VOTE_NOTIFY_EMAIL"] = "Sim, por e-mail";
+$MESS["VOTE_NOTIFY_IM"] = "Sim, por mensagem instantânea (Módulo de Mensagem Instantânea (im))";
+$MESS["VOTE_NOTIFY_N"] = "Não notificar";
+$MESS["VOTE_NOT_ACTIVE"] = "A pesquisa está inativa.";
+$MESS["VOTE_READ_ACCESS_IS_DENIED"] = "Sem permissão para ver a pesquisa.";
+$MESS["VOTE_VOTES"] = "Votos: ";
+$MESS["VT_UNKNOWN_ERROR_ADD_VOTE"] = "Erro desconhecido (pesquisa).";
+$MESS["V_CHANNEL_ID_COLON"] = "Grupo de pesquisa:";
+$MESS["V_CHANNEL_ID_EDIT"] = "editar";
+$MESS["V_CHANNEL_ID_SYMBOLIC_NAME"] = "ID Simbólico:";
+$MESS["V_CHANNEL_ID_TITLE"] = "Título:";
+$MESS["V_CHANNEL_ID_USE_CAPTCHA"] = "Usar CAPTCHA";
+$MESS["V_DAYS"] = "dias";
+$MESS["V_HOURS"] = "horas";
+$MESS["V_MINUTES"] = "minutos";
+$MESS["V_NEW_CHANNEL"] = "Novo grupo de pesquisa";
+$MESS["V_SECONDS"] = "segundos";
+$MESS["V_UNIQUE"] = "Negar votos repetidos:";
+$MESS["V_UNIQUE_COOKIE_ONLY"] = "com o mesmo cookie";
+$MESS["V_UNIQUE_IP_DELAY"] = "Negar votos repetidos do mesmo IP para:";
+$MESS["V_UNIQUE_IP_ONLY"] = "numa base IP";
+$MESS["V_UNIQUE_SESSION"] = "dentro da mesma sessão";
+$MESS["V_UNIQUE_USER_ID_NEW"] = "Rejeitar votos de usuários registrados depois de iniciada pesquisa";
+$MESS["V_UNIQUE_USER_ID_ONLY"] = "para cada ID de usuário";
+$MESS["V_USER_TYPE_DESCRIPTION"] = "Pesquisa";
+?>

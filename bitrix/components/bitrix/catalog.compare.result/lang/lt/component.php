@@ -1,0 +1,7 @@
+<?
+$MESS["IBLOCK_MODULE_NOT_INSTALLED"] = "Informaciniø blokø modulis nëra ádiegtas";
+$MESS["CATALOG_COMPARE_LIST_EMPTY"] = "Palyginimo elementø sàraðas tuðèias";
+$MESS["CATALOG_ERROR2BASKET"] = "Klaida ádedant prekæ á krepðelá";
+$MESS["CP_BCCR_ERR_MESS_PRODUCT_NOT_FOUND"] = "Prekë nerasta.";
+$MESS["CP_BCCR_MESS_SUCCESSFUL_ADD_TO_COMPARE"] = "Prekë pridëta á palyginimo sàraðà";
+?>

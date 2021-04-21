@@ -1,0 +1,9 @@
+<?
+$MESS["CLO_STORAGE_SEARCH_TITLE"] = "PAsirinkti bylà debesø saugykloje";
+$MESS["CLO_STORAGE_SEARCH_BUCKET"] = "Debesø saugyklà";
+$MESS["CLO_STORAGE_SEARCH_CHOOSE_BUCKET"] = "Pasirinkti debesø saugyklà";
+$MESS["CLO_STORAGE_SEARCH_PATH"] = "Kelias";
+$MESS["CLO_STORAGE_SEARCH_NAME"] = "Pavadinimas";
+$MESS["CLO_STORAGE_SEARCH_SIZE"] = "Dydis";
+$MESS["CLO_STORAGE_SEARCH_LIST_ERROR"] = "Nepavyko gauti bylø sàraðà.";
+?>

@@ -1,0 +1,4 @@
+<?
+$MESS["LANDING_HOOK_DETAIL_HELP"] = "ƒетальн≥ше";
+$MESS["LANDING_HOOK_GTM_PLACEHOLDER"] = "¬вед≥ть ID";
+?>

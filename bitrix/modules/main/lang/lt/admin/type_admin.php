@@ -1,0 +1,30 @@
+<?
+$MESS["TITLE"] = "Siøsti ávykiø tipus";
+$MESS["SAVE_ERROR"] = "Klaida keièiant ávykio tipà #";
+$MESS["DELETE_ERROR"] = "Klaida ðalinant ávykio tipà";
+$MESS["F_FILTER"] = "Filtras";
+$MESS["ACTIVE"] = "Aktyvus";
+$MESS["LANG"] = "Kalba";
+$MESS["EVENT_TYPE"] = "Tipas";
+$MESS["EVENT_NAME"] = "Pavadinimas";
+$MESS["EVENT_DESCRIPTION"] = "Apraðymas";
+$MESS["EVENT_TEMPLATES"] = "Ðablonai";
+$MESS["SORT"] = "Rûðiavimas";
+$MESS["ADD_TYPE"] = "Pridëti tipà";
+$MESS["ADD_TYPE_TITLE"] = "Pridëti el. paðto ávykio tipà";
+$MESS["DELETE_LANG"] = "Iðvalyti";
+$MESS["CONFIRM_DEL_MESSAGE"] = "Ar tikrai norite paðalinti kalbos parametrus el. paðto ávykio tipui?";
+$MESS["CONFIRM_DEL_ALL_MESSAGE"] = "Ar tikrai norite paðalinti esamà tipà, áskaitant ðablonus?";
+$MESS["F_ID"] = "Identifikatorius";
+$MESS["F_SEARCH"] = "Paieðka";
+$MESS["F_SEARCH_TITLE"] = "Áveskite paieðkos eilutæ ";
+$MESS["F_EVENT_NAME"] = "El. paðto ávykio tipas";
+$MESS["F_NAME"] = "Tipo pavadinimas";
+$MESS["F_DESCRIPTION"] = "Tipo apraðymas";
+$MESS["F_TYPE"] = "el. paðto ávykio tipas";
+$MESS["F_TMPL"] = "ðablonas";
+$MESS["PAGES"] = "Ávykiø tipai";
+$MESS["type_admin_edit_title"] = "Redaguoti el. paðto ávyká";
+$MESS["MAIN_ADMIN_MENU_EDIT"] = "Redaguoti ";
+$MESS["MAIN_ADMIN_MENU_DELETE"] = "Paðalinti";
+?>

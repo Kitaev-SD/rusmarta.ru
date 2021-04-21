@@ -1,0 +1,30 @@
+<?
+$MESS["F_URL_TEMPLATES"] = "Tinklapiø URL administravimas";
+$MESS["F_READ_TEMPLATE"] = "Temø skaitymo puslapis";
+$MESS["F_PROFILE_TEMPLATE"] = "Profilio redagavimo puslapis";
+$MESS["F_USER_LIST_TEMPLATE"] = "Registruotø forumo naudotojø sàraðo puslapis.";
+$MESS["F_PM_LIST_TEMPLATE"] = "Asmeniniø þinuèiø puslapis";
+$MESS["F_MESSAGE_SEND_TEMPLATE"] = "Praneðimø siuntimo puslapis";
+$MESS["F_DEFAULT_UID"] = "Naudotojo ID";
+$MESS["F_USER_POST_TEMPLATE"] = "Naudotojø praneðimø puslapis ";
+$MESS["F_DATE_FORMAT"] = "Datos atvaizdavimo formatas";
+$MESS["F_DATE_TIME_FORMAT"] = "Datos ir laiko atvaizdavimo formatas";
+$MESS["F_SET_NAVIGATION"] = "Rodyti navigacijà";
+$MESS["USER_PROPERTY"] = "Atvaizduoti papildomas savybes";
+$MESS["F_FID_RANGE"] = "Forumo ID";
+$MESS["F_MESSAGE_TEMPLATE"] = "Praneðimø skaitymo puslapis";
+$MESS["F_PM_EDIT_TEMPLATE"] = "Asmeniniø þinuèiø puslapis";
+$MESS["F_SUBSCR_LIST_TEMPLATE"] = "Prenumeratos puslapis";
+$MESS["F_SEND_MAIL"] = "Galima siøsti el. laiðkà ið ðio profilio";
+$MESS["F_SEND_ICQ"] = "Kam rodyti ICQ numerá";
+$MESS["F_RATING_SETTINGS"] = "Vertinimo parametrai";
+$MESS["F_RATING_ID"] = "Vertinimas";
+$MESS["SHOW_RATING"] = "Rodyti vertinimà";
+$MESS["SHOW_RATING_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE"] = "Reitingo mygtuko dizainas";
+$MESS["RATING_TYPE_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Patinka/nepatinka (tekstas)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Patinka/nepatinka (vaizdas)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Patinka (tekstas)";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Patinka (vaizdas)";
+?>

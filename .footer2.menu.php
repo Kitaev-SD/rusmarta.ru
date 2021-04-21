@@ -1,0 +1,60 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Каталог", 
+		"/market/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Видеоглазки", 
+		"/market/videoglazki/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"GSM Розетки", 
+		"/market/gsm_rozetka/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"GSM Сигнализации", 
+		"/market/gsm_signalizacii1/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Видеонаблюдение", 
+		"/market/videonablyudenie/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"GPS Трекеры Маяки", 
+		"/market/gps-trekkery1/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Видеодомофоны", 
+		"/market/videodomofony1/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Источники питания", 
+		"/market/istochniki-pitaniya/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

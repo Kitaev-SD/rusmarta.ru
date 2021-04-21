@@ -1,0 +1,3 @@
+<?
+$MESS["IBLOCK_PROP_HTML_DESCRIPTION_LABEL"] = "توضیحات";
+?>

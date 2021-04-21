@@ -1,0 +1,5 @@
+<?
+$MESS['SPCL_DEFAULT_TEMPLATE_NAME'] = 'Kredito korteliø sàraðas dabartiniam vartotojui';
+$MESS['SPCL_DEFAULT_TEMPLATE_DESCRIPTION'] = 'Rodo kredito korteliø sàraðà dabartiniam vartotojui';
+$MESS['SPCL_NAME'] = 'Kredito korteliø sàraðas dabartiniam vartotojui';
+?>

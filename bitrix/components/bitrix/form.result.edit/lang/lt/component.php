@@ -1,0 +1,23 @@
+<?
+$MESS['FORM_ACCESS_DENIED'] = 'Jûs neturite teisiø perþiûrëti formà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM'] = 'Jûs neturite teisiø perþiûrëti formà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM_RESULTS'] = 'Jûs neturite teisiø perþiûrëti ðá rezultatà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM_RESULTS_EDITING'] = 'Jûs neturite teisiø redaguoti ðá rezultatà.';
+$MESS['FORM_ACCESS_DENIED_FOR_FORM_WRITE'] = 'Jûs neturite teisiø uþpildyti formà.';
+$MESS['FORM_INCORRECT_DATE_FORMAT'] = 'Neteisingas datos formatas laukui \"#FIELD_NAME#\".';
+$MESS['FORM_INCORRECT_FILE_TYPE'] = 'Neteisingas bylos tipas laukui \"#FIELD_NAME#\" (bylà reikia pasirinkti ið naujo).';
+$MESS['FORM_EMPTY_REQUIRED_FIELDS'] = 'Neuþpildyti ðie bûtini laukai:';
+$MESS['FORM_INCORRECT_FORM_ID'] = 'Neteisingas formos ID.';
+$MESS['FORM_PUBLIC_ICON_EDIT'] = 'Redaguoti web formos parametrus';
+$MESS['FORM_PUBLIC_ICON_EDIT_TPL'] = 'Redaguoti web formos ðablonà';
+$MESS['FORM_DATA_SAVED'] = 'Pakeitimai iðsaugoti';
+$MESS['FORM_VIEW_FILE'] = 'Failo perþiûra';
+$MESS['FORM_DELETE_FILE'] = 'Ðalinti';
+$MESS['FORM_DOWNLOAD_FILE'] = 'Parsisiøsti failà #FILE_NAME#';
+$MESS['FORM_DOWNLOAD'] = 'parsisiøsti';
+$MESS['FORM_RECORD_NOT_FOUND'] = 'Áraðas nerastas';
+$MESS['FORM_RESULT_ACCESS_DENIED'] = 'Prieigos nëra';
+$MESS['FORM_MODULE_NOT_INSTALLED'] = 'Web formø modulis nëra ádiegtas';
+$MESS['FORM_NOTE_ADDOK'] = 'Aèiû! Jûsø uþklausimas #RESULT_ID# priimtas. ';
+$MESS['FORM_NOTE_EDITOK'] = 'Pakeitimai iðsaugoti';
+?>

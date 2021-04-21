@@ -1,0 +1,31 @@
+<?
+$MESS ['calend_title'] = "Kalendorius";
+$MESS ['calend_feb'] = "Vasaris";
+$MESS ['calend_mar'] = "Kovas";
+$MESS ['calend_may'] = "Geguþë";
+$MESS ['calend_jun'] = "Birþelis";
+$MESS ['calend_sep'] = "Rugsëjis";
+$MESS ['calend_okt'] = "Spalis";
+$MESS ['calend_nov'] = "Lapkritis";
+$MESS ['calend_prev_mon'] = "Ankstesnis mënuo";
+$MESS ['calend_per_mon'] = "Laikotarpis: mënuo";
+$MESS ['calend_next_mon'] = "Kitas mënuo";
+$MESS ['calend_prev_year'] = "Ankstesni metai";
+$MESS ['calend_next_year'] = "Ateinantys metai";
+$MESS ['calend_curr'] = "Rodyti ðá mënesá";
+$MESS ['calend_mo'] = "P";
+$MESS ['calend_we'] = "T";
+$MESS ['calend_th'] = "K";
+$MESS ['calend_fr'] = "P";
+$MESS ['calend_sa'] = "Ð";
+$MESS ['calend_su'] = "S";
+$MESS ['calend_per_week'] = "Laikotarpis: savaitë";
+$MESS ['calend_date'] = "Áraðyti datà";
+$MESS ['calend_jan'] = "Sausis";
+$MESS ['calend_apr'] = "Balandis";
+$MESS ['calend_jul'] = "Liepa";
+$MESS ['calend_aug'] = "Rugpjûtis";
+$MESS ['calend_des'] = "Gruodis";
+$MESS ['calend_per_year'] = "Laikotarpis: metai";
+$MESS ['calend_tu'] = "A";
+?>

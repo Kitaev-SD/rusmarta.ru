@@ -1,0 +1,31 @@
+<?
+$MESS["LANDING_CMP_COLOR_AZURE"] = "Azul";
+$MESS["LANDING_CMP_COLOR_BLACK"] = "Negro";
+$MESS["LANDING_CMP_COLOR_BLUE"] = "Azul";
+$MESS["LANDING_CMP_COLOR_BROWN"] = "Café";
+$MESS["LANDING_CMP_COLOR_FLOWERS"] = "Negro, blanco y flores";
+$MESS["LANDING_CMP_COLOR_GREEN"] = "Verde";
+$MESS["LANDING_CMP_COLOR_JEANS"] = "Índigo";
+$MESS["LANDING_CMP_COLOR_ORANGERED"] = "Rojo anaranjado";
+$MESS["LANDING_CMP_COLOR_PINK"] = "Rosa";
+$MESS["LANDING_CMP_COLOR_PURPLE"] = "Púrpura";
+$MESS["LANDING_CMP_COLOR_RED"] = "Rojo";
+$MESS["LANDING_CMP_COLOR_REDBLUE"] = "Rojo y azul";
+$MESS["LANDING_CMP_COLOR_SEE"] = "Cian";
+$MESS["LANDING_CMP_COLOR_WHITE"] = "Blanco";
+$MESS["LANDING_CMP_ERROR_MASTER_NO_DATA"] = "Sin datos para importar";
+$MESS["LANDING_CMP_ERROR_MASTER_NO_SERVICE"] = "El servicio de importación no está disponible en este momento";
+$MESS["LANDING_CMP_LD_ERROR_UNKNOWN_STEP_ID"] = "Paso de creación del catálogo desconocido";
+$MESS["LANDING_CMP_LD_MESS_CATALOG_UPDATE"] = "Actualizando los parámetros del catálogo comercial...";
+$MESS["LANDING_CMP_LD_MESS_DATA_PREPARE"] = "Preparando los datos...";
+$MESS["LANDING_CMP_LD_MESS_IMPORT_COMPLETE"] = "El catálogo de productos se creó exitosamente";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_COMPLETE"] = "Los productos se importaron exitosamente";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFERS_COMPLETE"] = "Los SKU se importaron correctamente";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFERS_PROGRESS"] = "Importando los SKU...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFER_PRICES_COMPLETE"] = "Los SKU de los precios se importaron correctamente";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFER_PRICES_PROGRESS"] = "Importando el SKU de precios...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_PRICES_COMPLETE"] = "Los precios de los productos se importaron exitosamente";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_PRICES_PROGRESS"] = "Importando los precios de los productos...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_PROGRESS"] = "Importando productos...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_COMPLETE"] = "Se importaron los datos del producto";
+?>

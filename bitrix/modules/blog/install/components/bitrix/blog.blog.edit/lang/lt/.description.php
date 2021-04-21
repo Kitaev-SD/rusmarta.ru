@@ -1,0 +1,5 @@
+<?
+$MESS['BBE_DEFAULT_TEMPLATE_NAME'] = 'Tinklaraðèio redagavimas';
+$MESS['BBE_DEFAULT_TEMPLATE_DESCRIPTION'] = 'Redaguoti tinklaraðèio nustatymus bei parametrus';
+$MESS['BBE_NAME'] = 'Tinklaraðèiai';
+?>

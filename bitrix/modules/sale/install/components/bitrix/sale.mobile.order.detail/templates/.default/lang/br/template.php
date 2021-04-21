@@ -1,0 +1,31 @@
+<?
+$MESS["DOWN_TEXT"] = "Solte para atualizar...";
+$MESS["LOAD_TEXT"] = "Atualizando...";
+$MESS["PULL_TEXT"] = "Aperte para atualizar...";
+$MESS["SMOD_ACCOUNT"] = "Pagar da conta interna";
+$MESS["SMOD_ALLOW"] = "Autorizada";
+$MESS["SMOD_ALLOW_DELIVERY"] = "Aprovar envio";
+$MESS["SMOD_BACK"] = "Voltar";
+$MESS["SMOD_BUDGET"] = "Conta";
+$MESS["SMOD_CANCEL"] = "Cancelar pedido";
+$MESS["SMOD_CANCEL_CANCEL"] = "Não cancelar o pedido";
+$MESS["SMOD_CANCEL_REASON"] = "Razão";
+$MESS["SMOD_CHANGE_STATUS"] = "Modificar status";
+$MESS["SMOD_DEDUCT"] = "Comprando";
+$MESS["SMOD_DEDUCT_UNDO"] = "Cancelar compra";
+$MESS["SMOD_DELIVERY"] = "Entrega";
+$MESS["SMOD_DISALLOW"] = "Não autorizada";
+$MESS["SMOD_D_STATUS"] = "Modificar status";
+$MESS["SMOD_INSUFF_BUDGET"] = "Não ha fundos suficientes em sua conta interna para fazer o pagamento";
+$MESS["SMOD_ORDER_DEDUCT"] = "Ordem de Compra";
+$MESS["SMOD_ORDER_N"] = "Pedido #";
+$MESS["SMOD_PAY"] = "Pagar";
+$MESS["SMOD_PAYMENT"] = "Pagamento";
+$MESS["SMOD_PAY_BACK"] = "Mover o dinheiro de volta para a conta interna";
+$MESS["SMOD_PAY_CANCEL"] = "Cancelar pagamento";
+$MESS["SMOD_PAY_CONFIRM"] = "Confirmar pagamento";
+$MESS["SMOD_PAY_FOR_ORDER"] = "Pagar o pedido";
+$MESS["SMOD_SAVE"] = "Salvar";
+$MESS["SMOD_STATUS"] = "Status do pedido";
+$MESS["SMOD_USER_ACCESSIBLE"] = "Visível ao cliente";
+?>

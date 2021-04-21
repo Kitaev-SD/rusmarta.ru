@@ -1,0 +1,31 @@
+<?
+$MESS["IBLOCK_ENTITY_ID_FIELD"] = "ID";
+$MESS["IBLOCK_ENTITY_TIMESTAMP_X_FIELD"] = "Modificado em";
+$MESS["IBLOCK_ENTITY_IBLOCK_TYPE_ID_FIELD"] = "Tipo bloco de informação";
+$MESS["IBLOCK_ENTITY_CODE_FIELD"] = "Código simbólico ";
+$MESS["IBLOCK_ENTITY_NAME_FIELD"] = "Nome ";
+$MESS["IBLOCK_ENTITY_ACTIVE_FIELD"] = "Ativo";
+$MESS["IBLOCK_ENTITY_SORT_FIELD"] = "Ordenar";
+$MESS["IBLOCK_ENTITY_LIST_PAGE_URL_FIELD"] = "Página bloco de informação URL";
+$MESS["IBLOCK_ENTITY_DETAIL_PAGE_URL_FIELD"] = "Página Detalhes da URL";
+$MESS["IBLOCK_ENTITY_SECTION_PAGE_URL_FIELD"] = "Página Seção URL";
+$MESS["IBLOCK_ENTITY_PICTURE_FIELD"] = "Imagem";
+$MESS["IBLOCK_ENTITY_DESCRIPTION_FIELD"] = "Descrição";
+$MESS["IBLOCK_ENTITY_DESCRIPTION_TYPE_FIELD"] = "Tipo de descrição";
+$MESS["IBLOCK_ENTITY_XML_ID_FIELD"] = "ID Externo";
+$MESS["IBLOCK_ENTITY_TMP_ID_FIELD"] = "ID Temporário ";
+$MESS["IBLOCK_ENTITY_INDEX_ELEMENT_FIELD"] = "Adicionar itens para pesquisar o índice";
+$MESS["IBLOCK_ENTITY_INDEX_SECTION_FIELD"] = "Adicione seções para pesquisar índice";
+$MESS["IBLOCK_ENTITY_WORKFLOW_FIELD"] = "Habilitar o fluxo de documentos";
+$MESS["IBLOCK_ENTITY_BIZPROC_FIELD"] = "Usar em processos de negócios";
+$MESS["IBLOCK_ENTITY_LIST_MODE_FIELD"] = "Seção e modo de exibição do elemento";
+$MESS["IBLOCK_ENTITY_RIGHTS_MODE_FIELD"] = "Modo de permissão de acesso";
+$MESS["IBLOCK_ENTITY_VERSION_FIELD"] = "Configurações de armazenamento de propriedade";
+$MESS["IBLOCK_ENTITY_LAST_CONV_ELEMENT_FIELD"] = "Último elemento convertido";
+$MESS["IBLOCK_ENTITY_SOCNET_GROUP_ID_FIELD"] = "Grupo de rede social";
+$MESS["IBLOCK_ENTITY_EDIT_FILE_BEFORE_FIELD"] = "Elemento Editar de arquivos que permite atualizar os campos antes de salvar";
+$MESS["IBLOCK_ENTITY_EDIT_FILE_AFTER_FIELD"] = "Arquivo que contém a forma de editar elemento";
+$MESS["IBLOCK_ENTITY_SECTION_CHOOSER_FIELD"] = "Elemento de controle-a-seção de ligação";
+$MESS["IBLOCK_ENTITY_SECTION_PROPERTY_FIELD"] = "Tenha propriedades privadas";
+$MESS["IBLOCK_ENTITY_CANONICAL_PAGE_URL_FIELD"] = "URL de elemento canonical";
+?>

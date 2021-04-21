@@ -1,0 +1,32 @@
+<?
+$MESS["TSBS_READY"] = "Prekës jûsø prekiø krepðelyje:";
+$MESS["TSBS_PRICE"] = "Kaina:";
+$MESS["TSBS_QUANTITY"] = "Kiekis:";
+$MESS["TSBS_2BASKET"] = "Keisti kieká";
+$MESS["TSBS_2ORDER"] = "Uþsakymas";
+$MESS["TSBS_DELAY"] = "Atidëti:";
+$MESS["TSBS_UNAVAIL"] = "Ðiuo metu nëra:";
+$MESS["TSBS_SUBSCRIBE"] = "Prenumerata:";
+$MESS["SALE_NAME"] = "Pavadinimas";
+$MESS["SALE_PROPS"] = "Savybës";
+$MESS["SALE_PRICE"] = "Kaina";
+$MESS["SALE_TYPE"] = "Kainos tipas";
+$MESS["SALE_QUANTITY"] = "Kiekis";
+$MESS["SALE_SUM"] = "Suma";
+$MESS["SALE_DELETE"] = "Paðalinti";
+$MESS["SALE_DELAY"] = "Atidëti";
+$MESS["SALE_ADD_TO_BASKET"] = "Á krepðelá";
+$MESS["SALE_WEIGHT"] = "Svoris";
+$MESS["SALE_TOTAL_WEIGHT"] = "Bendras svoris:";
+$MESS["SALE_WEIGHT_G"] = "g";
+$MESS["SALE_DELAYED_TITLE"] = "Atidëta";
+$MESS["SALE_UNAVAIL_TITLE"] = "Ðiuo metu nëra";
+$MESS["STB_ORDER_PROMT"] = "Spustelëkite „Pirkti“, jei norite uþbaigti savo uþsakymà";
+$MESS["STB_COUPON_PROMT"] = "Jei turite specialø kupono kodà ir norite gauti nuolaidà, áveskite já èia:";
+$MESS["SALE_VAT"] = "Mokestis:";
+$MESS["SALE_VAT_EXCLUDED"] = "Bendra kaina:";
+$MESS["SALE_VAT_INCLUDED"] = "Su mokesèiu:";
+$MESS["SALE_TOTAL"] = "Viso:";
+$MESS["SALE_CONTENT_DISCOUNT"] = "Nuolaida";
+$MESS["SALE_DISCOUNT"] = "Nuolaida";
+?>

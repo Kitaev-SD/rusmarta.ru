@@ -1,0 +1,20 @@
+<?php
+$MESS["SPOD_ACCOUNT"] = "Conta";
+$MESS["SPOD_ACCOUNT_DATA"] = "Informações da sua conta";
+$MESS["SPOD_ALREADY_PAID"] = "já pago";
+$MESS["SPOD_DELIVERY"] = "Custo de entrega";
+$MESS["SPOD_DISCOUNT"] = "Desconto";
+$MESS["SPOD_EMAIL"] = "endereço de e-mail";
+$MESS["SPOD_FROM"] = "&nbsp;&nbsp;de";
+$MESS["SPOD_LIST_LESS"] = "ocultar";
+$MESS["SPOD_LOGIN"] = "Login";
+$MESS["SPOD_NAME"] = "Nome";
+$MESS["SPOD_NONE"] = "Nenhum";
+$MESS["SPOD_ORDER"] = "Pedido";
+$MESS["SPOD_ORDER_CANCEL"] = "Cancelar";
+$MESS["SPOD_ORDER_STATUS"] = "Status atual do pedido:";
+$MESS["SPOD_PRICE"] = "Preço";
+$MESS["SPOD_PRICETYPE"] = "Tipo de preço";
+$MESS["SPOD_PROPS"] = "Propriedades";
+$MESS["SPOD_QUANTITY"] = "Quantidade";
+$MESS["SPOD_TAX"] = "Total de impostos";

@@ -1,0 +1,4 @@
+<?
+$MESS['SEARCH_INSTALL_PUBLIC_MENU_SEARCH'] = 'Paieðka';
+$MESS['SEARCH_INSTALL_PUBLIC_MENU_MAP'] = 'Svetainës þemëlapis';
+?>

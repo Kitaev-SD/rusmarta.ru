@@ -1,0 +1,5 @@
+<?
+$MESS["SALE_SLS_COMPONENT_NAME"] = "Sisieti su vietà: sàraðas";
+$MESS["SALE_SLS_COMPONENT_DESCRIPTION"] = "Vietoves pasirinkimas pasirenkant variantus ið nuosekliai atvaizduojamø sàraðø";
+$MESS["SAL_NAME"] = "Uþsakymo apiforminimo procedûra";
+?>

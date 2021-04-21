@@ -1,0 +1,29 @@
+<?
+$MESS["GROUP_TITLE"] = "Kainos tipas";
+$MESS["ADD_GROUP"] = "Pridëti";
+$MESS["GROUP_PAGES"] = "Tipai";
+$MESS["ACTIONS"] = "Veiksmai";
+$MESS["NAME"] = "Pavadinimas";
+$MESS["BASE"] = "Bazë";
+$MESS["BASE_YES"] = "Taip";
+$MESS["EDIT_STATUS_ALT"] = "Keisti tipà";
+$MESS["EDIT"] = "Keisti";
+$MESS["DELETE_STATUS_ALT"] = "Paðalinti kainos tipà";
+$MESS["DELETE"] = "Paðalinti ";
+$MESS["DELETE_STATUS_CONFIRM"] = "Ar tikrai norite paðalinti ðá kainos tipà?";
+$MESS["RESET"] = "Atstatyti";
+$MESS["SAVE"] = "Iðsaugoti";
+$MESS["SORT"] = "Rûðiuoti";
+$MESS["ERROR_DELETING_TYPE"] = "Klaida ðalinant kainos tipà.";
+$MESS["ERROR_UPDATING_REC"] = "Klaida atnaujinant áraðà";
+$MESS["CODE"] = "Kodas ";
+$MESS["CGAN_ADD_NEW"] = "Naujas kainos tipas";
+$MESS["CGAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà kainos tipà";
+$MESS["group_admin_nav"] = "Tipai";
+$MESS["BT_CAT_GROUP_ADM_TITLE_XML_ID"] = "Iðorinis ID";
+$MESS["BT_CAT_GROUP_ADM_LANG_MESS"] = "#LANG#: #VALUE#";
+$MESS["BT_CAT_GROUP_ADM_TITLE_MODIFIED_BY"] = "Pakeitë";
+$MESS["BT_CAT_GROUP_ADM_TITLE_TIMESTAMP_X"] = "Pakeista";
+$MESS["BT_CAT_GROUP_ADM_TITLE_CREATED_BY"] = "Sukûrë";
+$MESS["BT_CAT_GROUP_ADM_TITLE_DATE_CREATE"] = "Sukurta";
+?>

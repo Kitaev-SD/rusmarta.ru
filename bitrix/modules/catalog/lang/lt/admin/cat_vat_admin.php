@@ -1,0 +1,21 @@
+<?
+$MESS["ERROR_UPDATE_VAT"] = "Klaida atnaujinant mokesèiø tarifà ##ID#";
+$MESS["ERROR_DELETE_VAT"] = "Klaida ðalinant mokesèiø tarifà ##ID#";
+$MESS["CVAT_NAV"] = "Mokesèiø tarifai";
+$MESS["CVAT_ACTIVE"] = "Akt.";
+$MESS["CVAT_NAME"] = "Pavadinimas";
+$MESS["CVAT_RATE"] = "Tarifas";
+$MESS["CVAT_FILTER_ACTIVE"] = "Veikla";
+$MESS["CVAT_FILTER_NAME"] = "Pavadinimas";
+$MESS["CVAT_FILTER_RATE"] = "Tarifas";
+$MESS["CVAT_SORT"] = "Rûð.";
+$MESS["CVAT_EDIT_ALT"] = "Redaguoti";
+$MESS["CVAT_DELETE_ALT"] = "Ðalinti";
+$MESS["CVAT_DELETE_CONF"] = "Ar tikrai norite paðalinti ðá mokesèiø tarifà? ";
+$MESS["CVAT_ADD_NEW"] = "Pridëti";
+$MESS["CVAT_ADD_NEW_ALT"] = "Pridëti mokesèiø tarifà";
+$MESS["CVAT_PAGE_TITLE"] = "PVM tarifai";
+$MESS["CVAT_ALL"] = "visi";
+$MESS["CVAT_YES"] = "aktyvus";
+$MESS["CVAT_NO"] = "neaktyvus";
+?>

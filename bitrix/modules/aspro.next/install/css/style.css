@@ -1,0 +1,70 @@
+.adm-workarea-wrap{height:100%;}
+#adm-workarea{height:100%;box-sizing:border-box;}
+#aspro_admin_area{position:relative;overflow:hidden;min-height:50px;}
+#aspro_admin_area iframe{border:medium none;height:100%;position:relative;width:100%;z-index:1;box-sizing:border-box;}
+#aspro_admin_area.aspro-admin-ready iframe{border:1px solid #cfd8d7;background-color:white;}
+.aspro-admin-waiter{background:rgba(0, 0, 0, 0) url("../../images/aspro.next/waiter.gif") no-repeat scroll 0 0 / 100% auto;border:medium none;content:" ";display:block;height:37px;position:absolute;width:35px;top:0;left:0;}
+.aspro-admin-ready .aspro-admin-waiter{display:none;}
+.aspro-admin-row{display:block;min-width:610px;width:100%;box-sizing:border-box;margin:0 -4px;}
+*[class^="aspro-admin-col"]{display:block;width:100%;float:left;padding:5px 4px 7px;box-sizing:border-box;}
+.aspro-admin-col12{}
+.aspro-admin-col6{width:50%;}
+.aspro-admin-col4{width:33.3%;}
+.aspro-admin-col3{width:25%;}
+.aspro-admin-col2{width:16.6%;}
+.aspro-admin-col1{width:8.3%;}
+
+.aspro-admin-option-title{text-align:right;padding-top:9px;}
+.aspro-admin-option-value{}
+.aspro-admin-option-note{}
+.aspro-admin-option-subscription{display:inline-block;vertical-align:middle;margin-left:4px;}
+.aspro-admin-option-radio, .aspro-admin-option-select, .aspro-admin-option-text{display:inline-block;vertical-align:middle;}
+.aspro-admin-option-html{text-align:center;padding-top:9px;}
+
+.aspro-admin-item-table{margin:0 auto !important;}
+.aspro-admin-item{text-align:center;}
+.aspro-admin-item.new{display:none;}
+.aspro-admin-item .rowcontrol > span{background-position:center center;background-repeat:no-repeat;display:inline-block;height:16px;margin:0 3px 0 0;overflow:hidden;width:16px;cursor:pointer;}
+.aspro-admin-item .rowcontrol > span:hover{opacity:0.5;}
+.aspro-admin-item .rowcontrol > span.up{background-image:url("../../images/aspro.next/up.gif");}
+.aspro-admin-item .rowcontrol > span.down{background-image:url("../../images/aspro.next/down.gif");}
+.aspro-admin-item .rowcontrol > span.remove{background-image:url("../../images/aspro.next/remove.gif");}
+.aspro-admin-item-table .aspro-admin-item.first .rowcontrol > span.up, .aspro-admin-item-table .aspro-admin-item.last .rowcontrol > span.down{visibility:hidden;}
+.aspro-admin-item-table .aspro-admin-option-text{min-width:100%;}
+.adm-btn{white-space:nowrap;}
+#wait_window_div{display:none !important;}
+
+/*crm*/
+.response{padding:10px 0px 0px;display:inline-block;;}
+.response.error, .status_send.error{color:#c00;}
+.response.success, .status_send.success{color:#78b344;}
+.action-delete {background:scroll transparent url(/bitrix/images/form/options_buttons.gif) no-repeat -29px 0;}
+.action-send{background:scroll transparent url(/bitrix/panel/main/images/popup_menu_sprite_2.png) no-repeat -9px -696px;}
+.action-send[data-disabled=disabled]{opacity:0.3;cursor:default;}
+.form-action-button{display:inline-block;height:17px;width:17px;}
+
+#bx-admin-prefix .aspro_property_service .adm-warning-block-red{position:relative;background:initial;}
+#bx-admin-prefix .aspro_property_service .adm-warning-icon{margin: -9px 0 0 -15px;}
+#bx-admin-prefix .aspro_property_service_note{padding:1px 0 5px 25px;color:#881521;}
+#bx-admin-prefix .aspro_property_service a{border-bottom:1px dashed;text-decoration:none;margin-left:25px;}
+#bx-admin-prefix .aspro_property_service a:hover{border-bottom-color:transparent;text-decoration:none;}
+#bx-admin-prefix .aspro_property_service--hidden{display:none;}
+
+#bx-admin-prefix .aspro_property_yadirectquery .adm-info-message{margin-top:0;}
+.query_explanation{position:relative;}
+.query_explanation .hidden{display:none;}
+.query_explanation_btn{cursor:pointer;border-bottom:1px dashed;text-decoration:none;display:inline-block;position:relative;margin:7px 0 0 20px;}
+.query_explanation_btn:hover{text-decoration:none;border-bottom-color:transparent;}
+.query_explanation_btn i{background:url("/bitrix/panel/main/images/bx-admin-sprite.png?1") no-repeat 5px -92px #cfd7da;height:16px;border-radius:50%;color:#e3ecee;font-size:12px;left:-20px;position:absolute;top:0;width:16px;cursor:pointer;}
+.query_explanation_btn:hover i{background-color:#f5f9f9;}
+.query_explanation_content{min-height:40px;position:relative;padding:16px 0 0;}
+.query_explanation_content .aspro-admin-waiter{top:10px;}
+.query_explanation_content div.condition-container{padding-bottom: 18px;}
+.query_explanation_content .tmpnote{color:#a5a5a5;}
+.query_explanation_content .errornote{color:#800f0f;}
+.query_explanation_content ul{margin:0;}
+.query_explanation_content> ul{padding:0 0 0 11px;}
+.query_explanation_content div.condition-simple-control a, .query_explanation_content .condition-simple{color:#2c4b90;}
+.query_explanation_content div.condition-simple-control a{text-decoration:none;border-bottom:1px solid transparent;}
+.query_explanation_content .condition-logic{cursor:default;}
+.query_explanation_content .control-string-no{color:red;}

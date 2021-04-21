@@ -1,0 +1,8 @@
+<?
+$MESS["MEASURE_MG"] = "ìã";
+$MESS["MEASURE_G"] = "ã";
+$MESS["MEASURE_KG"] = "êã";
+$MESS["MEASURE_LBS"] = "lbs";
+$MESS["MEASURE_T"] = "ò";
+$MESS["MEASURE_OZ"] = "óíö³é";
+?>

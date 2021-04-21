@@ -1,0 +1,32 @@
+<?
+$MESS["STAT_ATTENTION_1"] = "Atención";
+$MESS["STAT_CALENDAR"] = "Calendario";
+$MESS["STAT_CHARGEBACK"] = "Contracargo";
+$MESS["STAT_CONVERT_TO_DEFAULT_CUR"] = "Antes de que la suma de dinero cargada sea convertida a la moneda base.";
+$MESS["STAT_COPY"] = "Copy al fondo ";
+$MESS["STAT_CURRENCY"] = "Divisa";
+$MESS["STAT_DATE"] = "Fecha<br>";
+$MESS["STAT_DUPLICATE"] = "Duplicados:";
+$MESS["STAT_EVENTS_LOADING"] = "Cargando evento en proceso. Por favor espere...";
+$MESS["STAT_EVENT_TYPE"] = "Tipo de evento<br>ID";
+$MESS["STAT_FILE"] = "Archivo CSV:";
+$MESS["STAT_FROM_FILE"] = "Desde archivo";
+$MESS["STAT_FROM_FORM"] = "Ingresado manualmente";
+$MESS["STAT_HANDLER"] = "Tratante del archivo CSV: ";
+$MESS["STAT_LOAD"] = "Cargar";
+$MESS["STAT_LOADED"] = "Cargado:";
+$MESS["STAT_LOADING_FROM_CSV"] = "Cargando evento desde archivo CSV";
+$MESS["STAT_LOADING_FROM_TABLE"] = "cargando evento manual";
+$MESS["STAT_MONEY"] = "Cantidad de dinero ";
+$MESS["STAT_NEXT_STEP"] = "siguiente paso";
+$MESS["STAT_ON_STEP"] = "On step";
+$MESS["STAT_PARAM"] = "Parámetro adicional<br>(#GROUP_SITE_ID#.session.<br>visitor.country.<br>advertising_campaign.<br>back.site)";
+$MESS["STAT_PREVIEW"] = "Usuario previo:";
+$MESS["STAT_PROCESSED"] = "Presesado:";
+$MESS["STAT_SELECT_EVENT"] = "Seleccionar tipo de evento";
+$MESS["STAT_STEP"] = "Cargando paso (seg.):";
+$MESS["STAT_TITLE"] = "Cargando evento";
+$MESS["STAT_TOTAL_CSV"] = "Total de filas en CVS:";
+$MESS["STAT_UNIQUE"] = "Load unique events only";
+$MESS["STAT_UNIQUE_ALT"] = "unicamente está siendo revisada por la combinación de todos los campos cargados (excepto la cantidad de dinero)";
+?>

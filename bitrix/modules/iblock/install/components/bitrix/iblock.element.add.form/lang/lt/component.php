@@ -1,0 +1,14 @@
+<?
+$MESS['IBLOCK_ADD_ERROR_REQUIRED'] = 'Laukas \"#PROPERTY_NAME#\" turi bûti uþpildytas!';
+$MESS['IBLOCK_ADD_ELEMENT_NOT_FOUND'] = 'Elementas nerastas';
+$MESS['IBLOCK_ADD_ACCESS_DENIED'] = 'prieigos nëra';
+$MESS['IBLOCK_FORM_WRONG_CAPTCHA'] = 'Ávestas neteisingas tekstas ið paveikslëlio';
+$MESS['IBLOCK_ADD_MAX_ENTRIES_EXCEEDED'] = 'Virðytas áraðø limitas';
+$MESS['IBLOCK_ADD_MAX_LEVELS_EXCEEDED'] = 'Virðitas skyriø limitas - #MAX_LEVELS# ';
+$MESS['IBLOCK_ADD_LEVEL_LAST_ERROR'] = 'Leidþiama áterpti tik á paskutinio lygio skyrius';
+$MESS['IBLOCK_USER_MESSAGE_ADD_DEFAULT'] = 'Elementas sekmingai áterptas';
+$MESS['IBLOCK_USER_MESSAGE_EDIT_DEFAULT'] = 'Pakeitimai sekmingai iðsaugoti';
+$MESS['IBLOCK_ERROR_FILE_TOO_LARGE'] = 'Ákeltos bylos dydis virðija limità';
+$MESS["CC_BIEAF_ACCESS_DENIED_STATUS"] = "Jûs neturite pakankamai teisiø redaguoti ðá áraðà jo dabartiniame statuse";
+$MESS["CC_BIEAF_IBLOCK_MODULE_NOT_INSTALLED"] = "Informaciniø blokø modulis nëra ádiegtas. ";
+?>

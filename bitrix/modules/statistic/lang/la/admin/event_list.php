@@ -1,0 +1,33 @@
+<?
+$MESS["STAT_ADD_TITLE"] = "Click para agregar un nuevo evento";
+$MESS["STAT_ADV"] = "Agregar<br>camapaña";
+$MESS["STAT_ADV_BACK_ALT"] = "devuelto por campaña publcitaria";
+$MESS["STAT_DATE"] = "Fecha";
+$MESS["STAT_DELETE_ERROR"] = "Borrar error";
+$MESS["STAT_DESCRIPTION"] = "Descripción:";
+$MESS["STAT_EVENT"] = "Tipo";
+$MESS["STAT_EVENT_PAGES"] = "Eventos";
+$MESS["STAT_F_ADV_BACK"] = "Devueltos por campañas publictarias";
+$MESS["STAT_F_ADV_ID"] = "ID de la campaña publicitaria:";
+$MESS["STAT_F_EVENT_ID"] = "ID del tipo de evento";
+$MESS["STAT_F_EVENT_TYPE_NAME"] = "Nombre del tipo de evento";
+$MESS["STAT_F_FILTER_LOGIC"] = "Lógica de campos de filtros";
+$MESS["STAT_F_GUEST_ID"] = "ID de visitante";
+$MESS["STAT_F_HIT_ID"] = "ID de hit";
+$MESS["STAT_F_ID"] = "ID";
+$MESS["STAT_F_MONEY"] = "Cantidad de dinero ";
+$MESS["STAT_F_REDIRECT_URL"] = "Redireccionado a URL";
+$MESS["STAT_F_REFERER_URL"] = "URL de referencia";
+$MESS["STAT_F_SESSION_ID"] = "ID de sesión";
+$MESS["STAT_F_URL"] = "Ocurrido en la URL ";
+$MESS["STAT_GUEST"] = "Invitado";
+$MESS["STAT_HIT"] = "Hit";
+$MESS["STAT_MONEY"] = "Money amount";
+$MESS["STAT_NAME"] = "Nombre:";
+$MESS["STAT_RECORDS_LIST"] = "Lista de eventos";
+$MESS["STAT_REDIRECT_URL"] = "Redireccionado a URL";
+$MESS["STAT_REFERER_URL"] = "URL de referencia";
+$MESS["STAT_SESSION"] = "Sesión";
+$MESS["STAT_TOTAL_MONEY"] = "Cantidad de dinero:";
+$MESS["STAT_URL"] = "Ocurrido en la URL";
+?>

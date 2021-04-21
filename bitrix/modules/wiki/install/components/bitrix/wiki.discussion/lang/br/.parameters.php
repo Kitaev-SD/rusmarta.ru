@@ -1,0 +1,37 @@
+<?
+$MESS["CP_BND_ELEMENT_CODE"] = "Código de página da Wiki ";
+$MESS["CP_BND_ELEMENT_ID"] = "ID da página Wiki";
+$MESS["CP_BND_ELEMENT_NAME"] = "Título da página wiki";
+$MESS["CP_BND_SET_STATUS_404"] = "Gerar Status 404 Quando Elemento ou seção é Ausente";
+$MESS["F_FORUM_ID"] = "Fórum ID";
+$MESS["F_MESSAGES_PER_PAGE"] = "Número de mensagens por página";
+$MESS["F_PATH_TO_SMILE"] = "Smiley Caminho da pasta (em relação Ã  raiz do site)";
+$MESS["F_POST_FIRST_MESSAGE"] = "Usar elemento do texto como Primeiro Post";
+$MESS["F_READ_TEMPLATE"] = "Página tópico (deixe em branco para utilizar as preferÃªncias do fórum)";
+$MESS["F_SHOW_LINK_TO_FORUM"] = "Mostrar Link do Forum";
+$MESS["F_USE_CAPTCHA"] = "Use CAPTCHA";
+$MESS["RATING_TYPE"] = "Desing dos botões de classificação";
+$MESS["RATING_TYPE_CONFIG"] = "padrão";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Curtir (imagem)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Curtir (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Curtir / Curtir(Desfazer) (imagem)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Curtir / Curtir(Desfazer) (texto)";
+$MESS["SHOW_RATING"] = "Ativar classificação";
+$MESS["SHOW_RATING_CONFIG"] = "padrão";
+$MESS["T_IBLOCK_DESC_ADD_SECTIONS_CHAIN"] = "Adicionar Seção Para Breadcrumbs";
+$MESS["T_IBLOCK_DESC_INCLUDE_IBLOCK_INTO_CHAIN"] = "Adicionar Bloco de Informações Para Breadcrumbs";
+$MESS["T_IBLOCK_DESC_LIST_ID"] = "ID do Bloco informações";
+$MESS["T_IBLOCK_DESC_LIST_TYPE"] = "Tipo de Informação Block (somente para verificação)";
+$MESS["WIKI_OPER_VAR"] = "Nome da variável da operação";
+$MESS["WIKI_PAGE_VAR"] = "Variável da página";
+$MESS["WIKI_PATH_TO_CATEGORIES"] = "Modelo de caminho de categorias de páginas";
+$MESS["WIKI_PATH_TO_CATEGORY"] = "Modelo de caminho de categorias de descrição";
+$MESS["WIKI_PATH_TO_DISCUSSION"] = "Modelo de caminho de discussão de templates";
+$MESS["WIKI_PATH_TO_HISTORY"] = "Modelo de caminho de Log Update";
+$MESS["WIKI_PATH_TO_HISTORY_DIFF"] = "Modelo de caminho de versionamento de página";
+$MESS["WIKI_PATH_TO_PAGES"] = "Modelo de caminho de lista";
+$MESS["WIKI_PATH_TO_POST"] = "Modelo de caminho de página";
+$MESS["WIKI_PATH_TO_POST_EDIT"] = "Modelo de caminho de editor";
+$MESS["WIKI_PATH_TO_USER"] = "Modelo de caminho de usuário";
+$MESS["WIKI_VARIABLE_ALIASES"] = "Alias de variáveis";
+?>

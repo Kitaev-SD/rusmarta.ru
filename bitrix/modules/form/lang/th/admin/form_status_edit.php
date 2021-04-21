@@ -1,0 +1,33 @@
+<?
+$MESS ['FORM_FORGOT_TITLE'] = "โปรดระบุ \"ชื่อ\"";
+$MESS ['FORM_FORM_LIST'] = "รายการฟอร์ม";
+$MESS ['FORM_NOT_FOUND'] = "ไม่พบเว็บฟอร์ม";
+$MESS ['FORM_EDIT_RECORD'] = "ปรับปรุงสถานะ # #ID#";
+$MESS ['FORM_NEW_RECORD'] = "สถานะใหม่";
+$MESS ['FORM_RECORDS_LIST'] = "รายการสถานะ";
+$MESS ['FORM_TIMESTAMP'] = "ปรับปรุงเมื่อ:";
+$MESS ['FORM_RESULTS_STATUS'] = "ผลลัพธ์ของสถานะ:";
+$MESS ['FORM_ACTIVE'] = "ใช้งาน:";
+$MESS ['FORM_SORTING'] = "ลำดับ:";
+$MESS ['FORM_DEFAULT_VALUE'] = "ตั้งค่าสถานะนี้<br>ให้เอกสารใหม่ทั้งหมดเป็นค่าพื้นฐาน:";
+$MESS ['FORM_TITLE'] = "ชื่อ:";
+$MESS ['FORM_DESCRIPTION'] = "รายละเอียด:";
+$MESS ['FORM_OWNER'] = "<ตัวสร้างสถานะ>";
+$MESS ['FORM_VIEW_RIGHTS'] = "สามารถดูผลลัพธ์<br>ในสถานะนี้:";
+$MESS ['FORM_MOVE_RIGHTS'] = "สมารถดูสถานะ<br>ในสถานะนี้:";
+$MESS ['FORM_EDIT_RIGHTS'] = "สามารถปรัปรุงผลลัพธ์<br>ในสถานะนี้:";
+$MESS ['FORM_DELETE_RIGHTS'] = "สามารถลบผลลัพธ์<br>ในสถานะนี้:";
+$MESS ['FORM_NEW'] = "สร้างสถานะใหม่";
+$MESS ['FORM_FORM_NAME'] = "ฟอร์ม:";
+$MESS ['FORM_CSS'] = "CSS class ถูกใช้แสดง<br>ในสถานะนี้:";
+$MESS ['FORM_HANDLER_OUT'] = "ตัวควบคุมไฟล์ที่เกี่ยวข้องจะถูกปรับปรุงสถานะ หรือ (ลบผลลัพธ์):";
+$MESS ['FORM_HANDLER_IN'] = "ตัวควบคุมไฟล์ที่เกี่ยวข้องจะถูกปรับปรุงสถานะให้เหมือนปัจจุบัน (หรือเพิ่มผลลัพธ็):";
+$MESS ['FORM_COPY'] = "Copy status";
+$MESS ['FORM_DELETE_TITLE'] = "Delete status";
+$MESS ['FORM_CONFIRM_DELETE'] = "Are you sure you want to delete this status?";
+$MESS ['FORM_CREATE_TITLE'] = "New status";
+$MESS ['FORM_RESULTS_TITLE'] = "Open result list";
+$MESS ['FORM_CREATE'] = "New status";
+$MESS ['FORM_ACCESS_TITLE'] = "Access management";
+$MESS ['FORM_DELETE'] = "Delete status";
+?>

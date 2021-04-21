@@ -1,0 +1,34 @@
+<?
+$MESS["STAT_ADDITIONAL"] = "Configuración adicional";
+$MESS["STAT_BASE"] = "base";
+$MESS["STAT_COST"] = "Costo:";
+$MESS["STAT_DEFAULT"] = "< por defecto >";
+$MESS["STAT_DELETE_ADV"] = "Eliminar campaña publicitaria";
+$MESS["STAT_DELETE_ADV_CONFIRM"] = "¿Está seguro que desea eliminar esta campaña publicitaria?";
+$MESS["STAT_DESCRIPTION"] = "Descripción";
+$MESS["STAT_EDIT_RECORD"] = "Campaña publicitaria # #ID#";
+$MESS["STAT_ERROR"] = "Error!";
+$MESS["STAT_EVENTS_VIEW"] = "Modo para mostrar el evento:";
+$MESS["STAT_FINANCES"] = "Finanzas ";
+$MESS["STAT_FORGOT_REFERER"] = "Ingrese por favor referer1, referer2";
+$MESS["STAT_IDENTIFIERS"] = "Ientificadores de campañá publicitaria";
+$MESS["STAT_ID_ADD"] = "Condiciones adicionales";
+$MESS["STAT_ID_ADD_NOTE"] = "La campaña se ejecuta si alguna condición es verdadesra";
+$MESS["STAT_MORE"] = "Más";
+$MESS["STAT_MORE_TITLE"] = "Configuración adicional y financiera";
+$MESS["STAT_NEW_ADV"] = "Nueva campaña publicitaria";
+$MESS["STAT_NEW_RECORD"] = "Nueva campaña publicitaria";
+$MESS["STAT_PAGES_FROM"] = "Linkeado desde [%_]:<br>(sitio web de referencia<br>separados por una nueva linea)";
+$MESS["STAT_PAGES_TO"] = "Linkeado a [%_]:<br>(direccion completa del sitio web<br>separado por una nueva linea)";
+$MESS["STAT_PRIORITY"] = "Prioridad:";
+$MESS["STAT_PRIORITY_ALT"] = "(higher values set higher priority)";
+$MESS["STAT_PROP"] = "Propiedades";
+$MESS["STAT_PROP_TITLE"] = "Parámetros de la Campaña Publicitaria";
+$MESS["STAT_RECORDS_LIST"] = "Lista de campañas publicitarias";
+$MESS["STAT_RESET_ADV"] = "Resetear campaña publicitaria";
+$MESS["STAT_RESET_ADV_CONFIRM"] = "¿Está seguro que desea resetear esta campaña publicitaria?";
+$MESS["STAT_REVENUE"] = "Ingresos:";
+$MESS["STAT_SEARCHERS"] = "Motores de búsqueda";
+$MESS["STAT_SELECT_WHAT_YOU_NEED"] = "(seleccionar requerido)";
+$MESS["STAT_WRONG_REFERER"] = "Las condiciones referer1 y referer2 ya se encuentran en uso";
+?>

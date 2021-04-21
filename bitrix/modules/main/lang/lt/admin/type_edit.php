@@ -1,0 +1,32 @@
+<?
+$MESS["EDIT_TITLE"] = "Redaguoti ávyká #TYPE#";
+$MESS["NEW_TITLE"] = "Pridëti naujà ávyká";
+$MESS["EVENT_NAME"] = "El. paðto praneðimo tipas";
+$MESS["LANG_PARAMS"] = "Kalbos parametrai";
+$MESS["EVENT_NAME_TITLE"] = "Ávykio tipas";
+$MESS["EVENT_NAME_DESCR"] = "El. paðto praneðimo tipas";
+$MESS["TEMPLATES_TITLE"] = "Ðablonai";
+$MESS["TEMPLATES_DESCR"] = "El. paðto ðablonai";
+$MESS["EVENT_NAME_LANG"] = "Pavadinimas";
+$MESS["EVENT_SORT_LANG"] = "Rûðiavimas";
+$MESS["EVENT_DESCR_LANG"] = "Apraðymas";
+$MESS["RECORD_LIST"] = "Tipø sàraðas";
+$MESS["RECORD_LIST_TITLE"] = "Eiti á el.paðto ávykiø sàraðà";
+$MESS["MAIN_NEW_RECORD"] = "Pridëti tipà";
+$MESS["MAIN_NEW_RECORD_TITLE"] = "Pridëti naujà el.paðto tipà";
+$MESS["MAIN_DELETE_RECORD"] = "Ðalinti tipà";
+$MESS["MAIN_DELETE_RECORD_TITLE"] = "Paðalinti tipà, áskaitant ðablonus";
+$MESS["MAIN_DELETE_RECORD_CONF"] = "Ar tikrai norite paðalinti esamà tipà, áskaitant ðablonus?";
+$MESS["MAIN_NEW_TEMPLATE"] = "Pridëti ðablonà";
+$MESS["MAIN_NEW_TEMPLATE_TITLE"] = "Pridëti naujà ðablonà ðiam ávykiø tipui";
+$MESS["TEMPLATE_LIST"] = "Ðablonø sàraðas";
+$MESS["TEMPLATE_LIST_TITLE"] = "Pereiti prie ðablonø sàraðo";
+$MESS["LANGUAGE_PARAMS"] = "Kalbos parametrai";
+$MESS["SAVE"] = "Iðsaugoti pakeitimus";
+$MESS["ADD"] = "Pridëti";
+$MESS["RESET"] = "Iðvalyti";
+$MESS["MAIN_ERROR_SAVING"] = "Klaida. Nepavyko iðsaugoti";
+$MESS["ERROR_LANG_EMPTY"] = "Kalbos parametrai nenurodyti";
+$MESS["LANG_FIELDS"] = "Jûs turite uþpildyti bent vienà kalbos laukà";
+$MESS["type_edit_add_message_template"] = "Pridëti praneðimo ðablonà";
+?>

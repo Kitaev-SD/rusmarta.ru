@@ -1,0 +1,35 @@
+<?
+$MESS["FORUM_MAIN_WAIT"] = "Página de Lista de Mensagens";
+$MESS["F_ANCHOR"] = "Página de Mensagens privadas";
+$MESS["F_ATTACH_FILES"] = "Página de Mensagens privadas";
+$MESS["F_AUTHOR_PROFILE"] = "Mensagens privadas";
+$MESS["F_BAD_NEW_TOPIC"] = "Página de gerenciamento de pastas de mensagens privadas";
+$MESS["F_BAD_TOPIC"] = "Página de Lista de Mensagens";
+$MESS["F_BUTTON_MOVE"] = "Ler mensagem privada";
+$MESS["F_DATE_REGISTER"] = "Mensagens privadas";
+$MESS["F_DELETE"] = "Página de Mensagens privadas";
+$MESS["F_DELETE_MESSAGES_CONFIRM"] = "Página de Mensagens privadas";
+$MESS["F_EDIT"] = "Dicionário de palavrões";
+$MESS["F_EDIT_HEAD"] = "Página de Mensagens privadas";
+$MESS["F_EMAIL_TITLE"] = "Dicionário de palavrões";
+$MESS["F_HEAD_TO_EXIST_TOPIC"] = "Página para ler mensagem privada";
+$MESS["F_HEAD_TO_NEW_TOPIC"] = "Mensagens privadas";
+$MESS["F_HIDE"] = "Página de Lista de Mensagens";
+$MESS["F_MOVE_TO"] = "profissão.";
+$MESS["F_NUM_MESS"] = "Mensagens privadas";
+$MESS["F_POINTS"] = "Dicionário de palavrões";
+$MESS["F_PRIVATE_MESSAGE"] = "Filtro de palavrões";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "Filtro de palavrões";
+$MESS["F_REAL_IP"] = "Filtro de palavrões.";
+$MESS["F_SHOW"] = "Página de Lista de Mensagens";
+$MESS["F_TITLE"] = "Página para ler mensagem privada";
+$MESS["F_TITLE_ON_FORUM"] = "Página para ler mensagem privada";
+$MESS["F_TOPIC_DESCR"] = "Mensagens privadas";
+$MESS["F_TOPIC_ID"] = "Lista de mensagens privadas";
+$MESS["F_TOPIC_NAME"] = "Mensagens privadas";
+$MESS["F_TOPIC_NOT_FOUND"] = "Mensagens privadas";
+$MESS["F_TOPIC_SEARCH_TITLE"] = "Página de gerenciamento de pastas de mensagens privadas";
+$MESS["F_TOPIC_TAGS"] = "Mensagens privadas";
+$MESS["F_USER_ID"] = "profissão.";
+$MESS["F_USER_ID_USER"] = "Perfil";
+?>

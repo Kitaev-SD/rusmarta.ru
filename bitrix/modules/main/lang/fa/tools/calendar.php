@@ -1,0 +1,31 @@
+<?
+$MESS["calend_apr"] = "آوریل";
+$MESS["calend_aug"] = "آگوست";
+$MESS["calend_title"] = "تقویم";
+$MESS["calend_des"] = "دسامبر";
+$MESS["calend_feb"] = "فوریه";
+$MESS["calend_fr"] = "جمعه";
+$MESS["calend_curr"] = "رفتن به ماه جاری";
+$MESS["calend_date"] = "جا دادن تاریخ";
+$MESS["calend_jan"] = "ژانویه";
+$MESS["calend_jul"] = "جولای";
+$MESS["calend_jun"] = "ژوئن";
+$MESS["calend_mar"] = "مارس";
+$MESS["calend_may"] = "می";
+$MESS["calend_mo"] = "دوشنبه";
+$MESS["calend_next_mon"] = "ماه بعد";
+$MESS["calend_next_year"] = "سال بعد";
+$MESS["calend_nov"] = "نوامبر";
+$MESS["calend_okt"] = "اکتبر";
+$MESS["calend_per_mon"] = "بازه: ماه";
+$MESS["calend_per_week"] = "بازه: هفته";
+$MESS["calend_per_year"] = "بازه: سال";
+$MESS["calend_prev_mon"] = "ماه قبل";
+$MESS["calend_prev_year"] = "سال پیش";
+$MESS["calend_sa"] = "شنبه";
+$MESS["calend_sep"] = "سپتامبر";
+$MESS["calend_su"] = "یک شنبه";
+$MESS["calend_th"] = "پنجشنبه";
+$MESS["calend_tu"] = "سه شنبه";
+$MESS["calend_we"] = "چهارشنبه";
+?>

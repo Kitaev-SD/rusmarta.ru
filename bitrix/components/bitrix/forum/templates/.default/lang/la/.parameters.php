@@ -1,0 +1,35 @@
+<?
+$MESS["F_AJAX_POST"] = "Utilice AJAX en los diálogos";
+$MESS["F_PAGE_NAVIGATION_TEMPLATE"] = "Nombre de la plantilla del paginador";
+$MESS["F_PAGE_NAVIGATION_WINDOW"] = "Número de páginas en la página de navegación";
+$MESS["F_SEO_USER_1"] = "Opciones de visualización de nombres de usuario";
+$MESS["F_SEO_USER_2"] = "Ocultar enlaces para robots de búsqueda";
+$MESS["F_SEO_USER_3"] = "Enlace";
+$MESS["F_SEO_USER_4"] = "Sólo texto";
+$MESS["F_SEO_USE_AN_EXTERNAL_SERVICE"] = "Utilizar servicios externos para traducir nombre del tema (SEO)";
+$MESS["F_SHOW_ADDITIONAL_MARKER"] = "Marca a adicionarse a los mensajes nuevos";
+$MESS["F_SHOW_AUTH"] = "Mostrar formulario de autorización";
+$MESS["F_SHOW_AUTHOR_COLUMN"] = "Mostrar columna \"Autor\" en la página de temas";
+$MESS["F_SHOW_FIRST_POST"] = "Siempre mostrar el post inicial";
+$MESS["F_SHOW_FORUMS"] = "Mostrar accesos rápidos a foros";
+$MESS["F_SHOW_FORUM_USERS"] = "Mostrar lista de usuarios";
+$MESS["F_SHOW_LEGEND"] = "Mostrar leyenda";
+$MESS["F_SHOW_NAVIGATION"] = "Mostrar breadcrumb";
+$MESS["F_SHOW_STATISTIC"] = "Mostrar estadísticas";
+$MESS["F_SHOW_STATISTIC_BLOCK"] = "Mostrar estadísticas de blocks";
+$MESS["F_SHOW_SUBSCRIBE_LINK"] = "Mostrar vínculo de suscripción";
+$MESS["F_SHOW_TAGS"] = "Mostrar etiquetas";
+$MESS["F_SMILES_COUNT"] = "Número de smalys estáticos a mostrar (fije 0 para calcular smyles dinámicamernte)";
+$MESS["F_STATISTIC_BLOCK_BIRTHDAY"] = "Cumpleaños";
+$MESS["F_STATISTIC_BLOCK_ONLINE"] = "Usuarios en línea";
+$MESS["F_STATISTIC_BLOCK_STATISTIC"] = "Número de posts y temas";
+$MESS["F_THEMES"] = "Temas";
+$MESS["F_THEME_BEIGE"] = "Beige";
+$MESS["F_THEME_BLUE"] = "Azul";
+$MESS["F_THEME_FLUXBB"] = "FluxBB";
+$MESS["F_THEME_GRAY"] = "Gris";
+$MESS["F_THEME_GREEN"] = "Verde";
+$MESS["F_THEME_ORANGE"] = "Naranja";
+$MESS["F_THEME_RED"] = "Rojo";
+$MESS["F_THEME_WHITE"] = "Blanco";
+?>

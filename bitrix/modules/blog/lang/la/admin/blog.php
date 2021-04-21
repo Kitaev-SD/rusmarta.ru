@@ -1,0 +1,31 @@
+<?
+$MESS["BLB_ACTIVE"] = "Activo";
+$MESS["BLB_ADD_NEW"] = "Nuevo blog";
+$MESS["BLB_ADD_NEW_ALT"] = "Click para agregar un nuevo blog";
+$MESS["BLB_ALLOW_HTML"] = "HTML";
+$MESS["BLB_DATE_CREATE"] = "Creado";
+$MESS["BLB_DATE_UPDATE"] = "Última actualización";
+$MESS["BLB_DELETE_ALT"] = "Eliminar blog";
+$MESS["BLB_DELETE_CONF"] = "¿Está seguro que desea eliminar este blog?";
+$MESS["BLB_DELETE_ERROR"] = "Error al eliminar un blog";
+$MESS["BLB_FILTER_ACTIVE"] = "Activo";
+$MESS["BLB_FILTER_GROUP_ID"] = "Grupo";
+$MESS["BLB_FILTER_NAME"] = "Nombre";
+$MESS["BLB_FILTER_OWNER"] = "Dueño";
+$MESS["BLB_FILTER_URL"] = "URL";
+$MESS["BLB_F_ALL"] = "(Todo)";
+$MESS["BLB_GROUP_ID"] = "Grupo";
+$MESS["BLB_GROUP_NAV"] = "Blogs";
+$MESS["BLB_NAME"] = "Nombre";
+$MESS["BLB_NO"] = "No";
+$MESS["BLB_OWNER_ID"] = "Dueño";
+$MESS["BLB_SOCNET_GROUP_ID"] = "Grupo propietario del Blog";
+$MESS["BLB_TITLE"] = "Blogs";
+$MESS["BLB_UPDATE_ALT"] = "Editar configuración del blog";
+$MESS["BLB_URL"] = "URL";
+$MESS["BLB_USE_SOCNET"] = "Soc. network";
+$MESS["BLB_YES"] = "Si";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Comprobado:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "eliminar";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Seleccionado:";
+?>

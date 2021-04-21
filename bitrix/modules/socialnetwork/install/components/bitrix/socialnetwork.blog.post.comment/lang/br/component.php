@@ -1,0 +1,35 @@
+<?
+$MESS["BLOG_MODULE_NOT_INSTALL"] = "O módulo do blog não está instalado.";
+$MESS["BLOG_P_INSERT"] = "Clique para inserir uma imagem";
+$MESS["BPC_SONET_COMMENT_TITLE"] = "adicionou comentário para a entrada de blog \"#TITLE#\"";
+$MESS["B_B_PC_CAPTCHA_ERROR"] = "A forma de prevenção submissão de código automatizado está incorreto.";
+$MESS["B_B_PC_COM_ERROR"] = "Erro ao adicionar comentário:";
+$MESS["B_B_PC_COM_ERROR_EDIT"] = "Erro ao atualizar o comentário:";
+$MESS["B_B_PC_COM_ERROR_LOST"] = "Comentário não foi encontrado.";
+$MESS["B_B_PC_DUPLICATE_COMMENT"] = "Você já adicionou o seu comentário";
+$MESS["B_B_PC_EDIT_ALREADY_COMMENTED"] = "Um comentário já foi criado no seu comentários";
+$MESS["B_B_PC_HIDDEN_POSTED"] = "Seu comentário foi adicionado com sucesso. Comentários neste blog são pré moderados; seu comentário ficará visível assim que o proprietário do blog o aprovar.";
+$MESS["B_B_PC_MES_DELED"] = "Comentário excluído";
+$MESS["B_B_PC_MES_ERROR_DELETE"] = "Erro ao excluir o comentário.";
+$MESS["B_B_PC_MES_ERROR_HIDE"] = "Erro ao ocultar o comentário.";
+$MESS["B_B_PC_MES_ERROR_SESSION"] = "Sua sessão expirou. Por favor envie seu comentário novamente.";
+$MESS["B_B_PC_MES_ERROR_SHOW"] = "Erro ao mostrando o comentário.";
+$MESS["B_B_PC_MES_HIDDEN_ADDED"] = "Você comentário foi adicionado com sucesso. Comentários neste blog são pré moderados; seu comentário será visível assim que o proprietário do blog o aprovar.";
+$MESS["B_B_PC_MES_HIDDEN_EDITED"] = "O seu comentário foi editado com sucesso. Este blog é moderado e seu comentário aparecerá depois ser verificado pelo moderador (proprietário) do blog.";
+$MESS["B_B_PC_MES_NAME_TEMPLATE_DEFAULT"] = "#NOBR##NAME# #LAST_NAME##/NOBR#";
+$MESS["B_B_PC_MES_NOCOMMENTREASON_A"] = "Visitantes não registrados não podem adicionar links. Por favor registre ou autorize.";
+$MESS["B_B_PC_MES_NOCOMMENTREASON_L"] = "Parâmetros do sistema não permitem a utilização de ligações.";
+$MESS["B_B_PC_MES_NOCOMMENTREASON_R"] = "A sua classificação é muito baixa. Você não pode usar os links.";
+$MESS["B_B_PC_NO_ANAME"] = "O nome do autor está vazio";
+$MESS["B_B_PC_NO_COMMENT"] = "A Mensagem de comentário está vazia";
+$MESS["B_B_PC_NO_RIGHTS"] = "Permissões insuficientes para comentar a mensagem";
+$MESS["B_B_PC_NO_RIGHTS_EDIT"] = "Permissão insuficiente para editar o comentário.";
+$MESS["B_B_PC_SONET_POST_TITLE"] = "adicionou o post \"#TITLE#\" no blog";
+$MESS["B_B_SHARE"] = "Compartilhado com:  ";
+$MESS["B_B_SHARE_1"] = "Compartilhado com:  ";
+$MESS["B_B_SHARE_ALL"] = "Todos os funcionários";
+$MESS["B_B_SHARE_ALL_BUS"] = "Todos os usuários";
+$MESS["B_B_SHARE_HIDDEN_1"] = "Destinatário oculto";
+$MESS["SONET_MODULE_NOT_INSTALL"] = "O módulo Rede Social não está instalado.";
+$MESS["SONET_SBPC_MOBILE_FORMAT_TIME"] = "g: ia";
+?>

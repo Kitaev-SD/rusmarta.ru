@@ -1,0 +1,29 @@
+<?
+$MESS["IBLOCK_ADD_PREVIEW_PICTURE"] = "Ч картинка анонса Ч";
+$MESS["IBLOCK_ADD_TAGS"] = "Ч теги Ч";
+$MESS["IBLOCK_ADD_PREVIEW_TEXT"] = "Ч текст анонсу Ч";
+$MESS["IBLOCK_ADD_NAME"] = "Ч найменуванн€ Ч";
+$MESS["IBLOCK_ADD_IBLOCK_SECTION"] = "Ч розд≥л ≥нфоблоку Ч";
+$MESS["IBLOCK_ADD_DETAIL_TEXT"] = "Ч детальний текст Ч";
+$MESS["IBLOCK_ADD_DETAIL_PICTURE"] = "Ч детальна картинка Ч";
+$MESS["IBLOCK_CREATED_BY"] = "автору";
+$MESS["IBLOCK_STATUS_ANY"] = "будь-€ких елемент≥в";
+$MESS["IBLOCK_GROUPS"] = "√рупи користувач≥в, що мають право на додаванн€/редагуванн€";
+$MESS["IBLOCK_ALLOW_DELETE"] = "ƒозвол€ти видаленн€";
+$MESS["IBLOCK_ALLOW_EDIT"] = "ƒозвол€ти редагуванн€";
+$MESS["IBLOCK_ELEMENT_ASSOC_PROPERTY"] = "за властив≥стю ≥нфоблоку Ч>";
+$MESS["IBLOCK_PROPERTY_ID"] = "за властив≥стю ≥нфоблоку Ч>";
+$MESS["IBLOCK_IBLOCK"] = "≤нфоблок";
+$MESS["IBLOCK_NAV_ON_PAGE"] = " ≥льк≥сть елемент≥в на стор≥нц≥";
+$MESS["IBLOCK_STATUS_INCATIVE"] = "неактивних елемент≥в";
+$MESS["IBLOCK_ALLOW_N"] = "н≥кому";
+$MESS["IBLOCK_MAX_USER_ENTRIES"] = "ќбмежити к≥льк≥сть елемент≥в дл€ одного користувача";
+$MESS["IBLOCK_ACCESS"] = "ѕараметри доступа";
+$MESS["IBLOCK_PARAMS"] = "ѕараметри компонента";
+$MESS["IBLOCK_ELEMENT_ASSOC"] = "ѕрив'€зка до користувача";
+$MESS["IBLOCK_SEF_EDIT"] = "редагуванн€";
+$MESS["IBLOCK_S_ACTIVE"] = "–едагуванн€ можливе";
+$MESS["CP_BIEAL_IBLOCK_STATUS"] = "–едагуванн€ можливе дл€ статусу";
+$MESS["IBLOCK_ADD_EDIT_URL"] = "—тор≥нка редагуванн€ елемента";
+$MESS["IBLOCK_TYPE"] = "“ип ≥нфоблоку";
+?>

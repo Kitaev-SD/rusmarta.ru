@@ -1,0 +1,35 @@
+<?
+$MESS["STAT_AVERAGE_HITS"] = "Promedio<br>Hits";
+$MESS["STAT_DATE_INSERT"] = "Fecha";
+$MESS["STAT_FIND_SESSION"] = "Lista de sesiones";
+$MESS["STAT_FL_DATE"] = "Fecha";
+$MESS["STAT_FL_ID"] = "ID de frase";
+$MESS["STAT_FL_ID_REF"] = "ID de referencia";
+$MESS["STAT_FL_ID_SESS"] = "ID de sesión";
+$MESS["STAT_FL_PAGE"] = "Página de hits";
+$MESS["STAT_FL_SEARCHER"] = "Motor de búsqueda";
+$MESS["STAT_F_ID"] = "ID:";
+$MESS["STAT_F_PAGE_TO"] = "A:";
+$MESS["STAT_F_REFERER"] = "ID de referencia:";
+$MESS["STAT_F_SEARCH_PHRASE"] = "Palabra clave de búsqueda:";
+$MESS["STAT_F_SEARCH_SYSTEM"] = "Motor de búsqueda:";
+$MESS["STAT_F_SESSION"] = "ID de sesión:";
+$MESS["STAT_GRAPH"] = "Gráfico";
+$MESS["STAT_LINK_OPEN"] = "Abrir página";
+$MESS["STAT_NAME"] = "nombre";
+$MESS["STAT_NUM"] = "Número";
+$MESS["STAT_PAGE_TO"] = "A";
+$MESS["STAT_PHRASE"] = "Palabras claves de la búsqueda";
+$MESS["STAT_PHRASES"] = "Palabras claves de búsqueda";
+$MESS["STAT_PHRASE_PAGES"] = "registros";
+$MESS["STAT_PHRASE_SORT"] = "Filtrar por frase";
+$MESS["STAT_QUANTITY"] = "Cantidad";
+$MESS["STAT_RECORDS_LIST"] = "Plabras claves de búsqueda";
+$MESS["STAT_REFERER"] = "Remitir";
+$MESS["STAT_REFERRING_SITE"] = "Sitio web de referencia";
+$MESS["STAT_SEARCHER_INDEXING"] = "Motor de búsqueda: indexando sitio web";
+$MESS["STAT_SEARCHER_PHRASES"] = "Motor de búsqueda: palabras claves de búsqueda";
+$MESS["STAT_SERVER"] = "Motores de búsqueda";
+$MESS["STAT_SESSION"] = "Sesión";
+$MESS["STAT_SITE_EDIT"] = "Editar configuración del sitio web";
+?>

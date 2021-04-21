@@ -1,0 +1,25 @@
+<?
+$MESS["CT_BCT_ELEMENT_DELETE_CONFIRM"] = "Visa informacija, susijusi su ðiuo áraðu bus iðtrinta. Tæsti?";
+$MESS["CT_BCT_TPL_MESS_BTN_ADD_TO_BASKET"] = "Pridëti á krepðelá";
+$MESS["CATALOG_COMPARE"] = "Palyginti";
+$MESS["CT_BCT_TPL_MESS_BTN_BUY"] = "Pirkti";
+$MESS["CT_BCT_TPL_MESS_PRODUCT_NOT_AVAILABLE"] = "(nëra sandëlyje)";
+$MESS["CT_BCT_TPL_MESS_BTN_DETAIL"] = "Daugiau";
+$MESS["CT_BCT_TPL_MESS_BTN_SUBSCRIBE"] = "Praneðkite kai vël bus sandëlyje";
+$MESS["CT_BCT_CATALOG_BTN_MESSAGE_BASKET_REDIRECT"] = "Perþiûrëti krepðelá";
+$MESS["ADD_TO_BASKET_OK"] = "Prekë pridëta á krepðelá";
+$MESS["CT_BCT_TPL_MESS_PRICE_SIMPLE_MODE"] = "nuo #PRICE# uþ #MEASURE#";
+$MESS["CT_BCT_TPL_MESS_MEASURE_SIMPLE_MODE"] = "#VALUE# #UNIT#";
+$MESS["CT_BCT_TPL_MESS_PRICE_SIMPLE_MODE_SHORT"] = "nuo #PRICE#";
+$MESS["CT_BCT_CATALOG_TITLE_ERROR"] = "Klaida";
+$MESS["CT_BCT_CATALOG_TITLE_BASKET_PROPS"] = "Prekës savybës, norint perkelti jà á krepðelá";
+$MESS["CT_BCT_CATALOG_BASKET_UNKNOWN_ERROR"] = "Neþinoma klaida, ádedant prekæ á krepðelá";
+$MESS["CT_BCT_CATALOG_BTN_MESSAGE_SEND_PROPS"] = "Pasirinkti";
+$MESS["CT_BCT_CATALOG_BTN_MESSAGE_CLOSE"] = "Uþdaryti";
+$MESS["CT_BCT_CATALOG_BTN_MESSAGE_CLOSE_POPUP"] = "Tæsti apsipirkimà";
+$MESS["CT_BCT_CATALOG_MESS_COMPARE_OK"] = "Prekë pridëta á jûsø palyginimø sàraðà";
+$MESS["CT_BCT_CATALOG_MESS_COMPARE_TITLE"] = "Prekiø palyginimas";
+$MESS["CT_BCT_CATALOG_MESS_COMPARE_UNKNOWN_ERROR"] = "Klaida pridedant produktà á palyginimo sàraðà";
+$MESS["CT_BCT_CATALOG_BTN_MESSAGE_COMPARE_REDIRECT"] = "Palyginti prekes";
+$MESS["CT_BCT_TPL_MESS_BTN_COMPARE"] = "Palyginti";
+?>

@@ -1,0 +1,12 @@
+<?
+$MESS ['VOTE_PAGES'] = "â¾Å";
+$MESS ['VOTE_VOTING'] = "âËÇµ";
+$MESS ['VOTE_RESULTS'] = "¼ÅâËÇµ";
+$MESS ['VOTE_START_DATE'] = "àÃÔèÁµé¹:";
+$MESS ['VOTE_END_DATE'] = "ÊÔé¹ÊØ´:";
+$MESS ['VOTE_VOTES'] = "âËÇµ:";
+$MESS ['VOTE_IS_ACTIVE'] = "â¾Å·Ó§Ò¹";
+$MESS ['VOTE_IS_NOT_ACTIVE'] = "â¾ÅäÁè·Ó§Ò¹";
+$MESS ['VOTE_ENLARGE'] = "¢ÂÒÂ";
+$MESS ['VOTE_MODULE_IS_NOT_INSTALLED'] = "ÂÑ§äÁèä´éµÔ´µÑé§âÁ´ÙÅâ¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+?>

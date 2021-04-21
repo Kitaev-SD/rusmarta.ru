@@ -1,0 +1,34 @@
+<?
+$MESS["STAT_ACTIONS"] = "Acciones";
+$MESS["STAT_ACTIVE"] = "Activo:";
+$MESS["STAT_ACTIVITY"] = "Registro de actividad";
+$MESS["STAT_COMMENT"] = "Comentario del adminitrador";
+$MESS["STAT_COMMENT_S"] = "Comentario";
+$MESS["STAT_CONDITIONS"] = "Carácterísticas para filtrar la salida de los visitantes (lógica \"y\")";
+$MESS["STAT_DEFAULT_MESSAGE"] = "El administrador del sitio web tiene acceso prohibido";
+$MESS["STAT_DELETE_STOPLIST"] = "Delete stop-list record";
+$MESS["STAT_DELETE_STOPLIST_CONFIRM"] = "Are you sure you want to delete this stop-list record?";
+$MESS["STAT_EDIT_RECORD"] = "Settings for stop list record # #ID#";
+$MESS["STAT_EMPTY"] = "vacio";
+$MESS["STAT_END_DATE"] = "Fecha final";
+$MESS["STAT_ERROR"] = "Error al guardar el registro";
+$MESS["STAT_GREEN_LAMP"] = "activo";
+$MESS["STAT_IP"] = "Dirección IP NET:";
+$MESS["STAT_MASK"] = "Net mask:";
+$MESS["STAT_MESSAGE"] = "Mostrar mensaje:";
+$MESS["STAT_MESSAGE_LID"] = "Encriptando:";
+$MESS["STAT_NEW_RECORD"] = "Nuevo registro de detención de lista";
+$MESS["STAT_NEW_STOPLIST"] = "New stop-list record";
+$MESS["STAT_PARAMS"] = "Configuración";
+$MESS["STAT_PARAMS_S"] = "Configuración de registro";
+$MESS["STAT_RECORDS_LIST"] = "Listado de Detenidos";
+$MESS["STAT_REDIRECT"] = "Redirección e URL:";
+$MESS["STAT_RED_LAMP"] = "no activo";
+$MESS["STAT_SAVE_STATISTIC"] = "Guardar estadísticas:";
+$MESS["STAT_START_DATE"] = "Fecha Inicial";
+$MESS["STAT_TIMESTAMP"] = "Modificado:";
+$MESS["STAT_URL_FROM"] = "Desde:";
+$MESS["STAT_URL_TO"] = "A.";
+$MESS["STAT_USER_AGENT"] = "UserAgent:";
+$MESS["STAT_WHAT_TO_DO"] = "What should be done";
+?>

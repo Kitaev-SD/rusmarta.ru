@@ -1,0 +1,14 @@
+<?
+$MESS["RATING_GENERAL_ERR_NAME"] = "Laukas &quot;Name&quot; neturi bûti tuðèias. ";
+$MESS["RATING_GENERAL_ERR_ACTIVE"] = "Klaida nurodant &quot;Active&quot; parametrà.";
+$MESS["RATING_GENERAL_ERR_ENTITY_ID"] = "Nurodytas objektas neegzistuoja.";
+$MESS["RATING_GENERAL_ERR_CUR_NAME"] = "Laukas &quot;Custom Field For Current Value&quot; yra provalomas.";
+$MESS["RATING_GENERAL_ERR_PREV_NAME"] = "Laukas &quot;Custom Field For Previous Value&quot; yra provalomas.";
+$MESS["RATING_GENERAL_ERR_CAL_METHOD"] = "Murodytas metodas neegzistuoja.";
+$MESS["RATING_NO_POSITION"] = "ne";
+$MESS["RATING_ALLOW_VOTE_SELF"] = "Jûs negalite balsuoti uþ save.";
+$MESS["RATING_ALLOW_VOTE_GUEST"] = "Tik autorizuoti naudotojai turi teisæ balsuoti.";
+$MESS["RATING_ALLOW_VOTE_COUNT_VOTE"] = "Jûs virðijote savo dienos balsavimo kvotà.";
+$MESS["RATING_ALLOW_VOTE_ACCESS"] = "Jûs neturite leidimo balsuoti.";
+$MESS["RATING_ALLOW_VOTE_LOW_WEIGHT"] = "Jûsø kompetencija yra nepakankama, kad galëtumëte balsuoti.";
+?>

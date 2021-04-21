@@ -1,0 +1,7 @@
+<?
+$MESS["MAIN_USER_CONSENT_SELECTOR_DEF_NOT_SELECTED"] = "(nepasirinkta)";
+$MESS["MAIN_USER_CONSENT_SELECTOR_BTN_EDIT"] = "Redaguoti nustatymus";
+$MESS["MAIN_USER_CONSENT_SELECTOR_BTN_CREATE"] = "Sukurti naujà sutikimà";
+$MESS["MAIN_USER_CONSENT_SELECTOR_BTN_CONSENT"] = "Gauta sutikimø";
+$MESS["MAIN_USER_CONSENT_SELECTOR_CHOOSE"] = "Pasirinkti sutikimà";
+?>

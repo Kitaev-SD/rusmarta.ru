@@ -1,0 +1,30 @@
+<?
+$MESS["SEARCH_SITEMAP_BLOG_NO_COMMENTS"] = "Incluir apenas mensagens de blog no Mapa do Google, não comentários";
+$MESS["SEARCH_SITEMAP_CONTINUE"] = "Continuar criando o mapa do site";
+$MESS["SEARCH_SITEMAP_CREATE"] = "Criar um mapa do site";
+$MESS["SEARCH_SITEMAP_CREATED"] = "O arquivo do mapa do site google está sendo criado e está disponível em:";
+$MESS["SEARCH_SITEMAP_DOC_COUNT"] = "Documentos processados";
+$MESS["SEARCH_SITEMAP_ERR"] = "Ocorreu um erro ao criar o mapa do site";
+$MESS["SEARCH_SITEMAP_ERR_COUNT"] = "com erros";
+$MESS["SEARCH_SITEMAP_FORUM_TOPICS_ONLY"] = "Incluir apenas temas do fórum no mapa do site da Google,não nos posts do blog";
+$MESS["SEARCH_SITEMAP_INSTR1"] = "Esses passos descrevem como enviar um mapa do site ao serviço de mapas de site do google.";
+$MESS["SEARCH_SITEMAP_INSTR2"] = "Entrar em";
+$MESS["SEARCH_SITEMAP_INSTR3"] = "Pelo seu";
+$MESS["SEARCH_SITEMAP_INSTR4"] = "Siga o link";
+$MESS["SEARCH_SITEMAP_INSTR5"] = "Digite a URL do local do mapa do site no campo fornecido e clique no botão Enviar URL.";
+$MESS["SEARCH_SITEMAP_INSTR6"] = "Se você já enviou um arquivo de índice, você pode reenviá-lo usando o serviço de mapa do site do Google.";
+$MESS["SEARCH_SITEMAP_INSTR7"] = "Conta Google";
+$MESS["SEARCH_SITEMAP_INSTR8"] = "Adionar um mapa do site";
+$MESS["SEARCH_SITEMAP_NOTE"] = "Atenção! No processo de criação de um mapa de site google, todos os arquivos que equivalem a \"mapa do site_*.xml\" na pasta raíz do site escolhido serão sobrescritos.";
+$MESS["SEARCH_SITEMAP_RECORD_LIMIT"] = "O número máximo de documentos processados em uma etapa:";
+$MESS["SEARCH_SITEMAP_SESSION_ERR"] = "Um erro de verificação de sessão ocorreu durante a criação do mapa do site. É provável que a sessão expirou. Por favor, crie o mapa do site novamente.";
+$MESS["SEARCH_SITEMAP_SITE"] = "Escolher o título:";
+$MESS["SEARCH_SITEMAP_STEP"] = "Step duration:";
+$MESS["SEARCH_SITEMAP_STEP_sec"] = "segundo";
+$MESS["SEARCH_SITEMAP_STOP"] = "Parar";
+$MESS["SEARCH_SITEMAP_TAB_TITLE"] = "Configurações";
+$MESS["SEARCH_SITEMAP_TITLE"] = "Criando um Mapa do Google";
+$MESS["SEARCH_SITEMAP_USE_HTTPS"] = "Use HTTPS";
+$MESS["SEARCH_SITEMAP_WARN"] = "Atenção! Foram encontradas URLs incompatíveis ao criar o mapa do site. Elas foram armazenadas em um arquivo separado.";
+$MESS["SEARCH_SITEMAP_WARN1"] = "Nota, URL's incompatíveis excedem o comprimento de 2048 caracteres ou contém caracteres ASCII estendidos.";
+?>

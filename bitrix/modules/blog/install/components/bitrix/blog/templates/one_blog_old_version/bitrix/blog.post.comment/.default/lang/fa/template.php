@@ -1,0 +1,36 @@
+<?
+$MESS["B_B_MS_FROM"] = "از";
+$MESS["B_B_MS_REPLY"] = "پاسخ";
+$MESS["B_B_MS_PARENT"] = "مادر";
+$MESS["B_B_MS_LINK"] = "پیوند";
+$MESS["B_B_MS_NAME"] = "نام:";
+$MESS["B_B_MS_SUBJECT"] = "موضوع:";
+$MESS["B_B_MS_M_BODY"] = "نوشته:";
+$MESS["B_B_MS_CAPTCHA_SYM"] = "کدهای تصویر:";
+$MESS["B_B_MS_SEND"] = "ارسال";
+$MESS["B_B_MS_ADD_COMMENT"] = "نوشتن نظر";
+$MESS["BLOG_P_INSERT_IMAGE_LINK"] = "Insert link to the image";
+$MESS["BPC_BOLD"] = "بولد";
+$MESS["BPC_ITALIC"] = "ایتالیک";
+$MESS["BPC_UNDER"] = "زیر خط دار";
+$MESS["BPC_FONT"] = "فونت";
+$MESS["BPC_CLOSE_OPENED_TAGS"] = "بستن همه تگها";
+$MESS["BPC_CLOSE_ALL_TAGS"] = "بستن همه تگها";
+$MESS["BPC_HYPERLINK"] = "پیوند";
+$MESS["BPC_IMAGE"] = "رنگ";
+$MESS["BPC_CODE"] = "کد";
+$MESS["BPC_LIST"] = "ساخت فهرست";
+$MESS["BPC_QUOTE"] = "نقل قول";
+$MESS["BPC_TEXT_ENTER_URL"] = "آدرس سایت";
+$MESS["BPC_TEXT_ENTER_URL_NAME"] = "نام سایت";
+$MESS["BPC_TEXT_ENTER_IMAGE"] = "آدرس عکس";
+$MESS["BPC_LIST_PROMPT"] = "Enter the list item. Click 'Cancel' or type space to complete the list";
+$MESS["BPC_ERROR_NO_URL"] = "آدرس سایت را بنویسید";
+$MESS["BPC_ERROR_NO_TITLE"] = "Please enter the title";
+$MESS["BLOG_CATEGORY_NAME"] = "نام گروه";
+$MESS["BPC_PAGE"] = "صفحه:";
+$MESS["BPC_PAGE_OF"] = "از ";
+$MESS["BPC_MES_DELETE_POST_CONFIRM"] = "آیا نظر را پاک می کنید؟";
+$MESS["B_B_MS_PREVIEW"] = "پیش نمایش";
+$MESS["B_B_MS_PREVIEW_TITLE"] = "پیش نمایش";
+?>

@@ -1,0 +1,5 @@
+<?
+$MESS["SALE_CONVERSION_RATE_CART_TITLE"] = "Pridëta á krëpðelá";
+$MESS["SALE_CONVERSION_RATE_ORDER_TITLE"] = "Sukurti uþsakymai";
+$MESS["SALE_CONVERSION_RATE_PAYMENT_TITLE"] = "Apmokëti uþsakymai";
+?>

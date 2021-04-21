@@ -1,0 +1,23 @@
+<?
+$MESS['SALE_DLV_SRV_SPSR_AUT'] = "ÀÂÒ";
+$MESS['SALE_DLV_SRV_SPSR_AUTONOMOUS'] = "ÀÂÒÎÍÎÌÍÈÉ";
+$MESS['SALE_DLV_SRV_SPSR_LOC_CHECK_MAPPED'] = "Ïåðåâ³ðÿºìî ÿê³ ì³ñöåçíàõîäæåííÿ óæå ç³ñòàâëåí³";
+$MESS['SALE_DLV_SRV_SPSR_LOC_CSV'] = "Ç³ñòàâëÿºìî ì³ñöåçíàõîäæåííÿ çà êîäàìè ç ôàéëó CSV";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_CHUV_1'] = "×óâàø³ÿ ðåñï.";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_CHUV_2'] = "×ÓÂÀÑÜÊÀ ÐÅÑÏÓÁË²ÊÀ";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_EAO_1'] = "ªâðåéñüêà àâò. îáë.";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_EAO_2'] = "ªÂÐÅÉÑÜÊÀ ÀÂÒÎÍÎÌÍÀ ÎÁËÀÑÒÜ";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_HM_1'] = "Õàíòè-Ìàíñ³éñüêèé àâò. îêðóã-Þãðà";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_HM_2'] = "ÕÀÍÒÈ-ÌÀÍÑ²ÉÑÜÊÈÉ ÀÂÒÎÍÎÌÍÈÉ ÎÊÐÓÃ";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_KR_1'] = "Êðèì ðåñï.";
+$MESS['SALE_DLV_SRV_SPSR_LOC_EX_KR_2'] = "ÊÐÈÌ";
+$MESS['SALE_DLV_SRV_SPSR_LOC_INST_ERROR'] = "Ïîìèëêà âñòàíîâëåííÿ â³äïîâ³äíîñò³ êîä³â ì³ñöåçíàõîäæåíü ÑÏÑÐ";
+$MESS['SALE_DLV_SRV_SPSR_LOC_MAP_BY_NAME'] = "Ç³ñòàâëÿºìî ì³ñöåçíàõîäæåííÿ çà íàéìåíóâàííÿìè";
+$MESS['SALE_DLV_SRV_SPSR_LOC_MAP_FINISHED'] = "Ç³ñòàâëåííÿ ì³ñöåçíàõîäæåíü çàâåðøåíî";
+$MESS['SALE_DLV_SRV_SPSR_LOC_MAP_STAGE_ERROR'] = "Íåâ³äîìèé åòàï ç³ñòàâëåííÿ ì³ñöåçíàõîäæåíü";
+$MESS['SALE_DLV_SRV_SPSR_LOC_NORM'] = "Íîðìàë³çóºìî íàéìåíóâàííÿ ì³ñöåçíàõîäæåíü";
+$MESS['SALE_DLV_SRV_SPSR_REPUBLIC'] = "ÐÅÑÏÓÁË²ÊÀ";
+$MESS['SALE_DLV_SRV_SPSR_RESP'] = "ÐÅÑÏ";
+$MESS['SALE_DLV_SRV_SPSR_RUSSIA'] = "Ðîñ³ÿ";
+$MESS['SALE_DLV_SRV_SPSR_TMP_TBL_ERROR'] = "Ïîìèëêà çáåðåæåííÿ ì³ñöåçíàõîäæåíü ÑÏÑÐ â òèì÷àñîâó òàáëèöþ";
+?>

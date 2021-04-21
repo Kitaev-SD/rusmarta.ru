@@ -1,0 +1,6 @@
+<?
+$MESS['SET_TITLE_TIP'] = 'Nustatyti puslapio antraðtæ';
+$MESS['SET_NAVIGATION_TIP'] = 'Rodyti navigacijà';
+$MESS['CONTENT_TIP'] = 'Skyriaus tekstas (naudoti tekstà pagal nutylëjimà - tuðèia)';
+$MESS['URL_TEMPLATES_INDEX_TIP'] = 'Forumø sàraðo puslapis';
+?>

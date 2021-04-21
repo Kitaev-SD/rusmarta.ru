@@ -1,0 +1,32 @@
+<?
+$MESS["BB_NAV_TEMPLATE"] = "Nome do template de paginação";
+$MESS["BB_PATH_TO_BLOG_CATEGORY"] = "Template de URL de página de blog de grupo (filtrado por tag)";
+$MESS["BC_DATE_TIME_FORMAT"] = "Formato de hora e data";
+$MESS["BLG_BLOG_URL"] = "URL do blog";
+$MESS["BLG_GROUP_ID"] = "Blogs de grupo";
+$MESS["BMNP_BLOG_VAR"] = "Variável de identificação do blog";
+$MESS["BMNP_MESSAGE_PER_PAGE"] = "Mensagens por página";
+$MESS["BMNP_NAME_TEMPLATE"] = "Formato de nome";
+$MESS["BMNP_NAME_TEMPLATE_DEFAULT"] = "#NOBR##NAME# #LAST_NAME##/NOBR#";
+$MESS["BMNP_PAGE_VAR"] = "Variável da Página";
+$MESS["BMNP_PATH_TO_BLOG"] = "Caminho para página de template do blog";
+$MESS["BMNP_PATH_TO_GROUP_BLOG_POST"] = "Template de URL de post de blog de grupo";
+$MESS["BMNP_PATH_TO_POST"] = "Página de template de mensagem do blog";
+$MESS["BMNP_PATH_TO_SMILE"] = "Caminho para a pasta de smileys, relativa à raiz do site";
+$MESS["BMNP_PATH_TO_USER"] = "Caminho para a página de template do usuário do blog";
+$MESS["BMNP_POST_VAR"] = "Variável de identificação de mensagem do blog";
+$MESS["BMNP_SHOW_LOGIN"] = "Exibir nome de login se não houver campos de solicitação do nome do usuário disponíveis";
+$MESS["BMNP_USER_VAR"] = "Variável de identificação de usuário do blog";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Altura máxima da imagem";
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Largura máxima da imagem";
+$MESS["B_VARIABLE_ALIASES"] = "Pseudônimos das Variáveis";
+$MESS["POST_PROPERTY_LIST"] = "Exibir propriedades adicionais no blog";
+$MESS["RATING_TYPE"] = "Design dos botões de classificação";
+$MESS["RATING_TYPE_CONFIG"] = "padrão";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Curti (imagem)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Curti (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Curti/Não Curti (imagem)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Curti/Não Curti (texto)";
+$MESS["SHOW_RATING"] = "Permitir Classificação";
+$MESS["SHOW_RATING_CONFIG"] = "padrão";
+?>

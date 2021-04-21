@@ -1,0 +1,33 @@
+<?
+$MESS["CP_BCLL_CACHE_GROUPS"] = "Respeitar permissões de acesso";
+$MESS["CP_BCLL_CONVERT_CURRENCY"] = "Usar apenas uma moeda para mostrar os preços";
+$MESS["CP_BCLL_CURRENCY_ID"] = "Converter todos os preços para a moeda";
+$MESS["CP_BCLL_HIDE_NOT_AVAILABLE"] = "Ocultar itens que não estão no estoque";
+$MESS["HIDE_NOT_AVAILABLE_TIP"] = "Se selecionado: os produtos cujos estoques nos depósitos sejam zero ou menos serão ocultados; o controle de estoque será ativado; itens fora de estoque estarão disponíveis para compra.";
+$MESS["IBLOCK_ACTION_VARIABLE"] = "Nome do parâmetro \"Ações\"";
+$MESS["IBLOCK_BASKET_URL"] = "URL da página com o carrinho de cliente";
+$MESS["IBLOCK_CACHE_FILTER"] = "Fazer cache se o filtro está ativo";
+$MESS["IBLOCK_DETAIL_URL"] = "URL da página com o conteúdo de detalhes";
+$MESS["IBLOCK_ELEMENT_ID"] = "ID do elemento";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD"] = "Campo para classificar elementos";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD2"] = "Segundo campo de classificação ";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER"] = "Ordem de classificação dos elementos";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER2"] = "Segunda ordem de classificação";
+$MESS["IBLOCK_FILTER_NAME_IN"] = "Nome da matriz com os valores utilizados para filtrar elementos";
+$MESS["IBLOCK_IBLOCK"] = "Infoblock";
+$MESS["IBLOCK_LINK_PROPERTY_SID"] = "Propriedade para armazenar o link";
+$MESS["IBLOCK_PAGE_ELEMENT_COUNT"] = "Número de elementos por página";
+$MESS["IBLOCK_PRICES"] = "Preços";
+$MESS["IBLOCK_PRICE_CODE"] = "Tipo de preço";
+$MESS["IBLOCK_PRODUCT_ID_VARIABLE"] = "Nome do parâmetro \"Código do produto\" ";
+$MESS["IBLOCK_PROPERTY"] = "Propriedades";
+$MESS["IBLOCK_SECTION_ID_VARIABLE"] = "Nome do parâmetro \"Código da seção\"";
+$MESS["IBLOCK_SECTION_URL"] = "URL da página com o conteúdo de seção";
+$MESS["IBLOCK_SHOW_PRICE_COUNT"] = "Ver preço para quantidade";
+$MESS["IBLOCK_SORT_ASC"] = "ascendente";
+$MESS["IBLOCK_SORT_DESC"] = "descendente";
+$MESS["IBLOCK_TYPE"] = "Tipo de Infoblock";
+$MESS["IBLOCK_USE_PRICE_COUNT"] = "Mostrar preços na variação de quantidade";
+$MESS["IBLOCK_VAT_INCLUDE"] = "Incluir taxa de imposto no preço";
+$MESS["T_IBLOCK_DESC_PAGER_CATALOG"] = "Produtos";
+?>

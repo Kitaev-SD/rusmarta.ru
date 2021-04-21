@@ -1,0 +1,30 @@
+<?
+$MESS["ERROR_UPDATE_DISCOUNT_CPN"] = "Klaida atnaujinant kupono #ID# parametrus";
+$MESS["ERROR_DELETE_DISCOUNT_CPN"] = "Klaida ðalinant kuponà #ID#";
+$MESS["DSC_NAV"] = "Kuponai";
+$MESS["DSC_DELETE_ALT"] = "Paðalinti kuponus";
+$MESS["DSC_DELETE"] = "Paðalinti ";
+$MESS["DSC_UPDATE_ALT"] = "Redaguoti kupono parametrus";
+$MESS["DSC_UPDATE"] = "Redaguoti";
+$MESS["DSC_DELETE_CONF"] = "Ar tikrai norite paðalinti ðá kuponà?";
+$MESS["DSC_CPN_NAME"] = "Nuolaidos pavadinimas";
+$MESS["DSC_CPN_ACTIVE"] = "Aktyvi";
+$MESS["DSC_CPN_CPN"] = "Kuponas";
+$MESS["DSC_CPN_DATE"] = "Paskutinis naudojimas";
+$MESS["DSC_CPN_TIME"] = "Vienas naudojimas";
+$MESS["DSC_CPN_TIME2"] = "Kupono tipas";
+$MESS["DSC_CPN_ORDER"] = "Taikoma visoms uþsakymo prekëms";
+$MESS["DSC_CPN_ADD"] = "Naujas kuponas";
+$MESS["DSC_CPN_ADD_ALT"] = "Prideda naujà kuponà";
+$MESS["DSC_CPN_TITLE"] = "Nuolaidø kuponas";
+$MESS["DSC_CPN_ACT"] = "Aktyvus";
+$MESS["DSC_CPN_DISC"] = "Nuolaida";
+$MESS["DSC_CPN_ALL"] = "Visi";
+$MESS["DSC_CPN_YES"] = "Taip";
+$MESS["DSC_CPN_NO"] = "Ne";
+$MESS["DSC_CPN_DESCRIPTION"] = "Komentaras";
+$MESS["DSC_CREATED_BY"] = "Sukûrë";
+$MESS["DSC_DATE_CREATE"] = "Sukurta";
+$MESS["DSC_MODIFIED_BY"] = "Pakeitë";
+$MESS["DSC_TIMESTAMP_X"] = "Pakeista";
+?>

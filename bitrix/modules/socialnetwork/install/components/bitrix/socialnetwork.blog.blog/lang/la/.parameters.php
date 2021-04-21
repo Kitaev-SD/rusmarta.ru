@@ -1,0 +1,35 @@
+<?
+$MESS["BB_BLOG_VAR"] = "Variable de identificador del blog";
+$MESS["BB_CACHE_TIME_LONG"] = "Duracion de caché en la página ";
+$MESS["BB_CATEGORY_ID"] = "Filtro por ID de etiqueta";
+$MESS["BB_DAY"] = "Filtro por día";
+$MESS["BB_FILTER_NAME_IN"] = "Nombre del array con los valores utilizados para filtrar los puestos";
+$MESS["BB_MESSAGE_COUNT"] = "Mensajes por página";
+$MESS["BB_MONTH"] = "Filtro por mes";
+$MESS["BB_NAV_TEMPLATE"] = "Buscapersonas nombre de la plantilla";
+$MESS["BB_PAGE_VAR"] = "Variable de la página";
+$MESS["BB_PATH_TO_BLOG"] = "Plantilla de la ruta a la página del blog";
+$MESS["BB_PATH_TO_BLOG_CATEGORY"] = "Plantilla de la ruta a la página del blog con filtro de etiqueta";
+$MESS["BB_PATH_TO_GROUP"] = "Plantilla de la ruta a la página de grupo";
+$MESS["BB_PATH_TO_POST"] = "Plantilla de la ruta a la página de mensajes del blog";
+$MESS["BB_PATH_TO_POST_EDIT"] = "Plantilla de la ruta a la edición del blog de mensajes";
+$MESS["BB_PATH_TO_SMILE"] = "Ruta a la carpeta con smileys, relativo a la raíz del sitio web";
+$MESS["BB_PATH_TO_USER"] = "Plantilla de la ruta a la página del blog del usuario";
+$MESS["BB_POST_VAR"] = "Variable de identificador del blog de mensaje";
+$MESS["BB_SET_NAV_CHAIN"] = "Añadir elemento a la cadena de navegación";
+$MESS["BB_USER_VAR"] = "Variable de identificador del blog del usuario";
+$MESS["BB_YEAR"] = "Filtro por año";
+$MESS["BC_DATE_TIME_FORMAT"] = "Formato de fecha y hora";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Máx. Alto de la Imagen";
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Máx. Ancho de la Imagen";
+$MESS["B_VARIABLE_ALIASES"] = "Variable del alias";
+$MESS["POST_PROPERTY_LIST"] = "Mostrar propiedades adicionales en el blog del mensaje";
+$MESS["RATING_TYPE"] = "Diseño de botones de calificación";
+$MESS["RATING_TYPE_CONFIG"] = "predeterminado";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Me gusta (imagen)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Me gusta (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Me gusta/No me gusta (imagen)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Me gusta/No me gusta (texto)";
+$MESS["SHOW_RATING"] = "Habilitar calificación";
+$MESS["SHOW_RATING_CONFIG"] = "predeterminado";
+?>

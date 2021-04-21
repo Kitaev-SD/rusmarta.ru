@@ -1,0 +1,35 @@
+<?
+$MESS["SCA_ERROR_DELETE"] = "Klaida ðalinant kortelæ ##ID#";
+$MESS["SCA_ERROR_UPDATE"] = "Klaida atnaujinant kortelës ##ID# parametrus";
+$MESS["SCA_TITLE"] = "Mokëjimo kortelës";
+$MESS["SCA_USER_ID"] = "Naudotojo ID";
+$MESS["SCA_USER_LOGIN"] = "Naudotojo prisijungimo vardas";
+$MESS["SCA_USER"] = "Naudotojas";
+$MESS["SCA_ACTIVE"] = "Aktyvus";
+$MESS["SCA_ALL"] = "visi";
+$MESS["SCA_YES"] = "Taip";
+$MESS["SCA_NO"] = "Ne";
+$MESS["SCA_SET"] = "Nustatyti";
+$MESS["SCA_UNSET"] = "Atstatyti";
+$MESS["SCA_ADD_NEW"] = "Pridëti &gt;&gt;";
+$MESS["SCA_NAV"] = "Kortelës";
+$MESS["SCA_ACT"] = "Aktyvus";
+$MESS["SCA_SORT"] = "Rûðiavimas";
+$MESS["SCA_CURRENCY"] = "Valiuta";
+$MESS["SCA_TYPE"] = "Tipas";
+$MESS["SCA_ACTIONS"] = "Veiksmai";
+$MESS["SCA_DELETE_ALT"] = "Paðalinti sàskaità";
+$MESS["SCA_DELETE"] = "Paðalinti ";
+$MESS["SCA_UPDATE_ALT"] = "Redaguoti mokëjimo kortelës parameetrus";
+$MESS["SCA_UPDATE"] = "Redaguoti ";
+$MESS["SCA_DELETE_ALT1"] = "Paðalinti mokëjimo kortelæ";
+$MESS["SCA_DELETE_ALL_ALT"] = "Paþymëti kortelæ ðalinimui";
+$MESS["SCA_AVTIVE_ALL_ALT"] = "Paþymëti kortelæ aktyvavimui/deaktyvavimui";
+$MESS["SCA_DELETE_ALL_ALT1"] = "Paþymëti visas korteles ðalinimui";
+$MESS["SCA_SAVE"] = "Iðsaugoti";
+$MESS["SCA_DELETE_CONF"] = "Ar tikrai norite paðalinti ðià kortelæ?";
+$MESS["SCA_NO_VALID_PASSWORD"] = "Praðome pateikti slaptaþodá, kuris bus naudojamas ðifruoti kredito korteliø numerius bendrø nustatymø puslapyje.";
+$MESS["SCAN_ADD_NEW"] = "Pridëti naujà kredito kortelæ";
+$MESS["SCAN_ADD_NEW_ALT"] = "Spustelëkite ir pridëkite naujà kredito kortelæ";
+$MESS["SCA_ATTENTION"] = "Dëmesio!";
+?>

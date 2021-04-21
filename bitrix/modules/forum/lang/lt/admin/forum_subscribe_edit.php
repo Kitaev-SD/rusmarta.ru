@@ -1,0 +1,29 @@
+<?
+$MESS["FM_FLT_SEARCH_TITLE"] = "Áveskite ieðkomà eilutæ";
+$MESS["FM_FLT_SEARCH"] = "Ieðkoti";
+$MESS["FM_FLT_FORUM"] = "Forumas";
+$MESS["FM_FLT_TOPIC"] = "Tema";
+$MESS["FM_FLT_START_DATE"] = "Prenumeratos pradþios data";
+$MESS["FM_FLT_START_DATE_ALT"] = "Prenumeratos pradþios data";
+$MESS["FM_FLT_SUBSCR_TYPE"] = "Prenumeratos tipas";
+$MESS["FM_FLT_SUBSCR_TYPE_ALT"] = "Prenumeratos tipas";
+$MESS["FM_LIST_USER"] = "Naudotojo sàraðas";
+$MESS["FM_ACT_DELETE"] = "Iðtrinti";
+$MESS["FM_TITLE"] = "Naudotojo prenumeratos";
+$MESS["FM_TITLE_PAGE"] = "Naudotojo prenumeratos";
+$MESS["FM_HEAD_ID"] = "ID";
+$MESS["FM_HEAD_FORUM"] = "Forumas";
+$MESS["FM_HEAD_TOPIC"] = "Tema";
+$MESS["FM_HEAD_START_DATE"] = "Prenumeratos pradþia";
+$MESS["FM_HEAD_LAST_SEND"] = "Paskutinis praneðimas";
+$MESS["FM_NEW_TOPIC_ONLY"] = "Tik naujos temos";
+$MESS["FM_ALL_MESSAGE"] = "Visi forumo praneðimai";
+$MESS["FM_TYPICAL"] = "Nauji temos praneðimai";
+$MESS["FM_WRONG_DATE_FROM"] = "Áveskite filtre teisingà sukûrimo datà \"Nuo\"";
+$MESS["FM_WRONG_DATE_TO"] = "Áveskite filtre teisingà sukûrimo datà \"Iki\"";
+$MESS["FM_WRONG_PERIOD"] = "Periodas nurodytas neteisingai";
+$MESS["FM_WRONG_USER_ID"] = "Neteisingas naudotojo ID";
+$MESS["FSUBSC_NO_SPERMS"] = "Neuþtenka teisiø prenumeratos redagavimui.";
+$MESS["FM_ACT_DEL_CONFIRM"] = "Ar tikrai norite iðtrinti prenumeratà?";
+$MESS["FM_SPACE"] = "Nepasirinkta";
+?>

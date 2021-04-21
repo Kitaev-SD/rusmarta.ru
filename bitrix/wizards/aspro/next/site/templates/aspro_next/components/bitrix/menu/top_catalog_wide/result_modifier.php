@@ -1,0 +1,1 @@
+<?$arResult = CNext::getChilds($arResult);?>

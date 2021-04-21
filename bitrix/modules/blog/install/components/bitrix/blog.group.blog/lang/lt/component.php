@@ -1,0 +1,6 @@
+<?
+$MESS["BLOG_MODULE_NOT_INSTALL"] = "Tinklaraðèiø modulis nëra ádiegtas";
+$MESS["B_B_GR_NO_GROUP"] = "Grupë nerasta";
+$MESS["B_B_GR_TITLE"] = "Tinklaraðèiai";
+$MESS["B_B_GR_TITLE_NAME"] = "Blogs of \"#group#\"";
+?>

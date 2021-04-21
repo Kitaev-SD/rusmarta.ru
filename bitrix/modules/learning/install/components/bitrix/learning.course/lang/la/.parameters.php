@@ -1,0 +1,31 @@
+<?
+$MESS["LEARNING_CHECK_PERMISSIONS"] = "Permite comprobar permisos";
+$MESS["LEARNING_COURSE_ID_NAME"] = "ID del curso";
+$MESS["LEARNING_DESC_NO"] = "No";
+$MESS["LEARNING_DESC_YES"] = "Si";
+$MESS["LEARNING_PAGE_WINDOW_NAME"] = "Número de preguntas en la navegación";
+$MESS["LEARNING_SHOW_TIME_LIMIT"] = "Muestra contador de tiempo";
+$MESS["LEARNING_TESTS_PER_PAGE"] = "Número de pruebas por página";
+$MESS["LEARN_CHAPTER_DETAIL_DESC"] = "URL de la página del detalle del capítulo";
+$MESS["LEARN_CHAPTER_ID_DESC"] = "ID del capítulo";
+$MESS["LEARN_COURSE_CONTENTS_DESC"] = "Todo el URL de la página del contenido del curso ";
+$MESS["LEARN_COURSE_ID_DESC"] = "ID del curso";
+$MESS["LEARN_FOR_TEST_ID_DESC"] = "Probar la identificación en el gradebook";
+$MESS["LEARN_GRADEBOOK_DESC"] = "URL de la página de Gradebook ";
+$MESS["LEARN_GRADEBOOK_ID_DESC"] = "Identificación de Gradebook ";
+$MESS["LEARN_INDEX_DESC"] = "URL de la página del índice";
+$MESS["LEARN_INDEX_ID_DESC"] = "Identificación de la página del índice";
+$MESS["LEARN_LESSON_DETAIL_DESC"] = "URL de la página del detalle de la lección";
+$MESS["LEARN_LESSON_ID_DESC"] = "ID de la lección";
+$MESS["LEARN_PATH_TO_USER_PROFILE"] = "URL de la página del perfil del usuario";
+$MESS["LEARN_SELF_TEST_DESC"] = "ID de la autoprueba";
+$MESS["LEARN_TEST_DETAIL_DESC"] = "Probar el URL de la página ";
+$MESS["LEARN_TEST_ID_DESC"] = "ID de la prueba";
+$MESS["LEARN_TEST_LIST_DESC"] = "Probar el URL de la página de la lista";
+$MESS["LEARN_TEST_LIST_ID_DESC"] = "ID de la lista de prueba";
+$MESS["LEARN_TEST_SELF_DESC"] = "URL de autoprueba de la página";
+$MESS["LEARN_TYPE_ID_DESC"] = "Todo el curso contiene id de la página";
+$MESS["TEST_DETAIL_GROUP"] = "Configuración de pruebas";
+$MESS["TEST_LIST_GROUP"] = "Configuraciones de la lista de prueba";
+$MESS["T_LEARNING_PAGE_NUMBER_VARIABLE"] = "ID de la pregunta";
+?>

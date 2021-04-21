@@ -1,0 +1,34 @@
+<?
+$MESS['FILEMAN_MENU_EDIT_DEF'] = '(pagal nutylëjimà)';
+$MESS['FILEMAN_MENU_EDIT_ENTER_TYPE'] = 'Áveskite meniu tipà!';
+$MESS['FILEMAN_MENU_EDIT_EXISTS_ERROR'] = 'Tokio tipo meniu jau egzistuoja ðiame kataloge!';
+$MESS['FILEMAN_MENU_EDIT_TITLE'] = 'Redaguoti meniu';
+$MESS['FILEMAN_MENU_EDIT_TITLE_ADD'] = 'Pridëti meniu';
+$MESS['FILEMAN_MENU_EDIT_EXT'] = 'Iðplëstas reþimas';
+$MESS['FILEMAN_MENU_EDIT_SIMPLE'] = 'Supaprastintas reþimas';
+$MESS['FILEMAN_MENU_EDIT_AS_TEXT'] = 'Redaguoti kaip bylà';
+$MESS['FILEMAN_MENU_EDIT_DELETE'] = 'Ðalinti meniu';
+$MESS['FILEMAN_MENU_EDIT_ADD_ITEM'] = 'Perkelti punktà >>';
+$MESS['FILEMAN_MENU_EDIT_NAME'] = 'Pavadinimas:';
+$MESS['FILEMAN_MENU_EDIT_LINK'] = 'Nuoroda';
+$MESS['FILEMAN_MENU_EDIT_SORT'] = 'Rûðiavimas';
+$MESS['FILEMAN_MENU_EDIT_DEL'] = 'Iðtrinti';
+$MESS['FILEMAN_MENU_EDIT_ADDITIONAL_LINK'] = 'Papildomi punktai paþymëjimui';
+$MESS['FILEMAN_MENU_EDIT_CONDITION'] = 'Sàlygos';
+$MESS['FILEMAN_MENU_EDIT_CONDITION_TYPE'] = 'Sàlygos tipas:';
+$MESS['FILEMAN_MENU_EDIT_PARAMS'] = 'Parametrai:';
+$MESS['FILEMAN_MENU_EDIT_PARAM_NAME'] = 'Pavadinimas';
+$MESS['FILEMAN_MENU_EDIT_PARAM_VALUE'] = 'Reikðmë';
+$MESS['FILEMAN_MENU_EDIT_TYPE'] = 'Meniu tipas:';
+$MESS['FILEMAN_MENU_EDIT_TEMPLATE'] = 'Meniu ðablonas:';
+$MESS['FILEMAN_MENU_EDIT_LEFT_MENU'] = 'Kairysis meniu';
+$MESS['FILEMAN_MENU_EDIT_TOP_MENU'] = 'Virðutinis meniu';
+$MESS['FILEMAN_MENU_EDIT_SAVE'] = 'Iðsaugoti';
+$MESS['FILEMAN_MENU_EDIT_APPLY'] = 'Pritaikyti';
+$MESS['FILEMAN_MENU_EDIT_RESET'] = 'Iðvalyti';
+$MESS['FILEMAN_MENU_EDIT_ITEMS'] = 'Meniu punktai:';
+$MESS['FILEMAN_BACK'] = 'Katalogas';
+$MESS['FILEMAN_DEL_CONF'] = 'Ar tikrai norite paðalinti ðá meniu?';
+$MESS['FILEMAN_TAB1'] = 'Meniu';
+$MESS['FILEMAN_TAB1_ALT'] = 'Meniu parametrai';
+?>

@@ -1,0 +1,35 @@
+<?
+$MESS["SALE_DH_CPCR_NAME"] = "CPCR";
+$MESS["SALE_DH_CPCR_DESCRIPTION"] = "kurjeriø tarnyba";
+$MESS["SALE_DH_CPCR_DESCRIPTION_INNER"] = "CPCR tvarkytojas.Remiasi <a href=\"http://www.cpcr.ru/calculator.html\" target=\"_blank\">CPCR tarifø kalculatoriumi</a>. El.parduotuvës adresas turi bûti nurodytas <a href=\"/bitrix/admin/settings.php?mid=sale&lang=en\">modulio nustatymuose</a>. <br /> Tik Rusijos miestai.";
+$MESS["SALE_DH_CPCR_SIMPLE_TITLE"] = "CPCR-Express";
+$MESS["SALE_DH_CPCR_SIMPLE_DESCRIPTION"] = "Kroviniø pristatymas su maksimaliai átemptu grafiku (iki 35 kg)";
+$MESS["SALE_DH_CPCR_SIMPLE13_TITLE"] = "Greitasis 13:00 ";
+$MESS["SALE_DH_CPCR_SIMPLE13_DESCRIPTION"] = "Nuo durø iki durø greitsis pristatymas 13:00 kità darbo dienà.";
+$MESS["SALE_DH_CPCR_SIMPLE18_TITLE"] = "Greitasis 18.00";
+$MESS["SALE_DH_CPCR_SIMPLE18_DESCRIPTION"] = "Nuo durø iki durø greitsis pristatymas 18.00 kità darbo dienà.";
+$MESS["SALE_DH_CPCR_ECONOM_TITLE"] = "CPCR-Econom";
+$MESS["SALE_DH_CPCR_ECONOM_DESCRIPTION"] = "Labiausiai ekonomiðkas sprendimas sunkiøjø siuntø pristatymui Rusijoje";
+$MESS["SALE_DH_CPCR_BIZON_TITLE"] = "Squirrel Cargo";
+$MESS["SALE_DH_CPCR_BIZON_DESCRIPTION"] = "Pateikia paketus iki 150 kg.";
+$MESS["SALE_DH_CPCR_COLIBRI_TITLE"] = "Sparrow Courier";
+$MESS["SALE_DH_CPCR_COLIBRI_DESCRIPTION"] = "Nuo durø iki durø lengvø siuntø pristatymas.";
+$MESS["SALE_DH_CPCR_PELICAN_TITLE"] = "Pelican Express";
+$MESS["SALE_DH_CPCR_PELICAN_DESCRIPTION"] = "Pristatto þeme arba oru paketus iki 70 kg.";
+$MESS["SALE_DH_CPCR_FRAXT_TITLE"] = "Icebreaker Freight";
+$MESS["SALE_DH_CPCR_FRAXT_DESCRIPTION"] = "Individualizuotos transportø paslaugos sunkiems ar negabaritiniams daiktams.";
+$MESS["SALE_DH_CPCR_CONFIG_TITLE"] = "Parametrai";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY"] = "Kroviniø kategorija ";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_1"] = "dokumentai";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_2"] = "mobilûs telefonai";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_3"] = "namø ir biuro áranga";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_4"] = "vertybiniai popieriai";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_5"] = "juvelyriniai dirbiniai";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_6"] = "kosmetika";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_7"] = "drabuþiai";
+$MESS["SALE_DH_CPCR_CONFIG_CATEGORY_8"] = "kita";
+$MESS["SALE_DH_CPCR_ERROR_CONNECT"] = "Nepavyko apskaièiuoti pristatymo kainos: ryðio klaida";
+$MESS["SALE_DH_CPCR_ERROR_RESPONSE"] = "Nepavyko apskaièiuoti pristatymo kainos: neteisingas serverio atsakymas ";
+$MESS["SALE_DH_CPCR_NEXT_STEP"] = "Redaguoti lokacijas";
+$MESS["SALE_DH_CPCR_DAYS"] = "dienø";
+?>

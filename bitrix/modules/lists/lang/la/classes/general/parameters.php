@@ -1,0 +1,7 @@
+<?
+$MESS["LISTS_PARAMS_POPUP_ELEMENT_ID"] = "ID del elemento";
+$MESS["LISTS_PARAMS_POPUP_FIELD_ID"] = "ID del Campo";
+$MESS["LISTS_PARAMS_POPUP_FILE_ID"] = "ID del Archivo";
+$MESS["LISTS_PARAMS_POPUP_LIST_ID"] = "ID de la lista";
+$MESS["LISTS_PARAMS_POPUP_SECTION_ID"] = "ID de la sección";
+?>

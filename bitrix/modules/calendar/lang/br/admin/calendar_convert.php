@@ -1,0 +1,34 @@
+<?
+$MESS["CAL_CONVERT"] = "Converter calendários";
+$MESS["CAL_CONVERT_FROM"] = "de";
+$MESS["CAL_CONVERT_GROUPS"] = "Calendários de grupo";
+$MESS["CAL_CONVERT_IBLOCK_LIST"] = "Blocos de informação a serem convertidos para tipos de calendário";
+$MESS["CAL_CONVERT_PROCES"] = "Processo de conversão";
+$MESS["CAL_CONVERT_PROCESSING"] = "Convertendo...";
+$MESS["CAL_CONVERT_PROCESSING_NOTICE"] = "Atenção! Não cancele o processo de conversão ou feche a página do navegador, caso contrário você vai obter resultados de conversão inválidos.";
+$MESS["CAL_CONVERT_SET"] = "Configurações do módulo de calendário ";
+$MESS["CAL_CONVERT_STAGE_CREATE_TYPES"] = "criando tipos de calendário";
+$MESS["CAL_CONVERT_STAGE_GROUP_CALS"] = "convertendo calendários de \"#GROUP_NAME# \": (calendários: #SECT_COUNT#, eventos: #EVENTS_COUNT#)";
+$MESS["CAL_CONVERT_STAGE_PREPARE"] = "preparando conversão";
+$MESS["CAL_CONVERT_STAGE_SAVE"] = "salvando parâmetros";
+$MESS["CAL_CONVERT_STAGE_TYPE"] = "convertendo calendários de \"#TYPE_NAME# \": (calendário: #SECT_COUNT#, eventos: #EVENTS_COUNT#)";
+$MESS["CAL_CONVERT_STAGE_USER_CALS"] = "convertendo calendários de #USER_NAME#: (calendários: #SECT_COUNT#, eventos: #EVENTS_COUNT#)";
+$MESS["CAL_CONVERT_START"] = "Converter";
+$MESS["CAL_CONVERT_SUCCESS"] = "A conversão foi terminada.";
+$MESS["CAL_CONVERT_USERS"] = "Calendários de usuários";
+$MESS["CAL_GO_TO_SETTINGS"] = "Abrir configurações do módulo";
+$MESS["CAL_MODULES"] = "Módulos";
+$MESS["CAL_NOT_1"] = "Verifique os blocos de informação que você deseja converter para tipos de calendário. Você pode alterar os nomes e/ou códigos simbólicos dos tipos selecionados, se necessário.";
+$MESS["CAL_NOT_2"] = "Verifique as configurações sugeridas para o módulo de Calendários.";
+$MESS["CAL_NOT_3"] = "Clique no botão \"Converter\".";
+$MESS["CAL_NOT_4"] = "Uma vez de concluído o processo de conversão, abra a página de configuração do módulo do Calendário de Eventos e certifique-se que os tipos de calendário estão corretos e com permissões de acesso adequados.";
+$MESS["CAL_NOT_PARSE"] = "Arquivos públicos do website devem ser analisados para obter as configurações de módulo corretas.";
+$MESS["CAL_PARSE_CONTENT"] = "Analisar arquivos públicos";
+$MESS["CAL_PROC_WAIT"] = "Analisando arquivos públicos ...";
+$MESS["CAL_PRODUCT_SETTINGS"] = "Configurações do sistema";
+$MESS["CAL_SETTINGS"] = "Configurações";
+$MESS["MOD_BACK"] = "Voltar a módulos";
+$MESS["TYPE_CONVERT_IT"] = "Converter este tipo";
+$MESS["TYPE_ID"] = "Código simbólico";
+$MESS["TYPE_TITLE"] = "Nome";
+?>

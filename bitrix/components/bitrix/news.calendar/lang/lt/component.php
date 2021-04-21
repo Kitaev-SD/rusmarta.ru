@@ -1,0 +1,29 @@
+<?
+$MESS['IBL_NEWS_CAL_M_1'] = 'Sausis';
+$MESS['IBL_NEWS_CAL_M_2'] = 'Vasaris';
+$MESS['IBL_NEWS_CAL_M_3'] = 'Kovas';
+$MESS['IBL_NEWS_CAL_M_4'] = 'Balandis';
+$MESS['IBL_NEWS_CAL_M_5'] = 'Geguþës';
+$MESS['IBL_NEWS_CAL_M_6'] = 'Birþelis';
+$MESS['IBL_NEWS_CAL_M_7'] = 'Liepa';
+$MESS['IBL_NEWS_CAL_M_8'] = 'Rugpjûtis';
+$MESS['IBL_NEWS_CAL_M_9'] = 'Rugsëjis';
+$MESS['IBL_NEWS_CAL_M_10'] = 'Spalis';
+$MESS['IBL_NEWS_CAL_M_11'] = 'Lapkritis';
+$MESS['IBL_NEWS_CAL_M_12'] = 'Gruodis';
+$MESS['IBL_NEWS_CAL_D_0'] = 'Sekmadienis';
+$MESS['IBL_NEWS_CAL_D_1'] = 'Pirmadienis';
+$MESS['IBL_NEWS_CAL_D_2'] = 'Antradienis';
+$MESS['IBL_NEWS_CAL_D_3'] = 'Treèiadienis';
+$MESS['IBL_NEWS_CAL_D_4'] = 'Ketvirtadienis';
+$MESS['IBL_NEWS_CAL_D_5'] = 'Penktadienis';
+$MESS['IBL_NEWS_CAL_D_6'] = 'Ðeðtadienis';
+$MESS['IBL_NEWS_CAL_S_0'] = 'S';
+$MESS['IBL_NEWS_CAL_S_1'] = 'P';
+$MESS['IBL_NEWS_CAL_S_2'] = 'A';
+$MESS['IBL_NEWS_CAL_S_3'] = 'T';
+$MESS['IBL_NEWS_CAL_S_4'] = 'K';
+$MESS['IBL_NEWS_CAL_S_5'] = 'P';
+$MESS['IBL_NEWS_CAL_S_6'] = 'Ð';
+$MESS['IBLOCK_MODULE_NOT_INSTALLED'] = 'Informaciniø blokø modulis nëra ádiegtas';
+?>

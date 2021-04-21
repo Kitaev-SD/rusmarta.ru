@@ -1,0 +1,29 @@
+<?
+$MESS["MAIN_ADMIN_MENU_EDIT"] = "Editar";
+$MESS["SUP_BY_DEFAULT"] = "Fijar este elemento por defecto en la lista desplegable al crear un ticket nuevo en el sitio web: ";
+$MESS["SUP_CREATE_NEW_RECORD"] = "Crear un nuevo registro";
+$MESS["SUP_DELETE_RECORD"] = "Eliminar registro";
+$MESS["SUP_DELETE_RECORD_CONFIRM"] = "¿Está seguro que desea eliminar este ingreso en el diccionario?";
+$MESS["SUP_DESCRIPTION"] = "Descripción";
+$MESS["SUP_EDIT_RECORD"] = "Editar registro # #ID#";
+$MESS["SUP_ERROR"] = "Error al guardar el registro";
+$MESS["SUP_EVENT12"] = "evento1, evento2: identificadores de tipos de eventos";
+$MESS["SUP_EVENT3"] = "evento3: parámetro auxiliar";
+$MESS["SUP_EVENT_PARAMS"] = "Método de colocar nuevas peticiones en el módulo de estadísticas ";
+$MESS["SUP_FORGOT_NAME"] = "Por favor complete el campo \"Nombre\"";
+$MESS["SUP_INCORRECT_SID"] = "Código mnemónic incorrecto (sólo se aceptan letras latinas, números y el guión bajo \"_\")";
+$MESS["SUP_NAME"] = "Título";
+$MESS["SUP_NEW_RECORD"] = "Nuevo registro del diccionario";
+$MESS["SUP_NO"] = "no";
+$MESS["SUP_RECORD"] = "Registro";
+$MESS["SUP_RECORDS_LIST"] = "Diccionario";
+$MESS["SUP_RECORD_TITLE"] = "Configuración de registros en libro de preferencias";
+$MESS["SUP_RESPONSIBLE"] = "Responsable";
+$MESS["SUP_SID"] = "Código Mnemónic";
+$MESS["SUP_SID_ALREADY_IN_USE"] = "Para el diccionario tipo \"#TYPE#\" y el sitio web \"#LANG#\" este código mnemónico ya se utiliza en el registro # #RECORD_ID#.";
+$MESS["SUP_SITE"] = "Sitios web:";
+$MESS["SUP_SORT"] = "Clasificar índice";
+$MESS["SUP_STAT"] = "Estadísticas";
+$MESS["SUP_STAT_TITLE"] = "Registro de estadísticas";
+$MESS["SUP_TYPE"] = "Tipo";
+?>

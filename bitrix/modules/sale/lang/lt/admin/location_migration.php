@@ -1,0 +1,16 @@
+<?
+$MESS["SALE_LOCATION_MIGRATION_TITLE"] = "Migruoti á Vietovës 2.0";
+$MESS["SALE_LOCATION_MIGRATION_TAB_MIGRATION_TITLE"] = "Migruoti á Vietovës 2.0";
+$MESS["SALE_LOCATION_MIGRATION_START"] = "Pradëti migracija";
+$MESS["SALE_LOCATION_MIGRATION_NEUTRAL_ERROR"] = "Ávyko klaida";
+$MESS["SALE_LOCATION_MIGRATION_ERROR"] = "Klaida";
+$MESS["SALE_LOCATION_MIGRATION_ALREADY_DONE"] = "Perëjimas prie naujos vietos jau atliktas. Nereikia migruoti dar kartà.";
+$MESS["SALE_LOCATION_MIGRATION_STAGE_CREATE_TYPES"] = "Sukurti vietovës tipus";
+$MESS["SALE_LOCATION_MIGRATION_STAGE_CONVERT_TREE"] = "Konvertuoti vietovës medá";
+$MESS["SALE_LOCATION_MIGRATION_STAGE_CONVERT_ZONES"] = "Konvertuoti parduotuvës paslaugø sritis";
+$MESS["SALE_LOCATION_MIGRATION_STAGE_CONVERT_LINKS"] = "Konvertuoti subjektø sàsajas";
+$MESS["SALE_LOCATION_MIGRATION_STAGE_COPY_DEFAULT_LOCATIONS"] = "Kopijuoti pasirinktas vietoves";
+$MESS["SALE_LOCATION_MIGRATION_STAGE_COPY_ZIP_CODES"] = "Kopijuoti ZIP kodus";
+$MESS["SALE_LOCATION_MIGRATION_STAGE_COMPLETE"] = "Migracija baigta, nukreipiama ...";
+$MESS["SALE_LOCATION_MIGRATION_STATUS"] = "Statusas";
+?>

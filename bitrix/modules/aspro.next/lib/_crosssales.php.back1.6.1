@@ -1,0 +1,775 @@
+<?
+namespace Aspro\Next;
+use	CNext as Solution,
+	CNextCache as Cache,
+	CNextCondition as Condition,
+	\Aspro\Next\Property\CustomFilter,
+	\Bitrix\Main\Web\Json;
+
+class CrossSales {
+	const ALL_USERS_GROUP_ID = 2;
+	const IBLOCK_TYPE = 'aspro_next_catalog';
+	const IBLOCK_CODE = 'aspro_next_cross_sales';
+
+	protected static $arShowPlacesByIblockId = array();
+
+	protected $siteId;
+	protected $iblockId;
+	protected $arParams;
+	protected $arRules;
+
+	protected $productId;
+	protected $productIblockId;
+	protected $arProductSelect;
+	protected $arProduct;
+
+	public function __construct($productId, $arParams = array()){
+		$this->setProduct($productId, $arParams);
+	}
+
+	public function __set($name, $value){
+		switch($name){
+			case 'productId':
+				$this->setProduct($value, $this->arParams);
+				break;
+			case 'arParams':
+				$this->setProduct($this->productId, $arParams);
+				break;
+			case 'siteId':
+				$this->siteId = $value;
+				$this->iblockId = self::_getSiteIblockId($this->siteId);
+				$this->arParams = $this->arProduct = $this->arProductSelect = array();
+				break;
+		}
+
+		return $value;
+	}
+
+	public function __get($name){
+		if(property_exists($this, $name)){
+			return $this->{$name};
+		}
+
+		return null;
+	}
+
+	protected function _reset(){
+		$this->productId = $this->productIblockId = $this->arRules = $this->$siteId = $this->iblockId = false;
+		$this->arParams = $this->arProduct = $this->arProductSelect = array();
+	}
+
+	public function setProduct($productId, $arParams = array()){
+		$this->_reset();
+
+		if(($productId = intval($productId)) > 0){
+			$this->productId = $productId;
+
+			$this->siteId = defined('SITE_ID') ? SITE_ID : false;
+			$this->iblockId = self::_getSiteIblockId($this->siteId);
+			$this->arParams = $arParams && is_array($arParams) ? $arParams : array();
+
+			$productIblockId = $arParams['IBLOCK_ID'] ? $arParams['IBLOCK_ID'] : false;
+			if(($productIblockId = intval($productIblockId)) > 0){
+				$this->productIblockId = $productIblockId;
+			}
+			else{
+				$this->productIblockId = self::_getProductIblockId($productId);
+			}
+		}
+	}
+
+	public function getRules(){
+		if($this->arRules === false){
+			$arRules = array();
+
+			if($this->iblockId){
+				$propertyProductsFilterIblockId = CustomFilter::getSettingsIblockId('PRODUCTS_FILTER', $this->iblockId);
+
+				if($propertyProductsFilterIblockId == $this->productIblockId){
+					$arRulesTmp = array();
+
+					// get current user groups
+					$arUserGroups = self::_getUserGroups();
+
+					// collect show places variants
+					$arShowPlaces = self::_getShowPlaces($this->iblockId);
+					$arShowPlacesFlipped = array_flip($arShowPlaces);
+
+					$arSelect = array(
+						'ID',
+						'PROPERTY_PRIORITY',
+						'PROPERTY_SORT',
+						'PROPERTY_SHOW_PLACE',
+						'PROPERTY_LAST_LEVEL_RULE',
+						'PROPERTY_LAST_RULE',
+						'PROPERTY_PRODUCTS_FILTER',
+						'PROPERTY_EXT_PRODUCTS_FILTER',
+						'PROPERTY_USER_GROUPS',
+						'PROPERTY_LINK_REGION',
+					);
+
+					$arFilter = array(
+						'IBLOCK_ID' => $this->iblockId,
+						'ACTIVE' => 'Y',
+						array(
+							'LOGIC' => 'OR',
+							array('PROPERTY_USER_GROUPS' => $arUserGroups),
+							array('PROPERTY_USER_GROUPS' => false),
+						),
+					);
+
+					// use region
+					if($GLOBALS['arRegion'] && $GLOBALS['arTheme']['USE_REGIONALITY']['VALUE'] === 'Y'){
+						$arFilter[] = array(
+							'LOGIC' => 'OR',
+							array('PROPERTY_LINK_REGION' => $GLOBALS['arRegion']['ID']),
+							array('PROPERTY_LINK_REGION' => false),
+						);
+					}
+
+					// get all rules for current user groups in current region
+					if($arRulesTmp = Cache::CIBLockElement_GetList(
+						array(
+							'property_PRIORITY' => 'DESC',
+							'property_SORT' => 'ASC',
+							'CACHE' => array(
+								'MULTI' => 'Y',
+								'TAG' => Cache::GetIBlockCacheTag($this->iblockId),
+							)
+						),
+						$arFilter,
+						false,
+						false,
+						$arSelect
+					)){
+						// get active by date without cache
+						$arRulesIDs = array_column($arRulesTmp, 'ID');
+						$dbRes = \CIBlockElement::GetList(
+							array(),
+							array(
+								'ID' => $arRulesIDs,
+								'IBLOCK_ID' => $this->iblockId,
+								'ACTIVE_DATE' => 'Y',
+							),
+							false,
+							false,
+							array('ID')
+						);
+						$arRulesIDs = array();
+						while($arRule = $dbRes->Fetch()){
+							$arRulesIDs[] = $arRule['ID'];
+						}
+
+						$this->arProductSelect = array(
+							'ID',
+							'IBLOCK_ID',
+						);
+
+						// collect parsed conditions from PRODUCT_FILTER property
+						// collect product filds for select
+						$arParsedConditions = array();
+						foreach($arRulesTmp as $i => &$arRule){
+							if(in_array($arRule['ID'], $arRulesIDs)){
+								if(isset($arRule['PROPERTY_PRODUCTS_FILTER_VALUE']) && is_string($arRule['PROPERTY_PRODUCTS_FILTER_VALUE'])){
+									if(isset($arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE']) && is_string($arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE'])){
+										$arTmpProductsFilter = Json::decode($arRule['PROPERTY_PRODUCTS_FILTER_VALUE']);
+										if($arTmpProductsFilter && $arTmpProductsFilter['CHILDREN']){
+											$arTmpExtProductsFilter = Json::decode($arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE']);
+											if($arTmpExtProductsFilter && $arTmpExtProductsFilter['CHILDREN']){
+												$arParsedConditions[$i] = $this->parseCondition($arTmpProductsFilter, $this->arParams);
+												unset($arRule['PROPERTY_PRODUCTS_FILTER_VALUE']);
+
+												$arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE'] = $arTmpExtProductsFilter;
+
+												// next rule
+												continue;
+											}
+										}
+									}
+								}
+							}
+
+							// remove bad rule
+							unset($arRulesTmp[$i]);
+						}
+						unset($arRule);
+
+						// get some fields & properties of product
+						if($arRulesTmp){
+							$this->arProductSelect = array_unique($this->arProductSelect);
+							$this->arProduct = Cache::CIBLockElement_GetList(
+								array(
+									'CACHE' => array(
+										'MULTI' => 'N',
+										'TAG' => Cache::GetIBlockCacheTag($this->productIblockId),
+									)
+								),
+								array(
+									'ID' => $this->productId,
+									'IBLOCK_ID' => $this->productIblockId,
+								),
+								false,
+								false,
+								$this->arProductSelect
+							);
+
+							// get all parents sections of product
+							if($this->arProduct['IBLOCK_SECTION_ID']){
+								$arSectionsIDs = $this->arProduct['IBLOCK_SECTION_ID'] = (array)$this->arProduct['IBLOCK_SECTION_ID'];
+								while($arSectionsIDs){
+									if($arSections = Cache::CIBlockSection_GetList(
+										array(
+											'CACHE' => array(
+												'MULTI' => 'Y',
+												'TAG' => Cache::GetIBlockCacheTag($this->productIblockId),
+												'GROUP' => array('IBLOCK_SECTION_ID'),
+											)
+										),
+										array(
+											'ID' => $arSectionsIDs,
+											'IBLOCK_ID' => $this->productIblockId,
+											'!SECTION_ID' => false,
+										),
+										false,
+										array(
+											'ID',
+											'IBLOCK_SECTION_ID',
+										)
+									)){
+										$arSectionsIDs = array_keys($arSections);
+										$this->arProduct['IBLOCK_SECTION_ID'] = array_unique(array_merge($this->arProduct['IBLOCK_SECTION_ID'], $arSectionsIDs));
+									}
+									else{
+										$arSectionsIDs = array();
+									}
+								}
+							}
+
+							foreach($arRulesTmp as $i => &$arRule){
+								if(isset($continue) && $arRule['PROPERTY_PRIORITY_VALUE'] == $continue) {
+									continue;
+								}
+
+								if($this->_checkParsedCondition($arParsedConditions[$i])){
+									$cond = new Condition();
+
+									try{
+										$arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE'] = $cond->parseCondition($arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE'], $this->arParams);
+									}
+									catch(\Exception $e){
+										$arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE'] = array();
+									}
+
+									unset($cond);
+
+									if($arRule['PROPERTY_EXT_PRODUCTS_FILTER_VALUE']){
+										foreach(
+											($arRule['PROPERTY_SHOW_PLACE_ENUM_ID'] ? (array)$arRule['PROPERTY_SHOW_PLACE_ENUM_ID'] : array_values($arShowPlaces))
+											 as $showPlaceID){
+											$arRules[$arShowPlacesFlipped[$showPlaceID]][$arRule['ID']] = &$arRule;
+											$arRules['ALL'][$arRule['ID']] = &$arRule;
+										}
+
+										if($arRule['PROPERTY_LAST_RULE_VALUE']){
+											break;
+										}
+
+										if($arRule['PROPERTY_LAST_LEVEL_RULE_VALUE']) {
+											$arRule['PROPERTY_PRIORITY_VALUE'] = intval($arRule['PROPERTY_PRIORITY_VALUE']);
+											$continue = $arRule['PROPERTY_PRIORITY_VALUE'];
+										}
+									}
+								}
+							}
+							unset($arRule);
+						}
+					}
+				}
+			}
+
+			$this->arRules = $arRules;
+		}
+
+		return $arRules;
+	}
+
+	public function getItems($showPlace = ''){
+		if($this->arRules){
+			if($arRules = strlen($showPlace) ? $this->arRules[$showPlace] : $this->arRules['ALL']){
+				$arFilters = array_column($arRules, 'PROPERTY_EXT_PRODUCTS_FILTER_VALUE');
+
+				if(count($arFilters) > 1){
+					$arFilters['LOGIC'] = 'OR';
+				}
+				else{
+					$arFilters = reset($arFilters);
+				}
+
+				$propertyExtProductsFilterIblockId = CustomFilter::getSettingsIblockId('EXT_PRODUCTS_FILTER', $this->iblockId);
+
+				if($GLOBALS['arRegion'] && $GLOBALS['arTheme']['USE_REGIONALITY']['VALUE'] === 'Y' && $GLOBALS['arTheme']['USE_REGIONALITY']['DEPENDENT_PARAMS']['REGIONALITY_FILTER_ITEM']['VALUE'] === 'Y'){
+					$regionId = $GLOBALS['arRegion']['ID'];
+					if($arSectionsIds = Solution::getSectionsIds_NotInRegion($arFilter['IBLOCK_ID'], $regionId)){
+						$arFilters = array(
+							'LOGIC' => 'AND',
+							array('!IBLOCK_SECTION_ID' => $arSectionsIds),
+							array($arFilters)
+						);
+					}
+				}
+
+				$displayElementSlider = ($this->arParams['DISPLAY_ELEMENT_SLIDER'] ? $this->arParams['DISPLAY_ELEMENT_SLIDER'] : 10);
+
+				return Cache::CIBLockElement_GetList(
+					array(
+						'rand' => 'ASC',
+						'CACHE' => array(
+							'TIME' => ($this->arParams['CACHE_TYPE'] !== 'N' ? $this->arParams['CACHE_TIME'] : 0),
+							'MULTI' => 'Y',
+							'TAG' => Cache::GetIBlockCacheTag($propertyExtProductsFilterIblockId),
+							'RESULT' => array('ID'),
+						)
+					),
+					$arFilters,
+					false,
+					array('nTopCount' => $displayElementSlider),
+					array(
+						'ID',
+						'IBLOCK_ID',
+					)
+				);
+			}
+		}
+
+		return false;
+	}
+
+	protected static function _getSiteIblockId($siteId){
+		return Cache::$arIBlocks[$siteId][self::IBLOCK_TYPE][self::IBLOCK_CODE][0] ? Cache::$arIBlocks[$siteId][self::IBLOCK_TYPE][self::IBLOCK_CODE][0] : false;
+	}
+
+	protected static function _getProductIblockId($productId){
+		return \CIBlockElement::GetIBlockByID($productId);
+	}
+
+	protected static function _getShowPlaces($iblockId){
+		$arPlaces = array();
+
+		if(($iblockId = intval($iblockId)) > 0){
+			if(!isset(self::$arShowPlacesByIblockId[$iblockId])){
+				$dbRes = \CIBlockProperty::GetPropertyEnum('SHOW_PLACE', array(), array('IBLOCK_ID' => $iblockId));
+				while($arVariant = $dbRes->Fetch()){
+					$arPlaces[$arVariant['XML_ID']] = $arVariant['ID'];
+				}
+			}
+			else{
+				$arPlaces = self::$arShowPlacesByIblockId[$iblockId];
+			}
+		}
+
+		return $arPlaces;
+	}
+
+	protected static function _getUserGroups(){
+		$arGroups = array();
+
+		if(isset($GLOBALS['USER']) && $GLOBALS['USER']->IsAuthorized()){
+			$resUserGroup = \Bitrix\Main\UserGroupTable::getList(
+				array(
+					'filter' => array(
+						'USER_ID' => $GLOBALS['USER']->GetID(),
+					),
+					'select' => array('GROUP_ID'),
+				)
+			);
+			while($arGroup = $resUserGroup->fetch()){
+			   $arGroups[] = $arGroup['GROUP_ID'];
+			}
+		}
+
+		$arGroups[] = self::ALL_USERS_GROUP_ID;
+
+		return $arGroups;
+	}
+
+	public function parseCondition($condition, $params)
+	{
+		$result = array();
+
+		if (!empty($condition) && is_array($condition))
+		{
+			if ($condition['CLASS_ID'] === 'CondGroup')
+			{
+				if (!empty($condition['CHILDREN']))
+				{
+					foreach ($condition['CHILDREN'] as $child)
+					{
+						$childResult = $this->parseCondition($child, $params);
+
+						// is group
+						if ($child['CLASS_ID'] === 'CondGroup')
+						{
+							$result[] = $childResult;
+						}
+						// same property names not overrides each other
+						elseif (isset($result[key($childResult)]))
+						{
+							$fieldName = key($childResult);
+
+							if (!isset($result['LOGIC']))
+							{
+								$result = array(
+									'LOGIC' => $condition['DATA']['All'],
+									array($fieldName => $result[$fieldName])
+								);
+							}
+
+							$result[][$fieldName] = $childResult[$fieldName];
+						}
+						else
+						{
+							$result += $childResult;
+						}
+					}
+
+					if (!empty($result))
+					{
+						$this->parsePropertyCondition($result, $condition, $params);
+
+						if (count($result) > 1)
+						{
+							$result['LOGIC'] = $condition['DATA']['All'];
+						}
+					}
+				}
+			}
+			else
+			{
+				$result += $this->parseConditionLevel($condition, $params);
+			}
+		}
+
+		return $result;
+	}
+
+	protected function parseConditionLevel($condition, $params)
+	{
+		$result = array();
+
+		if (!empty($condition) && is_array($condition))
+		{
+			$name = $this->parseConditionName($condition);
+
+			if (!empty($name))
+			{
+				$operator = $this->parseConditionOperator($condition);
+				$value = $this->parseConditionValue($condition, $name);
+				$result[$operator.$name] = array(
+					'NAME' => $name,
+					'OPERATOR' => $operator,
+					'VALUE' => $value,
+				);
+
+				if(strpos($name, 'CondIBProp') === false){
+					$this->arProductSelect[] = $name;
+				}
+			}
+		}
+
+		return $result;
+	}
+
+	protected function parseConditionName(array $condition)
+	{
+		$name = '';
+		$conditionNameMap = array(
+			'CondIBXmlID' => 'XML_ID',
+			'CondIBActive' => 'ACTIVE',
+			'CondIBSection' => 'IBLOCK_SECTION_ID',
+			'CondIBDateActiveFrom' => 'DATE_ACTIVE_FROM',
+			'CondIBDateActiveTo' => 'DATE_ACTIVE_TO',
+			'CondIBSort' => 'SORT',
+			'CondIBDateCreate' => 'DATE_CREATE',
+			'CondIBCreatedBy' => 'CREATED_BY',
+			'CondIBTimestampX' => 'TIMESTAMP_X',
+			'CondIBModifiedBy' => 'MODIFIED_BY',
+			'CondIBTags' => 'TAGS',
+			'CondCatQuantity' => 'CATALOG_QUANTITY',
+			'CondCatWeight' => 'CATALOG_WEIGHT',
+			'CondIBName' => 'NAME',
+			'CondIBElement' => 'ID',
+		);
+
+		if (isset($conditionNameMap[$condition['CLASS_ID']]))
+		{
+			$name = $conditionNameMap[$condition['CLASS_ID']];
+		}
+		elseif (strpos($condition['CLASS_ID'], 'CondIBProp') !== false)
+		{
+			$name = $condition['CLASS_ID'];
+		}
+
+		return $name;
+	}
+
+	protected function parseConditionOperator($condition)
+	{
+		$operator = '';
+
+		switch ($condition['DATA']['logic'])
+		{
+			case 'Equal':
+				$operator = '==';
+				break;
+			case 'Not':
+				$operator = '!';
+				break;
+			case 'Contain':
+				$operator = '%';
+				break;
+			case 'NotCont':
+				$operator = '!%';
+				break;
+			case 'Great':
+				$operator = '>';
+				break;
+			case 'Less':
+				$operator = '<';
+				break;
+			case 'EqGr':
+				$operator = '>=';
+				break;
+			case 'EqLs':
+				$operator = '<=';
+				break;
+		}
+
+		return $operator;
+	}
+
+	protected function parseConditionValue($condition, $name)
+	{
+		$value = $condition['DATA']['value'];
+
+		switch ($name)
+		{
+			case 'DATE_ACTIVE_FROM':
+			case 'DATE_ACTIVE_TO':
+			case 'DATE_CREATE':
+			case 'TIMESTAMP_X':
+				$value = ConvertTimeStamp($value, 'FULL');
+				break;
+		}
+
+		return $value;
+	}
+
+	protected function parsePropertyCondition(array &$result, array $condition, $params)
+	{
+		if (!empty($result))
+		{
+			$subFilter = array();
+
+			foreach ($result as $name => $value)
+			{
+				if (!empty($result[$name]) && is_array($result[$name]) && !isset($result[$name]['NAME']))
+				{
+					$this->parsePropertyCondition($result[$name], $condition, $params);
+				}
+				else
+				{
+					if (($ind = strpos($name, 'CondIBProp')) !== false)
+					{
+						list($prefix, $iblock, $propertyId) = explode(':', $name);
+
+						$operator = $ind > 0 ? substr($prefix, 0, $ind) : '';
+
+						$catalogInfo = \CCatalogSku::GetInfoByIBlock($iblock);
+
+						$propCode = \CIBlockProperty::GetByID($propertyId, $iblock)->Fetch()['CODE'];
+
+						if (
+							$catalogInfo['CATALOG_TYPE'] != \CCatalogSku::TYPE_CATALOG
+							&& $catalogInfo['IBLOCK_ID'] == $iblock
+						)
+						{
+							$subFilter[$operator.'PROPERTY_'.$propCode] = $value;
+							$subFilter[$operator.'PROPERTY_'.$propCode]['NAME'] = 'PROPERTY_'.$propCode;
+							$subFilter[$operator.'PROPERTY_'.$propCode]['PROPERTY'] = $propCode;
+						}
+						else
+						{
+							$result[$operator.'PROPERTY_'.$propCode] = $value;
+							$result[$operator.'PROPERTY_'.$propCode]['NAME'] = 'PROPERTY_'.$propCode;
+							$result[$operator.'PROPERTY_'.$propCode]['PROPERTY'] = $propCode;
+						}
+
+						$this->arProductSelect[] = 'PROPERTY_'.$propCode;
+
+						unset($result[$name]);
+					}
+				}
+			}
+
+			if (!empty($subFilter) && !empty($catalogInfo))
+			{
+				$offerPropFilter = array(
+					'IBLOCK_ID' => $catalogInfo['IBLOCK_ID'],
+					'ACTIVE_DATE' => 'Y',
+					'ACTIVE' => 'Y'
+				);
+
+				if ($params['HIDE_NOT_AVAILABLE_OFFERS'] === 'Y')
+				{
+					$offerPropFilter['HIDE_NOT_AVAILABLE'] = 'Y';
+				}
+				elseif ($params['HIDE_NOT_AVAILABLE_OFFERS'] === 'L')
+				{
+					$offerPropFilter[] = array(
+						'LOGIC' => 'OR',
+						'CATALOG_AVAILABLE' => 'Y',
+						'CATALOG_SUBSCRIBE' => 'Y'
+					);
+				}
+
+				if (count($subFilter) > 1)
+				{
+					$subFilter['LOGIC'] = $condition['DATA']['All'];
+					$subFilter = array($subFilter);
+				}
+
+				$result += $subFilter;
+			}
+		}
+	}
+
+	protected function _checkParsedCondition($arParsedCondition){
+		if($arParsedCondition && is_array($arParsedCondition)){
+			foreach($arParsedCondition as $key => $value){
+				if(!is_array($value)){
+					continue;
+				}
+
+				if(is_numeric($key)){
+					$arParsedCondition[$key] = $this->_checkParsedCondition($value);
+				}
+				else{
+					unset($find);
+
+					if(isset($value['PROPERTY'])){
+						$find = $this->arProduct['PROPERTY_'.$value['PROPERTY'].'_VALUE'];
+					}
+					else{
+						$find = $this->arProduct[$value['NAME']];
+					}
+
+					if($find){
+						if(is_array($value['VALUE'])){
+							foreach($value['VALUE'] as &$v){
+								if(($timestamp = MakeTimeStamp($v)) !== false){
+									$v = $timestamp;
+								}
+							}
+						}
+						else{
+							if(($timestamp = MakeTimeStamp($value['VALUE'])) !== false){
+								$value['VALUE'] = $timestamp;
+							}
+						}
+
+						if(is_array($find)){
+							foreach($find as &$v){
+								if(($timestamp = MakeTimeStamp($v)) !== false){
+									$v = $timestamp;
+								}
+							}
+						}
+						else{
+							if(($timestamp = MakeTimeStamp($find)) !== false){
+								$find = $timestamp;
+							}
+						}
+					}
+
+					switch($value['OPERATOR']){
+						case '==':
+							if(is_array($value['VALUE'])){
+								$arParsedCondition[$key] = isset($find) && in_array($find, $value['VALUE']);
+							}
+							else{
+								if(isset($find) && is_array($find)){
+									$arParsedCondition[$key] = in_array($value['VALUE'], $find);
+								}
+								else{
+									$arParsedCondition[$key] = isset($find) && $find == $value['VALUE'];
+								}
+							}
+							break;
+						case '!':
+							if(is_array($value['VALUE'])){
+								$arParsedCondition[$key] = isset($find) && !in_array($find, $value['VALUE']);
+							}
+							else{
+								if(isset($find) && is_array($find)){
+									$arParsedCondition[$key] = !in_array($value['VALUE'], $find);
+								}
+								else{
+									$arParsedCondition[$key] = isset($find) && $find != $value['VALUE'];
+								}
+							}
+							break;
+						case '<':
+							$arParsedCondition[$key] = isset($find) && $find < $value['VALUE'];
+							break;
+						case '<=':
+							$arParsedCondition[$key] = isset($find) && $find <= $value['VALUE'];
+							break;
+						case '>':
+							$arParsedCondition[$key] = isset($find) && $find > $value['VALUE'];
+							break;
+						case '>=':
+							$arParsedCondition[$key] = isset($find) && $find >= $value['VALUE'];
+							break;
+						case '%':
+							$arParsedCondition[$key] = isset($find) && strpos($find, $value['VALUE']) !== false;
+							break;
+						case '!%':
+							$arParsedCondition[$key] = isset($find) && strpos($find, $value['VALUE']) === false;
+							break;
+					}
+				}
+
+				if($arParsedCondition['LOGIC'] === 'AND' && $arParsedCondition[$key] == false){
+					$arParsedCondition = false;
+					break;
+				}
+
+				if($arParsedCondition['LOGIC'] === 'OR' && $arParsedCondition[$key] == true){
+					$arParsedCondition = true;
+					break;
+				}
+
+				if(!isset($arParsedCondition['LOGIC'])){
+					if($arParsedCondition[$key] == true){
+						$arParsedCondition = true;
+					}
+					else{
+						$arParsedCondition = false;
+					}
+				}
+			}
+
+			if(is_array($arParsedCondition)){
+				if($arParsedCondition['LOGIC'] === 'OR'){
+					$arParsedCondition = false;
+				}
+				else{
+					$arParsedCondition = true;
+				}
+			}
+		}
+
+		return boolval($arParsedCondition);
+	}
+}
+?>

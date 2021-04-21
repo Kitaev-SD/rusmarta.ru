@@ -1,0 +1,35 @@
+<?
+$MESS["FILE_SIZE_Gb"] = "gb";
+$MESS["FILE_SIZE_Kb"] = "kb";
+$MESS["FILE_SIZE_Mb"] = "mb";
+$MESS["FILE_SIZE_Tb"] = "tb";
+$MESS["FILE_SIZE_b"] = "b";
+$MESS["FORM_AUTHORIZED"] = "autorizado";
+$MESS["FORM_DATE_CREATE"] = "Fecha -";
+$MESS["FORM_FILLING"] = "Formulario Web rellenado";
+$MESS["FORM_FILLING_S"] = "Formulario Web rellenado";
+$MESS["FORM_GENERATED_AUTOMATICALLY"] = "Mensaje generado automáticamente.";
+$MESS["FORM_GENERATING_FINISHED"] = "Las plantillas de e-mail fueron creadas";
+$MESS["FORM_L_DATE_CREATE"] = "Completando fecha del formulario";
+$MESS["FORM_L_FORM_ID"] = "ID del formulario";
+$MESS["FORM_L_NAME"] = "Nombre del formulario";
+$MESS["FORM_L_RAW"] = "valor original";
+$MESS["FORM_L_RESULT_ID"] = "ID resultado";
+$MESS["FORM_L_SID"] = "SID formulario";
+$MESS["FORM_L_STAT_GUEST_ID"] = "ID de visitante";
+$MESS["FORM_L_STAT_SESSION_ID"] = "ID de sesión";
+$MESS["FORM_L_USER_AUTH"] = "¿Es usuario autorizado?";
+$MESS["FORM_L_USER_EMAIL"] = "E-Mail de usuario";
+$MESS["FORM_L_USER_ID"] = "ID usuario";
+$MESS["FORM_L_USER_NAME"] = "Nombres completos de usuarios";
+$MESS["FORM_NOT_AUTHORIZED"] = "no autorizado";
+$MESS["FORM_NOT_REGISTERED"] = "no registrado";
+$MESS["FORM_PAGE_TITLE"] = "Generación de plantillas de mail";
+$MESS["FORM_RESULT_ID"] = "Resultado -";
+$MESS["FORM_STAT_GUEST_ID"] = "Visitante -";
+$MESS["FORM_STAT_SESSION_ID"] = "Sesión -";
+$MESS["FORM_USER"] = "Usuario -";
+$MESS["FORM_VIEW"] = "Seguir el siguiente link para ver:";
+$MESS["FORM_VIEW_TEMPLATE"] = "Ver plantilla";
+$MESS["FORM_WEB_FORMS"] = "[forms web ]";
+?>

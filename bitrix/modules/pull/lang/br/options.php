@@ -1,0 +1,32 @@
+<?
+$MESS["PULL_OPTIONS_NGINX"] = "<b>nginx-push-stream-module</b> está instalado no servidor";
+$MESS["PULL_OPTIONS_NGINX_BUFFER"] = "O número máximo de comandos para enviar enquanto estiver conectado ao servidor";
+$MESS["PULL_OPTIONS_NGINX_BUFFERS_DESC"] = "Esta opção depende do \"large_client_header_buffers\" parâmetro do nginx. O valor padrão é calculado para <b>8k</b> buffers.";
+$MESS["PULL_OPTIONS_NGINX_CONFIRM"] = "Atenção: essa opção necessita que o módulo nginx-push-stream-module esteja instalado no seu servidor.";
+$MESS["PULL_OPTIONS_NGINX_DOC"] = "Para aprender como o instalar e configurar o módulo <b>nginx-push-stream-module</b>, por favor, visite ";
+$MESS["PULL_OPTIONS_NGINX_DOC_LINK"] = "ajuda online";
+$MESS["PULL_OPTIONS_NGINX_VERSION"] = "software de servidor";
+$MESS["PULL_OPTIONS_NGINX_VERSION_034"] = "Bitrix Virtual Appliance 4.2 - 4.3 (nginx-push-stream-module 0.3.4)";
+$MESS["PULL_OPTIONS_NGINX_VERSION_034_DESC"] = "nginx-push-stream-módulo 0.4.0 é altamente recomendável;. instalá-lo sempre que possível <br> Se usando nginx-push-stream-módulo 0.3.4, WebSocket e transmissão de comando não estará disponível.";
+$MESS["PULL_OPTIONS_NGINX_VERSION_040"] = "Bitrix Virtual Appliance 4.4 or higher (nginx-push-stream-module 0.4.0)";
+$MESS["PULL_OPTIONS_PATH_TO_LISTENER"] = "Template do caminho da página de visualização da mensagem";
+$MESS["PULL_OPTIONS_PATH_TO_LISTENER_DESC"] = "Recomenda-se usar uma porta padrão para HTTP ou HTTPS. Use 8893 (HTTP) ou 8894 (HTTPS) apenas para nginx-push-stream-módulo versão 0.3.4.";
+$MESS["PULL_OPTIONS_PATH_TO_LISTENER_SECURE"] = "Caminho para a escuta de mensagens (HTTPS)";
+$MESS["PULL_OPTIONS_PATH_TO_MOBILE_LISTENER"] = "Caminho para a leitura de mensagens no aplicativo móvel (HTTP)";
+$MESS["PULL_OPTIONS_PATH_TO_MOBILE_LISTENER_DESC"] = "Sempre use portas não padrão (por exemplo, 8893 para HTTP ou HTTPS para 8894) para aplicações móveis, pois nem todos os dispositivos móveis suportam longo pooling em uma porta padrão ..";
+$MESS["PULL_OPTIONS_PATH_TO_MOBILE_LISTENER_SECURE"] = "Caminho para a leitura de mensagens no aplicativo móvel (HTTPS)";
+$MESS["PULL_OPTIONS_PATH_TO_PUBLISH"] = "Template do caminho da página de envio de mensagem";
+$MESS["PULL_OPTIONS_PATH_TO_WEBSOCKET"] = "Caminho do listener de mensagens do WebSocket";
+$MESS["PULL_OPTIONS_PATH_TO_WEBSOCKET_SECURE"] = "Caminho para a escuta de mensagens WebSocket (HTTPS)";
+$MESS["PULL_OPTIONS_PUSH"] = "Enviar notificações PUSH para dispositivos mobile.";
+$MESS["PULL_OPTIONS_SITES"] = "Não use o módulo em sites";
+$MESS["PULL_OPTIONS_STATUS"] = "Status do módulo";
+$MESS["PULL_OPTIONS_STATUS_N"] = "Inativo";
+$MESS["PULL_OPTIONS_STATUS_Y"] = "Ativo";
+$MESS["PULL_OPTIONS_USE"] = "Utilizar módulos";
+$MESS["PULL_OPTIONS_WEBSOCKET"] = "Habilitar WebSocket";
+$MESS["PULL_OPTIONS_WEBSOCKET_DESC"] = "Esta configuração é para todos os navegadores modernos. Longa será usado para reunir as versões anteriores ...";
+$MESS["PULL_OPTIONS_WS_CONFIRM"] = "Atenção? você precisa garantir que o nginx-push-stream-module esteja configurado para o suporte do WebSocket antes de utilizar essa opção.";
+$MESS["PULL_TAB_SETTINGS"] = "Configurações";
+$MESS["PULL_TAB_TITLE_SETTINGS"] = "Configurações do Módulo";
+?>

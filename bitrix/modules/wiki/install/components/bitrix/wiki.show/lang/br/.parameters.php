@@ -1,0 +1,31 @@
+<?
+$MESS["CP_BND_ELEMENT_CODE"] = "Código da página de Wiki";
+$MESS["CP_BND_ELEMENT_ID"] = "ID de página Wiki";
+$MESS["CP_BND_ELEMENT_NAME"] = "Título da página wiki";
+$MESS["CP_BND_SET_STATUS_404"] = "Gerar Status 404 Quando Elemento ou seção é Ausente";
+$MESS["RATING_TYPE"] = "Projeto botões classificação";
+$MESS["RATING_TYPE_CONFIG"] = "Padrão";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Curtir (imagem)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Curtir (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Curtir / Curtir(Desfazer) (imagem)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Curtir / Curtir(Desfazer) (texto)";
+$MESS["SHOW_RATING"] = "Ativar classificação";
+$MESS["SHOW_RATING_CONFIG"] = "Padrão";
+$MESS["T_IBLOCK_DESC_ADD_SECTIONS_CHAIN"] = "Adicionar Seção Para Breadcrumbs";
+$MESS["T_IBLOCK_DESC_INCLUDE_IBLOCK_INTO_CHAIN"] = "Adicionar Bloco de Informações Para Breadcrumbs";
+$MESS["T_IBLOCK_DESC_LIST_ID"] = "ID do Bloco informações";
+$MESS["T_IBLOCK_DESC_LIST_TYPE"] = "Tipo de Informação Block (somente para verificação)";
+$MESS["WIKI_OPER_VAR"] = "Nome operação variável";
+$MESS["WIKI_PAGE_VAR"] = "Variável página";
+$MESS["WIKI_PATH_TO_CATEGORIES"] = "Modelo de caminho de páginas de categoria";
+$MESS["WIKI_PATH_TO_CATEGORY"] = "Modelo de caminho de categorias de descrição";
+$MESS["WIKI_PATH_TO_DISCUSSION"] = "Modelo de caminho de página de discussão";
+$MESS["WIKI_PATH_TO_HISTORY"] = "Modelo de caminho de página de Log Update";
+$MESS["WIKI_PATH_TO_HISTORY_DIFF"] = "Modelo de caminho de página de versionamento";
+$MESS["WIKI_PATH_TO_PAGES"] = "Modelo de caminho de lista";
+$MESS["WIKI_PATH_TO_POST"] = "Modelo de caminho de página";
+$MESS["WIKI_PATH_TO_POST_EDIT"] = "Modelo de caminho de editor";
+$MESS["WIKI_PATH_TO_SEARCH"] = "Modelo de caminho de página de pesquisa";
+$MESS["WIKI_PATH_TO_USER"] = "Modelo de caminho de perfil de usuário";
+$MESS["WIKI_VARIABLE_ALIASES"] = "Alias de variáveis";
+?>

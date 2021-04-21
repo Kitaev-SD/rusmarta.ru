@@ -1,0 +1,5 @@
+<?
+$MESS['VOTE_LIST_NAME'] = 'Apklausø sàraðas';
+$MESS['VOTE_LIST_DESCRIPTION'] = 'Atvaizduoja apklausø sàraðà';
+$MESS['VOTING_SERVICE'] = 'Apklausos, balsavimai';
+?>

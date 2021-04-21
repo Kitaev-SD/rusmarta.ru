@@ -1,0 +1,276 @@
+/***GENERAL_STYLES***/
+.anythingSlider{
+	margin:0px;
+	padding:0px;
+	position:relative;
+}
+
+.anythingSlider .anythingWindow{
+	width:100%;
+	height:100%;
+	position:relative;
+	overflow:hidden;	
+}
+
+.anythingSlider .anythingBase{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	position:absolute;
+	left:0px;
+	top:0px;
+	overflow:visible !important;
+}
+
+.anythingSlider .panel{
+	float:left;
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+}
+
+/***SLIDER***/
+.anythingSlider-default .anythingWindow{
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-khtml-border-radius:5px;
+	border-radius:5px;
+	z-index:598;
+}
+
+.anythingSlider-default .panel a{
+	display:table;
+	position:relative;
+	margin:0px;
+	padding:0px;
+	text-decoration:none;
+}
+
+/***SLIDER_NAVIGATION_LINKS***/
+.anythingSlider-default .anythingControls{ 
+	position:absolute;
+	left:22px;
+	bottom:10px;
+	z-index:599;
+	pointer-events: none;
+}
+
+.anythingSlider-default .anythingControls ul{ 
+	float:left;
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+
+.anythingSlider-default .anythingControls ul li{ 
+	float:left;
+	margin:0px 2px 0px 0px;
+	padding:0px;
+}
+
+.anythingSlider-default .anythingControls ul li:last-child{
+	margin:0px;
+}
+
+.anythingSlider-default .anythingControls ul li a{
+	width:14px;
+	height:13px;
+	display:block;
+	margin:0px;
+	padding:0px;
+	border:2px solid #868aa0;
+	-moz-border-radius:9px;
+	-webkit-border-radius:9px;
+	-khtml-border-radius:9px;
+	border-radius:9px;
+	background:#868aa0;
+}
+
+.anythingSlider-default .anythingControls ul li a.cur{
+	background:#fde037;
+}
+
+.anythingSlider-default .anythingControls ul li a span{
+	display:none;
+	visibility:hidden;
+}
+
+/***NEXT_BACK_LINKS***/
+.anythingSlider .arrow.forward,
+.anythingSlider .arrow.back{ 
+	width:40px;
+    height:42px;
+	position:absolute;    
+    top:50%;
+	margin:-21px 0px 0px 0px;
+	padding:0px;
+	z-index:599;
+	pointer-events: none;
+}
+
+.anythingSlider .arrow.forward{
+	right:-8px;
+}
+
+.anythingSlider .arrow.back{
+	left:-8px;
+}
+
+.anythingSlider .arrow.forward a,
+.anythingSlider .arrow.back a{
+	width:40px;
+    height:42px;
+	display:table-cell;
+	vertical-align:middle;
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	text-decoration:none;
+	background:#8184a1;
+}
+
+.anythingSlider .arrow.forward a{
+	-moz-border-radius:4px 0px 0px 4px;
+	-webkit-border-radius:4px 0px 0px 4px;
+	-khtml-border-radius:4px 0px 0px 4px;
+	border-radius:4px 0px 0px 4px;
+}
+
+.anythingSlider .arrow.back a{
+	-moz-border-radius:0px 4px 4px 0px;
+	-webkit-border-radius:0px 4px 4px 0px;
+	-khtml-border-radius:0px 4px 4px 0px;
+	border-radius:0px 4px 4px 0px;
+}
+
+.anythingSlider .arrow.forward a:hover,
+.anythingSlider .arrow.back a:hover{
+	background:#fde037;
+}
+
+.anythingSlider .arrow.forward a:before,
+.anythingSlider .arrow.forward a:after,
+.anythingSlider .arrow.back a:before,
+.anythingSlider .arrow.back a:after{
+	width:0px;
+	height:0px;
+	content:"";
+	position:absolute;
+}
+
+.anythingSlider .arrow.forward a:before,
+.anythingSlider .arrow.forward a:after{
+	right:0px;
+	border-right:8px solid transparent;
+}
+
+.anythingSlider .arrow.back a:before,
+.anythingSlider .arrow.back a:after{
+	left:0px;
+	border-left:8px solid transparent;
+}
+
+.anythingSlider .arrow.forward a:before,
+.anythingSlider .arrow.back a:before{
+	top:-4px;
+	border-bottom:4px solid #575b71;
+}
+
+.anythingSlider .arrow.forward a:after,
+.anythingSlider .arrow.back a:after{
+	bottom:-4px;
+	border-top:4px solid #575b71;
+}
+
+.anythingSlider .arrow.forward a:hover:before,
+.anythingSlider .arrow.back a:hover:before{
+	border-bottom:4px solid #bea201;
+}
+
+.anythingSlider .arrow.forward a:hover:after,
+.anythingSlider .arrow.back a:hover:after{
+	border-top:4px solid #bea201;
+}
+
+.anythingSlider .arrow.forward a i,
+.anythingSlider .arrow.back a i{
+	font-size:26px;
+	color:#fff;
+}
+
+/***PROMOTIONS***/
+.anythingSlider-promotions-block{
+	width:100% !important;
+	overflow:visible !important;
+}
+
+/***PROMOTIONS_NEXT_BACK_LINKS***/
+.anythingSlider-promotions-block .arrow.forward,
+.anythingSlider-promotions-block .arrow.back{ 	
+    top:63px;
+	margin:0px;
+	pointer-events: auto;
+}
+
+/***LEFT_SLIDER***/
+.anythingSlider-left-slider{
+	position:static;
+}
+
+/***LEFT_SLIDER_NAVIGATION_LINKS***/
+.anythingSlider-left-slider .anythingControls{
+	position:absolute;
+	bottom:16px;
+	left:50%;
+	-moz-transform:translate(-50%, 0);
+	-webkit-transform:translate(-50%, 0);
+	-o-transform:translate(-50%, 0);
+	-ms-transform:translate(-50%, 0);
+	transform:translate(-50%, 0);
+}
+
+.anythingSlider-left-slider .anythingControls ul{ 
+	float:left;
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+
+.anythingSlider-left-slider .anythingControls ul li{ 
+	float:left;
+	margin:0px 4px 0px 0px;
+	padding:0px;
+}
+
+.anythingSlider-left-slider .anythingControls ul li:last-child{
+	margin:0px;
+}
+
+.anythingSlider-left-slider .anythingControls ul li a{
+	width:10px;
+	height:10px;
+	display:block;
+	margin:0px;
+	padding:0px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-khtml-border-radius:5px;
+	border-radius:5px;
+	background:#dee0ee;
+}
+
+.anythingSlider-left-slider .anythingControls ul li a.cur{
+	background:#fde037;
+}
+
+.anythingSlider-left-slider .anythingControls ul li a span{
+	display:none;
+	visibility:hidden;
+}
+
+/***LEFT_SLIDER_NEXT_BACK_LINKS***/
+.anythingSlider-left-slider .arrow.forward,
+.anythingSlider-left-slider .arrow.back{
+	display:none;
+	visibility:hidden;
+}

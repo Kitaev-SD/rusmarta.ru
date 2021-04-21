@@ -1,0 +1,39 @@
+<?
+$MESS["IBLOCK_BEHAVIOUR"] = "Modo de galeria";
+$MESS["IBLOCK_BEHAVIOUR_SIMPLE"] = "simples";
+$MESS["IBLOCK_BEHAVIOUR_USER"] = "multiusuário";
+$MESS["IBLOCK_DETAIL_EDIT_URL"] = "Foto (edição)";
+$MESS["IBLOCK_DETAIL_SLIDE_SHOW_URL"] = "Apresentação de slides";
+$MESS["IBLOCK_DETAIL_URL"] = "Foto";
+$MESS["IBLOCK_ELEMENT_ID"] = "ID do elemento";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD"] = "Primeiro campo para classificação das fotos";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD1"] = "Segundo campo para classificação das fotos";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER"] = "Ordem de classificação das fotos em uma seção";
+$MESS["IBLOCK_GALLERY_URL"] = "Conteúdo da galeria";
+$MESS["IBLOCK_IBLOCK"] = "Bloco de informações";
+$MESS["IBLOCK_SEARCH_URL"] = "Página de pesquisa";
+$MESS["IBLOCK_SECTION_ID"] = "ID da seção";
+$MESS["IBLOCK_SECTION_URL"] = "lbum";
+$MESS["IBLOCK_SORT_ASC"] = "crescente";
+$MESS["IBLOCK_SORT_COMMENTS_BLOG"] = "comentários do blog";
+$MESS["IBLOCK_SORT_COMMENTS_FORUM"] = "comentários do fórum";
+$MESS["IBLOCK_SORT_DESC"] = "decrescente";
+$MESS["IBLOCK_SORT_ID"] = "ID";
+$MESS["IBLOCK_SORT_NAME"] = "nome";
+$MESS["IBLOCK_SORT_RATING"] = "classificação";
+$MESS["IBLOCK_SORT_SHOWS"] = "média de visualizações";
+$MESS["IBLOCK_SORT_SORT"] = "ndice de classificação";
+$MESS["IBLOCK_SORT_TIMESTAMP"] = "data de modificação";
+$MESS["IBLOCK_TYPE"] = "Tipo de bloco de informações";
+$MESS["IBLOCK_UPLOAD_URL"] = "Fazer upload da foto";
+$MESS["IBLOCK_USER_ALIAS"] = "Código da galeria";
+$MESS["P_SET_NAV_CHAIN"] = "Adicionar os títulos da seção e da imagem para o caminho de navegação";
+$MESS["P_SET_STATUS_404"] = "Definir o status 404 se nenhum elemento ou seção for encontrado. 
+";
+$MESS["P_SHOW_TAGS"] = "Exibir tags";
+$MESS["T_DATE_TIME_FORMAT"] = "Formato de data";
+$MESS["T_IBLOCK_DESC_GROUP_PERMISSIONS"] = "Grupos de usuários com permissão para visualizar descrição detalhada ";
+$MESS["T_IBLOCK_DESC_NEWS_PANEL"] = "Exibir botões do painel para este componente";
+$MESS["T_IBLOCK_DESC_USE_PERMISSIONS"] = "Utilizar restrições de acesso adicionais";
+$MESS["T_IBLOCK_PROPERTY"] = "Propriedades";
+?>

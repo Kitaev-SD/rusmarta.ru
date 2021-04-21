@@ -1,0 +1,23 @@
+<?
+$MESS["SMILE_EDIT_RECORD"] = "Redaguoti rinkiná";
+$MESS["SMILE_NEW_RECORD"] = "Pridëti rinkiná";
+$MESS["ERROR_EDIT_SMILE"] = "Klaida redaguojant rinkiná";
+$MESS["ERROR_ADD_SMILE"] = "Klaida pridedant rinkiná";
+$MESS["ERROR_BAD_SESSID"] = "Jûsø sesija pasibaigë. Praðome bandyti dar kartà.";
+$MESS["SMILE_SORT"] = "Rûðiavimas";
+$MESS["SMILE_STRING_ID"] = "Rinkinio ID";
+$MESS["SMILE_SMILE_EXAMPLE"] = "Ðypsenëlës rinkinyje";
+$MESS["SMILE_SMILE_EXAMPLE_LINK"] = "perþiûrëti ðypsenëles";
+$MESS["SMILE_IMAGE_NAME"] = "Rinkinio pavadinimas";
+$MESS["SMILE_IMAGE_NAME_EN"] = "Angliðkas";
+$MESS["SMILE_IMAGE_NAME_DE"] = "Vokiðkas";
+$MESS["SMILE_IMAGE_NAME_RU"] = "Rusiðkas";
+$MESS["SMILE_BTN_BACK"] = "Ðypsenëliø rinkiniai";
+$MESS["SMILE_BTN_NEW"] = "Pridëti naujà";
+$MESS["SMILE_BTN_DELETE"] = "Paðalinti";
+$MESS["SMILE_BTN_DELETE_CONFIRM"] = "Ar tikrai norite paðalinti ðá rinkiná? Tai taip pat i paðalins visas ðypsenëles rinkinyje.";
+$MESS["SMILE_TAB_SMILE"] = "Parametrai";
+$MESS["SMILE_TAB_SMILE_DESCR"] = "Rinkinio parametrai";
+$MESS["SMILE_IMPORT"] = "Importuoti ðypsenëles á ðá rinkiná, kai jis bus sukurtas";
+$MESS["SMILE_IMAGE_PARAMS"] = "Papildomi parametrai";
+?>

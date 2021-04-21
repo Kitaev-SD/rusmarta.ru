@@ -1,0 +1,31 @@
+<?
+$MESS["BLOG_ALL_USERS"] = "Todos los usuarios";
+$MESS["BLOG_APPLY"] = "Aplicar";
+$MESS["BLOG_AUTO_MSG"] = "Mensaje automático:";
+$MESS["BLOG_AUTO_MSG_TITLE"] = "Usar protección de envío de mensaje automático";
+$MESS["BLOG_CANCEL"] = "Cancelar";
+$MESS["BLOG_CAPTHA"] = "Requiere código espacial para tipear si el comentario es agregado por un usuario no autorizado";
+$MESS["BLOG_COMMENTS"] = "comentarios";
+$MESS["BLOG_CONFIRM_DELETE"] = "Este grupo contiene usuarios. Está seguro que desea borrar el grupo?";
+$MESS["BLOG_CREATE"] = "Crear blog";
+$MESS["BLOG_DEF_PERMS"] = "Acceso predeterminado:";
+$MESS["BLOG_DESCR"] = "Descripción del blog:";
+$MESS["BLOG_EMAIL_NOTIFY"] = "Notificaciones";
+$MESS["BLOG_EMAIL_NOTIFY_HELP"] = "Al activar esta opción significa que usted recibirá notificaciones sobre nuevos mensajes y comentarios en su blog.";
+$MESS["BLOG_EMAIL_NOTIFY_TITLE"] = "Enviar notificaciones por mail";
+$MESS["BLOG_GROUPS"] = "grupos";
+$MESS["BLOG_GROUP_ADD"] = "Agregar >>";
+$MESS["BLOG_GROUP_DELETE"] = "Borrar";
+$MESS["BLOG_GRP"] = "Grupo del blog:";
+$MESS["BLOG_MESSAGES"] = "mensajes";
+$MESS["BLOG_NAME_CHANGE"] = "Editar";
+$MESS["BLOG_NEED_AUTH"] = "Por favor primero autorícese en el sitio web";
+$MESS["BLOG_OPENED_GRPS"] = "Grupos abiertos:";
+$MESS["BLOG_OPENED_TITLE"] = "Especificar aquellos grupos en los que ninguna persona puede ser agregado sin su aprobación";
+$MESS["BLOG_REGISTERED"] = "Usuarios registrados";
+$MESS["BLOG_SAVE"] = "Guardar";
+$MESS["BLOG_TITLE"] = "Nombre del blog:";
+$MESS["BLOG_URL"] = "Alias (letras latinas):";
+$MESS["BLOG_URL_TITLE"] = "Especifique el alias de su blog (con letras latinas). El seudo nombre será utilizado para construir una URL de su formulario del blog <nobr>http://this-site.com/blog/[blog name]</nobr>";
+$MESS["STOF_REQUIED_FIELDS_NOTE"] = "Los campos obligatorios están marcados con asterisco (<font color=\"#FF0000\">*</font>).";
+?>

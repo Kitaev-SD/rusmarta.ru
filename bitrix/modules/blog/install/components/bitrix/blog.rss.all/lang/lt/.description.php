@@ -1,0 +1,5 @@
+<?
+$MESS['BR_DEFAULT_TEMPLATE_NAME'] = 'Tinklaraðèiø RSS pagal grupes/svetaines';
+$MESS['BR_DEFAULT_TEMPLATE_DESCRIPTION'] = 'Gràþina grupës/svetainës tinklaraðèiø RSS nurodytame formate';
+$MESS['BR_NAME'] = 'Tinklaraðèiai';
+?>

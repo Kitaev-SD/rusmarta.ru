@@ -1,0 +1,12 @@
+<?
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION"] = "Alineación de carrito de compras";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_BC"] = "Parte inferior central";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_BL"] = "Abajo a la izquierda";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_BR"] = "Abajo a la derecha";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_CL"] = "Mitad izquierda";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_CR"] = "Enmedio a la derecha";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_TC"] = "Centro superior";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_TL"] = "Parte superior izquierda";
+$MESS["LANDING_HOOK_SETTINGS_CART_POSITION_TR"] = "Arriba a la derecha";
+$MESS["LANDING_HOOK_SETTINGS_IBLOCK_ID"] = "Bloque de información";
+?>

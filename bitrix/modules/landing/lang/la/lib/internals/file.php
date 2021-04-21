@@ -1,0 +1,5 @@
+<?
+$MESS["LANDING_TABLE_FIELD_ENTITY_ID"] = "ID de la Entidad";
+$MESS["LANDING_TABLE_FIELD_ENTITY_TYPE"] = "Tipo de entidad";
+$MESS["LANDING_TABLE_FIELD_FILE_ID"] = "ID del archivo";
+?>

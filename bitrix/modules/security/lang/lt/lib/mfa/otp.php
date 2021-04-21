@@ -1,0 +1,7 @@
+<?
+$MESS["SECURITY_OTP_ERROR_PASS1_EMPTY"] = "Pirmojo slaptaþodþio reikðmë yra tuðèia.";
+$MESS["SECURITY_OTP_ERROR_PASS1_INVALID"] = "Pirmojo slaptaþodþio reikðmë turi bûti ne maþiau kaip 6 simboliai, kuriø sudëtyje yra tik skaièiai.";
+$MESS["SECURITY_OTP_ERROR_PASS2_EMPTY"] = "Antrojo slaptaþodþio reikðmë yra tuðèia.";
+$MESS["SECURITY_OTP_ERROR_PASS2_INVALID"] = "Antrojo slaptaþodþio reikðmë turi bûti ne maþiau kaip 6 simboliai, kuriø sudëtyje yra tik skaièiai.";
+$MESS["SECURITY_OTP_ERROR_SYNC_ERROR"] = "Nepavyko sinchronizuoti ðio slapto rakto su pateikttø slaptaþodþiø reikðmëmis.";
+?>

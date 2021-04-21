@@ -1,0 +1,9 @@
+<?
+$MESS["MESSAGESERVICE_HEADER_CURRENT"] = "Enviado hoy";
+$MESS["MESSAGESERVICE_HEADER_LIMIT"] = "Límite de envío diario";
+$MESS["MESSAGESERVICE_HEADER_SENDER"] = "Servicios";
+$MESS["MESSAGESERVICE_HEADER_SENDER_FROM"] = "Remitente";
+$MESS["MESSAGESERVICE_MODULE_NOT_INSTALLED"] = "El módulo \"Messaging Service\" no está instalado.";
+$MESS["MESSAGESERVICE_PERMISSION_DENIED"] = "Acceso denegado";
+$MESS["MESSAGESERVICE_ROW_EDIT"] = "Editar";
+?>

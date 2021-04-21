@@ -1,0 +1,31 @@
+<?
+$MESS["SALE_SLRI_TAB_REINDEX_TITLE"] = "Perindeksuoti";
+$MESS["SALE_SLRI_TAB_REINDEX_TITLE_SETTINGS"] = "Perindeksavimo parametrai";
+$MESS["SALE_SLRI_SETTINGS_BASE"] = "Pagrindiniai nustatymai";
+$MESS["SALE_SLRI_JOB2DO"] = "Perindeksuoti dabar";
+$MESS["SALE_SLRI_JOB_DICTIONARY"] = "Paieðkos þodynas";
+$MESS["SALE_SLRI_JOB_SITE"] = "Suriðimas su tinklapiais";
+$MESS["SALE_SLRI_AP_TIMELIMIT"] = "Perindeksavimo þingsnis, sec.";
+$MESS["SALE_SLRI_START"] = "Perindeksuoti dabar";
+$MESS["SALE_SLRI_STOP"] = "Nutraukti";
+$MESS["SALE_SLRI_STOPPING"] = "Perindeksavimas nutraukiamas...";
+$MESS["SALE_SLRI_ERROR"] = "Vidinë klaida.";
+$MESS["SALE_SLRI_STAGE_CLEANUP"] = "paieðkos indekso valymas";
+$MESS["SALE_SLRI_STAGE_CREATE_DICTIONARY"] = "sukuriamas þodynas";
+$MESS["SALE_SLRI_STAGE_RESORT_DICTIONARY"] = "þodyno rûðiavimas";
+$MESS["SALE_SLRI_STAGE_CREATE_SEARCH_INDEX"] = "sukuriamas paieðkos indeksas";
+$MESS["SALE_SLRI_STAGE_CREATE_SITE2LOCATION_INDEX"] = "sukuriamas svetainiø suriðimo indeksas";
+$MESS["SALE_SLRI_STAGE_RESTORE_DB_INDEXES"] = "atkûriami duomenø bazës indeksai";
+$MESS["SALE_SLRI_STAGE_COMPLETE"] = "perindeksavimas baigtas";
+$MESS["SALE_SLRI_STAGE_INTERRUPTING"] = "procesas nutraukiamas";
+$MESS["SALE_SLRI_STAGE_INTERRUPTED"] = "perindeksavimas nutrauktas";
+$MESS["SALE_SLRI_STATUS"] = "statusas";
+$MESS["SALE_SLRI_STAGE_INITIAL"] = "laukia paleidimo";
+$MESS["SALE_SLRI_SURE_REINDEX"] = "Ar tikrai norite perindeksuoti dabar?";
+$MESS["SALE_SLRI_HEAVY_DUTY_NOTICE"] = "Perindeksavimas gali uþtrukti labai ilgai nuo pusvalandþio iki keliø valandø, priklausomai nuo jûsø interneto nustatymø ir aparatinës árangos.";
+$MESS["SALE_SLRI_HEAVY_DUTY_HOST_NOTICE"] = "Perindeksavimas gali trumpai padidinti duomenø bazës ir interneto serverio apkrovà. Mes rekomenduojame, kad jûs kreiptumetës á techninæ palaikymo tarnybà prieð importuojant didelius vietoviø rinkinius.";
+$MESS["SALE_SLRI_TYPES4INDEX_2"] = "Naudoti greità paieðkà tipams";
+$MESS["SALE_SLRI_ALL_TYPES_2"] = "Visi tipai";
+$MESS["SALE_SLRI_LANGS4INDEX_2"] = "Naudoti greità paieðkà kalboms";
+$MESS["SALE_SLRI_ALL_LANGS_2"] = "Visos kalbos";
+?>

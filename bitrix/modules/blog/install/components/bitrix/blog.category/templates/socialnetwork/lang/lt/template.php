@@ -1,0 +1,9 @@
+<?
+$MESS["BLOG_NAME_CHANGE"] = "Keisti þymos pavadinimà";
+$MESS["BLOG_GROUP_DELETE"] = "Paðalinti kategorijà";
+$MESS["BLOG_GROUP_ADD"] = "Pridëti áraðø kategorijà";
+$MESS["BLOG_ADD"] = "Pridëti ";
+$MESS["BLOG_GROUP_NAME"] = "Þymos pavadinimas:";
+$MESS["BLOG_CANCEL"] = "Atðaukti";
+$MESS["BLOG_CONFIRM_DELETE"] = "Praneðimai turi ðià þymà. Ar tikrai norite iðtrinti ðià þymà?";
+?>

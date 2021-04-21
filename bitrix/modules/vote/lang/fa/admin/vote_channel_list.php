@@ -1,0 +1,32 @@
+<?
+$MESS["VOTE_C_SORT"] = "ترتیب";
+$MESS["VOTE_F_SITE"] = "سایتها:";
+$MESS["VOTE_SITE"] = "سایتها";
+$MESS["VOTE_PAGE_TITLE"] = "فهرست کانالهای نظرسنجی";
+$MESS["VOTE_F_SID"] = "کد به یادآوری:";
+$MESS["VOTE_PAGES"] = "کانالها";
+$MESS["VOTE_SID"] = "کد به یادآوری";
+$MESS["VOTE_CONFIRM_DEL_CHANNEL"] = "آیا کانال نظرسنجی و نظرسنجی های آنرا حذف می کنید؟";
+$MESS["VOTE_VOTES"] = "نظرسنجی ها";
+$MESS["VOTE_TIMESTAMP"] = "ویرایش شده";
+$MESS["VOTE_F_ACTIVE"] = "فعال:";
+$MESS["VOTE_FLT_ID"] = "شناسه گروه";
+$MESS["VOTE_FLT_ACTIVE"] = "فعالیت";
+$MESS["VOTE_ADD_GROUP_TITLE"] = "Click to add a new poll channel";
+$MESS["VOTE_SITE_EDIT"] = "ویرایش سایت";
+$MESS["VOTE_OPEN_VOTES"] = "فهرست نظرسنجی";
+$MESS["VOTE_ADD_VOTE"] = "افزودن نظرسنجی به کانال";
+$MESS["VOTE_SAVE_ERROR"] = "خطا در نوشتن در دیتابیس";
+$MESS["VOTE_DELETE"] = "حذف";
+$MESS["VOTE_ACTIVATE"] = "فعال کردن";
+$MESS["VOTE_DEACTIVATE"] = "غیر فعال کردن";
+$MESS["VOTE_EDIT_TITLE"] = "Modify poll channel settings";
+$MESS["VOTE_YES"] = "بله";
+$MESS["VOTE_NO"] = "خیر";
+$MESS["VOTE_ALL"] = "(همه)";
+$MESS["VOTE_TITLE"] = "عنوان";
+$MESS["VOTE_EXACT_MATCH"] = "همانندی درست";
+$MESS["VOTE_CREATE"] = "ساخت";
+$MESS["VOTE_ACTIVE"] = "فعال";
+$MESS["VOTE_F_TITLE"] = "عنوان:";
+?>

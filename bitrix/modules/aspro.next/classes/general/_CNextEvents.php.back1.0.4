@@ -1,0 +1,1230 @@
+<?
+if(!defined('ASPRO_NEXT_MODULE_ID'))
+	define('ASPRO_NEXT_MODULE_ID', 'aspro.next');
+
+use \Bitrix\Main\Localization\Loc;
+Loc::loadMessages(__FILE__);
+
+class CNextEvents{
+	const moduleID = ASPRO_NEXT_MODULE_ID;
+	const partnerName	= "aspro";
+    const solutionName	= "next";
+    const wizardID		= "aspro:next";
+
+	function ShowPanel(){
+    }
+
+	function BeforeSendEvent(\Bitrix\Main\Event $event){
+		if(isset($_REQUEST["ONE_CLICK_BUY"]) && method_exists('\Bitrix\Sale\Compatible\EventCompatibility', 'setDisableMailSend')){
+			\Bitrix\Sale\Compatible\EventCompatibility::setDisableMailSend(true);
+			if(method_exists('\Bitrix\Sale\Notify', 'setNotifyDisable'))
+				\Bitrix\Sale\Notify::setNotifyDisable(true);
+		}
+	}
+
+	function correctInstall(){
+		if(COption::GetOptionString(self::moduleID, "WIZARD_DEMO_INSTALLED") == "Y"){
+			if(CModule::IncludeModule("main")){
+				require_once($_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/classes/general/wizard.php");
+				@set_time_limit(0);
+				if(!CWizardUtil::DeleteWizard(self::wizardID)){if(!DeleteDirFilesEx($_SERVER["DOCUMENT_ROOT"]."/bitrix/wizards/".self::partnerName."/".self::solutionName."/")){self::removeDirectory($_SERVER["DOCUMENT_ROOT"]."/bitrix/wizards/".self::partnerName."/".self::solutionName."/");}}
+				UnRegisterModuleDependences("main", "OnBeforeProlog", self::moduleID, get_class(), "correctInstall");
+				COption::SetOptionString(self::moduleID, "WIZARD_DEMO_INSTALLED", "N");
+			}
+		}
+	}
+
+	function OnBeforeUserUpdateHandler(&$arFields){
+		$bTmpUser = false;
+		$bAdminSection = (defined('ADMIN_SECTION') && ADMIN_SECTION === true);
+
+		if(strlen($arFields["NAME"]))
+			$arFields["NAME"] = trim($arFields["NAME"]);
+
+		$siteID = SITE_ID;
+
+		if($bAdminSection)
+	    {
+	    	// include CMainPage
+	        require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include/mainpage.php");
+	        // get site_id by host
+	        $siteID = \CMainPage::GetSiteByHost();
+	        if(!$siteID)
+	            $siteID = "s1";
+	
+			$sOneFIO = COption::GetOptionString(ASPRO_NEXT_MODULE_ID, 'PERSONAL_ONEFIO', 'Y', $siteID);
+			$sChangeLogin = COption::GetOptionString(ASPRO_NEXT_MODULE_ID, 'LOGIN_EQUAL_EMAIL', 'Y', $siteID);
+        }
+		else
+		{
+			$arFrontParametrs = CNext::GetFrontParametrsValues($siteID);
+			$sOneFIO = $arFrontParametrs['PERSONAL_ONEFIO'];
+			$sChangeLogin = $arFrontParametrs['LOGIN_EQUAL_EMAIL'];
+		}
+
+		if(strlen($arFields["NAME"]) && !strlen($arFields["LAST_NAME"]) && !strlen($arFields["SECOND_NAME"])){
+			if($sOneFIO !== 'N')
+			{
+				$arName = explode(' ', $arFields["NAME"]);
+
+				if($arName){
+					$arFields["NAME"] = "";
+					$arFields["SECOND_NAME"] = "";
+					foreach($arName as $i => $name){
+						if(!$i){
+							$arFields["LAST_NAME"] = $name;
+						}
+						else{
+							if(!strlen($arFields["NAME"])){
+								$arFields["NAME"] = $name;
+							}
+							elseif(!strlen($arFields["SECOND_NAME"])){
+								$arFields["SECOND_NAME"] = $name;
+							}
+						}
+					}
+				}
+			}
+		}
+		if($_REQUEST["confirmorder"]=="Y"  && !strlen($arFields["SECOND_NAME"]) && $_REQUEST["ORDER_PROP_1"]){
+			$arNames = explode(' ', $_REQUEST["ORDER_PROP_1"]);
+			if($arNames[2]){
+				$arFields["SECOND_NAME"]=$arNames[2];
+			}
+		}
+		if(strlen($arFields["EMAIL"]))
+		{
+			if($sChangeLogin != "N")
+			{
+				$bEmailError = false;
+
+				$rsUser = CUser::GetList($by = "ID", $order = "ASC", array("=EMAIL" => $arFields["EMAIL"], "!ID" => $arFields["ID"]));
+				if(!$bEmailError = intval($rsUser->SelectedRowsCount()) > 0){
+					$rsUser = CUser::GetList($by = "ID", $order = "ASC", array("LOGIN_EQUAL" => $arFields["EMAIL"], "!ID" => $arFields["ID"]));
+					$bEmailError = intval($rsUser->SelectedRowsCount()) > 0;
+				}
+
+				if($bEmailError){
+					global $APPLICATION;
+					$APPLICATION->throwException(Loc::getMessage("EMAIL_IS_ALREADY_EXISTS", array("#EMAIL#" => $arFields["EMAIL"])));
+					return false;
+				}
+				else{
+					// !admin
+					if (!isset($GLOBALS["USER"]) || !is_object($GLOBALS["USER"])){
+						$bTmpUser = True;
+						$GLOBALS["USER"] = new \CUser;
+					}
+
+					if($bAdminSection)
+					{
+						if(isset($arFields['ID']) && $arFields['ID'])
+						{
+							if(!in_array(1, CUser::GetUserGroup($arFields['ID'])))
+								$arFields['LOGIN'] = $arFields['EMAIL'];
+						}
+						elseif(isset($arFields['GROUP_ID']) && $arFields['GROUP_ID'])
+						{
+							$arUserGroups = array();
+							$arTmpGroups = (array)$arFields['GROUP_ID'];
+							foreach($arTmpGroups as $arGroup)
+							{
+								if(is_array($arGroup))
+									$arUserGroups[] = $arGroup['GROUP_ID'];
+								else
+									$arUserGroups[] = $arGroup;
+							}
+
+							if(count(array_intersect($arUserGroups, array(1)))<=0)
+								$arFields['LOGIN'] = $arFields['EMAIL'];
+						}
+						else
+							$arFields['LOGIN'] = $arFields['EMAIL'];
+					}
+					else
+					{
+						if(!$GLOBALS['USER']->IsAdmin())
+							$arFields["LOGIN"] = $arFields["EMAIL"];
+					}
+				}
+			}
+			else
+			{
+				if(!$arFields["LOGIN"] || $arFields["LOGIN"] == 1)
+				{
+					$newLogin = $arFields['EMAIL'];
+					$pos = strpos($newLogin, '@');
+					if ($pos !== false)
+						$newLogin = substr($newLogin, 0, $pos);
+
+					if (strlen($newLogin) > 47)
+						$newLogin = substr($newLogin, 0, 47);
+
+					if (strlen($newLogin) < 3)
+						$newLogin .= '_';
+
+					if (strlen($newLogin) < 3)
+						$newLogin .= '_';
+					$arFields["LOGIN"] = $newLogin;
+				}
+			}
+		}		
+
+		if ($bTmpUser)
+			unset($GLOBALS["USER"]);
+
+		return $arFields;
+	}
+
+	static function InsertCounters(&$html){
+	}
+
+	static function clearBasketCacheHandler($orderID, $arFields, $arParams = array()){
+		CNextCache::ClearCacheByTag('sale_basket');
+		unset($_SESSION['ASPRO_BASKET_COUNTERS']);
+		if(isset($arFields) && $arFields)
+		{
+			if(isset($arFields["ID"]) && $arFields["ID"])
+			{
+				\Bitrix\Main\Loader::includeModule("sale");
+				global $USER;
+				$USER_ID = ($USER_ID = $USER->GetID()) ? $USER_ID : 0;
+				$arUser = $arUser = CNextCache::CUser_GetList(array("SORT" => "ASC", "CACHE" => array("MULTI" => "N", "TAG" => CNextCache::GetUserCacheTag($USER_ID))), array("ID" => $USER_ID), array("FIELDS" => array("ID", "PERSONAL_PHONE")));
+				if(!$arUser["PERSONAL_PHONE"])
+				{
+					$rsOrder = CSaleOrderPropsValue::GetList(array(), array("ORDER_ID" => $arFields["ID"]));
+					$arOrderProps = array();
+					while($item = $rsOrder->Fetch())
+					{
+						$arOrderProps[$item["CODE"]] = $item;
+					}
+					if(isset($arOrderProps["PHONE"]) && $arOrderProps["PHONE"] && (isset($arOrderProps["PHONE"]["VALUE"]) && $arOrderProps["PHONE"]["VALUE"]))
+					{
+						$user = new CUser;
+						$fields = Array(
+							"PERSONAL_PHONE" => $arOrderProps["PHONE"]["VALUE"],
+						);
+						$user->Update($arUser["ID"], $fields);
+					}
+
+				}
+			}
+		}
+	}
+
+	static function DoIBlockAfterSave($arg1, $arg2 = false){
+		$ELEMENT_ID = false;
+		$IBLOCK_ID = false;
+		$OFFERS_IBLOCK_ID = false;
+		$OFFERS_PROPERTY_ID = false;
+		if (CModule::IncludeModule('currency'))
+			$strDefaultCurrency = CCurrency::GetBaseCurrency();
+
+		//Check for catalog event
+		if(is_array($arg2) && $arg2["PRODUCT_ID"] > 0){
+			//Get iblock element
+			$rsPriceElement = CIBlockElement::GetList(
+				array(),
+				array(
+					"ID" => $arg2["PRODUCT_ID"],
+				),
+				false,
+				false,
+				array("ID", "IBLOCK_ID")
+			);
+			if($arPriceElement = $rsPriceElement->Fetch()){
+				$arCatalog = CCatalog::GetByID($arPriceElement["IBLOCK_ID"]);
+				if(is_array($arCatalog)){
+					//Check if it is offers iblock
+					if($arCatalog["OFFERS"] == "Y"){
+						//Find product element
+						$rsElement = CIBlockElement::GetProperty(
+							$arPriceElement["IBLOCK_ID"],
+							$arPriceElement["ID"],
+							"sort",
+							"asc",
+							array("ID" => $arCatalog["SKU_PROPERTY_ID"])
+						);
+						$arElement = $rsElement->Fetch();
+						if($arElement && $arElement["VALUE"] > 0)
+						{
+							$ELEMENT_ID = $arElement["VALUE"];
+							$IBLOCK_ID = $arCatalog["PRODUCT_IBLOCK_ID"];
+							$OFFERS_IBLOCK_ID = $arCatalog["IBLOCK_ID"];
+							$OFFERS_PROPERTY_ID = $arCatalog["SKU_PROPERTY_ID"];
+						}
+					}
+					//or iblock which has offers
+					elseif($arCatalog["OFFERS_IBLOCK_ID"] > 0){
+						$ELEMENT_ID = $arPriceElement["ID"];
+						$IBLOCK_ID = $arPriceElement["IBLOCK_ID"];
+						$OFFERS_IBLOCK_ID = $arCatalog["OFFERS_IBLOCK_ID"];
+						$OFFERS_PROPERTY_ID = $arCatalog["OFFERS_PROPERTY_ID"];
+					}
+					//or it's regular catalog
+					else{
+						$ELEMENT_ID = $arPriceElement["ID"];
+						$IBLOCK_ID = $arPriceElement["IBLOCK_ID"];
+						$OFFERS_IBLOCK_ID = false;
+						$OFFERS_PROPERTY_ID = false;
+					}
+				}
+			}
+		}
+		//Check for iblock event
+		elseif(is_array($arg1) && $arg1["ID"] > 0 && $arg1["IBLOCK_ID"] > 0){
+			//Check if iblock has offers
+			$arOffers = CIBlockPriceTools::GetOffersIBlock($arg1["IBLOCK_ID"]);
+			if(is_array($arOffers)){
+				$ELEMENT_ID = $arg1["ID"];
+				$IBLOCK_ID = $arg1["IBLOCK_ID"];
+				$OFFERS_IBLOCK_ID = $arOffers["OFFERS_IBLOCK_ID"];
+				$OFFERS_PROPERTY_ID = $arOffers["OFFERS_PROPERTY_ID"];
+			}
+		}
+
+		if($ELEMENT_ID){
+			static $arPropCache = array();
+			static $arPropArray=array();
+
+			if(!array_key_exists($IBLOCK_ID, $arPropCache)){
+				//Check for MINIMAL_PRICE property
+				$rsProperty = CIBlockProperty::GetByID("MINIMUM_PRICE", $IBLOCK_ID);
+				$arProperty = $rsProperty->Fetch();
+				if($arProperty){
+					$arPropCache[$IBLOCK_ID] = $arProperty["ID"];
+					$arPropArray["MINIMUM_PRICE"]=$arProperty["ID"];
+				}else{
+					$arPropCache[$IBLOCK_ID] = false;
+				}
+				$rsProperty = CIBlockProperty::GetByID("IN_STOCK", $IBLOCK_ID);
+				$arProperty = $rsProperty->Fetch();
+				if($arProperty){
+					$arPropCache[$IBLOCK_ID] = $arProperty["ID"];
+					$arPropArray["IN_STOCK"]=$arProperty["ID"];
+				}else{
+					if(!$arPropCache[$IBLOCK_ID])
+						$arPropCache[$IBLOCK_ID] = false;
+				}
+			}
+
+			if($arPropCache[$IBLOCK_ID]){
+				//Compose elements filter
+				if($OFFERS_IBLOCK_ID){
+					$rsOffers = CIBlockElement::GetList(
+						array(),
+						array(
+							"IBLOCK_ID" => $OFFERS_IBLOCK_ID,
+							"PROPERTY_".$OFFERS_PROPERTY_ID => $ELEMENT_ID,
+							"ACTIVE" => "Y"
+						),
+						false,
+						false,
+						array("ID")
+					);
+					while($arOffer = $rsOffers->Fetch())
+						$arProductID[] = $arOffer["ID"];
+
+					if (!is_array($arProductID))
+						$arProductID = array($ELEMENT_ID);
+				}
+				else
+					$arProductID = array($ELEMENT_ID);
+
+				if($arPropArray["MINIMUM_PRICE"]){
+					$minPrice = false;
+					$maxPrice = false;
+					//Get prices
+					$rsPrices = CPrice::GetList(
+						array(),
+						array(
+							"PRODUCT_ID" => $arProductID,
+						)
+					);
+					while($arPrice = $rsPrices->Fetch()){
+						if (CModule::IncludeModule('currency') && $strDefaultCurrency != $arPrice['CURRENCY'])
+							$arPrice["PRICE"] = CCurrencyRates::ConvertCurrency($arPrice["PRICE"], $arPrice["CURRENCY"], $strDefaultCurrency);
+
+						$PRICE = $arPrice["PRICE"];
+
+						if($minPrice === false || $minPrice > $PRICE)
+							$minPrice = $PRICE;
+
+						if($maxPrice === false || $maxPrice < $PRICE)
+							$maxPrice = $PRICE;
+					}
+
+					//Save found minimal price into property
+					if($minPrice !== false){
+						CIBlockElement::SetPropertyValuesEx(
+							$ELEMENT_ID,
+							$IBLOCK_ID,
+							array(
+								"MINIMUM_PRICE" => $minPrice,
+								"MAXIMUM_PRICE" => $maxPrice,
+							)
+						);
+					}
+				}
+				if($arPropArray["IN_STOCK"]){
+					$quantity=0;
+					$rsQuantity = CCatalogProduct::GetList(
+				        array("QUANTITY" => "DESC"),
+				        array("ID" => $arProductID),
+				        false,
+				        false,
+				        array("QUANTITY")
+				    );
+					while($arQuantity = $rsQuantity->Fetch()){
+						if($arQuantity["QUANTITY"]>0)
+							$quantity+=$arQuantity["QUANTITY"];
+					}
+					if($quantity>0){
+						$rsPropStock = CIBlockPropertyEnum::GetList(Array("DEF"=>"DESC", "SORT"=>"ASC"), Array("IBLOCK_ID"=>$IBLOCK_ID, "CODE"=>"IN_STOCK"));
+						if($arPropStock=$rsPropStock->Fetch()){
+							$idProp=$arPropStock["ID"];
+						}
+
+						CIBlockElement::SetPropertyValuesEx(
+							$ELEMENT_ID,
+							$IBLOCK_ID,
+							array(
+								"IN_STOCK" => $idProp,
+							)
+						);
+					}else{
+						CIBlockElement::SetPropertyValuesEx(
+							$ELEMENT_ID,
+							$IBLOCK_ID,
+							array(
+								"IN_STOCK" => "",
+							)
+						);
+					}
+					if(class_exists('\Bitrix\Iblock\PropertyIndex\Manager')){
+						\Bitrix\Iblock\PropertyIndex\Manager::updateElementIndex($IBLOCK_ID, $ELEMENT_ID);
+					}
+				}
+			}
+		}
+	}
+
+	static function setStockProduct($ID, $arFields){
+		//Get iblock element
+		$rsPriceElement = CIBlockElement::GetList(
+			array(),
+			array(
+				"ID" => $ID,
+			),
+			false,
+			false,
+			array("ID", "IBLOCK_ID")
+		);
+		if($arPriceElement = $rsPriceElement->Fetch()){
+			$arCatalog = CCatalog::GetByID($arPriceElement["IBLOCK_ID"]);
+			if(is_array($arCatalog)){
+				//Check if it is offers iblock
+				if($arCatalog["OFFERS"] == "Y"){
+					//Find product element
+					$rsElement = CIBlockElement::GetProperty(
+						$arPriceElement["IBLOCK_ID"],
+						$arPriceElement["ID"],
+						"sort",
+						"asc",
+						array("ID" => $arCatalog["SKU_PROPERTY_ID"])
+					);
+					$arElement = $rsElement->Fetch();
+					if($arElement && $arElement["VALUE"] > 0)
+					{
+						$ELEMENT_ID = $arElement["VALUE"];
+						$IBLOCK_ID = $arCatalog["PRODUCT_IBLOCK_ID"];
+						$OFFERS_IBLOCK_ID = $arCatalog["IBLOCK_ID"];
+						$OFFERS_PROPERTY_ID = $arCatalog["SKU_PROPERTY_ID"];
+					}
+				}
+				//or iblock which has offers
+				elseif($arCatalog["OFFERS_IBLOCK_ID"] > 0){
+					$ELEMENT_ID = $arPriceElement["ID"];
+					$IBLOCK_ID = $arPriceElement["IBLOCK_ID"];
+					$OFFERS_IBLOCK_ID = $arCatalog["OFFERS_IBLOCK_ID"];
+					$OFFERS_PROPERTY_ID = $arCatalog["OFFERS_PROPERTY_ID"];
+				}
+				//or it's regular catalog
+				else{
+					$ELEMENT_ID = $arPriceElement["ID"];
+					$IBLOCK_ID = $arPriceElement["IBLOCK_ID"];
+					$OFFERS_IBLOCK_ID = false;
+					$OFFERS_PROPERTY_ID = false;
+				}
+			}
+		}
+		if($ELEMENT_ID){
+			static $arPropCache = array();
+			static $arPropArray=array();
+
+			if(!array_key_exists($IBLOCK_ID, $arPropCache)){
+				//Check for IN_STOCK property
+				$rsProperty = CIBlockProperty::GetByID("IN_STOCK", $IBLOCK_ID);
+				$arProperty = $rsProperty->Fetch();
+				if($arProperty){
+					$arPropCache[$IBLOCK_ID] = $arProperty["ID"];
+					$arPropArray["IN_STOCK"]=$arProperty["ID"];
+				}else{
+					if(!$arPropCache[$IBLOCK_ID])
+						$arPropCache[$IBLOCK_ID] = false;
+				}
+			}
+			if($arPropCache[$IBLOCK_ID]){
+				//Compose elements filter
+				if($OFFERS_IBLOCK_ID){
+					$rsOffers = CIBlockElement::GetList(
+						array(),
+						array(
+							"IBLOCK_ID" => $OFFERS_IBLOCK_ID,
+							"PROPERTY_".$OFFERS_PROPERTY_ID => $ELEMENT_ID,
+							"ACTIVE" => "Y"
+						),
+						false,
+						false,
+						array("ID")
+					);
+					while($arOffer = $rsOffers->Fetch())
+						$arProductID[] = $arOffer["ID"];
+
+					if (!is_array($arProductID))
+						$arProductID = array($ELEMENT_ID);
+				}
+				else
+					$arProductID = array($ELEMENT_ID);
+				if($arPropArray["IN_STOCK"]){
+					$quantity=0;
+					$rsQuantity = CCatalogProduct::GetList(
+				        array("QUANTITY" => "DESC"),
+				        array("ID" => $arProductID),
+				        false,
+				        false,
+				        array("QUANTITY")
+				    );
+					while($arQuantity = $rsQuantity->Fetch()){
+						if($arQuantity["QUANTITY"]>0)
+							$quantity+=$arQuantity["QUANTITY"];
+					}
+					if($quantity>0){
+						$rsPropStock = CIBlockPropertyEnum::GetList(Array("DEF"=>"DESC", "SORT"=>"ASC"), Array("IBLOCK_ID"=>$IBLOCK_ID, "CODE"=>"IN_STOCK"));
+						if($arPropStock=$rsPropStock->Fetch()){
+							$idProp=$arPropStock["ID"];
+						}
+
+						CIBlockElement::SetPropertyValuesEx(
+							$ELEMENT_ID,
+							$IBLOCK_ID,
+							array(
+								"IN_STOCK" => $idProp,
+							)
+						);
+					}else{
+						CIBlockElement::SetPropertyValuesEx(
+							$ELEMENT_ID,
+							$IBLOCK_ID,
+							array(
+								"IN_STOCK" => "",
+							)
+						);
+					}
+					if(class_exists('\Bitrix\Iblock\PropertyIndex\Manager')){
+						\Bitrix\Iblock\PropertyIndex\Manager::updateElementIndex($IBLOCK_ID, $ELEMENT_ID);
+					}
+				}
+			}
+		}
+	}
+
+	static function CurrencyFormatHandler($price, $currency){
+		if(!defined('ADMIN_SECTION') && !CSite::inDir(SITE_DIR.'personal/orders'))
+		{
+			$arCurFormat = CCurrencyLang::GetFormatDescription($currency);	
+
+			$intDecimals = $arCurFormat['DECIMALS'];
+		    if (CCurrencyLang::isAllowUseHideZero() && $arCurFormat['HIDE_ZERO'] == 'Y')
+		    {
+		        if (round($price, $arCurFormat["DECIMALS"]) == round($price, 0))
+		            $intDecimals = 0;
+		    }
+		    $price = number_format($price, $intDecimals, $arCurFormat['DEC_POINT'], $arCurFormat['THOUSANDS_SEP']);
+		    if ($arCurFormat['THOUSANDS_VARIANT'] == CCurrencyLang::SEP_NBSPACE)
+		        $price = str_replace(' ', '&nbsp;', $price);
+		    $arFormatString = explode('#', $arCurFormat['FORMAT_STRING']);
+		    $arFormatString[1] = '<span class=\'price_currency\'>'.$arFormatString[1].'</span>';
+			$arCurFormat['FORMAT_STRING'] = '#'.$arFormatString[1];			
+
+		    return preg_replace('/(^|[^&])#/', '${1}'.'<span class=\'price_value\'>'.$price.'</span>', $arCurFormat['FORMAT_STRING']);
+		}
+	}
+
+	static function OnEndBufferContentHandler(&$content)
+	{
+		if(!defined('ADMIN_SECTION') && !defined('WIZARD_SITE_ID'))
+		{
+			global $SECTION_BNR_CONTENT, $arRegion;
+
+			if($arRegion)
+			{
+				foreach(CNextRegionality::$arSeoMarks as $mark => $field)
+				{
+					if(strpos($content, $mark) !== false)
+						$content = str_replace($mark, $arRegion[$field], $content);				
+				}
+			}
+			if($SECTION_BNR_CONTENT)
+			{
+				$start = strpos($content, '<!--title_content-->');
+				if($start>0)
+				{
+					$end = strpos($content, '<!--end-title_content-->');
+
+					if(($end>0) && ($end>$start))
+					{
+						if(defined("BX_UTF") && BX_UTF === true)
+							$content = CNext::utf8_substr_replace($content, "", $start, $end-$start);
+						else
+							$content = substr_replace($content, "", $start, $end-$start);
+					}
+				}
+				$content = str_replace("body class=\"", "body class=\"with_banners ", $content);
+			}
+		}
+	}
+
+	static function OnIBlockPropertyBuildListStoresHandler(){
+		return array(
+			"PROPERTY_TYPE"      => "S",
+			"USER_TYPE"         => "SAsproListStores",
+			"DESCRIPTION"      => Loc::getMessage("STORES_LINK_PROP_TITLE"),
+			"GetPropertyFieldHtml"   => array("CNextEvents", "GetPropertyFieldHtmlStoresHandler"),
+			"GetPropertyFieldHtmlMulty"   => array("CNextEvents", "GetPropertyFieldHtmlStoresHandlerMulty"),
+		);
+	}
+	
+	static function GetPropertyFieldHtmlStoresHandler($arProperty, $value, $strHTMLControlName){
+		static $cache = array();
+		$html = '';
+		if(\Bitrix\Main\Loader::includeModule('catalog'))
+		{
+			$cache["STORES"] = array();
+			$rsStore = CCatalogStore::GetList( array("SORT" => "ASC"), array() );
+			while($arStore = $rsStore->GetNext())
+			{
+				$cache["STORES"][] = $arStore;
+			}
+			
+			$varName = str_replace("VALUE", "DESCRIPTION", $strHTMLControlName["VALUE"]);
+			$val = ($value["VALUE"] ? $value["VALUE"] : $arProperty["DEFAULT_VALUE"]);
+			if($arProperty['MULTIPLE'] == 'Y')
+				$html .= '<select name="'.$strHTMLControlName["VALUE"].'[]" multiple size="6" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">';
+			else
+				$html .= '<select name="'.$strHTMLControlName["VALUE"].'" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">';
+
+			$html .= '<option value="component" '.($val == "component" ? 'selected' : '').'>'.Loc::getMessage("FROM_COMPONENTS_TITLE").'</option>';
+			foreach($cache["STORES"] as $arStore)
+			{
+				$html .= '<option value="'.$arStore["ID"].'"';
+				if($val == $arStore["~ID"])
+					$html .= ' selected';
+				$html .= '>'.$arStore["TITLE"].'</option>';
+			}
+			$html .= '</select>';
+		}
+		return $html;
+	}
+
+	static function GetPropertyFieldHtmlStoresHandlerMulty($arProperty, $value, $strHTMLControlName){
+		static $cache = array();
+		$html = '';
+		if(\Bitrix\Main\Loader::includeModule('catalog'))
+		{
+			$cache["STORES"] = array();
+			$rsStore = CCatalogStore::GetList( array("SORT" => "ASC"), array() );
+			while($arStore = $rsStore->GetNext())
+			{
+				$cache["STORES"][] = $arStore;
+			}
+			
+			$varName = str_replace("VALUE", "DESCRIPTION", $strHTMLControlName["VALUE"]);
+			$arValues = array();
+			if($value && is_array($value))
+			{
+				foreach($value as $arValue)
+				{
+					$arValues[] = $arValue["VALUE"];
+				}
+			}
+			else
+				$arValues[] = $arProperty["DEFAULT_VALUE"];
+
+			if($arProperty['MULTIPLE'] == 'Y')
+				$html .= '<select name="'.$strHTMLControlName["VALUE"].'[]" multiple size="6" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">';
+			else
+				$html .= '<select name="'.$strHTMLControlName["VALUE"].'" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">';
+
+			$html .= '<option value="component" '.(in_array("component", $arValues) ? 'selected' : '').'>'.Loc::getMessage("FROM_COMPONENTS_TITLE").'</option>';
+			foreach($cache["STORES"] as $arStore)
+			{
+				$html .= '<option value="'.$arStore["ID"].'"';
+				if(in_array($arStore["~ID"], $arValues))
+					$html .= ' selected';
+				$html .= '>'.$arStore["TITLE"].'</option>';
+			}
+			$html .= '</select>';
+		}
+		return $html;
+	}
+
+	static function OnIBlockPropertyBuildListLocationsHandler(){
+		return array(
+			"PROPERTY_TYPE"      => "S",
+			"USER_TYPE"         => "SAsproListLocations",
+			"DESCRIPTION"      => Loc::getMessage("LOCATIONS_LINK_PROP_TITLE"),
+			"GetPropertyFieldHtml"   => array("CNextEvents", "GetPropertyFieldHtmlLocationsHandler"),
+		);
+	}
+
+		
+	static function GetPropertyFieldHtmlLocationsHandler($arProperty, $value, $strHTMLControlName){
+		static $cache = array();
+		$html = '';
+		if(\Bitrix\Main\Loader::includeModule('sale'))
+		{
+			$cache["LOCATIONS"] = array();
+			$rsLoc = CSaleLocation::GetList(array("CITY_NAME" => "ASC"), array());
+			while($arLoc = $rsLoc->GetNext())
+			{
+				if($arLoc["CITY_NAME"])
+					$cache["LOCATIONS"][$arLoc["ID"]] = $arLoc;
+			}
+			
+			$varName = str_replace("VALUE", "DESCRIPTION", $strHTMLControlName["VALUE"]);
+			$val = ($value["VALUE"] ? $value["VALUE"] : $arProperty["DEFAULT_VALUE"]);
+			$html = '<select name="'.$strHTMLControlName["VALUE"].'" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">
+			<option value="" >-</option>';
+			foreach($cache["LOCATIONS"] as $arLocation)
+			{
+				$html .= '<option value="'.$arLocation["ID"].'"';
+				if($val == $arLocation["~ID"])
+					$html .= ' selected';
+				$html .= '>'.$arLocation["CITY_NAME"].'</option>';
+			}
+			$html .= '</select>';
+		}
+		return $html;
+	}
+
+	static function OnIBlockPropertyBuildListPricesHandler(){
+		return array(
+			"PROPERTY_TYPE"      => "S",
+			"USER_TYPE"         => "SAsproListPrices",
+			"DESCRIPTION"      => Loc::getMessage("PRICES_LINK_PROP_TITLE"),
+			"GetPropertyFieldHtml"   => array("CNextEvents", "GetPropertyFieldHtmlPricesHandler"),
+			"GetPropertyFieldHtmlMulty"   => array("CNextEvents", "GetPropertyFieldHtmlPricesHandlerMulty"),
+		);
+	}
+
+
+	static function GetPropertyFieldHtmlPricesHandler($arProperty, $value, $strHTMLControlName){
+		static $cache = array();
+		$html = '';
+		if(\Bitrix\Main\Loader::includeModule('catalog'))
+		{
+			$cache["PRICE"] = array();
+			$rsPrice = CCatalogGroup::GetList( array("SORT" => "ASC"), array() );
+			while($arPrice = $rsPrice->GetNext())
+			{
+				$cache["PRICE"][] = $arPrice;
+			}
+			
+			$varName = str_replace("VALUE", "DESCRIPTION", $strHTMLControlName["VALUE"]);
+			$val = ($value["VALUE"] ? $value["VALUE"] : $arProperty["DEFAULT_VALUE"]);
+			$html = '<select name="'.$strHTMLControlName["VALUE"].'" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">
+			<option value="component" '.($val == "component" ? 'selected' : '').'>'.Loc::getMessage("FROM_COMPONENTS_TITLE").'</option>';
+			foreach($cache["PRICE"] as $arPrice)
+			{
+				$html .= '<option value="'.$arPrice["ID"].'"';
+				if($val == $arPrice["~ID"])
+					$html .= ' selected';
+				$html .= '>'.$arPrice["NAME"].'</option>';
+			}
+			$html .= '</select>';
+		}
+		return $html;
+	}
+
+	static function GetPropertyFieldHtmlPricesHandlerMulty($arProperty, $value, $strHTMLControlName){
+		static $cache = array();
+		$html = '';
+		if(\Bitrix\Main\Loader::includeModule('catalog'))
+		{
+			$cache["PRICE"] = array();
+			$rsPrice = CCatalogGroup::GetList( array("SORT" => "ASC"), array() );
+			while($arPrice = $rsPrice->GetNext())
+			{
+				$cache["PRICE"][] = $arPrice;
+			}
+			
+			$varName = str_replace("VALUE", "DESCRIPTION", $strHTMLControlName["VALUE"]);
+			$arValues = array();
+			if($value && is_array($value))
+			{
+				foreach($value as $arValue)
+				{
+					$arValues[] = $arValue["VALUE"];
+				}
+			}
+			else
+				$arValues[] = $arProperty["DEFAULT_VALUE"];
+
+			if($arProperty['MULTIPLE'] == 'Y')
+				$html .= '<select name="'.$strHTMLControlName["VALUE"].'[]" multiple size="6" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">';
+			else
+				$html .= '<select name="'.$strHTMLControlName["VALUE"].'" onchange="document.getElementById(\'DESCR_'.$varName.'\').value=this.options[this.selectedIndex].text">';
+
+			$html .= '<option value="component" '.(in_array("component", $arValues) ? 'selected' : '').'>'.Loc::getMessage("FROM_COMPONENTS_TITLE").'</option>';
+			foreach($cache["PRICE"] as $arPrice)
+			{
+				$html .= '<option value="'.$arPrice["ID"].'"';
+				if(in_array($arPrice["~ID"], $arValues))
+					$html .= ' selected';
+				$html .= '>'.$arPrice["NAME"].'</option>';
+			}
+			$html .= '</select>';
+		}
+		return $html;
+	}
+
+	function OnBeforeBasketUpdateHandler($ID, &$arFields){
+		/*if((int)$arFields["ORDER_ID"] <= 0)
+		{
+			
+		}*/
+	}
+
+	function OnGetOptimalPriceHandler($intProductID, $quantity = 1, $arUserGroups = array(), $renewal = "N", $priceList = array(), $siteID = false, $arDiscountCoupons = false){
+		global $APPLICATION, $arRegion;
+		static $priceTypeCache = array();
+		if(!$arRegion)
+		{
+			if(\Bitrix\Main\Loader::includeModule('aspro.next'))
+			{
+				$arRegion = CNextRegionality::getCurrentRegion(); //get current region from regionality module
+			}
+		}
+		if($arRegion)
+		{
+			static $resultCurrency, $arPricesID;
+
+			$intProductID = (int)$intProductID;
+			if ($intProductID <= 0)
+			{
+				$APPLICATION->ThrowException(Loc::getMessage("BT_MOD_CATALOG_PROD_ERR_PRODUCT_ID_ABSENT"), "NO_PRODUCT_ID");
+				return false;
+			}
+
+			$quantity = (float)$quantity;
+			if ($quantity <= 0)
+			{
+				$APPLICATION->ThrowException(Loc::getMessage("BT_MOD_CATALOG_PROD_ERR_QUANTITY_ABSENT"), "NO_QUANTITY");
+				return false;
+			}
+
+			$intIBlockID = (int)CIBlockElement::GetIBlockByID($intProductID);
+			if($intIBlockID <= 0)
+			{
+				$APPLICATION->ThrowException(
+					Loc::getMessage(
+						'BT_MOD_CATALOG_PROD_ERR_ELEMENT_ID_NOT_FOUND',
+						array('#ID#' => $intProductID)
+					),
+					'NO_ELEMENT'
+				);
+				return false;
+			}
+
+			if($resultCurrency === NULL)
+				$resultCurrency = \Bitrix\Currency\CurrencyManager::getBaseCurrency();
+
+			if(empty($resultCurrency))
+			{
+				$APPLICATION->ThrowException(Loc::getMessage("BT_MOD_CATALOG_PROD_ERR_NO_BASE_CURRENCY"), "NO_BASE_CURRENCY");
+				return false;
+			}
+
+			if($arPricesID === NULL)
+			{
+				$arPricesID = array();
+				if($arRegion['LIST_PRICES'])
+				{
+					foreach($arRegion['LIST_PRICES'] as $arPrice)
+					{
+						if($arPrice['CAN_BUY'] == 'Y')
+							$arPricesID[] = $arPrice['ID'];
+					}
+				}
+				if(!$arPricesID && reset($arRegion['LIST_PRICES']) == 'component')
+				{
+					 if (!is_array($arUserGroups) && (int)$arUserGroups.'|' == (string)$arUserGroups.'|')
+			            $arUserGroups = array((int)$arUserGroups);
+
+			        if (!is_array($arUserGroups))
+			            $arUserGroups = array();
+
+			        if (!in_array(2, $arUserGroups))
+			            $arUserGroups[] = 2;
+			        \Bitrix\Main\Type\Collection::normalizeArrayValuesByInt($arUserGroups);
+
+					$cacheKey = 'U'.implode('_', $arUserGroups);
+		            if (!isset($priceTypeCache[$cacheKey]))
+		            {
+		                $priceTypeCache[$cacheKey] = array();
+		                $priceIterator = \Bitrix\Catalog\GroupAccessTable::getList(array(
+		                    'select' => array('CATALOG_GROUP_ID'),
+		                    'filter' => array('@GROUP_ID' => $arUserGroups, '=ACCESS' => \Bitrix\Catalog\GroupAccessTable::ACCESS_BUY),
+		                    'order' => array('CATALOG_GROUP_ID' => 'ASC')
+		                ));
+		                while ($priceType = $priceIterator->fetch())
+		                {
+		                    $priceTypeId = (int)$priceType['CATALOG_GROUP_ID'];
+		                    $priceTypeCache[$cacheKey][$priceTypeId] = $priceTypeId;
+		                    unset($priceTypeId);
+		                }
+		                unset($priceType, $priceIterator);
+		            }
+		            if (empty($priceTypeCache[$cacheKey]))
+		                return false;
+		            $arPricesID = $priceTypeCache[$cacheKey];
+				}				
+			}
+			if($arPricesID)
+			{
+				if(!isset($priceList) || !is_array($priceList))
+					$priceList = array();
+
+				if($arRegion['LIST_STORES'] && reset($arRegion['LIST_STORES']) != 'component') // check product quantity
+				{
+					$quantity_stores = 0;
+					$arSelect = array('ID', 'PRODUCT_AMOUNT');
+					$arFilter = array(
+						'ID' => $arRegion['LIST_STORES'],
+						'PRODUCT_ID' => $intProductID,
+					);						
+					$rsStore = CCatalogStore::GetList(array(), $arFilter, false, false, $arSelect);
+					while($arStore = $rsStore->Fetch())
+					{
+						$quantity_stores += $arStore['PRODUCT_AMOUNT'];
+					}
+					if(!$quantity_stores)
+						return false;
+				}
+				
+				$arSelect = array('ID', 'CATALOG_GROUP_ID', 'PRICE', 'CURRENCY');
+				$arFilter = array(
+					'=PRODUCT_ID' => $intProductID,
+					'@CATALOG_GROUP_ID' => $arPricesID,
+					array(
+						'LOGIC' => 'OR',
+						'<=QUANTITY_FROM' => $quantity,
+						'=QUANTITY_FROM' => null
+					),
+					array(
+						'LOGIC' => 'OR',
+						'>=QUANTITY_TO' => $quantity,
+						'=QUANTITY_TO' => null
+					)
+				);
+				if(empty($priceList))
+				{
+					if(class_exists('\Bitrix\Catalog\PriceTable'))
+					{
+						$iterator = \Bitrix\Catalog\PriceTable::getList(array(
+							'select' => $arSelect,
+							'filter' => $arFilter
+						));
+					}
+					else
+					{
+						$iterator = CPrice::GetList(array(), $arFilter, false, false, $arSelect);
+					}
+					while($row = $iterator->fetch())
+					{
+						$row['ELEMENT_IBLOCK_ID'] = $intIBlockID;
+						$priceList[] = $row;
+					}
+					unset($row);
+				}
+				else
+				{
+					foreach(array_keys($priceList) as $priceIndex)
+						$priceList[$priceIndex]['ELEMENT_IBLOCK_ID'] = $intIBlockID;
+					unset($priceIndex);
+				}
+
+				$iterator = CCatalogProduct::GetVATInfo($intProductID);
+				if($vat = $iterator->Fetch())
+					$vat['RATE'] = (float)$vat['RATE'] * 0.01;
+				else
+					$vat = array('RATE' => 0.0, 'VAT_INCLUDED' => 'N');
+				unset($iterator);
+
+				$boolDiscountVat = true;
+
+				foreach($priceList as $priceData)
+				{
+					$priceData['VAT_RATE'] = $vat['RATE'];
+					$priceData['VAT_INCLUDED'] = $vat['VAT_INCLUDED'];
+
+					$currentPrice = $priceData['PRICE'];
+					if($boolDiscountVat)
+					{
+						if($priceData['VAT_INCLUDED'] == 'N')
+							$currentPrice *= (1 + $priceData['VAT_RATE']);
+					}
+					else
+					{
+						if($priceData['VAT_INCLUDED'] == 'Y')
+							$currentPrice /= (1 + $priceData['VAT_RATE']);
+					}
+
+					if($priceData['CURRENCY'] != $resultCurrency)
+						$currentPrice = CCurrencyRates::ConvertCurrency($currentPrice, $priceData['CURRENCY'], $resultCurrency);
+					$currentPrice = roundEx($currentPrice, CATALOG_VALUE_PRECISION);
+
+					$result = array(
+						'BASE_PRICE' => $currentPrice,
+						'COMPARE_PRICE' => $currentPrice,
+						'PRICE' => $currentPrice,
+						'CURRENCY' => $resultCurrency,
+						'DISCOUNT_LIST' => array(),
+						'USE_ROUND' => true,
+						'RAW_PRICE' => $priceData
+					);
+					/*if($isNeedDiscounts) // discount operation
+					{
+						$arDiscounts = CCatalogDiscount::GetDiscount(
+							$intProductID,
+							$intIBlockID,
+							$priceData['CATALOG_GROUP_ID'],
+							$arUserGroups,
+							$renewal,
+							$siteID,
+							$arDiscountCoupons
+						);
+
+						$discountResult = CCatalogDiscount::applyDiscountList($currentPrice, $resultCurrency, $arDiscounts);
+						unset($arDiscounts);
+						if ($discountResult === false)
+							return false;
+						$result['PRICE'] = $discountResult['PRICE'];
+						$result['COMPARE_PRICE'] = $discountResult['PRICE'];
+						$result['DISCOUNT_LIST'] = $discountResult['DISCOUNT_LIST'];
+						unset($discountResult);
+					}*/
+
+					if($boolDiscountVat)
+					{
+						if('N' == $priceData['VAT_INCLUDED'])
+						{
+							$result['PRICE'] /= (1 + $priceData['VAT_RATE']);
+							$result['COMPARE_PRICE'] /= (1 + $priceData['VAT_RATE']);
+							$result['BASE_PRICE'] /= (1 + $priceData['VAT_RATE']);
+						}
+					}
+					else
+					{
+						if ('Y' == $priceData['VAT_INCLUDED'])
+						{
+							$result['PRICE'] *= (1 + $priceData['VAT_RATE']);
+							$result['COMPARE_PRICE'] *= (1 + $priceData['VAT_RATE']);
+							$result['BASE_PRICE'] *= (1 + $priceData['VAT_RATE']);
+						}
+					}
+
+					$result['UNROUND_PRICE'] = $result['PRICE'];
+					if ($result['USE_ROUND'])
+					{
+						if(class_exists('\Bitrix\Catalog\Product\Price') && method_exists('\Bitrix\Catalog\Product\Price', 'roundPrice'))
+						{
+							$result['PRICE'] = \Bitrix\Catalog\Product\Price::roundPrice(
+								$priceData['CATALOG_GROUP_ID'],
+								$result['PRICE'],
+								$resultCurrency
+							);
+						}
+						$result['COMPARE_PRICE'] = $result['PRICE'];
+					}
+
+					if(empty($result['DISCOUNT_LIST']))
+					{
+						$result['BASE_PRICE'] = $result['PRICE'];
+					}
+					elseif(roundEx($result['BASE_PRICE'], 2) - roundEx($result['PRICE'], 2) < 0.01)
+					{
+						$result['BASE_PRICE'] = $result['PRICE'];
+						$result['DISCOUNT_PRICE'] = array();
+					}
+
+					if(empty($minimalPrice) || $minimalPrice['COMPARE_PRICE'] > $result['COMPARE_PRICE'])
+					{
+						$minimalPrice = $result;
+					}
+
+					unset($currentPrice, $result);
+				}
+				unset($priceData);
+				unset($vat);
+
+				$discountValue = ($minimalPrice['BASE_PRICE'] > $minimalPrice['PRICE'] ? $minimalPrice['BASE_PRICE'] - $minimalPrice['PRICE'] : 0);
+
+				$arResult = array(
+					'PRICE' => $minimalPrice['RAW_PRICE'],
+					'RESULT_PRICE' => array(
+						'PRICE_TYPE_ID' => $minimalPrice['RAW_PRICE']['CATALOG_GROUP_ID'],
+						'BASE_PRICE' => $minimalPrice['BASE_PRICE'],
+						'DISCOUNT_PRICE' => $minimalPrice['PRICE'],
+						'UNROUND_DISCOUNT_PRICE' => $minimalPrice['UNROUND_PRICE'],
+						'CURRENCY' => $resultCurrency,
+						'DISCOUNT' => $discountValue,
+						'PERCENT' => (
+							$minimalPrice['BASE_PRICE'] > 0 && $discountValue > 0
+							? roundEx((100*$discountValue)/$minimalPrice['BASE_PRICE'], CATALOG_VALUE_PRECISION)
+							: 0
+						),
+						'VAT_RATE' => $minimalPrice['RAW_PRICE']['VAT_RATE'],
+						'VAT_INCLUDED' => $minimalPrice['RAW_PRICE']['VAT_INCLUDED']
+					),
+					'DISCOUNT_PRICE' => $minimalPrice['PRICE'],
+					'DISCOUNT' => array(),
+					'DISCOUNT_LIST' => array(),
+					'PRODUCT_ID' => $intProductID
+				);
+				if(!empty($minimalPrice['DISCOUNT_LIST']))
+				{
+					reset($minimalPrice['DISCOUNT_LIST']);
+					$arResult['DISCOUNT'] = current($minimalPrice['DISCOUNT_LIST']);
+					$arResult['DISCOUNT_LIST'] = $minimalPrice['DISCOUNT_LIST'];
+				}
+				unset($minimalPrice);
+
+				return $arResult;
+			}
+			else
+				return false;
+		}
+		else
+			return true;
+	}
+
+	static function OnRegionUpdateHandler($arFields){
+		$arIBlock = CIBlock::GetList(array(), array("ID" => $arFields["IBLOCK_ID"]))->Fetch();
+		if(isset(CNextCache::$arIBlocks[$arIBlock['LID']]['aspro_next_regionality']['aspro_next_regions'][0]) && CNextCache::$arIBlocks[$arIBlock['LID']]['aspro_next_regionality']['aspro_next_regions'][0])
+			$iRegionIBlockID = CNextCache::$arIBlocks[$arIBlock['LID']]['aspro_next_regionality']['aspro_next_regions'][0];
+		else
+			return;
+		if($iRegionIBlockID == $arFields['IBLOCK_ID'])
+		{
+			$arSite = CSite::GetList($by, $sort, array("ACTIVE"=>"Y", "ID" =>  $arIBlock['LID']))->Fetch();
+			$arSite['DIR'] = str_replace('//', '/', '/'.$arSite['DIR']);
+			if(!strlen($arSite['DOC_ROOT'])){
+				$arSite['DOC_ROOT'] = $_SERVER['DOCUMENT_ROOT'];
+			}
+			$arSite['DOC_ROOT'] = str_replace('//', '/', $arSite['DOC_ROOT'].'/');
+			$siteDir = str_replace('//', '/', $arSite['DOC_ROOT'].$arSite['DIR']);
+
+			$arProperty = CIBlockElement::GetProperty($arFields["IBLOCK_ID"], $arFields["ID"], "sort", "asc", array("CODE" => "MAIN_DOMAIN"))->Fetch();
+			$xml_file = (isset($arFields["SITE_MAP"]) && $arFields["SITE_MAP"] ? $arFields["SITE_MAP"] : "sitemap.xml");
+			if($arProperty["VALUE"])
+			{
+				if(file_exists($siteDir.'robots.txt'))
+				{
+					copy($siteDir.'robots.txt', $siteDir.'aspro_regions/robots/robots_'.$arProperty["VALUE"].'.txt' );
+					$arFile = file($siteDir.'aspro_regions/robots/robots_'.$arProperty["VALUE"].'.txt');
+					foreach($arFile as $key => $str)
+					{
+						if(strpos($str, "Host" ) !== false)
+							$arFile[$key] = "Host: ".$arProperty["VALUE"]."\r\n";
+						if(strpos($str, "Sitemap" ) !== false)
+							$arFile[$key] = "Sitemap: ".(CMain::isHTTPS() ? "https://" : "http://").$arProperty["VALUE"]."/".$xml_file."\r\n";
+					}
+					$strr = implode("", $arFile);
+					file_put_contents($siteDir.'aspro_regions/robots/robots_'.$arProperty["VALUE"].'.txt', $strr);
+				}
+			}
+		}
+	}
+
+	static function onBeforeResultAddHandler($WEB_FORM_ID, &$arFields, &$arrVALUES){
+		if(!defined('ADMIN_SECTION'))
+		{
+			global $APPLICATION;
+			$arTheme = CNext::GetFrontParametrsValues(SITE_ID);
+
+			if($arTheme['HIDDEN_CAPTCHA'] == 'Y' && $arrVALUES['nspm'] && !isset($arrVALUES['captcha_sid']))
+		    	$APPLICATION->ThrowException(Loc::getMessage('ERROR_FORM_CAPTCHA'));
+
+		  	if($arTheme['SHOW_LICENCE'] == 'Y' && ((!isset($arrVALUES['licenses_popup']) || !$arrVALUES['licenses_popup']) && (!isset($arrVALUES['licenses_inline']) || !$arrVALUES['licenses_inline'])))
+		    	$APPLICATION->ThrowException(Loc::getMessage('ERROR_FORM_LICENSE'));
+		}
+	}
+
+	static function OnSaleComponentOrderPropertiesHandler(&$arFields){
+		global $arRegion;
+		
+		if($arRegion && $_SERVER['REQUEST_METHOD'] != 'POST')
+		{
+			if($arRegion['LOCATION'])
+			{
+	    		$arLocationProp = CSaleOrderProps::GetList(
+			        array('SORT' => 'ASC'),
+			        array(
+			                'PERSON_TYPE_ID' => $arFields['PERSON_TYPE_ID'],
+			                'TYPE' => 'LOCATION',
+			                'IS_LOCATION' => 'Y',
+			        ),
+			        false,
+			        false,
+			        array('ID')
+			    )->Fetch();
+			    if($arLocationProp)
+			    {
+					$arFields['ORDER_PROP'][$arLocationProp['ID']] = CSaleLocation::getLocationCODEbyID($arRegion['LOCATION']);
+					$arLocationZipProp = CSaleOrderProps::GetList(
+				        array('SORT' => 'ASC'),
+				        array(
+				                'PERSON_TYPE_ID' => $arFields['PERSON_TYPE_ID'],
+				                'CODE' => 'ZIP',
+				        ),
+				        false,
+				        false,
+				        array('ID')
+				    )->Fetch();
+				    if($arLocationZipProp)
+				    {
+						$rsLocaction = CSaleLocation::GetLocationZIP($arRegion['LOCATION']); 
+		    			$arLocation = $rsLocaction->Fetch();
+		    			if($arLocation['ZIP'])
+		    				$arFields['ORDER_PROP'][$arLocationZipProp['ID']] = $arLocation['ZIP'];
+		    		}
+			    }				
+			}
+		}
+	}
+
+	static function OnBeforeSubscriptionAddHandler(&$arFields){
+		if(!defined('ADMIN_SECTION'))
+		{
+			global $APPLICATION;
+			$arTheme = CNext::GetFrontParametrsValues(SITE_ID);
+			if($arTheme['SHOW_LICENCE'] == 'Y' && !isset($_REQUEST['licenses_subscribe']))
+			{
+				$APPLICATION->ThrowException(Loc::getMessage('ERROR_FORM_LICENSE'));
+				return false;
+			}
+		}
+	}
+}

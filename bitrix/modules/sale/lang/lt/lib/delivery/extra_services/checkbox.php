@@ -1,0 +1,4 @@
+<?
+$MESS["DELIVERY_EXTRA_SERVICE_CHECKBOX_TITLE"] = "Viena paslauga";
+$MESS["DELIVERY_EXTRA_SERVICE_CHECKBOX_PRICE"] = "Kaina uþ paslaugà";
+?>

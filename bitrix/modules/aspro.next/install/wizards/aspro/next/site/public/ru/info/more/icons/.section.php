@@ -1,0 +1,6 @@
+<?
+$sSectionName = "»конки";
+$arDirProperties = Array(
+
+);
+?>

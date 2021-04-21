@@ -1,0 +1,34 @@
+<?
+$MESS["CHANGE_STATUS"] = "No cambiar el estatus del ticket ";
+$MESS["SUP_ATTACHED_FILES"] = "Archivos adjuntos";
+$MESS["SUP_ATTACH_NEW_FILES"] = "Adjuntar nuevos archivos";
+$MESS["SUP_CERTAIN_SPAM"] = "spam";
+$MESS["SUP_CREATE"] = "Dreado:";
+$MESS["SUP_DELETE_MESSAGE"] = "Eliminar mensaje";
+$MESS["SUP_DELETE_MESSAGE_CONFIRM"] = "¿Está seguro que desea eliminar este mensaje?";
+$MESS["SUP_DOWNLOAD"] = "descargar";
+$MESS["SUP_EDIT_ALT"] = "Editar configuraciones del mensaje";
+$MESS["SUP_EDIT_RECORD"] = "Mensaje # #ID# (ticket # #TID#)";
+$MESS["SUP_ERROR"] = "Error al guardar el mensaje";
+$MESS["SUP_EXTERNAL_FIELD_1"] = "Campo adicional de el source externo incial (email encabezados etc.):";
+$MESS["SUP_EXTERNAL_ID"] = "ID de el source externo incial (email etc.):";
+$MESS["SUP_FROM"] = "Desde:";
+$MESS["SUP_GUEST_ID"] = "Perfil del Invitado";
+$MESS["SUP_IS_HIDDEN"] = "Oculto:";
+$MESS["SUP_IS_LOG"] = "Log:";
+$MESS["SUP_IS_OVERDUE"] = "Mensaje atrasado:";
+$MESS["SUP_MAX_FILE_SIZE_EXCEEDING"] = "Erro¡ Se exedió el tamaño máximo de el archivo \"#FILE_NAME#\".";
+$MESS["SUP_MESSAGE"] = "Mensaje:";
+$MESS["SUP_MESSAGE_NOT_FOUND"] = "Mensaje no encontrado";
+$MESS["SUP_MORE"] = "Más...";
+$MESS["SUP_NUMBER"] = "Número:";
+$MESS["SUP_POSSIBLE_SPAM"] = "posible spam";
+$MESS["SUP_RESET"] = "Resetear";
+$MESS["SUP_SAVE"] = "Guardar";
+$MESS["SUP_SPAM_MARK"] = "Marca de spam:";
+$MESS["SUP_TASK_TIME"] = "Tiempo de trabajo (min.):";
+$MESS["SUP_TICKETS_LIST"] = "Lista de tickets";
+$MESS["SUP_TICKET_EDIT"] = "Modificar ticket # #TID#";
+$MESS["SUP_TIMESTAMP"] = "Modificado:";
+$MESS["SUP_VIEW_ALT"] = "Ver archivo";
+?>

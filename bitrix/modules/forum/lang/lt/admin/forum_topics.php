@@ -1,0 +1,36 @@
+<?
+$MESS["FM_WRONG_DATE_CREATE_FROM"] = "Praðome ávesti teisingà apatinæ sukûrimo datos ribà";
+$MESS["FM_WRONG_DATE_CREATE_TILL"] = "Iðtaisykite virðutinæ sukûrimo datos ribà.";
+$MESS["FM_FROM_TILL_TIMESTAMP"] = "Paskutinë data turi bûti didesnë negu pirmoji data.";
+$MESS["FM_WRONG_DATE_FROM"] = "Iðtaisykite pradinæ datos vertæ paskutinës þinutës sukûrimo datoje.";
+$MESS["FM_WRONG_DATE_TILL"] = "Iðtaisykite galinæ datos vertæ paskutinës þinutës sukûrimo datoje.";
+$MESS["FM_WRONG_FORUM_ID"] = "Kelias á forumà neteisingas";
+$MESS["FM_WRONG_UPDATE"] = "Atnaujinti nepavyko";
+$MESS["FM_TOPICS"] = "Þinutës";
+$MESS["FORUM_TOPICS"] = "Tvarkyti temas";
+$MESS["FM_ACT_DELETE"] = "Iðtrinti";
+$MESS["FM_ACT_MOVE"] = "Perkelti";
+$MESS["FM_TITLE_NAME"] = "Pavadinimas";
+$MESS["FM_TITLE_DESCRIPTION"] = "Apraðymas";
+$MESS["FM_TITLE_STATE"] = "Bûklë";
+$MESS["FM_TITLE_APPROVED"] = "Moderacija";
+$MESS["FM_TITLE_SORT"] = "Rûðiavimas";
+$MESS["FM_TITLE_AUTHOR"] = "Autorius";
+$MESS["FM_TITLE_MESSAGES"] = "Þinutës";
+$MESS["FM_TITLE_VIEWS"] = "Perþiûros";
+$MESS["FM_TITLE_FORUM"] = "Forumas";
+$MESS["FM_TITLE_LAST_MESSAGE"] = "Paskutinë þinutë";
+$MESS["FM_TITLE_DATE_CREATE"] = "Sukurta";
+$MESS["FM_TITLE_DATE_LAST_POST"] = "Modifikuotas";
+$MESS["FM_TITLE_USER_START_ID"] = "Autoriaus ID";
+$MESS["F_OPEN"] = "Atidarytas";
+$MESS["F_CLOSE"] = "Uþdarytas";
+$MESS["F_SHOW"] = "Patvirtinta";
+$MESS["F_HIDE"] = "Ne patvirtinta";
+$MESS["F_PINN"] = "Prikabinta";
+$MESS["F_UNPINN"] = "Atsegta";
+$MESS["F_LINK"] = "Nuoroda";
+$MESS["F_ALL"] = "Visi";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+?>

@@ -1,0 +1,37 @@
+<?
+$MESS["BIZPROC_EMPTY_EXPORT"] = "Salve a planilha antes de exportá-la.";
+$MESS["BIZPROC_IMPORT_BUTTON"] = "Importar";
+$MESS["BIZPROC_IMPORT_FILE"] = "Arquivo";
+$MESS["BIZPROC_IMPORT_TITLE"] = "Modelo de importação";
+$MESS["BIZPROC_USER_PARAMS_SAVE_ERROR"] = "Uma ou mais atividades na barra \"Minhas Atividades\" são muito grandes. As alterações não serão salvas.";
+$MESS["BIZPROC_WFEDIT_APPLY_BUTTON"] = "Aplicar";
+$MESS["BIZPROC_WFEDIT_CANCEL_BUTTON"] = "Cancelar";
+$MESS["BIZPROC_WFEDIT_CATEGORY_CONSTR"] = "Construções";
+$MESS["BIZPROC_WFEDIT_CATEGORY_DOC"] = "Processamento de Documentos";
+$MESS["BIZPROC_WFEDIT_CATEGORY_INTER"] = "Configurações Interativas";
+$MESS["BIZPROC_WFEDIT_CATEGORY_MAIN"] = "Principal";
+$MESS["BIZPROC_WFEDIT_CATEGORY_OTHER"] = "Outro";
+$MESS["BIZPROC_WFEDIT_DEFAULT_TITLE"] = "Modelo de Processos de Negócios";
+$MESS["BIZPROC_WFEDIT_ERROR_TYPE"] = "O tipo de documento é obrigatório.";
+$MESS["BIZPROC_WFEDIT_IMPORT_ERROR"] = "Erro ao importar o modelo de processo de negócios.";
+$MESS["BIZPROC_WFEDIT_MENU_ADD"] = "Criar modelo";
+$MESS["BIZPROC_WFEDIT_MENU_ADD_SEQ"] = "Processo de negócio Sequential";
+$MESS["BIZPROC_WFEDIT_MENU_ADD_SEQ_TITLE"] = "Processo de negócio seqüencial é um processo de negócio simples de executar uma série de ações consecutivas em um documento";
+$MESS["BIZPROC_WFEDIT_MENU_ADD_STATE"] = "Processo de negócio Estado-driven";
+$MESS["BIZPROC_WFEDIT_MENU_ADD_STATE_TITLE"] = "Processo de negócio Estado-driven é um processo de negócio contínuo com distribuição de permissão de acesso ao lidar com documentos em situação diferente";
+$MESS["BIZPROC_WFEDIT_MENU_ADD_TITLE"] = "Adicionar um novo modelo";
+$MESS["BIZPROC_WFEDIT_MENU_ADD_WARN"] = "Todas as alterações serão perdidas se você não salvá-las. Continuar?";
+$MESS["BIZPROC_WFEDIT_MENU_EXPORT"] = "Exportar";
+$MESS["BIZPROC_WFEDIT_MENU_EXPORT_TITLE"] = "Exportar modelo de processo de negócio";
+$MESS["BIZPROC_WFEDIT_MENU_IMPORT"] = "Importar";
+$MESS["BIZPROC_WFEDIT_MENU_IMPORT_PROMT"] = "O modelo de processo de negócios atual será substituído com o que você está prestes a importar. Continuar?";
+$MESS["BIZPROC_WFEDIT_MENU_IMPORT_TITLE"] = "Import modelo de processo de negócio";
+$MESS["BIZPROC_WFEDIT_MENU_LIST"] = "Templates";
+$MESS["BIZPROC_WFEDIT_MENU_LIST_TITLE"] = "Ver modelos";
+$MESS["BIZPROC_WFEDIT_MENU_PARAMS"] = "Parâmetros de Modelos";
+$MESS["BIZPROC_WFEDIT_MENU_PARAMS_TITLE"] = "Parâmetros do modelo; variáveis; autorun";
+$MESS["BIZPROC_WFEDIT_SAVE_BUTTON"] = "Salvar";
+$MESS["BIZPROC_WFEDIT_SAVE_ERROR"] = "Ocorreu um erro ao salvar um objeto:";
+$MESS["BIZPROC_WFEDIT_TITLE_ADD"] = "Novo Modelo de Processos de Negócios";
+$MESS["BIZPROC_WFEDIT_TITLE_EDIT"] = "Editar Modelo de Processos de Negócios";
+?>

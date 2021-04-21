@@ -1,0 +1,29 @@
+<?
+$MESS["FORM_MODULE_NAME"] = "فرم ساز";
+$MESS["FORM_MODULE_DESCRIPTION"] = "این ماژول فرم های گوناگونی را مدیریت می کند و اجازه ذخیره و فیلتر  داده ها را در فیلد فرم ها فراهم می آورد.";
+$MESS["FORM_INSTALL_TITLE"] = "نصب ماژول فرم ساز";
+$MESS["FORM_UNINSTALL_TITLE"] = "غیر فعال کردن ماژول فرم ساز";
+$MESS["FORM_SELECT_INITITAL"] = "لطفا\" فولدری را برای  فایلهای آزمایشی انتخاب کنید";
+$MESS["FORM_NO"] = "خیر";
+$MESS["FORM_ATTENTION"] = "هشدار! ماژول غیر پویا خواهد شد.";
+$MESS["FORM_YOU_CAN_SAVE_TABLES"] = "برای ذخیره داده های ذخیره شده در جدول های بانک داده، چک باکس  &quot;ذخیره جدولها&quot; را تیک بزنید";
+$MESS["FORM_SAVE_TABLES"] = "ذخیره جدولها";
+$MESS["FORM_DELETE"] = "غیر فعال کردن";
+$MESS["FORM_DELETE_COMLETE"] = "غیر فعال کردن به درستی به پایان رسید";
+$MESS["FORM_BACK"] = "بازگشت";
+$MESS["FORM_ERRORS"] = "خطاها:";
+$MESS["FORM_INSTALL"] = "نصب";
+$MESS["FORM_COMPLETE"] = "نصب شدن به اتمام رسید.";
+$MESS["FORM_WRONG_MAIN_VERSION"] = "برای نصب این ماژول شما باید هسته سیستم را به ورژن #VER# ارتقاء دهید";
+$MESS["FORM_DENIED"] = "دسترسی مقدور نیست";
+$MESS["FORM_OPENED"] = "دسترسی واگذار شد";
+$MESS["FORM_FULL"] = "دسترسی به همه جا";
+$MESS["FORM_URL_PUBLIC"] = "فولدر برای فایلهای آزمایشی:";
+$MESS["FORM_DEMO_DIR"] = "برای دیدن فایلهای آزمایشی در عمل بر روی این پیوند کلیک کنید:";
+$MESS["FORM_RESET"] = "نوسازی";
+$MESS["FORM_SITE"] = "سایت";
+$MESS["FORM_LINK"] = "پیوند";
+$MESS["COPY_PUBLIC_FILES"] = "فایلهای عمومی کپی شود";
+$MESS["COPY_FOLDER"] = "فولدری که فایلها در آن کپی می شود (نسبت به روت سایت):";
+$MESS["INSTALL_PUBLIC_REW"] = "فایلهای موجود رونویسی شود";
+?>

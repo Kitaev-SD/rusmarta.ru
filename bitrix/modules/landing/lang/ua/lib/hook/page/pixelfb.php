@@ -1,0 +1,6 @@
+<?
+$MESS["LANDING_HOOK_PIXEL_FB_COUNTER"] = "Facebook";
+$MESS["LANDING_HOOK_PIXEL_FB_HELP"] = "ƒетальн≥ше";
+$MESS["LANDING_HOOK_PIXEL_FB_PLACEHOLDER2"] = "¬вед≥ть код п≥ксел€";
+$MESS["LANDING_HOOK_PIXEL_FB_USE"] = "Facebook";
+?>

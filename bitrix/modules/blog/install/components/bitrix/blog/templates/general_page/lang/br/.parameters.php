@@ -1,0 +1,31 @@
+<?
+$MESS["BC_NAME_TEMPLATE"] = "Formato de nome";
+$MESS["BC_NAME_TEMPLATE_DEFAULT"] = "#NOBR##NAME# #LAST_NAME##/NOBR#";
+$MESS["BC_PATH_TO_CONPANY_DEPARTMENT"] = "Caminho para o template da Página de Departamento";
+$MESS["BC_PATH_TO_MESSAGES_CHAT"] = "Caminho para o template de bate-papo do usuário";
+$MESS["BC_PATH_TO_SONET_USER_PROFILE"] = "Caminho para o template de perfil de usuário da Rede Social";
+$MESS["BC_PATH_TO_VIDEO_CALL"] = "Página de chamada de vídeo";
+$MESS["BC_SHARE_HIDE"] = "Ocultar (padrão) a barra de bookmarks da Rede Social";
+$MESS["BC_SHARE_SHORTEN_URL_KEY"] = "bit.ly Chave";
+$MESS["BC_SHARE_SHORTEN_URL_LOGIN"] = "bit.ly Login";
+$MESS["BC_SHARE_SYSTEM"] = "Utilizar Redes Sociais e Bookmarks";
+$MESS["BC_SHARE_TEMPLATE"] = "Template da barra de bookmarks da Rede Social";
+$MESS["BC_SHOW_LOGIN"] = "Mostrar nome de Login se não houver campos de solicitação de nome de usuário disponíveis";
+$MESS["BC_USE_SHARE"] = "Exibir barra de bookmarks da Rede Social";
+$MESS["BLG_THEME"] = "Tema do Template";
+$MESS["BLG_THEME_BLUE"] = "Azul";
+$MESS["BLG_THEME_GREEN"] = "Verde";
+$MESS["BLG_THEME_ORANGE"] = "Laranja";
+$MESS["BLG_THEME_RED"] = "Vermelho";
+$MESS["BLG_THEME_RED2"] = "Vermelho Simples";
+$MESS["B_SEO_USER"] = "Prevenir espiões de busca e robôs oriundos de link em perfil de usuário";
+$MESS["GENERAL_PAGE_GROUP_ID"] = "Blogs de grupo";
+$MESS["GENERAL_PAGE_PATH_TO_BLOG"] = "Caminho para blog de usuários";
+$MESS["GENERAL_PAGE_PATH_TO_BLOG_CATEGORY"] = "Caminho para Blog de usuários com filtro de Tag";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG"] = "Caminho para blog de grupo";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG_CATEGORY"] = "Caminho para página de Blog de grupo com filtro de Tag";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG_POST"] = "Caminho para post de blog de grupo";
+$MESS["GENERAL_PAGE_PATH_TO_POST"] = "Caminho para post de usuário em blog";
+$MESS["GENERAL_PAGE_PATH_TO_USER"] = "Caminho para perfil de usuário";
+$MESS["GENERAL_PAGE_USE_SOCNET"] = "Utilizar em contexto da Rede Social";
+?>

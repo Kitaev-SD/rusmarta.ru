@@ -1,0 +1,50 @@
+<?
+$MESS["ADD_PICT_PROP_TIP"] = "Imagem adicional propriedade para o produto";
+$MESS["CPT_BCT_TPL_VIEW_MODE"] = "modo de exibição";
+$MESS["CPT_BCT_TPL_VIEW_MODE_BANNER"] = "banner";
+$MESS["CPT_BCT_TPL_VIEW_MODE_SECTION"] = "lista";
+$MESS["CPT_BCT_TPL_VIEW_MODE_SLIDER"] = "slider";
+$MESS["CP_BCT_TPL_ADD_PICT_PROP"] = "Imagem adicional do item principal";
+$MESS["CP_BCT_TPL_DML_EXT"] = "extendido";
+$MESS["CP_BCT_TPL_DML_SIMPLE"] = "modo simples";
+$MESS["CP_BCT_TPL_LABEL_PROP"] = "Propriedade tag do produto";
+$MESS["CP_BCT_TPL_MESS_BTN_ADD_TO_BASKET"] = "\"Adicionar ao carrinho\" botão do texto";
+$MESS["CP_BCT_TPL_MESS_BTN_ADD_TO_BASKET_DEFAULT"] = "Adicionar ao carrinho";
+$MESS["CP_BCT_TPL_MESS_BTN_BUY"] = "\"Comprar\" botão do texto";
+$MESS["CP_BCT_TPL_MESS_BTN_BUY_DEFAULT"] = "Comprar";
+$MESS["CP_BCT_TPL_MESS_BTN_DETAIL"] = "\"Detalhes\" botão do texto";
+$MESS["CP_BCT_TPL_MESS_BTN_DETAIL_DEFAULT"] = "Detalhes";
+$MESS["CP_BCT_TPL_MESS_NOT_AVAILABLE"] = "Item não disponível mensagem";
+$MESS["CP_BCT_TPL_MESS_NOT_AVAILABLE_DEFAULT"] = "Item não disponível ";
+$MESS["CP_BCT_TPL_OFFER_ADD_PICT_PROP"] = "Propriedade de imagem adicional de SKU";
+$MESS["CP_BCT_TPL_OFFER_TREE_PROPS"] = "Propriedades para agrupamento de SKUs";
+$MESS["CP_BCT_TPL_PRODUCT_DISPLAY_MODE"] = "modo de exibição";
+$MESS["CP_BCT_TPL_PROP_EMPTY"] = "não selecionado";
+$MESS["CP_BCT_TPL_ROTATE_TIMER"] = "Avançar diapositivo depois, sec. (0 - não mudam os slides)";
+$MESS["CP_BCT_TPL_SHOW_DISCOUNT_PERCENT"] = "Mostrar valor de desconto";
+$MESS["CP_BCT_TPL_SHOW_OLD_PRICE"] = "Mostrar valor anterior";
+$MESS["CP_BCT_TPL_SHOW_PAGINATION"] = "Mostrar faixa de navegação do slide 
+";
+$MESS["CP_BCT_TPL_TEMPLATE_THEME"] = "Cor do tema";
+$MESS["CP_BCT_TPL_THEME_BLUE"] = "azul (tema padrão)
+";
+$MESS["CP_BCT_TPL_THEME_GREEN"] = "verde";
+$MESS["CP_BCT_TPL_THEME_RED"] = "vermelho";
+$MESS["CP_BCT_TPL_THEME_SITE"] = "Usar tema do site (para bitrix.eshop)";
+$MESS["CP_BCT_TPL_THEME_WOOD"] = "madeira";
+$MESS["CP_BCT_TPL_THEME_YELLOW"] = "amarelo";
+$MESS["LABEL_PROP_TIP"] = "Propriedade tag do produto";
+$MESS["MESS_BTN_ADD_TO_BASKET_TIP"] = "Texto a ser exibido no botão";
+$MESS["MESS_BTN_BUY_TIP"] = "Texto a ser exibido no botão";
+$MESS["MESS_BTN_DETAIL_TIP"] = "Texto a ser exibido no botão";
+$MESS["MESS_NOT_AVAILABLE_TIP"] = "Texto a ser exibido no botão";
+$MESS["OFFER_ADD_PICT_PROP_TIP"] = "Propriedade contendo imagens extras para SKU (se existir)";
+$MESS["OFFER_TREE_PROPS_TIP"] = "Lista de propriedades pelos quais SKUs serão agrupados e exibidos";
+$MESS["PRODUCT_DISPLAY_MODE_TIP"] = "Modo de exibição Item (com ou sem SKU, etc)";
+$MESS["ROTATE_TIMER_TIP"] = "Especifica o tempo de exibição de um slide na tela. Este parâmetro é usado quando auto avançar os slides.";
+$MESS["SHOW_DISCOUNT_PERCENT_TIP"] = "Se o desconto estiver ativo, mostra o valor porcentagem de desconto";
+$MESS["SHOW_OLD_PRICE_TIP"] = "Se o desconto estiver ativa, mostra o valor anterior ";
+$MESS["SHOW_PAGINATION_TIP"] = "Mostra uma faixa de filme do slide para facilitar a navegação";
+$MESS["TEMPLATE_THEME_TIP"] = "Define as cores para tornar o texto do site e gráficos. Tema Azul é a opção padrão.";
+$MESS["VIEW_MODE_TIP"] = "Esta opção define a forma como os itens serão exibidos em uma página";
+?>

@@ -1,0 +1,30 @@
+<?
+$MESS["F_DATE_FORMAT"] = "Formato da Data";
+$MESS["F_DATE_TIME_FORMAT"] = "Formato de data e hora";
+$MESS["F_DEFAULT_UID"] = "ID de usuário";
+$MESS["F_FID_RANGE"] = "ID do fórum";
+$MESS["F_MESSAGE_SEND_TEMPLATE"] = "Página de Postagem da Mensagem";
+$MESS["F_MESSAGE_TEMPLATE"] = "Página de exibição da mensagem";
+$MESS["F_PM_EDIT_TEMPLATE"] = "Página para criar mensagem privada (editar)";
+$MESS["F_PM_LIST_TEMPLATE"] = "Página de Mensagens privadas";
+$MESS["F_PROFILE_TEMPLATE"] = "Página Editar Perfil";
+$MESS["F_RATING_ID"] = "Clasificação";
+$MESS["F_RATING_SETTINGS"] = "Parâmetros de classificação";
+$MESS["F_READ_TEMPLATE"] = "Página Ler Tópico";
+$MESS["F_SEND_ICQ"] = "Mostrar Número de ICQ Para";
+$MESS["F_SEND_MAIL"] = "Pode enviar e-mail a partir do perfil";
+$MESS["F_SET_NAVIGATION"] = "Mostrar navegação Breadcrumb";
+$MESS["F_SUBSCR_LIST_TEMPLATE"] = "Página de Inscrição";
+$MESS["F_URL_TEMPLATES"] = "Processando URLs";
+$MESS["F_USER_LIST_TEMPLATE"] = "Página Lista de Usuários Registrados no Fórum";
+$MESS["F_USER_POST_TEMPLATE"] = "Página Mensagens do Usuário";
+$MESS["RATING_TYPE"] = "Desenho dos botões de classificação";
+$MESS["RATING_TYPE_CONFIG"] = "padrão";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Curtir (imagem)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Curtir (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Curtir/Desfazer curtir (imagem)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Curtir/Desfazer curtir (texto)";
+$MESS["SHOW_RATING"] = "Ativar classificação";
+$MESS["SHOW_RATING_CONFIG"] = "padrão";
+$MESS["USER_PROPERTY"] = "Mostrar propriedades adicionais";
+?>

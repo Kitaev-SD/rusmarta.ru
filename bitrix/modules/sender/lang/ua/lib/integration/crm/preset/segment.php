@@ -1,0 +1,3 @@
+<?
+$MESS["SENDER_INTEGRATION_CRM_PRESET_SEGMENT_ALL"] = "Óñ³ êë³ºíòè òà ë³äè";
+?>

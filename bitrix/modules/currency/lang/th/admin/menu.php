@@ -1,0 +1,8 @@
+<?
+$MESS ['CURRENCY_CONTROL'] = "Ê¡ØÅà§Ô¹";
+$MESS ['CURRENCY'] = "Ê¡ØÅà§Ô¹µèÒ§æ";
+$MESS ['CURRENCY_ALT'] = "ÃÒÂ¡ÒÃÊ¡ØÅà§Ô¹µèÒ§æ";
+$MESS ['CURRENCY_RATES'] = "ÍÑµÃÒáÅ¡à»ÅÕèÂ¹Ê¡ØÅà§Ô¹";
+$MESS ['CURRENCY_RATES_ALT'] = "ÍÑµÃÒáÅ¡à»ÅÕèÂ¹Ê¡ØÅà§Ô¹";
+$MESS ['currency_menu_title'] = "¡ÒÃ¨Ñ´¡ÒÃ¢éÍÁÙÅÊ¡ØÅà§Ô¹µèÒ§æ";
+?>

@@ -1,0 +1,5 @@
+<?
+$MESS["BM_NAME"] = "Tinklaraðèiai";
+$MESS["BM_DEFAULT_TEMPLATE_NAME"] = "Importuoti duomenys metaWeblog formatu";
+$MESS["BM_DEFAULT_TEMPLATE_DESCRIPTION"] = "Komponentas gali bûti naudojamas importuojant duomenis metaWeblog formatu ir pridedant juos á tinklaraðtá";
+?>

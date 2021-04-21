@@ -1,0 +1,30 @@
+<?
+$MESS["BX_WSTMPL_BACK"] = "aquí.";
+$MESS["BX_WSTMPL_BACKPRE"] = "Para obtener una lista completa de las operaciones, oprima";
+$MESS["BX_WSTMPL_BSTYLE"] = "Estilo impuesto:";
+$MESS["BX_WSTMPL_CLASS"] = "Clase:";
+$MESS["BX_WSTMPL_DOC"] = "Descripción:";
+$MESS["BX_WSTMPL_ENDPOINT"] = "Puntos de acceso:";
+$MESS["BX_WSTMPL_ERROR_NOFORCOMPLEX"] = "El formulario de prueba sólo está disponible para los métodos cuyos parámetros son de tipos primitivos.";
+$MESS["BX_WSTMPL_ERROR_NOMETHODS"] = "El servicio Web no definió ningún método.";
+$MESS["BX_WSTMPL_ERROR_NOTENOUGHTPARAMS"] = "Parámetros de consulta están desaparecidos.";
+$MESS["BX_WSTMPL_ERROR_NOTFORAUTH"] = "El formulario está disponible sólo para métodos que no requieren autorización básica HTTP.";
+$MESS["BX_WSTMPL_ERROR_NOWSDESCR"] = "Servicio Web no brinda la descripción.";
+$MESS["BX_WSTMPL_ERROR_PARAMETER"] = "Parámetros";
+$MESS["BX_WSTMPL_ERROR_SUBMIT"] = "Someter";
+$MESS["BX_WSTMPL_ERROR_UNKNOWN"] = "No se puede presentar una consulta.";
+$MESS["BX_WSTMPL_ERROR_VALUE"] = "Valor";
+$MESS["BX_WSTMPL_ERRSEC_NOOP"] = "La información que ha solicitado no existe.";
+$MESS["BX_WSTMPL_INNERTEST"] = "aquí.";
+$MESS["BX_WSTMPL_INNERTESTPRE"] = "Puede ejecutar el servicio web incorporado en las pruebas";
+$MESS["BX_WSTMPL_METHOD"] = "Método del servidor web:";
+$MESS["BX_WSTMPL_METHODS"] = "Métodos:";
+$MESS["BX_WSTMPL_NAMESPACE"] = "Espacio del nombre:";
+$MESS["BX_WSTMPL_PARAMS"] = "Parámetros:";
+$MESS["BX_WSTMPL_RESULT"] = "Resultado de llamada:";
+$MESS["BX_WSTMPL_TEST"] = "Prueba:";
+$MESS["BX_WSTMPL_TITLE_PREFIX"] = "Descripción del servicio Web:";
+$MESS["BX_WSTMPL_WEBSERVICE"] = "Servicio Web:";
+$MESS["BX_WSTMPL_WSDLDESC"] = "Descripción del servicio.";
+$MESS["BX_WSTMPL_WSDLDESCPRE"] = "Las siguientes operaciones están soportadas. Ver la definición en";
+?>

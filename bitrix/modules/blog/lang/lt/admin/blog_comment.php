@@ -1,0 +1,36 @@
+<?
+$MESS["BLB_GROUP_NAV"] = "Komentarai";
+$MESS["BLB_DATE_CREATE"] = "Sukurta";
+$MESS["BLB_AUTHOR_ID"] = "Autorius";
+$MESS["BLB_TITLE"] = "Komentarai";
+$MESS["BLB_F_ALL"] = "(Visi)";
+$MESS["BLB_YES"] = "Taip";
+$MESS["BLB_NO"] = "Ne";
+$MESS["BLB_DELETE_ALT"] = "Ðalinti";
+$MESS["BLB_DELETE_CONF"] = "Ar tikrai norite paðalinti ðá komentarà?";
+$MESS["BLB_HIDE_ALT"] = "Slëpti";
+$MESS["BLB_SHOW_ALT"] = "Rodyti";
+$MESS["BLB_DELETE_ERROR"] = "Klaida ðalinant komentarà.";
+$MESS["BLB_HIDE_ERROR"] = "Klaida slepiant komentarà.";
+$MESS["BLB_SHOW_ERROR"] = "Klaida rodant komentarà.";
+$MESS["BLB_VIEW_ALT"] = "Perþiûrëti komentarà svetainëje";
+$MESS["BLB_AUTHOR_NAME"] = "Autorius";
+$MESS["BLB_AUTHOR_EMAIL"] = "Autoriaus el. paðtas";
+$MESS["BLB_AUTHOR_IP"] = "Autoriaus IP";
+$MESS["BLB_AUTHOR_IP1"] = "Autoriaus IP1";
+$MESS["BLB_PUBLISH_STATUS"] = "Publikuota";
+$MESS["BLB_POST_TEXT"] = "Komentaro tekstas";
+$MESS["BLB_BLOG_ID"] = "Tinklaraðtis";
+$MESS["BLB_POST_ID"] = "Praneðimas";
+$MESS["BLB_BLOG_OWNER_ID"] = "Tinklaraðèio savininkas";
+$MESS["BLB_BLOG_SOCNET_GROUP_ID"] = "Tinklaraðèio grupës savininkas";
+$MESS["BLB_BLOG_ACTIVE"] = "Ðis tinklaraðtis aktyvus";
+$MESS["BLB_BLOG_GROUP_ID"] = "Tinklaraðèio grupë";
+$MESS["BLB_BLOG_GROUP_SITE_ID"] = "Svetainë";
+$MESS["BLB_COMMENT"] = "Komentaras";
+$MESS["BLB_AUTHOR_ANONYM"] = "Anonimas";
+$MESS["BLB_STOP_LIST"] = "sustabdymo sàraðas";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinti";
+?>

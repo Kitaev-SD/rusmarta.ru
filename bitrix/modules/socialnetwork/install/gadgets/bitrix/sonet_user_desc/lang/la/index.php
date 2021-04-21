@@ -1,0 +1,31 @@
+<?
+$MESS["GD_SONET_USER_DESC_CONTACT_TITLE"] = "Información de contacto";
+$MESS["GD_SONET_USER_DESC_CONTACT_UNAVAIL"] = "La información del contacto no está disponible.";
+$MESS["GD_SONET_USER_DESC_CONTACT_UNSET"] = "La información del contacto no ha sido proporcionada.";
+$MESS["GD_SONET_USER_DESC_EMPLOYEES"] = "A cargo de:";
+$MESS["GD_SONET_USER_DESC_EMPLOYEES_NUM"] = "Empleados";
+$MESS["GD_SONET_USER_DESC_FORWARD_TO"] = "Reenviar mensajes a su Bitrix24";
+$MESS["GD_SONET_USER_DESC_FORWARD_TO_BLOG_POST"] = "Para agregar un mensaje en el flujo de actividad";
+$MESS["GD_SONET_USER_DESC_FORWARD_TO_SHOW"] = "mostrar";
+$MESS["GD_SONET_USER_DESC_FORWARD_TO_TASK"] = "Para crear una tarea";
+$MESS["GD_SONET_USER_DESC_MANAGER"] = "Subordinado A:";
+$MESS["GD_SONET_USER_DESC_OTP_ACTIVATE"] = "Permitir";
+$MESS["GD_SONET_USER_DESC_OTP_ACTIVE"] = "En";
+$MESS["GD_SONET_USER_DESC_OTP_AUTH"] = "Autenticación de dos pasos";
+$MESS["GD_SONET_USER_DESC_OTP_CHANGE_PHONE"] = "Configuración de nuevo teléfono";
+$MESS["GD_SONET_USER_DESC_OTP_CODES"] = "Códigos de copia de seguridad";
+$MESS["GD_SONET_USER_DESC_OTP_CODES_SHOW"] = "Ver";
+$MESS["GD_SONET_USER_DESC_OTP_DEACTIVATE"] = "Desactivar";
+$MESS["GD_SONET_USER_DESC_OTP_LEFT_DAYS"] = "(se habilitará en #NUM#)";
+$MESS["GD_SONET_USER_DESC_OTP_NOT_ACTIVE"] = "Apagado";
+$MESS["GD_SONET_USER_DESC_OTP_NO_DAYS"] = "siempre";
+$MESS["GD_SONET_USER_DESC_OTP_PASSWORDS"] = "Contraseñas de aplicación";
+$MESS["GD_SONET_USER_DESC_OTP_PASSWORDS_SETUP"] = "Configuración";
+$MESS["GD_SONET_USER_DESC_OTP_PROROGUE"] = "Retraso";
+$MESS["GD_SONET_USER_DESC_PERSONAL_TITLE"] = "Detalles personales";
+$MESS["GD_SONET_USER_DESC_PERSONAL_UNAVAIL"] = "La información personal no está disponible.";
+$MESS["GD_SONET_USER_DESC_SECURITY_TITLE"] = "Seguridad";
+$MESS["GD_SONET_USER_DESC_SYNCHRONIZE"] = "Sincronización";
+$MESS["GD_SONET_USER_DESC_SYNCHRONIZE_SETUP"] = "Ajustes";
+$MESS["GD_SONET_USER_DESC_VOTE"] = "Votación";
+?>

@@ -1,0 +1,93 @@
+<?
+namespace Aspro\Functions;
+
+use Bitrix\Main\Application;
+use Bitrix\Main\Web\DOM\Document;
+use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Web\DOM\CssParser;
+use Bitrix\Main\Text\HtmlFilter;
+use Bitrix\Main\IO\File;
+use Bitrix\Main\IO\Directory;
+
+Loc::loadMessages(__FILE__);
+\Bitrix\Main\Loader::includeModule('sale');
+\Bitrix\Main\Loader::includeModule('catalog');
+
+if(!class_exists("CAsproNextItem"))
+{
+    class CAsproNextItem{
+        const MODULE_ID = \CNext::moduleID;
+
+        public static function getCurrentPrice($price_field, $arPrice){
+            $val = '';
+            $format_value = \CCurrencyLang::CurrencyFormat($arPrice[$price_field], $arPrice['CURRENCY'], false);
+            if(strpos($arPrice["PRINT_".$price_field], $format_value) !== false):
+                $val = str_replace($format_value, '<span class="price_value">'.$format_value.'</span><span class="price_currency">', $arPrice["PRINT_".$price_field].'</span>');
+            else:
+                $val = $arPrice["PRINT_".$price_field];
+            endif;
+
+            return $val;
+        }
+        
+        public static function getItemPrices($arParams = array(), $arPrices = array(), $strMeasure = '', &$price_id){
+            $measure_block = '';
+            if((is_array($arParams) && $arParams)&& (is_array($arPrices) && $arPrices))
+            {
+                $arCountPricesCanAccess = 0;
+                foreach( $arPrices as $key => $arPrice )
+                {
+                    if($arPrice['CAN_ACCESS'])
+                        $arCountPricesCanAccess++;
+                }
+                foreach($arPrices as $key => $arPrice){?>
+                    <?if($arPrice["CAN_ACCESS"]){
+                        if($arPrice["MIN_PRICE"] == "Y"){
+                            $price_id = $arPrice["PRICE_ID"];
+                        }?>
+                        <?$price = \CPrice::GetByID($arPrice["ID"]);?>
+                        <?if($arCountPricesCanAccess > 1):?>
+                            <div class="price_name"><?=$price["CATALOG_GROUP_NAME"];?></div>
+                        <?endif;?>
+                        <?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]){?>
+                            <div class="price"  data-currency="<?=$arPrice["CURRENCY"];?>" data-value="<?=$arPrice["DISCOUNT_VALUE"];?>" id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PRICE']; ?>"<?=($bMinPrice ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '')?>>
+                                <?if($bMinPrice):?>
+                                    <meta itemprop="price" content="<?=($arPrice['DISCOUNT_VALUE'] ? $arPrice['DISCOUNT_VALUE'] : $arPrice['VALUE'])?>" />
+                                    <meta itemprop="priceCurrency" content="<?=$arPrice['CURRENCY']?>" />
+                                    <link itemprop="availability" href="http://schema.org/<?=($arPrice['CAN_BUY'] ? 'InStock' : 'OutOfStock')?>" />
+                                <?endif;?>
+                                <?if(strlen($arPrice["PRINT_DISCOUNT_VALUE"])):?>
+                                    <span class="values_wrapper">
+                                        <?=self::getCurrentPrice("DISCOUNT_VALUE", $arPrice);?>
+                                    </span><?if (($arParams["SHOW_MEASURE"]=="Y") && $strMeasure):?><span class="price_measure">/<?=$strMeasure?></span><?endif;?>
+                                <?endif;?>
+                            </div>
+                            <?if($arParams["SHOW_OLD_PRICE"]=="Y"):?>
+                                <div class="price discount" data-currency="<?=$arPrice["CURRENCY"];?>" data-value="<?=$arPrice["VALUE"];?>">
+                                    <span class="values_wrapper"><?=self::getCurrentPrice("VALUE", $arPrice);?></span>
+                                </div>
+                            <?endif;?>
+                            <?if($arParams["SHOW_DISCOUNT_PERCENT"]=="Y"){?>
+                                <div class="sale_block">
+                                    <div class="sale_wrapper">
+                                        <span class="title"><?=GetMessage("CATALOG_ECONOMY");?></span>
+                                        <div class="text"> <span><?=self::getCurrentPrice("DISCOUNT_DIFF", $arPrice);?></span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            <?}?>
+                        <?}else{?>
+                            <div class="price" data-currency="<?=$arPrice["CURRENCY"];?>" data-value="<?=$arPrice["VALUE"];?>" id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PRICE']; ?>">
+                                <?if(strlen($arPrice["PRINT_VALUE"])):?>
+                                    <span class="values_wrapper"><?=self::getCurrentPrice("VALUE", $arPrice);?></span><?if (($arParams["SHOW_MEASURE"]=="Y") && $strMeasure):?><span class="price_measure">/<?=$strMeasure?></span><?endif;?>
+                                <?endif;?>
+                            </div>
+                        <?}?>
+                    <?}?>
+                <?}
+            }
+            return $measure_block;
+        }
+    }
+}
+?>

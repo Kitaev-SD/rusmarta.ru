@@ -1,0 +1,6 @@
+<?
+$MESS["LANDING_HOOK_DETAIL_HELP"] = "ƒетальн≥ше";
+$MESS["LANDING_HOOK_YACOUNTER_COUNTER"] = "яндекс.ћетрика";
+$MESS["LANDING_HOOK_YACOUNTER_PLACEHOLDER"] = "¬вед≥ть ID";
+$MESS["LANDING_HOOK_YACOUNTER_USE"] = "яндекс.ћетрика";
+?>

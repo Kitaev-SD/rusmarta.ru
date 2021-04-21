@@ -1,0 +1,7 @@
+<?
+$MESS["ENABLE_JAVASCRIPT"] = "JavaScript iðjungtas Jûsø narðyklëje";
+$MESS["JS_PLAYLISTERROR"] = "Grojaraðèio ákrovimo metu ávyko klaida.";
+$MESS["JS_CLICKTOPLAY"] = "Spauskite perþiûrëti";
+$MESS["JS_LINK"] = "Parsisiøsti ...";
+$MESS["PLAYER_LOADING"] = "Ákeliamas grotuvas";
+?>

@@ -1,0 +1,34 @@
+<?
+$MESS["FORUMS"] = "Forumai";
+$MESS["NAV"] = "Forumai";
+$MESS["ACTIVE"] = "Aktyvus";
+$MESS["LAND"] = "Svetainë";
+$MESS["SORT"] = "Rûðiuoti.";
+$MESS["NAME"] = "Vardas";
+$MESS["FORUM_GROUP_ID"] = "Grupë";
+$MESS["MODERATION"] = "Moderavimas";
+$MESS["INDEXATION"] = "Indeksavimas";
+$MESS["ORDER_BY"] = "Rûðiuoti pagal";
+$MESS["ORDER_DIRECTION"] = "Rûðiavimo tvarka";
+$MESS["FORUM_EDIT"] = "Redaguoti";
+$MESS["FORUM_DELETE"] = "Trinti";
+$MESS["DELETE_CONFIRM"] = "Ðis forumas bus negráþtamai iðtrintas. Tæsti?";
+$MESS["FA_NO_PERMS2UPDATE"] = "Forumui redaguoti nepakanka teisiø";
+$MESS["FA_ERROR_UPDATE"] = "Atnaujinant forumà ávyko klaida";
+$MESS["FA_DELETE_NO_PERMS"] = "Ðiam forumui iðtrinti nepakanka teisiø";
+$MESS["FA_DELETE_ERROR"] = "Trinant forumà ávyko klaida. Gali bûti, kad yra apribotø duomenø, kurie neleidþia jo iðtrinti.";
+$MESS["FFAN_ADD_NEW"] = "Naujas forumas";
+$MESS["FFAN_ADD_NEW_ALT"] = "Spustelëkite, jei norite pridëti naujà forumà";
+$MESS["FFAN_SITE_ID"] = "Svetainë";
+$MESS["FFAN_ALL"] = "Visi";
+$MESS["FFAN_YES"] = "Taip";
+$MESS["FFAN_NO"] = "Ne";
+$MESS["FFAN_ACTIVE"] = "Aktyvus";
+$MESS["FFAN_GROUP_ID"] = "Forumo grupë";
+$MESS["MAIN_ADMIN_LIST_CLEAR_HTML"] = "valyti";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinta";
+$MESS["MAIN_ADMIN_LIST_ACTIVATE"] = "ájungti";
+$MESS["MAIN_ADMIN_LIST_DEACTIVATE"] = "iðjungti";
+?>

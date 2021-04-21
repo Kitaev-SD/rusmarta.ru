@@ -1,0 +1,12 @@
+<?
+$MESS["F_SEARCH"] = "Paieðka";
+$MESS["F_USERS"] = "Vartotojai";
+$MESS["F_PROFILE"] = "Profilis";
+$MESS["F_NEW_TOPIC"] = "Naujos temos";
+$MESS["F_SUBSCRIBES"] = "Prenumerata";
+$MESS["F_RULES"] = "Taisyklës";
+$MESS["F_MESSAGES"] = "Asmeniniai praneðimai";
+$MESS["F_NEW_TOPIC_TITLE"] = "Á naujø temø sàraðà";
+$MESS["AUTH_LOGIN_BUTTON"] = "Prisijungti";
+$MESS["AUTH_LOGOUT_BUTTON"] = "Atsijungti";
+?>

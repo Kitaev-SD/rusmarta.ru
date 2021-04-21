@@ -1,0 +1,7 @@
+<?
+$MESS["JS_UI_TOUR_BUTTON"] = "Próximo";
+$MESS["JS_UI_TOUR_BUTTON_CLOSE"] = "Cerrar";
+$MESS["JS_UI_TOUR_BUTTON_SIMPLE"] = "Ok";
+$MESS["JS_UI_TOUR_LINK"] = "Saiba mais";
+$MESS["JS_UI_TOUR_STEP_INDEX_TEXT"] = "#NUMBER# de #NUMBER_TOTAL#";
+?>

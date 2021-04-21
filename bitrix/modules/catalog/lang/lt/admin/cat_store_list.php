@@ -1,0 +1,29 @@
+<?
+$MESS["CAT_STORE_INDEX_TITLE"] = "Sandëliø lokacijø sàraðas";
+$MESS["TITLE"] = "Pavadinimas";
+$MESS["ADDRESS"] = "Adresas";
+$MESS["DESCRIPTION"] = "Apraðymas";
+$MESS["GPS_S"] = "GPS ilguma";
+$MESS["GPS_N"] = "GPS platuma";
+$MESS["STORE_ADD_NEW"] = "Pridëti";
+$MESS["STORE_ADD_NEW_ALT"] = "Pridëti naujà sandëlá";
+$MESS["EDIT_STORE_ALT"] = "Redaguoti";
+$MESS["DELETE_STORE_ALT"] = "Paðalinti";
+$MESS["DELETE_STORE_CONFIRM"] = "Ar tikrai norite paðalinti ðá sandëlá?";
+$MESS["STORE_TITLE"] = "Sandëliai";
+$MESS["STORE_IMAGE"] = "Vaizdas";
+$MESS["PHONE"] = "Telefonas";
+$MESS["SCHEDULE"] = "Verslo valandos";
+$MESS["STORE_ACTIVE"] = "Aktyvus";
+$MESS["group_admin_nav"] = "Sandëliai";
+$MESS["USER_ID"] = "Sukûrë";
+$MESS["DATE_CREATE"] = "Sukurimo data";
+$MESS["MODIFIED_BY"] = "Pakeitë";
+$MESS["DATE_MODIFY"] = "Keitimo data";
+$MESS["CSTORE_SORT"] = "Rûðiuoti";
+$MESS["STORE_SITE_ID"] = "Svetainë";
+$MESS["SHIPPING_CENTER"] = "Pristatymo centras";
+$MESS["ISSUING_CENTER"] = "Paëmimo vieta";
+$MESS["STORE_CODE"] = "Simbolinis kodas";
+$MESS["STORE_XML_ID"] = "Iðorinis ID";
+?>

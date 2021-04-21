@@ -1,0 +1,7 @@
+.body_text .info,
+.body_text form{
+    display: none;
+}
+.body_text .add2basket_form{
+    display: block;
+}

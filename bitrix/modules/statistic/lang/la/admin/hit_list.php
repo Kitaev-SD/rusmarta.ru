@@ -1,0 +1,37 @@
+<?
+$MESS["STAT_CITY"] = "Ciudad";
+$MESS["STAT_COUNTRY"] = "País";
+$MESS["STAT_DATE"] = "Fecha";
+$MESS["STAT_DETAIL"] = "detallado";
+$MESS["STAT_EDIT_USER"] = "Perfil de usuario";
+$MESS["STAT_F_AUTH"] = "Registrado";
+$MESS["STAT_F_CITY"] = "Ciudad";
+$MESS["STAT_F_COOKIE"] = "Cookie";
+$MESS["STAT_F_COUNTRY"] = "País";
+$MESS["STAT_F_GUEST_ID"] = "ID de visitante";
+$MESS["STAT_F_ID"] = "ID de hit";
+$MESS["STAT_F_IP"] = "Dirección IP";
+$MESS["STAT_F_LOGIC"] = "Lógica entre campos";
+$MESS["STAT_F_LOGIN"] = "ID, login, nombre, apellido";
+$MESS["STAT_F_NEW_GUEST"] = "Primera vez/devuelto";
+$MESS["STAT_F_PAGE"] = "Página";
+$MESS["STAT_F_REGION"] = "Región";
+$MESS["STAT_F_SESSION"] = "ID de sesión";
+$MESS["STAT_F_STOP"] = "Now in stop list";
+$MESS["STAT_F_STOP_LIST_ID"] = "Stop list record ID";
+$MESS["STAT_F_USER_AGENT"] = "UserAgent";
+$MESS["STAT_GUEST_ID"] = "ID de visitantes";
+$MESS["STAT_HIT_PAGES"] = "Hits";
+$MESS["STAT_IP"] = "Dirección IP";
+$MESS["STAT_NEW_GUEST_1"] = "primera vez";
+$MESS["STAT_NOT_AUTH"] = "(no autorizado)";
+$MESS["STAT_NOT_REGISTERED"] = "no registrado";
+$MESS["STAT_OLD_GUEST_1"] = "devuelto";
+$MESS["STAT_PAGE"] = "Página";
+$MESS["STAT_RECORDS_LIST"] = "Hits de visitantes para los últimos #STATISTIC_DAYS# días";
+$MESS["STAT_REGION"] = "Región";
+$MESS["STAT_SESSION"] = "Sesión";
+$MESS["STAT_SITE"] = "Sitio web";
+$MESS["STAT_USER"] = "Visitantes";
+$MESS["STAT_VIEW_SESSION_LIST"] = "Lista de sesiones del visitante";
+?>

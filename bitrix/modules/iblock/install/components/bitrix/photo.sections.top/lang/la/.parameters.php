@@ -1,0 +1,30 @@
+<?
+$MESS["CP_BPST_CACHE_GROUPS"] = "Respetar permisos de acceso";
+$MESS["CP_BPST_SECTION_FIELDS"] = "Campos de a Sección";
+$MESS["CP_BPST_SECTION_USER_FIELDS"] = "Propiedades de la sección";
+$MESS["IBLOCK_CACHE_FILTER"] = "Cache si el filtro está activo";
+$MESS["IBLOCK_DETAIL_URL"] = "URL de la página con contenido de detalles";
+$MESS["IBLOCK_ELEMENT_COUNT"] = "Máximo de fotos para mostrar en la sección";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD"] = "Campo para clasificar fotos";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER"] = "Orden de clasificación de las fotos en la sección";
+$MESS["IBLOCK_FIELD"] = "Campos";
+$MESS["IBLOCK_FILTER_NAME"] = "Nombre de las salidas de conjuntos por filtración";
+$MESS["IBLOCK_IBLOCK"] = "Block de Información";
+$MESS["IBLOCK_LINE_ELEMENT_COUNT"] = "Número de fotos para mostrar en la tabla de la fila";
+$MESS["IBLOCK_PROPERTY"] = "Propiedades";
+$MESS["IBLOCK_SECTION_COUNT"] = "Máximo de secciones para mostrar";
+$MESS["IBLOCK_SECTION_SORT_FIELD"] = "Campo para clasificar secciones";
+$MESS["IBLOCK_SECTION_SORT_ORDER"] = "Orden clasificación de secciones";
+$MESS["IBLOCK_SECTION_URL"] = "URL de la página con contenidos de sección";
+$MESS["IBLOCK_SORT_ACTIVE_FROM"] = "activo desde";
+$MESS["IBLOCK_SORT_ACTIVE_TO"] = "activo hasta";
+$MESS["IBLOCK_SORT_ASC"] = "ascendente";
+$MESS["IBLOCK_SORT_DEPTH_LEVEL"] = "nivel de anidación de la carpeta ";
+$MESS["IBLOCK_SORT_DESC"] = "descendente";
+$MESS["IBLOCK_SORT_ID"] = "ID";
+$MESS["IBLOCK_SORT_NAME"] = "nombre";
+$MESS["IBLOCK_SORT_SHOWS"] = "vista promedios";
+$MESS["IBLOCK_SORT_SORT"] = "clasificación de índice";
+$MESS["IBLOCK_SORT_TIMESTAMP"] = "modificación de fecha";
+$MESS["IBLOCK_TYPE"] = "Tipo del Block de Información";
+?>

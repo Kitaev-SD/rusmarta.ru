@@ -1,0 +1,10 @@
+<?
+$MESS['FM_NO_FPERMS'] = 'Jums nesuteiktos teisës perkelti ðià temà';
+$MESS['FM_EMPTY_DEST_FORUM'] = 'Nenurodytas paskirties forumas';
+$MESS['FM_NO_DEST_FPERMS'] = 'Jums nesuteiktos teisës paskirties forumui';
+$MESS['FM_TITLE'] = 'Perkelti temas á forumà:';
+$MESS['F_NO_MODULE'] = 'Forumo modulis nëra ádiegtas';
+$MESS['FM_AUTH'] = 'Norëdami perþiûrëti ðá puslapá, áveskite naudotojo vardà ir slaptaþodá.';
+$MESS['F_ERROR_FORUM_IS_LOST'] = 'Forumas nerastas';
+$MESS['F_ERROR_TOPICS_IS_EMPTY'] = '';
+?>

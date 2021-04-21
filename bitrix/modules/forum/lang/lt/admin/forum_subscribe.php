@@ -1,0 +1,37 @@
+<?
+$MESS["FM_FLT_SEARCH_TITLE"] = "Áveskite paieðkos eilutæ";
+$MESS["FM_FLT_SEARCH"] = "Paieðka";
+$MESS["FM_FLT_LOGIN"] = "Prisijungti";
+$MESS["FM_FLT_EMAIL"] = "El. paðtas";
+$MESS["FM_FLT_FIO"] = "Pavardë, Vardas, Antras vardas";
+$MESS["FM_FLT_START_DATE"] = "Prenumeratos pradþios data";
+$MESS["FM_FLT_START_DATE_ALT"] = "Prenumeratos pradþios data";
+$MESS["FM_FLT_FORUM"] = "Forumo";
+$MESS["FM_FLT_FORUM_ALT"] = "Forumo";
+$MESS["FM_FLT_SUBSCR_TYPE"] = "Prenumeratos tipas";
+$MESS["FM_FLT_SUBSCR_TYPE_ALT"] = "Prenumeratos tipas";
+$MESS["FM_NO"] = "Ne";
+$MESS["FM_ACT_DELETE"] = "Iðtrinti";
+$MESS["FM_ACT_EDIT"] = "Redaguoti";
+$MESS["FM_TITLE"] = "Prenumeratos valdymas";
+$MESS["FM_TITLE_PAGE"] = "Forumo naudotojai";
+$MESS["FM_HEAD_FORUM_USER_ID"] = "FID";
+$MESS["FM_HEAD_USER_ID"] = "ID";
+$MESS["FM_HEAD_EMAIL"] = "El. paðtas";
+$MESS["FM_HEAD_LOGIN"] = "Prisijungti";
+$MESS["FM_HEAD_NAME"] = "Vardas";
+$MESS["FM_HEAD_LAST_NAME"] = "Pavardë";
+$MESS["FM_HEAD_SUBSC"] = "Prenumeratos skaièius";
+$MESS["FM_HEAD_START_DATE"] = "Prenumeratos pradþios data";
+$MESS["FM_WRONG_DATE_FROM"] = "Praðome ávesti teisingai \"From\" data sukûrimo datai ";
+$MESS["FM_WRONG_DATE_TO"] = "Praðome ávesti teisingai \"Till\" data sukûrimo datai ";
+$MESS["FM_WRONG_PERIOD"] = "Laikotarpis yra nurodytas neteisingai";
+$MESS["FM_NEW_TOPIC_ONLY"] = "Tik naujos temos";
+$MESS["FM_ALL_MESSAGE"] = "Visos forumo þinutës";
+$MESS["FM_TYPICAL"] = "Naujos temos kûrimas praneðimai";
+$MESS["FM_ACT_DEL_CONFIRM"] = "Ar tikrai, norite iðtrinti visus naudotojo prenumeratas?";
+$MESS["FM_SPACE"] = "Nëra pasirinkta";
+$MESS["FM_MAIN_EDIT_TITLE"] = "Redaguoti naudotojo profilá";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+?>

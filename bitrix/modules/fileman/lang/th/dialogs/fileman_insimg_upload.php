@@ -1,0 +1,4 @@
+<?
+$MESS ['FILEMAN_D_INSIMG_UPLOAD_FILENOTEXISTS'] = "äÁèÊÒÁÒÃ¶âËÅ´ä¿Åì¹Õéä´é";
+$MESS ['FILEMAN_D_INSIMG_UPLOAD_BAD_TYPE'] = "äÁèÊÒÁÒÃ¶âËÅ´ä¿Åì»ÃÐàÀ·¹Õéä´é";
+?>

@@ -1,0 +1,6 @@
+<?
+$sSectionName = "ќформление";
+$arDirProperties = Array(
+
+);
+?>

@@ -1,0 +1,32 @@
+<?
+$MESS["CMDESKTOP_AUTH_ERR"] = "Autorizavimo klaida";
+$MESS["CMDESKTOP_GROUP_PERSONAL"] = "Asmeninë";
+$MESS["CMDESKTOP_GROUP_PERSONAL_DESCR"] = "Prietaisai labiausiai naudojamiems asmeniniams árankiams";
+$MESS["CMDESKTOP_GROUP_EMPL"] = "Personalas";
+$MESS["CMDESKTOP_GROUP_EMPL_DESCR"] = "Ámonës struktûra, darbuotojai";
+$MESS["CMDESKTOP_GROUP_COMMUN"] = "Bendravimas";
+$MESS["CMDESKTOP_GROUP_COMMUN_DESCR"] = "Dienoraðèiai, forumai, bendrai naudojami dokumentai";
+$MESS["CMDESKTOP_GROUP_COMPANY"] = "Ámonë";
+$MESS["CMDESKTOP_GROUP_COMPANY_DESCR"] = "Ámonës gyvenimas";
+$MESS["CMDESKTOP_GROUP_SERVICES"] = "Iðorinës paslaugos";
+$MESS["CMDESKTOP_GROUP_SERVICES_DESCR"] = "Interneto informacijos paslaugos";
+$MESS["CMDESKTOP_GROUP_OTHER"] = "Kitos";
+$MESS["CMDESKTOP_GROUP_OTHER_DESCR"] = "Prietaisai be kategorijø";
+$MESS["CMDESKTOP_GROUP_CRM"] = "CRM";
+$MESS["CMDESKTOP_GROUP_CRM_DESCR"] = "Iniciatyvos, kontaktai, ámonës, sandoriai";
+$MESS["CMDESKTOP_GROUP_SONET_GROUP"] = "Grupës informacija";
+$MESS["CMDESKTOP_GROUP_SONET_GROUP_DESCR"] = "Darbo grupës informacija socialiniame tinkle";
+$MESS["CMDESKTOP_GROUP_SONET_USER"] = "Naudotojo informacija ";
+$MESS["CMDESKTOP_GROUP_SONET_USER_DESCR"] = "Naudotojo profilio informacija  socialiniame tinkle";
+$MESS["CMDESKTOP_NAME_TEMPLATE_DEFAULT"] = "#NAME# #LAST_NAME#";
+$MESS["CMDESKTOP_GROUP_ADMIN_CONTENT"] = "Turinys";
+$MESS["CMDESKTOP_GROUP_ADMIN_CONTENT_DESCR"] = "Valdymo skydelio turinio prietaisai";
+$MESS["CMDESKTOP_GROUP_ADMIN_SERVICES"] = "Paslaugos";
+$MESS["CMDESKTOP_GROUP_ADMIN_SERVICES_DESCR"] = "Valdymo skydelio paslaugø prietaisai";
+$MESS["CMDESKTOP_GROUP_ADMIN_STORE"] = "El.parduotuvë";
+$MESS["CMDESKTOP_GROUP_ADMIN_STORE_DESCR"] = "Valdymo skydelio el.parduotuvës prietaisai";
+$MESS["CMDESKTOP_GROUP_ADMIN_STATISTICS"] = "Interneto analitika";
+$MESS["CMDESKTOP_GROUP_ADMIN_STATISTICS_DESCR"] = "Valdymo skydelio interneto analitikos prietaisai";
+$MESS["CMDESKTOP_GROUP_ADMIN_SETTINGS"] = "Nustatymai";
+$MESS["CMDESKTOP_GROUP_ADMIN_SETTINGS_DESCR"] = "Valdymo skydelio nustatymø prietaisai";
+?>

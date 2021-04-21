@@ -1,0 +1,33 @@
+<?
+$MESS["MOD_ACTION"] = "اقدام";
+$MESS["MOD_BACK"] = "بازگشت به فهرست";
+$MESS["COPY_PUBLIC_FILES"] = "کپی کردن فایلهای بخش عمومی";
+$MESS["MOD_UNINST_DEL"] = "حذف ماژول";
+$MESS["COPY_FOLDER"] = "فولدری که فایلها به آن کپی شود:";
+$MESS["MOD_INSTALL_BUTTON"] = "نصب";
+$MESS["MOD_INSTALL"] = "نصب";
+$MESS["MOD_INST_ERR"] = "خطاهای فعال کردن:";
+$MESS["MOD_INSTALLED"] = "نصب شده";
+$MESS["MOD_UNINST_SAVE"] = "حفظ جداول دیتابیس";
+$MESS["MOD_UNINST_SAVE_TABLES"] = "حفظ جداول دیتابیس";
+$MESS["MOD_UNINST_SAVE_EVENTS"] = "حفظ انواع و تمپلتهای ایمیل";
+$MESS["MOD_DEMO_LINK"] = "پیوند";
+$MESS["MOD_MAIN_MODULE"] = "ماژول اصلی";
+$MESS["TITLE"] = "مدیریت ماژول ها";
+$MESS["MOD_NAME"] = "نام";
+$MESS["MOD_NOT_INSTALLED"] = "نصب نشده";
+$MESS["INSTALL_PUBLIC_REW"] = "فایلهای موجود رونویسی شود";
+$MESS["MOD_DELETE"] = "حذف";
+$MESS["RESET"] = "نوسازی";
+$MESS["SAVE"] = "ذخیره تنظیمات";
+$MESS["MOD_DEMO_SITE"] = "سایت";
+$MESS["MOD_SETUP"] = "وضعیت";
+$MESS["MOD_INST_OK"] = "ماژول به درستی نصب شد";
+$MESS["MOD_UNINST_OK"] = "ماژول غیر پویا شد";
+$MESS["MOD_MAIN_DESCRIPTION"] = "Bitrix Site Manager system kernel with technology #A1#\"SiteUpdate\"#A2#.";
+$MESS["MOD_UNINST_ERR"] = "خطاهای غیر فعال کردن:";
+$MESS["MOD_DATE_UPDATE"] = "تاریخ بروز رسانی";
+$MESS["MOD_DEMO_DIR"] = "Use the following links to view the components in action in the public section:";
+$MESS["MOD_VERSION"] = "ورژن";
+$MESS["MOD_UNINST_WARN"] = "اخطار!<br>ماژول از سیستم حذف خواهد شد";
+?>

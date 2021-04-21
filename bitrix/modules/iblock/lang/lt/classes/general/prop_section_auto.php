@@ -1,0 +1,31 @@
+<?
+$MESS["BT_UT_SAUTOCOMPLETE_DESCR"] = "Susieti su skyriais su automatiniu uþpildymu";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_TITLE"] = "Skyriø su automatiniu uþpildymu nustatymai";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_SHOW_ADD"] = "Rodyti \"Pridëti skyriø\" mygtukà";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_IBLOCK_MESS"] = "Naudoti infobloko elemento pavadinimà kaip mygtuko tekstà";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_MAX_WIDTH"] = "Ávesties lauko maksimalus plotis, px (0 - neribojamas)";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_COMMENT_MAX_WIDTH"] = "px";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_MIN_HEIGHT"] = "Ávesties lauko min. aukðtis (kelios savybë)";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_COMMENT_MIN_HEIGHT"] = "px";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_MAX_HEIGHT"] = "Ávesties lauko maks. aukðtis (kelios savybë)";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_COMMENT_MAX_HEIGHT"] = "px";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_VIEW"] = "Sàsajos valdymas";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_BAN_SYMBOLS"] = "Pakeièiami simboliai";
+$MESS["BT_UT_SAUTOCOMPLETE_SETTING_REP_SYMBOL"] = "Simbolis, kuriuo bus pakeisti draudþiamai parodymui simboliai";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_INVITE"] = "áveskite tekstà";
+$MESS["BT_UT_SAUTOCOMPLETE_VIEW_AUTO"] = "Eilutë su automatiniu uþpildymu";
+$MESS["BT_UT_SAUTOCOMPLETE_VIEW_ELEMENT"] = "Eilutë su automatiniu uþpildymu ir paieðkos langu";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_LIST_INVITE"] = "(áveskite pavadinimà)";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_NO_SEARCH_RESULT_TEXT"] = "nieko nerasta";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_SPACE"] = "Tarpas";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_GRID"] = "#";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_STAR"] = "*";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_UNDERLINE"] = "_";
+$MESS["BT_UT_AUTOCOMPLETE_SYM_OTHER"] = "Kitas";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_SEARCH_ELEMENT"] = "...";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_SEARCH_ELEMENT_DESCR"] = "Skyriaus pasirinkimas paieðkos lange";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_SEARCH_ELEMENT_MULTI_DESCR"] = "Keliø skyriø pasirinkimas paieðkos lange";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_NEW_ELEMENT"] = "Pridëti skyriø";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_NEW_ELEMENT_DESCR"] = "Pridëti skyriø ir já pasirinkti";
+$MESS["BT_UT_SAUTOCOMPLETE_MESS_ELEMENT_EDIT"] = "Pereiti á skyriaus redagavimo puslapá";
+?>

@@ -1,0 +1,3 @@
+<?
+$MESS["LEACT_DELETE_POPUP_CANCEL_BUTTON"] = "Cancelar";
+?>

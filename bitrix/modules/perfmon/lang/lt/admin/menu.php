@@ -1,0 +1,31 @@
+<?
+$MESS["PERFMON_MNU_SECT"] = "Veikla";
+$MESS["PERFMON_MNU_SECT_TITLE"] = "Veiklos monitorius";
+$MESS["PERFMON_MNU_HIT_LIST"] = "Perþiûros";
+$MESS["PERFMON_MNU_HIT_LIST_ALT"] = "Perþiûrø ataskaita";
+$MESS["PERFMON_MNU_COMP_LIST"] = "Komponentai";
+$MESS["PERFMON_MNU_COMP_LIST_ALT"] = "Komponentø ataskaita";
+$MESS["PERFMON_MNU_SQL_LIST2"] = "SQL uþklausos";
+$MESS["PERFMON_MNU_SQL_LIST_ALT"] = "SQL uþklausø ataskaita";
+$MESS["PERFMON_MNU_TABLES"] = "Lentelës";
+$MESS["PERFMON_MNU_TABLES_ALT"] = "Rodyti lenteliø turiná";
+$MESS["PERFMON_MNU_ERROR_LIST"] = "PHP klaidos";
+$MESS["PERFMON_MNU_ERROR_LIST_ALT"] = "PHP klaidø þurnalas";
+$MESS["PERFMON_MNU_DB_SERVER"] = "DB serveris";
+$MESS["PERFMON_MNU_DB_SERVER_ALT"] = "Duomenø bazës serverio veiklos suvestinë.";
+$MESS["PERFMON_MNU_INDEXES"] = "Duomenø bazës indeksai";
+$MESS["PERFMON_MNU_INDEX_SUGGEST"] = "Analizës indeksai";
+$MESS["PERFMON_MNU_INDEX_SUGGEST_ALT"] = "Rodo rekomendacijas kuriant indeksus sukauptoms SQL uþklausoms";
+$MESS["PERFMON_MNU_INDEX_COMPLETE"] = "Esami indeksai";
+$MESS["PERFMON_MNU_INDEX_COMPLETE_ALT"] = "Perþiûrëti esamus indeksus";
+$MESS["PERFMON_MNU_PHP"] = "PHP";
+$MESS["PERFMON_MNU_PHP_ALT"] = "PHP nustatymai";
+$MESS["PERFMON_MNU_PANEL"] = "Veiklos skydelis";
+$MESS["PERFMON_MNU_PANEL_ALT"] = "Perþiûrëti pagrindinius su veikla susijusius parametrus";
+$MESS["PERFMON_MNU_PAGES"] = "Puslapiai";
+$MESS["PERFMON_MNU_PAGES_ALT"] = "Puslapiai, rodantys suvestiniø ataskaitas";
+$MESS["PERFMON_MNU_HISTORY"] = "Istorija";
+$MESS["PERFMON_MNU_HISTORY_ALT"] = "Perþiûrëti visus rezultatus, iðmatuotus veiklos monitoriaus";
+$MESS["PERFMON_MNU_CACHE_LIST"] = "Talpinimas";
+$MESS["PERFMON_MNU_CACHE_LIST_ALT"] = "Talpyklos ataskaita";
+?>

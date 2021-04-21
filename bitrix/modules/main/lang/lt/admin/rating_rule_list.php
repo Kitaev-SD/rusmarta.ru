@@ -1,0 +1,33 @@
+<?
+$MESS["MAIN_RATING_RULE_LIST"] = "Apdorojimo taisyklës";
+$MESS["RATING_RULE_NAME"] = "Pavadinimas";
+$MESS["RATING_RULE_CREATED"] = "Sukurta";
+$MESS["RATING_RULE_LAST_MODIFIED"] = "Paskutinis pakeitimas";
+$MESS["RATING_RULE_LAST_APPLIED"] = "Paskutinis pritaikymas";
+$MESS["RATING_RULE_ACTIVE"] = "Aktyvus";
+$MESS["RATING_RULE_STATUS"] = "Statusas";
+$MESS["RATING_RULE_ENTITY_TYPE_ID"] = "Susiejama";
+$MESS["RATING_RULE_LIST_NAV"] = "Apdorojimo taisyklës";
+$MESS["RATING_RULE_ACTIVE_YES"] = "Taip";
+$MESS["RATING_RULE_ACTIVE_NO"] = "Ne";
+$MESS["RATING_RULE_STATUS_DONE"] = "pritaikyta";
+$MESS["RATING_RULE_STATUS_WORKING"] = "pritaikoma";
+$MESS["RATING_RULE_STATUS_WAITING"] = "laukiama";
+$MESS["RATING_RULE_LIST_EDIT"] = "Redaguoti parametrus";
+$MESS["RATING_RULE_LIST_REAPPLY"] = "Pritaikyti taisyklæ";
+$MESS["RATING_RULE_LIST_DEL"] = "Paðalinti";
+$MESS["RATING_RULE_LIST_DEL_CONF"] = "Ar tikrai norite paðalinti ðià taisyklæ?";
+$MESS["RATING_RULE_LIST_ADD"] = "Nauja taisyklë";
+$MESS["RATING_RULE_LIST_ADD_TITLE"] = "Sukurti naujà apdorojimo taisyklæ";
+$MESS["RATING_RULE_LIST_FLT_NAME"] = "Pavadinimas";
+$MESS["RATING_RULE_LIST_FLT_ACTIVE"] = "Aktyvus";
+$MESS["RATING_RULE_LIST_FLT_ID"] = "ID";
+$MESS["RATING_RULE_LIST_FLT_ENTITY_TYPE_ID"] = "Subjektas";
+$MESS["RATING_RULE_LIST_FLT_find"] = "Paieðka";
+$MESS["RATING_RULE_LIST_FLT_ALL"] = "(visi)";
+$MESS["RATING_RULE_LIST_FLT_ACTIVE_Y"] = "aktyvus";
+$MESS["RATING_RULE_LIST_FLT_ACTIVE_N"] = "neaktyvus";
+$MESS["RATING_RULE_LIST_ERR_EDIT"] = "Klaida redaguojant taisyklæ.";
+$MESS["RATING_RULE_LIST_ERR_DEL"] = "Klaida ðalinant taisyklæ.";
+$MESS["RATING_RULE_LIST_ERR_APP"] = "Klaida taikant taisyklæ.";
+?>

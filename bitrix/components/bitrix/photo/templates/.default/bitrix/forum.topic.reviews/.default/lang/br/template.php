@@ -1,0 +1,30 @@
+<?
+$MESS["F_ATTACH_FILES"] = "Arquivos Anexados";
+$MESS["F_CAPTCHA_PROMT"] = "Imagem de caracteres CAPTCHA";
+$MESS["F_CAPTCHA_TITLE"] = "Bot de proteção contra spam (CAPTCHA)";
+$MESS["F_C_GOTO_FORUM"] = "Ir ao fórum >>";
+$MESS["F_DELETE"] = "Deletar";
+$MESS["F_DELETE_CONFIRM"] = "A mensagem será deletada irreversivelmente. Continuar?";
+$MESS["F_DOWNLOAD"] = "Download";
+$MESS["F_FILE_EXTENSION"] = "Arquivos permitidos: #EXTENSION#.";
+$MESS["F_FILE_SIZE"] = "tamanho do arquivo não deve exceder #SIZE#";
+$MESS["F_HIDE"] = "Ocultar";
+$MESS["F_LOAD_FILE"] = "Carregar arquivo";
+$MESS["F_LOAD_IMAGE"] = "Carregar imagem";
+$MESS["F_NAME"] = "Nome:";
+$MESS["F_PREVIEW"] = "Visualização";
+$MESS["F_QUOTE_FULL"] = "Citar";
+$MESS["F_QUOTE_HINT"] = "Para citar a mensagem no formulário de resposta, selecione o texto e clique aqui";
+$MESS["F_SHOW"] = "Exibir";
+$MESS["F_WAIT"] = "Por favor aguarde...";
+$MESS["F_WANT_ALLOW_SMILES"] = "Você quer <b>ativar</b> smileys nesta mensagem?";
+$MESS["F_WANT_SUBSCRIBE_TOPIC"] = "Inscrever-se a Novos Posts neste tópico";
+$MESS["JERROR_MAX_LEN"] = "Comprimento máximo da mensagem é #MAX_LENGTH# símbolos. Total de símbolos: #LENGTH#.";
+$MESS["JERROR_NO_MESSAGE"] = "Por favor, forneça a sua mensagem.  ";
+$MESS["JERROR_NO_TOPIC_NAME"] = "Por favor, forneça o título da mensagem.  ";
+$MESS["JQOUTE_AUTHOR_WRITES"] = "escreveu";
+$MESS["OPINIONS_EMAIL"] = "Seu e-mail";
+$MESS["OPINIONS_NAME"] = "Seu nome ";
+$MESS["OPINIONS_PREVIEW"] = "Visualização";
+$MESS["OPINIONS_SEND"] = "Enviar";
+?>

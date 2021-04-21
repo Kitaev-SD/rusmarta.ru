@@ -1,0 +1,5 @@
+<?
+$MESS['BMNP_DEFAULT_TEMPLATE_NAME'] = 'Nauji komentarai';
+$MESS['BMNP_DEFAULT_TEMPLATE_DESCRIPTION'] = 'Atvaizduoja ðios svetainës paskutinius tinklaraðèiø komentarus';
+$MESS['BMNP_NAME'] = 'Tinklaraðèiai';
+?>

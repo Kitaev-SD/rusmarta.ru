@@ -1,0 +1,36 @@
+<?
+$MESS["SAE_NO_PERMS2ADD"] = "Jûs neturite pakankamai teisiø pridëti naujà sàskaità";
+$MESS["SAE_EMPTY_USER"] = "Laukas \"Naudotojas\" yra tuðèias";
+$MESS["SAE_EMPTY_CURRENCY"] = "Laukas \"Valiuta\" yra tuðèias";
+$MESS["SAE_ALREADY_EXISTS"] = "Naudotojo sàskaita ##USER# valiutai #CURRENCY# jau egzistuoja";
+$MESS["SAE_NO_ACCOUNT"] = "Sàskaita ##ID# nerasta";
+$MESS["SAE_ERROR_SAVING"] = "Klaida iðsaugant sàskaità";
+$MESS["SAE_ERROR_SAVING_SUM"] = "Klaida iðsaugant sàskaità. Praðome patikrinti sumos galiojimà";
+$MESS["SAE_ERROR_SAVING_COMMENT"] = "Klaida iðsaugant sàskaitos komentarus";
+$MESS["SAE_UPDATING"] = "Redaguoti sàskaitos parametrus";
+$MESS["SAE_ADDING"] = "Pridëti naujà sàskaità";
+$MESS["SAE_TO_LIST"] = "Sàskaitø sàraðas";
+$MESS["SAE_TIMESTAMP"] = "Paskutinio atnaujinimo data:";
+$MESS["SAE_USER1"] = "Naudotojas:";
+$MESS["SAE_USER_PROFILE"] = "Naudotojo profilis";
+$MESS["SAE_SUM"] = "Sàskaitos suma:";
+$MESS["SAE_UNLOCK"] = "Atrakinti sàskaità:";
+$MESS["SAE_LOCKED"] = "Uþrakinta";
+$MESS["SAE_NOTES"] = "Pastabos:";
+$MESS["SAE_OSN"] = "Prieþastis pakeisti sumà:";
+$MESS["SAE_OSN_NOTE"] = "(pildoma, jei keièiasi sumà)";
+$MESS["SAE_SAVE"] = "Iðsaugoti";
+$MESS["SAE_SAVE_ADD"] = "Pridëti";
+$MESS["SAE_APPLY"] = "Pritaikyti";
+$MESS["SAE_CANCEL"] = "Atðaukti";
+$MESS["SAEN_2FLIST"] = "Sàskaitø sàraðas";
+$MESS["SAEN_2FLIST_TITLE"] = "Perþiûrëti sàskaitø sàraðà";
+$MESS["SAEN_NEW_ACCOUNT"] = "Sukurti naujà sàskaità";
+$MESS["SAEN_NEW_ACCOUNT_TITLE"] = "Sukurti naujà sàskaità";
+$MESS["SAEN_DELETE_ACCOUNT"] = "Paðalinti sàskaità";
+$MESS["SAEN_DELETE_ACCOUNT_CONFIRM"] = "Ar tikrai norite paðalinti ðià sàskaità?";
+$MESS["SAEN_TAB_ACCOUNT"] = "Naudotojo sàskaita";
+$MESS["SAEN_TAB_ACCOUNT_DESCR"] = "Naudotojo sàskaita";
+$MESS["SAE_ERROR"] = "Iðsaugojimo klaida!";
+$MESS["SAE_LOCK"] = "Uþrakinti sàskaità:";
+?>

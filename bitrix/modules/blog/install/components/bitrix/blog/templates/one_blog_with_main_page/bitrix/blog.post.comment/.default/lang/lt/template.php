@@ -1,0 +1,36 @@
+<?
+$MESS['B_B_MS_FROM'] = 'from';
+$MESS['B_B_MS_REPLY'] = 'Atsakyti';
+$MESS['B_B_MS_PARENT'] = 'Tëvas';
+$MESS['B_B_MS_LINK'] = 'Nuoroda';
+$MESS['B_B_MS_NAME'] = 'Vardas:';
+$MESS['B_B_MS_SUBJECT'] = 'Tema:';
+$MESS['B_B_MS_M_BODY'] = 'Praneðimas:';
+$MESS['B_B_MS_CAPTCHA_SYM'] = 'Simboliai paveikslëlyje';
+$MESS['B_B_MS_SEND'] = 'Siøsti';
+$MESS['B_B_MS_ADD_COMMENT'] = 'Pridëti komentarà';
+$MESS['BLOG_P_INSERT_IMAGE_LINK'] = 'Áterpti nuorodà á paveikslëlá';
+$MESS['BPC_BOLD'] = 'Boldas';
+$MESS['BPC_ITALIC'] = 'Italikas';
+$MESS['BPC_UNDER'] = 'Pabraukimas';
+$MESS['BPC_FONT'] = 'Ðriftas';
+$MESS['BPC_CLOSE_OPENED_TAGS'] = 'Uþdaryti visas atidarytas þymes';
+$MESS['BPC_CLOSE_ALL_TAGS'] = 'Uþdaryti visas þymes';
+$MESS['BPC_HYPERLINK'] = 'Hiperlinkas';
+$MESS['BPC_IMAGE'] = 'Spalva';
+$MESS['BPC_CODE'] = 'Redaguoti teksto kodà';
+$MESS['BPC_LIST'] = 'Sukurti sàraðà';
+$MESS['BPC_QUOTE'] = 'Cituoti';
+$MESS['BPC_TEXT_ENTER_URL'] = 'Áveskite visà adresà (URL)';
+$MESS['BPC_TEXT_ENTER_URL_NAME'] = 'Áraðykite svetainës pavadinimà';
+$MESS['BPC_TEXT_ENTER_IMAGE'] = 'Áveskite pilnà vaizdo adresà (URL)';
+$MESS['BPC_LIST_PROMPT'] = 'Áveskite sàraðo elementà. Uþbaigti sàraðà paspauskite \"Atðaukti\" arba palikite tarpà';
+$MESS['BPC_ERROR_NO_URL'] = 'Jûs turite ávesti adresà (URL)';
+$MESS['BPC_ERROR_NO_TITLE'] = 'Turite ávesti pavadinimà';
+$MESS['BLOG_CATEGORY_NAME'] = 'Þymës pavadinimas';
+$MESS['BPC_PAGE'] = 'Tinklapis:';
+$MESS['BPC_PAGE_OF'] = 'ið ';
+$MESS['BPC_MES_DELETE_POST_CONFIRM'] = 'Ar tikrai norite paðalinti ðá komentarà?';
+$MESS['B_B_MS_PREVIEW'] = 'Perþiûra';
+$MESS['B_B_MS_PREVIEW_TITLE'] = 'Perþiûrëti komentarà';
+?>

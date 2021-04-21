@@ -1,0 +1,36 @@
+<?
+$MESS["IBP_ADM_TO_ADD"] = "Pridëti objektà";
+$MESS["IBP_ADM_TO_ADD_TITLE"] = "Ádëti naujà objektà";
+$MESS["IBP_ADM_ID"] = "ID";
+$MESS["IBP_ADM_NAME"] = "Pavadinimas";
+$MESS["IBP_ADM_CODE"] = "Simbolinis kodas";
+$MESS["IBP_ADM_SORT"] = "Rûðiuoti";
+$MESS["IBP_ADM_ACTIVE"] = "Aktyvus";
+$MESS["IBP_ADM_PROPERTY_TYPE"] = "Tipas";
+$MESS["IBP_ADM_MULTIPLE"] = "Keli";
+$MESS["IBP_ADM_XML_ID"] = "Iðorinis ID";
+$MESS["IBP_ADM_WITH_DESCRIPTION"] = "Turi apraðymà";
+$MESS["IBP_ADM_SEARCHABLE"] = "Paieðka";
+$MESS["IBP_ADM_FILTRABLE"] = "Rodyti filtre";
+$MESS["IBP_ADM_IS_REQUIRED"] = "Bûtina";
+$MESS["IBP_ADM_HINT"] = "Uþuomina";
+$MESS["IBP_ADM_CONFIRM_DEL_MESSAGE"] = "Tai bus iðtrinti visos objektø reikðmës. Tæsti?";
+$MESS["IBP_ADM_TITLE"] = "#IBLOCK_NAME#: Savybës";
+$MESS["IBP_ADM_DELETE_ERROR"] = "Trinant objektà ávyko klaida.";
+$MESS["IBP_ADM_SAVE_ERROR"] = "Klaida iðsaugant áraðà ##ID#: #ERROR_TEXT#";
+$MESS["IBP_ADM_PAGER"] = "Savybës";
+$MESS["IBLOCK_PROP_S"] = "Eilutë";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["IBLOCK_PROP_N"] = "Numeris";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Paþymëta:";
+$MESS["IBLOCK_PROP_L"] = "Sàraðas";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "iðtrinti";
+$MESS["IBLOCK_PROP_F"] = "Failas";
+$MESS["MAIN_ADMIN_LIST_ACTIVATE"] = "ájungti";
+$MESS["IBLOCK_PROP_G"] = "Susieti su skyriais";
+$MESS["MAIN_ADMIN_LIST_DEACTIVATE"] = "iðjungti";
+$MESS["IBLOCK_PROP_E"] = "Susieti su elementais";
+$MESS["IBLOCK_YES"] = "Taip";
+$MESS["IBLOCK_NO"] = "Ne";
+$MESS["IBLOCK_ALL"] = "(bet koks)";
+?>

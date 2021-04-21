@@ -1,0 +1,5 @@
+<?
+$MESS["RATING_COMPONENT_PROGRESS"] = "redaguoti:";
+$MESS["RATING_COMPONENT_CURRENT_POSITION"] = "Ðiuo metu ávertinti";
+$MESS["RATING_COMPONENT_PREVIOUS_POSITION"] = "Anksèiau ávertinti:";
+?>

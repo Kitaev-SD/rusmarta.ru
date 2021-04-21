@@ -1,0 +1,4 @@
+<?
+$MESS["REST_CONFIGURATION_SECTION_LABEL"] = "Îáåð³òü íàïðÿìêè";
+$MESS["REST_CONFIGURATION_SECTION_LINK_NAME"] = "ÏÅÐÅÉÒÈ";
+?>

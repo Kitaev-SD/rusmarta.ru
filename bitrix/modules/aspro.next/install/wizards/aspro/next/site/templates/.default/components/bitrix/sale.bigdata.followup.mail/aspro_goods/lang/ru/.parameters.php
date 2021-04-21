@@ -1,0 +1,10 @@
+<?if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
+$MESS["SALE_BASKET_TITLE"] = "Заголовок блока";
+$MESS["SALE_BASKET_TEXT"] = "Сопутствующие заказу товары";
+$MESS["SITE_ID_TITLE"] = "ID сайта";
+$MESS["SITE_ID_TIP"] = "Введите нужный ID сайта для корректного форматирования цен";
+$MESS["SITE_ADDRESS_TITLE"] = "Адрес сайта";
+$MESS["SITE_ADDRESS_TIP"] = "Введите нужный адрес сайта для корректного формирования путей к картинкам";
+$MESS["THEME_COLOR_TITLE"] = "Цвет темы сайта";
+$MESS["SHOW_CATALOG_TITLE"] = "Показывать ссылку на каталог";
+$MESS["CATALOG_PAGE_TITLE"] = "Ссылка на каталог";

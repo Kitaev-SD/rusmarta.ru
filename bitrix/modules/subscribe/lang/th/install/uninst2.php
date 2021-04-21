@@ -1,0 +1,5 @@
+<?
+$MESS ['uninst_ok'] = "The module has been removed successfully.";
+$MESS ['uninst_back'] = "¡ÅÑº";
+$MESS ['uninst_err'] = "¡ÒÃ¶Í¡âÁ´ÙÅ¼Ô´¾ÅÒ´:";
+?>

@@ -1,0 +1,34 @@
+<?
+$MESS["T_IBLOCK_MONTH_1"] = "ژانویه";
+$MESS["T_IBLOCK_MONTH_2"] = "فوریه";
+$MESS["T_IBLOCK_MONTH_3"] = "مارس";
+$MESS["T_IBLOCK_MONTH_4"] = "آوریل";
+$MESS["T_IBLOCK_MONTH_5"] = "می";
+$MESS["T_IBLOCK_MONTH_6"] = "ژوئن";
+$MESS["T_IBLOCK_MONTH_7"] = "جولای";
+$MESS["T_IBLOCK_MONTH_8"] = "آگوست";
+$MESS["T_IBLOCK_MONTH_9"] = "سپتامبر";
+$MESS["T_IBLOCK_MONTH_10"] = "اکتبر";
+$MESS["T_IBLOCK_MONTH_11"] = "نوامبر";
+$MESS["T_IBLOCK_MONTH_12"] = "دسامبر";
+$MESS["T_IBLOCK_MON_1"] = "ژانویه";
+$MESS["T_IBLOCK_MON_2"] = "فوریه";
+$MESS["T_IBLOCK_MON_3"] = "مارس";
+$MESS["T_IBLOCK_MON_4"] = "آوریل";
+$MESS["T_IBLOCK_MON_5"] = "می";
+$MESS["T_IBLOCK_MON_6"] = "ژوئن";
+$MESS["T_IBLOCK_MON_7"] = "جولای";
+$MESS["T_IBLOCK_MON_8"] = "آگوست";
+$MESS["T_IBLOCK_MON_9"] = "سپتامبر";
+$MESS["T_IBLOCK_MON_10"] = "اکتبر";
+$MESS["T_IBLOCK_MON_11"] = "نوامبر";
+$MESS["T_IBLOCK_MON_12"] = "دسامبر";
+$MESS["T_IBLOCK_DOW_0"] = "یکشنبه";
+$MESS["T_IBLOCK_DOW_1"] = "دوشنبه";
+$MESS["T_IBLOCK_DOW_2"] = "سه شنبه";
+$MESS["T_IBLOCK_DOW_3"] = "چهارشنبه";
+$MESS["T_IBLOCK_DOW_4"] = "پنج شنبه";
+$MESS["T_IBLOCK_DOW_5"] = "جمعه";
+$MESS["T_IBLOCK_DOW_6"] = "شنبه";
+$MESS["IBLOCK_DOWNLOAD"] = "دانلود";
+?>

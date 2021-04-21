@@ -1,0 +1,34 @@
+<?
+$MESS["MYMS_PARAM_KEY"] = "Prieigos raktas";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE"] = "Pradinio þemëlapio tipas";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_MAP"] = "Þemëlapis";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_SATELLITE"] = "Satelitas";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_HYBRID"] = "Hibridas";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_PUBLIC"] = "liaudies þemëlapis";
+$MESS["MYMS_PARAM_INIT_MAP_TYPE_PUBLIC_HYBRID"] = "liaudies þemëlapis su etiketëmis";
+$MESS["MYMS_PARAM_OPTIONS"] = "Nustatymai";
+$MESS["MYMS_PARAM_OPTIONS_ENABLE_SCROLL_ZOOM"] = "Naudoti pelës ratukà masteliui pakeisti";
+$MESS["MYMS_PARAM_OPTIONS_ENABLE_DBLCLICK_ZOOM"] = "Naudoti dvikartá spustelëjimà masteliui pakeisti";
+$MESS["MYMS_PARAM_OPTIONS_ENABLE_RIGHT_MAGNIFIER"] = "naudoti deðiná pelës mygtukà, norëdami keisti mastelá";
+$MESS["MYMS_PARAM_OPTIONS_ENABLE_DRAGGING"] = "Ájungti þemëlapio tempimà";
+$MESS["MYMS_PARAM_OPTIONS_ENABLE_HOTKEYS"] = "Ájungti sparèiuosius klaviðus";
+$MESS["MYMS_PARAM_OPTIONS_ENABLE_RULER"] = "Naudoti liniuotës áranká";
+$MESS["MYMS_PARAM_CONTROLS"] = "Valdymas";
+$MESS["MYMS_PARAM_CONTROLS_TOOLBAR"] = "Árankiø juosta";
+$MESS["MYMS_PARAM_CONTROLS_ZOOM"] = "Masto slankiklis";
+$MESS["MYMS_PARAM_CONTROLS_SMALLZOOM"] = "Masto mygtukai";
+$MESS["MYMS_PARAM_CONTROLS_MINIMAP"] = "Mini þemëlapis";
+$MESS["MYMS_PARAM_CONTROLS_TYPECONTROL"] = "Þemëlapio tipas";
+$MESS["MYMS_PARAM_CONTROLS_SCALELINE"] = "Masto skalë";
+$MESS["MYMS_PARAM_CONTROLS_SEARCH"] = "Paieðkos þemëlapis";
+$MESS["MYMS_PARAM_DATA"] = "Rodomi duomenys";
+$MESS["MYMS_PARAM_DATA_DEFAULT_LAT"] = "-73.9869";
+$MESS["MYMS_PARAM_DATA_DEFAULT_LON"] = "40.7561";
+$MESS["MYMS_PARAM_DATA_SET"] = "Pakeisti";
+$MESS["MYMS_PARAM_DATA_NO_KEY"] = "Þemëlapio prieigos raktas nenurodytas.";
+$MESS["MYMS_PARAM_DATA_GET_KEY"] = "Gauti prieigos raktà";
+$MESS["MYMS_PARAM_DATA_GET_KEY_URL"] = "http://api.yandex.ru/maps/form.xml";
+$MESS["MYMS_PARAM_MAP_HEIGHT"] = "Þemëlapio aukðtis";
+$MESS["MYMS_PARAM_MAP_WIDTH"] = "Þemëlapio plotis";
+$MESS["MYMS_PARAM_MAP_ID"] = "Þemëlapio ID";
+?>

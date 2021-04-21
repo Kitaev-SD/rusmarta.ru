@@ -1,0 +1,5 @@
+<?
+$MESS['PATH_TO_LIST_TIP'] = 'Nurodo prenumeratø puslapio pavadinimà. Jei puslapis yra tame paèiame kataloge, galite nurodyti tik failo pavadinimà. Galite sukurti ðá puslapá naudodami komponentà „Vartotojo prenumeratos“.';
+$MESS['ID_TIP'] = 'PHP kodas, ávertinantis prenumeratos ID. Numatytoji reikðmë yra ={$ID}';
+$MESS['SET_TITLE_TIP'] = 'Paþymëjus ðià parinktá puslapio pavadinimas nustatomas kaip „Atðaukti prenumeratà #ID#“ ';
+?>

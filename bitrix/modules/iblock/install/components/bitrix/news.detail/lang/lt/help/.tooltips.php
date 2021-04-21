@@ -1,0 +1,33 @@
+<?
+$MESS["IBLOCK_TYPE_TIP"] = "Iðskleidþiamajame sàraðe galite pasirinkti vienà ið sukurtø sistemoje informaciniø blokø tipø. Paspaudus mygtukà OK bus ákelti pasirinkto tipo informaciniai blokai.";
+$MESS["IBLOCK_ID_TIP"] = "Sàraðe randasi visi informaciniai blokai sukurti nurodytam tipui. Pasirinkite vienà ið esanèiø informaciniø blokø. Pasirinkus <i>(kitas)</i> gretimame lange turësite nurodyti informacinio bloko ID, pvz.:={\$_REQUEST[\"ID\"]}";
+$MESS["ELEMENT_ID_TIP"] = "Laukas skirtas nurodyti naujienos ID. Galite nurodyti ID, o galite uþklausti ið masyvo _REQUEST. Pagal nutylëjimà laukas turi reikðmæ ={\$_REQUEST[\"ID\"]}";
+$MESS["FIELD_CODE_TIP"] = "Tarp nurodytø laukø pasirinkite tuos kurie bus atvaizduojami detalios perþiûros puslapyje. Pasirinkus <i>nenurodyta</i> ir nenurodþius laukø þemiau puslapyje bus atvaizduojami tipiniai laukai.";
+$MESS["PROPERTY_CODE_TIP"] = "Tarp nurodytø laukø pasirinkite tuos kurie bus atvaizduojami detalios perþiûros puslapyje. Pasirinkus <i>nenurodyta</i> ir nenurodþius laukø þemiau, detalios perþiûros puslapyje nebus atvaizduojami.";
+$MESS["IBLOCK_URL_TIP"] = "Nurodomas kelias á informacinio bloko elementø sàraðà. Reikðmë pagal nutylëjimà, news.php?ID=#IBLOCK_ID#";
+$MESS["META_KEYWORDS_TIP"] = "Iðpleèiamajame sàraðe iðvardintos visos informacinio bloko savybës. Pasirenkama viena turinti raktinius þodþius.";
+$MESS["META_DESCRIPTION_TIP"] = "Iðpleèiamajame sàraðe iðvardintos visos informacinio bloko savybës. Pasirenkama viena turinti apraðymà.";
+$MESS["DISPLAY_PANEL_TIP"] = "Jei paþymëta, mygtukai bus atvaizduojami svetainës redagavimo rëþimu svetainës administravimo skydelyje bei komponentø redagavimo mygtukø rinkinyje.";
+$MESS["SET_TITLE_TIP"] = "Jeigu paþymëta, tinklalapio antraðte bus nustatytas esamo detaliai atvaizduojamo elemento pavadinimas.";
+$MESS["INCLUDE_IBLOCK_INTO_CHAIN_TIP"] = "Á navigacijos grandinæ pridëti infobloko elemento pavadinimà.";
+$MESS["ADD_SECTIONS_CHAIN_TIP"] = "Jeigu paþymëta informaciniame bloke sukurti skyriai. Jø pavadinimai bus atvaizduojami navigacijos grandinëje.";
+$MESS["ADD_ELEMENT_CHAIN_TIP"] = "Jei paþymëta, elementas pavadinimas bus pridëtas á navigacijos grandinæ.";
+$MESS["ACTIVE_DATE_FORMAT_TIP"] = "Pasirinkite reikiamà datos formatà. Jeigu nurodote <i>kitas</i>, galite sukurti savo formatà naudojant PHP funkcijà <b><i>date</i></b>.";
+$MESS["USE_PERMISSIONS_TIP"] = "Apriboti priëjimà prie infobloko elementø detalios informacijos perþiûros.";
+$MESS["CACHE_TYPE_TIP"] = "<i>Auto</i>: podëlis (cache) galioja  podëlio nustatymuose nurodytà laiko tarpà;
+<i>Keðuoti</i>:Visada keðuoti nurodytà laiko tarpà;
+<i>Nekeðuoti</i>:podëlis nenaudojamas";
+$MESS["CACHE_TIME_TIP"] = "Lauke nurodomas podëlio (cache) naudojimo laikas sekundëmis.";
+$MESS["DISPLAY_TOP_PAGER_TIP"] = "Navigacijos nuorodos atvaizduojamos puslapio virðuje.";
+$MESS["DISPLAY_BOTTOM_PAGER_TIP"] = "Navigacijos nuorodos atvaizduojamos puslapio apaèioje.";
+$MESS["PAGER_TITLE_TIP"] = "Kategorijos pavadinimas naudojamas navigacijoje (pvz.: naujienos, straipsniai ir t.t.)";
+$MESS["PAGER_TEMPLATE_TIP"] = "Navigacijos grandinës ðablono pavadinimas. Pagal nutylëjimà (<i>.default</i>) ðablonas yra naudojamas. Sistemoje ádiegtas ðablonas <i>orange</i>.";
+$MESS["GROUP_PERMISSIONS_TIP"] = "Naudotojø grupës ið kuriø galima pasirinkti tas, kurioms bus leidþiama perþiûrëti elementø detalià informacijà.";
+$MESS["CHECK_DATES_TIP"] = "Atvaizduoja tik aktyvius informacinio bloko elementus";
+$MESS["AJAX_MODE_TIP"] = "Komponente ájungiamas AJAX.";
+$MESS["AJAX_OPTION_SHADOW_TIP"] = "Sritis kuri turi pasikeisti bus uþtamsinta. ";
+$MESS["AJAX_OPTION_JUMP_TIP"] = "Pasibaigus AJAX perëjimui pasislinks á komponento pradþià.";
+$MESS["AJAX_OPTION_STYLE_TIP"] = "Pasibaigus AJAX perëjimams bus pakrauti ir apdoroti komponento CSS stiliai.";
+$MESS["AJAX_OPTION_HISTORY_TIP"] = "Vykdant AJAX perëjimus leisti naudoti narðyklës \"Atgal\" ir \"Pirmyn\" mygtukus.";
+$MESS["SET_BROWSER_TITLE_TIP"] = "Jei pasirinkta, informacinio bloko elemento pavadinimas (arba SEO antraðtë jei aktyvi) bus naudojamas kaip narðyklës lango pavadinimas.";
+?>

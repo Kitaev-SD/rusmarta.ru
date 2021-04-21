@@ -1,0 +1,19 @@
+<?
+$MESS["IBLOCK_INSTALL_COMPANY_NEWS"] = "Ámonës naujienos";
+$MESS["IBLOCK_INSTALL_SOURCE"] = "Ðaltinis";
+$MESS["IBLOCK_INSTALL_PRODUCTS"] = "Prekës";
+$MESS["IBLOCK_INSTALL_SIMILAR_PRODUCTS"] = "Panaðûs produktai";
+$MESS["IBLOCK_INSTALL_NEWS_NAME"] = "Naujienos";
+$MESS["IBLOCK_INSTALL_NEWS_SECTIONS_NAME"] = "Skirsniai";
+$MESS["IBLOCK_INSTALL_NEWS_ELEMENTS_NAME"] = "Naujienos";
+$MESS["IBLOCK_INSTALL_NEWS_SECTION_NAME"] = "Skyrius";
+$MESS["IBLOCK_INSTALL_NEWS_ELEMENT_NAME"] = "Naujiena";
+$MESS["IBLOCK_INSTALL_CATALOG_NAME"] = "Katalogas";
+$MESS["IBLOCK_INSTALL_CATALOG_SECTIONS_NAME"] = "Skirsniai";
+$MESS["IBLOCK_INSTALL_CATALOG_ELEMENTS_NAME"] = "Prekës";
+$MESS["IBLOCK_INSTALL_CATALOG_SECTION_NAME"] = "Skyrius";
+$MESS["IBLOCK_INSTALL_CATALOG_ELEMENT_NAME"] = "Prekë";
+$MESS["IBLOCK_DEMO_DIR"] = "Komponento darbà vieðojoje dalyje jûs galite perþiûrëti þemiau paspaudæ nuorodas:";
+$MESS["IBLOCK_SITE"] = "Svetainë";
+$MESS["IBLOCK_LINK"] = "Nuoroda";
+?>

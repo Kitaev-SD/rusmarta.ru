@@ -1,0 +1,32 @@
+<?
+$MESS["PSL_PAGE_TITLE"] = "Prenumeratos";
+$MESS["PSL_ACCESS_DENIED"] = "Prieiga draudþiama";
+$MESS["PSL_USER_CONTACT"] = "Naudotojo kontaktas";
+$MESS["PSL_CONTACT_TYPE"] = "Kontakto tipas";
+$MESS["PSL_USER"] = "Naudotojas";
+$MESS["PSL_DATE_FROM"] = "Prenumerata aktyvi nuo";
+$MESS["PSL_DATE_TO"] = "Prenumerata aktyvi iki";
+$MESS["PSL_SITE_ID"] = "Svetainës ID";
+$MESS["PSL_ITEM_ID"] = "Prekës ID";
+$MESS["PSL_ACTIVE"] = "Aktyvus";
+$MESS["PSL_FILTER_ID"] = "ID";
+$MESS["PSL_FILTER_USER_ID"] = "Naudotojas";
+$MESS["PSL_FILTER_USER_CONTACT"] = "Naudotojo kontaktas";
+$MESS["PSL_FILTER_ITEM_ID"] = "Prekës ID";
+$MESS["PSL_FILTER_DATE_FROM"] = "Prenumerata aktyvi nuo";
+$MESS["PSL_FILTER_DATE_TO"] = "Prenumerata aktyvi iki";
+$MESS["PSL_FILTER_CONTACT_TYPE"] = "Kontakto tipas";
+$MESS["PSL_FILTER_ACTIVE"] = "Aktyvus";
+$MESS["PSL_ACTION_DELETE"] = "iðtrinti";
+$MESS["PSL_ACTION_ACTIVATE"] = "aktyvuoti";
+$MESS["PSL_ACTION_DEACTIVATE"] = "deaktyvuoti";
+$MESS["PSL_ACTION_DELETE_CONFIRM"] = "Ðis veiksmas iðtrins visà informacijà susieta su ðiuo skyriumi! Tæsti?";
+$MESS["PSL_PAGES"] = "puslapis";
+$MESS["PSL_DELETE_SUBSCRIBE"] = "Iðtrinti";
+$MESS["PSL_LIST_SELECTED"] = "Pasirinkta:";
+$MESS["PSL_LIST_CHECKED"] = "Paþymëta:";
+$MESS["PSL_FILTER_ANY"] = "(betkoks)";
+$MESS["PSL_FILTER_YES"] = "Taip";
+$MESS["PSL_FILTER_NO"] = "Ne";
+$MESS["PSL_PRODUCT_NAME"] = "Prekës pavadinimas";
+?>

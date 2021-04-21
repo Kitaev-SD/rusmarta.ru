@@ -1,0 +1,36 @@
+<?
+$MESS["VOTE_WRONG_DATE_FROM"] = "لطفا تاریخ آغاز درستی انتخاب نمایید";
+$MESS["VOTE_WRONG_DATE_TILL"] = "لطفا تاریخ پایان درستی انتخاب نمایید";
+$MESS["VOTE_WRONG_FROM_TILL"] = "تاریخ پایان باید بزرگتر از تاریخ آغاز باشد.";
+$MESS["VOTE_PAGE_TITLE"] = "بینندگان رای دهنده:";
+$MESS["VOTE_F_VALID_TITLE"] = "با ارزش:";
+$MESS["VOTE_F_VALID"] = "با ارزش:";
+$MESS["VOTE_F_DATE"] = "تاریخ:";
+$MESS["VOTE_F_VOTE"] = "نظرسنجی:";
+$MESS["VOTE_F_USER"] = "شناسه بیننده:";
+$MESS["VOTE_F_SESSION"] = "شناسه نشست:";
+$MESS["VOTE_PAGES"] = "نتایج";
+$MESS["VOTE_DATE"] = "تاریخ";
+$MESS["VOTE_VALID"] = "با ارزش";
+$MESS["VOTE_SESSION"] = "نشست";
+$MESS["VOTE_USER"] = "بیننده";
+$MESS["VOTE_VOTE"] = "نظرسنجی";
+$MESS["VOTE_RESULT"] = "مشاهده";
+$MESS["VOTE_DELETE_CONFIRMATION"] = "آیا آرا انتخاب شده را حذف می کنید؟";
+$MESS["VOTE_FL_USER_ID"] = "شناسه بیننده";
+$MESS["VOTE_FL_SESS_ID"] = "شناسه نشست";
+$MESS["VOTE_FL_IP"] = "آی.پی";
+$MESS["VOTE_FL_DATE"] = "تاریخ";
+$MESS["VOTE_FL_VOTE"] = "رای";
+$MESS["VOTE_FL_VALID"] = "ارزش";
+$MESS["VOTE_USER_LIST_TITLE"] = "Show visitor list";
+$MESS["VOTE_SESSIONU_LIST_TITLE"] = "Show session list";
+$MESS["VOTE_SAVE_ERROR"] = "خطا در اتصال به دیتابیس";
+$MESS["VOTE_DELETE"] = "حذف";
+$MESS["VOTE_DELETE_U"] = "حذف";
+$MESS["VOTE_VALIDATE"] = "با ارزش کنید";
+$MESS["VOTE_DEVALIDATE"] = "بی ارزش کنید";
+$MESS["VOTE_EDIT_TITLE"] = "ویرایش پارامترهای رای";
+$MESS["VOTE_EXACT_MATCH"] = "همانندی درست";
+$MESS["VOTE_ALL"] = "(همه)";
+?>

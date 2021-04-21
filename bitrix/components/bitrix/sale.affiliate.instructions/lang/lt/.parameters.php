@@ -1,0 +1,6 @@
+<?
+$MESS["SPCD1_REGISTER"] = "Registracijos puslapis";
+$MESS["SPCD1_SHOP_NAME"] = "Svetainës pavadinimas (palikite tuðèià, jei norite naudoti pavadinimà ið svetainës nustatymø)";
+$MESS["SPCD1_SHOP_URL"] = "Svetainës URL (be http://; palikite tuðèià, jei norite naudoti URL ið svetainës nustatymø)";
+$MESS["SPCD1_AFF_REG_PAGE"] = "Marðrutas nuorodai á nario registracijos puslapá";
+?>

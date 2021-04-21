@@ -1,0 +1,33 @@
+<?
+$MESS["SONET_GROUP_DESCRIPTION_0"] = "Defeitos de carros, um modo simples e fácil de detectar e eliminar nas condições de campos.";
+$MESS["SONET_GROUP_DESCRIPTION_1"] = "Unidade de amantes de VolksWagen!";
+$MESS["SONET_GROUP_DESCRIPTION_2"] = "Carros e Sport.";
+$MESS["SONET_GROUP_DESCRIPTION_3"] = "Tudo sobre tunning de carros";
+$MESS["SONET_GROUP_DESCRIPTION_4"] = "Tudo sobre veículos offroad";
+$MESS["SONET_GROUP_KEYWORDS_0"] = "Reparo, serviço, carro, auto";
+$MESS["SONET_GROUP_KEYWORDS_1"] = "volkswagen, golf";
+$MESS["SONET_GROUP_KEYWORDS_2"] = "Esporte, dirigir, corrida, auto";
+$MESS["SONET_GROUP_KEYWORDS_3"] = "Serviço, auto, tunning";
+$MESS["SONET_GROUP_KEYWORDS_4"] = "Off Roads, Jeep, Carro";
+$MESS["SONET_GROUP_NAME_0"] = "Serviço de automóveis";
+$MESS["SONET_GROUP_NAME_1"] = "VOLKSWAGEN Club";
+$MESS["SONET_GROUP_NAME_2"] = "Automoveis esporte";
+$MESS["SONET_GROUP_NAME_3"] = "Tunning de carros";
+$MESS["SONET_GROUP_NAME_4"] = "4x4";
+$MESS["SONET_GROUP_SUBJECT_0"] = "Modelos";
+$MESS["SONET_GROUP_SUBJECT_1"] = "Interesses";
+$MESS["SONET_GROUP_SUBJECT_2"] = "Serviço";
+$MESS["SONET_I_BLOG_NAME"] = "Blogs de rede social";
+$MESS["SONET_I_FEATURE_BLOG"] = "Blog";
+$MESS["SONET_I_FEATURE_FORUM"] = "Fórum";
+$MESS["SONET_I_FORUM_NAME"] = "Fórum de rede social";
+$MESS["SONET_I_IBLOCK_NAME"] = "Catalogo de automóveis";
+$MESS["SONET_I_IBLOCK_PHOTO_GROUP_NAME"] = "Galerias de grupo de rede social";
+$MESS["SONET_I_IBLOCK_PHOTO_USER_NAME"] = "Galerias de usuários de rede social";
+$MESS["SONET_I_IBLOCK_TYPE_NAME"] = "Catalogo de automóveis";
+$MESS["SONET_I_PHOTO_IBLOCK_TYPE_NAME"] = "Galeria";
+$MESS["SONET_I_USER_PROP_EFL"] = "Modelo do carro";
+$MESS["SONET_I_USER_PROP_LCL"] = "Modelo do carro";
+$MESS["SONET_I_USER_PROP_LFL"] = "Modelo do carro";
+$MESS["SONET_I_VOTE_NAME"] = "Pesquisa de fórum de rede social";
+?>

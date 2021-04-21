@@ -1,0 +1,32 @@
+<?
+$MESS["SALE_DH_TITLE"] = "Automatizuotos pristatymo paslaugos";
+$MESS["SALE_EDIT_DESCR"] = "Redaguoti pristatymo paslaugos nuostatas";
+$MESS["SALE_DH_NAV_TITLE"] = "Pristatymo paslaugos";
+$MESS["SALE_DH_TABLE_ACTIVE"] = "Aktyvi";
+$MESS["SALE_DH_TABLE_ISCONFIG"] = "Ádiegta";
+$MESS["SALE_DH_TABLE_NAME"] = "Pavadinimas";
+$MESS["SALE_DH_TABLE_PATH"] = "Priþiûrëtojas";
+$MESS["SALE_DH_EDIT_DESCR"] = "Redaguoti";
+$MESS["SALE_DH_INSTALL_DESCR"] = "Ádiegti";
+$MESS["SALE_DH_DELETE_DESCR"] = "Nuimti";
+$MESS["SALE_DH_RESET_DESCR"] = "iðvalyti nustatymus";
+$MESS["SALE_DH_ACTIVATE_DESCR"] = "aktyvuoti";
+$MESS["SALE_DH_DEACTIVATE_DESCR"] = "iðjungti";
+$MESS["SALE_DH_TABLE_SORT"] = "Rûðis";
+$MESS["SALE_DH_CONFIRM_UNINSTALL"] = "Ar tikrai norite paðalinti ðá pristatymo paslaugos priþiûrëtojà? Tai paðalins visus priþiûrëtojo nustatymus.";
+$MESS["SALE_DH_HINT_ADD"] = "Norëdami pridëti pasirinktinës pristatymo paslaugos skriptà, naudokite ðá katalogà";
+$MESS["SALE_DH_ORDINARY"] = "Konfigûruojamos paslaugos";
+$MESS["SALE_DH_ORDINARY_ALT"] = "Atidaryti konfigûruojamas pristatymo paslaugas redagavimui";
+$MESS["SALE_DH_HINT_SHOP_ADDRESS"] = "Parduotuvës adresas";
+$MESS["SALE_DH_HINT_SHOP_ADDRESS_ERROR"] = "Nenurodyta.";
+$MESS["SALE_DH_HINT_SHOP_ADDRESS_ZIP"] = "Parduotuvës paðto adresas";
+$MESS["SALE_DH_HINT_SHOP_ADDRESS_ZIP_ERROR"] = "Nenurodyta.";
+$MESS["SALE_DH_SHOP_ADDRESS_CHANGE"] = "Keisti";
+$MESS["SALE_DH_LOCATIONS_STATS"] = "Lokacijos statistika";
+$MESS["SALE_DH_LOCATIONS_COUNTRY_STATS"] = "ðalys";
+$MESS["SALE_DH_LOCATIONS_CITY_STATS"] = "miestai";
+$MESS["SALE_DH_LOCATIONS_LOC_STATS"] = "ið viso lokacijø";
+$MESS["SALE_DH_LOCATIONS_GROUP_STATS"] = "lokacijø grupës";
+$MESS["SALE_DH_LOCATIONS_LINK"] = "redaguoti lokacijas";
+$MESS["SALE_DH_LOCATIONS_IMPORT_LINK"] = "importuoti lokacijas";
+?>

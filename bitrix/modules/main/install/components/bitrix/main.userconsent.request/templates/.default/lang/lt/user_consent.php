@@ -1,0 +1,7 @@
+<?
+$MESS["MAIN_USER_CONSENT_REQUEST_TITLE"] = "Naudotojo sutikimas";
+$MESS["MAIN_USER_CONSENT_REQUEST_BTN_ACCEPT"] = "Sutinku";
+$MESS["MAIN_USER_CONSENT_REQUEST_BTN_REJECT"] = "Atsisakau";
+$MESS["MAIN_USER_CONSENT_REQUEST_LOADING"] = "Ákeliama...";
+$MESS["MAIN_USER_CONSENT_REQUEST_ERR_TEXT_LOAD"] = "Nepavyko ákelti sutikimo teksto.";
+?>

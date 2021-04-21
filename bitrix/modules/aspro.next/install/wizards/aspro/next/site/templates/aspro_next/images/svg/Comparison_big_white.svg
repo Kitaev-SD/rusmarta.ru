@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="comparison_big_white.svg" class="cls-1" d="M20,4h0a1,1,0,0,1,1,1V21H19V5A1,1,0,0,1,20,4ZM14,7h0a1,1,0,0,1,1,1V21H13V8A1,1,0,0,1,14,7ZM8,1A1,1,0,0,1,9,2V21H7V2A1,1,0,0,1,8,1ZM2,9H2a1,1,0,0,1,1,1V21H1V10A1,1,0,0,1,2,9ZM0,0H1V1H0V0ZM0,0H1V1H0V0Z"/>
+</svg>

@@ -1,0 +1,36 @@
+<?
+$MESS["ADDRESS"] = "Dirección";
+$MESS["BX_CATALOG_STORE_LIST_EMPTY_FILTER"] = "(no filtrar)";
+$MESS["BX_CATALOG_STORE_LIST_FILTER_ANY_VALUE"] = "(todo)";
+$MESS["BX_CATALOG_STORE_LIST_FILTER_EMPTY_SITE_ID"] = "sin enlace al sitio web";
+$MESS["BX_CATALOG_STORE_LIST_FILTER_NO_VALUE"] = "no";
+$MESS["BX_CATALOG_STORE_LIST_FILTER_YES_VALUE"] = "si";
+$MESS["BX_CATALOG_STORE_LIST_MESS_RANGE_FROM"] = "desde";
+$MESS["BX_CATALOG_STORE_LIST_MESS_RANGE_TO"] = "hasta";
+$MESS["CAT_STORE_INDEX_TITLE"] = "Lista de ubicaciones de almacén";
+$MESS["CSTORE_SORT"] = "Ordenar";
+$MESS["DATE_CREATE"] = "Fecha de creación";
+$MESS["DATE_MODIFY"] = "Fecha de modificación";
+$MESS["DELETE_STORE_ALT"] = "Eliminar";
+$MESS["DELETE_STORE_CONFIRM"] = "¿Está seguro que desea eliminar el almacén?";
+$MESS["DESCRIPTION"] = "Descripción";
+$MESS["EDIT_STORE_ALT"] = "Editar";
+$MESS["GPS_N"] = "Latitud GPS";
+$MESS["GPS_S"] = "Longitud GPS";
+$MESS["ISSUING_CENTER"] = "Lugar de entrega";
+$MESS["MODIFIED_BY"] = "Modificado por";
+$MESS["PHONE"] = "Teléfono";
+$MESS["SCHEDULE"] = "Horario de trabajo";
+$MESS["SHIPPING_CENTER"] = "Centro de envíos";
+$MESS["STORE_ACTIVE"] = "Activo";
+$MESS["STORE_ADD_NEW"] = "Agregar";
+$MESS["STORE_ADD_NEW_ALT"] = "Agregar nuevo almacén";
+$MESS["STORE_CODE"] = "Código simbólico";
+$MESS["STORE_IMAGE"] = "Imagen";
+$MESS["STORE_SITE_ID"] = "Sitio web";
+$MESS["STORE_TITLE"] = "Almacenes";
+$MESS["STORE_XML_ID"] = "ID externo";
+$MESS["TITLE"] = "Nombre";
+$MESS["USER_ID"] = "Creado por";
+$MESS["group_admin_nav"] = "Almacenes";
+?>

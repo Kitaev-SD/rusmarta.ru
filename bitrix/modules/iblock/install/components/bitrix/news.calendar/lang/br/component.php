@@ -1,0 +1,29 @@
+<?
+$MESS["IBLOCK_MODULE_NOT_INSTALLED"] = "Módulo de blocos de informação não está instalado";
+$MESS["IBL_NEWS_CAL_D_0"] = "Domingo";
+$MESS["IBL_NEWS_CAL_D_1"] = "Segunda-feira";
+$MESS["IBL_NEWS_CAL_D_2"] = "Terça-feira";
+$MESS["IBL_NEWS_CAL_D_3"] = "Quarta-feira";
+$MESS["IBL_NEWS_CAL_D_4"] = "Quinta-feira";
+$MESS["IBL_NEWS_CAL_D_5"] = "Sexta-feira";
+$MESS["IBL_NEWS_CAL_D_6"] = "Sábado";
+$MESS["IBL_NEWS_CAL_M_1"] = "Janeiro";
+$MESS["IBL_NEWS_CAL_M_10"] = "Outubro";
+$MESS["IBL_NEWS_CAL_M_11"] = "Novembro";
+$MESS["IBL_NEWS_CAL_M_12"] = "Dezembro";
+$MESS["IBL_NEWS_CAL_M_2"] = "Fevereiro";
+$MESS["IBL_NEWS_CAL_M_3"] = "Março";
+$MESS["IBL_NEWS_CAL_M_4"] = "Abril ";
+$MESS["IBL_NEWS_CAL_M_5"] = "Mai";
+$MESS["IBL_NEWS_CAL_M_6"] = "Junho";
+$MESS["IBL_NEWS_CAL_M_7"] = "Julho";
+$MESS["IBL_NEWS_CAL_M_8"] = "Agosto";
+$MESS["IBL_NEWS_CAL_M_9"] = "Setembro";
+$MESS["IBL_NEWS_CAL_S_0"] = "Dom";
+$MESS["IBL_NEWS_CAL_S_1"] = "Seg";
+$MESS["IBL_NEWS_CAL_S_2"] = "Ter";
+$MESS["IBL_NEWS_CAL_S_3"] = "Qua";
+$MESS["IBL_NEWS_CAL_S_4"] = "Qui";
+$MESS["IBL_NEWS_CAL_S_5"] = "Sex";
+$MESS["IBL_NEWS_CAL_S_6"] = "Sáb";
+?>

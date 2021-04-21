@@ -1,0 +1,13 @@
+<?
+$MESS ['VOTE_MENU_MAIN'] = "â¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+$MESS ['VOTE_MENU_VOTE'] = "ÃÒÂ¡ÒÃâ¾Å";
+$MESS ['VOTE_MENU_VOTE_ALT'] = "¨Ñ´¡ÒÃ¼ÙéàÂÕèÂÁªÁâ¾Å¢Í§àÇçºä«µì";
+$MESS ['VOTE_MENU_CHANNEL'] = "¡ÒÃàª×èÍÁâÂ§â¾Å";
+$MESS ['VOTE_MENU_CHANNEL_ALT'] = "¨Ñ´¡ÒÃ¡ÓË¹´¡ÒÃàª×èÍÁâÂ§â¾Åä»ÂÑ§ÊèÇ¹µèÒ§ æ ¢Í§àÇçºä«µì";
+$MESS ['VOTE_MENU_USER'] = "¼ÙéàÂÕèÂÁªÁ";
+$MESS ['VOTE_MENU_USER_ALT'] = "ÃÒÂ¡ÒÃ¼ÙéàÂÕèÂÁªÁ·ÕèÁÕÊèÇ¹ÃèÇÁ¡Ñºâ¾Å";
+$MESS ['VOTE_MENU_RESULT'] = "¡ÒÃâËÇµ¢Í§¼ÙéàÂÕèÂÁªÁ";
+$MESS ['VOTE_MENU_RESULT_ALT'] = "ÃÒÂÅÐàÍÕÂ´¡ÒÃâËÇµ¢Í§¼ÙéàÂÕèÂÁªÁ";
+$MESS ['VOTE_GROUP_LST'] = "â¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+$MESS ['VOTE_MENU_MAIN_TITLE'] = "¡ÒÃ¨Ñ´¡ÒÃâ¾ÅáÅÐ¡ÒÃÊÓÃÇ¨";
+?>

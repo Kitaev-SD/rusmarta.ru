@@ -1,0 +1,30 @@
+<?
+$MESS["F_ANCHOR"] = "Digite o seu endereço de e-mail";
+$MESS["F_ATTACH_FILES"] = "Digite sua Mensagem";
+$MESS["F_AUTHOR_PROFILE"] = "Digite sua Mensagem";
+$MESS["F_DATE_REGISTER"] = "Erro ao criar um novo fórum";
+$MESS["F_DELETE"] = "Digite seu login e senha para acessar este fórum";
+$MESS["F_DELETE_TOPIC"] = "digite o seu nome...";
+$MESS["F_EDIT"] = "Digite o seu endereço de e-mail";
+$MESS["F_EDIT_HEAD"] = "Erro ao criar grupo";
+$MESS["F_EDIT_TOPIC"] = "Digite o seu endereço de e-mail";
+$MESS["F_EMAIL_TITLE"] = "Erro ao criar um novo smiley";
+$MESS["F_HIDE"] = "digite o seu nome...";
+$MESS["F_HIDE_TOPIC"] = "digite o seu nome...";
+$MESS["F_INSERT_NAME"] = "Erro ao criar post.";
+$MESS["F_NAME"] = "Erro ao criar post.";
+$MESS["F_NO_VOTE_DO"] = "Erro ao criar um novo tópico";
+$MESS["F_NO_VOTE_UNDO"] = "Erro ao criar um novo tópico.";
+$MESS["F_NUM_MESS"] = "Digite o texto a procurar";
+$MESS["F_POINTS"] = "Digite o texto a procurar";
+$MESS["F_PRIVATE_MESSAGE"] = "Erro ao criar uma nova mensagem";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "Erro ao criar uma nova mensagem.";
+$MESS["F_QUOTE"] = "Digite seu login e senha para visualizar este tópico.";
+$MESS["F_QUOTE_HINT"] = "Erro ao excluir uma pontuação";
+$MESS["F_REAL_IP"] = "Erro ao criar um índice \"#INDEX#(#FIELDS#)\" para a tabela #TABLE#.";
+$MESS["F_REPLY"] = "Digite a ID do tópico ou clique em \"...\" para procurar uma tópico obrigatório.";
+$MESS["F_SHOW"] = "Digite sua Mensagem";
+$MESS["F_SHOW_TOPIC"] = "Erro ao criar tópico.";
+$MESS["F_USER_ID"] = "Erro ao criar tópico.";
+$MESS["F_USER_ID_USER"] = "Erro ao excluir um registro";
+?>

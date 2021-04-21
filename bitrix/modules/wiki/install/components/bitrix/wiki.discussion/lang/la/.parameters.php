@@ -1,0 +1,37 @@
+<?
+$MESS["CP_BND_ELEMENT_CODE"] = "Código de la Página de Wiki";
+$MESS["CP_BND_ELEMENT_ID"] = "ID de la página de Wiki";
+$MESS["CP_BND_ELEMENT_NAME"] = "Título de la página Wiki";
+$MESS["CP_BND_SET_STATUS_404"] = "Generar el estado 404 cuando el elemento o la sección está faltando";
+$MESS["F_FORUM_ID"] = "ID del foro de discusión";
+$MESS["F_MESSAGES_PER_PAGE"] = "Número de Mensajes por página";
+$MESS["F_PATH_TO_SMILE"] = "Ruta a la carpeta de Smiley (relativo a la raíz del sitio web)";
+$MESS["F_POST_FIRST_MESSAGE"] = "Usar el texto del elemento como el primer envío";
+$MESS["F_READ_TEMPLATE"] = "Página de Vista del Asunto (dejar en blanco para preferencias del foro)";
+$MESS["F_SHOW_LINK_TO_FORUM"] = "Mostrar vínculo del foro";
+$MESS["F_USE_CAPTCHA"] = "Usar CAPTCHA";
+$MESS["RATING_TYPE"] = "Diseño de botones de calificación";
+$MESS["RATING_TYPE_CONFIG"] = "predeterminado";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Me gusta (imagen)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Me gusta (texto)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Me gusta/No me gusta (imagen)";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Me gusta/No me gusta (texto)";
+$MESS["SHOW_RATING"] = "Permitir calificación";
+$MESS["SHOW_RATING_CONFIG"] = "predeterminado";
+$MESS["T_IBLOCK_DESC_ADD_SECTIONS_CHAIN"] = "Agregar la sección a los breadcrumbs";
+$MESS["T_IBLOCK_DESC_INCLUDE_IBLOCK_INTO_CHAIN"] = "Agregar el block de información a los breadcrumbs";
+$MESS["T_IBLOCK_DESC_LIST_ID"] = "ID del block de información";
+$MESS["T_IBLOCK_DESC_LIST_TYPE"] = "Tipo del block de información (sólo por verificación)";
+$MESS["WIKI_OPER_VAR"] = "Nombre de la variable de la operación";
+$MESS["WIKI_PAGE_VAR"] = "Variable de la página";
+$MESS["WIKI_PATH_TO_CATEGORIES"] = "Plantilla de la ruta a la página de las categorías de Wiki";
+$MESS["WIKI_PATH_TO_CATEGORY"] = "Plantilla de la ruta a la página de la descripción de las categorías de Wiki";
+$MESS["WIKI_PATH_TO_DISCUSSION"] = "Plantilla de la ruta a la página de discusión ";
+$MESS["WIKI_PATH_TO_HISTORY"] = "Plantilla de la ruta a la página de actualización de inicios de sesión de Wiki";
+$MESS["WIKI_PATH_TO_HISTORY_DIFF"] = "Plantilla de la ruta a la página versiones de Wiki";
+$MESS["WIKI_PATH_TO_PAGES"] = "Plantilla de la ruta a la página de la lista de Wiki";
+$MESS["WIKI_PATH_TO_POST"] = "Plantilla de la ruta a la página de Wiki";
+$MESS["WIKI_PATH_TO_POST_EDIT"] = "Plantilla de la ruta a la página del editor de Wiki";
+$MESS["WIKI_PATH_TO_USER"] = "Plantilla de la ruta a la página del perfil del usuario";
+$MESS["WIKI_VARIABLE_ALIASES"] = "Alias variable";
+?>

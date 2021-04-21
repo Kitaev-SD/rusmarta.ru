@@ -1,0 +1,62 @@
+<?
+$MESS["ACRIT_GOOGLEMERCHANT_REQUIRED_FIELD_FAIL"] = "Не заполнено обязательное поле #CODE# (#NAME#) в \"Тегах выгрузки\"";
+$MESS["ACRIT_GOOGLEMERCHANT_REQUIRED_INPUT_FIELD_FAIL"] = "Не заполнено обязательное поле #CODE# (#NAME#) во \"Входных параметрах\"";
+$MESS["ACRIT_GOOGLEMERCHANT_EMPTY_MARKET_CATEGORY_FIELDS"] = "Имеются незаполненные соответствия в \"Категориях выгрузки\"";
+$MESS["ACRIT_GOOGLEMERCHANT_EDITPROFILE"] = "Редактировать выгрузку";
+$MESS["ACRIT_GOOGLEMERCHANT_ADDPROFILE"] = "Добавить выгрузку";
+$MESS["ACRIT_GOOGLEMERCHANT_LIST"] = "Список выгрузок";
+$MESS["ACRIT_GOOGLEMERCHANT_SAVE"] = "Cохранить";
+$MESS["ACRIT_GOOGLEMERCHANT_INSTRUCTION"] = "Инструкция";
+$MESS["ACRIT_GOOGLEMERCHANT_ADD"] = "Добавить";
+$MESS["ACRIT_GOOGLEMERCHANT_COPY"] = "Копировать";
+$MESS["ACRIT_GOOGLEMERCHANT_DEL"] = "Удалить";
+$MESS["ACRIT_GOOGLEMERCHANT_RUN"] = "Запустить";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB1"] = "Входные параметры";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB3"] = "Тип выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB4"] = "Структура выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB5"] = "Теги выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB6"] = "Категории выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB7"] = "Опции выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB9"] = "Экспорт данных";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB10"] = "Категории активизма";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB12"] = "Категории ebay.com";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB13"] = "Категории ozon.ru";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB15"] = "Техподдержка";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB16"] = "Внешние настройки интеграции";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB17"] = "Внешние настройки интеграции";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB18"] = "Внешние настройки интеграции";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB21"] = "Внешние настройки интеграции";
+$MESS["ACRIT_GOOGLEMERCHANT_TAB20"] = "Категории выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_ACTIVE"] = "Активность";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_ACTIVE_DESC"] = "(Активность выгрузки)";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_NAME"] = "Название выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_CODE"] = "Код выгрузки";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_DESCRIPTION"] = "Описание";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_SHOPNAME"] = "Название магазина";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_COMPANY"] = "Название компании";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_DOMAINNAME"] = "Адрес сайта (без http://)";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_SITE"] = "Сайт";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_ENCODING"] = "Кодировка";
+$MESS["ACRIT_GOOGLEMERCHANT_STEP1_IBLOCK_ID"] = "Инфоблоки";
+$MESS["ACRIT_GOOGLEMERCHANT_MARKET_CATEGORY_POPUP_TITLE"] = "<b>Категории выгрузки</b>";
+$MESS["ACRIT_GOOGLEMERCHANT_FIELDS_LIST_POPUP_TITLE"] = "<b>Спикок доступных для выбора полей</b>";
+$MESS["ACRIT_GOOGLEMERCHANT_MARKET_CATEGORY_BUTTON_SEND"] = "Отправить";
+$MESS["ACRIT_GOOGLEMERCHANT_MARKET_CATEGORY_BUTTON_CLOSE"] = "Закрыть";
+$MESS["ACRIT_GOOGLEMERCHANT_VARIANT_CATEGORY_POPUP_TITLE"] = "<b>Категории activizm.ru</b>";
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_RUN"] = 'Запущен процесс экспорта. Чтобы избежать ошибок в файле экспорта, дождитесь окончания.<br/>Если блокировка возникла из-за некорретного завершения предыдущего запуска, удалите блокировку на вкладке <a class="adm-btn" href="'.$GLOBALS['APPLICATION']->GetCurPageParam('tabControl_active_tab=step9', array()).'">"Экспорт данных"</a>';
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_CHANGE_PROFILE_INFO"] = "Внимание! При смене типа выгрузки произойдет сброс тегов выгрузки и названий выгрузки.";
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_DEMO_PERIOD_INFO"] = "Срок использования демо-версии заканчивается: ";
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_NEED_PAYMENT_INFO_TEXT"] = "Штатная конфигурация выгрузки изменена: ";
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_BUY_LICENCE_INFO"] = "Купить лицензию";
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_NEED_PAYMENT_INFO"] = "Заказать настройку";
+$MESS["ACRIT_GOOGLEMERCHANT_JQUERY_REQUIRE"] = "Отсутствует либо неисправна библиотека jQuery";
+
+$MESS["ACRIT_GOOGLEMERCHANT_PROFILE_DELETE_CONFIRM"] = "Вы действительно хотите удалить данную выгрузку?";
+$MESS["ACRIT_GOOGLEMERCHANT_PROFILE_TEMP_CRON_EXPORT"] = "Через 2 минуты будет запущена автоматичекая выгрузка";
+
+$MESS["ACRIT_GOOGLEMERCHANT_PROFILE_HAS_INTERSECT_AGENTS"] = "<b>В ближайшие 20 мин запланированы следующие выгрузки:</b><br/><br/>";
+$MESS["ACRIT_GOOGLEMERCHANT_PROFILE_HAS_INTERSECT_AGENTS_END"] = "<br/>Во избежания роста нагрузки на сервер рекомендуем выбрать другое время запуска текущей выгрузки";
+
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_DEMOEND_PERIOD_INFO"] = "Срок использования демо-версии закончился.";
+$MESS["ACRIT_GOOGLEMERCHANT_EXPORT_DEMOEND_BUY_LICENCE_INFO"] = "Купить лицензию";
+?>

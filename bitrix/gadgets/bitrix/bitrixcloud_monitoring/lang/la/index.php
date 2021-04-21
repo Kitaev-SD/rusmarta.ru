@@ -1,0 +1,18 @@
+<?
+$MESS["GD_BITRIXCLOUD_MONITOR"] = "Inspector<br/>cloud";
+$MESS["GD_BITRIXCLOUD_MONITOR_BTN_ALERT"] = "Detalles";
+$MESS["GD_BITRIXCLOUD_MONITOR_BTN_OK"] = "Detalles";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT1_MONTH"] = "Pérdida<br>mensual";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT1_QUARTER"] = "Pérdida<br>trimestral";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT1_WEEK"] = "Pérdida<br>semanal";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT1_YEAR"] = "Pérdida<br>anual";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT2_MONTH"] = "Inactividad<br>mensual";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT2_QUARTER"] = "Inactividad<br>trimestral";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT2_WEEK"] = "Inactividad<br>semanal";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_ALERT2_YEAR"] = "Inactividad<br>anual";
+$MESS["GD_BITRIXCLOUD_MONITOR_MESS_OK"] = "No hay<br/>problemas.";
+$MESS["GD_BITRIXCLOUD_MONITOR_PROBLEMS"] = "Problema detectado: #COUNT#.";
+$MESS["GD_BITRIXCLOUD_MONITOR_TEST_DOMAIN_REGISTRATION"] = "El dominio #DOMAIN# expirará en #DAYS# días.";
+$MESS["GD_BITRIXCLOUD_MONITOR_TEST_LIC"] = "La licencia del dominio #DOMAIN# expirará en #DAYS# días.";
+$MESS["GD_BITRIXCLOUD_MONITOR_TEST_SSL_CERT_VALIDITY"] = "El certificado SSL para el dominio #DOMAIN# expirará en #DAYS# días.";
+?>

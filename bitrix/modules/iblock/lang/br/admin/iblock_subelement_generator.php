@@ -1,0 +1,33 @@
+<?
+$MESS["IB_SEG_MAIN_TITLE"] = "SKU Generator";
+$MESS["IB_SEG_TAB_TITLE"] = "SKU Generator";
+$MESS["IB_SEG_TITLE"] = "Nome";
+$MESS["IB_SEG_WEIGHT"] = "Peso";
+$MESS["IB_SEG_PRICE_TYPE"] = "Tipo de preço";
+$MESS["IB_SEG_PRICE"] = "Preço";
+$MESS["IB_SEG_PRICE_SHORT"] = "Preço";
+$MESS["IB_SEG_CURRENCY"] = "Moeda";
+$MESS["IB_SEG_GENERATE"] = "Gerar";
+$MESS["IB_SEG_CANCEL"] = "Cancelar";
+$MESS["IB_SEG_PRICE_ROW_ADD"] = "Mais";
+$MESS["IB_SEG_PROPERTY_ADD"] = "Adicione o alojamento";
+$MESS["IB_SEG_PROPERTY_ADD_ALL"] = "Adicionar todos";
+$MESS["IB_SEG_VAT"] = "Taxa de IVA";
+$MESS["IB_SEG_VAT_INCLUDED"] = "Imposto incluído";
+$MESS["IB_SEG_DETAIL"] = "Detalhes";
+$MESS["IB_SEG_ANNOUNCE"] = "Visualização";
+$MESS["IB_SEG_SELECTED_PROPERTIES"] = "Propriedades selecionadas";
+$MESS["IB_SEG_PICTURES"] = "Imagens";
+$MESS["IB_SEG_ADD_PICTURES"] = "Adicionar imagens";
+$MESS["IB_SEG_FOR_ALL"] = "Para todos";
+$MESS["IB_SEG_SORT"] = "Tipo";
+$MESS["IB_SEG_ADD"] = "Adicionar";
+$MESS["IB_SEG_TOOLTIP_TITLE"] = "O campo de nome é opcional. Se não for especificado, a propriedade do produto será usado. Se o nome especifica um modelo, toda SKU será baseado nesse modelo.";
+$MESS["IB_SEG_TOOLTIP_WEIGHT"] = "Peso do produto e dimensões globais, totalmente embalado. Estes valores são espalhou para todo o produto SKU do e pode ser alterado posteriormente.";
+$MESS["IB_SEG_TOOLTIP_PROPERTIES"] = "As propriedades para uso por Generator deve ser do tipo List.";
+$MESS["IB_SEG_BASE_LENGTH"] = "Comprimento (mm)";
+$MESS["IB_SEG_BASE_WIDTH"] = "Largura (mm)";
+$MESS["IB_SEG_BASE_HEIGHT"] = "Altura (mm)";
+$MESS["IB_SEG_SKU_PROPERTIES"] = "Propriedades SKU";
+$MESS["IB_SEG_PARENT_PROPERTIES"] = "Propriedades pai";
+?>

@@ -1,0 +1,9 @@
+<?
+	$BXMAKER_COMPONENT_NAME = 'BXMAKER.GEOIP.CITY.LINE';
+
+	$MESS[$BXMAKER_COMPONENT_NAME . "_MODULE_NOT_INSTALLED"] = 'Модуль «Определение местоположения по IP 2.0» не установлен';
+	$MESS[$BXMAKER_COMPONENT_NAME . 'CITY_DEFAULT'] = 'Москва';
+	$MESS[$BXMAKER_COMPONENT_NAME . 'BTN_NO'] = 'Нет';
+	$MESS[$BXMAKER_COMPONENT_NAME . 'BTN_YES'] = 'Да';
+
+

@@ -1,0 +1,12 @@
+<?
+$MESS["OP_NAME_SALE_STATUS_VIEW"] = "Perþiûra";
+$MESS["OP_NAME_SALE_STATUS_CANCEL"] = "Atðaukimo þymë";
+$MESS["OP_NAME_SALE_STATUS_MARK"] = "Þymë problemai su uþsakymu";
+$MESS["OP_NAME_SALE_STATUS_DELIVERY"] = "Pristatymo þymë";
+$MESS["OP_NAME_SALE_STATUS_DEDUCTION"] = "Siuntimo þymë";
+$MESS["OP_NAME_SALE_STATUS_PAYMENT"] = "Mokëjimo þymë";
+$MESS["OP_NAME_SALE_STATUS_TO"] = "Keisti á ðá statusà";
+$MESS["OP_NAME_SALE_STATUS_UPDATE"] = "Atnaujinti";
+$MESS["OP_NAME_SALE_STATUS_DELETE"] = "Iðtrinti";
+$MESS["OP_NAME_SALE_STATUS_FROM"] = "Keisti statusà á kità";
+?>

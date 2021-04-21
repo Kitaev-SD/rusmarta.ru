@@ -1,0 +1,30 @@
+<?
+$MESS["TRANS_TITLE"] = "Praneðimø vertimai";
+$MESS["TRANS_TITLE_TITLE"] = "Kalbiniø praneðimø vertimai";
+$MESS["TRANS_FOLDERS_LIST"] = "Aplankø sàraðas";
+$MESS["TRANS_FILENAME"] = "Failo pavadinimas:";
+$MESS["TRANS_NOT_TRANS"] = "Neiðversta:";
+$MESS["TRANS_SAVE"] = "Iðsaugoti";
+$MESS["TRANS_RESET"] = "Atstatyti";
+$MESS["TRANS_TOTAL"] = "Viso praneðimø:";
+$MESS["TRANS_DELETE"] = "Ðalinti:";
+$MESS["TRANS_SHOW_ONLY_ERROR"] = "Atvaizduoti tik neiðverstus";
+$MESS["TRANS_SHOW_ALL"] = "Atvaizduoti visus praneðimus";
+$MESS["TRANS_SHOW_ALL_TITLE"] = "Atvaizduoti visus kalbinius praneðimus";
+$MESS["TRANS_SHOW_ONLY_ERROR_TITLE"] = "Atvaizduoti tik neiðverstus kalbinius praneðimus";
+$MESS["TRANS_LIST"] = "Sàraðas";
+$MESS["TRANS_LIST_TITLE"] = "Gráþti á sàraðà";
+$MESS["TRANS_CHAIN_FOLDER_ROOT"] = "Pereiti á ðakniná katalogà";
+$MESS["TRANS_CHAIN_FOLDER"] = "Pereiti á pasirinktà katalogà";
+$MESS["TRANS_DELETE_ALL"] = "Ðalinti visus:";
+$MESS["trans_edit_err"] = "Neteisingas failo pavadinimas!";
+$MESS["TR_FILE_EDIT"] = "Redaguoti PHP kodà";
+$MESS["TR_FILE_EDIT_TITLE"] = "Redaguoti PHP kodà";
+$MESS["TR_FILE_SHOW"] = "Rodyti PHP kodà";
+$MESS["TR_FILE_SHOW_TITLE"] = "Rodyti PHP kodà";
+$MESS["TR_CREATE_BACKUP_ERROR"] = "Nepavyko sukurti bylos \"%FILE%\" atsarginës kopijos";
+$MESS["TRANS_DELETE_CURRENT"] = "Iðtrinti praneðimus, kuriø vertimo pasirinkta kalba nëra.";
+$MESS["TR_FILE_PHP"] = "PHP kodas";
+$MESS["TRANS_GET_UNTRANSLATE"] = "Eksportuoti neiðverstus praneðimus";
+$MESS["TRANS_GET_UNTRANSLATE_TITLE"] = "Eksportuoti neiðverstas frazes ðiam failui";
+?>

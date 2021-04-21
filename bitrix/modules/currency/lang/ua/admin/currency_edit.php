@@ -1,0 +1,33 @@
+<?
+$MESS["currency_curr"] = "Валюта";
+$MESS["currency_curr_settings"] = "Налаштування валюти";
+$MESS["currency_format_string"] = "Не заповнено поле «Формат».";
+$MESS["currency_error"] = "Помилка";
+$MESS["CURRENCY_EDIT_TITLE"] = "Редагувати валюту";
+$MESS["CURRENCY_NEW_TITLE"] = "Створити нову валюту";
+$MESS["currency_rate_cnt"] = "Номінал";
+$MESS["currency_rate"] = "Курс за умовч.";
+$MESS["currency_sort_ex"] = "Індекс сортування";
+$MESS["CURRENCY_FULL_NAME"] = "Назва";
+$MESS["CURRENCY_FULL_NAME_DESC"] = "Повна назва валюти";
+$MESS["CURRENCY_FORMAT_TEMPLATE"] = "Шаблон формата";
+$MESS["CURRENCY_FORMAT_DESC"] = "Рядок формату для виводу валюти";
+$MESS["CURRENCY_DEC_POINT_DESC"] = "Десяткова точка при виводі";
+$MESS["THOU_SEP_DESC"] = "Роздільник тисяч при виводі";
+$MESS["DECIMALS_DESC"] = "Кількість десяткових знаків";
+$MESS["HIDE_ZERO_DECIMALS"] = "У публічній здебільшого не показувати незначущі нулі в дробової частини ціни";
+$MESS["CURRENCY_CODES_ISO_STANDART"] = "Перелік можливих кодів валют наведено у міжнародному стандарті <a target=\"_blank\" href=\"#ISO_LINK#\">ISO 4217</a>";
+$MESS["HIDE_ZERO_DECIMALS_DESCR_EXT"] = "<span class=\"required\" style=\"vertical-align: super; font-size: smaller;\">2</span> - Прибирає показ в публічній частині незначних нулів у дробовій частині ціни. Якщо у вас ціна 12500,00 гривень - буде відображено 12500, якщо у вас 12500,50 - буде відображено 12500,50";
+$MESS["BASE_CURRENCY_YES"] = "так";
+$MESS["BASE_CURRENCY_NO"] = "нi";
+$MESS["CONFIRM_DEL_MESSAGE"] = "Ви дійсно бажаєте видалити дану валюту?";
+$MESS["currency_base"] = "Базова";
+$MESS["BT_CURRENCY_EDIT_TAB_NAME_LANGUAGE"] = "Мовні налаштування";
+$MESS["BT_CURRENCY_EDIT_TAB_TITLE_LANGUAGE"] = "Налаштування валюти для показу";
+$MESS["currency_numcode"] = "Цифровий код";
+$MESS["DECIMALS_COMMENTS"] = "Кількість десяткових знаків дробової частини ціни впливає тільки на ВІДОБРАЖЕННЯ цін. Всі розрахунки ведуться з неокругленних даними. Це може призвести до візуальних помилок при конвертації валют і застосуванні знижок. Як приклад розглянемо таку ситуацію. Вартість товару 98,01 руб. Якщо задати кількість десяткових знаків рівним 0, ціна буде показана як 98 руб. Однак вартість 100 одиниць в кошику буде показана як 9801 руб.";
+$MESS["CURRENCY_THOUSANDS_VARIANT_O"] = "Інше значення";
+$MESS["BT_CURRENCY_EDIT_ERR_ADD"] = "Невідома помилка при додаванні валюти";
+$MESS["BT_CURRENCY_EDIT_ERR_UPDATE"] = "Невідома помилка при зміні валюти#ID#";
+$MESS["BX_CURRENCY_EDIT_MESS_AMOUNT"] = "Модуль валют працює з <b>прямими котируваннями</b> валют по відношенню до базової. Для коректної роботи необхідної вказувати вартість одиниці (1 або 10, 100, 1000 - при низькій вартості) редагованої валюти в базовій валюті. Для базової валюти номінал і курс \"за замовчуванням\" повинні бути рівні одиниці.";
+?>

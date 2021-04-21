@@ -1,0 +1,35 @@
+<?
+$MESS["F_UNSUBSCRIBE"] = "Atsisakyti prenumeratos";
+$MESS["F_UNSUBSCRIBE_TITLE"] = "Atsisakyti praneðimø apie naujus praneðimus";
+$MESS["F_REPLY"] = "Atsakyti";
+$MESS["F_SUBSCRIBE"] = "Prenumeruoti";
+$MESS["F_SUBSCRIBE_TITLE"] = "Prenumeruoti naujus áraðus";
+$MESS["F_CLOSED"] = "uþdaryta";
+$MESS["F_EDIT_TOPIC"] = "Modifikuoti temà";
+$MESS["F_DELETE_TOPIC"] = "Trinti temà";
+$MESS["F_CLOSE_TOPIC"] = "Uþdaryti temà";
+$MESS["F_OPEN_TOPIC"] = "Atidaryti temà";
+$MESS["F_DELETE_CONFIRM"] = "Ar tikrai norite negráþtamai paðalinti praneðimà?";
+$MESS["F_DELETE_TOPIC_CONFIRM"] = "Tema bus iðtrinta be galimybës atkurti. Trinti?";
+$MESS["F_HIDE_TOPIC"] = "Slëpti temà";
+$MESS["F_SHOW"] = "Parodyti";
+$MESS["F_SHOW_TOPIC"] = "Rodyti temà";
+$MESS["F_PINN_TOPIC"] = "Prisegti temà";
+$MESS["F_UNPINN_TOPIC"] = "Atsegti temà";
+$MESS["F_MOVE_TOPIC"] = "Perkelti temà";
+$MESS["F_MANAGE_TOPIC"] = "Tvarkyti temà";
+$MESS["F_MANAGE_MESSAGES"] = "Þinuèiø valdymas";
+$MESS["F_SHOW_MESSAGES"] = "Rodyti praneðimus";
+$MESS["F_HIDE_MESSAGES"] = "Slëpti praneðimus";
+$MESS["F_MOVE_MESSAGES"] = "Perkelti praneðimus";
+$MESS["F_DELETE_MESSAGES"] = "Trinti praneðimus";
+$MESS["JQOUTE_AUTHOR_WRITES"] = "raðo";
+$MESS["JS_NO_MESSAGES"] = "Praneðimø nebuvo pasirinkta. Pasirinkite praneðimus.";
+$MESS["JS_NO_ACTION"] = "Nepasirinktas joks veiksmas. Pasirinkite veikmà.";
+$MESS["F_DELETE_MESSAGES_CONFIRM"] = "Praneðimai bus iðtrinti be galimybës atkurti. Tæsti?";
+$MESS["F_COLLAPSE"] = "Slëpti";
+$MESS["F_POSTS"] = "Áraðai";
+$MESS["F_SELECT_ALL"] = "Þymëti viskà";
+$MESS["F_HIDE"] = "Suskleisti";
+$MESS["F_WAIT"] = "Praðome palaukti...";
+?>

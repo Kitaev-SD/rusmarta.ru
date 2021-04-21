@@ -1,0 +1,31 @@
+<?
+$MESS["SECTIONS_TO_CATEGORIES"] = "Activar enlace";
+$MESS["SUP_DESC_NO"] = "No";
+$MESS["SUP_DESC_YES"] = "Sí";
+$MESS["SUP_EDIT_MESSAGES_PER_PAGE"] = "Mensajes por página";
+$MESS["SUP_LIST_TICKETS_PER_PAGE"] = "Tickets por página";
+$MESS["SUP_MESSAGE_MAX_LENGTH"] = "Longitud máxima de separación de cadenas";
+$MESS["SUP_MESSAGE_MAX_LENGTH_TIP"] = "La longitud máxima de una cadena de texto sin envasar no contienen espacios o signos; las líneas más largas serán envueltas.";
+$MESS["SUP_MESSAGE_SORT_ORDER"] = "Orden de clasificación de mensajes de tickets";
+$MESS["SUP_SET_PAGE_TITLE"] = "Fijar título de la página";
+$MESS["SUP_SHOW_COUPON_FIELD"] = "Mostrar campo de entrada del cupón";
+$MESS["SUP_SHOW_USER_FIELD"] = "Mostrar campos personalizados";
+$MESS["SUP_SORT_ASC"] = "ascendente";
+$MESS["SUP_SORT_DESC"] = "descendente";
+$MESS["SUP_SORT_FIELD_ID"] = "ID";
+$MESS["SUP_SORT_FIELD_NUMBER"] = "Número de Mensaje";
+$MESS["SUP_TICKET_EDIT_DESC"] = "Editar página de ticket";
+$MESS["SUP_TICKET_ID_DESC"] = "ID del ticket";
+$MESS["SUP_TICKET_LIST_DESC"] = "Lista de tickets";
+$MESS["WZ_DEFAULT"] = "Elegante";
+$MESS["WZ_GRP_SECTIONS_TO_CATEGORIES"] = "Mapa de secciones del asistente para categorías de soporte técnico";
+$MESS["WZ_IBLOCK"] = "Block de información";
+$MESS["WZ_IBTYPE"] = "Tipo de Block de Información";
+$MESS["WZ_INCLUDE_INTO_CHAIN"] = "Asistente para agregar secciones a los breadcrumbs";
+$MESS["WZ_PROPERTY"] = "Propiedades que contienen el tipo de preguntes";
+$MESS["WZ_PROPERTY_VALUES"] = "Propiedades Múltiples que contienen la lista desplegable de elementos";
+$MESS["WZ_SELECT_SECTIONS"] = "Unir secciones";
+$MESS["WZ_SHOW_RESULT"] = "Mostrar resultado del asistente ";
+$MESS["WZ_STANDARD"] = "Oficial";
+$MESS["WZ_TEMPLATE"] = "Plantilla de asistente";
+?>

@@ -1,0 +1,13 @@
+<?
+$MESS["PATH_TO_RSS_TIP"] = "Nurodomas kelias á  RSS tinklaraðèio puslapá. Pvz.:  blog_rss.php?page=rss&blog=#blog#&type=#type#. ";
+$MESS["PATH_TO_RSS_ALL_TIP"] = "Nurodomas kelias á bendro RSS tinklaraðèio puslapá. Pvz.:  blog_rss_all.php?page=rss_all&blog=#blog#&type=#type#. ";
+$MESS["BLOG_VAR_TIP"] = "Kintamojo pavadinimas kuriame saugomas tinklaraðèio ID.";
+$MESS["PAGE_VAR_TIP"] = "Kintamojo pavadinimas kuriame saugomas tinklaraðèio puslapio adresas.";
+$MESS["GROUP_VAR_TIP"] = "Kintamojo pavadinimas kuriame saugomas tinklaraðèio grupës ID.";
+$MESS["BLOG_URL_TIP"] = "Laukas nurodo kintamojo pavadinimà kuriame saugomas tinklaraðèio ID.";
+$MESS["RSS1_TIP"] = "Jeigu paþymëta, bus rodoma nuorodà á RSS .92.";
+$MESS["RSS2_TIP"] = "Jeigu paþymëta, bus rodoma nuorodà á RSS 2.0.";
+$MESS["ATOM_TIP"] = "Jeigu paþymëta, bus rodoma nuorodà á ATOM .3. ";
+$MESS["MODE_TIP"] = "Tinklaraðèiai, kuriems taikyti nuorodas á RSS";
+$MESS["GROUP_ID_TIP"] = "Kodas kuriame perduodamas tinklaraðèiø grupës identifikatorius.";
+?>

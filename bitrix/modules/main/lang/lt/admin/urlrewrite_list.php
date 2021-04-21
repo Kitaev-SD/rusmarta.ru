@@ -1,0 +1,17 @@
+<?
+$MESS['MURL_USL'] = 'Sàlyga';
+$MESS['MURL_COMPONENT'] = 'Komponentas';
+$MESS['MURL_FILE'] = 'Byla';
+$MESS['MURL_RULE'] = 'Taisyklë';
+$MESS['MURL_EDIT'] = 'Redaguoti';
+$MESS['MURL_DELETE'] = 'Trinti';
+$MESS['MURL_DELETE_CONF'] = 'Ar tikrai norite paðalinti ðá áraðà?';
+$MESS['MURL_NEW'] = 'Naujas áraðas';
+$MESS['MURL_NEW_TITLE'] = 'Pridëti naujà áraðà';
+$MESS['MURL_TITLE'] = 'URL apdorojimo taisykliø nustatymai';
+$MESS['MURL_FILTER_PATH'] = 'Kelias';
+$MESS['MURL_FILTER_SITE'] = 'Tinklapis';
+$MESS['MURL_REINDEX'] = 'Sukurimas ið naujo';
+$MESS['MURL_REINDEX_TITLE'] = 'Adresø apdorojimo taisykliø perkurimas ';
+$MESS['SAA_NAV'] = 'Taisyklës';
+?>

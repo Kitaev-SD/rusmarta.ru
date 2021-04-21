@@ -1,0 +1,258 @@
+/***FILTER_POPUP_CHECKBOX_RADIO***/
+.custom-forms{
+	float:left;
+	margin:0px 5px 4px 0px;
+	padding:0px;
+}
+
+.custom-forms:last-child{
+	margin:0px 0px 4px 0px;
+}
+
+.custom-forms input[type=checkbox],
+.custom-forms input[type=radio]{
+	display:none;
+}
+
+.custom-forms label{	
+	display:block;
+	margin:0px;
+	padding:0px 12px;
+	font-family:"Open Sans", sans-serif;
+	color:#575b71;
+	line-height:30px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+	cursor:pointer;
+	-webkit-transition:all 0.15s ease 0s;
+	-moz-transition:all 0.15s ease 0s;
+	-o-transition:all 0.15s ease 0s;
+	transition:all 0.15s ease 0s;
+}
+
+.custom-forms:hover label{
+	background:#dee0ee;
+}
+
+.custom-forms.active label,
+.custom-forms.active:hover label,
+.custom-forms.active_ajax label,
+.custom-forms.active_ajax:hover label{
+	color:#000;
+	background:#fde037;
+}
+
+.custom-forms label.disabled,
+.custom-forms.active label.disabled{
+	color:#b7bbd3;
+	background:none;
+	cursor:default;
+}
+
+/***FILTER_POPUP_COLOR***/
+.colors.custom-forms label{
+	width:26px;
+	height:26px;
+	border:2px solid transparent;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	-khtml-border-radius:2px;
+	border-radius:2px;
+	padding:0px;
+	-webkit-transition:color 0.15s ease 0s, border-color 0.15s ease 0s, background-color 0.15s ease 0s;
+	-moz-transition:color 0.15s ease 0s, border-color 0.15s ease 0s, background-color 0.15s ease 0s;
+	-o-transition:color 0.15s ease 0s, border-color 0.15s ease 0s, background-color 0.15s ease 0s;
+	transition:color 0.15s ease 0s, border-color 0.15s ease 0s, background-color 0.15s ease 0s;
+}
+
+.colors.custom-forms:hover label{
+	border:2px solid #a0a4bc;
+}
+
+.colors.custom-forms.active label,
+.colors.custom-forms.active:hover label{
+	border:2px solid #fde037;
+}
+
+.colors.custom-forms label.disabled,
+.colors.custom-forms.active label.disabled{
+	width:24px;
+	height:24px;
+	border:3px solid #edeef8;
+	background:#b7bbd3;
+}
+
+.colors.custom-forms label i{
+	width:24px;
+	height:24px;
+	display:block;
+	color:#fff;
+	text-align:center;
+	line-height:24px;
+	border:1px solid #fff;
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
+.colors.custom-forms:not(.active) label i:before{
+	content:none;
+}
+
+.colors.custom-forms label img{
+	border:1px solid #fff;
+}
+
+.colors.custom-forms label.disabled i,
+.colors.custom-forms label.disabled img{
+	display:none;
+	visibility:hidden;
+}
+
+/***FILTER_COUNT***/
+.custom-forms label .count{
+	height:15px;
+	display:inline-block;
+	margin:0px 0px 0px 7px;
+    padding:0px 5px;
+	font-size:10px;
+	color:#fff;
+	line-height:15px;	
+    -moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+	background:#a0a4bc;
+}
+
+.custom-forms.active label .count,
+.custom-forms.active:hover label .count{
+	background:#43484d;
+}
+
+.custom-forms label.disabled .count,
+.custom-forms.active label.disabled .count{
+	color:#b7bbd3;
+	background:#dee0ee;
+}
+
+/***SETTING_PANEL_CHECKBOX***/
+.option.custom-forms{
+	width:100%;
+	float:none;
+	margin:0px 0px 8px 0px;
+}
+
+.option.custom-forms:last-child{
+	margin:0px;
+}
+
+.option.custom-forms label{
+	width:100%;
+	display:table;	
+	padding:0px;
+	line-height:1.3;
+	-moz-border-radius:0px;
+	-webkit-border-radius:0px;
+	-khtml-border-radius:0px;
+	border-radius:0px;
+}
+
+.option.custom-forms:hover label,
+.option.custom-forms.active label,
+.option.custom-forms.active:hover label{
+	background:none;
+}
+
+.option.custom-forms label .check-cont{
+	width:16px;
+	display:table-cell;
+	vertical-align:middle;
+	margin:0px;
+	padding:0px;
+}
+
+.option.custom-forms label .check{
+	width:12px;
+	height:12px;
+	display:block;
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	border:2px solid #b7bbd3;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+	background:#b7bbd3;
+	-webkit-transition:all 0.15s ease 0s;
+	-moz-transition:all 0.15s ease 0s;
+	-o-transition:all 0.15s ease 0s;
+	transition:all 0.15s ease 0s;
+}
+
+.option.custom-forms:hover label .check{
+	border:2px solid #cc9900;
+	background:#cc9900;
+}
+
+.option.custom-forms.active label .check{	
+	border:2px solid #9cc218;
+	background:#fff;
+}
+
+.option.custom-forms.active:hover label .check{
+	border:2px solid #cc9900;
+}
+
+.option.custom-forms label .check i{	
+	display:none;
+	visibility:hidden;
+	font-size:11px;
+	color:#9cc218;
+	line-height:12px;
+	-webkit-transition:all 0.15s ease 0s;
+	-moz-transition:all 0.15s ease 0s;
+	-o-transition:all 0.15s ease 0s;
+	transition:all 0.15s ease 0s;
+}
+
+.option.custom-forms.active label .check i{
+	display:block;
+	visibility:visible;
+}
+
+.option.custom-forms.active:hover label .check i{
+	color:#cc9900;
+}
+
+.option.custom-forms label .check-title{
+	display:table-cell;
+	vertical-align:middle;
+	margin:0px;
+	padding:0px 0px 0px 7px;
+	color:#575b71;
+	-webkit-transition:all 0.15s ease 0s;
+	-moz-transition:all 0.15s ease 0s;
+	-o-transition:all 0.15s ease 0s;
+	transition:all 0.15s ease 0s;
+}
+
+.option.custom-forms:hover label .check-title,
+.option.custom-forms.active:hover label .check-title{
+	color:#cc9900;
+}
+
+/***240px***/
+@media screen and (max-width:787px){
+	.custom-forms{
+		margin:0px 5px 6px 0px;
+	}
+
+	.custom-forms label{
+		padding:0px 10px;
+		font-size:12px;
+		line-height:27px;
+	}
+}

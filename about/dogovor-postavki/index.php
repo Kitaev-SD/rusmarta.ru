@@ -1,0 +1,2 @@
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Договор поставки");?>В данный момент и этот раздел мы заполняем ;))<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

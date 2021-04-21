@@ -1,0 +1,3 @@
+<?
+$MESS["SONET_USER_SOCSERV_PAGE_TITLE"] = "Ñîö³àëüí³ ìåðåæ³";
+?>

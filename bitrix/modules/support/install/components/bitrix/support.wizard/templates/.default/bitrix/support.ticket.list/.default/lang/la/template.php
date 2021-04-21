@@ -1,0 +1,36 @@
+<?
+$MESS["SUP_ALL"] = "(todos)";
+$MESS["SUP_ASK"] = "Crear un nuevo ticket";
+$MESS["SUP_CLOSED"] = "cerrado";
+$MESS["SUP_EDIT"] = " Modificar ";
+$MESS["SUP_EDIT_TICKET"] = "Editar ticket";
+$MESS["SUP_EXACT_MATCH"] = "Utilice la concordancia exacta";
+$MESS["SUP_F_CLOSE"] = "Cerrado/Abierto";
+$MESS["SUP_F_DEL_FILTER"] = "Eliminar filtro";
+$MESS["SUP_F_FILTER"] = "Filtro";
+$MESS["SUP_F_ID"] = "Encuesta ID";
+$MESS["SUP_F_LAMP"] = "Indicador";
+$MESS["SUP_F_MESSAGE"] = "Mensaje";
+$MESS["SUP_F_SET_FILTER"] = "Fijar filtro";
+$MESS["SUP_GREEN"] = "verde";
+$MESS["SUP_GREEN_ALT"] = "fue usted quien escribió la última vez el ticket";
+$MESS["SUP_GREEN_ALT_SUP"] = "el último mensaje es suyo";
+$MESS["SUP_GREEN_S_ALT_SUP"] = "última entrada por el staff de soporte tecnico ";
+$MESS["SUP_GREY"] = "gris";
+$MESS["SUP_GREY_ALT"] = "ticket cerrado";
+$MESS["SUP_GREY_ALT_SUP"] = "el ticket está cerrado";
+$MESS["SUP_ID"] = "ID";
+$MESS["SUP_LAMP"] = "Ind.";
+$MESS["SUP_MESSAGES"] = "Msjes.";
+$MESS["SUP_MODIFIED_BY"] = "Modificado por";
+$MESS["SUP_OPENED"] = "abierto";
+$MESS["SUP_RED"] = "rojo";
+$MESS["SUP_RED_ALT"] = "última entrada por el staff de soporte técnico";
+$MESS["SUP_RED_ALT_2"] = "fue su contraparte quien escribió por última vez";
+$MESS["SUP_RED_ALT_SUP"] = "La última entrada fue por el soporte técnico del cliente (usted es responsable)";
+$MESS["SUP_STATUS"] = "Estatus";
+$MESS["SUP_TIMESTAMP"] = "Modificado";
+$MESS["SUP_TITLE"] = "Asunto";
+$MESS["SUP_TOTAL"] = "Total";
+$MESS["SUP_YELLOW_ALT_SUP"] = "La última entrada fue por el soporte técnico del cliente (usted es responsable)";
+?>

@@ -1,0 +1,7 @@
+<?
+$MESS["SKGPS_EMPTY_NAME"] = "Nenurodytas mokëjimo sistemos pavadinimas";
+$MESS["SKGPS_EMPTY_CURRENCY"] = "Nenurodyta mokëjimo sistemos valiuta";
+$MESS["SKGPS_NO_SITE"] = "Nepavyko rasti svetainæ ##ID#";
+$MESS["SKGPS_ORDERS_TO_PAYSYSTEM"] = "Klaida ðalinant áraðà. Yra uþsakymø, kurie naudoja ðá mokëjimo sistemà.";
+$MESS["SKGPS_PS_NOT_FOUND"] = "Mokëjimo sistema nerasta";
+?>

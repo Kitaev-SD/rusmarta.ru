@@ -1,0 +1,35 @@
+<?
+$MESS["FORUM_MAIN_WAIT"] = "Fechar todas as tags";
+$MESS["F_ANCHOR"] = "Fechar tópico";
+$MESS["F_ATTACH_FILES"] = "Fechar tópicos";
+$MESS["F_AUTHOR_PROFILE"] = "Clique para adicionar um novo registro  ";
+$MESS["F_BAD_NEW_TOPIC"] = "Fechar todas as tags abertas";
+$MESS["F_BAD_TOPIC"] = "Fechar todas as tags abertas";
+$MESS["F_BUTTON_MOVE"] = "Cidade:";
+$MESS["F_DATE_REGISTER"] = "Clique para fechar";
+$MESS["F_DELETE"] = "Fechar tópicos";
+$MESS["F_DELETE_MESSAGES_CONFIRM"] = "Fechar tópicos";
+$MESS["F_EDIT"] = "Fechado";
+$MESS["F_EDIT_HEAD"] = "Fechado";
+$MESS["F_EMAIL_TITLE"] = "Fechado";
+$MESS["F_HEAD_TO_EXIST_TOPIC"] = "limpar";
+$MESS["F_HEAD_TO_NEW_TOPIC"] = "Clique no botão para fechar a tag";
+$MESS["F_HIDE"] = "Fechar todas as tags";
+$MESS["F_MOVE_TO"] = "Fechado";
+$MESS["F_NUM_MESS"] = "Clique para adicionar um novo smiley";
+$MESS["F_POINTS"] = "Fechado";
+$MESS["F_PRIVATE_MESSAGE"] = "Fechado";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "Fechado";
+$MESS["F_REAL_IP"] = "Fechado";
+$MESS["F_SHOW"] = "Fechar tópico";
+$MESS["F_TITLE"] = "Cidade:";
+$MESS["F_TITLE_ON_FORUM"] = "Cidade:";
+$MESS["F_TOPIC_DESCR"] = "Clique para adicionar um novo grupo de fóruns";
+$MESS["F_TOPIC_ID"] = "Fechar todas as tags abertas";
+$MESS["F_TOPIC_NAME"] = "Clique para adicionar um novo fórum";
+$MESS["F_TOPIC_NOT_FOUND"] = "Smileys clicáveis";
+$MESS["F_TOPIC_SEARCH_TITLE"] = "Fechar";
+$MESS["F_TOPIC_TAGS"] = "Clique para adicionar um novo rank";
+$MESS["F_USER_ID"] = "Fechado";
+$MESS["F_USER_ID_USER"] = "Tópico fixado fechado";
+?>

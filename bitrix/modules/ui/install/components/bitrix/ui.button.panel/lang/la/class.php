@@ -1,0 +1,7 @@
+<?
+$MESS["UI_BUTTON_PANEL_APPLY"] = "Aplicar";
+$MESS["UI_BUTTON_PANEL_CANCEL"] = "Cancelar";
+$MESS["UI_BUTTON_PANEL_CLOSE"] = "Cerrar";
+$MESS["UI_BUTTON_PANEL_REMOVE"] = "Eliminar";
+$MESS["UI_BUTTON_PANEL_SAVE"] = "Guardar";
+?>

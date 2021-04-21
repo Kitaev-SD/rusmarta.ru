@@ -1,0 +1,29 @@
+<?
+$MESS["V_USER_TYPE_DESCRIPTION"] = "Apklausa";
+$MESS["V_NEW_CHANNEL"] = "Nauja apklausø grupë";
+$MESS["V_CHANNEL_ID_COLON"] = "Apklausø grupe:";
+$MESS["V_CHANNEL_ID_EDIT"] = "redaguoti";
+$MESS["V_CHANNEL_ID_TITLE"] = "Pavadinimas:";
+$MESS["V_CHANNEL_ID_SYMBOLIC_NAME"] = "Simbolinis ID:";
+$MESS["V_CHANNEL_ID_USE_CAPTCHA"] = "Naudoti CAPTCHA";
+$MESS["V_UNIQUE_SESSION"] = "tos paèios sesijos metu";
+$MESS["V_UNIQUE_COOKIE_ONLY"] = "su tuo paèiu slapuku";
+$MESS["V_UNIQUE_IP_ONLY"] = "IP pagrindu";
+$MESS["V_UNIQUE_USER_ID_ONLY"] = "naudotojo ID pagrindu";
+$MESS["V_UNIQUE_IP_DELAY"] = "Uþdrausti pakartotinius balsus ið to paties IP:";
+$MESS["V_UNIQUE"] = "Uþdrausti pakartotinius balsus:";
+$MESS["V_UNIQUE_USER_ID_NEW"] = "Atmesti balsus ið registruotø naudotojø po apklausos pradios";
+$MESS["V_SECONDS"] = "sëkundës";
+$MESS["V_MINUTES"] = "minutës";
+$MESS["V_HOURS"] = "valandos";
+$MESS["V_DAYS"] = "dienos";
+$MESS["VT_UNKNOWN_ERROR_ADD_VOTE"] = "Neþinoma klaida (apklausa).";
+$MESS["VOTE_NOTIFY"] = "Praneðti apie kiekvieno balsavimo autoriø:";
+$MESS["VOTE_NOTIFY_IM"] = "Taip, per trumpàjà þinutæ (Instant Messenger modulis (im))";
+$MESS["VOTE_NOTIFY_EMAIL"] = "Taip, el.laiðku";
+$MESS["VOTE_NOTIFY_N"] = "Nepraneðti";
+$MESS["VOTE_VOTES"] = "Balsavimai:";
+$MESS["VOTE_EDIT_TITLE"] = "Pakeisti apklausos nustatymus";
+$MESS["VOTE_ACTIVE_RED_LAMP"] = "Apklausa pasibaigë.";
+$MESS["VOTE_NOT_ACTIVE"] = "Apklausa neaktyvi.";
+?>

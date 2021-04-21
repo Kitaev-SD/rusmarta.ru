@@ -1,0 +1,31 @@
+<?
+$MESS["subscr_del_err"] = "نمی تواند آدرس اشتراک را حذف کند.";
+$MESS["subscr_title"] = "آدرس ایمیل اشتراک";
+$MESS["subscr_nav"] = "آدرسها";
+$MESS["subscr_addr"] = "آدرس";
+$MESS["subscr_user"] = "مشترک";
+$MESS["subscr_conf"] = "تایید شده";
+$MESS["subscr_act"] = "فعال";
+$MESS["subscr_fmt"] = "فرمت";
+$MESS["subscr_upd"] = "ویرایش";
+$MESS["subscr_del_conf"] = "این اقدام برگشت ناپذیر است. آیا آدرس اشتراک حذف شود؟";
+$MESS["subscr_del"] = "حذف";
+$MESS["subscr_adm_anon"] = "ناشناس";
+$MESS["POST_FROM_TILL_UPDATE"] = "تاریخ پایان تغییر باید از تاریخ آغاز آن بزرگتر باشد.";
+$MESS["POST_FROM_TILL_INSERT"] = "تاریخ پایان افزودن باید از تاریخ آغاز آن بزرگتر باشد.";
+$MESS["POST_F_ID"] = "شناسه:";
+$MESS["POST_F_UPDATE"] = "ویرایش شده";
+$MESS["POST_F_INSERT"] = "ساخته شده";
+$MESS["POST_F_USER"] = "شناسه، اسم رمز، نام، نام خانوادگی:";
+$MESS["POST_F_ACTIVE"] = "فعال:";
+$MESS["POST_F_EMAIL"] = "ایمیل:";
+$MESS["POST_F_FORMAT"] = "فرمت:";
+$MESS["POST_F_CONFIRMED"] = "تایید شده:";
+$MESS["POST_F_DISTRIBUTION"] = "گروه ها:";
+$MESS["POST_DATE_INSERT"] = "ساخته شده:";
+$MESS["POST_F_ANONYMOUS"] = "ناشناس:";
+$MESS["POST_F_USER_ID"] = "شناسه کاربر:";
+$MESS["subscr_updated"] = "ویرایش شده";
+$MESS["subscr_confirm"] = "تایید";
+$MESS["POST_F_FIND"] = "بیاب";
+?>

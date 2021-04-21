@@ -1,0 +1,9 @@
+<?
+$MESS["BT_CAT_DISC_COUPON_LIST_REFRESH"] = "Atnaujinti";
+$MESS["BT_CAT_DISC_COUPON_LIST_REFRESH_TITLE"] = "Atnaujinti kuponø sàraðà";
+$MESS["BT_CAT_DISC_COUPON_LIST_SHOW_AFTER_COPY"] = "Norëdami redaguoti kuponus, jûs visø pirmà turite nukopijuoti nuolaidà.";
+$MESS["BT_CAT_DISC_COUPON_LIST_ADD_ONE_COUPON"] = "Pridëti vienà kuponà";
+$MESS["BT_CAT_DISC_COUPON_LIST_ADD_ONE_COUPON_TITLE"] = "Pridëti vienà kuponà";
+$MESS["BT_CAT_DISC_COUPON_LIST_ADD_MULTI_COUPON"] = "Pridëti keletà kuponø";
+$MESS["BT_CAT_DISC_COUPON_LIST_ADD_MULTI_COUPON_TITLE"] = "Pridëti keletà kuponø vienu metu nurodant tipà ir kieká";
+?>

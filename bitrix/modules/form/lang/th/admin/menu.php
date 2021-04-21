@@ -1,0 +1,9 @@
+<?
+$MESS ['FORM_MENU_MAIN'] = "àÇçº¿ÍÃìÁ";
+$MESS ['FORM_MENU_FORMS'] = "¡ÒÃ¨Ñ´¡ÒÃàÇçº¿ÍÃìÁ";
+$MESS ['FORM_MENU_FORMS_ALT'] = "ÃÒÂ¡ÒÃàÇçº¿ÍÃìÁ·Õèà»Ô´ãªé";
+$MESS ['FORM_MENU_LIBRARY'] = "¿Ñ§¡ìªÑè¹¢Í§àÇçº¿ÍÃìÁ";
+$MESS ['FORM_MENU_LIBRARY_ALT'] = "ä¿Åì·ÕèÁÕ¿Ñ§¡ìªÑè¹¢Í§àÇçº¿ÍÃìÁ";
+$MESS ['FORM_RESULTS_ALT'] = "ÃÒÂ¡ÒÃáÊ´§¼Å¢Í§àÇçº¿ÍÃìÁ \"#NAME#\"";
+$MESS ['FORM_MENU_MAIN_TITLE'] = "àÇçº¿ÍÃìÁ";
+?>

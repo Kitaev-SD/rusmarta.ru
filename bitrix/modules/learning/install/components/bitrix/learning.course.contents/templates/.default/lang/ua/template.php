@@ -1,0 +1,4 @@
+<?
+$MESS["LEARNING_COURSE_TOC"] = "«м≥ст";
+$MESS["LEARNING_COURSE_DESCRIPTION"] = "ќпис курсу";
+?>

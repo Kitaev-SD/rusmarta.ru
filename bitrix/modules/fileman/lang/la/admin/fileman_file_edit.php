@@ -1,0 +1,36 @@
+<?
+$MESS["FILEMAN_APPLY_PROCESS"] = "Aplicar cambios";
+$MESS["FILEMAN_EDIT_FILEPROPS"] = "Propiedades de la página:";
+$MESS["FILEMAN_EDIT_PROPSCODE"] = "Propiedad";
+$MESS["FILEMAN_EDIT_PROPSDEL"] = "Eliminar";
+$MESS["FILEMAN_EDIT_PROPSMORE"] = "Más...";
+$MESS["FILEMAN_EDIT_PROPSVAL"] = "Valor";
+$MESS["FILEMAN_FILEEDIT_APPLY"] = "Aplicar";
+$MESS["FILEMAN_FILEEDIT_AS_HTML"] = "Editar como HTML";
+$MESS["FILEMAN_FILEEDIT_AS_MENU"] = "Editar como menú";
+$MESS["FILEMAN_FILEEDIT_AS_PHP"] = "Editar como PHP";
+$MESS["FILEMAN_FILEEDIT_AS_TXT"] = "Editar como texto:";
+$MESS["FILEMAN_FILEEDIT_BAD_FNAME"] = "Nombre del archivo no debe empezar con punto!";
+$MESS["FILEMAN_FILEEDIT_CHANGE"] = "No tiene suficientes permisos para insertar código PHP.";
+$MESS["FILEMAN_FILEEDIT_CHANGE_ACCESS"] = "No tiene suficientes permisos para cambiar páginas PHP.";
+$MESS["FILEMAN_FILEEDIT_DOWNLOAD"] = "Descargar archivo";
+$MESS["FILEMAN_FILEEDIT_FILENAME_EMPTY"] = "Nombre de archivo no se especifica";
+$MESS["FILEMAN_FILEEDIT_FILE_EXISTS"] = "Archivo con nombre especificado ya existe!";
+$MESS["FILEMAN_FILEEDIT_FOLDER_EXISTS"] = "Carpeta con el nombre especificado ya existe!";
+$MESS["FILEMAN_FILEEDIT_NAME"] = "Nombre del archivo:";
+$MESS["FILEMAN_FILEEDIT_PAGE_TITLE"] = "Editar Archivo";
+$MESS["FILEMAN_FILEEDIT_RENAME"] = "Renombrar";
+$MESS["FILEMAN_FILEEDIT_RESET"] = "Cancelar";
+$MESS["FILEMAN_FILEEDIT_SAVE"] = "Guardar";
+$MESS["FILEMAN_FILEEDIT_TEMPLATE"] = "Plantilla:";
+$MESS["FILEMAN_FILEEDIT_TITLE"] = "Título de la página:";
+$MESS["FILEMAN_FILE_DELETE"] = "Eliminar archivo";
+$MESS["FILEMAN_FILE_DELETE_CONFIRM"] = "¿Usted realmente desea borrar el archivo?";
+$MESS["FILEMAN_FILE_EDIT"] = "Editar";
+$MESS["FILEMAN_FILE_EDIT_FOLDER_PROP"] = "Valor actual desde la sección de valor de propiedad:";
+$MESS["FILEMAN_FILE_TRANS_LINKED"] = "Usar títulos para los nombres de las carpetas: Habilitado";
+$MESS["FILEMAN_FILE_TRANS_UNLINKED"] = "Usar títulos para los nombres de las carpetas: Deshabilitado";
+$MESS["FILEMAN_FILE_VIEW"] = "Ver archivo";
+$MESS["FILEMAN_SESSION_EXPIRED"] = "Su sesión ha expirado. Por favor guarde el documento otra vez.";
+$MESS["FILEMAN_TAGS"] = "Etiquetas (ingrese palabras ó frases separado por comas)";
+?>

@@ -1,0 +1,7 @@
+<?
+$MESS["CAT_EXTRA_ERROR_NONAME"] = "Papildomas pavadinimas yra tuðèias";
+$MESS["CAT_EXTRA_ERR_UPDATE_NOT_ID"] = "Nenurodytas antkainio ID.";
+$MESS["CAT_EXTRA_ERR_ADD_EXISTS_ID"] = "Antkainis su ðiuo ID jau yra.";
+$MESS["CAT_EXTRA_ERR_ADD_FIELDS_EMPTY"] = "Truksta keliø arba visø antkainio parametrø. ";
+$MESS["CAT_EXTRA_ERROR_NOPERCENTAGE"] = "Nenurodyta antkainio reikðmë.";
+?>

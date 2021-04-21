@@ -1,0 +1,18 @@
+<?
+$MESS["TSB1_PERSONAL"] = "Asmeninë sekcija";
+$MESS["TSB1_EXPAND"] = "Iðplësti";
+$MESS["TSB1_COLLAPSE"] = "Slëpti";
+$MESS["TSB1_CART"] = "Pirkiniø krepðelis";
+$MESS["TSB1_TOTAL_PRICE"] = "Bendra kaina";
+$MESS["TSB1_YOUR_CART"] = "Jûsø pirkiniø krepðelis";
+$MESS["TSB1_READY"] = "Yra sandëlyje";
+$MESS["TSB1_DELAY"] = "Pageidavimø sàraðe";
+$MESS["TSB1_NOTAVAIL"] = "Nëra";
+$MESS["TSB1_SUBSCRIBE"] = "Perþiûrëti sàraðà";
+$MESS["TSB1_SUM"] = "Ið viso";
+$MESS["TSB1_DELETE"] = "Paðalinti";
+$MESS["TSB1_2ORDER"] = "Tikrinti";
+$MESS["TSB1_LOGIN"] = "Prisijungti";
+$MESS["TSB1_LOGOUT"] = "Atsijungti";
+$MESS["TSB1_REGISTER"] = "Registruotis";
+?>

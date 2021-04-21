@@ -1,0 +1,14 @@
+<?
+$MESS["BLOG_MENU_SMILES"] = "Ðypsenëlës";
+$MESS["BLOG_MENU_SMILES_ALT"] = "Ðypsenëliø bei piktogramø valdymas";
+$MESS["BLG_AM_BLOGS_ALT"] = "Tinklaraðèiø valdymas";
+$MESS["BLG_AM_BLOGS1"] = "Tinklaraðèiai";
+$MESS["BLG_AM_BLOGS1_ALT"] = "Tinklaraðèiø sàraðas";
+$MESS["BLG_AM_GROUPS"] = "Tinklaraðèiø grupës";
+$MESS["BLG_AM_GROUPS_ALT"] = "Tinklaraðèiø grupës";
+$MESS["BLG_AM_BLOGS"] = "Tinklaraðèiai";
+$MESS["BLG_AM_POST"] = "Praneðimai";
+$MESS["BLG_AM_POST_ALT"] = "Redaguoti tinklaraðèio praneðimus";
+$MESS["BLG_AM_COMMENT"] = "Komentarai";
+$MESS["BLG_AM_COMMENT_ALT"] = "Redaguoti tinklaraðèio komentarus";
+?>

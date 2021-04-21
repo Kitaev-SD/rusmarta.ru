@@ -1,0 +1,29 @@
+<?
+$MESS["IM_LAST_SEEN_F"] = "#POSITION#. Visto por última vez #LAST_SEEN#";
+$MESS["IM_LAST_SEEN_M"] = "#POSITION#. Visto por última vez #LAST_SEEN#";
+$MESS["IM_LAST_SEEN_SHORT_F"] = "Visto por última vez #LAST_SEEN#";
+$MESS["IM_LAST_SEEN_SHORT_M"] = "Visto por última vez #LAST_SEEN#";
+$MESS["IM_STATUS_AWAY"] = "Ausente";
+$MESS["IM_STATUS_AWAY_TITLE"] = "Ausente durante #TIME#";
+$MESS["IM_STATUS_BOT"] = "Bot de chat";
+$MESS["IM_STATUS_DND"] = "No molestar";
+$MESS["IM_STATUS_GUEST"] = "No disponible";
+$MESS["IM_STATUS_LINES-ONLINE"] = "Usuario del canal abierto";
+$MESS["IM_STATUS_MOBILE"] = "Aplicación móvil";
+$MESS["IM_STATUS_NA"] = "No disponible";
+$MESS["IM_STATUS_NETWORK"] = "Bitrix24.Network";
+$MESS["IM_STATUS_OFFLINE"] = "Sin conexión";
+$MESS["IM_STATUS_ONLINE"] = "En línea";
+$MESS["IM_STATUS_VACATION"] = "En licencia";
+$MESS["IM_STATUS_VACATION_TITLE"] = "En licencia hasta el #DATE#";
+$MESS["IM_UTILS_TEXT_ATTACH"] = "Archivo adjunto";
+$MESS["IM_UTILS_TEXT_AUDIO"] = "Audio";
+$MESS["IM_UTILS_TEXT_CODE"] = "Bloque de código";
+$MESS["IM_UTILS_TEXT_DELETED"] = "Este mensaje fue eliminado.";
+$MESS["IM_UTILS_TEXT_FILE"] = "Archivo";
+$MESS["IM_UTILS_TEXT_ICON"] = "Icono";
+$MESS["IM_UTILS_TEXT_IMAGE"] = "Foto";
+$MESS["IM_UTILS_TEXT_QUOTE"] = "Citar";
+$MESS["IM_UTILS_TEXT_RATING"] = "Evaluación";
+$MESS["IM_UTILS_TEXT_VIDEO"] = "Video";
+?>

@@ -1,0 +1,3 @@
+<?
+$MESS["SALE_BSM_WIZARD_PUSHCHECKER_LICENSE_NOT_FOUND"] = "Λ³φενη³ÿ νε ηνΰιδενΰ";
+?>

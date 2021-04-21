@@ -1,0 +1,31 @@
+<?
+$MESS["ADDRESS_EMPTY"] = "Proporcione la dirección de almacén.";
+$MESS["CAT_FEATURE_NOT_ALLOW"] = "La edición no puede utilizar esta función.";
+$MESS["CSTORE_SORT"] = "Ordenar";
+$MESS["CVAT_SORT"] = "Tipo";
+$MESS["ISSUING_CENTER"] = "Lugar de entrega";
+$MESS["SHIPPING_CENTER"] = "Centro de envío";
+$MESS["STORE_ACTIVE"] = "Activo";
+$MESS["STORE_ADDRESS"] = "Dirección";
+$MESS["STORE_CODE"] = "Código simbólico";
+$MESS["STORE_DELETE"] = "Eliminar";
+$MESS["STORE_DELETE_CONFIRM"] = "¿Está seguro que desea eliminar este almacén?";
+$MESS["STORE_DESCR"] = "Descripción";
+$MESS["STORE_E_USER_FIELDS_ADD_HREF"] = "Agregar un campo personalizado";
+$MESS["STORE_GPS_N"] = "Latitud GPS";
+$MESS["STORE_GPS_S"] = "Longitud GPS";
+$MESS["STORE_IMAGE"] = "Imágen";
+$MESS["STORE_LIST"] = "Todos los almacenes";
+$MESS["STORE_NEW"] = "Agregar";
+$MESS["STORE_PHONE"] = "Teléfono";
+$MESS["STORE_SAVE_ERROR"] = "Error al guardar en el almacén";
+$MESS["STORE_SCHEDULE"] = "Horas de oficina";
+$MESS["STORE_SELECT_SITE_ID"] = "Seleccione una página web";
+$MESS["STORE_SITE_ID"] = "Sitio Web";
+$MESS["STORE_TAB"] = "Almacenes";
+$MESS["STORE_TAB_DESCR"] = "Almácen";
+$MESS["STORE_TITLE"] = "Nombre";
+$MESS["STORE_TITLE_ADD"] = "Nuevo almacén";
+$MESS["STORE_TITLE_UPDATE"] = "Editar almacén #ID#";
+$MESS["STORE_XML_ID"] = "ID externo";
+?>

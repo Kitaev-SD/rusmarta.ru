@@ -1,0 +1,10 @@
+<?
+$MESS['BC_PATH_TO_BLOG'] = 'Kelio ðablonas á tinklaraðèio puslapá';
+$MESS['BC_BLOG_VAR'] = 'Tinklaraðèio identifikavimo kintamasis';
+$MESS['BC_PAGE_VAR'] = 'Puslapio kintamojo pavadinimas';
+$MESS['BC_BLOG_URL'] = 'Tinklaraðèio URL adresas';
+$MESS['BC_YEAR'] = 'Filtras pagal metus';
+$MESS['BC_MONTH'] = 'Filtras pagal menesá';
+$MESS['BC_DAY'] = 'Filtras pagal dienà';
+$MESS['B_VARIABLE_ALIASES'] = 'Kintamøjø vardai';
+?>

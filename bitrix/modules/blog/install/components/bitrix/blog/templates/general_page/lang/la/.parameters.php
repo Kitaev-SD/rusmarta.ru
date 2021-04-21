@@ -1,0 +1,31 @@
+<?
+$MESS["BC_NAME_TEMPLATE"] = "Formato de nombre";
+$MESS["BC_NAME_TEMPLATE_DEFAULT"] = "#NOBR##NAME# #LAST_NAME##/NOBR#";
+$MESS["BC_PATH_TO_CONPANY_DEPARTMENT"] = "Plantilla de ruta de la página del Departamento";
+$MESS["BC_PATH_TO_MESSAGES_CHAT"] = "Platilla de ruta de mensajes de usuario";
+$MESS["BC_PATH_TO_SONET_USER_PROFILE"] = "Platilla de ruta al perfil de usuario en el red social";
+$MESS["BC_PATH_TO_VIDEO_CALL"] = "Página de video conferencia";
+$MESS["BC_SHARE_HIDE"] = "Ocultar la barra de favoritos predeterminadas de red social";
+$MESS["BC_SHARE_SHORTEN_URL_KEY"] = "Clave bit.ly";
+$MESS["BC_SHARE_SHORTEN_URL_LOGIN"] = "Login bit.ly";
+$MESS["BC_SHARE_SYSTEM"] = "Utilizar red social y barra de favoritos";
+$MESS["BC_SHARE_TEMPLATE"] = "Plantilla de favoritos de red social";
+$MESS["BC_SHOW_LOGIN"] = "Mostrar login si campos de nombre no requeridos estan disponibles";
+$MESS["BC_USE_SHARE"] = "Barra de favoritos de contactos de red social";
+$MESS["BLG_THEME"] = "Tema de la plantilla";
+$MESS["BLG_THEME_BLUE"] = "Azul";
+$MESS["BLG_THEME_GREEN"] = "Verde";
+$MESS["BLG_THEME_ORANGE"] = "Naranja";
+$MESS["BLG_THEME_RED"] = "Rojo";
+$MESS["BLG_THEME_RED2"] = "Rojo simple";
+$MESS["B_SEO_USER"] = "Prevenir búsqueda de arañas y robots en el siguiente link para el perfil del usuario";
+$MESS["GENERAL_PAGE_GROUP_ID"] = "Grupo de blogs";
+$MESS["GENERAL_PAGE_PATH_TO_BLOG"] = "Ruta al blog del usuario";
+$MESS["GENERAL_PAGE_PATH_TO_BLOG_CATEGORY"] = "Ruta al blog del usuario con Filtro de Etiqueta";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG"] = "Ruta al grupo del blog";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG_CATEGORY"] = "Ruta a la página del blog del grupo con Filtro de Etiqueta";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG_POST"] = "Ruta para el mensaje del blog";
+$MESS["GENERAL_PAGE_PATH_TO_POST"] = "Ruta para el mensaje del blog";
+$MESS["GENERAL_PAGE_PATH_TO_USER"] = "Ruta al perfil del usuario";
+$MESS["GENERAL_PAGE_USE_SOCNET"] = "Usar en el contexto del red social";
+?>

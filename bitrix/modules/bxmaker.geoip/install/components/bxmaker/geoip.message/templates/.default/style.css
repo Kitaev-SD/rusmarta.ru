@@ -1,0 +1,7 @@
+.bxmaker__geoip__message--default.bxmaker__geoip__message.preloader {
+  display: none;
+}
+.bxmaker__geoip__message--default .js-bxmaker__geoip__message-value-default,
+.bxmaker__geoip__message--default .js-bxmaker__geoip__message-value-current {
+  display: none;
+}

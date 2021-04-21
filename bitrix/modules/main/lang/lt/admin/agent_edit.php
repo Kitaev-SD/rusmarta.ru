@@ -1,0 +1,30 @@
+<?
+$MESS["MAIN_AGENT_EDIT_PAGE_TITLE"] = "Agentas ##ID#";
+$MESS["MAIN_AGENT_NEW_PAGE_TITLE"] = "Naujas agentas";
+$MESS["MAIN_AGENT_TAB"] = "Agentas";
+$MESS["MAIN_AGENT_TAB_TITLE"] = "Parametrai";
+$MESS["MAIN_AGENT_LAST_EXEC"] = "Paskutinio paleidimo data:";
+$MESS["MAIN_AGENT_NEXT_EXEC"] = "Kito paleidimo data:";
+$MESS["MAIN_AGENT_ACTIVE"] = "Aktyvus:";
+$MESS["MAIN_AGENT_NAME"] = "Agento pareigos:";
+$MESS["MAIN_AGENT_MODULE_ID"] = "Modulis:";
+$MESS["MAIN_AGENT_USER_ID"] = "Naudotojo ID:";
+$MESS["MAIN_AGENT_SORT"] = "Rûðiavimas:";
+$MESS["MAIN_AGENT_INTERVAL"] = "Intervalas (sek.):";
+$MESS["MAIN_AGENT_SAVE_BUTTON"] = "Iðsaugoti";
+$MESS["MAIN_AGENT_START_EXEC"] = "Kito paleidimo data ir laikas";
+$MESS["MAIN_AGENT_EROR_NAME"] = "Neteisingai nurodytas agento pavadinimas!";
+$MESS["MAIN_AGENT_ERROR_SAVING"] = "Klaida!";
+$MESS["MAIN_AGENT_RECORD_LIST"] = "Agentø sàraðas";
+$MESS["MAIN_AGENT_RECORD_LIST_TITLE"] = "Pereiti prie agentø sàraðo";
+$MESS["MAIN_AGENT_NEW_RECORD"] = "Pridëti";
+$MESS["MAIN_AGENT_NEW_RECORD_TITLE"] = "Pridëti naujà agentà";
+$MESS["MAIN_AGENT_DEL_RECORD"] = "Trinti";
+$MESS["MAIN_AGENT_DEL_RECORD_TITLE"] = "Paðalinti agentà";
+$MESS["MAIN_AGENT_DELETE_RECORD_CONF"] = "Ar tikrai norite paðalinti ðá agentà?";
+$MESS["MAIN_AGENT_DEL_EXEC"] = "Agentas buvo paðalintas po sëkmingo ávykdymo arba per klaidà!";
+$MESS["MAIN_AGENT_PERIODICAL1"] = "Paleisti agentà:";
+$MESS["MAIN_AGENT_PERIODICAL_INTERVAL"] = "reguliariais intervalais";
+$MESS["MAIN_AGENT_PERIODICAL_TIME"] = "nustatytu laiku";
+$MESS["MAIN_AGENT_PERIOD"] = "Periodinis:";
+?>

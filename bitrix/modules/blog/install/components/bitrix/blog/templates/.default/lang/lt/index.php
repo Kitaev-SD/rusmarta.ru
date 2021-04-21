@@ -1,0 +1,19 @@
+<?
+$MESS["BC_NEW_COMMENTS"] = "Naujausi komentarai";
+$MESS["BC_NEW_BLOGS"] = "Nauji tinklaraðèiai";
+$MESS["BC_POPULAR_BLOGS"] = "Populiariausi tinklaraðèiai";
+$MESS["BC_NEW_BLOGS_MES"] = "Nauji blogai";
+$MESS["BC_POPULAR_BLOGS_MES"] = "Populiariausi áraðai";
+$MESS["BC_GROUPS"] = "Tinklaraðèiø grupës";
+$MESS["BLOG_TITLE"] = "Tinklaraðèiai";
+$MESS["BLOG_CREATE_BLOG"] = "Sukurti savo tinklaraðtá";
+$MESS["BC_NEW_POSTS"] = "Paskutinis";
+$MESS["BC_POPULAR_POSTS"] = "Populiarûs";
+$MESS["BC_COMMENTED_POSTS"] = "Labiausiai komentuojami";
+$MESS["BC_NEW_POSTS_MES"] = "Nauji áraðai";
+$MESS["BC_POPULAR_POSTS_MES"] = "Populiariausi áraðai";
+$MESS["BC_COMMENTED_POSTS_MES"] = "Labiausiai komentuojami áraðai";
+$MESS["BC_SEARCH_TAG"] = "Þymiø debesis";
+$MESS["BC_ALL_POSTS"] = "Þiørëti visus áraðus";
+$MESS["BC_ALL_BLOGS"] = "Þiørëti visus dienoraðèius";
+?>

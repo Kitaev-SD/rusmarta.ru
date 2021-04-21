@@ -1,0 +1,13 @@
+<?
+$MESS["BLOG_MODULE_NOT_INSTALL"] = "Tinklaraðèiø modulis nëra ádiegtas";
+$MESS["B_B_US_TITLE"] = "Naudotojai";
+$MESS["B_B_US_TITLE_BLOG"] = "Tinklaraðèio \"#NAME#\" naudotojai";
+$MESS["B_B_US_NO_RIGHT"] = "Jums nesuteiktos teisës valdyti ðio tinklaraðèio";
+$MESS["B_B_US_NO_BLOG"] = "Tinklaraðèio nerasta";
+$MESS["B_B_US_DELETE_OK"] = "Naudotojas buvo sëkmingai paðalintas ið draugø";
+$MESS["BLOG_BLOG_ADD_F_POS_ALREADY_WANT"] = "Naudotojas \"#NAME#\" jau yra draugø sàraðe";
+$MESS["BLOG_BLOG_ADD_F_POS_ADDED"] = "Naudotojas \"#NAME#\" ákeltas á norinèiø tapti draugu sàraðà";
+$MESS["BLOG_BLOG_ADD_F_POS_ADD_ERROR"] = "Klaida ákeliant naudotojà \"#NAME#\" á norinèiø tapti draugu sàraðà";
+$MESS["BLOG_BLOG_ADD_F_POS_NOT_FOUND"] = "Naudotojas \"#NAME#\" nerastas";
+$MESS["BLOG_BLOG_SESSID_WRONG"] = "Jûsø sesija pasibaigë. Praðome bandyti dar kartà.";
+?>

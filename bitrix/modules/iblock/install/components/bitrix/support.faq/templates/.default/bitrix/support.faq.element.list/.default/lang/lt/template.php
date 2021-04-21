@@ -1,0 +1,4 @@
+<?
+$MESS["SUPPORT_FAQ_GO_UP"] = "Á virðø";
+$MESS["CT_BSFE_ELEMENT_DELETE_CONFIRM"] = "Bus paðalinta visa informacija, susijusi su ðio áraðu! Tæsti?";
+?>

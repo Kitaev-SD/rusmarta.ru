@@ -1,0 +1,25 @@
+<?
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_PARENT_IBLOCK_IS_ABSENT"] = "Nenurodytas pagrindinis prekiø informacinis blokas pasiûlymø informaciniam blokui";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_IBLOCK_ID_ABSENT"] = "Nenurodytas infobloko ID";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_IBLOCK_IS_NOT_EXISTS"] = "Nurodykite galiojantá informaciná blokà";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_IBLOCK_SITELIST_IS_EMPTY"] = "Informacinio bloko svetainiø sàraðas tuðèias";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_EMPTY_DATA"] = "Kataloge informacijos nëra";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_BAD_DATA"] = "Neteisingas katalogo duomenø formatas";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_FIELD_CATALOG_IS_BAD"] = "Nenurodyta, ar informacinis blokas yra komerciniu katalogu ar ne";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_FIELD_USE_SKU_IS_ABSENT"] = "Nenurodyta, turi informacinis blokas prekiø pasiûlymø ar ne";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_SELF"] = "Informacinis blokas negali bûti sau paèiam pasiûlymø infobloku";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_BAD"] = "Tokio pasiûlymø informacinio bloko nëra";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_SITES_EMPTY"] = "Pasiûlymø informacinio bloko svetainiø sàraðas yra tuðèias";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_SITES_NOT_EQUAL"] = "Pasiûlymø informacinio bloko svetainiø sàraðas neatitinka pagrindinio informacinio bloko svetainiø sàraðà";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_WITH_SKU"] = "Prekiø pasiûlymø informacinis blokas pats negali turëti prekiø pasiûlymø";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_FROM_OTHER_IBLOCK"] = "Prekiø pasiûlymø informacinis blokas jau susietas su kitu informaciniu bloku";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_FIELD_SKU_IS_ABSENT"] = "Nepasirinktas prekiø pasiûlymø infoblokas";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_FIELD_SUBSCRIPTION_IS_ABSENT"] = "Nenurodyta, ar ðis infoblokas naudojamas turinio pardavimui";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_OFFERS_ONLY_CATALOG"] = "Prekiø pasiûlymø informacinis blokas turi bûti nurodytas kaip komercinis katalogas";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_PARENT_IBLOCK_WITH_SUBSCRIPTION"] = "Infoblokas turintis sàsajà su pasiûlymø informaciniu bloku, negali bûti naudojamas turinio pardavimui";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_SKU_PARENT_IBLOCK_OTHER"] = "Neteisingas pagrindinis prekiø infoblokas";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_VAT_ID_IS_ABSENT"] = "Nenurodytas ID PVM";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_BAD_VAT_ID"] = "Neteisingas ID PVM";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_YANDEX_EXPORT_IS_ABSENT"] = "Nenurodyta, ar naudojamas eksportas á Yandex";
+$MESS["BX_CAT_HELPER_ADMIN_CATALOGEDIT_ERR_BAD_YANDEX_EXPORT"] = "Neteisingai nurodyta, ar naudojamas eksportas á Yandex";
+?>

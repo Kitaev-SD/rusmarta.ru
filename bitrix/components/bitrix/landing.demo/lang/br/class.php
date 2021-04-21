@@ -1,0 +1,30 @@
+<?
+$MESS["LANDING_CMP_COLOR_AZURE"] = "Azul";
+$MESS["LANDING_CMP_COLOR_BLACK"] = "Preto";
+$MESS["LANDING_CMP_COLOR_BLUE"] = "Azul";
+$MESS["LANDING_CMP_COLOR_BROWN"] = "Marrom";
+$MESS["LANDING_CMP_COLOR_FLOWERS"] = "Preto, Branco e Flores";
+$MESS["LANDING_CMP_COLOR_GREEN"] = "Verde";
+$MESS["LANDING_CMP_COLOR_JEANS"] = "Índigo";
+$MESS["LANDING_CMP_COLOR_ORANGERED"] = "Laranja Vermelho";
+$MESS["LANDING_CMP_COLOR_PINK"] = "Rosa";
+$MESS["LANDING_CMP_COLOR_PURPLE"] = "Roxo";
+$MESS["LANDING_CMP_COLOR_RED"] = "Vermelho";
+$MESS["LANDING_CMP_COLOR_REDBLUE"] = "Vermelho e Azul";
+$MESS["LANDING_CMP_COLOR_SEE"] = "Ciano";
+$MESS["LANDING_CMP_COLOR_WHITE"] = "Branco";
+$MESS["LANDING_CMP_ERROR_MASTER_NO_SERVICE"] = "O serviço de importação não está disponível no momento";
+$MESS["LANDING_CMP_LD_ERROR_UNKNOWN_STEP_ID"] = "Etapa de criação de catálogo desconhecida";
+$MESS["LANDING_CMP_LD_MESS_CATALOG_UPDATE"] = "Atualizando parâmetros do catálogo comercial...";
+$MESS["LANDING_CMP_LD_MESS_DATA_PREPARE"] = "Preparando dados...";
+$MESS["LANDING_CMP_LD_MESS_IMPORT_COMPLETE"] = "O catálogo de produtos foi criado com sucesso";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_COMPLETE"] = "Os produtos foram importados com sucesso";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFERS_COMPLETE"] = "Os SKUs foram importados com sucesso";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFERS_PROGRESS"] = "Importando SKUs...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFER_PRICES_COMPLETE"] = "Os preços SKU foram importados com sucesso";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_OFFER_PRICES_PROGRESS"] = "Importando preços de SKU...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_PRICES_COMPLETE"] = "Os preços dos produtos foram importados com sucesso";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_PRICES_PROGRESS"] = "Importando preços do produto...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_CATALOG_PROGRESS"] = "Importando produtos...";
+$MESS["LANDING_CMP_LD_MESS_XML_IMPORT_COMPLETE"] = "Os dados do produto foram importados";
+?>

@@ -1,0 +1,22 @@
+<?
+$MESS["FOLDER_EDIT_ACCESS_DENIED"] = "Skyriaus redagavimo prieiga uþdrausta.";
+$MESS["ACCESS_EDIT_FILE_NOT_FOUND"] = "Failas neegzistuoja.";
+$MESS["EDIT_ACCESS_TO_DENIED"] = "Nepakanka teisiø redaguoti prieigos parametrus";
+$MESS["EDIT_ACCESS_TO_FOLDER"] = "Skyriaus teisës";
+$MESS["EDIT_ACCESS_TO_FILE"] = "Failo  teisës";
+$MESS["EDIT_ACCESS_USER_GROUP"] = "Naudotojo kategorija";
+$MESS["EDIT_ACCESS_PERMISSION"] = "Teisës";
+$MESS["EDIT_ACCESS_INHERIT_PERMISSION"] = "Paveldimos teisës ";
+$MESS["EDIT_ACCESS_CURRENT_PERMISSION"] = "Dabartinës teisës";
+$MESS["EDIT_ACCESS_NOT_SET"] = "-- nenustatyta --";
+$MESS["EDIT_ACCESS_SET_INHERIT"] = "Paveldëti";
+$MESS["EDIT_ACCESS_SET_INHERITED"] = "Paveldëta";
+$MESS["EDIT_ACCESS_SELECT_GROUP"] = "-- pasirinkti grupæ --";
+$MESS["EDIT_ACCESS_ALL_GROUPS"] = "Numatytieji prieigos nustatymai visiems naudotojams";
+$MESS["EDIT_ACCESS_SET_PERMISSION"] = "Leidimas yra paveldëtas ið pagrindinio skyriaus. Norëdami pakeisti leidimo lygá, paspauskite ðá ávesties laukà.";
+$MESS["EDIT_ACCESS_ADD_PERMISSION"] = "Naujos teisës";
+$MESS["EDIT_ACCESS_REMOVE_PERM"] = "Negalima apriboti prieigà prie ðio skyriaus";
+$MESS["EDIT_ACCESS_REMOVE_PERM_FILE"] = "Negalima apriboti prieigà prie ðio failo";
+$MESS["EDIT_ACCESS_REMOVE_PERM_CONF"] = "Visos prieigos teisës, priskirtos ðiam failui ar skyriui, bus paðalintos. Ir bus taikomos pagrindinio skyriaus teisës. Tæsti?";
+$MESS["EDIT_ACCESS_PERMISSION_INFO"] = "Redaguoti prieigos leidimus";
+?>

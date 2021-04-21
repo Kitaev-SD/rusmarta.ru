@@ -1,0 +1,35 @@
+<?
+$MESS["F_SHOW_TAGS"] = "Atvaizduoti þymes";
+$MESS["F_PAGE_NAVIGATION_TEMPLATE"] = "Navigacijos grandinës ðablono pavadinimas";
+$MESS["F_THEMES"] = "Temos";
+$MESS["F_PAGE_NAVIGATION_WINDOW"] = "Puslapiø skaièius puslapiø navigacijoje";
+$MESS["F_THEME_BEIGE"] = "Smëlio spalva";
+$MESS["F_THEME_BLUE"] = "Þydra";
+$MESS["F_THEME_FLUXBB"] = "FluxBB";
+$MESS["F_THEME_GRAY"] = "Pilka";
+$MESS["F_THEME_GREEN"] = "Þalia";
+$MESS["F_THEME_ORANGE"] = "Oranþinë";
+$MESS["F_THEME_RED"] = "Raudona";
+$MESS["F_THEME_WHITE"] = "Balta";
+$MESS["F_SHOW_AUTH"] = "Rodyti leidimo suteikimo formà";
+$MESS["F_SHOW_ADDITIONAL_MARKER"] = "Papildoma þymë naujiems praneðimams";
+$MESS["F_SHOW_NAVIGATION"] = "Rodyti narðymo kelio navigacijà";
+$MESS["F_SHOW_SUBSCRIBE_LINK"] = "Rodyti prenumeratos nuorodà";
+$MESS["F_SMILES_COUNT"] = "Rodomø statiniø ðypsniukø skaièius (jei norite ðypsniukus apskaièiuoti dinamiðkai, nustatykite ties 0)";
+$MESS["F_SHOW_LEGEND"] = "Rodyti legendà";
+$MESS["F_SHOW_FIRST_POST"] = "Visada rodyti pirmà praneðimà";
+$MESS["F_SHOW_FORUMS"] = "Rodyti forumo sutrumpinimus";
+$MESS["F_SHOW_AUTHOR_COLUMN"] = "Temø puslapyje rodyti autoriaus stulpelá";
+$MESS["F_SHOW_STATISTIC"] = "Rodyti statistikà";
+$MESS["F_AJAX_POST"] = "Naudoti AJAX pokalbiuose";
+$MESS["F_SHOW_STATISTIC_BLOCK"] = "Rodyti statistikos blokus";
+$MESS["F_STATISTIC_BLOCK_STATISTIC"] = "Praneðimø ir temø skaièius";
+$MESS["F_STATISTIC_BLOCK_BIRTHDAY"] = "Gimtadieniai";
+$MESS["F_STATISTIC_BLOCK_ONLINE"] = "Prisijungæ naudotojai";
+$MESS["F_SHOW_FORUM_USERS"] = "Rodyti naudotojø sàraðà";
+$MESS["F_SEO_USER_1"] = "Kaip rodyti naudotojo vardà (seo)";
+$MESS["F_SEO_USER_2"] = "Paslëpta nuo paieðkos robotø nuoroda";
+$MESS["F_SEO_USER_3"] = "Nuoroda";
+$MESS["F_SEO_USER_4"] = "Tik tekstas";
+$MESS["F_SEO_USE_AN_EXTERNAL_SERVICE"] = "Naudoti iðorines tarnybas temø pavadinimø vertimui (SEO)";
+?>

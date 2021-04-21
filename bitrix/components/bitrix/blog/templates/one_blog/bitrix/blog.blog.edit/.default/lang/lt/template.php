@@ -1,0 +1,31 @@
+<?
+$MESS["BLOG_TITLE"] = "Tinklaraðèio pavadinimas:";
+$MESS["BLOG_DESCR"] = "Tinklaraðèio apraðymas:";
+$MESS["BLOG_URL"] = "Pseudonimas (lotyniðkomis raidëmis)";
+$MESS["BLOG_URL_TITLE"] = "Nurodykite pseudonimà jûsø tinklaraðèiui (lotyniðkomis raidëmis). Pseudonimas bus naudojamas nuorodai á jûsø tinklaraðtá sukurti  <nobr>http://this-site.com/blog/[tinklaraðèio pavadinimas]</nobr>";
+$MESS["BLOG_GRP"] = "Tinklaraðèio grupë:";
+$MESS["BLOG_AUTO_MSG"] = "Automatiniai praneðimai:";
+$MESS["BLOG_AUTO_MSG_TITLE"] = "Naudoti apsauga nuo automatinio praneðimo";
+$MESS["BLOG_CAPTHA"] = "Reikalauti ávesti CAPTCHA kodà neautorizuotiems naudotojams";
+$MESS["BLOG_OPENED_GRPS"] = "Atviros grupës:";
+$MESS["BLOG_OPENED_TITLE"] = "Nurodykite grupes á kurias gali patekti visi naudotojai be jûsø patvirtinimo";
+$MESS["BLOG_DEF_PERMS"] = "Prieiga pagal nutylëjimà:";
+$MESS["BLOG_GROUPS"] = "grupës";
+$MESS["BLOG_MESSAGES"] = "praneðimai";
+$MESS["BLOG_COMMENTS"] = "komentarai";
+$MESS["BLOG_ALL_USERS"] = "Visi naudotojai";
+$MESS["BLOG_REGISTERED"] = "Registruoti naudotojai";
+$MESS["BLOG_GROUP_ADD"] = "Pridëti >>";
+$MESS["BLOG_SAVE"] = "Iðsaugoti";
+$MESS["BLOG_CREATE"] = "Sukurti tinklaraðtá";
+$MESS["BLOG_APPLY"] = "Taikyti";
+$MESS["BLOG_CANCEL"] = "Atðaukti";
+$MESS["BLOG_EMAIL_NOTIFY"] = "Praneðimai";
+$MESS["BLOG_EMAIL_NOTIFY_TITLE"] = "Siøsti praneðimus paðtu";
+$MESS["BLOG_EMAIL_NOTIFY_HELP"] = "Jei ájungta - á jûsø tinklapá ateis praneðimai apie naujus komentarus ir naujus praneðimus jûsø tinklaraðtyje.";
+$MESS["STOF_REQUIED_FIELDS_NOTE"] = "Bûtini laukai yra paþymëti þvaigþdute (<font color=\"#FF0000\">*</font>).";
+$MESS["BLOG_NEED_AUTH"] = "Praðome autorizuotis tinklapyje";
+$MESS["BLOG_CONFIRM_DELETE"] = "Ðioje grupëje yra naudotojai. Ar tikrai norite iðtrinti grupæ?";
+$MESS["BLOG_GROUP_DELETE"] = "Iðtrinti";
+$MESS["BLOG_NAME_CHANGE"] = "Redaguoti";
+?>

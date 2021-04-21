@@ -1,0 +1,35 @@
+<?
+$MESS["CT_BSP_KEYBOARD_WARNING"] = "Idioma de entrada de consulta cambiado por \"#query#\".";
+$MESS["SEARCH_ADDITIONAL_FILTER"] = "Búsqueda Avanzada";
+$MESS["SEARCH_ADDITIONAL_FILTER_DATE"] = "Por Fecha";
+$MESS["SEARCH_ADDITIONAL_FILTER_FEATURE"] = "Por Característica";
+$MESS["SEARCH_ALL"] = "(todo)";
+$MESS["SEARCH_AND"] = "y";
+$MESS["SEARCH_AND_ALT"] = "Operador <i>lógico and</i> está implícito y puede ser omitido: una consulta&quot;informacióndecontacto&quot; es completamente equivalente a &quot;contacto e información&quot;.";
+$MESS["SEARCH_BRACKETS_ALT"] = "<i>Rodeados de paréntesis</i> define la precedencia del operador lógico.";
+$MESS["SEARCH_CONTENT_TYPE_BLOG"] = "Blog";
+$MESS["SEARCH_CONTENT_TYPE_CALENDAR"] = "Calendario";
+$MESS["SEARCH_CONTENT_TYPE_FILES"] = "Archivos";
+$MESS["SEARCH_CONTENT_TYPE_FORUM"] = "Foro";
+$MESS["SEARCH_CONTENT_TYPE_PHOTO"] = "Foto";
+$MESS["SEARCH_CONTENT_TYPE_TASKS"] = "Tareas";
+$MESS["SEARCH_CORRECT_AND_CONTINUE"] = "Por favor corrija la frase a buscar e intente nuevamente.";
+$MESS["SEARCH_DESCRIPTION"] = "Descripción";
+$MESS["SEARCH_ERROR"] = "Error en la frase buscada:";
+$MESS["SEARCH_GO"] = "Ir";
+$MESS["SEARCH_LOGIC"] = "Operadores lógicos:";
+$MESS["SEARCH_MODIFIED"] = "Modificado:";
+$MESS["SEARCH_NOT"] = "no";
+$MESS["SEARCH_NOTHING_TO_FOUND"] = "Desafortunadamente, su búsqueda no encontró ninguna coincidencia con los documentos.";
+$MESS["SEARCH_NOT_ALT"] = "Operador <i>lógico not</i> restringe la búsqueda de páginas que no contengan el operando.";
+$MESS["SEARCH_OPERATOR"] = "Operador";
+$MESS["SEARCH_OR"] = "o";
+$MESS["SEARCH_OR_ALT"] = "Operador <i>lógico or</i> permite entradas que contienen al menos uno de los operandos.";
+$MESS["SEARCH_PATH"] = "Ruta:";
+$MESS["SEARCH_SINTAX"] = "<b>Sintaxis de consultas de búsqueda:</b><br /><br />Una consulta común es de una o más palabras, por ejemplo:<br /><i>información de contacto</i><br />Esta consulta contiene páginas que tienen ambas palabrasconsultadas.<br /><br />Los operadores lógicos permiten construir consultas más complejas, por ejemplo: <br /><i>información de contacto o teléfono</i><br />Esta consulta puede encontrar páginas que contiene las palabras &quot;contacto&quot; y&quot;información&quot; o&quot;phone&quot;.<br /><br /> <i>información de contacto no teléfono</i><br /> En esta consulta encontrará palabras &quot;contact&quot; y&quot;información&quot; pero no&quot;teléfono&quot;.<br /> Usted puede usar paréntesis para construir consultas más complejas.<br />";
+$MESS["SEARCH_SORTED_BY_DATE"] = "Ordenar por fecha";
+$MESS["SEARCH_SORTED_BY_RANK"] = "Ordenar por relevancia";
+$MESS["SEARCH_SORT_BY_DATE"] = "Ordenar por fecha";
+$MESS["SEARCH_SORT_BY_RANK"] = "Ordenar por relevancia";
+$MESS["SEARCH_SYNONIM"] = "Sinónimos";
+?>

@@ -1,0 +1,30 @@
+<?
+$MESS["TRANS_TITLE"] = "Traducir mensajes";
+$MESS["TRANS_TITLE_TITLE"] = "Traducción de mensajes por idiomas";
+$MESS["TRANS_FOLDERS_LIST"] = "Lista de carpetas";
+$MESS["TRANS_FILENAME"] = "Nombre del archivo:";
+$MESS["TRANS_NOT_TRANS"] = "Sin traducir:";
+$MESS["TRANS_SAVE"] = "Guardar";
+$MESS["TRANS_RESET"] = "Resetear";
+$MESS["TRANS_TOTAL"] = "Total de mensajes:";
+$MESS["TRANS_DELETE"] = "Eliminar:";
+$MESS["TRANS_SHOW_ONLY_ERROR"] = "Mostrar solamente los mensajes sin traducir ";
+$MESS["TRANS_SHOW_ALL"] = "Mostar todos los mensajes";
+$MESS["TRANS_SHOW_ALL_TITLE"] = "Click para mostrar todos los mensajes del idioma";
+$MESS["TRANS_SHOW_ONLY_ERROR_TITLE"] = "Click para mostrar sólo los mensajes no traducidos";
+$MESS["TRANS_LIST"] = "Lista";
+$MESS["TRANS_LIST_TITLE"] = "Click para regresar a la lista";
+$MESS["TRANS_CHAIN_FOLDER_ROOT"] = "Click para ir a la carpeta root";
+$MESS["TRANS_CHAIN_FOLDER"] = "Click para ir a la carpeta";
+$MESS["TRANS_DELETE_ALL"] = "Eliminar todo:";
+$MESS["trans_edit_err"] = "Nombre de archivo incorrecto.";
+$MESS["TR_FILE_EDIT"] = "Editar Código PHP";
+$MESS["TR_FILE_EDIT_TITLE"] = "Editar Código PHP";
+$MESS["TR_FILE_SHOW"] = "Ver Código PHP";
+$MESS["TR_FILE_SHOW_TITLE"] = "Ver Código PHP";
+$MESS["TR_CREATE_BACKUP_ERROR"] = "Error al crear el archivo de copia de seguridad \"%FILE%\"";
+$MESS["TRANS_DELETE_CURRENT"] = "Eliminar mensajes que no existe en el idioma actual";
+$MESS["TR_FILE_PHP"] = "Código PHP";
+$MESS["TRANS_GET_UNTRANSLATE"] = "Exportar los mensajes sin traducir";
+$MESS["TRANS_GET_UNTRANSLATE_TITLE"] = "Exportar mensajes sin traducir para este archivo";
+?>

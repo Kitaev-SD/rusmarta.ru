@@ -1,0 +1,6 @@
+<?
+$MESS["SALE_BASKET_AVAILABLE_FOR_PURCHASE_QUANTITY"] = "Prekës \"#PRODUCT_NAME#\" prieinamas kiekis: #AVAILABLE_QUANTITY#";
+$MESS["SALE_BASKET_AVAILABLE_FOR_DECREASE_QUANTITY"] = "Prekës \"#PRODUCT_NAME#\" prieinamas kiekis nuraðymui: #AVAILABLE_QUANTITY#";
+$MESS["SALE_BASKET_ITEM_WRONG_AVAILABLE_QUANTITY"] = "Nepavyko patikrinti prekës \"#PRODUCT_NAME#\" kieká";
+$MESS["SALE_BASKET_ITEM_WRONG_PRICE"] = "Prekës \"#PRODUCT_NAME#\" kaina neteisinga";
+?>

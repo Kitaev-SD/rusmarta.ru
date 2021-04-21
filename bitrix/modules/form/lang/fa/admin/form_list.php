@@ -1,0 +1,37 @@
+<?
+$MESS["FORM_PAGE_TITLE"] = "فهرست فرم ها";
+$MESS["FORM_F_NAME"] = "عنوان:";
+$MESS["FORM_F_SID"] = "شناسه سمبلیک:";
+$MESS["FORM_F_DESCRIPTION"] = "توضیحات:";
+$MESS["FORM_F_SITE"] = "سایت:";
+$MESS["FORM_PAGES"] = "فرم ها";
+$MESS["FORM_TIMESTAMP"] = "ویرایش شده";
+$MESS["FORM_SITE"] = "سایتها";
+$MESS["FORM_NAME"] = "عنوان";
+$MESS["FORM_SID"] = "شناسه سمبلیک";
+$MESS["FORM_FIELDS"] = "فیلدها";
+$MESS["FORM_EDIT_ALT"] = "ویرایش تنظیمات فرم";
+$MESS["FORM_RESULTS_ALT"] = "فهرست نتایج فرم";
+$MESS["FORM_RESULTS"] = "نتایج";
+$MESS["FORM_DELETE_ALT"] = "حذف فرم و همه نتایج مرتبط با آن";
+$MESS["FORM_CONFIRM_DELETE"] = "آیا فرم و همه نتایج مرتبط به آن را پاک می کنید؟";
+$MESS["FORM_DELETE"] = "حذف";
+$MESS["FORM_DELETE_RESULTS"] = "پاک کردن";
+$MESS["FORM_DELETE_RESULTS_ALT"] = "حذف همه نتایج پر شده برای فرم";
+$MESS["FORM_CONFIRM_DELETE_RESULTS"] = "آیا همه نتایج پر شده فرم را پاک می کنید؟";
+$MESS["FORM_QUESTIONS"] = "سوالات";
+$MESS["FORM_QUESTIONS_ALT"] = "فهرست سوالاتی فرم";
+$MESS["FORM_FIELDS_ALT"] = "فهرست فیلد های اضافی فرم";
+$MESS["FORM_ADD_FIELD"] = "افزودن فیلد اضافی";
+$MESS["FORM_ADD_QUESTION"] = "افزودن سوال";
+$MESS["FORM_C_SORT"] = "ترتیب";
+$MESS["FORM_PREVIEW"] = "پیش نمایش";
+$MESS["FORM_COPY"] = "کپی کردن";
+$MESS["FORM_COPY_ALT"] = "کپی کردن فرم";
+$MESS["FORM_FL_ID"] = "شناسه فرم";
+$MESS["FORM_FL_SITE"] = "سایتها";
+$MESS["FORM_FL_SID"] = "مشخصه";
+$MESS["FORM_FL_DESCRIPTION"] = "توضیحات";
+$MESS["FORM_SAVE_ERROR"] = "خطا در نگارش به دیتابیس";
+$MESS["FORM_CREATE_TITLE"] = "ساخت فرم جدید";
+?>

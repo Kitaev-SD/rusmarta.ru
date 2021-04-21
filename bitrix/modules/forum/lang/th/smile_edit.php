@@ -1,0 +1,37 @@
+<?
+$MESS ['FORUM_EDIT_RECORD'] = "แก้ไขสัญลักษณ์แสดงอารมณ์ N#ID#";
+$MESS ['FORUM_NEW_RECORD'] = "สัญลักษณ์แสดงอารมณ์ใหม่";
+$MESS ['FORUM_RECORDS_LIST'] = "ไปยังรายการสัญลักษณ์แสดงอารมณ์";
+$MESS ['FORUM_SAVE'] = "บันทึก";
+$MESS ['FORUM_ADD'] = "เพิ่ม";
+$MESS ['FORUM_APPLY'] = "ตกลง";
+$MESS ['FORUM_RESET'] = "ยกเลิก";
+$MESS ['ERROR_NO_NAME'] = "โปรดระบุชื่อที่แตกต่างของสัญลักษณ์แสดงอารมณ์ในภาษา";
+$MESS ['ERROR_EDIT_SMILE'] = "พบข้อผิดพลาดในการอัพเดทในสัญลักษณ์แสดงอารมณ์";
+$MESS ['ERROR_ADD_SMILE'] = "พบข้อผิดพลาดในการสร้าง";
+$MESS ['FORUM_SORT'] = "ลำดับ";
+$MESS ['FORUM_CODE'] = "รหัส";
+$MESS ['FORUM_NAME'] = "ชื่อ";
+$MESS ['FORUM_DESCR'] = "รายละเอียด";
+$MESS ['FORUM_PT_PROPS'] = "ตั้งค่า";
+$MESS ['ERROR_NO_TYPE'] = "โปรดระบุประเภทของสัญลักษณ์แสดงอารมณ์ที่ไม่ซ้ำ";
+$MESS ['ERROR_NO_IMAGE'] = "โปรดระบุรูปของสัญลักษณ์แสดงอารมณ์ที่ไม่ซ้ำ";
+$MESS ['ERROR_COPY_IMAGE'] = "พบข้อผิดพลาดในการโหลดรูปของสัญลักษณ์แสดงอารมณ์";
+$MESS ['ERROR_EXISTS_IMAGE'] = "โหลดรูปภาพเสร็จแล้ว";
+$MESS ['FORUM_TYPE'] = "ประเภทของสัญลักษณ์แสดงอารมณ์";
+$MESS ['FORUM_TYPING'] = "พิมพ์สัญลักษณ์แสดงอารมณ์";
+$MESS ['FORUM_TYPING_NOTE'] = "(การพิมพ์ทั้งหมดควรจะถูกแบ่งระยะห่าง)";
+$MESS ['FORUM_IMAGE'] = "รูปของสัญลักษณ์แสดงอารมณ์";
+$MESS ['FORUM_IMAGE_NOTE'] = "(ควรจำไว้วาขนาดของสัญลักษณ์แสดงอารมณ์: 16x16, ไอคอน: 15x15)";
+$MESS ['FSE_ERROR_EXT'] = "ไม่ยอมรับให้ขยายไฟล์รูปภาพ";
+$MESS ['FSE_SMILE'] = "สัญลักษณ์แสดงอารมณ์";
+$MESS ['FSE_ICON'] = "ไอค่อน";
+$MESS ['ERROR_NO_MIN_NUM_POSTS'] = "โปรดตั้งค่าย่อหน้าข้อความของอันดับนี้";
+$MESS ['FORUM_CODE_LEN'] = "ตัวอักษร";
+$MESS ['FSN_2FLIST'] = "สัญลักษณ์แสดงอารมณ์";
+$MESS ['FSN_NEW_SMILE'] = "สัญลักษณ์แสดงอารมณ์ใหม่";
+$MESS ['FSN_DELETE_SMILE'] = "ลบสัญลักษณ์แสดงอารมณ์";
+$MESS ['FSN_DELETE_SMILE_CONFIRM'] = "คุณแน่ใจว่าคุณต้องการลบสัญลักษณ์แสดงอารมณ์นี้?";
+$MESS ['FSN_TAB_SMILE'] = "เว็บบอร์ดสัญลักษณ์แสดงอารมณ์";
+$MESS ['FSN_TAB_SMILE_DESCR'] = "เว็บบอร์ดสัญลักษณ์แสดงอารมณ์";
+?>

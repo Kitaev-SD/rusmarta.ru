@@ -1,0 +1,20 @@
+<?php
+$MESS["CALENDAR_DEFAULT_ENTRY_NAME"] = "Novo Evento";
+$MESS["CALENDAR_EVENT"] = "Evento";
+$MESS["CALENDAR_EVENT_DO_ADD"] = "Criar";
+$MESS["CALENDAR_EVENT_DO_CANCEL"] = "Cancelar";
+$MESS["CALENDAR_EVENT_DO_DELETE"] = "Excluir";
+$MESS["CALENDAR_EVENT_DO_EDIT"] = "Editar";
+$MESS["CALENDAR_EVENT_DO_OPEN"] = "Abrir";
+$MESS["CALENDAR_EVENT_DO_SAVE"] = "Salvar";
+$MESS["CALENDAR_EVENT_DO_VIEW"] = "Visualizar";
+$MESS["CALENDAR_EVENT_FULL_FORM"] = "Editor completo";
+$MESS["CALENDAR_NEW_EVENT_NOTIFICATION"] = "O evento foi criado com sucesso";
+$MESS["CALENDAR_SAVE_EVENT_NOTIFICATION"] = "O evento foi salvo";
+$MESS["EC_BUSY_USERS_BACK2EDIT"] = "Editar";
+$MESS["EC_BUSY_USERS_CLOSE"] = "Cancelar e fechar";
+$MESS["EC_BUSY_USERS_EXCLUDE_PLURAL"] = "Criar evento de qualquer maneira";
+$MESS["EC_BUSY_USERS_EXCLUDE_SINGLE"] = "Criar evento de qualquer maneira";
+$MESS["EC_BUSY_USERS_PLURAL"] = "Alguns dos usuários não podem participar durante o período de tempo selecionado (#USER_LIST#)";
+$MESS["EC_BUSY_USERS_SINGLE"] = "#USER_NAME# não pode participar no período de tempo selecionado";
+$MESS["EC_BUSY_USERS_TITLE"] = "Os participantes estão ocupados";

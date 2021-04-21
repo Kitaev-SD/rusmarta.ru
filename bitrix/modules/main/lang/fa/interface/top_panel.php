@@ -1,0 +1,30 @@
+<?
+$MESS["TOP_LOG_OFF"] = "پایان نشست - برونرفت";
+$MESS["TOP_ADMIN_ENTER"] = "بخش مدیریت";
+$MESS["button_settings"] = "تنظیمات ماژول";
+$MESS["button_public"] = "برو به بخش عمومی";
+$MESS["MAIN_ADD_PAGE_TO_FAVORITES"] = "افزودن صفحه در بوک مارک ها";
+$MESS["MAIN_HELP"] = "راهنمای محتوایی";
+$MESS["top_panel_favorites"] = "بوک مارک ها";
+$MESS["top_panel_settings"] = "تنظیمات";
+$MESS["top_panel_help"] = "راهنما";
+$MESS["top_panel_lang"] = "زبان:";
+$MESS["top_panel_user"] = "کاربر کنونی";
+$MESS["top_panel_logout"] = "خروج";
+$MESS["select_lang"] = "--- زبان ---";
+$MESS["top_panel_update"] = "بروز رسانی فرآورده";
+$MESS["top_panel_add_fav"] = "افزودن بوک مارک...";
+$MESS["top_panel_org_fav"] = "مدیریت بوک مارک ها...";
+$MESS["top_panel_org_fav_title"] = "بازکردن فهرست بوک مارک";
+$MESS["top_panel_fav"] = "بوک مارک ها";
+$MESS["adm_top_panel_view_title"] = "Switches to the site view mode";
+$MESS["adm_top_panel_view"] = "بخش عمومی";
+$MESS["adm_top_panel_edit_title"] = "Switch to the include area editing mode";
+$MESS["adm_top_panel_edit"] = "ویرایش سایت";
+$MESS["adm_top_panel_adm"] = "بخش مدیریت";
+$MESS["top_panel_start_btn"] = "شروع";
+$MESS["top_panel_view"] = "ناوبری";
+$MESS["top_panel_edit"] = "محتوا";
+$MESS["top_panel_sett"] = "طراحی";
+$MESS["top_panel_updates_close"] = "ببند";
+?>

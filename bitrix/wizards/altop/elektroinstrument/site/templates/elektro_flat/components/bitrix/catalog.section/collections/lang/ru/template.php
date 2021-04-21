@@ -1,0 +1,14 @@
+<?
+$MESS["CATALOG_ELEMENT_NEWPRODUCT"] = "New";
+$MESS["CATALOG_ELEMENT_SALELEADER"] = "Хит";
+$MESS["CATALOG_ELEMENT_TIME_BUY"] = "Успей<br />купить";
+$MESS["CATALOG_ELEMENT_NO_PRICE"] = "Не указана цена";
+$MESS["CATALOG_ELEMENT_FROM"] = "от";
+$MESS["CATALOG_ELEMENT_UNIT"] = "за";
+$MESS["CATALOG_ELEMENT_AVAILABLE"] = "В наличии";
+$MESS["CATALOG_ELEMENT_NOT_AVAILABLE"] = "Нет в наличии";
+$MESS["CATALOG_ELEMENT_QUANTITY_PERCENT"] = "Осталось";
+$MESS["CATALOG_ELEMENT_TIME_BUY_EXPIRY"] = "Время вышло";
+$MESS["CATALOG_ELEMENT_ADD_TO_COMPARE"] = "Добавить к сравнению";
+$MESS["CATALOG_EMPTY_RESULT"] = "По вашему запросу ничего не найдено.";
+?>

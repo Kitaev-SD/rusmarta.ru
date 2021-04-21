@@ -1,0 +1,33 @@
+<?
+$MESS["customrank_add"] = "Adicionar";
+$MESS["customrank_add_title"] = "Clique para adicionar uma regra a uma nova categoria";
+$MESS["customrank_all"] = "(Todos)";
+$MESS["customrank_applied"] = "Processado";
+$MESS["customrank_continue"] = "Continuar '";
+$MESS["customrank_delete"] = "Excluir";
+$MESS["customrank_delete_confirm"] = "Tem certeza de que deseja excluir esta regra?";
+$MESS["customrank_edit"] = "Modificar";
+$MESS["customrank_edit_error"] = "Erro ao modificar um registro:";
+$MESS["customrank_error_delete"] = "Erro ao excluir regra.";
+$MESS["customrank_find"] = "Encontrar";
+$MESS["customrank_find_title"] = "Digite uma pesquisa de consulta";
+$MESS["customrank_id"] = "ID";
+$MESS["customrank_module"] = "Módulo";
+$MESS["customrank_no"] = "(Não)";
+$MESS["customrank_no_rule"] = "Regra não encontrada";
+$MESS["customrank_of"] = "de";
+$MESS["customrank_param1"] = "Parâmetro 1";
+$MESS["customrank_param2"] = "Parâmetro 2";
+$MESS["customrank_param3"] = "Parâmetro 3";
+$MESS["customrank_progress"] = "Atualização do índice de pesquisa.";
+$MESS["customrank_rules"] = "Regras";
+$MESS["customrank_save_note"] = "Após modificar ou excluir regras, clique no botão \"Update\" para que as alterações tenham efeito.";
+$MESS["customrank_saved"] = "Regras salvadas.";
+$MESS["customrank_site"] = "Local";
+$MESS["customrank_sort"] = "Posição";
+$MESS["customrank_step1"] = "Passo 1. Gestão de regras de classificação.";
+$MESS["customrank_step2"] = "Passo 2. Atualização do índice de pesquisa.";
+$MESS["customrank_stop"] = "Parar";
+$MESS["customrank_title"] = "Classificando lista de regras";
+$MESS["customrank_update"] = "Atualizar";
+?>

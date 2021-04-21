@@ -1,0 +1,34 @@
+<?
+$MESS["sender_wizard_title"] = "Naujienlaiðkio vedlys";
+$MESS["sender_wizard_step_mailing_title"] = "Sukurti arba pasirinkti naujienlaiðká";
+$MESS["sender_wizard_step_mailing_title_sub"] = "Naujienlaiðkio parametrai";
+$MESS["sender_wizard_step_mailing_group_title"] = "Pasirinkti arba sukurti gavëjø grupes";
+$MESS["sender_wizard_step_mailing_group_title_sub"] = "Gavëjø grupiø pasirinkimas";
+$MESS["sender_wizard_step_group_title"] = "Sukurti gavëjø grupæ";
+$MESS["sender_wizard_step_chain_title"] = "Naujienlaiðkio sukûrimas";
+$MESS["sender_wizard_step_chain_title_sub"] = "Praneðimo ðablonas";
+$MESS["sender_wizard_step_chain_title_sub_desc"] = "Praneðimø ðablonas leidþia greitai sukurti ir iðsiøsti laiðkà. Tam tikslui iðsaugokite esamà naujienlaiðká kaip ðablonà ir vëliau pasirinkite já ið aplanko \"Mano Ðablonai\".";
+$MESS["sender_wizard_step_chain_send_type_title"] = "Siuntimo tvarkaraðtis";
+$MESS["sender_wizard_step_mailing_bnt_next"] = "Kitas þingsnis";
+$MESS["sender_wizard_step_mailing_bnt_end"] = "Iðsaugoti ir siøsti";
+$MESS["sender_wizard_status_mailing"] = "Pasirinkti arba sukurti<br>naujienlaiðká";
+$MESS["sender_wizard_status_group"] = "Pasirinkti arba<br>sukurti grupæ";
+$MESS["sender_wizard_status_chain"] = "Sukurti<br>naujienlaiðká";
+$MESS["sender_wizard_status_chain_send_type"] = "Naujienlaiðkio<br>tvarkaraðtis";
+$MESS["sender_wizard_status_final"] = "Baigta";
+$MESS["sender_wizard_text"] = "Ðis vedlys jus lydës per kelis paprastus sekanèius þingsnius, ko pasekoje sukursite ir iðsiøsite naujienlaiðká.";
+$MESS["sender_wizard_step_mailing_existed_not_selected"] = "Naujienlaiðkis nepasirinktas";
+$MESS["sender_wizard_step_mailing_field_new"] = "Sukurti naujà naujienlaiðká";
+$MESS["sender_wizard_step_mailing_field_exist"] = "Pasirinkite naujienlaiðká";
+$MESS["sender_wizard_step_mailing_field_exist_list"] = "Pasirinkite ið sàraðo ...";
+$MESS["sender_wizard_step_mailing_group_field_bnt_add"] = "Sukurti naujà grupæ";
+$MESS["sender_group_conn_cnt"] = "Pasirinkta";
+$MESS["sender_wizard_access_denied"] = "Jûs negalite paleisti vedlio nes turite tik leidimà skaityti.";
+$MESS["sender_wizard_step_trig_mailing_title"] = "Naujo laiðkø automatinio siuntimo sukûrimas";
+$MESS["sender_wizard_step_trig_mailing_title_sub"] = "Automatinio siuntimo pasirinkimas";
+$MESS["sender_wizard_step_trig_mailing_group_title"] = "Pradþios ir pabaigos sàlygos";
+$MESS["sender_wizard_status_trig_mailing"] = "Sukurti arba redaguoti naujienlaiðká";
+$MESS["sender_wizard_status_trig_mailing_group"] = "Paleidimo sàlyga";
+$MESS["sender_wizard_status_trig_chain"] = "Laiðkø nustatymas";
+$MESS["sender_wizard_step_trig_mailing_exist_title"] = "Automatinio laiðkø siuntimo redagavimas";
+?>

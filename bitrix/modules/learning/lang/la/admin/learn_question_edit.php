@@ -1,0 +1,30 @@
+<?
+$MESS["LEARNING_ADD_ANSWER"] = "Agregar respuesta";
+$MESS["LEARNING_ADD_RIGHT_ANSWER_NOT_SELECTED"] = "La respuesta correcta no está seleccionada.";
+$MESS["LEARNING_ADMIN_TAB1"] = "Pregunta";
+$MESS["LEARNING_ADMIN_TAB1_EX"] = "Configuración de pregunta";
+$MESS["LEARNING_ADMIN_TAB2"] = "Respuestas";
+$MESS["LEARNING_ADMIN_TAB2_EX"] = "Respuestas a la pregunta";
+$MESS["LEARNING_ADMIN_TAB3"] = "Descripción";
+$MESS["LEARNING_ADMIN_TAB3_EX"] = "Detalles de la pregunta ";
+$MESS["LEARNING_ANSWERS"] = "Respuestas";
+$MESS["LEARNING_CHANGE_ATTACHED_LESSON"] = "cambiar";
+$MESS["LEARNING_COMMENT"] = "Comentario";
+$MESS["LEARNING_CONFIRM_CHECK_ANSWER"] = "La pregunta no tiene ninguna respuesta correcta. ¿Continuar? ";
+$MESS["LEARNING_CONFIRM_DEL_MESSAGE"] = "¿Está seguro que desea eliminar esta pregunta?";
+$MESS["LEARNING_CORRECT_REQUIRED"] = "Se requiere la respuesta correcta";
+$MESS["LEARNING_EMAIL_ANSWER"] = "Notificar al profesor De la Respuesta";
+$MESS["LEARNING_ERROR"] = "Error al guardar la pregunta";
+$MESS["LEARNING_HEIGHT"] = "Alto";
+$MESS["LEARNING_INCORRECT_MESSAGE"] = "Mensaje de respuesta incorrecta";
+$MESS["LEARNING_LESSON"] = "Lección";
+$MESS["LEARNING_NO_ANSWERS"] = "Este tipo de pregunta no le brinda las opciones de respuesta.";
+$MESS["LEARNING_PATH_TO_FILE"] = "Ruta al archivo";
+$MESS["LEARNING_QUESTION_LIST"] = "Lista de preguntas";
+$MESS["LEARNING_QUESTION_NAME"] = "Pregunta";
+$MESS["LEARNING_SAVE"] = "Guardar";
+$MESS["LEARNING_SORTING"] = "Ordenar";
+$MESS["LEARNING_TEXT_ANSWER"] = "Texto de Respuesta";
+$MESS["LEARNING_VIDEO_AUDIO"] = "Video/audio";
+$MESS["LEARNING_WIDTH"] = "Ancho";
+?>

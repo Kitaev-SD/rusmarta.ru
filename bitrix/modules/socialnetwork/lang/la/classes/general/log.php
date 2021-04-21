@@ -1,0 +1,29 @@
+<?
+$MESS["SONET_GL_EMPTY_DATE_CREATE"] = "La fecha de creación es incorrecta.";
+$MESS["SONET_GL_EMPTY_ENTITY_ID"] = "El ID de la entidad no está epecificado.";
+$MESS["SONET_GL_EMPTY_ENTITY_TYPE"] = "El tipo de entidad no está especificado.";
+$MESS["SONET_GL_EMPTY_EVENT_ID"] = "El Evento no está especificado.";
+$MESS["SONET_GL_EMPTY_TITLE"] = "El título no está especificado.";
+$MESS["SONET_GL_ERROR_CALC_ENTITY_TYPE"] = "Error al definir tipo de entidad.";
+$MESS["SONET_GL_ERROR_NO_ENTITY_ID"] = "El ID de la entidad es incorrecto.";
+$MESS["SONET_GL_ERROR_NO_ENTITY_TYPE"] = "El tipo de entidad es incorrecto.";
+$MESS["SONET_GL_ERROR_NO_FEATURE_ID"] = "El evento especificado es incorrecto.";
+$MESS["SONET_GL_ERROR_NO_USER_ID"] = "El ID del Usuario es incorrecro.";
+$MESS["SONET_GL_SEND_EVENT_LINK"] = "Ir A: ";
+$MESS["SONET_GL_TITLE_EXCLUDE_GROUP1"] = "El usuario #TITLE# ha sido retirado del grupo.";
+$MESS["SONET_GL_TITLE_EXCLUDE_USER1"] = "El usuario ha sido retirado del grupo #TITLE#.";
+$MESS["SONET_GL_TITLE_FRIEND1"] = "#TITLE# ha sido agregado a la lista de amigos.";
+$MESS["SONET_GL_TITLE_GROUP1"] = "Un usuario se ha unido al grupo #TITLE#.";
+$MESS["SONET_GL_TITLE_JOIN1"] = "Nuevo miembro #TÍTULO# se ha unido al grupo";
+$MESS["SONET_GL_TITLE_JOIN2"] = "Nuevos miembros #TÍTULO# se ha unido al grupo";
+$MESS["SONET_GL_TITLE_MODERATE1"] = "Moderador #TITLE# ha sido nombrado en el grupo";
+$MESS["SONET_GL_TITLE_MODERATE2"] = "Moderadores #TITLE# han sido nombrados en el grupo.";
+$MESS["SONET_GL_TITLE_OWNER1"] = "Un nuevo jefe se asignó al grupo #TITLE#.";
+$MESS["SONET_GL_TITLE_UNFRIEND1"] = "#TITLE# se ha retirado de su lista de amigos.";
+$MESS["SONET_GL_TITLE_UNGROUP1"] = "Un usuario se ha dejado al grupo #TITLE#.";
+$MESS["SONET_GL_TITLE_UNJOIN1"] = "Miembro #TITLE# ha dejado el grupo.";
+$MESS["SONET_GL_TITLE_UNJOIN2"] = "Miembro #TITLE# ha dejado el grupo.";
+$MESS["SONET_GL_TITLE_UNMODERATE1"] = "#TITLE# ya no es un moderador de este grupo.";
+$MESS["SONET_GL_TITLE_UNMODERATE2"] = "#TITLE# ya no son moderadores de este grupo.";
+$MESS["SONET_GL_WRONG_PARAMETER_ID"] = "El ID es incorrecto.";
+?>

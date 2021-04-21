@@ -1,0 +1,28 @@
+<?
+$MESS["SPS_SEARCH_TITLE"] = "Prekës";
+$MESS["SPS_CATALOG"] = "Katalogas";
+$MESS["SPS_ID_FROM_TO"] = "pradþia ir pabaiga";
+$MESS["SPS_TIMESTAMP"] = "Pakeista";
+$MESS["SPS_CHANGER"] = "Pakeitë";
+$MESS["SPS_ANY"] = "bet kuris";
+$MESS["SPS_STATUS"] = "Statusas";
+$MESS["SPS_SECTION"] = "Skyrius";
+$MESS["SPS_TOP_LEVEL"] = "Aukðèiausio lygio";
+$MESS["SPS_INCLUDING_SUBS"] = "Áskaitant poskyrius";
+$MESS["SPS_ACTIVE"] = "Aktyvus";
+$MESS["SPS_YES"] = "Taip";
+$MESS["SPS_NO"] = "Ne";
+$MESS["SPS_NAME"] = "Pavadinimas";
+$MESS["SPS_DESCR"] = "Apraðymas";
+$MESS["SPS_SET"] = "Nustatyti";
+$MESS["SPS_UNSET"] = "Atstatyti";
+$MESS["SPS_ACT"] = "Aktyvus";
+$MESS["SPS_SELECT"] = "Pasirinkti";
+$MESS["SPS_NO_PERMS"] = "Jûs neturite pakankamai teisiø, kad galëtumëte perþiûrëti ðá katalogà";
+$MESS["SPS_CLOSE"] = "Uþdaryti";
+$MESS["sale_prod_search_nav"] = "Prekës";
+$MESS["prod_search_find"] = "Nustatyti filtrà";
+$MESS["prod_search_find_title"] = "Pasirinkti sutampanèius áraðus";
+$MESS["prod_search_cancel"] = "Atðaukti";
+$MESS["prod_search_cancel_title"] = "Rodyti visus áraðus";
+?>

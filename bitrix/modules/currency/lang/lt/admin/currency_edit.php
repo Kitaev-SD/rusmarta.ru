@@ -1,0 +1,33 @@
+<?
+$MESS["currency_curr"] = "Valiuta";
+$MESS["currency_curr_settings"] = "Valiutos nustatymai";
+$MESS["BT_CURRENCY_EDIT_TAB_NAME_LANGUAGE"] = "Kalbos nustatymai";
+$MESS["BT_CURRENCY_EDIT_TAB_TITLE_LANGUAGE"] = "Nuo kalbos priklausomi valiutos nustatymai";
+$MESS["currency_format_string"] = "Laukas \"Formatas\" kalbai #LANG# yra tuðèias.";
+$MESS["currency_error"] = "Klaida";
+$MESS["CURRENCY_EDIT_TITLE"] = "Redaguoti valiutà";
+$MESS["CURRENCY_NEW_TITLE"] = "Nauja valiuta";
+$MESS["currency_base"] = "Bazinë";
+$MESS["currency_rate_cnt"] = "Suma";
+$MESS["currency_rate"] = "Numatytasis kursas";
+$MESS["currency_sort_ex"] = "Rûðiavimo indeksas";
+$MESS["currency_numcode"] = "Simbolinis kodas";
+$MESS["CURRENCY_FULL_NAME"] = "Pavadinimas";
+$MESS["CURRENCY_FULL_NAME_DESC"] = "Pilnas valiutos pavadinimas";
+$MESS["CURRENCY_FORMAT_TEMPLATE"] = "Formato ðablonas";
+$MESS["CURRENCY_FORMAT_DESC"] = "Valiutos formato eilutë";
+$MESS["CURRENCY_DEC_POINT_DESC"] = "Deðimtainio taðkas";
+$MESS["THOU_SEP_DESC"] = "Tûkstanèio atskirtuvas";
+$MESS["DECIMALS_DESC"] = "Skaitmenø po kablelio kiekis";
+$MESS["HIDE_ZERO_DECIMALS"] = "Apkarpyti galinius nulius nuo frakciniø kainø (vieðojoje srityje)";
+$MESS["CURRENCY_CODES_ISO_STANDART"] = "Þiûrëti <a target=\"_blank\" href=\"#ISO_LINK#\">ISO 4217</a> standartà dël galimø valiutø kodø. ";
+$MESS["DECIMALS_COMMENTS"] = "<span class=\"required\" style=\"vertical-align: super; font-size: smaller;\">1</span> - skaièiø po kablelio atvaizdavimas átakoja tik kainos atvaizdavimà. Visos apskaitos vykdomos su neapvalintais duomenimis. Tai gali privesti prie vizualiø klaidø valiutø konvertavimo bei nuolaidø taikymo metu. Pvz.: prekës kaina 98,01 Eur. Jei nurodyti ksaièiø po kalblelio lygu 0, kaina bus rodoma taip  - 98 Eur; Taièiau 100 vnt. kiekio kaina bus rodoma taip - 9801 Eur;";
+$MESS["HIDE_ZERO_DECIMALS_DESCR_EXT"] = "Slepia vieðojoje svetainës dalyje kainos nereikðmingus nulius po kablelio. Jei jûsø kaina 12500,00 EUR - bus atvaizduojama 12500, jei jûsø kainà 12500,50 EUR - bus atvaizduojama 12500,50";
+$MESS["CURRENCY_THOUSANDS_VARIANT_O"] = "Kita reiðkmë";
+$MESS["BT_CURRENCY_EDIT_ERR_ADD"] = "Neþinoma klaida pridedant valiutà";
+$MESS["BT_CURRENCY_EDIT_ERR_UPDATE"] = "Neþinoma klaida atnaujinant valiutà #ID#";
+$MESS["BASE_CURRENCY_YES"] = "taip";
+$MESS["BASE_CURRENCY_NO"] = "ne";
+$MESS["CONFIRM_DEL_MESSAGE"] = "Ar tikrai norite paðalinti ðià valiutà?";
+$MESS["BX_CURRENCY_EDIT_MESS_AMOUNT"] = "Valiutos modulis veikia <b>tiesioginiu valiutos konvertavimu</b> bazinës valiutos atþvilgiu pagrindu. Teisingam modulio veikimui bûtina nurodyti vieneto kainà  (1 arba 10, 100, 1000 - esant þemam valiutos kursui) redaguojamos valiutos bazinës valiutos atþvilgiu. Bazinës valiutos nominalas ir kursas \"pagal nutylëjimà\" turi bûti lygus vienetui.";
+?>

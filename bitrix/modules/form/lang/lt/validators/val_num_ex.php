@@ -1,0 +1,10 @@
+<?
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_DESCRIPTION"] = "Kategorijos patvirtinimas";
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_SETTINGS_NUMBER_FROM"] = "Þemutinë riba";
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_SETTINGS_NUMBER_TO"] = "Virðutinë riba";
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_SETTINGS_NUMBER_FLOAT"] = "Ne tik sveikasis skaièius";
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_ERROR_NAN"] = "#FIELD_NAME#: reikðmë turi bûti numerinë";
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_ERROR_NOTINT"] = "#FIELD_NAME#: reikðmë turi bûti sveikasis skaièius";
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_ERROR_LESS"] = "#FIELD_NAME#: reikðmë  yra per maþa";
+$MESS["FORM_VALIDATOR_VAL_NUM_EX_ERROR_MORE"] = "#FIELD_NAME#: reikðmë  yra per didelë";
+?>

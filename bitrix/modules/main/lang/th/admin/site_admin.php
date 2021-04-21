@@ -1,0 +1,25 @@
+<?
+$MESS ['TITLE'] = "Sites";
+$MESS ['SAVE_ERROR'] = "Error saving site ";
+$MESS ['DELETE_ERROR'] = "Error deleting the site. It can be possibly connected with some other objects.";
+$MESS ['ADD_SITE'] = "Add site &gt;&gt;";
+$MESS ['ACTIVE'] = "Active";
+$MESS ['SORT'] = "Sort";
+$MESS ['NAME'] = "Name";
+$MESS ['DIR'] = "Folder";
+$MESS ['DEF'] = "Default";
+$MESS ['ACTION'] = "Actions";
+$MESS ['CHANGE_HINT'] = "Change site settings";
+$MESS ['CHANGE'] = "Modify";
+$MESS ['COPY_HINT'] = "Copy site settings";
+$MESS ['COPY'] = "Copy";
+$MESS ['DELETE_HINT'] = "Delete site";
+$MESS ['CONFIRM_DEL'] = "Are you sure you want to delete the site?";
+$MESS ['DELETE'] = "Delete";
+$MESS ['SAVE'] = "Save changes";
+$MESS ['SITE_EDIT'] = "¡ÒÃá¡éä¢àÇçºä«µì";
+$MESS ['EDIT_ERROR'] = "¾º¢éÍ¼Ô´¾ÅÒ´ã¹¡ÒÃÍÑ¾à´·ÃÒÂ¡ÒÃ:";
+$MESS ['ADD_SITE_TITLE'] = "à¾ÔèÁàÇçºä«µìãËÁè";
+$MESS ['PAGES'] = "àÇçºä«µì";
+$MESS ['SITE_EDIT_TITLE'] = "á¡éä¢ÀÒÉÒ";
+?>

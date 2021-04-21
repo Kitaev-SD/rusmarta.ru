@@ -1,0 +1,34 @@
+<?
+$MESS["CAT_1C_CREATE"] = "Sukurti, jei privaloma";
+$MESS["CAT_1C_CURRENT"] = "Dabartinis";
+$MESS["CAT_1C_NONE"] = "palikti";
+$MESS["CAT_1C_DEACTIVATE"] = "iðjungti";
+$MESS["CAT_1C_DELETE"] = "paðalinti";
+$MESS["CAT_1C_IBLOCK_TYPE"] = "Informacijos bloko tipas";
+$MESS["CAT_1C_ELEMENT_ACTION_2"] = "Veiksmas, kurá reikia atlikti su esamais objektais, nerastas importuojamame faile";
+$MESS["CAT_1C_SECTION_ACTION_2"] = "Veiksmas, kurá reikia atlikti su esamomis grupëmis, nerastas importuojamame faile";
+$MESS["CAT_1C_GROUP_PERMISSIONS"] = "Naudotojø grupës, kurioms leidþiama ákelti";
+$MESS["CAT_1C_SITE_LIST"] = "Susieti naujus informacinius blokus su svetainëmis";
+$MESS["CAT_1C_INTERVAL"] = "Þingsnio trukmë, sec. (0 - eksportuoti per vienà þingsná)";
+$MESS["CAT_1C_FILE_SIZE_LIMIT"] = "Ákelto failo gabaliukø dydis, baitai";
+$MESS["CAT_1C_USE_CRC"] = "Naudokite elementø kontrolinæ sumà, norëdami optimizuoti katalogo atnaujinimus";
+$MESS["CAT_1C_PICTURE"] = "Perþiûros vaizdas";
+$MESS["CAT_1C_GENERATE_PREVIEW"] = "Generuoti perþiûros vaizdà";
+$MESS["CAT_1C_PREVIEW_WIDTH"] = "Perþiûros vaizdo maksimalus plotis";
+$MESS["CAT_1C_PREVIEW_HEIGHT"] = "Perþiûros vaizdo maksimalus aukðtis";
+$MESS["CAT_1C_USE_ZIP"] = "Naudoti ZIP kompresijà, jei yra";
+$MESS["CAT_1C_DETAIL_RESIZE"] = "Pritaikyti detaløjá vaizdà";
+$MESS["CAT_1C_DETAIL_WIDTH"] = "Detaliojo vaizdo maksimalus plotis";
+$MESS["CAT_1C_DETAIL_HEIGHT"] = "Detaliojo vaizdo maksimalus aukðtis";
+$MESS["CAT_1C_USE_OFFERS_2"] = "Importuoti SKU (savybes) á atskirà informaciná blokà";
+$MESS["CAT_1C_FORCE_OFFERS_2"] = "Iðsaugoti kainas tik á SKU informacijos blokà";
+$MESS["CAT_1C_USE_IBLOCK_TYPE_ID"] = "Eksportuoti atsiþvelgiant á informacijos bloko tipà";
+$MESS["CAT_1C_USE_IBLOCK_PICTURE_SETTINGS"] = "Naudoti informacijos bloko nustatymus vaizdui apdoroti";
+$MESS["CAT_1C_TRANSLIT_ON_ADD_2"] = "Iðvesti simboliná kodà ið produkto ar produktø grupës pavadinimo (naudoti transliteracijà, jei reikia)";
+$MESS["CAT_1C_TRANSLIT_ON_UPDATE_2"] = "Iðvesti simboliná kodà ið produkto ar produktø grupës pavadinimo atnaujinant (naudoti transliteracijà, jei reikia)";
+$MESS["CAT_1C_TRANSLIT_REPLACE_CHAR"] = "Pakeisti neabëcëlinius simbolius su";
+$MESS["CAT_1C_SKIP_ROOT_SECTION_2"] = "Neimportuoti vieniðø ðaknies grupës mazgø";
+$MESS["CAT_1C_EXTENDED_SETTINGS"] = "Iðplësti parametrai";
+$MESS["CAT_1C_DISABLE_CHANGE_PRICE_NAME"] = "Nekeiskite kainos tipo pavadinimà, jei naudojamas iðorinis ID (XML_ID)";
+$MESS["CAT_1C_SETTINGS_SAVE_DENIED"] = "Jums reikia turëti branduolio (pagrindinio) modulio \"Redaguoti PHP kodà\" prieigos leidimà (edit_php), kad galëtumëte redaguoti parametrus ðiame skirtuke.";
+?>

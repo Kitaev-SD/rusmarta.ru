@@ -1,0 +1,35 @@
+<?
+$MESS["VOTE_SORTING"] = "چیدمان:";
+$MESS["VOTE_SITE"] = "سایتها:";
+$MESS["VOTE_FORGOT_TITLE"] = "لطفا فیلد \"عنوان\" را پر کنید";
+$MESS["VOTE_EDIT_RECORD"] = "تنظیمات کانال نظرسنجی # #ID#";
+$MESS["VOTE_NEW_RECORD"] = "کانال جدید نظرسنجی";
+$MESS["VOTE_SYMBOLIC_NAME_ALREADY_IN_USE"] = "کد به یادآوری وارد شده هم اکنون در گروه نظرسنجی  # #ID# مورد استفاده قرار است.";
+$MESS["VOTE_RECORDS_LIST"] = "فهرست کانال";
+$MESS["VOTE_TIMESTAMP"] = "ویرایش شده:";
+$MESS["VOTE_ACTIVE"] = "فعال:";
+$MESS["VOTE_VOTE_SINGLE"] = "تنها یک نظرسنجی از هر کانال فعال باشد";
+$MESS["VOTE_SYMBOLIC_NAME"] = "کد به یادآوری:";
+$MESS["VOTE_TITLE"] = "عنوان:";
+$MESS["VOTE_VOTES"] = "نظرسنجی ها:";
+$MESS["VOTE_RIGHTS"] = "پروانه گروه های کاربری";
+$MESS["VOTE_DENIED"] = "ممنوع";
+$MESS["VOTE_READ"] = "دیدن نتایج";
+$MESS["VOTE_WRITE"] = "رای دادن";
+$MESS["VOTE_FORGOT_SYMBOLIC_NAME"] = "لطفا فیلد \"کد به یادآوری\" را پر کنید.";
+$MESS["VOTE_INCORRECT_SYMBOLIC_NAME"] = "کد به یادآوری صحیح نمی باشد (تنها حروف و اعداد لاتین و آندر لاین \"_\" مورد قبول است).";
+$MESS["VOTE_VOTE_ADD"] = "افزودن نظرسنجی";
+$MESS["VOTE_CREATE_NEW_RECORD"] = "ساخت کانال جدید";
+$MESS["VOTE_DELETE_RECORD"] = "حذف کانال";
+$MESS["VOTE_DELETE_RECORD_CONFIRM"] = "آیا کانال نظرسنجی و نظرسنجی های آن را حذف می کنید؟";
+$MESS["VOTE_PROP"] = "مشخصات";
+$MESS["VOTE_ACCESS"] = "دسترسی";
+$MESS["VOTE_GRP_PROP"] = "مشخصات کانال";
+$MESS["VOTE_SITE_EDIT"] = "ویرایش سایت";
+$MESS["VOTE_GOT_ERROR"] = "خطا در ذخیره کانال";
+$MESS["VOTE_VOTES_TITLE"] = "فهرست نظرسنجی های این کانال";
+$MESS["VOTE_CREATE_VOTE"] = "ساخت نظرسنجی";
+$MESS["VOTE_CREATE"] = "ساخت";
+$MESS["VOTE_LIST"] = "فهرست";
+$MESS["VOTE_DELETE"] = "حذف";
+?>

@@ -1,0 +1,13 @@
+<?
+$MESS["SALE_LOCATION_ASSERT_INTEGER_EXPECTED"] = "#ARG_NAME# turi bûti sveikasis skaièius.";
+$MESS["SALE_LOCATION_ASSERT_INTEGER_NOTNULL_EXPECTED"] = "#ARG_NAME# turi bûti teigiamas sveikasis skaièius.";
+$MESS["SALE_LOCATION_ASSERT_ARRAY_NOT_EMPTY_EXPECTED"] = "#ARG_NAME# turi bûti ne tuðèias masyvas.";
+$MESS["SALE_LOCATION_ASSERT_STRING_NOTNULL_EXPECTED"] = "#ARG_NAME# turi bûti ne nulinio ilgio eilutë.";
+$MESS["SALE_LOCATION_ASSERT_ARRAY_EXPECTED"] = "#ARG_NAME# neturi bûti masyvas.";
+$MESS["SALE_LOCATION_ASSERT_ARRAY_OF_INTEGER_NOT_NULL_EXPECTED"] = "#ARG_NAME# yra ne teigiamø sveikøjø skaièiø masyvas.";
+$MESS["SALE_LOCATION_ASSERT_ARRAY_OF_STRING_NOT_NULL_EXPECTED"] = "#ARG_NAME# yra netuðèiø eiluèiø masyvas.";
+$MESS["SALE_LOCATION_ASSERT_EMPTY_ENUMERATION"] = "Á tikrinimo metodà perduotas tusèias sàraðas.";
+$MESS["SALE_LOCATION_ASSERT_ITEM_NOT_IN_ENUMERATION"] = "#ARG_NAME# nëra viena ið sàraðo vertybiø.";
+$MESS["SALE_LOCATION_ASSERT_EMPTY_ARGUMENT"] = "Tuðèias argumentas paduotas";
+$MESS["SALE_LOCATION_ASSERT_INTEGER_NONNEGATIVE_EXPECTED"] = "Argumentas #ARG_NAME# turi bûti ne neigiamas sveikasis skaièius.";
+?>

@@ -1,0 +1,4 @@
+<?
+$MESS["DELIVERY_EXTRA_SERVICE_STRING_PRICE"] = "Prekës kaina";
+$MESS["DELIVERY_EXTRA_SERVICE_STRING_TITLE"] = "Kiekinë parinktis";
+?>

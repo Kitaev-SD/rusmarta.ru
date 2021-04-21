@@ -1,0 +1,33 @@
+<?
+$MESS["NO_LOC_FILE"] = "La ubicación del archivo no se ha subido";
+$MESS["WSL_CANCELSTEP_BUTTONTITLE"] = "Cerrar";
+$MESS["WSL_CANCELSTEP_CONTENT"] = "El asistente ha sido interrumpido. Ninguna data ha sido importada.";
+$MESS["WSL_CANCELSTEP_TITLE"] = "El asistente ha sido interrumpido";
+$MESS["WSL_FINALSTEP_BUTTONTITLE"] = "Finalizar";
+$MESS["WSL_FINALSTEP_CONTENT"] = "Felicidades! La ubicación del importador del asistente ha sido completada con éxito.";
+$MESS["WSL_FINALSTEP_TITLE"] = "El asistente ha finalizado";
+$MESS["WSL_STEP1_CONTENT"] = "Bienvenido a la ubicación Asistente de importación! Este asistente le ayudará a los lugares de importación para <br /><b>Bitrix Site Manager</b><br /><br />Oprimir \"Siguiente\" para elegir opciones de importación.";
+$MESS["WSL_STEP1_TITLE"] = "Importar ubicacaión de asistente";
+$MESS["WSL_STEP2_GFILE_CNTR"] = "Mundo (ciudades)";
+$MESS["WSL_STEP2_GFILE_ERROR"] = "La fuente del archivo no está especificada";
+$MESS["WSL_STEP2_GFILE_FILE"] = "subir el archivo";
+$MESS["WSL_STEP2_GFILE_NONE"] = "ninguno";
+$MESS["WSL_STEP2_GFILE_TITLE"] = "Fuente de archivo:";
+$MESS["WSL_STEP2_GFILE_USA"] = "USA (ciudades)";
+$MESS["WSL_STEP2_GFILE_USSR"] = "Rusia y CIS (pueblos y ciudades)";
+$MESS["WSL_STEP2_GFILE_ZIP"] = "Base del código ZIP";
+$MESS["WSL_STEP2_GSYNC_HINT"] = "Atención! sincronización de base de datos puede tomar un tiempo largo";
+$MESS["WSL_STEP2_GSYNC_N"] = "quitar data existente";
+$MESS["WSL_STEP2_GSYNC_TITLE"] = "Sincronización:";
+$MESS["WSL_STEP2_GSYNC_Y"] = "sincronizar data nueva y existente";
+$MESS["WSL_STEP2_TITLE"] = "Fuente de archivos";
+$MESS["WSL_STEP3_ERROR_TRY"] = "Intente de nuevo";
+$MESS["WSL_STEP3_LOADING"] = "Cargar";
+$MESS["WSL_STEP3_TITLE"] = "Importar fuente de archivos.";
+$MESS["WSL_STEP4_LOADING"] = "Procesando...";
+$MESS["WSL_STEP4_TITLE"] = "Proceso de la base de datos";
+$MESS["WSL_STEP5_STEP_LENGTH_ERROR"] = "La dureción del paso no debe ser nula.";
+$MESS["WSL_STEP5_STEP_LENGTH_HINT"] = "Especificar aquí la diración deseada del proceso en un paso. Cambiar este parámetro sólo si usted está completamente seguro que la página podra ejecutarse dentro del período especificado.";
+$MESS["WSL_STEP5_STEP_LENGTH_TITLE"] = "Duración del paso (sec)";
+$MESS["WSL_STEP5_TITLE"] = "Parámetros";
+?>

@@ -1,0 +1,4 @@
+<?
+$MESS["SALE_CASHBOX_PREPAYMENT_DELIVERY"] = "Entrega";
+$MESS["SALE_CASHBOX_SELL_ORDER_NAME"] = "Pago completo";
+?>

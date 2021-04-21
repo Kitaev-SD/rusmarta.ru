@@ -1,0 +1,5 @@
+<?
+$MESS["CD_BST_NAME"] = "Antraðèiø paieðka";
+$MESS["CD_BST_DESCRIPTION"] = "Dinaminiø antraðèiø paieðka.";
+$MESS["CD_BST_SEARCH"] = "Paieðka";
+?>

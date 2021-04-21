@@ -1,0 +1,36 @@
+<?
+$MESS["IBLOCK_CACHE_FILTER"] = "Keðuoti esant aktyviam filtrui";
+$MESS["T_IBLOCK_DESC_ASC"] = "didëjanèia";
+$MESS["T_IBLOCK_DESC_DESC"] = "maþëjanèia";
+$MESS["T_IBLOCK_DESC_FID"] = "ID";
+$MESS["T_IBLOCK_DESC_FNAME"] = "Pavadinimas";
+$MESS["T_IBLOCK_DESC_FACT"] = "Aktyvavimo pradþios data";
+$MESS["T_IBLOCK_DESC_FSORT"] = "Rûðiavimas";
+$MESS["T_IBLOCK_DESC_FTSAMP"] = "Paskutiniojo pakeitimo data";
+$MESS["T_IBLOCK_DESC_IBORD1"] = "Laukas pirmajam naujienø rûðiavimui";
+$MESS["T_IBLOCK_DESC_IBBY1"] = "Pirmojo naujienø rûðiavimo kryptis";
+$MESS["T_IBLOCK_DESC_IBORD2"] = "Laukas antrajam naujienø rûðiavimui";
+$MESS["T_IBLOCK_DESC_IBBY2"] = "Antrojo naujienø rûðiavimo kryptis";
+$MESS["T_IBLOCK_DESC_LIST_ID"] = "Informacinio bloko kodas";
+$MESS["T_IBLOCK_DESC_LIST_TYPE"] = "Informacinio bloko tipas(naudojamas tik patikrinimui)";
+$MESS["T_IBLOCK_DESC_LIST_CONT"] = "Naujienø skaièius puslapyje";
+$MESS["T_IBLOCK_DESC_DETAIL_PAGE_URL"] = "Detalios perþiûros puslapio URL (pagal nutylëjimà - ið informacinio bloko nustatymø)";
+$MESS["T_IBLOCK_DESC_INCLUDE_IBLOCK_INTO_CHAIN"] = "Átraukti informaciná blokà á navigacijos grandinæ";
+$MESS["T_IBLOCK_PROPERTY"] = "Savybës";
+$MESS["T_IBLOCK_FILTER"] = "Filtras";
+$MESS["IBLOCK_FIELD"] = "Laukai";
+$MESS["T_IBLOCK_DESC_ACTIVE_DATE_FORMAT"] = "Datos atvaizdavimo formatas";
+$MESS["T_IBLOCK_DESC_PAGER_NEWS"] = "Naujienos";
+$MESS["T_IBLOCK_DESC_PREVIEW_TRUNCATE_LEN"] = "Didþiausias anonso teksto ilgis (tik Tekstas tipui)";
+$MESS["T_IBLOCK_DESC_HIDE_LINK_WHEN_NO_DETAIL"] = "Paslëpti nuorodà jeigu nëra detalaus apraðymo";
+$MESS["IBLOCK_SECTION_ID"] = "Skyriaus ID";
+$MESS["IBLOCK_SECTION_CODE"] = "Skyriaus kodas";
+$MESS["T_IBLOCK_DESC_ADD_SECTIONS_CHAIN"] = "Átraukti skirsná á navigacijos grandinæ";
+$MESS["T_IBLOCK_DESC_CHECK_DATES"] = "Atvaizduoti tik ðiuo momentu aktyvius elementus";
+$MESS["CP_BNL_CACHE_GROUPS"] = "Atsiþvelgti á prieigos teises";
+$MESS["CP_BNL_INCLUDE_SUBSECTIONS"] = "Rodyti elementus ið poskyriø";
+$MESS["CP_BNL_SET_META_KEYWORDS"] = "Nustatyti raktaþodþiai";
+$MESS["CP_BNL_SET_META_DESCRIPTION"] = "Nustatyti puslapio apraðymà";
+$MESS["CP_BNL_SET_BROWSER_TITLE"] = "Nustatyti narðyklës lango pavadinimà";
+$MESS["CP_BNL_SET_LAST_MODIFIED"] = "Nustatyti atsakymo antraðtëse puslapio modifikavimo laikà";
+?>

@@ -1,0 +1,7 @@
+<?
+$MESS["COUNTRY_INPUT_NAME_TIP"] = "Formos lauko, kuriame bus áraðyta ðalis, pavadinimas.";
+$MESS["CITY_INPUT_NAME_TIP"] = "Formos lauko, kuriame bus áraðytas miestas arba vieta, pavadinimas.";
+$MESS["COUNTRY_TIP"] = "Èia pasirinkite ðalá, kuri bus rodomas pirma sàraðe.";
+$MESS["CITY_OUT_LOCATION_TIP"] = "Paþymëjus, perþiûros programa gràþins vietos ID.";
+$MESS["ONCITYCHANGE_TIP"] = "Nurodo miesto pasirinkimo ávykio tvarkymo programos pavadinimà.";
+?>

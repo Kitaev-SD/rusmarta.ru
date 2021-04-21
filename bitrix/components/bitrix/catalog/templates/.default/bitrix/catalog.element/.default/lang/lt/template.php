@@ -1,0 +1,35 @@
+<?
+$MESS["CATALOG_QUANTITY"] = "Kiekis";
+$MESS["CATALOG_QUANTITY_FROM_TO"] = "Nuo #FROM# iki #TO#";
+$MESS["CATALOG_QUANTITY_FROM"] = "Nuo #FROM#";
+$MESS["CATALOG_QUANTITY_TO"] = "iki #TO#";
+$MESS["CATALOG_PRICE_VAT"] = "su PVM";
+$MESS["CATALOG_PRICE_NOVAT"] = "be PVM";
+$MESS["CATALOG_VAT"] = "PVM";
+$MESS["CATALOG_NO_VAT"] = "be mokeðèiø";
+$MESS["CATALOG_VAT_INCLUDED"] = "PVM átrauktas á kainà";
+$MESS["CATALOG_VAT_NOT_INCLUDED"] = "PVM neátrauktas á kainà";
+$MESS["CT_BCE_QUANTITY"] = "Kiekis";
+$MESS["CT_BCE_CATALOG_BUY"] = "Pirkti";
+$MESS["CT_BCE_CATALOG_ADD"] = "Á krepðelá";
+$MESS["CT_BCE_CATALOG_COMPARE"] = "Palyginti";
+$MESS["CT_BCE_CATALOG_NOT_AVAILABLE"] = "(nëra sandëlyje)";
+$MESS["OSTATOK"] = "Likutis";
+$MESS["COMMENTARY"] = "Komentarai";
+$MESS["CT_BCE_CATALOG_ECONOMY_INFO"] = "(sutaupote - #ECONOMY#)";
+$MESS["FULL_DESCRIPTION"] = "Iðsamus apraðymas";
+$MESS["CT_BCE_CATALOG_TITLE_ERROR"] = "Klaida";
+$MESS["CT_BCE_CATALOG_TITLE_BASKET_PROPS"] = "Prekës savybës, norint perkelti jà á krepðelá";
+$MESS["CT_BCE_CATALOG_BASKET_UNKNOWN_ERROR"] = "Neþinoma klaida, ádedant prekæ á krepðelá";
+$MESS["CT_BCE_CATALOG_BTN_SEND_PROPS"] = "Pasirinkti";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_CLOSE"] = "Uþdaryti";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_BASKET_REDIRECT"] = "Perþiûrëti krepðelá";
+$MESS["CT_BCE_CATALOG_ADD_TO_BASKET_OK"] = "Ádëta á jûsø krepðelá";
+$MESS["CT_BCE_CATALOG_MESS_BASIS_PRICE"] = "#PRICE# uþ 1 #MEASURE#";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_CLOSE_POPUP"] = "Tæsti apsipirkimà";
+$MESS["CT_BCE_CATALOG_MESS_COMPARE_OK"] = "Prekë pridëta á jûsø palyginimø sàraðà";
+$MESS["CT_BCE_CATALOG_MESS_COMPARE_TITLE"] = "Prekiø palyginimas";
+$MESS["CT_BCE_CATALOG_MESS_COMPARE_UNKNOWN_ERROR"] = "Klaida pridedant produktà á palyginimo sàraðà";
+$MESS["CT_BCE_CATALOG_BTN_MESSAGE_COMPARE_REDIRECT"] = "Palyginti prekes";
+$MESS["CT_BCE_CATALOG_PRODUCT_GIFT_LABEL"] = "Dovana";
+?>

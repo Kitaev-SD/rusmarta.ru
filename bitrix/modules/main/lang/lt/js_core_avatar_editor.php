@@ -1,0 +1,14 @@
+<?
+$MESS["JS_AVATAR_EDITOR_TRY_AGAIN"] = "Bandykite ið naujo
+";
+$MESS["JS_AVATAR_EDITOR_FILE"] = "Failas";
+$MESS["JS_AVATAR_EDITOR_PICK_UP_THE_FILE"] = "Ákelti ið disko...";
+$MESS["JS_AVATAR_EDITOR_DROP_FILES_INTO_THIS_AREA"] = "Vilkite ir meskite vaizdà èia";
+$MESS["JS_AVATAR_EDITOR_CAMERA"] = "Kamera";
+$MESS["JS_AVATAR_EDITOR_TITLE_BAR"] = "Failo ákëlimas
+";
+$MESS["JS_AVATAR_EDITOR_SAVE_BUTTON"] = "Áraðyti";
+$MESS["JS_AVATAR_EDITOR_CANCEL_BUTTON"] = "Atðaukti";
+$MESS["JS_AVATAR_EDITOR_ERROR_IMAGE_DEPLOYING"] = "Rodant vaizdà ávyko klaida";
+$MESS["JS_AVATAR_EDITOR_ERROR"] = "Klaida:";
+?>

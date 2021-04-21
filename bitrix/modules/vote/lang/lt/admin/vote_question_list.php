@@ -1,0 +1,35 @@
+<?
+$MESS["VOTE_ADD_QUESTION"] = "Pridëti klausimà";
+$MESS["VOTE_VOTE_LIST"] = "Apklausø sàraðas";
+$MESS["VOTE_F_ACTIVE"] = "Aktyvus:";
+$MESS["VOTE_F_DIAGRAM"] = "Ptrauktas á diagramà:";
+$MESS["VOTE_F_QUESTION"] = "Klausimas:";
+$MESS["VOTE_PAGES"] = "Klausimai";
+$MESS["VOTE_TIMESTAMP_X"] = "Atnaujinta";
+$MESS["VOTE_C_SORT"] = "Rûðiavimas";
+$MESS["VOTE_DIAGRAM"] = "Giagrama.";
+$MESS["VOTE_QUESTION"] = "Klausimas";
+$MESS["VOTE_CONFIRM_DEL_QUESTION"] = "Ar tikrai norite paðalinti ði klausimà?";
+$MESS["VOTE_FLT_ID"] = "Klausimo ID";
+$MESS["VOTE_FLT_ACTIVE"] = "Aktyvus:";
+$MESS["VOTE_FLT_DIAGRAM"] = "Átraukti á diagramà:";
+$MESS["VOTE_DELETE"] = "ðalinti";
+$MESS["VOTE_ACTIVATE"] = "aktyvuoti";
+$MESS["VOTE_DEACTIVATE"] = "dezaktyvuoti";
+$MESS["VOTE_SAVE_ERROR"] = "Klaida áraðant á duomenø bazæ";
+$MESS["VOTE_NOT_FOUND"] = "Neteisingas apklausos ID";
+$MESS["VOTE_YES"] = "Taip";
+$MESS["VOTE_NO"] = "Ne";
+$MESS["VOTE_ALL"] = "(visi)";
+$MESS["VOTE_EXACT_MATCH"] = "Naudoti tiklsø atitikimà";
+$MESS["VOTE_CREATE"] = "Sukurti";
+$MESS["VOTE_ACTIVE"] = "Aktivi";
+$MESS["SAVE_ERROR"] = "Ávyko klaida iðsaugant objektà.";
+$MESS["DELETE_ERROR"] = "Ávyko klaida ðalinant objektà.";
+$MESS["VOTE_FLT_REQUIRED"] = "Privalomas klausimas";
+$MESS["VOTE_F_REQUIRED"] = "Privaloma";
+$MESS["VOTE_REQUIRED"] = "Privaloma";
+$MESS["VOTE_PAGE_TITLE"] = "Klausimø sàraðas";
+$MESS["VOTE_BACK_TO_VOTE"] = "Eiti á apklausà";
+$MESS["VOTE_IMAGE_ID"] = "Apklausos vaizdas";
+?>

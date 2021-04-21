@@ -1,0 +1,32 @@
+<?
+$MESS["BITRIXTV_GROUP_PREVIEW_TV"] = "Configurações do Player";
+$MESS["BITRIXTV_GROUP_PREVIEW_TV_PLAYER"] = "Configurações da lista de reprodução";
+$MESS["BITRIXTV_GROUP_SETTINGS"] = "Configurações Gerais";
+$MESS["BITRIXTV_SETTING_ALLOW_SWF"] = "Permitir arquivos SWF a serem executados (não recomendado)";
+$MESS["BITRIXTV_SETTING_DEFAULT_BIG_IMAGE"] = "Imagem grande (por padrão)";
+$MESS["BITRIXTV_SETTING_DEFAULT_SMALL_IMAGE"] = "Imagem pequena (por padrão)";
+$MESS["BITRIXTV_SETTING_DURATION"] = "Imóvel com valor de duração de arquivo de vídeo";
+$MESS["BITRIXTV_SETTING_IBLOCK_ID"] = "Código de bloco de informação";
+$MESS["BITRIXTV_SETTING_IBLOCK_TYPE"] = "Tipo de bloco de informação";
+$MESS["BITRIXTV_SETTING_LOGO"] = "Logomarca";
+$MESS["BITRIXTV_SETTING_PATH_TO_FILE"] = "Propriedade com o caminho para o arquivo de vídeo";
+$MESS["BITRIXTV_SETTING_PREVIEW_HEIGHT"] = "Altura do player";
+$MESS["BITRIXTV_SETTING_PREVIEW_TV_ELEMENT"] = "Elemento";
+$MESS["BITRIXTV_SETTING_PREVIEW_TV_SECTION"] = "Seção";
+$MESS["BITRIXTV_SETTING_PREVIEW_WIDTH"] = "Largura do player";
+$MESS["BITRIXTV_SETTING_SHOW_COUNTER_EVENT"] = "Incremento do contador de visualização de elemento";
+$MESS["BITRIXTV_SETTING_STAT"] = "Estatísticas de visualizações";
+$MESS["BITRIXTV_SETTING_STAT_EVENT"] = "Rastrear eventos em Web Analytics";
+$MESS["BITRIXTV_SETTING_STAT_EVENT1"] = "event1";
+$MESS["BITRIXTV_SETTING_STAT_EVENT2"] = "event2";
+$MESS["CP_BIT_CACHE_GROUPS"] = "Respeitar permissões de acesso";
+$MESS["T_IBLOCK_DESC_ASC"] = "Ascendente";
+$MESS["T_IBLOCK_DESC_DESC"] = "Descendente";
+$MESS["T_IBLOCK_DESC_FACT"] = "Data de início";
+$MESS["T_IBLOCK_DESC_FID"] = "ID";
+$MESS["T_IBLOCK_DESC_FNAME"] = "Nome:";
+$MESS["T_IBLOCK_DESC_FSORT"] = "Ordenando";
+$MESS["T_IBLOCK_DESC_FTSAMP"] = "Última modificação";
+$MESS["T_IBLOCK_DESC_IBBY1"] = "Primeira ordem de classificação";
+$MESS["T_IBLOCK_DESC_IBORD1"] = "Primeiro campo de classificação";
+?>

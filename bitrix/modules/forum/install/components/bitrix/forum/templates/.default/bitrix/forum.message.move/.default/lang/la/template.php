@@ -1,0 +1,35 @@
+<?
+$MESS["FORUM_MAIN_WAIT"] = "Por favor espere...";
+$MESS["F_ANCHOR"] = "Vínculo para este correo";
+$MESS["F_ATTACH_FILES"] = "Archivos adjuntos";
+$MESS["F_AUTHOR_PROFILE"] = "Mensaje del perfil del autor:";
+$MESS["F_BAD_NEW_TOPIC"] = "No hay tema seleccionado. Oprimir &laquo;<b>...</b>&raquo; para ubicar el tema solicitud.";
+$MESS["F_BAD_TOPIC"] = "El tema no fue encontrado.";
+$MESS["F_BUTTON_MOVE"] = "Quitar";
+$MESS["F_DATE_REGISTER"] = "Miembro desde:";
+$MESS["F_DELETE"] = "Borrar";
+$MESS["F_DELETE_MESSAGES_CONFIRM"] = "Esto podría borrar irreversiblemente los mensajes. Continuar?";
+$MESS["F_EDIT"] = "Modificar";
+$MESS["F_EDIT_HEAD"] = "Editado:";
+$MESS["F_EMAIL_TITLE"] = "Enviar mensaje de correo electrónico";
+$MESS["F_HEAD_TO_EXIST_TOPIC"] = "tema existente";
+$MESS["F_HEAD_TO_NEW_TOPIC"] = "un nuevo tema";
+$MESS["F_HIDE"] = "Ocultar";
+$MESS["F_MOVE_TO"] = "Quitar a";
+$MESS["F_NUM_MESS"] = "Total de mensajes:";
+$MESS["F_POINTS"] = "Puntos:";
+$MESS["F_PRIVATE_MESSAGE"] = "Mensaje";
+$MESS["F_PRIVATE_MESSAGE_TITLE"] = "Enviar mensaje privado";
+$MESS["F_REAL_IP"] = "/ real";
+$MESS["F_SHOW"] = "Mostrar";
+$MESS["F_TITLE"] = "Quitar correos";
+$MESS["F_TITLE_ON_FORUM"] = "en el foro";
+$MESS["F_TOPIC_DESCR"] = "Descripción del tema";
+$MESS["F_TOPIC_ID"] = "ID del tema";
+$MESS["F_TOPIC_NAME"] = "Tema del tema";
+$MESS["F_TOPIC_NOT_FOUND"] = "tema no fue encontrado";
+$MESS["F_TOPIC_SEARCH_TITLE"] = "Ingreser el tema o hacer click &laquo;...&raquo; para buscar un tema necesario.";
+$MESS["F_TOPIC_TAGS"] = "Etiquetas:";
+$MESS["F_USER_ID"] = "ID del invitado";
+$MESS["F_USER_ID_USER"] = "ID del usuariob";
+?>

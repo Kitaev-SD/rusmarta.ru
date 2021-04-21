@@ -1,0 +1,16 @@
+<?
+$MESS["CVAT_TITLE_UPDATE"] = "Mokesèiø tarifo redagavimas";
+$MESS["CVAT_TITLE_ADD"] = "Naujas mokesèio tarifas";
+$MESS["CVAT_LIST"] = "Sàraðas";
+$MESS["CVAT_NEW"] = "Pridëti";
+$MESS["CVAT_DELETE"] = "Paðalinnti";
+$MESS["CVAT_DELETE_CONFIRM"] = "Ar tikrai norite paðalinti ðá mokesèiø tarifà? ";
+$MESS["CVAT_TAB"] = "Mokestis ";
+$MESS["CVAT_TAB_DESCR"] = "Mokesèio tarifas";
+$MESS["CVAT_ACTIVE"] = "Act.";
+$MESS["CVAT_NAME"] = "Pavadinimas";
+$MESS["CVAT_RATE"] = "Tarifas";
+$MESS["CVAT_SORT"] = "Rûð.";
+$MESS["CVAT_ERR_ADD"] = "Klaida kuriant mokesèio tarifo áraðà";
+$MESS["CVAT_ERR_UPDATE"] = "Klaida atnaujinant mokesèio tarifo áraðà ##ID#";
+?>

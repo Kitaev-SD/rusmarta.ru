@@ -1,0 +1,30 @@
+<?
+$MESS['subscr_title_edit'] = 'Redaguoti adresà #';
+$MESS['subscr_title_add'] = 'Pridëti adresà';
+$MESS['subscr_list'] = 'Adresø sàraðas';
+$MESS['subscr_conf'] = 'Prenumerata patvirtinta:';
+$MESS['subscr_conf_code'] = 'Prenumeratos patvirtinimo kodas:';
+$MESS['subscr_date_conf'] = 'Patvirtinimo kodo generacijos data:';
+$MESS['subscr_user'] = 'Naudotojas (ID):';
+$MESS['subscr_active'] = 'Prenumerata aktyvuota:';
+$MESS['subscr_send_conf'] = 'Siøsti prenumeratoriui patvirtinimo kodà keièiant (pridedant) adresà:';
+$MESS['subscr_rub'] = 'Naujienlaiðkiø kategorijos:';
+$MESS['subscr_fmt'] = 'Formatas:';
+$MESS['subscr_fmt_text'] = 'Tekstas';
+$MESS['subscr_date_add'] = 'Pridëjimo data:';
+$MESS['subscr_date_upd'] = 'Atnaujinimo data:';
+$MESS['subscr_anonym'] = 'Anonimus prenumeratorius:';
+$MESS['subscr_mnu_add'] = 'Pridëti naujà prenumeratoriø';
+$MESS['subscr_mnu_del'] = 'Ðalinti prenumeratoriø';
+$MESS['subscr_mnu_del_conf'] = 'Ðalinti prenumeratoriaus adresà?';
+$MESS['subscr_templ'] = 'Siøsti laiðkà naudojant svetainës ðablonus: ';
+$MESS['subscr_tab_subscriber'] = 'Prenumeratorius';
+$MESS['subscr_tab_subscriber_title'] = 'Prenumeratos parametrai';
+$MESS['subscr_tab_subscription'] = 'Prenumeratos';
+$MESS['subscr_tab_subscription_title'] = 'Naujienlaiðkiø kategorijos';
+$MESS['subs_save_error'] = 'Klaida iðsaugojant prenumeratos ardesà.';
+$MESS['subscr_list_text'] = 'Sàraðas';
+$MESS['subscr_add_text'] = 'Pridëti';
+$MESS['subscr_del_text'] = 'Ðalinti';
+$MESS['subs_saved'] = 'Prenumeratos adresas sekmingai iðsaugotas.';
+?>

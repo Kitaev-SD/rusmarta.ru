@@ -1,0 +1,14 @@
+<?
+$MESS["P_UP"] = "Albumø sàraðas";
+$MESS["P_UP_TITLE"] = "Pereiti á albumø sàraðà";
+$MESS["P_PHOTO_SORT_ID"] = "Nauji";
+$MESS["P_PHOTO_SORT_ID_TITLE"] = "pagal sukûrimo datà";
+$MESS["P_PHOTO_SORT_SHOWS"] = "Populiariausios";
+$MESS["P_PHOTO_SORT_SHOWS_TITLE"] = "pagal perþiûrø skaièiø";
+$MESS["P_PHOTO_SORT_RATING"] = "Geriausios";
+$MESS["P_PHOTO_SORT_RATING_TITLE"] = "pagal balsø skaièiø";
+$MESS["P_PHOTO_SORT_COMMENTS"] = "Labiausiai komentuojamos";
+$MESS["P_PHOTO_SORT_COMMENTS_TITLE"] = "pagal komentarø skaièiø";
+$MESS["P_SET_FILTER"] = "Nustatyti filtrà";
+$MESS["P_FILTER_SHOW"] = "Atvaizduoti";
+?>

@@ -1,0 +1,15 @@
+<?
+$MESS["SALE_HPS_PAYMASTER_ERROR_PARAMS_VALUE"] = "ѕараметри платежу не зб≥гаютьс€ ;";
+$MESS["SALE_HPS_PAYMASTER_SIM_MODE_TEST"] = "тестовий режим, реально грош≥ не переводилис€; ";
+$MESS["SALE_HPS_PAYMASTER_DESC_MERCHANT_ID"] = "гаманець продавц€ - #MERCHANT_ID# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_SYS_INVS_NO"] = "номер рахунку - #SYS_INVS_NO# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_SYS_TRANS_NO"] = "номер платежу - #SYS_TRANS_NO# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_SYS_TRANS_DATE"] = "дата платежу - #SYS_TRANS_DATE# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAY_SYSTEM"] = "плат≥жна система - #PAY_SYSTEM# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_PURSE"] = "гаманець покупц€ - #PAYER_PURSE# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_WM"] = "WMId покупц€ - #PAYER_WM# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_NUMBER"] = "номер ¬ћ-карти - #PAYMER_NUMBER# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_PAYER_EMAIL"] = "paymer.com e-mail покупц€ - #PAYMER_EMAIL# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_TELEPAT_PHONENUMBER"] = "телефон покупц€ - #TELEPAT_PHONENUMBER# ;";
+$MESS["SALE_HPS_PAYMASTER_DESC_TELEPAT_ORDERID"] = "плат≥ж у “елепат≥ - #TELEPAT_ORDERID# ;";
+?>

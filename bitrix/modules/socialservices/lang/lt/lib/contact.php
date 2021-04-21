@@ -1,0 +1,6 @@
+<?
+$MESS["SS_JOIN_NOTIFY"] = "Jûsø draugas prisijungë prie Bitrix24. Dabar jûs galite bendrauti su juo pokalbio programoje tiesiai ið savo Bitriks24.";
+$MESS["SS_JOIN_NOTIFY_MORE"] = "dar #NUM#";
+$MESS["SS_JOIN_NOTIFY_MULTIPLE"] = "Jûsø draugai naudoja Bitrix24. Bendraukite su jais asmeniðkai, arba grupëse, tiesiai ið savo Bitrix24.";
+$MESS["SS_JOIN_NOTIFY_POSSIBLE"] = "Jûsø paþástami dirba su Bitrix24. Jûs galite bendrauti su jais, pakviesti á privaèius pokalbius, tiesiai ið savo Bitriks24.";
+?>

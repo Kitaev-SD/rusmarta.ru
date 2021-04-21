@@ -1,0 +1,9 @@
+<?
+$MESS["LNDNGHOOK_THEMEFONTS_FONT_12"] = "Дрібний";
+$MESS["LNDNGHOOK_THEMEFONTS_FONT_14"] = "Середній";
+$MESS["LNDNGHOOK_THEMEFONTS_FONT_16"] = "Великий";
+$MESS["LNDNGHOOK_THEMEFONTS_FONT_BASE"] = "Шрифт тексту";
+$MESS["LNDNGHOOK_THEMEFONTS_FONT_H"] = "Шрифт заголовків";
+$MESS["LNDNGHOOK_THEMEFONTS_FONT_SIZE"] = "Розмір тексту";
+$MESS["LNDNGHOOK_THEMEFONTS_USE"] = "Перевизначити шрифти";
+?>

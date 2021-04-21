@@ -1,0 +1,10 @@
+<?
+$MESS["VOTE_START_DATE"] = "آغاز";
+$MESS["VOTE_END_DATE"] = "پایان";
+$MESS["VOTE_IS_ACTIVE"] = "نظرسنجی باز است.";
+$MESS["VOTE_IS_NOT_ACTIVE"] = "نظرسنجی بسته است.";
+$MESS["VOTE_COUNT"] = "آرا";
+$MESS["VOTE_ENLARGE"] = "در ابعاد بزرگتر";
+$MESS["VOTE_SUBMIT_BUTTON"] = "رای";
+$MESS["VOTE_RESET"] = "نوسازی";
+?>

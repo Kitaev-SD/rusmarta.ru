@@ -1,0 +1,31 @@
+<?
+$MESS ['EDIT_LANG_TITLE'] = "Edit language";
+$MESS ['NEW_LANG_TITLE'] = "Add language";
+$MESS ['RECORD_LIST'] = "Language list";
+$MESS ['NAME'] = "Name:";
+$MESS ['ACTIVE'] = "Active:";
+$MESS ['DEF'] = "Default:";
+$MESS ['SORT'] = "Sorting index:";
+$MESS ['DIR'] = "Site folder:";
+$MESS ['FORMAT_DATE'] = "Date format:";
+$MESS ['FORMAT_DATETIME'] = "Time format:";
+$MESS ['CHARSET'] = "Encoding:";
+$MESS ['SAVE'] = "Save changes";
+$MESS ['ADD'] = "Add a new language";
+$MESS ['RESET'] = "Reset";
+$MESS ['MAIN_NEW_RECORD'] = "สร้างภาษาใหม่";
+$MESS ['MAIN_DELETE_RECORD'] = "ลบภาษา";
+$MESS ['MAIN_DELETE_RECORD_CONF'] = "คุณต้องการลบภาษานี้หรือไม่?";
+$MESS ['MAIN_PARAM'] = "Parameters";
+$MESS ['MAIN_PARAM_TITLE'] = "Parameters ของภาษา";
+$MESS ['MAIN_ERROR_SAVING'] = "พบข้อผิดพลาดขณะบันทึก";
+$MESS ['MAIN_DELETE_RECORD_TITLE'] = "ลบภาษาปัจจุบัน";
+$MESS ['MAIN_NEW_RECORD_TITLE'] = "เพิ่มภาษาใหม่";
+$MESS ['RECORD_LIST_TITLE'] = "ดูรายการภาษา";
+$MESS ['MAIN_COPY_RECORD_TITLE'] = "คัดลอกภาษา";
+$MESS ['MAIN_COPY_RECORD'] = "เพิ่ม";
+$MESS ['ERROR_DELETE'] = "ไม่สามารถลบภาษาได้ เพราะถูกใช้อยู่ในส่วนงานอื่น";
+$MESS ['DIRECTION'] = "Text orientation:";
+$MESS ['DIRECTION_LTR'] = "ซ้ายไปขวา";
+$MESS ['DIRECTION_RTL'] = "ขวาไปซ้าย";
+?>

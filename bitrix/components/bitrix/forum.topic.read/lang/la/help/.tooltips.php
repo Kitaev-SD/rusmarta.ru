@@ -1,0 +1,34 @@
+<?
+$MESS["AJAX_TYPE_TIP"] = "Usar AJAX";
+$MESS["CACHE_TIME_TIP"] = "Tiempo de Vida del Caché (seg.)";
+$MESS["CACHE_TYPE_TIP"] = "Tipo de Caché";
+$MESS["DATE_FORMAT_TIP"] = "Formato de fecha";
+$MESS["DATE_TIME_FORMAT_TIP"] = "Fecha y Hora de Formato";
+$MESS["FID_TIP"] = "ID del Foro";
+$MESS["IMAGE_SIZE_TIP"] = "Adjuntar Tamaño de imagen (píxeles)";
+$MESS["MESSAGES_PER_PAGE_TIP"] = "Número de mensajes por página";
+$MESS["MID_TIP"] = "ID del Mensaje";
+$MESS["PAGE_NAVIGATION_SHOW_ALL_TIP"] = "Habilitar la Opción Mostrar todas las Páginas";
+$MESS["PAGE_NAVIGATION_TEMPLATE_TIP"] = "Plantilla del Breadcrumb de navegación";
+$MESS["PAGE_NAVIGATION_WINDOW_TIP"] = "Páginas en los Breadcrumbs";
+$MESS["SET_NAVIGATION_TIP"] = "Mostrar Breadcrumbs";
+$MESS["SET_PAGE_PROPERTY_TIP"] = "Agregar palabras clave y Descripción del Tema al encabezado de la etiqueta ";
+$MESS["SET_TITLE_TIP"] = "Establecer Título de la Página";
+$MESS["SHOW_FIRST_POST_TIP"] = "Mostrar Publicaciones iniciales en Cada Página";
+$MESS["SHOW_RATING_TIP"] = "Mostrar Calificación";
+$MESS["TID_TIP"] = "ID del Tema";
+$MESS["URL_TEMPLATES_INDEX_TIP"] = "La página de Foros";
+$MESS["URL_TEMPLATES_LIST_TIP"] = "Página Temas ";
+$MESS["URL_TEMPLATES_MESSAGE_MOVE_TIP"] = "Página de mansajes movidos";
+$MESS["URL_TEMPLATES_MESSAGE_SEND_TIP"] = "La página de Creación de nuevo tema";
+$MESS["URL_TEMPLATES_MESSAGE_TIP"] = "Página de mensajes";
+$MESS["URL_TEMPLATES_PM_EDIT_TIP"] = "La página de Mensajes Personales";
+$MESS["URL_TEMPLATES_PROFILE_VIEW_TIP"] = "Plantilla URL paral Perfil del Usuario";
+$MESS["URL_TEMPLATES_READ_TIP"] = "Página de Vista de Temas";
+$MESS["URL_TEMPLATES_RSS_TIP"] = "RSS de la página";
+$MESS["URL_TEMPLATES_SUBSCR_LIST_TIP"] = "La página de suscripción";
+$MESS["URL_TEMPLATES_TOPIC_MOVE_TIP"] = "La página de Tema movido";
+$MESS["URL_TEMPLATES_TOPIC_NEW_TIP"] = "La página de Creación de nuevo tema";
+$MESS["URL_TEMPLATES_USER_POST_TIP"] = "Página de Mensajes del Usuario";
+$MESS["WORD_LENGTH_TIP"] = "Longitud de la Palabra";
+?>

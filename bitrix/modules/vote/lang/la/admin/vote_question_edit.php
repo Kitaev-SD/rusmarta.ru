@@ -1,0 +1,37 @@
+<?
+$MESS["VOTE_ACT"] = "Activa";
+$MESS["VOTE_ACTIVE"] = "Activo";
+$MESS["VOTE_ANSWERS"] = "Respuestas";
+$MESS["VOTE_ANSWER_LIST"] = "Lista de preguntas";
+$MESS["VOTE_COLOR"] = "Color";
+$MESS["VOTE_CONF"] = "Modificar las propiedades de la encuesta";
+$MESS["VOTE_COUNTER_QUESTION"] = "Cu¿cuantas veces fue contestada esta pregunta?";
+$MESS["VOTE_CREATE"] = "Crear";
+$MESS["VOTE_CREATE_NEW_RECORD"] = "Crear una nueva pregunta";
+$MESS["VOTE_C_SORT"] = "Ordenando:";
+$MESS["VOTE_DEL"] = "Borrar";
+$MESS["VOTE_DELETE"] = "Borrar";
+$MESS["VOTE_DELETE_RECORD"] = "Borrar pregunta";
+$MESS["VOTE_DELETE_RECORD_CONFIRM"] = "¿Está seguro que desea borrar esta pregunta?";
+$MESS["VOTE_DIAGRAM"] = "Incluir en la gráfica de resultados:";
+$MESS["VOTE_DIAGRAM_TYPE"] = "Tipo de diagrama";
+$MESS["VOTE_EDIT_RECORD"] = "Pregunta # #ID#";
+$MESS["VOTE_FIELD_HEIGHT"] = "Alto";
+$MESS["VOTE_FIELD_PARAM"] = "Parámetros";
+$MESS["VOTE_FIELD_TYPE"] = "Tipo de campo";
+$MESS["VOTE_FIELD_WIDTH"] = "Ancho";
+$MESS["VOTE_GOT_ERROR"] = "Error al salvar la pregunta";
+$MESS["VOTE_IMAGE"] = "Imagen:";
+$MESS["VOTE_MESSAGE"] = "Mensaje";
+$MESS["VOTE_MESSAGE_SPACE"] = "insertar un espacio si no proporciona un \"mensaje\" ";
+$MESS["VOTE_NEW_RECORD"] = "Nueva pregunta";
+$MESS["VOTE_QUESTION"] = "Pregunta";
+$MESS["VOTE_QUESTIONS"] = "Preguntas";
+$MESS["VOTE_QUESTIONS_LIST"] = "Lista de encuestas";
+$MESS["VOTE_QUESTION_TEXT"] = "Texto de la pregunta";
+$MESS["VOTE_REQUIRED"] = "Pregunta obligatoria";
+$MESS["VOTE_SORT"] = "Orden";
+$MESS["VOTE_TEMPLATE"] = "Plantilla para mostrar rsultados (por defecto)";
+$MESS["VOTE_TIMESTAMP"] = "Modificado:";
+$MESS["VOTE_VOTE"] = "Encuesta:";
+?>

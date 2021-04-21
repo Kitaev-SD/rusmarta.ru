@@ -1,0 +1,6 @@
+.tizers_block{font-size: 0px;margin: 25px 0px 0px;text-align: center;}
+.tizers_block .item{display: inline-block;vertical-align: middle;font-size: 0px;width: 20%;color: #000;box-sizing: border-box;padding: 0px 5px 0px 0px;-moz-transition: all 0.1s ease;-o-transition: all 0.1s ease;-ms-transition: all 0.1s ease;transition: all 0.1s ease;margin: 0px 0px 59px;margin: 25px 0px 38px;white-space: nowrap;}
+.tizers_block * {line-height: 18px;}
+.tizers_block .item a{font-size: 12px;text-decoration: none;color: #000;line-height: 16px;display: block;}
+.tizers_block .item .img{max-width: 60px;margin: 0px 20px 0px 0px;}
+.tizers_block .item .img, .tizers_block .item .title {font-size: 12px;display: inline-block;vertical-align: middle;}

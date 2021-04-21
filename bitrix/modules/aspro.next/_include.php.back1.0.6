@@ -1,0 +1,53 @@
+<?
+CModule::AddAutoloadClasses(
+	'aspro.next',
+	array(
+		'CNextCache' => 'classes/general/CNextCache.php',
+		'CNext' => 'classes/general/CNext.php',
+		'CNextTools' => 'classes/general/CNextTools.php',
+		'CNextEvents' => 'classes/general/CNextEvents.php',
+		'CNextRegionality' => 'classes/general/CNextRegionality.php',
+		'Aspro\\Solution\\CAsproMarketing' => 'classes/general/CAsproMarketing.php',
+		'Aspro\\Functions\\CAsproSku' => 'lib/functions/CAsproSku.php',
+		'Aspro\\Functions\\CAsproNextItem' => 'lib/functions/CAsproNextItem.php',
+	)
+);
+
+/* test events */
+
+/*AddEventHandler('aspro.next', 'OnAsproRegionalityAddSelectFieldsAndProps', 'OnAsproRegionalityAddSelectFieldsAndPropsHandler'); // regionality
+function OnAsproRegionalityAddSelectFieldsAndPropsHandler(&$arSelect){
+	if($arSelect)
+	{
+		// $arSelect[] = 'PROPERTY_TEST';
+	}
+}*/
+
+/*AddEventHandler('aspro.next', 'OnAsproRegionalityGetElements', 'OnAsproRegionalityGetElementsHandler'); // regionality
+function OnAsproRegionalityGetElementsHandler(&$arItems){
+	if($arItems)
+	{
+		print_r($arItems);
+		foreach($arItems as $key => $arItem)
+		{
+			$arItems[$key]['TEST'] = CUSTOM_VALUE;
+		}
+	}
+}*/
+
+/*AddEventHandler('aspro.next', 'OnAsproNextGetTotalQuantity', 'OnAsproNextGetTotalQuantityHandler'); // element quantity
+function OnAsproNextGetTotalQuantityHandler($arItem, $arParams, &$totalCount){
+	if($arItem)
+	{
+		$totalCount = CUSTOM_VALUE;
+	}
+}*/
+
+/*AddEventHandler('aspro.next', 'OnAsproNextGetBuyBlockElement', 'OnAsproNextGetBuyBlockElementHandler'); // element buy block
+function OnAsproNextGetBuyBlockElementHandler($arItem, $totalCount, $arParams, &$arOption){
+	if($arItem)
+	{
+		$arOption['HTML'] = CUSTOM_HTML;
+	}
+}*/
+?>

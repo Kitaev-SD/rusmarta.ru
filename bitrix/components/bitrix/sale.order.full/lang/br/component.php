@@ -1,0 +1,37 @@
+<?
+$MESS["INFO_REQ"] = "Você foi registrado com sucesso.";
+$MESS["SALE_BASKET_EMPTY"] = "Sua cesta está vazia";
+$MESS["SALE_DELIVERY_NOT_FOUND"] = "O método de envio não foi encontrado.";
+$MESS["SALE_DELIV_PERIOD"] = "Período de envio";
+$MESS["SALE_EMPTY_FIELD"] = "O campo está vazio:";
+$MESS["SALE_ERROR_ADD_ORDER"] = "Erro ao salvar o pedido.";
+$MESS["SALE_FROM"] = "de";
+$MESS["SALE_MODULE_NOT_INSTALL"] = "O módulo de e-Store não está instalado,";
+$MESS["SALE_NO"] = "Não";
+$MESS["SALE_NO_PAY_SYS"] = "O meio de pagamento não foi selecionado.";
+$MESS["SALE_NO_PERS_TYPE"] = "O tipo de cliente não foi selecionado.";
+$MESS["SALE_PAY_SYS_NOT_FOUND"] = "O meio de pagamento não foi encontrado.";
+$MESS["SALE_PERS_TYPE_NOT_FOUND"] = "O tipo de cliente não foi encontrado.";
+$MESS["SALE_PER_DAY"] = "dias";
+$MESS["SALE_PER_HOUR"] = "horas";
+$MESS["SALE_PER_MONTH"] = "meses";
+$MESS["SALE_PROFILE_NAME"] = "Perfil";
+$MESS["SALE_QUANTITY_UNIT"] = "peças";
+$MESS["SALE_TAX_INPRICE"] = "está incluído no preço";
+$MESS["SALE_TO"] = "para";
+$MESS["SALE_YES"] = "Sim";
+$MESS["STOF_AUTH"] = "Autorização";
+$MESS["STOF_ERROR_AUTH"] = "Erro de autorização";
+$MESS["STOF_ERROR_AUTH_LOGIN"] = "Erro de autorização: por favor, forneça o seu login";
+$MESS["STOF_ERROR_REG"] = "Erro de registro";
+$MESS["STOF_ERROR_REG_BAD_EMAIL"] = "Erro de autorização: por favor, verifique se o seu e-mail está digitado corretamente";
+$MESS["STOF_ERROR_REG_CONFIRM"] = "Você foi registrado com sucesso. A mensagem de confirmação do registro foi enviada para o seu endereço de e-mail.";
+$MESS["STOF_ERROR_REG_EMAIL"] = "Erro de autorização: por favor, forneça o seu endereço de e-mail";
+$MESS["STOF_ERROR_REG_FLAG"] = "Erro de autorização: por favor, forneça o login desejado ou deixe que o sistema crie um login automaticamente";
+$MESS["STOF_ERROR_REG_FLAG1"] = "Erro de autorização: por favor, forneça a senha desejada ou deixe que o sistema crie uma senha automaticamente";
+$MESS["STOF_ERROR_REG_LASTNAME"] = "Erro de autorização: por favor, forneça o seu sobrenome";
+$MESS["STOF_ERROR_REG_NAME"] = "Erro de autorização: por favor, forneça o seu nome";
+$MESS["STOF_ERROR_REG_PASS"] = "Erro de autorização: a senha de confirmação não corresponde à senha escolhida";
+$MESS["STOF_MAKING_ORDER"] = "Seu pedido";
+$MESS["STOF_VAT"] = "IVA";
+?>

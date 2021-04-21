@@ -1,0 +1,8 @@
+<?
+$MESS["LANDING_BLOCK_51_7_COUNTDOWN_13--DATE"] = "Data de término";
+$MESS["LANDING_BLOCK_51_7_COUNTDOWN_13--IMG"] = "Imagem de fundo";
+$MESS["LANDING_BLOCK_51_7_COUNTDOWN_13--NAME"] = "Cronômetro em uma moldura redonda em fundo claro";
+$MESS["LANDING_BLOCK_51_7_COUNTDOWN_13--NUMBER_NUMBER"] = "Número";
+$MESS["LANDING_BLOCK_51_7_COUNTDOWN_13--NUMBER_TEXT"] = "Texto";
+$MESS["LANDING_BLOCK_51_7_COUNTDOWN_13--TITLE"] = "Título";
+?>

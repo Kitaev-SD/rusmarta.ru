@@ -1,0 +1,9 @@
+<?
+$MESS["SALE_ORDER_PROPS_DEFAULT_ERROR"] = "ilgis #LENGTH# virðijà leidþiamà ilgá #MAXLENGTH#";
+$MESS["SALE_ORDER_PROPS_SETTINGS_ERROR"] = "duomenø tipo nustatymø ilgis - #LENGTH#, virðijà leidþiamà ilgá #MAXLENGTH#";
+$MESS["ORDER_PROPS_ENTITY_NAME_FIELD"] = "Pavadinimas";
+$MESS["ORDER_PROPS_ENTITY_DEFAULT_VALUE_FIELD"] = "Numatytoji reikðmë";
+$MESS["ORDER_PROPS_ENTITY_SORT_FIELD"] = "Rûðiavimas";
+$MESS["ORDER_PROPS_ENTITY_DESCRIPTION_FIELD"] = "Savybës apraðymas";
+$MESS["ORDER_PROPS_ENTITY_CODE_FIELD"] = "Mnemoninis kodas";
+?>

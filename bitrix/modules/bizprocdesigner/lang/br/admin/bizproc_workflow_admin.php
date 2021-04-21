@@ -1,0 +1,37 @@
+<?
+$MESS["BPATT_AE_CREATE"] = "Criar";
+$MESS["BPATT_AE_DELETE"] = "Excluir";
+$MESS["BPATT_AE_EDIT"] = "Atualizar";
+$MESS["BPATT_AE_NONE"] = "Não";
+$MESS["BPATT_ANY"] = "qualquer";
+$MESS["BPATT_AUTO_EXECUTE"] = "Autorun";
+$MESS["BPATT_BACK"] = "Voltar";
+$MESS["BPATT_BACK_TITLE"] = "Voltar à página anterior";
+$MESS["BPATT_DO_CREATE_TEMPLATE"] = "Criar modelo";
+$MESS["BPATT_DO_CREATE_TEMPLATE1"] = "Adicionar um novo modelo";
+$MESS["BPATT_DO_DELETE1"] = "Excluir";
+$MESS["BPATT_DO_DELETE1_CONFIRM"] = "Você tem certeza que deseja deletar esse modelo?";
+$MESS["BPATT_DO_EDIT"] = "Editar Modelo de Processos de Negócios";
+$MESS["BPATT_DO_EDIT1"] = "Editar";
+$MESS["BPATT_ERROR"] = "Erro";
+$MESS["BPATT_F_AUTOEXECUTE"] = "Autorun";
+$MESS["BPATT_F_CREATE"] = "criar";
+$MESS["BPATT_F_EDIT"] = "editar";
+$MESS["BPATT_F_NAME"] = "Nome";
+$MESS["BPATT_MODIFIED"] = "Modificado";
+$MESS["BPATT_NAME"] = "Nome";
+$MESS["BPATT_NAV"] = "Modelos de Processos de Negócios";
+$MESS["BPATT_NO_DOC_TYPE"] = "O tipo de documento é obrigatório.";
+$MESS["BPATT_NO_EDIT_PAGE"] = "A página de mudança do modelo está em falta.";
+$MESS["BPATT_NO_ENTITY"] = "A entidade documento está faltando.";
+$MESS["BPATT_NO_PERMS"] = "Você não tem permissão para acessar os modelos deste tipo de documento.";
+$MESS["BPATT_SUBMENU1_TEXT"] = "Processo de negócio Estado-driven";
+$MESS["BPATT_SUBMENU1_TEXT_TITLE"] = "Processo de negócio Estado-driven é um processo de negócio contínuo com distribuição de permissão de acesso ao lidar com documentos em situação diferente";
+$MESS["BPATT_SUBMENU2_TEXT"] = "Processo de negócio Sequential";
+$MESS["BPATT_SUBMENU2_TEXT_TITLE"] = "Processo de negócio seqüencial é um processo de negócio simples de executar uma série de ações consecutivas em um documento";
+$MESS["BPATT_TITLE"] = "Modelos de Processos de Negócios";
+$MESS["BPATT_USER"] = "Modificado por";
+$MESS["BPATT_USER_PROFILE"] = "Perfil de usuário";
+$MESS["BPWFADM_ACT"] = "Agir.";
+$MESS["BPWFADM_ERR"] = "Erro ##ID#: #ERROR_TEXT#";
+?>

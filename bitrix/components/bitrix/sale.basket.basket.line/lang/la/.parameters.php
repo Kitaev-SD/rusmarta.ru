@@ -1,0 +1,36 @@
+<?
+$MESS["HIDE_ON_BASKET_PAGES_TIP"] = "La opción oculta el componente sobre el carrito de compras y páginas de pago. Es altamente recomendable mantener esta opción activada para evitar la carga de sistema adicionales en estas páginas.";
+$MESS["PATH_TO_AUTHORIZE_TIP"] = "Este campo sólo es requerido si necesita una página de autenticación dedicada. Deje el campo vacío para usar la página de registro";
+$MESS["PATH_TO_REGISTER_TIP"] = "Deje este campo vacío para obtener la ruta a la página de registro desde las preferencias del módulo Kernel";
+$MESS["SBBL_AUTHOR"] = "Autorización";
+$MESS["SBBL_HIDE_ON_BASKET_PAGES"] = "No mostrar en el carrito de compras y páginas de pago";
+$MESS["SBBL_LIST"] = "Lista de productos";
+$MESS["SBBL_MAX_IMAGE_SIZE"] = "Tamaño máximo de la imagen del producto";
+$MESS["SBBL_PATH_TO_AUTHORIZE"] = "Página de autenticación";
+$MESS["SBBL_PATH_TO_BASKET"] = "Página de la cesta ";
+$MESS["SBBL_PATH_TO_ORDER"] = "Página de pedidos";
+$MESS["SBBL_PATH_TO_PERSONAL"] = "Sección personal";
+$MESS["SBBL_PATH_TO_PROFILE"] = "Página de perfil";
+$MESS["SBBL_PATH_TO_REGISTER"] = "Página de registro";
+$MESS["SBBL_PERSONAL"] = "Sección personal";
+$MESS["SBBL_POSITION_CENTER"] = "centro";
+$MESS["SBBL_POSITION_FIXED"] = "Mostrar componente sobre otros elementos";
+$MESS["SBBL_POSITION_HORIZONTAL"] = "Alineamiento horizontal";
+$MESS["SBBL_POSITION_HORIZONTAL_LEFT"] = "izquierda";
+$MESS["SBBL_POSITION_HORIZONTAL_RIGHT"] = "derecha";
+$MESS["SBBL_POSITION_VERTICAL"] = "Alineamiento vertical";
+$MESS["SBBL_POSITION_VERTICAL_BOTTOM"] = "abajo";
+$MESS["SBBL_POSITION_VERTICAL_TOP"] = "arriba";
+$MESS["SBBL_SHOW_AUTHOR"] = "Permitir la autorización en el carrito";
+$MESS["SBBL_SHOW_DELAY"] = "Mostrar lista de favoritos";
+$MESS["SBBL_SHOW_EMPTY_VALUES"] = "Mostrar valores cero en el carrito vacío";
+$MESS["SBBL_SHOW_IMAGE"] = "Mostrar imágenes de productos";
+$MESS["SBBL_SHOW_NOTAVAIL"] = "Mostrar productos no disponibles";
+$MESS["SBBL_SHOW_NUM_PRODUCTS"] = "Mostrar número de productos";
+$MESS["SBBL_SHOW_PERSONAL_LINK"] = "Mostrar link a la sección personal";
+$MESS["SBBL_SHOW_PRICE"] = "Mostrar precios de productos";
+$MESS["SBBL_SHOW_PRODUCTS"] = "Mostrar lista de productos";
+$MESS["SBBL_SHOW_REGISTRATION"] = "Habilitar registro de usuario";
+$MESS["SBBL_SHOW_SUMMARY"] = "Mostrar subtotal de cada fila";
+$MESS["SBBL_SHOW_TOTAL_PRICE"] = "Mostrar monto total por producto";
+?>

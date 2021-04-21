@@ -1,0 +1,36 @@
+<?
+$MESS ['EDIT_MESSAGE_TITLE'] = "Edit message template";
+$MESS ['NEW_MESSAGE_TITLE'] = "New message template";
+$MESS ['RECORD_LIST'] = "List of message templates";
+$MESS ['LAST_UPDATE'] = "Last update:";
+$MESS ['ACTIVE'] = "Active:";
+$MESS ['LID'] = "Site:";
+$MESS ['EVENT_NAME'] = "Message type:";
+$MESS ['MSG_EMAIL_FROM'] = "From:";
+$MESS ['MSG_EMAIL_TO'] = "To:";
+$MESS ['MSG_BCC'] = "Bcc:";
+$MESS ['SUBJECT'] = "Subject:";
+$MESS ['MSG_BODY_TYPE'] = "Message format:";
+$MESS ['MSG_BODY_TYPE_TEXT'] = "Text";
+$MESS ['MSG_BODY_TYPE_HTML'] = "HTML";
+$MESS ['MSG_BODY'] = "Message body:";
+$MESS ['SAVE'] = "Save";
+$MESS ['ADD'] = "Add";
+$MESS ['RESET'] = "Reset";
+$MESS ['AVAILABLE_FIELDS'] = "Available fields:";
+$MESS ['MAIN_MESS_ED_DEF_EMAIL'] = "Default e-mail address (specified in settings)";
+$MESS ['MAIN_MESS_ED_SITENAME'] = "Site name (specified in settings)";
+$MESS ['MAIN_MESS_ED_SERVERNAME'] = "Server URL (specified in settings)";
+$MESS ['MAIN_NEW_RECORD'] = "สร้าง E-Mail template ใหม่";
+$MESS ['MAIN_DELETE_RECORD'] = "ลบ E-Mail template ";
+$MESS ['MAIN_DELETE_RECORD_CONF'] = "คุณต้องการลบ E-Mail template หรือไม่?";
+$MESS ['MAIN_TAB'] = "Parameters";
+$MESS ['MAIN_TAB_TITLE'] = "E-mail template parameters";
+$MESS ['MAIN_INSERT'] = "แทรก";
+$MESS ['RECORD_LIST_TITLE'] = "รายการ templates";
+$MESS ['MAIN_NEW_RECORD_TITLE'] = "เพิ่ม templates";
+$MESS ['MAIN_DELETE_RECORD_TITLE'] = "ลบ templates ปัจจุบัน";
+$MESS ['MAIN_COPY_RECORD'] = "คัดลอก templates";
+$MESS ['MAIN_COPY_RECORD_TITLE'] = "คัดลอก templates";
+$MESS ['MAIN_ERROR_SAVING'] = "พบข้อผิดพลาดขณะบันทึก";
+?>

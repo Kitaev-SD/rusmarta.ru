@@ -1,0 +1,11 @@
+<?
+$MESS["SALE_HPS_CASH_ON_DELIVERY_LESS_1K"] = "iki 1 000 eurø imtinai";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_LESS_5K"] = "nuo 1 000 iki 5 000 eurø imtinai";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_LESS_20K"] = "nuo 5 000 iki 20 000 eurø imtinai";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_LESS_500K"] = "nuo 20 000 iki 500 000 eurø imtinai";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_RUB"] = "rub.";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_SUMM_MORE"] = "nuo sumos ir daugiau";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_TARIF_DEFAULT"] = "Pagal nutylëjimà";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_ADD_REGION"] = "Pridëti regionà";
+$MESS["SALE_HPS_CASH_ON_DELIVERY_CHOOSE_REGION"] = "Pasirinkti regionà";
+?>

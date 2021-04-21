@@ -1,0 +1,5 @@
+<?
+$MESS["LANDING_BLOCK_MENU_22-LINK"] = "Link";
+$MESS["LANDING_BLOCK_MENU_22-NAME"] = "Menu vertical";
+$MESS["LANDING_BLOCK_MENU_22-NAVBAR"] = "Menu";
+?>

@@ -1,0 +1,142 @@
+.mfeedback {
+	width:356px;
+	float:left;
+	margin:0px;
+	padding:0px;
+}
+
+.mfeedback .row {
+	width:100%;
+	float:left;
+	display:table;
+	margin:0px 0px 5px 0px;
+	padding:0px;
+}
+
+.mfeedback .row .span1 {
+	width:125px;
+	display:table-cell;
+	vertical-align:middle;
+	margin:0px;
+	padding:0px;
+	font-size:14px;
+	color:#575b71;
+	text-align:left;
+}
+
+.mfeedback .row .span2 {
+	width:auto;
+	display:table-cell;
+	margin:0px;
+	padding:0px;
+	text-align:left;
+}
+
+.mfeedback .row .span2 input[type="text"] {
+	width:100%;
+	height:30px;
+	margin:0px;
+	padding:0px 9px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	font-family:"Open Sans", sans-serif;
+	font-size:14px;
+	color:#8184a1;
+	text-align:left;
+	border:1px solid #dee0ee;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+	background:#fff;
+}
+
+.mfeedback .row .span2 textarea {
+	width:100%;
+	min-width:100%;
+	max-width:100%;
+	height:61px;
+	min-height:61px;
+	max-height:61px;
+	margin:0px;
+	padding:10px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	font-family:"Open Sans", sans-serif;
+	font-size:14px;
+	color:#8184a1;
+	border:1px solid #dee0ee;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+	background:#fff;
+}
+
+.mfeedback .row .span2 input[name="captcha_word"] {
+	width:100px;
+	float:left;
+}
+
+.mfeedback .row .span2 img {
+	float:right;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+}
+
+.mfeedback div.submit {
+	width:100%;
+	float:left;
+	margin:9px 0px 0px 0px;
+	padding:0px;
+}
+
+.mfeedback div.submit button {
+	width:153px;
+	height:31px;
+	float:right;
+	margin:0px;
+	padding:0px;
+}
+
+
+/***240px***/
+@media screen and (max-width:787px) {
+	.mfeedback {
+		width:100%;
+	}
+
+	.mfeedback .row {
+		margin:0px 0px 3px 0px;
+	}
+
+	.mfeedback .row .span1 {
+		width:89px;
+		font-size:12px;
+	}
+
+	.mfeedback .row .span2 input[type="text"] {
+		width:100%;
+		height:27px;
+		padding:0px 7px;
+		font-size:12px;
+	}
+
+	.mfeedback .row .span2 textarea {		
+		height:45px;
+		min-height:45px;
+		max-height:45px;
+		padding:7px;
+		font-size:12px;
+	}
+
+	.mfeedback div.submit button {
+		height:28px;
+		font-size:11px;
+		font-weight:400;
+	}
+}

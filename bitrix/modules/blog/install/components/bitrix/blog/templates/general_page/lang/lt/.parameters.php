@@ -1,0 +1,31 @@
+<?
+$MESS["GENERAL_PAGE_GROUP_ID"] = "Tinklaraðèiø grupës perþiûrai";
+$MESS["GENERAL_PAGE_PATH_TO_BLOG"] = "Kelias á naudotojo tinklaraðtá";
+$MESS["GENERAL_PAGE_PATH_TO_POST"] = "Kelias á praneðimà naudotojo tinklaraðtyje";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG"] = "Kelias á grupës tinklaraðtá";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG_POST"] = "Kelias á praneðimà grupës tinklaraðtyje";
+$MESS["GENERAL_PAGE_PATH_TO_USER"] = "Kelias á naudotojo profilá";
+$MESS["BLG_THEME"] = "Ðablono tema";
+$MESS["BLG_THEME_BLUE"] = "Mëlyna";
+$MESS["BLG_THEME_GREEN"] = "Þalia";
+$MESS["BLG_THEME_RED"] = "Raudona";
+$MESS["BLG_THEME_RED2"] = "Paprasta raudona";
+$MESS["BLG_THEME_ORANGE"] = "Oranþinë";
+$MESS["GENERAL_PAGE_PATH_TO_BLOG_CATEGORY"] = "Kelias á naudotojo dienoraðèio puslapá pagal filtruojamà þymæ";
+$MESS["GENERAL_PAGE_PATH_TO_GROUP_BLOG_CATEGORY"] = "Kelias á grupës dienoraðèio puslapá pagal filtruojamà þymæ";
+$MESS["GENERAL_PAGE_USE_SOCNET"] = "Naudojamas socialiniame tinkle";
+$MESS["B_SEO_USER"] = "Neleisti paieðkos vorø ir robotø ið ðios nuorodos á naudotojo profilá";
+$MESS["BC_NAME_TEMPLATE"] = "Pavadinimo atvaizdavimas";
+$MESS["BC_NAME_TEMPLATE_DEFAULT"] = "#NOBR##LAST_NAME# #NAME##/NOBR#";
+$MESS["BC_SHOW_LOGIN"] = "Rodyti prisijungimo vardà, jeigu trûksta pavadinimo";
+$MESS["BC_PATH_TO_CONPANY_DEPARTMENT"] = "Skyriaus puslapio kelio ðablonas";
+$MESS["BC_PATH_TO_VIDEO_CALL"] = "Vaizdo skambuèio puslapis";
+$MESS["BC_PATH_TO_SONET_USER_PROFILE"] = "ocialinio tinklo naudotojo profilio kelio ðablonas";
+$MESS["BC_PATH_TO_MESSAGES_CHAT"] = "Naudotojo prameðimo programos kelio ðablonas";
+$MESS["BC_USE_SHARE"] = "Rodyti soc. tinklø skirtukø panelæ";
+$MESS["BC_SHARE_HIDE"] = "Nerodyti soc. tinklø skirtukø panelæ pagal nutylëjimà";
+$MESS["BC_SHARE_TEMPLATE"] = "Soc. tinklø skirtukø panelës komponento ðablonas";
+$MESS["BC_SHARE_SYSTEM"] = "Naudojamos soc. skirtukai ir tinklai";
+$MESS["BC_SHARE_SHORTEN_URL_LOGIN"] = "Prisijungimo vardas bit.ly";
+$MESS["BC_SHARE_SHORTEN_URL_KEY"] = "Raktas bit.ly";
+?>

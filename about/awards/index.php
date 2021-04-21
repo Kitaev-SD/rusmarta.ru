@@ -1,0 +1,14 @@
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("title", "Награды и достижения компании – Rusmarta");
+$APPLICATION->SetTitle("Награды и достижения");
+$APPLICATION->SetPageProperty("description", "Все награды, достижения и дипломы. Сигнализация и видеооборудование, системы видеонаблюдения с доставкой по всей России в интернет-магазине Rusmarta.ru");
+?><img width="650" alt="2016 Мипс.jpg" src="/upload/medialibrary/60d/60df7f2897342dafd01c4e322d25a8bb.jpg" height="494" title="2016 Мипс.jpg">&nbsp;
+<a href="http://rusmarta.ru/upload/medialibrary/2c6/2c65fab4b314dc596e6c897e5cb37de5.jpg"><img width="356" alt="2014.jpg" src="/upload/medialibrary/2c6/2c65fab4b314dc596e6c897e5cb37de5.jpg" height="494" title="2014.jpg"></a>&nbsp;&nbsp;
+<a href="http://rusmarta.ru/upload/medialibrary/0b4/0b44aad086999bea15cdd83c635bfd77.jpg" target="_blanc"><img width="650" alt="2015 MIPS.jpg" src="/upload/medialibrary/0b4/0b44aad086999bea15cdd83c635bfd77.jpg" height="494" title="2015 MIPS.jpg"></a>
+<a href="http://rusmarta.ru/upload/medialibrary/b15/b15458ab50f8a5923d42ff5be9379bce.jpg" target="_blanc"><img width="356" alt="2009 Казань .jpg" src="/upload/medialibrary/b15/b15458ab50f8a5923d42ff5be9379bce.jpg" height="494" title="2009 Казань .jpg"></a>&nbsp;
+<a href="http://rusmarta.ru/upload/medialibrary/f61/f6189d992df5da57d5dfc9ea7ff8eb1d.jpg" target="_blanc"><img width="324" alt="2015 ЭкспоКрым .jpg" src="/upload/medialibrary/f61/f6189d992df5da57d5dfc9ea7ff8eb1d.jpg" height="494" title="2015 ЭкспоКрым .jpg"></a>&nbsp;
+<a href="http://rusmarta.ru/upload/medialibrary/b3a/b3a76a8bb1d08f76b0cea52b94ab8582.jpg" target="_blanc"><img width="324" alt="2016 Sfitex .jpg" src="/upload/medialibrary/b3a/b3a76a8bb1d08f76b0cea52b94ab8582.jpg" height="494" title="2016 Sfitex .jpg"></a>&nbsp;
+<a href="http://rusmarta.ru/upload/medialibrary/86f/86f333f8d309ef24edf2a56eacd7331b.jpg" target="_blanc"><img width="356" alt="2014 CE&amp;PE.jpg" src="/upload/medialibrary/86f/86f333f8d309ef24edf2a56eacd7331b.jpg" height="494" title="2014 CE&amp;PE.jpg"></a>
+<a href="http://rusmarta.ru/upload/medialibrary/696/696a0b3339251b6ec8874c3ea06ae740.jpg" target="_blanc"><img width="324" alt="2015 Интерполитех .jpg" src="/upload/medialibrary/696/696a0b3339251b6ec8874c3ea06ae740.jpg" height="494" title="2015 Интерполитех .jpg"></a>&nbsp;
+<a href="http://rusmarta.ru/upload/medialibrary/8a1/8a15a742e3e21b958514b09d55e300bb.jpg" target="_blanc"><img width="324" alt="2014 Sfitex.jpg" src="/upload/medialibrary/8a1/8a15a742e3e21b958514b09d55e300bb.jpg" height="494" title="2014 Sfitex.jpg"></a>&nbsp;
+<a href="http://rusmarta.ru/upload/medialibrary/3de/3dee345a932caf8b81a397e5a0c2038e.jpg" target="_blanc"><img width="356" alt="ЭкспоКрым2016.jpg" src="/upload/medialibrary/3de/3dee345a932caf8b81a397e5a0c2038e.jpg" height="494" title="ЭкспоКрым2016.jpg"></a><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

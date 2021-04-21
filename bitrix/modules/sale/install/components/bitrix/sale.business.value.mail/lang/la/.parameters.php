@@ -1,0 +1,6 @@
+<?
+$MESS["SALE_BVAL_MAIL_PARAM_FIELD"] = "Campos";
+$MESS["SALE_BVAL_MAIL_PARAM_FIELD_ORDER_ID"] = "ID del pedido";
+$MESS["SALE_BVAL_MAIL_PARAM_GROUP"] = "Campo de grupo";
+$MESS["SALE_BVAL_MAIL_PARAM_PROVIDER"] = "Orien de datos";
+?>

@@ -1,0 +1,20 @@
+<svg id="input_icons.svg" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect id="canvas" class="cls-1" width="16" height="32"/>
+  <path id="checkmark" class="cls-2" d="M3.962,7.9a0.947,0.947,0,0,0,.281.674l2.8,2.748L12.55,5.557a0.95,0.95,0,1,0-1.338-1.348L7.038,8.644,5.58,7.226A0.95,0.95,0,0,0,3.962,7.9Z"/>
+  <circle id="radio_dot" class="cls-3" cx="8" cy="24" r="3"/>
+</svg>

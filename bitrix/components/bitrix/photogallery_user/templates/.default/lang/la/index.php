@@ -1,0 +1,34 @@
+<?
+$MESS["P_ALL_PHOTOS"] = "todas las galerías";
+$MESS["P_BEST_PHOTO_COMMENTS"] = "Foto más comentada";
+$MESS["P_BEST_PHOTO_RATING"] = "Foto más popular";
+$MESS["P_BEST_PHOTO_SHOWS"] = "Foto más vista";
+$MESS["P_COMMENT_PHOTO"] = "Fotos comentadas";
+$MESS["P_ERROR1"] = "La galería no contiene imágenes aún.";
+$MESS["P_ERROR2"] = "<a tafget=\"_self\" href=\"#CREATE_GALLERY#\">Create</a> su galería y la carga de nuevas fotos.";
+$MESS["P_ERROR3"] = "<a tafget=\"_self\" href=\"#UPLOAD#\">Upload</a> nuevas fotos.";
+$MESS["P_ERROR4"] = "No hay votos que se hayan dado a cualquier foto en la galería de fotos.";
+$MESS["P_ERROR5"] = "No hay comentarios se hayan dejado en alguna foto en la galería de fotos.";
+$MESS["P_GALLERIES_VIEW"] = "Mis galerías";
+$MESS["P_GALLERY_CREATE"] = "Crear galerías";
+$MESS["P_GALLERY_VIEW"] = "Mi galería";
+$MESS["P_LOGIN"] = "Conexión";
+$MESS["P_NOT_APPROVED"] = "Fotos no aprobadas";
+$MESS["P_NOT_APPROVED_TITLE"] = "Las fotos que podrán ser visibles para todos los visitantes en la página del índice pero aún están desaprobadas.";
+$MESS["P_NOT_MODERATED"] = "Desaprobadas";
+$MESS["P_NOT_MODERATED_TITLE"] = "Aquellas fotos que están pendientes de moderar.";
+$MESS["P_PHOTOGRAPHIES"] = "Fotos";
+$MESS["P_PHOTO_2"] = "Fotos vistas";
+$MESS["P_PHOTO_COMMENTS"] = "Lo más comentado";
+$MESS["P_PHOTO_LAST"] = "Nuevas fotos";
+$MESS["P_PHOTO_NEW"] = "Nuevo";
+$MESS["P_PHOTO_RATING"] = "Popular";
+$MESS["P_PHOTO_SHOWS"] = "Vistas";
+$MESS["P_PHOTO_VIEW"] = "Mi foto";
+$MESS["P_RATING_PHOTO"] = "Fotos más populares";
+$MESS["P_RECALC_7"] = "Por favor, vuelva a calcular los tamaños del archivo de galería de fotos. ' file sizes. <a href='#URL#'>Recalculate?</a>";
+$MESS["P_TAGS_CLOUD"] = "Nube de etiquetas";
+$MESS["P_TITLE"] = "Galería";
+$MESS["P_UPLOAD"] = "Cargar foto";
+$MESS["P_USERS_GALLERIES"] = "Usar galerías";
+?>

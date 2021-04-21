@@ -1,0 +1,35 @@
+<?
+$MESS['BB_MESSAGE_COUNT'] = 'Praneðimø skaièius viename puslapyje';
+$MESS['BB_PATH_TO_BLOG'] = 'Kelio ðablonas á tinklaraðèio puslapá';
+$MESS['BB_PATH_TO_BLOG_CATEGORY'] = 'Kelio ðablonas á tinklaraðèio puslapá su filtru pagal þymæ';
+$MESS['BB_PATH_TO_POST'] = 'Kelio ðablonas á tinklaraðèio praneðimø puslapá';
+$MESS['BB_PATH_TO_POST_EDIT'] = 'Kelio á tinklaraðèio praneðimo redagavimo puslapá ðablonas.';
+$MESS['BB_PATH_TO_USER'] = 'Kelio ðablonas á tinklaraðèio naudotojo puslapá';
+$MESS['BB_PATH_TO_SMILE'] = 'Kelias á aplankà su ðypsenëlëmis, svetainës ðakninio aplanko atþvilgiu';
+$MESS['BB_BLOG_VAR'] = 'Tinklaraðèio identifikavimo kintamasis';
+$MESS['BB_POST_VAR'] = 'Kintamojo pavadinimas kuriame saugomas tinklaraðèio praneðimo identifikatorius';
+$MESS['BB_USER_VAR'] = 'Kintamojo pavadinimas kuriame saugomas tinklaraðèio naudotojo identifikatorius';
+$MESS['BB_PAGE_VAR'] = 'Puslapio kintamojo pavadinimas';
+$MESS['BB_CACHE_TIME_LONG'] = 'Likusiø puslapiø keðavimo laikas';
+$MESS['BB_BLOG_URL'] = 'Tinklaraðèio URL adresas';
+$MESS['BB_YEAR'] = 'Filtras pagal metus';
+$MESS['BB_MONTH'] = 'Filtras pagal menesá';
+$MESS['BB_DAY'] = 'Filtras pagal dienà';
+$MESS['BB_CATEGORY_ID'] = 'Filtravimo þymiø identifikatorius';
+$MESS['BB_SET_NAV_CHAIN'] = 'Pridëti punktà á navigacijos grandinæ';
+$MESS['POST_PROPERTY_LIST'] = 'Atvaizduoti praneðimo papildomas savybes tinklaraðtyje';
+$MESS['BB_FILTER_NAME_IN'] = 'Masyvo pavadinimas kuriame saugomi reikðmës praneðimø filtravimui';
+$MESS['B_VARIABLE_ALIASES'] = 'Kintamøjø vardai';
+$MESS['BC_DATE_TIME_FORMAT'] = 'Datos ir laiko atvaizdavimo formatas';
+$MESS['BB_NAV_TEMPLATE'] = 'Navigacijos grandinës ðablono pavadinimas';
+$MESS["BPC_IMAGE_MAX_WIDTH"] = "Maks. paveikslëlio plotis";
+$MESS["BPC_IMAGE_MAX_HEIGHT"] = "Maks. paveikslëlio aukðtis";
+$MESS["SHOW_RATING"] = "Ájungti reitingà";
+$MESS["SHOW_RATING_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE"] = "Reitingo mygtukø dizainas";
+$MESS["RATING_TYPE_CONFIG"] = "numatytasis";
+$MESS["RATING_TYPE_STANDART_TEXT"] = "Patinka / Nepatinka (tekstas)";
+$MESS["RATING_TYPE_STANDART_GRAPHIC"] = "Patinka / Nepatinka (paveikslëlis)";
+$MESS["RATING_TYPE_LIKE_TEXT"] = "Patinka (tekstas)";
+$MESS["RATING_TYPE_LIKE_GRAPHIC"] = "Patinka (paveikslëlis)";
+?>

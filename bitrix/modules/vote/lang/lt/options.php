@@ -1,0 +1,12 @@
+<?
+$MESS['VOTE_SAVE'] = 'Iðsaugoti';
+$MESS['VOTE_RESET'] = 'Iðvalyti';
+$MESS['VOTE_USE_HTML_EDIT'] = 'Naudoti HTML redaktoriø (tik IE 5.0 arba Firefox 1.0 ir aukðèiau):';
+$MESS['VOTE_TEMPLATE_VOTES'] = 'Kelias iki apklausø formos perþiûros ðablonø:';
+$MESS['VOTE_TEMPLATE_RESULTS_VOTE'] = 'Kelias iki apklausø rezultatø perþiûros ðablonø:';
+$MESS['VOTE_TEMPLATE_RESULTS_QUESTION'] = 'Kelias iki klausimo rezultatø perþiûros ðablonø:';
+$MESS['VOTE_PUBLIC_DIR'] = 'Apklausø katalogas (be svetainës katalogo):';
+$MESS['VOTE_TEMPLATE_RESULTS_QUESTION_NEW'] = 'Santykinis kelias iki klausimo rezultatø perþiûros ðablonø:';
+$MESS['MAIN_RESTORE_DEFAULTS'] = 'Pagal nutylëjimà';
+$MESS['VOTE_COMPATIBLE'] = 'Palaikyti senus ðablonus (default.php, bluebar.php) klausymø redagavimø formoje:';
+?>

@@ -1,0 +1,11 @@
+<?php
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_FINISHED"] = "Llamada finalizada";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_MISSED_F"] = "Llamada perdida de #NAME#";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_MISSED_M"] = "Llamada perdida de #NAME#";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_STARTED"] = "Llamada ##ID# iniciada";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_STARTED_F"] = "#NAME# comenzó la llamada";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_STARTED_M"] = "#NAME# comenzó la llamada";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_USER_BUSY_F"] = "#NAME# está ocupado en otra llamada";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_USER_BUSY_M"] = "#NAME# está ocupado en otra llamada";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_USER_DECLINED_F"] = "#NAME# rechazó la llamada";
+$MESS["IM_CALL_INTEGRATION_CHAT_CALL_USER_DECLINED_M"] = "#NAME# rechazó la llamada";

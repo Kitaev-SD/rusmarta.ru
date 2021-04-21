@@ -1,0 +1,478 @@
+.edost_bonus { color: #080 !important; }
+.edost_bonus span { color: #8BAA8B !important; }
+div.edost label { margin: 0; }
+div.edost_note { color: #888; }
+div.edost_note b { display: inline-block; }
+.edost_order_loading_fon { z-index: 10554; position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; background: #FFF; opacity: 0.7; }
+.edost_noscript { margin: 0 20px 40px 20px; padding: 10px; color: #F00; border: 1px solid #F00; }
+.edost_global_hide { display: none; }
+
+/* главное окно заказа */
+#order_form_div { max-width: 920px; margin: 0 auto 40px auto; }
+#order_form_main { width: 70%; float: left; position: relative; }
+#order_form_total { width: 30%; float: left; position: relative; }
+#order_form_total_div { margin-left: 20px; }
+
+#ORDER_FORM .edost_company_ico img.edost_ico { width: 35px; height: auto; max-height: 55px; padding: 2px; margin: 0; box-sizing: content-box; }
+#ORDER_FORM .edost_tariff_ico img.edost_ico { width: 60px; height: auto; padding: 0; box-sizing: content-box; }
+#ORDER_FORM tr.edost_resize_button2 div.edost_format_tariff2 { display: none; }
+
+.edost_window_main .edost_window_hide { display: none; }
+div.edost_main { font-family: arial; line-height: normal; margin: 20px 0 45px 0; padding: 5px; }
+div.order_main label { font-weight: normal; }
+div.edost_template_div { margin: 0 0 20px 0; }
+div.edost_main { border: 1px solid #AAA; }
+div.edost_main h4 { margin-top: 0; }
+a.edost_checkout_button { cursor: pointer; padding: 10px 20px; background: #EEE; border: 1px solid #888; font-size: 20px; font-weight: bold; color: #555; border-radius: 4px; }
+a.edost_checkout_button:hover { background: #EAEAEA; border: 1px solid #AAA; }
+
+#order_form_main img.edost_ico2 { display: none; }
+#order_form_total_div div.edost_main { margin: 0; }
+div.edost_order_compact .edost_order_compact_hide { display: none; }
+#order_form_div span.edost_price_original, #edost_window span.edost_price_original { display: block; }
+#order_form_div div.edost_format_head { background: #888; padding: 3px 0 2px 0; color: #FFF; font-size: 20px; font-weight: normal; text-align: center; }
+
+#order_save_button, #order_form_total #order_save_button2 { text-align: center; padding: 0; margin: 15px auto 10px auto; width: 90% !important; max-width: 300px !important; height: 45px; }
+#order_save_button span, #order_form_total #order_save_button2 span { display: inline-block; font-size: 22px; line-height: 22px; padding-top: 11px; }
+
+#order_person_main { padding: 2px; text-align: center; }
+#order_person_main div.edost_prop, #order_person_main div.edost_prop_head { width: auto; }
+div.edost_person_type { display: inline-block; margin: 0 5px 0 0; padding: 4px 10px; border-radius: 10px; font-size: 15px; background: #FFF; color: #000; opacity: 0.5; }
+div.edost_person_type input, div.edost_person_type label { display: inline-block; vertical-align: middle; margin: 0; }
+#order_person_main div.edost_div { padding: 0; }
+
+div.edost_pay_from_account_delimiter { height: 10px; }
+td.edost_pay_from_account_ico .edost_format_tariff { vertical-align: middle; }
+
+div.edost_window_form_head { font-size: 20px; color: #888; text-align: center; }
+div.edost_agreement_checkbox { padding: 5px 0; text-align: center; max-width: 700px; margin: 0 auto; font-size: 14px; }
+div.edost_agreement_checkbox input, div.edost_agreement_checkbox label, div.edost_agreement_checkbox label a { margin: 0; display: inline; }
+div.edost_agreement_checkbox input { vertical-align: middle; }
+div.edost_policy_text { margin: 0 auto; max-width: 600px; font-size: 12px; }
+div.edost_agreement_text { border: 1px solid #AAA; padding: 8px; margin-bottom: 15px; overflow-y: auto; }
+div.edost_agreement_request .edost_window_form_head { padding: 20px 0 20px 0 !important; line-height: 25px !important; }
+
+div.edost_order_error { padding: 20px; text-align: center; border: 1px solid #F00 !important; background: #FFF0F0 !important; }
+div.edost_order_error span { display: block; margin: 5px; font-size: 16px; color: #000; }
+
+span.edost_prop_blink { -webkit-animation: edost_prop_blink 1s linear; animation: edost_prop_blink 1s linear; }
+@-webkit-keyframes edost_prop_blink { 0% { background: #FAA; } 100% { background: #F00; } }
+@keyframes edost_prop_blink { 0% { background: #FAA; } 100% { background: #F00; } }
+
+
+/* окно для выбора оплат и доставок */
+div.edost td.edost_ico_normal { vertical-align: middle !important; }
+#edost_window span.edost_format_name { color: #888; }
+#edost_window td.edost_format_tariff span { line-height: 20px; }
+
+#edost_window label { font-weight: normal; vertical-align: middle; }
+#edost_window .edost_paysystem_div span.edost_format_tariff2 { font-weight: bold; }
+
+#edost_window div.edost_delimiter { margin: 15px 0; }
+#edost_window div.edost_payment { font-size: 14px; }
+#edost_window div.edost_payment span { font-size: 15px; display: inline-block; }
+
+#edost_window td.edost_resize_show input, #edost_window h4 { display: none; }
+
+.edost_window_payment_normal .edost_paysystem_div img.edost_ico2 { display: none; }
+.edost_window_payment_normal .edost_paysystem_div td.edost_button_cod_disable .edost_button_cod_disable { width: auto; max-width: 220px; margin-left: 10px; }
+
+.edost_window_payment_small .edost_paysystem_div { padding: 5px 10px 20px 10px; }
+.edost_window_payment_small .edost_paysystem_div_head { font-size: 16px; }
+.edost_window_payment_small .edost_paysystem_div td.edost_resize_ico { display: none; }
+.edost_window_payment_small .edost_paysystem_div div.edost_format_tariff_main td { display: none; }
+.edost_window_payment_small .edost_paysystem_div div.edost_format_tariff_main td.edost_resize_tariff_show { display: block; width: 100%; text-align: center; padding: 5px 0; }
+.edost_window_payment_small .edost_paysystem_div div.edost_format_tariff_main td.edost_resize_tariff_show label { display: inline-block; }
+.edost_window_payment_small .edost_paysystem_div td.edost_payment_discount .edost_format_price b { display: inline; }
+.edost_window_payment_small .edost_paysystem_div div.edost_button_get { float: none; width: 150px; display: inline-block; }
+.edost_window_payment_small .edost_paysystem_div .edost_format_tariff2 { font-size: 20px !important; line-height: 18px; }
+.edost_window_payment_small .edost_paysystem_div span.edost_format_tariff2 { vertical-align: middle; }
+.edost_window_payment_small .edost_paysystem_div td.edost_button_cod_disable .edost_button_cod_disable { display: inline-block; width: auto; max-width: 280px; }
+
+.edost_template_light .edost_compact_delivery_small td.edost_payment_discount { padding-right: 5px; }
+.edost_main_active.edost_main_fon td.edost_payment_discount { padding-right: 4px; }
+
+.edost_window_delivery_normal .edost_delivery_div img.edost_ico2 { display: none; }
+
+.edost_window_delivery_small .edost_delivery_div img.edost_ico2 { display: none; }
+.edost_window_delivery_small .edost_delivery_div { padding: 5px 10px 20px 10px; }
+.edost_window_delivery_small .edost_delivery_div td.edost_resize_ico { width: 35px !important; }
+.edost_window_delivery_small .edost_delivery_div img.edost_ico { width: 25px !important; }
+.edost_window_delivery_small .edost_delivery_div td.edost_button_get { width: 110px; }
+
+.edost_window_delivery_small2 .edost_delivery_div span.edost_format_tariff { vertical-align: middle; }
+.edost_window_delivery_small2 .edost_delivery_div { padding: 5px 10px 20px 10px; }
+.edost_window_delivery_small2 .edost_delivery_div_head { font-size: 16px; }
+.edost_window_delivery_small2 .edost_delivery_div div.edost_format_tariff_main td { display: none; }
+
+.edost_window_delivery_small2 .edost_delivery_div div.edost_format_tariff_main td.edost_resize_tariff_show { display: block; width: 100%; text-align: center; }
+.edost_window_delivery_small2 .edost_delivery_div div.edost_format_tariff_main td.edost_resize_tariff_show2 { display: inline-block; width: 49%; text-align: center; padding: 10px 0 0 0; }
+
+.edost_window_delivery_small2 .edost_delivery_div div.edost_button_get { display: inline-block; float: none; }
+
+.edost_window_delivery_small2 .edost_delivery_div span.edost_format_tariff { font-size: 20px !important; line-height: 18px; }
+.edost_window_delivery_small2 .edost_delivery_div span.edost_bracket { display: none !important; }
+.edost_window_delivery_small2 .edost_delivery_div span.edost_codplus { display: block !important; }
+.edost_window_delivery_small2 div.edost_change_button { margin: 10px auto 0 auto !important; max-width: 180px !important; }
+.edost_window_delivery_small2 .edost_delivery_div .edost_ico2 { padding-right: 4px !important; }
+
+div.edost_window_landscape .edost_agreement_text { margin-bottom: 10px; }
+div.edost_window_form #edost_window_data { padding-top: 0 !important; margin-top: 0 !important; }
+
+div.edost_window_landscape div.edost_prop_div { padding-top: 0; }
+
+div.edost_device_pc .edost_window_form_head { padding: 10px 0 10px 0; }
+div.edost_device_tablet .edost_window_form_head { padding: 10px 0 10px 0; }
+div.edost_device_tablet_small .edost_window_form_head { padding: 10px 0 10px 0; }
+div.edost_device_phone .edost_window_form_head { padding: 10px 0 10px 0; font-size: 18px; line-height: 18px; }
+
+span.edost_city_name span { font-weight: normal; }
+.edost_location_button_hide .edost_button_big2, .edost_location_button_hide .edost_button_big_active { display: none; }
+
+#edost_location_div .edost_resize_button { float: right; margin-left: 10px; }
+.edost_template_light #edost_location_div .edost_resize_button { margin-top: -2px; }
+.edost_template_bright #edost_location_div .edost_resize_button { margin-top: -3px; }
+
+#edost_location_div .edost_change_button { margin: 10px 0 0 auto; }
+
+.edost_button_head { float: right; }
+.edost_supercompact_main .edost_button_head { margin-top: 4px; }
+.edost_compact_main .edost_button_head { margin-top: 4px; }
+
+.edost_template_light .edost_template_location_div.edost_active_no, .edost_template_light .edost_supercompact_main #edost_delivery_div.edost_active_no { border-width: 0 !important; }
+.edost_template_bright .edost_template_location_div.edost_active_no, .edost_template_bright .edost_supercompact_main #edost_delivery_div.edost_active_no { border-width: 0 !important; box-shadow: none !important; margin-top: 30px !important; }
+
+.edost_button_big_active { margin: 10px auto 0 auto !important; padding: 8px 0px; }
+#edost_location_div .edost_button_big_active, #edost_delivery_div .edost_button_big_active { width: 200px !important; padding: 10px; }
+#edost_location_div .edost_button_big_active span, #edost_delivery_div .edost_button_big_active span { font-size: 20px !important; line-height: 18px; }
+.edost_compact_head_small2 #edost_location_div .edost_button_big_active, .edost_compact_head_small2 #edost_delivery_div .edost_button_big_active { width: 90% !important; }
+
+/* режим "компактный" */
+.edost_compact_main .edost_company_ico td.edost_resize_ico { width: 70px; }
+.edost_compact_main .edost_tariff_ico td.edost_resize_ico { width: 95px; }
+.edost_compact_main h4.edost_button { padding-bottom: 10px; margin-top: 2px; }
+.edost_compact_main h4.edost_button_compact { border-width: 0; padding: 3px 0 2px 0; }
+.edost_compact_main .edost_compact_hide { display: none; }
+.edost_compact_main2 .edost_compact_nocod_hide { display: none; }
+.edost_compact_main td.edost_ico_normal { vertical-align: middle; }
+.edost_compact_main div.edost_delimiter_mb2 { margin: 10px 0px 10px 0px; }
+
+/* режим "суперкомпактный" */
+.edost_supercompact_main div.edost_main .edost_supercompact_hide { display: none; }
+.edost_supercompact_main div.edost_loading { display: none !important; }
+.edost_supercompact_main div.edost_main div.edost_compact_div { max-width: 1000px !important; }
+.edost_supercompact_main td.edost_description { padding: 0 !important; }
+.edost_supercompact_main td.edost_ico_normal { vertical-align: middle; }
+.edost_supercompact_main .edost_company_ico td.edost_resize_ico { width: 45px; }
+.edost_supercompact_main .edost_tariff_ico td.edost_resize_ico { width: 70px; }
+.edost_supercompact_main #edost_paysystem_div .edost_format_tariff2 { font-weight: bold; }
+.edost_supercompact_main td.edost_compact_small2 { display: none; }
+
+.edost_supercompact_main.edost_compact_delivery_normal div.edost_button_big2 { width: 180px; }
+.edost_supercompact_main.edost_compact_delivery_normal2 div.edost_button_big2 { width: 180px; }
+.edost_supercompact_main.edost_compact_delivery_small div.edost_button_big2 { width: 180px; }
+.edost_supercompact_main.edost_compact_delivery_small2 td.edost_office_get { display: block !important; padding-top: 15px; }
+.edost_supercompact_main.edost_compact_delivery_small2 td.edost_office_get div.edost_button_big2 { margin: 0 auto; }
+
+/* адаптация блока доставки */
+.edost_compact_delivery_normal div.edost_delimiter_format { margin: 10px 0px 10px 24px; }
+.edost_compact_delivery_normal2 div.edost_delimiter_format, .edost_compact_delivery_small div.edost_delimiter_format, .edost_compact_delivery_small2 div.edost_delimiter_format { margin: 15px 0px 15px 0px; }
+
+.edost_compact_delivery_normal div.edost_main_active div.edost_format_description { padding-right: 8px; }
+.edost_compact_delivery_normal2 div.edost_main_active div.edost_format_description, .edost_compact_delivery_small div.edost_main_active div.edost_format_description, .edost_compact_delivery_small2 div.edost_main_active div.edost_format_description { padding-left: 8px; padding-right: 8px; }
+
+.edost_compact_delivery_normal .edost_resize_button2 { display: none; }
+.edost_compact_delivery_normal2 .edost_resize_button2 { display: none; }
+.edost_compact_delivery_small .edost_resize_button { display: none; }
+.edost_compact_delivery_small2 .edost_resize_button { display: none; }
+
+.edost_compact_delivery_normal td.edost_resize_button { width: 165px; }
+.edost_compact_delivery_normal td.edost_resize_button.edost_button_cod_disable { width: 260px; }
+.edost_compact_delivery_normal2 td.edost_resize_button { width: 125px; }
+.edost_compact_delivery_normal2 td.edost_resize_button.edost_button_cod_disable { width: 210px; }
+.edost_compact_delivery_normal2 div.edost_button_big { width: 110px; }
+.edost_compact_delivery_normal2 div.edost_button_big2 { width: 110px; }
+
+.edost_compact_delivery_small div.edost_button_big { width: 110px; }
+.edost_compact_delivery_small div.edost_button_big2 { width: 180px; }
+.edost_compact_delivery_small2 div.edost_button_big { width: 110px; }
+.edost_compact_delivery_small2 div.edost_button_big2 { width: 180px; }
+
+.edost_compact_head_normal h4.edost_compact_head2 { display: none !important; }
+.edost_compact_head_small h4.edost_compact_head { display: none !important; }
+.edost_compact_head_small2 h4.edost_compact_head { display: none !important; }
+.edost_compact_head_small2 div.edost_template_div div.edost_button_big { width: 80px !important; }
+
+.edost_compact_delivery_normal td.edost_description { padding: 0 0 0 25px; }
+.edost_compact_delivery_normal2 td.edost_description, .edost_compact_delivery_small td.edost_description, .edost_compact_delivery_small2 td.edost_description { text-align: center; }
+
+.edost_compact_delivery_normal .edost_resize_day2, .edost_compact_delivery_normal .edost_resize_description2 { display: none; }
+.edost_compact_delivery_small .edost_resize_day, .edost_compact_delivery_small .edost_resize_description { display: none; }
+.edost_compact_delivery_small2 .edost_resize_day, .edost_compact_delivery_small2 .edost_resize_description2 { display: none; }
+
+.edost_compact_delivery_small2 div.edost_format_tariff_main td { display: none; }
+.edost_compact_delivery_small2 div.edost_format_tariff_main td.edost_resize_show, .edost_compact_delivery_small2.edost_compact_main div.edost_format_tariff_main td.edost_resize_compact_show { display: block !important; width: 100%; text-align: center; padding: 2px 0; }
+.edost_compact_delivery_small2.edost_supercompact_main #edost_paysystem_div .edost_resize_button2 { display: none; }
+.edost_compact_delivery_small2 td.edost_pay_from_account_ico { text-align: left !important; }
+
+.edost_supercompact_main22.edost_compact_delivery_small2 .edost_resize_ico .edost_format_tariff { display: inline-block !important; }
+.edost_compact_main.edost_compact_delivery_small2 .edost_resize_ico .edost_format_tariff { display: inline-block !important; }
+
+.edost_compact_delivery_small2 td.edost_resize_ico { width: 100% !important; }
+.edost_compact_delivery_small2 .edost_format_tariff.edost_resize_show, .edost_compact_delivery_small2.edost_compact_main .edost_format_tariff.edost_resize_compact_show, .edost_compact_delivery_small2.edost_supercompact_main .edost_format_tariff2.edost_resize_supercompact_show { display: inline-block !important; vertical-align: middle; padding-left: 2px; }
+.edost_compact_delivery_small2 div.edost_change_button { margin: 0 auto !important; max-width: 180px !important; margin-top: 8px !important; }
+
+
+/* режим "стандартный" */
+.edost_full_main .edost_company_ico td.edost_resize_ico { width: 70px; }
+.edost_full_main .edost_tariff_ico td.edost_resize_ico { width: 95px; }
+.edost_full_main .edost_resize_cod2 { padding-top: 5px; }
+.edost_full_main .edost_format_info { text-align: center; }
+.edost_full_main .edost_button_head { margin-top: 4px; }
+.edost_full_main div.edost_button_big_red, .edost_full_main div.edost_main_active div.edost_button_big_red, .edost_full_main div.edost_active_no div.edost_button_big_red { background: #F00 !important; }
+
+.edost_full_delivery_normal .edost_resize_day2, .edost_full_delivery_normal2 .edost_resize_day2 { display: none; }
+.edost_full_delivery_normal .edost_resize_description2, .edost_full_delivery_normal2 .edost_resize_description2 { display: none; }
+
+.edost_full_delivery_normal .edost_description, .edost_full_delivery_normal2 .edost_description { padding-left: 25px; }
+.edost_full_delivery_small .edost_description, .edost_full_delivery_small2 .edost_description { text-align: center; }
+
+.edost_full_delivery_normal .edost_resize_cod2 { display: none; }
+.edost_full_delivery_normal2 .edost_resize_cod, .edost_full_delivery_small .edost_resize_cod, .edost_full_delivery_small2 .edost_resize_cod { display: none; }
+
+.edost_full_delivery_small .edost_resize_day, .edost_full_delivery_small .edost_resize_description { display: none; }
+.edost_full_delivery_small2 .edost_resize_day, .edost_full_delivery_small2 .edost_resize_description2 { display: none; }
+
+.edost_full_delivery_normal div.edost_delimiter_format, .edost_full_delivery_normal2 div.edost_delimiter_format { margin: 10px 0px 10px 24px; }
+.edost_full_delivery_small div.edost_delimiter_format, .edost_full_delivery_small2 div.edost_delimiter_format { margin: 15px 0px 15px 0px; }
+
+.edost_full_delivery_normal td.edost_resize_price2, .edost_full_delivery_normal2 td.edost_resize_price2, .edost_full_delivery_small td.edost_resize_price2 { display: none; }
+.edost_full_delivery_small2 td.edost_resize_price { display: none; }
+
+.edost_full_main td.edost_resize_price2 { padding: 10px 0 5px 0; }
+.edost_full_main td.edost_resize_price2 div { display: inline-block; width: 48%; text-align: center; }
+
+.edost_full_delivery_normal .edost_resize_address2, .edost_full_delivery_normal2 .edost_resize_address2 { display: none; }
+.edost_full_delivery_small .edost_resize_address, .edost_full_delivery_small2 .edost_resize_address { display: none; }
+
+.edost_full_delivery_small2 .edost_price, .edost_full_delivery_small2 .edost_day { font-size: 20px !important; }
+
+.edost_full_main .edost_resize_address2 td { padding: 10px 0 5px 0; text-align: center; }
+.edost_full_main .edost_main_active .edost_resize_address2 td, .edost_full_main .edost_main_active .edost_resize_cod2 { padding-left: 10px; padding-right: 10px; }
+
+.edost_full_delivery_normal .edost_resize_button2 { display: none; }
+.edost_full_delivery_normal2 .edost_resize_button2 { display: none; }
+.edost_full_delivery_small .edost_resize_button { display: none; }
+.edost_full_delivery_small2 .edost_resize_button { display: none; }
+
+.edost_full_delivery_small2 #edost_delivery_div span.edost_bracket { display: none !important; }
+.edost_full_delivery_small2 #edost_delivery_div span.edost_codplus { display: block !important; }
+
+.edost_full_delivery_normal .edost_payment_discount2, .edost_full_delivery_normal2 .edost_payment_discount2, .edost_full_delivery_small .edost_payment_discount2 { display: none; }
+.edost_full_delivery_small2 .edost_payment_discount { display: none; }
+.edost_payment_discount2 .edost_format_price { margin-top: 8px; margin-bottom: 4px; }
+.edost_main_active .edost_payment_discount2 .edost_format_price { margin-left: 5px; }
+.edost_full_delivery_small2 .edost_payment_discount2 .edost_order_total_green { padding: 5px 0 4px 0 !important; }
+.edost_full_delivery_small2 .edost_payment_discount2 .edost_format_price b { font-size: 20px !important; display: inline-block; }
+
+form.edost_compact_main.edost_compact_delivery_small2 span.edost_format_price,
+form.edost_supercompact_main.edost_compact_delivery_small2 span.edost_format_price,
+#edost_window.edost_window_delivery_small2 span.edost_format_price,
+form.edost_compact_main.edost_compact_delivery_small2 span.edost_format_price b,
+form.edost_supercompact_main.edost_compact_delivery_small2 span.edost_format_price b { font-size: 20px; line-height: 20px; }
+
+.edost_compact_delivery_normal2 td.edost_payment_discount { padding-right: 10px; }
+
+form.edost_compact_main.edost_compact_delivery_small2 span.edost_format_price b, form.edost_supercompact_main.edost_compact_delivery_small2 span.edost_format_price b { display: inline;  }
+
+.edost_paysystem_div span.edost_format_price { font-size: 14px; line-height: 16px; text-align: center; }
+.edost_paysystem_div span.edost_format_price b { font-size: 16px; display: block; }
+
+div.edost_fast { font-size: 16px; text-align: center; color: #888; border: 1px solid #DDD !important; padding: 10px !important; }
+
+div.edost_fast .edost_button_big2 { width: 140px !important; margin-right: 0; }
+.edost_compact_delivery_small2 div.edost_fast td, .edost_full_delivery_small2 div.edost_fast td { display: block; text-align: center !important; width: 100%; }
+.edost_compact_delivery_small2 div.edost_fast .edost_button_big2, .edost_full_delivery_small2 div.edost_fast .edost_button_big2 { width: 180px !important; margin-top: 10px; display: inline-block; }
+
+/* шаблон "светлый" */
+.edost_template_light div.edost_main { overflow: hidden; margin: 0px 0 20px 0; padding: 0px; }
+.edost_template_light div.edost_main h4 { font-size: 18px; color: #555; padding: 6px 0 7px 0; border: 0; }
+.edost_template_light .edost_compact_main div.edost_main h4, .edost_template_light .edost_full_main div.edost_main h4 { text-align: center; }
+.edost_template_light .edost_supercompact_main div.edost_main h4 { padding-left: 10px; height: 20px; }
+.edost_template_light div.edost_div { padding: 0 10px 10px 10px; }
+
+/* шаблон "яркий" */
+.edost_template_bright div.edost_main h4 { font-size: 22px; font-weight: normal; padding: 5px 0px 0px 0px; border-bottom: 1px solid #BDC6D1; margin-right: 15px; height: 25px; margin-left: 10px; display: inline-block; }
+.edost_template_bright div.edost_main { margin: 0 0 20px 0; padding: 0px; box-shadow: 0px 0px 15px rgba(192, 190, 227, 0.5); }
+.edost_template_bright div.edost_div { padding: 0 10px 10px 10px; }
+.edost_template_bright span.edost_format_tariff, span.edost_format_tariff { font-size: 18px; }
+.edost_template_bright span.edost_format_price, span.edost_format_price { font-size: 16px; }
+.edost_template_bright .edost_order_compact h4.edost_compact_head { font-size: 18px; line-height: 18px; margin-right: 5px; height: 20px; }
+.edost_template_bright form.edost_compact_main.edost_compact_delivery_small2 div.edost_main_active { padding: 8px 4px; }
+
+/* итого */
+.edost_cart_normal div.edost_order_cart_compact { display: none; }
+.edost_cart_small table.edost_order_cart { display: none; }
+
+span.edost_cart_ico { background: #FFF; float: left; display: inline-block; width: 30px; margin-right: 10px; text-align: center; vertical-align: middle; padding: 4px; }
+span.edost_cart_ico img { max-width: 30px; max-height: 30px; vertical-align: middle; }
+
+td.edost_cart_ico { vertical-align2: top; }
+div.edost_cart_ico { width: 50px; margin-right: 10px; vertical-align: middle; text-align: center; padding: 4px; background: #FFF; }
+div.edost_cart_ico img { max-width: 50px; max-height: 50px; vertical-align: middle; }
+
+div.edost_props_ico { display: inline-block; width: 50px; margin-right: 10px; vertical-align: middle; text-align: center; padding: 4px; }
+div.edost_props_ico img { max-width: 50px; max-height: 50px; vertical-align: middle; }
+
+#order_form_total div.edost_button_big { max-width: 80px; }
+
+div.edost_order_cart_price { text-align: right; float: right; padding: 0 0 5px 5px; }
+span.edost_order_cart_name { font-size: 14px; text-align: left; }
+span.edost_order_cart_name a { text-decoration: none; color: #06A; }
+div.edost_order_cart_props { color: #888; }
+div.edost_order_cart_props span { color: #000; }
+
+table.edost_order_cart td { vertical-align2: top; text-align: right; }
+table.edost_order_cart td.edost_order_cart_name { text-align: left; }
+
+.edost_template_total_full #order_total_inside, .edost_template_total_full .edost_order_inside { display: none; }
+.edost_template_total_small #order_total2_inside, .edost_template_total_small #order_save_button2, .edost_template_total_small .edost_cart_delimiter_end, .edost_template_total_small #order_sum_title, .edost_template_total_small #order_cart_button_inside { display: none; }
+.edost_template_total_off #order_save_button2, .edost_template_total_off #order_cart_title { display: none; }
+.edost_template_total_full #order_total_cart { display: block; }
+.edost_template_total_small #order_total_cart, .edost_template_total_off #order_total_cart { display: none; }
+.edost_template_total_small #order_total_cart_count { display: block; }
+.edost_template_total_full #order_total_cart_count, .edost_template_total_off #order_total_cart_count { display: none; }
+
+#order_total_cart { padding-top: 5px; padding-bottom: 10px; }
+div.edost_order_total { max-width: 300px; margin: 0px auto 0 auto; }
+div.edost_order_total_price { font-size: 15px; padding: 5px 0 5px 0; margin2: 0px 0 0 0; text-align: center; }
+div.edost_order_total_price div { display: inline-block; vertical-align: top; }
+div.edost_order_total_price div:nth-child(1) { width: 42%; text-align: left; }
+div.edost_order_total_price div:nth-child(2) { width: 50%; text-align: right; font-weight: bold; }
+
+div.edost_order_total_info { padding: 4px 5px; margin-top: 5px; text-align: center; }
+div.edost_order_total_info span:nth-child(1) { padding: 4px; margin-top: 5px; text-align: center; }
+div.edost_order_total_info span:nth-child(2) { font-weight: bold; white-space: nowrap; }
+
+div.edost_order_total_info2_white span:nth-child(1) { font-size: 14px; color: #FFF; }
+div.edost_order_total_info2_white span:nth-child(2) { font-size: 18px; color: #FFF; }
+
+div.edost_order_total_info2 span:nth-child(1) { font-size: 15px; }
+div.edost_order_total_info2 span:nth-child(2) { font-size: 18px; }
+
+div.edost_order_total_main span:nth-child(1) { font-size: 20px; opacity: 0.6; }
+
+div.edost_order_total_green, span.edost_order_total_green { background: #54CB54; }
+div.edost_order_total_orange { background: #F3B400; }
+div.edost_order_total_light { background: #B1B1B1; }
+div.edost_order_total_red { background: #F98989; }
+
+div.edost_fast_total { font-size: 13px; color: #AAA; line-height: 13px; padding-top: 8px; text-align: center; }
+
+
+.edost_compact_cod_main .edost_compact_cod_hide { display: none !important; }
+.edost_compact_cod_main input { display: none; }
+
+div.edost_compact_tariff_cod_main .edost_compact_tariff_cod_hide { display: none; }
+.edost_compact_tariff_main .edost_compact_tariff_nocod_hide { display: none; }
+
+.edost_compact_main .edost_compact_first { display: none; }
+.edost_compact_cod_main .edost_compact_cod_first { display: none; }
+.edost_compact_tariff_main .edost_compact_tariff_first { display: none; }
+.edost_compact_tariff_cod_main .edost_compact_tariff_cod_first { display: none; }
+
+.edost_window_prepay .edost_prepay_first, .edost_window_prepay .edost_prepay_hide { display: none; }
+
+.edost_order_main .edost_order_hide { display: none; }
+.edost_compact_window_main .edost_compact_window_hide { display: none; }
+
+#order_form_div div.edost div.edost_format_description { font-size: 14px; }
+#order_form_div label { font-weight: normal; }
+
+td.edost_format_tariff span.edost_format_tariff, td.edost_resize_ico span.edost_format_tariff, td.edost_pay_from_account_ico span.edost_format_tariff { color: #555; }
+
+div.edost_button_big { padding: 4px 0px; margin-right: 4px; cursor: pointer; border-radius: 5px; width: 140px; color: #FFF; text-align: center; }
+div.edost_button_big span { font-size: 15px; font-weight: normal; line-height: 15px; }
+
+div.edost_button_big2 { padding: 4px; margin-right: 5px; cursor: pointer; border-radius: 5px; width: 140px; color: #FFF; text-align: center; }
+div.edost_button_big2 span { font-size: 15px; font-weight: normal; line-height: 16px; }
+
+div.edost_button_cod_disable { padding: 4px 0px; margin-right: 5px; cursor: pointer; border-radius: 5px; text-align: center; background: #0A0; }
+div.edost_button_cod_disable span { font-size: 15px; color: #FFF; font-weight: normal; line-height: 20px; }
+div.edost_button_cod_disable:hover { background: #0B0; }
+
+div.edost_button_big_red { border-width: 0 !important; padding: 4px; }
+div.edost_button_big_red span { color: #FFF !important; }
+
+.edost_compact_main div.edost_button_big_red { background: #FAA !important; }
+.edost_supercompact_main div.edost_button_big_red, .edost_compact_main div.edost_main_active div.edost_button_big_red, .edost_compact_main div.edost_active_no div.edost_button_big_red, #edost_window div.edost_button_big_red { background: #F00 !important; }
+
+div.edost_no_location_warning { font-size: 20px; color: #F00; text-align: center; padding: 0px 10px 25px 10px; }
+.edost_supercompact_main div.edost_no_location_warning { color: #BBB; }
+
+#edost_location_city_div { min-height: 26px; }
+.edost_compact_delivery_small2 #edost_location_city_div { text-align: center; }
+#edost_location_city_div span.edost_city_link { display: none; }
+#edost_location_city_loading div.edost_loading, #edost_location_city_div div.edost_loading { display: none !important; }
+div.edost_template_location_hide #edost_location_city_div { display: none !important; }
+
+/* свойства заказа */
+#order_form_div input[type="text"], #order_form_div input[type="tel"], #order_form_div input[type="email"], #order_form_div input[type="password"], #order_form_div textarea, #order_form_div select, #edost_window input[type="text"], #edost_window input[type="tel"], #edost_window input[type="email"] { padding: 4px 6px; vertical-align: baseline; font-size: 15px; }
+
+input.edost_prop_error { border: 1px solid #F00 !important; background: #fcf6f6 !important; }
+div.edost_prop_error { text-align: center; }
+span.edost_prop_error { font-size: 12px; color: #FFF; background: #F00; padding: 2px 8px }
+
+#order_form_main input.edost_input[type="text"], #order_form_main textarea { box-sizing: border-box; }
+#order_form_main .edost_input[type="text"] { width: 100% !important; }
+#order_form_main #edost_house_4 + div.edost_address { float: right; margin-top: 4px; }
+#order_form_main select { max-width: 100%; box-sizing: border-box; padding: 2px !important; }
+
+.edost_props_normal div.edost_prop_head { display: inline-block; text-align: right; padding-right: 4px; color: #888; width: 24%; }
+.edost_props_normal div.edost_prop { display: inline-block; width: 74%; text-align: left; }
+
+.edost_props_normal #edost_city2_required + div.edost_address { width: 50% !important; padding-right: 2px !important; }
+.edost_props_normal div.edost_prop #edost_city2_required + div.edost_address { width: 50% !important; padding-right: 0px !important; }
+
+.edost_props_normal #edost_location_address_div div.edost_address { width: calc(16% - 3px); padding-right: 0; }
+.edost_props_normal div.edost_prop #edost_location_address_div div.edost_address { width: calc(16% - 4px); padding-right: 0; }
+
+.edost_props_normal #edost_street_required + div.edost_address, .edost_props_normal div.edost_prop #edost_location_address_div, .edost_props_normal div.edost_prop #edost_location_passport_div { margin-top: 4px; }
+.edost_props_normal #edost_area + div.edost_address { width: 30% !important; padding-right: 4px !important; margin-top: 4px; }
+.edost_props_normal #edost_zip_required + .edost_address_delimiter2 + div.edost_address { width: 50% !important; padding-right: 4px !important; margin-top: 4px; }
+.edost_props_normal #edost_location_zip_hint { width: 60% !important; vertical-align: middle; }
+.edost_props_normal #edost_location_passport_div div.edost_address { width: calc(100%/3 - 3px); padding-right: 0; }
+
+.edost_props_small div.edost_prop_head, .edost_props_small2 div.edost_prop_head { color: #888; padding-top: 0 !important; margin-bottom: 2px; }
+.edost_props_small #edost_city2_required + div.edost_address { width: 50% !important; padding-right: 2px !important; }
+
+.edost_props_small #edost_location_address_div div.edost_address { width: calc(16% - 3px); padding-right: 0; }
+.edost_props_small div.edost_prop #edost_location_address_div div.edost_address { width: calc(16% - 4px); padding-right: 0; }
+
+.edost_props_small #edost_street_required + div.edost_address, .edost_props_small div.edost_prop #edost_location_address_div, .edost_props_small div.edost_prop #edost_location_passport_div { margin-top: 4px; }
+.edost_props_small #edost_area + div.edost_address { width: 30% !important; padding-right: 4px !important; margin-top: 4px; }
+.edost_props_small #edost_zip_required + .edost_address_delimiter2 + div.edost_address { width: 50% !important; padding-right: 4px !important; margin-top: 4px; }
+.edost_props_small #edost_location_zip_hint { width: 60% !important; vertical-align: middle; }
+.edost_props_small #edost_location_passport_div div.edost_address { width: calc(100%/3 - 3px); padding-right: 0; }
+
+.edost_props_small2 div.edost_address_delimiter { display: block; }
+.edost_props_small2 #edost_city2_required + div.edost_address { width: 100%; }
+.edost_props_small2 div.edost_address { width: calc(100%/3 - 3px); padding-right: 0; }
+.edost_props_small2 #edost_zip_required + .edost_address_delimiter2 + div.edost_address { width: 100%; !important; margin-top: 4px; }
+.edost_props_small2 div.edost_prop #edost_location_address_div, .edost_props_small2 #edost_street_required + div.edost_address, .edost_props_small2 #edost_area + div.edost_address, .edost_props_small2 div.edost_prop #edost_location_passport_div { margin-top: 4px; }
+.edost_props_small2 #edost_location_zip_hint { width: 60%; vertical-align: middle; }
+.edost_props_small2 #edost_location_passport_div div.edost_address { display: block; width: 100%; padding-top: 4px; }
+.edost_props_small2 #edost_location_passport_div div:nth-child(1) { padding-top: 0; }
+
+div.edost_prop_div { padding: 6px 0; font-size: 15px; }
+div.edost_prop_head span { color: #F00; font-weight: bold; }
+div.edost_prop input[type="text"], div.edost_prop input[type="tel"], div.edost_prop input[type="email"], div.edost_prop input[type="password"], div.edost_prop textarea { width: 100%; box-sizing: border-box; }
+
+#edost_auth .edost_template_div { margin: 0 auto; max-width: 350px; }
+
+.edost_auth_normal #order_auth_old_div, .edost_auth_normal #order_auth_new_div { display: inline-block; width: 49%; vertical-align: top; }
+.edost_auth_normal #order_auth_old_div .edost_template_div, .edost_auth_normal #order_auth_new_div .edost_template_div { margin: 0 auto; max-width: 350px; }
+
+/* местоположения битрикса */
+.edost_prop .bx-ui-sls-container .bx-ui-sls-route { padding-top: 0 !important; }
+.edost_prop .bx-sls .dropdown-block { height: 34px !important; }

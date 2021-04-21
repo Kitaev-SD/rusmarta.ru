@@ -1,0 +1,31 @@
+<?
+$MESS["rub_title"] = "Grupos de destinatarios";
+$MESS["rub_del_err"] = "No se puede eliminar el grupo.";
+$MESS["rub_nav"] = "Grupos";
+$MESS["rub_name"] = "Nombre";
+$MESS["rub_code"] = "Código simbólico";
+$MESS["rub_sort"] = "Clasificación";
+$MESS["rub_act"] = "Activar";
+$MESS["rub_edit"] = "Editar";
+$MESS["rub_del"] = "Eliminar";
+$MESS["rub_save_error"] = "Error al actualizar grupo:";
+$MESS["rub_no_rubric"] = "No se encontró grupo.";
+$MESS["POST_ADD_TITLE"] = "Haga clic para añadir un nuevo grupo de destinatarios";
+$MESS["rub_f_active"] = "Activo";
+$MESS["rub_f_find"] = "Buscar";
+$MESS["rub_f_find_title"] = "Introduzca el texto a buscar";
+$MESS["rub_del_conf"] = "¿Eliminar grupo?";
+$MESS["rub_f_name"] = "Nombre";
+$MESS["sender_group_adm_addr_cnt"] = "Total destinatarios";
+$MESS["sender_group_adm_flt_mailing"] = "Boletín de noticias";
+$MESS["sender_group_adm_flt_mailing_include"] = "excluir a los grupos";
+$MESS["POST_U_YES"] = "Si";
+$MESS["POST_U_NO"] = "No";
+$MESS["MAIN_ADMIN_LIST_SELECTED"] = "Seleccionado:";
+$MESS["MAIN_ADD"] = "Agregar";
+$MESS["MAIN_ADMIN_LIST_CHECKED"] = "Comprobado:";
+$MESS["MAIN_ALL"] = "(todo)";
+$MESS["MAIN_ADMIN_LIST_DELETE"] = "eliminar";
+$MESS["MAIN_ADMIN_LIST_ACTIVATE"] = "activar";
+$MESS["MAIN_ADMIN_LIST_DEACTIVATE"] = "desactivar";
+?>

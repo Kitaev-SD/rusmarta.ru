@@ -1,0 +1,12 @@
+<?
+$MESS["FLTR_TITLE"] = "Transliteravimo þodynas";
+$MESS["FLTR_EDIT"] = "Redaguoti áraðà ##";
+$MESS["FLTR_NEW"] = "Naujas áraðas";
+$MESS["FLTR_DICTIONARY"] = "Þodynas";
+$MESS["FLTR_LETTER"] = "Laiðkas";
+$MESS["FLTR_REPLACEMENT"] = "Keisti";
+$MESS["FLTR_NOT_SAVE"] = "Atnaujinti nepavyko.";
+$MESS["FLTR_DEL_CONFIRM"] = "Ar tikrai norite iðtrinti áraðà?";
+$MESS["FLTR_DEL"] = "Trinti";
+$MESS["FLTR_LIST"] = "Sàraðas";
+?>

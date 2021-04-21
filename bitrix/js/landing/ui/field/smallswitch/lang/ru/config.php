@@ -1,0 +1,3 @@
+<?php
+$MESS['LANDING_SMALL_SWITCHER_ON'] = 'ÂÊË';
+$MESS['LANDING_SMALL_SWITCHER_OFF'] = 'ÂÛÊË';
