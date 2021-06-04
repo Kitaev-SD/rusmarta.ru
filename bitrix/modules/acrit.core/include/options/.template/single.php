@@ -4,9 +4,9 @@ namespace Acrit\Core;
 use
 	\Acrit\Core\Helper;
 
-$strModuleId = &$arVariables['MODULE_ID'];
-$strModuleCodeFull = str_replace('.', '_', $strModuleId);
 $obOptions = &$arVariables['THIS'];
+$strModuleId = &$arVariables['MODULE_ID'];
+$strModuleIdU = $obOptions->getModuleIdUnderlined();
 $arOption = $arVariables['OPTION'];
 $strOption = $arOption['CODE'];
 $bWithTable = $arVariables['WITH_TABLE'] == 'Y';
@@ -19,9 +19,9 @@ if(is_callable($arOption['CALLBACK_VALUE'])){
 $strValue = $arOption['VALUE'];
 ?>
 <?if($bWithTable):?>
-	<table class="adm-detail-content-table edit-table" id="acrit_core_table_<?=$strOption;?>">
+	<table class="adm-detail-content-table edit-table" id="<?=$strModuleIdU;?>_table_<?=$strOption;?>">
 <?endif?>
-	<tr id="acrit_core_row_option_<?=$strOption;?>">
+	<tr id="<?=$strModuleIdU;?>_row_option_<?=$strOption;?>">
 		<?if($arOption['FULL_WIDTH'] == 'Y'):?>
 			<td colspan="2">
 				<?
@@ -33,7 +33,7 @@ $strValue = $arOption['VALUE'];
 		<?else:?>
 			<td width="40%" class="adm-detail-content-cell-l"<?if($arOption['TOP'] == 'Y'):?> style="padding-top:10px; vertical-align:top;"<?endif?>>
 				<?=Helper::showHint($arOption['HINT']);?>
-				<label for="<?=$strModuleCodeFull;?>_option_<?=$strOption;?>">
+				<label for="<?=$strModuleIdU;?>_option_<?=$strOption;?>">
 					<?if($arOption['REQUIRED']):?>
 						<b><?=$arOption['NAME'];?></b>:
 					<?else:?>
@@ -55,14 +55,14 @@ $strValue = $arOption['VALUE'];
 						case 'password':
 						case 'date':
 							?>
-							<input type="<?=$arOption['TYPE'];?>" name="<?=$strOption;?>" value="<?=$strValue;?>" <?=$arOption['ATTR'];?> 
-								id="<?=$strModuleCodeFull;?>_option_<?=$strOption;?>" />
+							<input type="<?=$arOption['TYPE'];?>" name="<?=$strOption;?>" value="<?=htmlspecialcharsbx($strValue);?>" 
+								<?=$arOption['ATTR'];?> id="<?=$strModuleIdU;?>_option_<?=$strOption;?>" />
 							<?
 							break;
 						case 'textarea':
 							?>
 							<textarea name="<?=$strOption;?>" <?=$arOption['ATTR'];?>
-								id="<?=$strModuleCodeFull;?>_option_<?=$strOption;?>"><?=$strValue;?></textarea>
+								id="<?=$strModuleIdU;?>_option_<?=$strOption;?>"><?=htmlspecialcharsbx($strValue);?></textarea>
 							<?
 							break;
 						case 'checkbox':
@@ -72,7 +72,7 @@ $strValue = $arOption['VALUE'];
 							?>
 							<input type="hidden" name="<?=$strOption;?>" value="N" />
 							<input type="checkbox" name="<?=$strOption;?>" value="Y" <?=$arOption['ATTR'];?>
-								id="<?=$strModuleCodeFull;?>_option_<?=$strOption;?>"
+								id="<?=$strModuleIdU;?>_option_<?=$strOption;?>"
 								<?if($strValue=='Y'):?> checked="checked"<?endif?> />
 							<?
 							break;

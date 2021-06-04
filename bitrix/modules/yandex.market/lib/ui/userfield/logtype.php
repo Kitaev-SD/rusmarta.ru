@@ -8,7 +8,7 @@ class LogType extends EnumerationType
 {
 	protected static $optionCache = null;
 
-	function GetAdminListViewHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)
 	{
 		$result = '';
 		$option = static::getOption($arUserField, $arHtmlControl['VALUE']);

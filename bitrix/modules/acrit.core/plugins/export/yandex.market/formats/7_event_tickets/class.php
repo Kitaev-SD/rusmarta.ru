@@ -257,6 +257,8 @@ class YandexMarketEventTickets extends YandexMarket {
 			$arXmlTags['country_of_origin'] = Xml::addTag($arFields['COUNTRY_OF_ORIGIN']);
 		if(!Helper::isEmpty($arFields['BARCODE']))
 			$arXmlTags['barcode'] = $this->getXmlTag_Barcode($intProfileID, $arFields['BARCODE']);
+		if(!Helper::isEmpty($arFields['CPA']))
+			$arXmlTags['cpa'] = Xml::addTag($arFields['CPA']);
 		if(!Helper::isEmpty($arFields['DELIVERY_OPTIONS_COST']) && !Helper::isEmpty($arFields['DELIVERY_OPTIONS_DAYS']))
 			$arXmlTags['delivery-options'] = $this->getXmlTag_DeliveryOptions($intProfileID, $arFields);
 		if(!Helper::isEmpty($arFields['EXPIRY']))

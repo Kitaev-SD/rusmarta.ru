@@ -33,6 +33,10 @@ abstract class Plugin {
 	
 	CONST TEACHER_DEFAULT = 'DEFAULT';
 	
+	CONST RESULT_TYPE_SUCCESS = 'SUCCESS';
+	CONST RESULT_TYPE_ERROR = 'ERROR';
+	CONST RESULT_TYPE_WARNING = 'WARNING';
+	
 	#
 	protected static $strStaticModuleId = null;
 	protected static $bSubclass = false;
@@ -54,6 +58,7 @@ abstract class Plugin {
 	protected $bCategoryCustomName = false;
 	protected $bAjaxLoadSettings = false;
 	protected $fTimeStart = null;
+	protected $bPreviewMode = false;
 	
 	
 	/**
@@ -136,6 +141,13 @@ abstract class Plugin {
 	 */
 	public function isOffersPreprocess(){
 		return false;
+	}
+	
+	/**
+	 *	Correct value for Exporter::getProcessEntities()
+	 */
+	public function getProcessEntities(&$bProcessElement, &$bProcessOffers, $arProfile, $intIBlockID, $arElement){
+		//
 	}
 	
 	/**
@@ -471,7 +483,7 @@ abstract class Plugin {
 						<?#if(is_array($arLastExportedItem) && is_numeric($arLastExportedItem['STEP'])):?>
 							<tr id="row_STEP_BY_STEP_INDEX">
 								<td width="40%" class="adm-detail-content-cell-l">
-									<?=Helper::showHint(getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX_HINT'));?>:
+									<?=Helper::showHint(getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX_HINT'));?>
 									<?=static::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX');?>:
 								</td>
 								<td width="60%" class="adm-detail-content-cell-r">
@@ -499,50 +511,73 @@ abstract class Plugin {
 			<?
 			return ob_get_clean();
 		}
-		else{
-			return '11';
-		}
 	}
 	
 	/**
-	 *	Show link for open file
+	 *	Show link for open file (in settings, in popup results, in list)
 	 */
-	public function showFileOpenLink($strFile=false, $strTitle=false){
+	public function showFileOpenLink($strFile=false, $strTitle=false, $bSingle=false){
+		if(strlen($strHtml = $this->onGetFileOpenLink($strFile, $strTitle, $bSingle))){
+			return $strHtml;
+		}
 		ob_start();
 		if($strFile === false){
 			$strFile = $this->getExportFileName();
 		}
-		if($strTitle === false){
+		if(!strlen($strTitle)){
 			$strTitle = Helper::getMessage('ACRIT_EXP_FILE_OPEN');
 		}
 		elseif($strTitle === true){
 			$strTitle = $strFile;
 		}
 		if(strlen($strFile) && preg_match('#^(http|https)://.*?$#i', $strFile)){
-			?>
-			<a href="<?=$strFile;?>" target="_blank" title="<?=Helper::getMessage('ACRIT_EXP_URL_OPEN_TITLE');?>"
-				class="acrit-exp-file-open-link">
-				<?=$strTitle;?>
-			</a>
-			<?
+			print $this->getExtFileOpenLink($strFile, Helper::getMessage('ACRIT_EXP_URL_OPEN_TITLE'), $strTitle);
 		}
 		elseif(strlen($strFile) && is_file($_SERVER['DOCUMENT_ROOT'].$strFile)) {
-			$strFileHref = $strFile;
-			if(Helper::getOption($this->strModuleId, 'show_export_file_with_uniq_argument') != 'N'){
-				$strFileHref = $strFileHref.(strpos($strFileHref, '?') === false ? '?' : '&').time();
-			}
-			?>
-			<a href="<?=$strFileHref;?>" target="_blank" title="<?=Helper::getMessage('ACRIT_EXP_FILE_OPEN_TITLE');?>"
-				class="acrit-exp-file-open-link">
-				<?=$strTitle;?>
-				(<?=\CFile::FormatSize(filesize($_SERVER['DOCUMENT_ROOT'].$strFile));?>)
-			</a>
-			<?
+			print $this->getSingleFileOpenLink($strFile);
+		}
+		elseif(strlen($strFile) && mb_substr($strFile, 0, 1) == '/'){
+			$strHint = $strFile;
+			$this->setFileOpenLinkBasename($strFile);
+			print sprintf('<span title="%s">%s</span>', $strHint, $strFile);
 		}
 		elseif(strlen($strFile)){
 			print $strFile;
 		}
 		return ob_get_clean();
+	}
+	protected function getSingleFileOpenLink($strFile){
+		$strHref = $strFile;
+		$strText = $strFile;
+		$strHint = static::getMessage('ACRIT_EXP_URL_OPEN_TITLE');
+		$this->setFileOpenLinkBasename($strText);
+		$this->addFileOpenLinkTimestamp($strHref);
+		$this->addFileOpenLinkFilesize($strFile, $strText);
+		return $this->getExtFileOpenLink($strHref, $strText, $strFile.PHP_EOL.$strHint);
+	}
+	protected function getExtFileOpenLink($strUrl, $strText, $strHint=null){
+		$strHint = strlen($strHint) ? $strHint : static::getMessage('ACRIT_EXP_URL_OPEN_TITLE');
+		return sprintf('<a href="%s" title="%s" class="acrit-exp-file-open-link" target="_blank">%s</a>', 
+			$strUrl, $strHint, $strText);
+	}
+	protected function setFileOpenLinkBasename(&$strFile){
+		if(Helper::getOption($this->strModuleId, 'show_export_file_basename') != 'N'){
+			$strFile = pathinfo($strFile, PATHINFO_BASENAME);
+		}
+	}
+	protected function addFileOpenLinkTimestamp(&$strFile){
+		if(Helper::getOption($this->strModuleId, 'show_export_file_with_uniq_argument') != 'N'){
+			$strFile = $strFile.(strpos($strFile, '?') === false ? '?' : '&').time();
+		}
+	}
+	protected function addFileOpenLinkFilesize($strFile, &$strTitle){
+		if(is_file(Helper::root().$strFile)){
+			$strTitle .= sprintf(' (%s)', \CFile::formatSize(filesize(Helper::root().$strFile)));
+		}
+	}
+	protected function onGetFileOpenLink(&$strFile, &$strTitle, $bSingle=false){
+		// See in plugins, for example - VK, Ozon, Aliexpress API, Yandex.Turbo
+		// Method must result html or null
 	}
 	
 	/**
@@ -925,6 +960,20 @@ abstract class Plugin {
 	protected function onGetCategoryTag(&$arCategoryTag, $intCategoryId, $arCategory, $intMode){
 		return null;
 	}
+
+	/**
+	 *	Set flag of preview mode
+	 */
+	public function setPreviewMode($bFlag=true){
+		$this->bPreviewMode = !!$bFlag;
+	}
+
+	/**
+	 *	Get flag of preview mode
+	 */
+	public function getPreviewMode(){
+		return $this->bPreviewMode;
+	}
 	
 	/**
 	 *	Process single element
@@ -1018,6 +1067,114 @@ abstract class Plugin {
 	 */
 	public function showResults($arSession){
 		return '';
+	}
+	
+	/**
+	 *	Show results (new version): prepare html/text
+	 */
+	public function showResultsExt($arSession, $strTemplate=null, $bUseAdminMessage=true){
+		$arResult = $this->prepareShowResultsExt($arSession);
+		$arTemplates = ['html', 'email', 'text'];
+		ob_start();
+		$strTemplate = in_array($strTemplate, $arTemplates) ? $strTemplate : reset($arTemplates);
+		require __DIR__.'/../../include/export/export_results/'.$strTemplate.'.php';
+		$strHtml = ob_get_clean();
+		if($bUseAdminMessage){
+			$strHtml = Helper::showSuccess(null, $strHtml, true, false);
+		}
+		return $strHtml;
+	}
+	
+	/**
+	 *	Prepare to show results: compile results display array
+	 */
+	protected function prepareShowResultsExt($arSession){
+		$arResult = [
+			'ITEMS' => [],
+			'FILE' => null,
+		];
+		# Lang
+		$strLang = 'RESULTS_';
+		$strHint = $strLang.'HINT_';
+		# Get elapsed time 
+		$intElapsedTime = max(1, $arSession['TIME_FINISHED'] - $arSession['TIME_START']);
+		# Build result
+		$strIBlocks = static::getMessage($strLang.'IBLOCKS_COUNT', ['#COUNT#' => $arSession['GENERATE']['IBLOCKS_COUNT']]);
+		$arResult['ITEMS']['COUNT_ALL'] = [
+			'NAME' => static::getMessage($strLang.'COUNT_ALL'),
+			'TEXT' => $arSession['GENERATE']['COUNT_ALL'].$strIBlocks,
+			'SORT' => 10,
+			'TYPE' => $arSession['GENERATE']['COUNT_ALL'] > 0 ? static::RESULT_TYPE_SUCCESS : static::RESULT_TYPE_WARNING,
+			'HINT' => static::getMessage($strHint.'COUNT_ALL'),
+		];
+		$intSkipped = $arSession['GENERATE']['COUNT_ALL'] - $arSession['GENERATE']['COUNT'];
+		$arResult['ITEMS']['COUNT_SKIPPED'] = [
+			'NAME' => static::getMessage($strLang.'COUNT_SKIPPED'),
+			'TEXT' => $intSkipped,
+			'SORT' => 20,
+			'TYPE' => $arSession['GENERATE']['COUNT_ALL'] > 0 ? static::RESULT_TYPE_WARNING : static::RESULT_TYPE_SUCCESS,
+			'HINT' => static::getMessage($strHint.'COUNT_SKIPPED'),
+		];
+		$intAll = $arSession['COUNTER']['ELEMENTS_Y'] + $arSession['COUNTER']['OFFERS_Y'];
+		$intOffers = $arSession['COUNTER']['OFFERS_Y'];
+		$strOffers = $intOffers ? static::getMessage($strLang.'COUNT_OFFERS', ['#COUNT#' => $intOffers]) : '';
+		$arResult['ITEMS']['COUNT_EXPORTED'] = [
+			'NAME' => static::getMessage($strLang.'COUNT_EXPORTED'),
+			'TEXT' => $intAll.$strOffers,
+			'SORT' => 40,
+			'TYPE' => $intAll > 0 ? static::RESULT_TYPE_SUCCESS : static::RESULT_TYPE_ERROR,
+			'HINT' => static::getMessage($strHint.'COUNT_EXPORTED'),
+			'BOLD' => true,
+		];
+		$intAll = $arSession['COUNTER']['ELEMENTS_N'] + $arSession['COUNTER']['OFFERS_N'];
+		$intOffers = $arSession['COUNTER']['OFFERS_N'];
+		$strOffers = $intOffers ? static::getMessage($strLang.'COUNT_OFFERS', ['#COUNT#' => $intOffers]) : '';
+		$strLogLink = ' <span data-role="acrit_exp_results_go_to_log">'.static::getMessage($strLang.'GO_TO_LOG').'</span>';
+		if(!$intAll){
+			$strLogLink = '';
+		}
+		$arResult['ITEMS']['COUNT_ERRORS'] = [
+			'NAME' => static::getMessage($strLang.'COUNT_ERRORS'),
+			'TEXT' => $intAll.$strOffers.$strLogLink,
+			'SORT' => 40,
+			'TYPE' => $intAll > 0 ? static::RESULT_TYPE_ERROR : static::RESULT_TYPE_SUCCESS,
+			'HINT' => static::getMessage($strHint.'COUNT_ERRORS'),
+		];
+		$arResult['ITEMS']['TIME_ELAPSED'] = [
+			'NAME' => static::getMessage($strLang.'TIME_ELAPSED'),
+			'TEXT' => Helper::formatElapsedTime($intElapsedTime),
+			'SORT' => 100,
+			'TYPE' => $intElapsedTime > 60 ? static::RESULT_TYPE_WARNING : static::RESULT_TYPE_SUCCESS,
+			'HINT' => static::getMessage($strHint.'TIME_ELAPSED'),
+		];
+		$arResult['ITEMS']['TIME_FINISH'] = [
+			'NAME' => static::getMessage($strLang.'TIME_FINISH'),
+			'TEXT' => (new \Bitrix\Main\Type\DateTime())->toString(),
+			'SORT' => 110,
+			'TYPE' => static::RESULT_TYPE_SUCCESS,
+			'HINT' => static::getMessage($strHint.'TIME_FINISH'),
+		];
+		$intCoreCount = \Acrit\Core\Cli::getCpuCoresCount();
+		$intThreadsCount = $arSession['GENERATE']['MULTITHREADED'] ? $arSession['GENERATE']['THREADS'] : 1;
+		$strCoreCount = $intCoreCount > 0 ? static::getMessage($strLang.'CORE_COUNT', ['#COUNT#' => $intCoreCount]) : '';
+		$fRate = $intCoreCount > 1 && $intThreadsCount ? ($intThreadsCount / $intCoreCount) : 1;
+		$arResult['ITEMS']['THREADS_COUNT'] = [
+			'NAME' => static::getMessage($strLang.'THREADS_COUNT'),
+			'TEXT' => $intThreadsCount.$strCoreCount,
+			'SORT' => 120,
+			'TYPE' => $fRate > 1 ? static::RESULT_TYPE_ERROR : 
+				($fRate < 0.25 ? static::RESULT_TYPE_WARNING : static::RESULT_TYPE_SUCCESS),
+			'HINT' => static::getMessage($strHint.'THREADS_COUNT', ['#MODULE_ID#' => $this->strModuleId]),
+		];
+		# Add (or remove) custom result lines
+		$this->getMoreResultsData($arResult, $arSession);
+		# Sort
+		uasort($arResult['ITEMS'], function($a, $b){return Helper::sortBySort($a, $b);});
+		#
+		return $arResult;
+	}
+	protected function getMoreResultsData(&$arResult, $arSession){
+		//
 	}
 	
 	/**

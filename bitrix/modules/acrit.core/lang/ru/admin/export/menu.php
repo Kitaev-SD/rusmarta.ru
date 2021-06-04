@@ -2,6 +2,7 @@
 $MESS['ACRIT_EXP_MENU_TEXT'] = 'Выгрузки';
 $MESS['ACRIT_EXP_MENU_TITLE'] = 'Список выгрузок';
 $MESS['ACRIT_EXP_MENU_CRM_TITLE'] = 'Интеграция с CRM';
+$MESS['ACRIT_EXP_MENU_ORDERS_TITLE'] = 'Интеграция с заказами';
 $MESS['ACRIT_EXP_MENU_PROFILE_EXPORT'] = 'Backup выгрузок';
 $MESS['ACRIT_EXP_MENU_PROFILE_ANALYTICS'] = 'Аналитика';
 $MESS['ACRIT_EXP_MENU_PROFILE_ADVMANAGEMENT'] = 'Ведение рекламных компаний';

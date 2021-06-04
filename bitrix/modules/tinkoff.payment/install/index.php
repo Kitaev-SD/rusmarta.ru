@@ -2,18 +2,18 @@
 
 IncludeModuleLangFile(__FILE__);
 
-Class tinkoff_payment extends CModule
+class tinkoff_payment extends CModule
 {
     const MODULE_ID = 'tinkoff.payment';
-    var $MODULE_ID = 'tinkoff.payment';
-    var $MODULE_VERSION;
-    var $MODULE_VERSION_DATE;
-    var $MODULE_NAME;
-    var $MODULE_DESCRIPTION;
+    public $MODULE_ID = 'tinkoff.payment';
+    public $MODULE_VERSION;
+    public $MODULE_VERSION_DATE;
+    public $MODULE_NAME;
+    public $MODULE_DESCRIPTION;
 
-    var $strError = '';
+    public $strError = '';
 
-    function __construct()
+    public function __construct()
     {
         $arModuleVersion = array();
         include(dirname(__FILE__) . "/version.php");
@@ -25,17 +25,17 @@ Class tinkoff_payment extends CModule
         $this->PARTNER_URI = "https://oplata.tinkoff.ru";
     }
 
-    function InstallEvents()
+    public function InstallEvents()
     {
         return true;
     }
 
-    function UnInstallEvents()
+    public function UnInstallEvents()
     {
         return true;
     }
 
-    function rmFolder($dir)
+    public function rmFolder($dir)
     {
         foreach (glob($dir . '/*') as $file) {
             if (is_dir($file)) {
@@ -49,7 +49,7 @@ Class tinkoff_payment extends CModule
         return true;
     }
 
-    function copyDir($source, $destination)
+    public function copyDir($source, $destination)
     {
         if (is_dir($source)) {
             @mkdir($destination, 0755);
@@ -69,13 +69,15 @@ Class tinkoff_payment extends CModule
         }
     }
 
-    function InstallFiles($arParams = array())
+    public function InstallFiles($arParams = array())
     {
         if (!is_dir($ipn_dir = $_SERVER['DOCUMENT_ROOT'] . '/bitrix/php_interface/include/sale_payment/')) {
             mkdir($ipn_dir, 0755);
         }
         if (is_dir($source = $_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/' . self::MODULE_ID . '/install')) {
+            // bitrix/modules/sale/payment - системный обработчик
             $this->copyDir($source . "/handler", $_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/sale/payment');
+            // php_interface/include/sale_payment - пользовательский обработчик
             $this->copyDir($source . "/handler", $ipn_dir);
 
             if (!is_dir($personal_dir = $_SERVER['DOCUMENT_ROOT'] . '/personal/')) {
@@ -85,28 +87,35 @@ Class tinkoff_payment extends CModule
                 mkdir($order_dir, 0755);
             }
             copy($source . "/notifications/notification.php", $order_dir . 'notification.php');
-            copy($source . "/notifications/result.php", $order_dir . 'result.php');
+            copy($source . "/notifications/success.php", $order_dir . 'success.php');
+            copy($source . "/notifications/failed.php", $order_dir . 'failed.php');
         }
         return true;
     }
 
-    function UnInstallFiles()
+    public function UnInstallFiles()
     {
         $this->rmFolder($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/sale/payment/tinkoff');
         $this->rmFolder($_SERVER['DOCUMENT_ROOT'] . '/bitrix/php_interface/include/sale_payment/tinkoff');
         return true;
     }
 
-    function DoInstall()
+    public function DoInstall()
     {
         global $APPLICATION;
+        global $DB;
+
+        $strSql = "
+        CREATE TABLE IF NOT EXISTS tinkoffRefund (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, OrderId VARCHAR(20), PaymentId VARCHAR(20) UNIQUE, DataCreated timestamp default now() on update now())
+        ";
+        $result = $DB->Query($strSql);
 
         $this->InstallFiles();
 
         RegisterModule(self::MODULE_ID);
     }
 
-    function DoUninstall()
+    public function DoUninstall()
     {
         global $APPLICATION;
 
@@ -116,4 +125,4 @@ Class tinkoff_payment extends CModule
     }
 }
 
-?>
+

@@ -70,6 +70,7 @@ class Model extends Market\Reference\Storage\Model
             else
             {
                 Market\Export\Track\Registry::removeEntitySources($entityType, $entityId);
+                Market\Export\Run\Changes::releaseAll($entityId);
             }
 		}
 	}

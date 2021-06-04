@@ -102,17 +102,19 @@ abstract class Platform
 	/**
 	 * @param string $xmlId
 	 *
-	 * @return array{PLATFORM_ID: int, ORDER_ID: string|null}|null
+	 * @return array{TRADING_PLATFORM_ID: int, ORDER_ID: string|null}|null
 	 */
 	public static function parseOrderXmlId($xmlId)
 	{
 		$result = null;
 
-		if (preg_match('/^YAMARKET_(\d+)_(.+)$/', $xmlId, $matches))
+		if (preg_match('/^YAMARKET_(\d+)_([^_]+)(?:_(\d+))?$/', $xmlId, $matches))
 		{
 			$result = [
-				'PLATFORM_ID' => (int)$matches[1],
+				'PLATFORM_ID' => (int)$matches[1], // old behavior
+				'TRADING_PLATFORM_ID' => (int)$matches[1],
 				'ORDER_ID' => $matches[2] !== 'CART' ? $matches[2] : null,
+				'SETUP_ID' => isset($matches[3]) ? (int)$matches[3] : null,
 			];
 		}
 
@@ -132,5 +134,15 @@ abstract class Platform
 		}
 
 		return 'YAMARKET_' . $this->getId() . '_' . $orderId;
+	}
+
+	/**
+	 * @param int $setupId
+	 *
+	 * @return string
+	 */
+	public function getOrderXmlIdSuffix($setupId)
+	{
+		return '_' . $setupId;
 	}
 }

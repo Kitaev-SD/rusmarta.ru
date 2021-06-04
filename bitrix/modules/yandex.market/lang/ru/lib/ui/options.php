@@ -47,4 +47,5 @@ $MESS['YANDEX_MARKET_UI_OPTION_USER_PHONE_FIELD_PERSONAL_PHONE'] = 'Телефон';
 $MESS['YANDEX_MARKET_UI_OPTION_USER_PHONE_FIELD_WORK_PHONE'] = 'Рабочий телефон';
 $MESS['YANDEX_MARKET_UI_OPTION_TRADING_LOG_TRACING'] = 'Трассировка ошибок Журнала событий';
 $MESS['YANDEX_MARKET_UI_OPTION_TRADING_USE_TAX_SYSTEM'] = 'Учитывать систему налогообложения магазина';
+$MESS['YANDEX_MARKET_UI_OPTION_TRADING_DDOS_GUARD'] = 'Поддержка веб-сервера ddos-guard';
 $MESS['YANDEX_MARKET_UI_OPTION_TRADING_EXPERIMENT_DBS'] = 'Обработка заказов из маркетплейса по модели DBS';

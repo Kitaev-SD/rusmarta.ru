@@ -220,6 +220,7 @@ class AliExpress extends Plugin {
 //		Controller::setModuleId($this->strModuleId);
 //		Controller::setProfile($this->arProfile['ID']);
 //		Controller::syncOrderToDeal($order);
+//		Controller::syncStoreToCRM(60);
 		?>
 		<table class="acrit-exp-plugin-settings" style="width:100%;">
 			<tbody>
@@ -264,6 +265,14 @@ class AliExpress extends Plugin {
 				$arJsonResult['result'] = 'ok';
 				break;
 		}
+	}
+
+	/**
+	 *	Regular synchronization interval modifications
+	 */
+	public function modifSyncInterval($sync_interval) {
+	    // Min interval for search orders
+		return $sync_interval + 12*3600;
 	}
 
 	/**
@@ -332,7 +341,7 @@ class AliExpress extends Plugin {
 	        $resp = json_decode(json_encode($resp), true);
 	        if ($resp['code']) {
 		        throw new \Exception($resp['msg'], $resp['code']);
-	        }
+		    }
 	        if (is_array($resp['result']['target_list']) && !empty($resp['result']['target_list'])) {
 	            if ($resp['result']['target_list']['order_dto']['order_id']) {
 		            $list[] = $resp['result']['target_list']['order_dto'];
@@ -411,15 +420,10 @@ class AliExpress extends Plugin {
 	public function getOrdersIDsList($filter) {
 	    $list = [];
 		// Get the list
-        try {
-	        $orders_list = self::getAliOrdersList($filter);
-	        foreach ($orders_list as $item) {
-		        $list[] = $item['order_id'];
-	        }
-        }
-        catch (\Exception $e) {
-            //TODO
-        }
+		$orders_list = self::getAliOrdersList($filter);
+		foreach ($orders_list as $item) {
+			$list[] = $item['order_id'];
+		}
 	    return $list;
 	}
 

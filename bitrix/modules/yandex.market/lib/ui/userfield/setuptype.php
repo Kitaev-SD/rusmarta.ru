@@ -4,7 +4,7 @@ namespace Yandex\Market\Ui\UserField;
 
 class SetupType extends ReferenceType
 {
-	function GetAdminListViewHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)
 	{
 		$result = parent::GetAdminListViewHTML($arUserField, $arHtmlControl);
 		$setupId = !empty($arHtmlControl['VALUE']) ? (int)$arHtmlControl['VALUE'] : 0;

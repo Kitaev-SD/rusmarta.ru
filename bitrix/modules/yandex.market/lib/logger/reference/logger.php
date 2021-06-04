@@ -88,6 +88,16 @@ abstract class Logger extends Market\Psr\Log\AbstractLogger
 		$this->context = $context;
 	}
 
+	public function getFullContext()
+	{
+		return $this->context;
+	}
+
+	public function getContext($name)
+	{
+		return isset($this->context[$name]) ? $this->context[$name] : null;
+	}
+
 	public function setContext($name, $key)
 	{
 		$this->context[$name] = $key;

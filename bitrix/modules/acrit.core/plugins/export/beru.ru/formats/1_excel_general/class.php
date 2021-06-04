@@ -93,7 +93,7 @@ class BeruRuExcelGeneral extends BeruRu {
 	 *	Export excel item
 	 */
 	protected function stepExport_XLS_ExportItem($arItem){
-		return $stepExport_XLS_ExportItem;($arItem);
+		return $this->stepExport_XLSX_ExportItem($arItem);
 	}
 	protected function stepExport_XLSX_ExportItem($arItem){
 		$arSession = &$this->arData['SESSION']['EXPORT'];

@@ -632,5 +632,25 @@ class EventHandlerExport {
 	public static function OnGroupDelete($arEvent){
 		DiscountRecalculation::handleDiscountAction();
 	}
+	
+	/**
+	 *	Handler for get discount (try to prevent memory leak)
+			EventManager::getInstance()->registerEventHandler(
+				'catalog',
+				'OnGetDiscountResult',
+				$strModuleId,
+				'\Acrit\Core\Export\EventHandlerExport',
+				'OnGetDiscountResult'
+			);
+	 */
+	public static function OnGetDiscountResult(&$arResult){
+		if (PHP_SAPI == 'cli') {
+			$obProperty = new \ReflectionProperty('CAllCatalogDiscount', 'arCacheProduct');
+			$obProperty->setAccessible(true);
+			$obProperty->setValue('CAllCatalogDiscount', []);
+			unset($obProperty);
+		}
+		return true;
+	}
 
 }

@@ -11,6 +11,8 @@ Main\Localization\Loc::loadMessages(__FILE__);
 
 class Source extends Market\Export\Entity\Reference\Source
 {
+	use Market\Reference\Concerns\HasOnce;
+
 	protected $publicPriceIds;
 	protected $basePriceIds;
 	protected $isOptimalPriceHandlersExists;
@@ -1304,12 +1306,23 @@ class Source extends Market\Export\Entity\Reference\Source
 					$priceRow = $elementPrices[$catalogPriceId];
 					$price = (float)$priceRow['PRICE'];
 					$currency = $priceRow['CURRENCY'];
+					$needCurrencyConvert = ($contextCurrency !== null && $currency !== $contextCurrency);
 					$discounts = [];
 
 					// get final price with VAT included.
 					if (!isset($element['CATALOG_VAT_INCLUDED']) || $element['CATALOG_VAT_INCLUDED'] !== 'Y')
 					{
 						$price *= $percentPriceWithVat;
+					}
+
+					if (
+						$needCurrencyConvert
+						&& $this->isCurrencyConvertBeforeDiscounts()
+						&& Main\Loader::includeModule('currency')
+					)
+					{
+						$price = Market\Data\Currency::convert($price, $currency, $contextCurrency);
+						$currency = $contextCurrency;
 					}
 
 					if ($isNeedDiscount)
@@ -1329,7 +1342,11 @@ class Source extends Market\Export\Entity\Reference\Source
 
 					if ($discountPrice === false) { continue; }
 
-					if ($contextCurrency !== null && $currency !== $contextCurrency && Main\Loader::includeModule('currency'))
+					if (
+						$needCurrencyConvert
+						&& !$this->isCurrencyConvertBeforeDiscounts()
+						&& Main\Loader::includeModule('currency')
+					)
 					{
 						$discountPrice = Market\Data\Currency::convert($discountPrice, $currency, $contextCurrency);
 						$price = Market\Data\Currency::convert($price, $currency, $contextCurrency);
@@ -1380,6 +1397,18 @@ class Source extends Market\Export\Entity\Reference\Source
 		}
 
 		return $result;
+	}
+
+	protected function isCurrencyConvertBeforeDiscounts()
+	{
+		return $this->once('testCurrencyConvertBeforeDiscounts');
+	}
+
+	protected function testCurrencyConvertBeforeDiscounts()
+	{
+		$iblockVersion = Main\ModuleManager::getVersion('iblock');
+
+		return $iblockVersion !== false && CheckVersion($iblockVersion, '16.0.0');
 	}
 
 	protected function getCatalogPriceFieldValue($elementPrice, $fieldName)

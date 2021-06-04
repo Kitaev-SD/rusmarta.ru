@@ -1295,9 +1295,15 @@ class CustomXmlGeneral extends CustomXml {
 						'#URL#' => Helper::siteUrl($this->arProfile['DOMAIN'], $this->arProfile['IS_HTTPS']=='Y', 
 							htmlspecialcharsbx($arSectionsChain['SECTION_PAGE_URL'])),
 						'#PARENT_ID#' => '',
+						'#PARENT_CODE#' => '',
+						'#PARENT_EXTERNAL_ID#' => '',
 					);
 					if($arSectionsChain['IBLOCK_SECTION_ID']){
-						$arReplace['#PARENT_ID#'] = $arSectionsChain['IBLOCK_SECTION_ID'];
+						if($arParentSection = $this->getSectionMainFields($arSectionsChain['IBLOCK_SECTION_ID'])){
+							$arReplace['#PARENT_ID#'] = $arParentSection['ID'];
+							$arReplace['#PARENT_CODE#'] = $arParentSection['CODE'];
+							$arReplace['#PARENT_EXTERNAL_ID#'] = $arParentSection['EXTERNAL_ID'];
+						}
 					}
 					foreach (EventManager::getInstance()->findEventHandlers($this->strModuleId, 'OnCustomXmlCategory') as $arHandler) {
 						ExecuteModuleEventEx($arHandler, [$this, $intCategoryID, $arCategory, &$arReplace, $arSectionsChain['ID'], $arSectionsChain]);
@@ -1322,9 +1328,15 @@ class CustomXmlGeneral extends CustomXml {
 					'#URL#' => Helper::siteUrl($this->arProfile['DOMAIN'], $this->arProfile['IS_HTTPS']=='Y', 
 						htmlspecialcharsbx($arCategory['URL'])),
 					'#PARENT_ID#' => '',
+					'#PARENT_CODE#' => '',
+					'#PARENT_EXTERNAL_ID#' => '',
 				);
-				if($arCategory['IBLOCK_SECTION_ID']){
-					$arReplace['#PARENT_ID#'] = $arCategory['IBLOCK_SECTION_ID'];
+				if($arCategory['PARENT_ID']){
+					if($arParentSection = $this->getSectionMainFields($arCategory['PARENT_ID'])){
+						$arReplace['#PARENT_ID#'] = $arParentSection['ID'];
+						$arReplace['#PARENT_CODE#'] = $arParentSection['CODE'];
+						$arReplace['#PARENT_EXTERNAL_ID#'] = $arParentSection['EXTERNAL_ID'];
+					}
 				}
 				foreach (EventManager::getInstance()->findEventHandlers($this->strModuleId, 'OnCustomXmlCategory') as $arHandler) {
 					ExecuteModuleEventEx($arHandler, [$this, $intCategoryID, $arCategory, &$arReplace, null, null]);
@@ -1385,6 +1397,19 @@ class CustomXmlGeneral extends CustomXml {
 			}
 		}
 		return Exporter::RESULT_SUCCESS;
+	}
+
+	/**
+	 * Get sections fields for export categories
+	 */
+	protected function getSectionMainFields($intSectionId){
+		static $arCache = [];
+		if(is_numeric($intSectionId) && $intSectionId > 0 && !is_array($arCache[$intSectionId])){
+			$arFilter = ['ID' => $intSectionId];
+			$arSelect = ['ID', 'CODE', 'EXTERNAL_ID'];
+			$arCache[$intSectionId] = \CIBlockSection::getList([], $arFilter, false, $arSelect)->fetch();
+		}
+		return $arCache[$intSectionId];
 	}
 
 }

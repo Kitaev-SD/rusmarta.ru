@@ -50,6 +50,10 @@ abstract class Plugin {
 
 	protected $arFieldsCached = array();
 
+	// Flags
+	protected $isCountable = true;
+
+
 	/**
 	 * Base constructor.
 	 */
@@ -82,6 +86,20 @@ abstract class Plugin {
 	 */
 	public static function isUniversal(){
 
+	}
+
+	/**
+	 *	Is it possible to get the total number of items?
+	 */
+	public function isCountable(){
+		return $this->isCountable;
+	}
+
+	/**
+	 *	Is current plugin universal?
+	 */
+	public function getSettingsPeriodSyncBlock() {
+		return '';
 	}
 
 	/**
@@ -401,6 +419,13 @@ abstract class Plugin {
 	public function hasDirection($direction) {
 		$result = in_array($direction, $this->arDirections);
 		return $result;
+	}
+
+	/**
+	 *	Regular synchronization interval modifications
+	 */
+	public function modifSyncInterval($sync_interval) {
+		return $sync_interval;
 	}
 
 }

@@ -75,14 +75,11 @@ class OutgoingRequest extends Checker\Reference\AbstractTest
 	protected function makeError(TradingSetup\Model $setup, $exception)
 	{
 		$exceptionMessage = $this->sanitizeExceptionMessage($exception->getMessage());
-		$message = sprintf(
-			'%s: %s',
-			$setup->getField('NAME'),
-			$exceptionMessage
-		);
+		$setupName = $setup->getField('NAME');
 		$description = $this->makeExceptionDescription($setup, $exceptionMessage);
 
-		$result = new Checker\Reference\Error($message);
+		$result = new Checker\Reference\Error($exceptionMessage);
+		$result->setGroup($setupName);
 		$result->setDescription($description);
 
 		return $result;
@@ -128,19 +125,11 @@ class OutgoingRequest extends Checker\Reference\AbstractTest
 
 	protected function getSettingsUrl(TradingSetup\Model $setup)
 	{
-		$serviceCode = $setup->getServiceCode();
-		$behaviorCode = $setup->getBehaviorCode();
-		$query = [
+		return Market\Ui\Admin\Path::getModuleUrl('trading_edit', [
 			'lang' => LANGUAGE_ID,
-			'service' => $serviceCode,
-		];
-
-		if ($behaviorCode !== TradingService\Manager::BEHAVIOR_DEFAULT)
-		{
-			$query['behaviour'] = $behaviorCode;
-		}
-
-		return Market\Ui\Admin\Path::getModuleUrl('trading_edit', $query);
+			'service' => $setup->getServiceCode(),
+			'id' => $setup->getId(),
+		]);
 	}
 
 	protected function getLangPrefix()

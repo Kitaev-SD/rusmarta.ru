@@ -27,9 +27,9 @@ class Cpa extends Base
 	{
 		$result = null;
 
-		if ($this->getParameter('global') && Market\Config::getOption('trading_experiment_dbs', 'N') === 'Y')
+		if ($this->getParameter('global'))
 		{
-			$result = !empty($context['ENABLE_CPA']);
+			$result = !empty($context['ENABLE_CPA']) ? true : null;
 		}
 
 		return $result;

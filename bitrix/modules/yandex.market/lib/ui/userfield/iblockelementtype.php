@@ -4,11 +4,11 @@ namespace Yandex\Market\Ui\UserField;
 
 use Bitrix\Main;
 
-class IblockElementType extends \CUserTypeString
+class IblockElementType extends StringType
 {
 	protected static $elementDataCache = [];
 
-	function GetAdminListViewHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)
 	{
 		$result = '';
 

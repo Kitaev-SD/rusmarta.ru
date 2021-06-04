@@ -21,4 +21,16 @@ abstract class Status extends TradingService\Reference\Status
 	abstract public function getOutgoingRequired();
 
 	abstract public function getOutgoingMeaningfulMap();
+
+	public function getOutgoingMultiple()
+	{
+		return [];
+	}
+
+	public function isChanged($orderId, $status, $substatus = null)
+	{
+		$serviceKey = $this->provider->getUniqueKey();
+
+		return Market\Trading\State\OrderStatus::isChanged($serviceKey, $orderId, $status . ':' . $substatus);
+	}
 }

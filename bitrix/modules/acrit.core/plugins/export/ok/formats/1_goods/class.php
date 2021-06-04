@@ -1353,6 +1353,15 @@ class OkGoods extends Ok {
 		$arOKAllIDs = static::getGroupItemsIDs(true, true, $strOkOwnerId, $intProfileID, $arFilter);
 		return $arOKAllIDs;
 	}
+	
+	/**
+	 *	Handler for format file open link
+	 */
+	protected function onGetFileOpenLink(&$strFile, &$strTitle, $bSingle=false){
+		return $this->getExtFileOpenLink('https://ok.ru/', 
+			Helper::getMessage('ACRIT_EXP_FILE_OPEN_EXTERNAL'));
+	}
+	
 }
 
 ?>

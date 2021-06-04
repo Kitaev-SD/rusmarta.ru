@@ -13,6 +13,7 @@ use Bitrix\Main,
 	Bitrix\Main\Localization\Loc,
 	Bitrix\Main\SiteTable,
 	Bitrix\Sale,
+	\Acrit\Core\Log,
 	\Acrit\Core\Helper;
 
 Loc::loadMessages(__FILE__);
@@ -800,7 +801,7 @@ class Controller
     function syncStoreToCRM($sync_interval=0) {
         global $DB;
 	    if (self::checkConnection()) {
-		    //\Helper::Log('(syncStoreToCRM) run period ' . $sync_period);
+		    Log::getInstance(self::$MODULE_ID)->add('(syncStoreToCRM) run period ' . $sync_interval);
 		    // Get plugin object
 		    $plugin = false;
 		    if (strlen(self::$profile['PLUGIN'])) {
@@ -817,19 +818,24 @@ class Controller
 		    if ($plugin) {
 			    $filter = [];
 			    if ($sync_interval > 0) {
-				    $filter['change_date_from'] = time() - $sync_interval;
+				    $filter['change_date_from'] = time() - $plugin->modifSyncInterval($sync_interval);
 			    }
-			    $orders_ids = $plugin->getOrdersIDsList($filter);
-			    foreach ($orders_ids as $order_id) {
+				try {
+			    	$orders_ids = $plugin->getOrdersIDsList($filter);
+					Log::getInstance(self::$MODULE_ID)->add('(syncStoreToCRM) orders ' . print_r($orders_ids, true), false, true);
+			    } catch (\Exception $e) {
+					Log::getInstance(self::$MODULE_ID)->add('(syncStoreToCRM) get orders error: "' . $e->getMessage() . '" [' . $e->getCode() . ']');
+				}
+				foreach ($orders_ids as $order_id) {
 				    $order_data = $plugin->getOrder($order_id);
 				    try {
 					    self::syncOrderToDeal($order_data);
 				    } catch (\Exception $e) {
-					    //\Helper::Log('(syncStoreToCRM) can\'t sync of order ' . $order_data['ID']);
+					    Log::getInstance(self::$MODULE_ID)->add('(syncStoreToCRM) can\'t sync of order ' . $order_data['ID']);
 				    }
 			    }
 		    }
-		    //\Helper::Log('(syncStoreToCRM) success');
+		    Log::getInstance(self::$MODULE_ID)->add('(syncStoreToCRM) success');
 	    }
     }
 

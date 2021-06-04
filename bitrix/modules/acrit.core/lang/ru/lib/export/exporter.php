@@ -44,4 +44,6 @@ $MESS['ACRIT_EXP_EXPORT_PREVIEW_ELEMENT_ERRORS'] = '<span style="color:red;">#ER
 $MESS['ACRIT_EXP_EXPORT_PREVIEW_JSON_ORIGINAL'] = 'Оригинальные данные JSON (без преобразований)';
 $MESS['ACRIT_EXP_EXPORT_PREVIEW_DATA_MORE'] = 'Дополнительные данные товара (служебное)';
 
+# Email
+$MESS['ACRIT_EXP_EXPORT_EMAIL_NOTIFY_SUBJECT'] = '#DOMAIN#: экспорт завершён: [#PROFILE_ID#, #MODULE_ID#] "#FORMAT_NAME#"';
 ?>

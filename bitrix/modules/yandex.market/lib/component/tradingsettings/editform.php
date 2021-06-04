@@ -53,7 +53,10 @@ class EditForm extends Market\Component\Plain\EditForm
 		try
 		{
 			$setup = Market\Trading\Setup\Model::loadById($primary);
-			$result = $setup->wakeupService()->getOptions()->getValues();
+			$settings = $setup->getSettings()->getValues();
+			$result = !empty($settings)
+				? $setup->wakeupService()->getOptions()->getValues()
+				: [];
 		}
 		catch (Main\ObjectNotFoundException $exception)
 		{
@@ -69,10 +72,9 @@ class EditForm extends Market\Component\Plain\EditForm
 
 		foreach ($this->getFields($select) as $fieldName => $field)
 		{
-			if (isset($field['SETTINGS']['DEFAULT_VALUE']))
-			{
-				$result[$fieldName] = $field['SETTINGS']['DEFAULT_VALUE'];
-			}
+			if (!isset($field['SETTINGS']['DEFAULT_VALUE'])) { continue; }
+
+			Market\Utils\Field::setChainValue($result, $fieldName, $field['SETTINGS']['DEFAULT_VALUE'], Market\Utils\Field::GLUE_BRACKET);
 		}
 
 		return $result;
@@ -86,7 +88,13 @@ class EditForm extends Market\Component\Plain\EditForm
 		{
 			if (!empty($field['SETTINGS']['READONLY'])) { continue; }
 
-			$result[$fieldName] = false;
+			$isHidden = isset($field['HIDDEN']) && $field['HIDDEN'] === 'Y';
+			$hasDefaultValue = isset($field['SETTINGS']['DEFAULT_VALUE']);
+			$value = ($isHidden && $hasDefaultValue)
+				? $field['SETTINGS']['DEFAULT_VALUE']
+				: false;
+
+			Market\Utils\Field::setChainValue($result, $fieldName, $value, Market\Utils\Field::GLUE_BRACKET);
 		}
 
 		return $result;

@@ -73,7 +73,7 @@ $obTabControl->BeginCustomField('PROFILE[CUSTOM_XML_STRUCTURE]', Loc::getMessage
 				?></textarea>
 				<?=Helper::showNote($obPlugin::getMessage('CHECK_XML_VALID_NOTICE'), true);?>
 				<?=Helper::showNote(Loc::getMessage('ACRIT_EXP_XML_STRUCTURE_AVAILABLE_MACROS', array(
-					'#MACROS#' => '#ID#, #PARENT_ID#, #NAME#, #CODE#, #URL#, #EXTERNAL_ID#')
+					'#MACROS#' => '#ID#, #PARENT_ID#, #NAME#, #CODE#, #PARENT_CODE#, #URL#, #EXTERNAL_ID#, #PARENT_EXTERNAL_ID#')
 				), true);?>
 			</div><br/>
 		</td>

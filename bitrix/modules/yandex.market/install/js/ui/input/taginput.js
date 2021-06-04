@@ -116,6 +116,7 @@
 				dataAdapter: this.options.dataAdapter,
 				data: this.options.data,
 				ajax: this.options.ajax,
+				dropdownParent: this.$el.parent(),
 			}, this.getLanguageOptions());
 		},
 

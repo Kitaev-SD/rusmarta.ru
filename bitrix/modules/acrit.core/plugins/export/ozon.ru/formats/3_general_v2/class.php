@@ -1810,6 +1810,14 @@ class OzonRuGeneralV2 extends OzonRu {
 		print Helper::showError(static::getMessage('ERROR_OZON_OLD_TITLE'), static::getMessage('ERROR_OZON_OLD_DESCR'),
 			true);
 	}
+	
+	/**
+	 *	Handler for format file open link
+	 */
+	protected function onGetFileOpenLink(&$strFile, &$strTitle, $bSingle=false){
+		return $this->getExtFileOpenLink('https://seller.ozon.ru/products?filter=all', 
+			Helper::getMessage('ACRIT_EXP_FILE_OPEN_EXTERNAL'));
+	}
 
 }
 ?>

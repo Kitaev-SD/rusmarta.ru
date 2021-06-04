@@ -35,4 +35,22 @@ class Action extends TradingService\Common\Action\OrderStatus\Action
 			throw new Market\Exceptions\Trading\NotRecoverable($exception->getMessage(), $exception->getCode(), '', 0, $exception);
 		}
 	}
+
+	protected function makeStatusPayload($meaningfulStatus)
+	{
+		if ($meaningfulStatus === Market\Data\Trading\MeaningfulStatus::PAYED)
+		{
+			$result = [
+				'EXCLUDE' => [
+					'SUBSIDY' => true,
+				],
+			];
+		}
+		else
+		{
+			$result = parent::makeStatusPayload($meaningfulStatus);
+		}
+
+		return $result;
+	}
 }

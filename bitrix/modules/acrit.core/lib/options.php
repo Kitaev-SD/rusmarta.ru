@@ -13,6 +13,7 @@ Helper::loadMessages(__FILE__);
 class Options {
 	
 	protected $strModuleId;
+	protected $strModuleIdUnderlined;
 	protected $arTabs;
 	protected $arParams;
 	protected $strBackUrl;
@@ -34,6 +35,7 @@ class Options {
 		global $APPLICATION;
 		#
 		$this->strModuleId = $strModuleId;
+		$this->strModuleIdUnderlined = str_replace('.', '_', $strModuleId);
 		$this->arTabs = $arTabs;
 		$this->arParams = is_array($arParams) ? $arParams : [];
 		#
@@ -101,6 +103,13 @@ class Options {
 	 */
 	public function getModuleId(){
 		return $this->strModuleId;
+	}
+	
+	/**
+	 *	Get module id (underlined) from this property
+	 */
+	public function getModuleIdUnderlined(){
+		return $this->strModuleIdUnderlined;
 	}
 	
 	/**

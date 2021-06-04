@@ -1,5 +1,5 @@
 <!-- Yandex.Metrika informer -->
-<a href="https://metrika.yandex.ru/stat/?id=22745254&from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/22745254/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="яндекс.ћетрика" title="яндекс.ћетрика: данные за сегодн€ (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="22745254" data-lang="ru"></a>
+<a href="https://metrika.yandex.ru/stat/?id=22745254&from=informer" target="_blank" rel="nofollow"><img class="data-lazy-src" data-lazy-src="https://informer.yandex.ru/informer/22745254/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="яндекс.ћетрика" title="яндекс.ћетрика: данные за сегодн€ (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="22745254" data-lang="ru"></a>
 <!-- /Yandex.Metrika informer -->
 
 <meta name="yandex-verification" content="5e556a55b6b9c50e" />

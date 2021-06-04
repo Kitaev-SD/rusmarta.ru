@@ -1,1 +1,1 @@
-<?require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/acrit.core/admin/export/idea.php');?>
+<?require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/acrit.core/admin/idea.php');?>

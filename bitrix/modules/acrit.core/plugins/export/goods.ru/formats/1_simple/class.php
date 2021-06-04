@@ -216,7 +216,7 @@ class GoodsRuSimple extends YandexMarketSimple
 		foreach ($m1 as $key => $value)
 		{
 			$arTag[] = array(
-				'#' => [],
+				'#' => '',
 				'@' => array(
 					'id' => $m1[$key],
 					'instock' => $m2[$key],

@@ -17,6 +17,10 @@ abstract class ExternalIdTable extends Entity\DataManager {
 	const TABLE_NAME = ''; // Must be overriden! Value must contain table name! Value cannot be null!
 	
 	const MODULE_ID = ''; // Must be overriden! Value must contain module id! Value cannot be null!
+
+	const EXT_MODE_ELEMENT_ID = 0;
+	const EXT_MODE_EXTERNAL_ID = 1;
+	const EXT_MODE_EXTERNAL_VALUE = 2;
 	
 	/**
 	 * Returns DB table name for entity.
@@ -54,6 +58,9 @@ abstract class ExternalIdTable extends Entity\DataManager {
 			'EXTERNAL_ID' => new Entity\StringField('EXTERNAL_ID', array(
 				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_EXTERNAL_ID'),
 			)),
+			'EXTERNAL_VALUE' => new Entity\StringField('EXTERNAL_VALUE', array(
+				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_EXTERNAL_VALUE'),
+			)),
 			'EXTERNAL_STATUS' => new Entity\StringField('EXTERNAL_STATUS', array(
 				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_EXTERNAL_STATUS'),
 			)),
@@ -78,42 +85,103 @@ abstract class ExternalIdTable extends Entity\DataManager {
 	 *	Get value for single item
 	 */
 	public static function get($intProfileId, $intIBlockId, $strElementId){
-		$arElement = static::getList(array(
-			'filter' => array(
+		$arQuery = [
+			'filter' => [
 				'PROFILE_ID' => $intProfileId,
 				'IBLOCK_ID' => $intIBlockId,
 				'ELEMENT_ID' => $strElementId,
-			),
-		))->fetch();
-		if($arElement === false){
+			],
+			'select' => ['EXTERNAL_ID'],
+		];
+		if($arElement = static::getList($arQuery)->fetch()){
+			return $arElement['EXTERNAL_ID'];
+		}
+		return false;
+	}
+	
+	/**
+	 *	Get value for single item (extended mode)
+	 */
+	public static function getExt($intProfileId, $intIBlockId, $strSearchValue, $mode=null){
+		if(!strlen($strSearchValue)){
 			return false;
 		}
-		return $arElement['EXTERNAL_ID'];
+		$arFilter = [
+			'PROFILE_ID' => $intProfileId,
+		];
+		if(is_numeric($intIBlockId) && $intIBlockId > 0){
+			$arFilter['IBLOCK_ID'] = $intIBlockId;
+		}
+		if(is_null($mode)){
+			$mode = static::EXT_MODE_ELEMENT_ID;
+		}
+		switch($mode){
+			case static::EXT_MODE_EXTERNAL_ID:
+				$arFilter['EXTERNAL_ID'] = $strSearchValue;
+				break;
+			case static::EXT_MODE_EXTERNAL_VALUE:
+				$arFilter['EXTERNAL_VALUE'] = $strSearchValue;
+				break;
+			default: #case static::EXT_MODE_ELEMENT_ID:
+				$arFilter['ELEMENT_ID'] = $strSearchValue;
+				break;
+		}
+		$arQuery = [
+			'filter' => $arFilter,
+			'select' => [
+				'ID',
+				'PROFILE_ID',
+				'IBLOCK_ID',
+				'ELEMENT_ID',
+				'EXTERNAL_ID',
+				'EXTERNAL_VALUE',
+				'EXTERNAL_STATUS',
+				'EXTERNAL_DATA',
+			],
+		];
+		return static::getList($arQuery)->fetch();
 	}
 	
 	/**
 	 *	Add (or update if exists) single item
 	 */
-	public static function set($intProfileId, $intIBlockId, $strElementId, $strExternalId){
-		$resElement = static::getList(array(
-			'filter' => array(
+	public static function set($intProfileId, $intIBlockId, $strElementId, $strExternalId=null, $strExternalValue=null, $strExternalData=null){
+		$resElement = static::getList([
+			'filter' => [
 				'PROFILE_ID' => $intProfileId,
 				'IBLOCK_ID' => $intIBlockId,
 				'ELEMENT_ID' => $strElementId,
-			),
-		));
+			],
+		]);
 		if($arElement = $resElement->fetch()) {
-			return static::update($arElement['ID'], array(
-				'EXTERNAL_ID' => $strExternalId,
-			))->isSuccess();
+			$arFields = [];
+			if(!is_null($strExternalId)){
+				$arFields['EXTERNAL_ID'] = $strExternalId;
+			}
+			if(!is_null($strExternalValue)){
+				$arFields['EXTERNAL_VALUE'] = $strExternalValue;
+			}
+			if(!is_null($strExternalData)){
+				$arFields['EXTERNAL_DATA'] = $strExternalData;
+			}
+			return static::update($arElement['ID'], $arFields)->isSuccess();
 		}
 		else{
-			return static::add(array(
+			$arFields = [
 				'PROFILE_ID' => $intProfileId,
 				'IBLOCK_ID' => $intIBlockId,
 				'ELEMENT_ID' => $strElementId,
-				'EXTERNAL_ID' => $strExternalId,
-			))->isSuccess();
+			];
+			if(!is_null($strExternalId)){
+				$arFields['EXTERNAL_ID'] = $strExternalId;
+			}
+			if(!is_null($strExternalValue)){
+				$arFields['EXTERNAL_VALUE'] = $strExternalValue;
+			}
+			if(!is_null($strExternalData)){
+				$arFields['EXTERNAL_DATA'] = $strExternalData;
+			}
+			return static::add($arFields)->isSuccess();
 		}
 	}
 	
@@ -122,13 +190,13 @@ abstract class ExternalIdTable extends Entity\DataManager {
 	 */
 	public static function deleteElement($intProfileId, $intIBlockId, $strElementId){
 		$bResult = true;
-		$resElement = static::getList(array(
-			'filter' => array(
+		$resElement = static::getList([
+			'filter' => [
 				'PROFILE_ID' => $intProfileId,
 				'IBLOCK_ID' => $intIBlockId,
 				'ELEMENT_ID' => $strElementId,
-			),
-		));
+			],
+		]);
 		if($arElement = $resElement->fetch()) {
 			if(!static::delete($arElement['ID'])->isSuccess()){
 				$bResult = false;
@@ -142,12 +210,12 @@ abstract class ExternalIdTable extends Entity\DataManager {
 	 */
 	public static function deleteIBlock($intProfileId, $intIBlockId){
 		$bResult = true;
-		$resElement = static::getList(array(
-			'filter' => array(
+		$resElement = static::getList([
+			'filter' => [
 				'PROFILE_ID' => $intProfileId,
 				'IBLOCK_ID' => $intIBlockId,
-			),
-		));
+			],
+		]);
 		while($arElement = $resElement->fetch()) {
 			if(!static::delete($arElement['ID'])->isSuccess()){
 				$bResult = false;
@@ -161,11 +229,11 @@ abstract class ExternalIdTable extends Entity\DataManager {
 	 */
 	public static function deleteProfile($intProfileId){
 		$bResult = true;
-		$resElement = static::getList(array(
-			'filter' => array(
+		$resElement = static::getList([
+			'filter' => [
 				'PROFILE_ID' => $intProfileId,
-			),
-		));
+			],
+		]);
 		while($arElement = $resElement->fetch()) {
 			if(!static::delete($arElement['ID'])->isSuccess()){
 				$bResult = false;

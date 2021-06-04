@@ -112,6 +112,19 @@ class TextString
 			. static::getSubstring($string, 1);
 	}
 
+	public static function padLeft($string, $length, $pad = ' ')
+	{
+		$stringLength = static::getLength($string);
+		$lengthDiff = $length - $stringLength;
+
+		if ($lengthDiff > 0)
+		{
+			$string = str_repeat($pad, $lengthDiff) . $string;
+		}
+
+		return $string;
+	}
+
 	public static function match($pattern, $subject, &$matches = null, $flags = 0, $offset = 0)
 	{
 		$needConvert = !Main\Application::isUtfMode() && static::hasPatternUnicode($pattern);

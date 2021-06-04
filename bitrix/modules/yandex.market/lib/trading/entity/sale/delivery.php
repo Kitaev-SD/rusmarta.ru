@@ -151,17 +151,16 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 	public function getRestricted(TradingEntity\Reference\Order $order)
 	{
 		$result = [];
+		$calculatableOrder = $this->getOrderCalculatable($order);
+		$shipment = $this->getCalculatableShipment($calculatableOrder);
+		$services = Sale\Delivery\Services\Manager::getRestrictedList(
+			$shipment,
+			Sale\Delivery\Restrictions\Manager::MODE_CLIENT
+		);
 
-		try
+		foreach ($services as $serviceParameters)
 		{
-			$calculatableOrder = $this->getOrderCalculatable($order);
-			$shipment = $this->getCalculatableShipment($calculatableOrder);
-			$services = Sale\Delivery\Services\Manager::getRestrictedList(
-				$shipment,
-				Sale\Delivery\Restrictions\Manager::MODE_CLIENT
-			);
-
-			foreach ($services as $serviceParameters)
+			try
 			{
 				/** @var Sale\Delivery\Services\Base $serviceClassName */
 				$serviceClassName = $serviceParameters['CLASS_NAME'];
@@ -192,10 +191,10 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 
 				$result[] = $serviceId;
 			}
-		}
-		catch (Main\SystemException $exception)
-		{
-			// silence
+			catch (Main\SystemException $exception)
+			{
+				// silence
+			}
 		}
 
 		return $result;
@@ -402,7 +401,7 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 		if (!($deliveryService instanceof SaleHandlers\Delivery\AdditionalProfile)) { return false; }
 
 		$parentService = $deliveryService->getParentService();
-		$parentConfig = $parentService ? $parentService->getConfigValues() : null;
+		$parentConfig = $parentService && method_exists($parentService, 'getConfigValues') ? $parentService->getConfigValues() : null;
 
 		return (
 			isset($parentConfig['MAIN']['SERVICE_TYPE'])

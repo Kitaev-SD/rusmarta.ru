@@ -299,6 +299,7 @@ class Page extends Market\Ui\Reference\Page
 			'CHECKER_TEST_ERROR',
 			'CHECKER_FIX',
 			'CHECKER_FIX_ERROR',
+			'CHECKER_DESCRIPTION_OPEN',
 		]);
 	}
 

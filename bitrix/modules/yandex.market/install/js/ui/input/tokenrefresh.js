@@ -26,6 +26,10 @@
 			langPrefix: 'YANDEX_MARKET_USER_FIELD_TOKEN_'
 		},
 
+		initVars: function() {
+			this._handledWindowMessage = false;
+		},
+
 		initialize: function() {
 			this.bind();
 		},
@@ -58,6 +62,9 @@
 		},
 
 		handleWindowMessage: function(dir) {
+			if (this._handledWindowMessage === dir) { return; }
+
+			this._handledWindowMessage = dir;
 			$(window)[dir ? 'on' : 'off']('message', $.proxy(this.onWindowMessage, this));
 		},
 

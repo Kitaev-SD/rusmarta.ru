@@ -6,7 +6,7 @@ use Bitrix\Main;
 
 class ReferenceType extends EnumerationType
 {
-	function GetList($arUserField)
+	public static function GetList($arUserField)
 	{
 		static $cache = [];
 

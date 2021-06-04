@@ -7,7 +7,7 @@ use Bitrix\Main;
 
 class ConfirmationContentsType extends StringType
 {
-	function GetAdminListViewHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)
 	{
 		if ((string)$arHtmlControl['VALUE'] === '')
 		{

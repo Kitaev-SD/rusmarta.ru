@@ -149,11 +149,10 @@ Loc::loadMessages(__FILE__);?>
 							<div class="footer-bottom__block-wrap fb-left">
 								<div class="footer-bottom__block footer-bottom__copyright">
 									<?$APPLICATION->IncludeComponent("bitrix:main.include", "template4", Array(
-	"AREA_FILE_SHOW" => "file",	// Показывать включаемую область
-		"PATH" => SITE_DIR."include/copyright.php",	// Путь к файлу области
-	),
+	"AREA_FILE_SHOW" => "file",	
+		"PATH" => SITE_DIR."include/copyright.php",	
 	false
-);?>
+));?>
 								</div>
 								<div class="footer-bottom__block footer-bottom__links">
 									<?$APPLICATION->IncludeComponent("bitrix:menu", "bottom", 
@@ -239,17 +238,6 @@ Loc::loadMessages(__FILE__);?>
 	</div>
 
 
-<?/*vp*/?>
-
-<!-- Мобильная кнопка 
-    <link href="https://rusmarta.ru/bitrix/templates/elektro_flat/css/moab-btn.css" rel="stylesheet">
-<div class="call-button-container">
-    <a href="tel:88003335351" class="call-button" id="call-button" role="button">
-        <i class="fa fa-phone call-button_icon"></i><span class="call-button_text"><span>8 800 333-53-51</span>Бесплатный звонок</span>
-    </a>
-</div>
- Мобильная кнопка -->
-
 <!-- Oneretarget container-->
 <script type="text/javascript">
    (function (w,d) {
@@ -257,20 +245,17 @@ Loc::loadMessages(__FILE__);?>
        ts.type = "text/javascript";
        ts.async = true;
        var domain = window.location.hostname;
-       ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//tag.oneretarget.com/7477_" + domain + ".js";
+       ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//tag.oneretarget.com/7477_" + domain + ".js?v=1";
        var f = function () { var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s); };
        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
    })(window, document);
 </script>
 	<!-- /Oneretarget container--> 
 
-<?/*vp*/?>
-
-
 
 <!-- Calc HDD -->
 
-	<div class="remodal" data-remodal-id="modal__calc">
+<div class="remodal" data-remodal-id="modal__calc">
 		<button data-remodal-action="close" class="remodal-close"></button>
 		<div class="hdd___calc">
 			<div class="hdd___calc-header">
@@ -340,43 +325,53 @@ Loc::loadMessages(__FILE__);?>
 	</div>
 <!-- Calc HDD END -->
 <div class="modal_no_cookie modal_no_cookie_second">
-	<div class="modal_no_cookie_close">&times;</div>
+<div class="modal_no_cookie_close">&times;</div>
 	Предупреждение Для совершения покупок пожалуйста, <a href="https://yandex.ru/support/common/browsers-settings/browsers-cookies.html" target="_blank">разрешите принимать cookie</a> в своем браузере
 </div>
 <!-- Regmarkets -->
-<script src="https://regmarkets.ru/js/r17.js" async type="text/javascript"></script>
+
+<script >
+function run_regmarkets() {
+	var regmarkets_script = document.createElement('script');
+	regmarkets_script.setAttribute("type", "text/javascript"); 
+	regmarkets_script.setAttribute("src", "https://regmarkets.ru/js/r17.js?v=1"); 
+	regmarkets_script.setAttribute("async", "");
+}
+setTimeout(run_regmarkets, 3000);
+</script>
+
 <!-- /Regmarkets -->
 
 <!-- Roistat Begin -->
 <script>
-(function(w, d, s, h, id) {
-    w.roistatProjectId = id; w.roistatHost = h;
-    var p = d.location.protocol == "https:" ? "https://" : "http://";
-    var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
-    var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
-})(window, document, 'script', 'cloud.roistat.com', '9f4ad8a4374d7bf79c7198033ec9efd2');
+function run_roistat() {
+	(function(w, d, s, h, id) {
+		w.roistatProjectId = id; w.roistatHost = h;
+		var p = d.location.protocol == "https:" ? "https://" : "http://";
+		var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js?v=1" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
+		var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
+	})
+	(window, document, 'script', 'cloud.roistat.com', '9f4ad8a4374d7bf79c7198033ec9efd2');
+}
+setTimeout(run_roistat, 5000);
 </script>
-<!--скрипт>
-	var fixer = setInterval(function() {
-		(function(w, d, s, h, id) {
-		    w.roistatProjectId = id; w.roistatHost = h;
-		    var p = d.location.protocol == "https:" ? "https://" : "http://";
-		    var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init";
-		    var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
-		})(window, document, 'script', 'cloud.roistat.com', '9f4ad8a4374d7bf79c7198033ec9efd2');
-
-		console.log('Fixing...');
-
-		if(window.roistat !== undefined) {
-			clearInterval(fixer);
-			console.log('Fix!');
-		}
-	}, 1000);
-</скрипт -->
 <!-- Roistat End -->
 
 <!-- Pixel VK -->
-<script type="text/javascript">!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?162",t.onload=function(){VK.Retargeting.Init("VK-RTRG-431265-egnQ4"),VK.Retargeting.Hit()},document.head.appendChild(t)}();</script><noscript><img src="https://vk.com/rtrg?p=VK-RTRG-431265-egnQ4" style="position:fixed; left:-999px;" alt=""/></noscript>
+<script type="text/javascript">
+
+function run_vk() {
+! function() {
+		var t = document.createElement("script");
+		t.type = "text/javascript", t.async = !0, t.src = "https://vk.com/js/api/openapi.js?162", t.onload = function() {
+			VK.Retargeting.Init("VK-RTRG-431265-egnQ4"), VK.Retargeting.Hit()
+		}, document.head.appendChild(t)
+	}();
+}
+setTimeout(run_vk, 5000);
+</script>
+
+<noscript><img src="https://vk.com/rtrg?p=VK-RTRG-431265-egnQ4" style="position:fixed; left:-999px;" alt=""/></noscript>
 <!-- Pixel VK END -->
 
 <? 
@@ -386,66 +381,61 @@ $file = $path.'invis-counter.php';
 ?>
 
 
-
+<!-- lazy load  -->
 <script>
+	var images = document.querySelectorAll('img.data-lazy-src, iframe.data-lazy-src');
+	var backgrounds = document.querySelectorAll('span.data-lazy-background, a.data-lazy-background');
 
-
-var images = document.querySelectorAll('img.data-lazy-src');
-var backgrounds = document.querySelectorAll('span.data-lazy-background, a.data-lazy-background');
-
-
-
-var options = {
-	root: null,
-	rootMargin: '0px',
-	threshold: 0.1,
-}
-
-function handleImg(myImg, observer) {
-	myImg.forEach( function(myImgSingle) {
-		if(myImgSingle.intersectionRatio > 0) {
-			loadImage(myImgSingle.target);
-		}
-	})
-}
-
-function handleSpan(elements, observer) {
-	elements.forEach( function(element) {
-		if(element.intersectionRatio > 0) {
-			loadElementBack(element.target);
-		}
-	})
-}
-
-function loadImage(image) {
-	if (image.hasAttribute('data-lazy-src')) {
-	image.src = image.getAttribute('data-lazy-src');
-	image.removeAttribute('data-lazy-src');
-	image.style.opacity = 1;
+	var options = {
+		root: null,
+		rootMargin: '0px',
+		threshold: 0.1,
 	}
-}
-function loadElementBack(element) {
-	if (element.hasAttribute('data-lazy-background')) {
-		element.setAttribute('style', element.getAttribute('data-lazy-background'));
-		element.setAttribute('style', element.getAttribute('data-lazy-background'));
-		element.removeAttribute('data-lazy-background');
-		element.style.opacity = 1;
+
+	function handleImg(myImg, observer) {
+		myImg.forEach(function(myImgSingle) {
+			if (myImgSingle.intersectionRatio > 0) {
+				loadImage(myImgSingle.target);
+			}
+		})
 	}
-}
 
-var observer = new IntersectionObserver(handleImg, options);
-var observer2 = new IntersectionObserver(handleSpan, options);
+	function handleSpan(elements, observer) {
+		elements.forEach(function(element) {
+			if (element.intersectionRatio > 0) {
+				loadElementBack(element.target);
+			}
+		})
+	}
 
-images.forEach ( function(img) {
-	observer.observe(img);
-})
+	function loadImage(image) {
+		if (image.hasAttribute('data-lazy-src')) {
+			image.src = image.getAttribute('data-lazy-src');
+			image.removeAttribute('data-lazy-src');
+			image.style.opacity = 1;
+		}
+	}
 
-backgrounds.forEach ( function(span) {
-	observer2.observe(span);
-})
+	function loadElementBack(element) {
+		if (element.hasAttribute('data-lazy-background')) {
+			element.setAttribute('style', element.getAttribute('data-lazy-background'));
+			element.setAttribute('style', element.getAttribute('data-lazy-background'));
+			element.removeAttribute('data-lazy-background');
+			element.style.opacity = 1;
+		}
+	}
+ 
+	var observer = new IntersectionObserver(handleImg, options);
+	var observer2 = new IntersectionObserver(handleSpan, options);
 
+	images.forEach(function(img) {
+		observer.observe(img);
+	})
+
+	backgrounds.forEach(function(span) {
+		observer2.observe(span);
+	})
 </script>
-
 
 
 </body>

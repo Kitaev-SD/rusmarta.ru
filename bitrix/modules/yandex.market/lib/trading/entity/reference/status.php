@@ -53,10 +53,39 @@ abstract class Status
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'getVariants');
 	}
 
+	final public function getMeaningful($status)
+	{
+		$map = $this->getMeaningfulMap();
+		$result = null;
+
+		foreach ($map as $meaningful => $matched)
+		{
+			$isMatched = is_array($matched)
+				? in_array($status, $matched, true)
+				: $matched === $status;
+
+			if ($isMatched)
+			{
+				$result = $meaningful;
+				break;
+			}
+		}
+
+		return $result;
+	}
+
 	/**
-	 * @return string[]
+	 * @return string[]|string[][]
 	 */
 	public function getMeaningfulMap()
+	{
+		return [];
+	}
+
+	/**
+	 * @return string[]|string[][]
+	 */
+	public function getCancelReasonMeaningfulMap()
 	{
 		return [];
 	}

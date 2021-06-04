@@ -7,11 +7,11 @@ use Bitrix\Main;
 
 class Route extends Market\Trading\Entity\Reference\Route
 {
-	public function getPublicPath($serviceCode, $siteId)
+	public function getPublicPath($serviceCode, $urlId)
 	{
 		$serviceCodeSanitized = str_replace(':', '-', $serviceCode);
 
-		return $this->getPublicBasePath() . '/' . $serviceCodeSanitized . '/' . $siteId;
+		return $this->getPublicBasePath() . '/' . $serviceCodeSanitized . '/' . $urlId;
 	}
 
 	public function installPublic($siteId)

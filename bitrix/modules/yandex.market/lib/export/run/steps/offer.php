@@ -474,12 +474,14 @@ class Offer extends Base
 		return $step->getTag();
 	}
 
-	protected function getOfferPrimarySource(Market\Export\IblockLink\Model $iblockLink)
+	protected function getOfferPrimarySource(Market\Export\IblockLink\Model $iblockLink, array $context)
 	{
+		/** @var Market\Export\Xml\Tag\Base $offerTag */
 		$offerTag = $this->getOfferTag();
 		$offerName = $offerTag->getName();
 		$primaryName = $this->getTagPrimaryName($offerTag);
 		$tagDescription = $iblockLink->getTagDescription($offerName);
+		$tagDescription = $offerTag->extendTagDescription($tagDescription, $context);
 		$result = null;
 
 		if ($tagDescription !== null && isset($tagDescription['ATTRIBUTES'][$primaryName]))

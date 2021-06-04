@@ -19,11 +19,13 @@
 			var baseName = this.getBaseName();
 			var index = this.getIndex();
 			var newChildInstanceMap = newInstance.getChildInstanceMap();
+			var rawValues = this.getRawValue();
 
 			newInstance.setBaseName(baseName);
 			newInstance.setIndex(index);
+			newInstance.setRawValue(rawValues);
 
-			this.callItemList(function(childInstance) {
+			this.callChildList(function(childInstance) {
 				var childName = childInstance.getName();
 				var newChildInstance = newChildInstanceMap[childName];
 
@@ -86,7 +88,7 @@
 		},
 
 		setValue: function(valueList) {
-			this.callParent('setValue', [valueList], constructor);
+			this.setRawValue(valueList);
 			this.callChildList(function(instance) {
 				var childName = instance.getName();
 				var childValue = valueList[childName];
@@ -95,8 +97,12 @@
 			});
 		},
 
+		setRawValue: function(valueList) {
+			this.callParent('setValue', [valueList], constructor);
+		},
+
 		getValue: function() {
-			var result = this.callParent('getValue', constructor);
+			var result = this.getRawValue();
 
 			this.callChildList(function(instance) {
 				var childName = instance.getName();
@@ -105,6 +111,10 @@
 			});
 
 			return result;
+		},
+
+		getRawValue: function() {
+			return this.callParent('getValue', constructor);
 		},
 
 		getDisplayValue: function() {

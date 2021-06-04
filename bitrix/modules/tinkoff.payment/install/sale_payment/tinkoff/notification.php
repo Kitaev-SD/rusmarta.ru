@@ -1,12 +1,14 @@
 <?php
 
+use Bitrix\Main\Localization\Loc;
+
 require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/bx_root.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
 CModule::IncludeModule('sale');
+Loc::loadMessages(__FILE__);
 
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-include(GetLangFileName(dirname(__FILE__) . "/", "/tinkoff.php"));
 
 include(dirname(__FILE__) . "/sdk/tinkoff_autoload.php");
 
@@ -52,5 +54,3 @@ if ($notificationModel->isOrderFailed()) {
 }
 
 die('OK');
-
-?>

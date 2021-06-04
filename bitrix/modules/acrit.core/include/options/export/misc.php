@@ -19,6 +19,11 @@ return [
 			'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_DELETE_ELEMENT_DATA_WHILE_EXPORTS_HINT'),
 			'TYPE' => 'checkbox',
 		],
+		'show_export_file_basename' => [
+			'NAME' => Loc::getMessage('ACRIT_CORE_OPTION_SHOW_EXPORT_FILE_BASENAME'),
+			'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_SHOW_EXPORT_FILE_BASENAME_HINT'),
+			'TYPE' => 'checkbox',
+		],
 		'show_export_file_with_uniq_argument' => [
 			'NAME' => Loc::getMessage('ACRIT_CORE_OPTION_SHOW_EXPORT_FILE_WITH_UNIQ_ARGUMENT'),
 			'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_SHOW_EXPORT_FILE_WITH_UNIQ_ARGUMENT_HINT'),
@@ -41,6 +46,11 @@ return [
 			'TYPE' => 'text',
 			'ATTR' => 'MAXLENGTH="6"',
 		],
+		// 'prevent_discount_memory_leak' => [
+		// 	'NAME' => Loc::getMessage('ACRIT_CORE_OPTION_PREVENT_DISCOUNT_MEMORY_LEAK'),
+		// 	'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_PREVENT_DISCOUNT_MEMORY_LEAK_HINT'),
+		// 	'TYPE' => 'checkbox',
+		// ],
 	],
 ];
 	

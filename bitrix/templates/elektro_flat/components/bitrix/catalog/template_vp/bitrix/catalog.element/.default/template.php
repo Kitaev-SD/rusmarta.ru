@@ -296,11 +296,11 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                             <div class="catalog-detail-images">
                                 <?}
                                 if($isOfferDetailImg) {?>
-                                    <img src="<?=$arOffer['DETAIL_IMG']['SRC']?>" width="<?=$arOffer['DETAIL_IMG']['WIDTH']?>" height="<?=$arOffer['DETAIL_IMG']['HEIGHT']?>" alt="<?=$offerName?>" title="<?=$offerName?>" />
+                                    <img class="data-lazy-src" data-lazy-src="<?=$arOffer['DETAIL_IMG']['SRC']?>" width="<?=$arOffer['DETAIL_IMG']['WIDTH']?>" height="<?=$arOffer['DETAIL_IMG']['HEIGHT']?>" alt="<?=$offerName?>" title="<?=$offerName?>" />
                                 <?} elseif($isDetailImg) {?>
-                                    <img src="<?=$arResult['DETAIL_IMG']['SRC']?>" width="<?=$arResult['DETAIL_IMG']['WIDTH']?>" height="<?=$arResult['DETAIL_IMG']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
+                                    <img class="data-lazy-src" data-lazy-src="<?=$arResult['DETAIL_IMG']['SRC']?>" width="<?=$arResult['DETAIL_IMG']['WIDTH']?>" height="<?=$arResult['DETAIL_IMG']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
                                 <?} else {?>
-                                    <img src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="150" height="150" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
+                                    <img class="data-lazy-src" data-lazy-src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="150" height="150" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
                                 <?}?>
                                 <div class="time_buy_sticker">
                                     <?=$timeBuy?>
@@ -316,7 +316,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                     }?>
                                 </div>
                                 <?if(is_array($arResult["PROPERTIES"]["MANUFACTURER"]["PREVIEW_PICTURE"])) {?>
-                                    <img class="manufacturer" src="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['SRC']?>" width="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" title="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" />
+                                    <img class="manufacturer data-lazy-src" data-lazy-src="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['SRC']?>" width="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" title="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" />
                                 <?}?>
                                 <?=($isOfferDetailImg || $isDetailImg ? "</a>" : "</div>");?>
                             </div>
@@ -328,10 +328,10 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                 <meta content="<?=($isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>" itemprop="image" />
                                 <?if($isDetailImg) {?>
                                 <a rel="lightbox" class="catalog-detail-images fancybox" href="<?=$arResult['DETAIL_PICTURE']['SRC']?>">
-                                    <img src="<?=$arResult['DETAIL_IMG']['SRC']?>" width="<?=$arResult['DETAIL_IMG']['WIDTH']?>" height="<?=$arResult['DETAIL_IMG']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
+                                    <img class="data-lazy-src" data-lazy-src="<?=$arResult['DETAIL_IMG']['SRC']?>" width="<?=$arResult['DETAIL_IMG']['WIDTH']?>" height="<?=$arResult['DETAIL_IMG']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
                                     <?} else {?>
                                     <div class="catalog-detail-images">
-                                        <img src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="150" height="150" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
+                                        <img class="data-lazy-src" data-lazy-src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="150" height="150" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
                                         <?}?>
                                         <div class="time_buy_sticker">
                                             <?=$timeBuy?>
@@ -340,7 +340,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                             <?=$sticker?>
                                         </div>
                                         <?if(is_array($arResult["PROPERTIES"]["MANUFACTURER"]["PREVIEW_PICTURE"])) {?>
-                                            <img class="manufacturer" src="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['SRC']?>" width="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" title="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" />
+                                            <img class="manufacturer data-lazy-src" data-lazy-src="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['SRC']?>" width="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arResult['PROPERTIES']['MANUFACTURER']['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" title="<?=$arResult['PROPERTIES']['MANUFACTURER']['NAME']?>" />
                                         <?}?>
                                         <?=($isDetailImg ? "</a>" : "</div>");?>
                                     </div>
@@ -368,7 +368,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 
                                                 <li style="<?=($arParams['DISPLAY_MORE_PHOTO_WIDTH'] ? 'width:'.$arParams['DISPLAY_MORE_PHOTO_WIDTH'].'px;' : '').($arParams['DISPLAY_MORE_PHOTO_HEIGHT'] ? 'height:'.$arParams['DISPLAY_MORE_PHOTO_HEIGHT'].'px;' : '');?>">
                                                     <a rel="lightbox" class="catalog-detail-images fancybox" href="<?=$PHOTO['SRC']?>">
-                                                        <img src="<?=$PHOTO['PREVIEW']['SRC']?>" width="<?=$PHOTO['PREVIEW']['WIDTH']?>" height="<?=$PHOTO['PREVIEW']['HEIGHT']?>" alt="<?=$arResult['NAME']?>" title="<?=$arResult['NAME']?>" />
+                                                        <img class="data-lazy-src" data-lazy-src="<?=$PHOTO['PREVIEW']['SRC']?>" width="<?=$PHOTO['PREVIEW']['WIDTH']?>" height="<?=$PHOTO['PREVIEW']['HEIGHT']?>" alt="<?=$arResult['NAME']?>" title="<?=$arResult['NAME']?>" />
                                                     </a>
                                                 </li>
                                             <?}
@@ -382,7 +382,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                                         <li style="<?=($arParams['DISPLAY_MORE_PHOTO_WIDTH'] ? 'width:'.$arParams['DISPLAY_MORE_PHOTO_WIDTH'].'px;' : '').($arParams['DISPLAY_MORE_PHOTO_HEIGHT'] ? 'height:'.$arParams['DISPLAY_MORE_PHOTO_HEIGHT'].'px;' : '');?>">
                                                             <a rel="lightbox" class="catalog-detail-images fancybox" href="<?=CFile::GetPath((string)$ar_res["PREVIEW_PICTURE"]);?>">
                                                                 <? //echo CFile::ShowImage($ar_res["PREVIEW_PICTURE"], 86, 86, 'title="'.$ar_res["NAME"].'  alt="'.$ar_res["NAME"].' "', "", false);?>
-                                                                <img src="<?=CFile::GetPath((string)$ar_res["PREVIEW_PICTURE"]);?>" width="86" height="86" alt="<?=$ar_res['NAME']?>" title="<?=$ar_res['NAME']?>" />
+                                                                <img class="data-lazy-src" data-lazy-src="<?=CFile::GetPath((string)$ar_res["PREVIEW_PICTURE"]);?>" width="86" height="86" alt="<?=$ar_res['NAME']?>" title="<?=$ar_res['NAME']?>" />
                                                             </a>
                                                         </li>
                                                     <?}
@@ -562,9 +562,9 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                             <div class="gift-image">
                                                 <div class="gift-image-col">
                                                     <?if(is_array($arGift["PREVIEW_PICTURE"])) {?>
-                                                        <img src="<?=$arGift['PREVIEW_PICTURE']['SRC']?>" width="<?=$arGift['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arGift['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arGift['NAME']?>" title="<?=$arGift['NAME']?>" />
+                                                        <img class="data-lazy-src" data-lazy-src="<?=$arGift['PREVIEW_PICTURE']['SRC']?>" width="<?=$arGift['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arGift['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arGift['NAME']?>" title="<?=$arGift['NAME']?>" />
                                                     <?} else {?>
-                                                        <img src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="70" height="70" alt="<?=$arGift['NAME']?>" title="<?=$arGift['NAME']?>" />
+                                                        <img class="data-lazy-src" data-lazy-src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="70" height="70" alt="<?=$arGift['NAME']?>" title="<?=$arGift['NAME']?>" />
                                                     <?}?>
                                                 </div>
                                             </div>
@@ -599,7 +599,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                                             echo $arOneValue["NAME"];
                                                         } elseif("PICT" == $arProp["SHOW_MODE"]) {
                                                             if(is_array($arOneValue["PICT"])) {?>
-                                                                <img src="<?=$arOneValue['PICT']['SRC']?>" width="<?=$arOneValue['PICT']['WIDTH']?>" height="<?=$arOneValue['PICT']['HEIGHT']?>" alt="<?=$arOneValue['NAME']?>" title="<?=$arOneValue['NAME']?>" />
+                                                                <img class="data-lazy-src" data-lazy-src="<?=$arOneValue['PICT']['SRC']?>" width="<?=$arOneValue['PICT']['WIDTH']?>" height="<?=$arOneValue['PICT']['HEIGHT']?>" alt="<?=$arOneValue['NAME']?>" title="<?=$arOneValue['NAME']?>" />
                                                             <?} else {?>
                                                                 <i style="background:#<?=$arOneValue['HEX']?>"></i>
                                                             <?}
@@ -1390,11 +1390,11 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                             <div>
                                                 <?}
                                                 if($isOfferPreviewImg) {?>
-                                                    <img src="<?=$arOffer['PREVIEW_IMG']['SRC']?>" width="<?=$arOffer['PREVIEW_IMG']['WIDTH']?>" height="<?=$arOffer['PREVIEW_IMG']['HEIGHT']?>" alt="<?=$offerName?>" title="<?=$offerName?>" />
+                                                    <img class="data-lazy-src" data-lazy-src="<?=$arOffer['PREVIEW_IMG']['SRC']?>" width="<?=$arOffer['PREVIEW_IMG']['WIDTH']?>" height="<?=$arOffer['PREVIEW_IMG']['HEIGHT']?>" alt="<?=$offerName?>" title="<?=$offerName?>" />
                                                 <?} elseif($isPreviewImg) {?>
-                                                    <img src="<?=$arResult['PREVIEW_IMG']['SRC']?>" width="<?=$arResult['PREVIEW_IMG']['WIDTH']?>" height="<?=$arResult['PREVIEW_IMG']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
+                                                    <img class="data-lazy-src" data-lazy-src="<?=$arResult['PREVIEW_IMG']['SRC']?>" width="<?=$arResult['PREVIEW_IMG']['WIDTH']?>" height="<?=$arResult['PREVIEW_IMG']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
                                                 <?} else {?>
-                                                    <img src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="72" height="72" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
+                                                    <img class="data-lazy-src" data-lazy-src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="72" height="72" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
                                                 <?}?>
                                                 <div class="sticker">
                                                     <?=$sticker?>
@@ -1428,7 +1428,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                                     <span class="prop_cont">
 													<span class="prop" title="<?=$arProp['VALUES'][$v['VALUE']]['NAME']?>">
 														<?if(is_array($arProp["VALUES"][$v["VALUE"]]["PICT"])) {?>
-                                                            <img src="<?=$arProp['VALUES'][$v['VALUE']]['PICT']['SRC']?>" width="<?=$arProp['VALUES'][$v['VALUE']]['PICT']['WIDTH']?>" height="<?=$arProp['VALUES'][$v['VALUE']]['PICT']['HEIGHT']?>" alt="<?=$arProp['VALUES'][$v['VALUE']]['NAME']?>" title="<?=$arProp['VALUES'][$v['VALUE']]['NAME']?>" />
+                                                            <img class="data-lazy-src" data-lazy-src="<?=$arProp['VALUES'][$v['VALUE']]['PICT']['SRC']?>" width="<?=$arProp['VALUES'][$v['VALUE']]['PICT']['WIDTH']?>" height="<?=$arProp['VALUES'][$v['VALUE']]['PICT']['HEIGHT']?>" alt="<?=$arProp['VALUES'][$v['VALUE']]['NAME']?>" title="<?=$arProp['VALUES'][$v['VALUE']]['NAME']?>" />
                                                         <?} else {?>
                                                             <i style="background:#<?=$arProp['VALUES'][$v['VALUE']]['HEX']?>"></i>
                                                         <?}?>
@@ -1627,11 +1627,11 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                             <div class="item-image">
                                                 <?if(is_array($arItem["PREVIEW_PICTURE"])) {?>
                                                     <a rel="nofollow" href="<?=$arItem['DETAIL_PAGE_URL']?>">
-                                                        <img class="item_img" src="<?=$arItem['PREVIEW_PICTURE']['SRC']?>" width="<?=$arItem['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arItem['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arItem['NAME']?>" title="<?=$arItem['NAME']?>" />
+                                                        <img class="item_img data-lazy-src" data-lazy-src="<?=$arItem['PREVIEW_PICTURE']['SRC']?>" width="<?=$arItem['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arItem['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arItem['NAME']?>" title="<?=$arItem['NAME']?>" />
                                                     </a>
                                                 <?} else {?>
                                                     <a href="<?=$arItem['DETAIL_PAGE_URL']?>">
-                                                        <img class="item_img" src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="150" height="150" alt="<?=$arItem['NAME']?>" title="<?=$arItem['NAME']?>" />
+                                                        <img class="item_img data-lazy-src" data-lazy-src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="150" height="150" alt="<?=$arItem['NAME']?>" title="<?=$arItem['NAME']?>" />
                                                     </a>
                                                 <?}?>
                                             </div>

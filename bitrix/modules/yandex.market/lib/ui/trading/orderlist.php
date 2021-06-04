@@ -23,12 +23,10 @@ class OrderList extends Market\Ui\Reference\Page
 	public function show()
 	{
 		$setupCollection = $this->getSetupCollection();
-		$role = $this->getRequestRole();
-		list($siteId, $behavior) = $this->parseRequestRole($role);
-		$setup = $this->resolveSetup($setupCollection, $siteId, $behavior);
-		$setupRole = $this->makeSetupRole($setup);
+		$setupId = $this->getRequestSetupId();
+		$setup = $this->resolveSetup($setupCollection, $setupId);
 
-		$this->showRoleSelector($setupCollection, $setupRole);
+		$this->showSetupSelector($setupCollection, $setup->getId());
 		$this->showOrderList($setup);
 	}
 
@@ -48,7 +46,7 @@ class OrderList extends Market\Ui\Reference\Page
 		}
 	}
 
-	protected function showRoleSelector(Market\Trading\Setup\Collection $setupCollection, $selectedRole)
+	protected function showSetupSelector(Market\Trading\Setup\Collection $setupCollection, $selectedId)
 	{
 		global $APPLICATION;
 
@@ -56,28 +54,26 @@ class OrderList extends Market\Ui\Reference\Page
 
 		if (count($options) <= 1) { return; }
 
-		$hasFewGroups = count(array_unique(array_column($options, 'GROUP'))) > 1;
-		$hasFewSites = count(array_unique(array_column($options, 'VALUE'))) > 1;
+		$usedBehaviors = array_column($options, 'BEHAVIOR');
+		$usedSites = array_unique(array_column($options, 'SITE_ID'));
+		$useOnlyGroup = true;
+
+		if (count($usedBehaviors) !== count(array_unique($usedBehaviors)))
+		{
+			$useOnlyGroup = false;
+		}
+		else if (count($usedSites) > 1)
+		{
+			$useOnlyGroup = false;
+		}
 
 		echo '<div style="margin-bottom: 10px;">';
 
 		foreach ($options as $option)
 		{
-			if ($hasFewSites)
-			{
-				$title = $option['VALUE'];
+			$title = $useOnlyGroup ? $option['GROUP'] : $option['VALUE'];
 
-				if ($hasFewGroups)
-				{
-					$title .= sprintf(' (%s)', $option['GROUP']);
-				}
-			}
-			else
-			{
-				$title = $option['GROUP'];
-			}
-
-			if ($option['ID'] === $selectedRole)
+			if ($option['ID'] === (int)$selectedId)
 			{
 				echo sprintf(
 					' <span class="adm-btn adm-btn-active">%s</span>',
@@ -86,7 +82,7 @@ class OrderList extends Market\Ui\Reference\Page
 			}
 			else
 			{
-				$url = $APPLICATION->GetCurPageParam(http_build_query([ 'role' => $option['ID'] ]), ['role']);
+				$url = $APPLICATION->GetCurPageParam(http_build_query([ 'setup' => $option['ID'] ]), [ 'setup' ]);
 
 				echo sprintf(
 					' <a class="adm-btn" href="%s">%s</a>',
@@ -113,22 +109,31 @@ class OrderList extends Market\Ui\Reference\Page
 			$service = $setup->getService();
 			$behaviorCode = $service->getBehaviorCode();
 			$behaviorTitle = $setup->getService()->getInfo()->getTitle('BEHAVIOR');
-			$siteEntity = $setup->getEnvironment()->getSite();
-			$siteTitle =  '[' . $siteId . '] ' . $siteEntity->getTitle($siteId);
+			$title = $setup->getField('NAME');
 
 			$usedBehaviors[$behaviorCode] = true;
 
+			if ($title === $setup->getDefaultName())
+			{
+				$siteEntity = $setup->getEnvironment()->getSite();
+				$title = sprintf('[%s] %s (%s)', $siteId, $siteEntity->getTitle($siteId), $behaviorTitle);
+			}
+
 			$result[] = [
-				'ID' => $siteId . '-' . $behaviorCode,
-				'VALUE' => htmlspecialcharsbx($siteTitle),
+				'ID' => (int)$setup->getId(),
+				'VALUE' => $title,
 				'BEHAVIOR' => $behaviorCode,
+				'SITE_ID' => $siteId,
 				'GROUP' => $behaviorTitle,
 			];
 		}
 
-		return count($usedBehaviors) > 1
-			? $this->sortRoleOptionsByBehavior($result)
-			: $this->unsetRoleOptionsGroup($result);
+		if (count($usedBehaviors) > 1)
+		{
+			$result = $this->sortRoleOptionsByBehavior($result);
+		}
+
+		return $result;
 	}
 
 	protected function sortRoleOptionsByBehavior($options)
@@ -147,13 +152,6 @@ class OrderList extends Market\Ui\Reference\Page
 		});
 
 		return $options;
-	}
-
-	protected function unsetRoleOptionsGroup($options)
-	{
-		return array_map(static function($option) {
-			return array_diff_key($option, [ 'GROUP' => true ]);
-		}, $options);
 	}
 
 	protected function showOrderList(Market\Trading\Setup\Model $setup)
@@ -352,8 +350,7 @@ class OrderList extends Market\Ui\Reference\Page
 		$queryParameters = array_filter([
 			'lang' => LANGUAGE_ID,
 			'service' => $setup->getServiceCode(),
-			'role' => $this->getRequestRole(),
-			'site' => $setup->getSiteId(),
+			'id' => $this->getRequestSetupId(),
 		]);
 
 		return $APPLICATION->GetCurPage() . '?' . http_build_query($queryParameters);
@@ -389,62 +386,39 @@ class OrderList extends Market\Ui\Reference\Page
 		return $result;
 	}
 
-	protected function getRequestRole()
+	protected function getRequestSetupId()
 	{
-		return $this->request->get('role');
-	}
-
-	protected function parseRequestRole($role)
-	{
-		$role = (string)$role;
-		$siteId = null;
-		$behavior = null;
-
-		if ($role !== '')
-		{
-			$siteId = strtok($role, '-');
-			$behavior = strtok('-') ?: null;
-		}
-
-		return [$siteId, $behavior];
-	}
-
-	protected function makeSetupRole(Market\Trading\Setup\Model $model)
-	{
-		return $model->getSiteId() . '-' . $model->getBehaviorCode();
+		return $this->request->get('setup');
 	}
 
 	/**
 	 * @param Market\Trading\Setup\Collection $setupCollection
-	 * @param string|null $siteId
-	 * @param string|null $behavior
+	 * @param int|null $setupId
 	 *
 	 * @return Market\Trading\Setup\Model
 	 * @throws Main\SystemException
 	 */
-	protected function resolveSetup(Market\Trading\Setup\Collection $setupCollection, $siteId = null, $behavior = null)
+	protected function resolveSetup(Market\Trading\Setup\Collection $setupCollection, $setupId = null)
 	{
-		$filter = $behavior !== null ? [ 'TRADING_BEHAVIOR' => $behavior ] : null;
-
-		if ($siteId !== null)
+		if ($setupId !== null)
 		{
-			$setup = $setupCollection->getBySite($siteId, $filter);
+			$setup = $setupCollection->getItemById($setupId);
 
 			if ($setup === null)
 			{
-				$message = static::getLang('UI_TRADING_ORDER_LIST_SETUP_NOT_FOUND', [ '#SITE_ID#' => $siteId ]);
+				$message = static::getLang('UI_TRADING_ORDER_LIST_SETUP_NOT_FOUND', [ '#ID#' => $setupId ]);
 				throw new Main\ObjectNotFoundException($message);
 			}
 
 			if (!$setup->isActive())
 			{
-				$message = static::getLang('UI_TRADING_ORDER_LIST_SETUP_INACTIVE', [ '#SITE_ID#' => $siteId ]);
+				$message = static::getLang('UI_TRADING_ORDER_LIST_SETUP_INACTIVE', [ '#ID#' => $setupId ]);
 				throw new Main\SystemException($message);
 			}
 		}
 		else
 		{
-			$setup = $setupCollection->getActive($filter);
+			$setup = $setupCollection->getActive();
 
 			if ($setup === null)
 			{

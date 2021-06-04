@@ -82,6 +82,11 @@ class Options extends TradingService\Marketplace\Options
 		return $this->getFieldsetCollection('PAY_SYSTEM_OPTIONS');
 	}
 
+	protected function useTaxSystem()
+	{
+		return false;
+	}
+
 	public function useAddressDetails()
 	{
 		return (string)$this->getValue('USE_ADDRESS_DETAILS') === Market\Reference\Storage\Table::BOOLEAN_Y;
@@ -154,6 +159,7 @@ class Options extends TradingService\Marketplace\Options
 			+ $this->getProductSkuMapFields($environment, $siteId)
 			+ $this->getProductStoreFields($environment, $siteId)
 			+ $this->getProductPriceFields($environment, $siteId)
+			+ $this->getProductSelfTestFields($environment, $siteId)
 			+ $this->getOrderUserRuleFields($environment, $siteId)
 			+ $this->getOrderPersonFields($environment, $siteId)
 			+ $this->getBuyerProfileRuleFields($environment, $siteId)
@@ -164,11 +170,31 @@ class Options extends TradingService\Marketplace\Options
 			+ $this->getOrderBasketSubsidyFields($environment, $siteId)
 			+ $this->getAddressCommonFields($environment, $siteId)
 			+ $this->getAddressDetailsFields($environment, $siteId)
+			+ $this->getAddressCoordinatesFields($environment, $siteId)
 			+ $this->getDeliveryDatesFields($environment, $siteId)
 			+ $this->getStatusInFields($environment, $siteId)
 			+ $this->getStatusOutFields($environment, $siteId)
 			+ $this->getCancelledStatusOutFields($environment, $siteId)
 			+ $this->getCancelReasonFields($environment, $siteId);
+	}
+
+	protected function getCommonFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		$result = parent::getCommonFields($environment, $siteId);
+
+		return $this->applyFieldsOverrides($result, [
+			'GROUP' => static::getLang('TRADING_SERVICE_COMMON_GROUP_SERVICE_REQUEST'),
+		]);
+	}
+
+	protected function getCompanyFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		$result = parent::getCompanyFields($environment, $siteId);
+
+		return $this->applyFieldsOverrides($result, [
+			'MANDATORY' => 'N',
+			'HIDDEN' => 'Y',
+		]);
 	}
 
 	protected function getPersonTypeDefaultValue(TradingEntity\Reference\PersonType $personType, $siteId)
@@ -424,6 +450,31 @@ class Options extends TradingService\Marketplace\Options
 		return $result;
 	}
 
+	protected function getAddressCoordinatesFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		try
+		{
+			$propertyFields = [];
+
+			foreach (Model\Order\Delivery\Address::getCoordinatesFields() as $key)
+			{
+				$propertyFields[$key] = [
+					'TAB' => 'DELIVERY_AND_PAYMENT',
+					'NAME' => Model\Order\Delivery\Address::getFieldTitle($key),
+					'GROUP' => static::getLang('TRADING_SERVICE_MARKETPLACE_GROUP_ADDRESS'),
+				];
+			}
+
+			$result = $this->createPropertyFields($environment, $siteId, $propertyFields, 3271);
+		}
+		catch (Market\Exceptions\NotImplemented $exception)
+		{
+			$result = [];
+		}
+
+		return $result;
+	}
+
 	protected function getDeliveryDatesFields(TradingEntity\Reference\Environment $environment, $siteId)
 	{
 		try
@@ -470,14 +521,16 @@ class Options extends TradingService\Marketplace\Options
 			$serviceStatus = $this->provider->getStatus();
 			$serviceOutgoingRequired = $serviceStatus->getOutgoingRequired();
 			$statusDefaults = $this->makeStatusDefaults($environment->getStatus()->getMeaningfulMap(), $serviceStatus->getOutgoingMeaningfulMap());
-			$defaultValues = [];
-
-			if (isset($statusDefaults[Status::STATUS_CANCELLED]))
-			{
-				$defaultValues[] = [
-					'STATUS_OUT' => $statusDefaults[Status::STATUS_CANCELLED],
-				];
-			}
+			$cancelReasonDefaults = $environment->getStatus()->getCancelReasonMeaningfulMap();
+			$cancelReasonDefaultsMap = $this->makeCancelReasonDefaultsMap($cancelReasonDefaults);
+			$defaultValues = isset($statusDefaults[Status::STATUS_CANCELLED])
+				? array_map(static function($status) use ($cancelReasonDefaultsMap) {
+					return [
+						'STATUS' => $status,
+						'CANCEL_REASON' => isset($cancelReasonDefaultsMap[$status]) ? $cancelReasonDefaultsMap[$status] : null,
+					];
+				}, (array)$statusDefaults[Status::STATUS_CANCELLED])
+				: [];
 
 			$result = [
 				'STATUS_OUT_CANCELLED_OPTION' => $cancelStatusOptions->getFieldDescription($environment, $siteId) + [
@@ -496,6 +549,25 @@ class Options extends TradingService\Marketplace\Options
 		catch (Market\Exceptions\NotImplemented $exception)
 		{
 			$result = [];
+		}
+
+		return $result;
+	}
+
+	protected function makeCancelReasonDefaultsMap($cancelReasonDefaults)
+	{
+		$result = [];
+
+		foreach ($cancelReasonDefaults as $cancelReason => $statuses)
+		{
+			if (is_array($statuses))
+			{
+				$result += array_fill_keys($statuses, $cancelReason);
+			}
+			else
+			{
+				$result[$statuses] = $cancelReason;
+ 			}
 		}
 
 		return $result;

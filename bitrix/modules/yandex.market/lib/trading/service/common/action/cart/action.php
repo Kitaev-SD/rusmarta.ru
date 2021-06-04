@@ -99,8 +99,10 @@ class Action extends TradingService\Common\Action\HttpAction
 	protected function fillXmlId()
 	{
 		$platform = $this->getPlatform();
+		$setupId = $this->provider->getOptions()->getSetupId();
 
 		$this->order->fillXmlId(null, $platform);
+		$this->order->fillTradingSetup($setupId, $platform);
 	}
 
 	protected function fillPersonType()
@@ -131,21 +133,54 @@ class Action extends TradingService\Common\Action\HttpAction
 	protected function fillRegion()
 	{
 		$location = $this->environment->getLocation();
-		$requestRegion = $this->request->getCart()->getDelivery()->getRegion()->getFields();
-		$locationId = $location->getLocation($requestRegion);
-		$meaningfulValues = null;
+		$requestRegion = $this->request->getCart()->getDelivery()->getRegion();
+		$locationId = $location->getLocation($requestRegion->getFields());
 
-		if ($locationId !== null)
+		if ($locationId === null)
 		{
-			$meaningfulValues = $location->getMeaningfulValues($locationId);
-
-			$this->order->setLocation($locationId);
+			$this->handleRegionNotFoundLocation($requestRegion);
+			return;
 		}
+
+		$meaningfulValues = $location->getMeaningfulValues($locationId);
+		$meaningfulValues = $this->sanitizeRegionMeaningfulValues($meaningfulValues);
+
+		$setLocationResult = $this->order->setLocation($locationId);
+
+		$this->handleRegionSetLocationResult($setLocationResult);
 
 		if (!empty($meaningfulValues))
 		{
 			$this->setMeaningfulPropertyValues($meaningfulValues);
 		}
+	}
+
+	protected function handleRegionNotFoundLocation(Market\Api\Model\Region $region)
+	{
+		$error = $this->makeRegionNotFoundLocationError($region);
+
+		$this->provider->getLogger()->debug($error);
+	}
+
+	protected function makeRegionNotFoundLocationError(Market\Api\Model\Region $region)
+	{
+		return new Main\Error(static::getLang('TRADING_ACTION_CART_LOCATION_NOT_FOUND', [
+			'#ID#' => $region->getId(),
+			'#NAME#' => $region->getName(),
+		]));
+	}
+
+	protected function handleRegionSetLocationResult(Main\Result $result)
+	{
+		foreach ($result->getErrors() as $error)
+		{
+			$this->provider->getLogger()->debug($error);
+		}
+	}
+
+	protected function sanitizeRegionMeaningfulValues($meaningfulValues)
+	{
+		return $meaningfulValues;
 	}
 
 	protected function fillProperties()

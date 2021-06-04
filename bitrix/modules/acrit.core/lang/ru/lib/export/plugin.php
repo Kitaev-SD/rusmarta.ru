@@ -7,6 +7,8 @@ $MESS['ACRIT_EXP_FILE_OPEN'] = 'Открыть файл';
 	$MESS['ACRIT_EXP_FILE_OPEN_TITLE'] = 'Файл откроется в новой вкладке';
 	$MESS['ACRIT_EXP_URL_OPEN_TITLE'] = 'Страница откроется в новой вкладке';
 	$MESS['ACRIT_EXP_FILE_OPEN_ARCHIVE'] = 'Скачать архив';
+	$MESS['ACRIT_EXP_FILE_OPEN_EXTERNAL'] = 'Перейти на площадку';
+	$MESS['ACRIT_EXP_FILE_OPEN_FILES_COUNT'] = 'всего файлов'; # Actual e.g. for Yandex.Turbo
 $MESS['ACRIT_EXP_DATE_UPDATED'] = '<div data-role="plugin-date-updated"><br/><i>Дата актуализации: #DATE#.</i></div>';
 $strHelp = '<b>Дополнительная информация:</b><br/>
 <ul>
@@ -210,10 +212,33 @@ $MESS[$strStepNameLang.'HOT_KEYS'] = 'Наш модуль поддерживает горячие клавиши! О
 	$MESS[$strStepDescLang.'HOT_KEYS'] = 'Полный список поддерживаемых горячих клавиш Вы найдете на <a href="https://www.acrit-studio.ru/technical-support/faq-export/obshchie-voprosy/goryachie-klavishi-hotkeys/" target="_blank">странице нашего модуля</a>.';
 
 
+# Display results (new version)
+$strLang = $strPrefix.'RESULTS_';
+$MESS[$strLang.'COUNT_ALL'] = 'Всего товаров в каталоге';
+	$MESS[$strLang.'IBLOCKS_COUNT'] = ' <i>(инфоблоки: #COUNT#)</i>';
+$MESS[$strLang.'COUNT_SKIPPED'] = 'Пропущено (фильтр + категории)';
+$MESS[$strLang.'COUNT_EXPORTED'] = 'Выгружено товаров успешно';
+	$MESS[$strLang.'COUNT_OFFERS'] = ' <i>(в т.ч. ТП: #COUNT#)</i>';
+$MESS[$strLang.'COUNT_ERRORS'] = 'Не выгружено из-за ошибок';
+	$MESS[$strLang.'GO_TO_LOG'] = 'Лог ошибок';
+$MESS[$strLang.'TIME_ELAPSED'] = 'Затрачено времени на экспорт';
+$MESS[$strLang.'TIME_FINISH'] = 'Время завершения процесса';
+$MESS[$strLang.'THREADS_COUNT'] = 'Количество потоков выгрузки';
+	$MESS[$strLang.'CORE_COUNT'] = ' <i>(потоки процессора: #COUNT#)</i>';
+# Hints
+$strHint = $strLang.'HINT_';
+$MESS[$strHint.'COUNT_ALL'] = 'Общее число товаров (без учета ТП!) во всех выбранных в профиле инфоблоках.';
+$MESS[$strHint.'COUNT_SKIPPED'] = 'Число товаров (без учета ТП!), которые не попадают в выгрузку либо в связи с настроенными категориями, либо в связи с настроенным фильтром.';
+$MESS[$strHint.'COUNT_EXPORTED'] = 'Число товаров, выгрузка которых успешно завершена.';
+$MESS[$strHint.'COUNT_ERRORS'] = 'Число товаров, выгрузка которых не выполнена по причине ошибок. Все ошибки можно увидеть в логе профиля (вкладка «Лог и история»).';
+$MESS[$strHint.'TIME_ELAPSED'] = 'Оценка времени, затраченного на весь процесс выгрузки.';
+$MESS[$strHint.'TIME_FINISH'] = 'Точное время завершения процесса.';
+$MESS[$strHint.'THREADS_COUNT'] = 'Количество потоков, используемое для выгрузки (указано в настройках модуля) и количество потоков процессора.<br/><br/>
+При большом количестве потоков процессора рекомендуется использовать многотопочную выгрузку для ускорения процесса выгрузки.<br/><br/>
+Количество потоков выгрузки не должно превышать количество потоков процессора.<br/><br/>
+<a href="/bitrix/admin/settings.php?lang='.LANGUAGE_ID.'&mid=#MODULE_ID#" target="_blank">Перейти в настройкам</a>';
+
+$MESS[$strLang.'FILE_URL'] = 'Перейти к файлу выгрузки';
 
 
 
-
-
-
-?>

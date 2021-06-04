@@ -3,7 +3,7 @@
 $strMessPrefix = 'ACRIT_EXP_OZON_RU_GENERALV2_';
 
 // General
-$MESS[$strMessPrefix . 'NAME'] = 'OZON.RU API v2';
+$MESS[$strMessPrefix . 'NAME'] = 'Ozon.Ru API v2 (не поддерживается)';
 $MESS[$strMessPrefix . 'SETTINGS_TITLE'] = 'Настройки интеграции с площадкой OZON.RU';
 $MESS[$strMessPrefix . 'SETTINGS_PAGE_ID'] = 'Страница или группа';
 $MESS[$strMessPrefix . 'SETTINGS_CLIENT_ID'] = 'Client Id';

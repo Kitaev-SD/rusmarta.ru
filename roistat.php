@@ -27,7 +27,7 @@ if ($_GET['key'] == 'ODkzODM6NjcxMjQ6MThlOThkOGE0YTFlMDY3ZWRjNDFhMDgzOTlkN2IzZGU
     fwrite($fp, 'GET:' . "\n");
     fwrite($fp, print_r($_GET, 1) . "\n");
     fwrite($fp, 'Body:' . "\n");
-    fwrite($fp, print_r($body, 1) . "\n");
+    // fwrite($fp, print_r($body, 1) . "\n"); не работает
     fwrite($fp, "\n\n");
     fclose($fp);
 

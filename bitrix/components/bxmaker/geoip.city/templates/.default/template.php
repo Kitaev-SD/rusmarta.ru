@@ -61,7 +61,7 @@
 				<div id="sls-45360" class="bx-sls">
 					<div class="dropdown-block bx-ui-sls-input-block">
 						<i class="fa fa-search dropdown-icon"></i>
-						<input type="text" autocomplete="off" name="LOCATION" value="" class="dropdown-field" placeholder="Найдите свой город" style="display: none;">
+						<input type="text" autocomplete="off" name="LOCATION" value="" class="dropdown-field" placeholder="  " style="display: none;">
 						<div class="bx-ui-sls-container" style="margin: 0px; padding: 0px; border: none; position: relative;">
 							<input class="bx-ui-sls-fake" type="text" name="city" value="" placeholder="Найдите свой город" autocomplete="off">
 							<span class="bxmaker__geoip__popup-search-clean js-bxmaker__geoip__popup-search-clean"><i class="fa fa-times-circle bx-ui-sls-clear" title="Отменить выбор" aria-hidden="true" style="display: block;"></i></span>
@@ -69,16 +69,22 @@
 						<div class="bxmaker__geoip__popup-search-options js-bxmaker__geoip__popup-search-options"></div>
 						<div class="dropdown-fade2white"></div>
 						<i class="fa fa-spinner fa-pulse bx-ui-sls-loader"></i>
-						<i class="fa fa-times-circle bx-ui-sls-clear" title="Отменить выбор" aria-hidden="true" style="display: none;"></i>
+						<i class="fa fa-times-circle bx-ui-sls-clear" title=" " aria-hidden="true" style="display: none;"></i>
 						<div class="bx-ui-sls-pane" style="overflow: hidden auto;"><div class="bx-ui-sls-variants"></div></div>
 					</div>
 					<div class="submit">
 						<button class="btn_buy popdef" id="selectCity" name="select-city">Выбрать город</button>
+						<script>
+							selectCity.onclick = function() {
+								document.cookie = "contacts=1; path=/";
+								window.location.reload();
+							}
+						</script>
 					</div>
 				</div>
 				<div class="block-info">
 					<div class="block-info__title">Не нашли свой город?</div>
-					<div class="block-info__text">Осуществляем доставку по всей России. Срок доставки от 2-3&nbsp;дней в зависимости от вашего региона.</div>
+					<div class="block-info__text">Осуществляем доставку по всей России. Срок доставки от 2-3 дней в зависимости от вашего региона.</div>
 				</div>
 			</div>
 			<span class="js-bxmaker__geoip__popup-close popup-window-close-icon popup-window-titlebar-close-icon" style="right: -10px; top: -10px;"><i class="fa fa-times"></i></span>

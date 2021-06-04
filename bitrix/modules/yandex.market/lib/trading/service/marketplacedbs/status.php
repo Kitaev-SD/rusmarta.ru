@@ -78,6 +78,13 @@ class Status extends TradingService\Marketplace\Status
 		];
 	}
 
+	public function getOutgoingMultiple()
+	{
+		return [
+			static::STATUS_CANCELLED,
+		];
+	}
+
 	public function getOutgoingMeaningfulMap()
 	{
 		return [
@@ -85,5 +92,44 @@ class Status extends TradingService\Marketplace\Status
 			Market\Data\Trading\MeaningfulStatus::DEDUCTED => static::STATUS_DELIVERY,
 			Market\Data\Trading\MeaningfulStatus::FINISHED => static::STATUS_DELIVERED,
 		];
+	}
+
+	public function isChanged($orderId, $status, $substatus = null)
+	{
+		$serviceKey = $this->provider->getUniqueKey();
+		$storedStatusEncoded = Market\Trading\State\OrderStatus::getValue($serviceKey, $orderId);
+		$result = false;
+
+		if ($storedStatusEncoded === null)
+		{
+			$result = true;
+		}
+		else
+		{
+			list($storedStatus, $storedSubStatus) = explode(':', $storedStatusEncoded);
+			$serviceCancelReason = $this->provider->getCancelReason();
+			$submitStatusOrder = $this->getStatusOrder($status);
+			$storedStatusOrder = $this->getStatusOrder($storedStatus);
+
+			if ($submitStatusOrder !== null && $submitStatusOrder < $storedStatusOrder)
+			{
+				$result = false;
+			}
+			else if ($storedStatus !== $status)
+			{
+				$result = true;
+			}
+			else if (
+				$status === static::STATUS_CANCELLED
+				&& $substatus !== null
+				&& $substatus !== $storedSubStatus
+				&& ((string)$storedSubStatus === '' || in_array($storedSubStatus, $serviceCancelReason->getVariants(), true))
+			)
+			{
+				$result = true;
+			}
+		}
+
+		return $result;
 	}
 }

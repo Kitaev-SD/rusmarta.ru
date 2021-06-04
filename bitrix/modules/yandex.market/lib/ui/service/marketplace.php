@@ -30,6 +30,7 @@ class Marketplace extends AbstractService
 	{
 		return [
 			Market\Trading\Service\Manager::SERVICE_MARKETPLACE,
+			Market\Trading\Service\Manager::SERVICE_BERU,
 		];
 	}
 }

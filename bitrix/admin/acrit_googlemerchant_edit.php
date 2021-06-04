@@ -1,1 +1,1 @@
-<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/acrit.googlemerchant/admin/edit.php" );?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/acrit.googlemerchant/admin/edit.php");?>

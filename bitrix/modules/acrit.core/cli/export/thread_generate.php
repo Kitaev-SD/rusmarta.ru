@@ -2,6 +2,9 @@
 define('ACRIT_EXP_CRON', true);
 define('NO_KEEP_STATISTIC', true);
 define('NOT_CHECK_PERMISSIONS',true);
+define('LANGUAGE_ID', 'ru');
+
+# Disable errors
 ini_set('display_errors', 0);
 error_reporting(0);
 

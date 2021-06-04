@@ -198,14 +198,26 @@ class Controller
 	 * */
 	public static function getRegisteredAgent($agentDescription)
 	{
-		$query = CAgent::GetList(
-			array(),
-			array(
-				'NAME' => $agentDescription['name']
-			)
-		);
+		$result = null;
+		$variants = array_unique([
+			$agentDescription['name'],
+			str_replace(PHP_EOL, '', $agentDescription['name']), // new line removed after edit agent in admin form
+		]);
 
-		return $query->fetch() ?: null;
+		foreach ($variants as $variant)
+		{
+			$query = CAgent::GetList([], [
+				'NAME' => $variant
+			]);
+
+			if ($row = $query->Fetch())
+			{
+				$result = $row;
+				break;
+			}
+		}
+
+		return $result;
 	}
 
 	/**

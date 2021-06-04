@@ -12,6 +12,7 @@ abstract class Collection implements \ArrayAccess, \Countable, \IteratorAggregat
 	/** @var Model */
 	protected $parent;
 
+	/** @return Model */
 	public static function getItemReference()
 	{
 		throw new Main\NotImplementedException();

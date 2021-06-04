@@ -59,6 +59,7 @@ class HtmlType extends StringType
 			['&lt;![CDATA[', ']]&gt;'],
 			$contents
 		);
+		$contents = preg_replace("/[\x1-\x8\xB-\xD\xE-\x1F]/", '', $contents); // remove special chars
 
 		return '<![CDATA[' . PHP_EOL .  $contents . PHP_EOL . ']]>';
 	}

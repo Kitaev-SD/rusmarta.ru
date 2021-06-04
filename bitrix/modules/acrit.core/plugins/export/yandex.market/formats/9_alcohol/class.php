@@ -167,6 +167,8 @@ class YandexMarketAlcohol extends YandexMarket {
 			$arXmlTags['pickup'] = Xml::addTag($arFields['PICKUP']);
 		if(!Helper::isEmpty($arFields['BARCODE']))
 			$arXmlTags['barcode'] = $this->getXmlTag_Barcode($intProfileID, $arFields['BARCODE']);
+		if(!Helper::isEmpty($arFields['CPA']))
+			$arXmlTags['cpa'] = Xml::addTag($arFields['CPA']);
 		
 		# Not in example
 		if(!Helper::isEmpty($arFields['ENABLE_AUTO_DISCOUNTS']))

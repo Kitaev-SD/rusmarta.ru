@@ -116,8 +116,7 @@ class Action extends TradingService\Common\Action\OrderAccept\Action
 	protected function addOrder()
 	{
 		$this->installUser();
-
-		return parent::addOrder();
+		parent::addOrder();
 	}
 
 	protected function collectDecline(Market\Result\Base $result)

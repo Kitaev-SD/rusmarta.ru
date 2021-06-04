@@ -49,6 +49,24 @@ $MESS[$strLang.'FIELD_NAME_UTM_CONTENT'] = 'UTM-метка: доп. информация';
 $MESS[$strLang.'FIELD_NAME_UTM_TERM'] = 'UTM-метка: ключевое слово';
 	$MESS[$strLang.'FIELD_DESC_UTM_TERM'] = 'UTM-метка: ключевое слово';
 
+# Check config
+$MESS[$strLang.'ERROR_NAME_XLSX_NO_ZIPARCHIVE'] = 'Не установлено PHP-расширение <code><b>Zip</b></code>. Выгрузка невозможна.';
+	$MESS[$strLang.'ERROR_DESC_XLSX_NO_ZIPARCHIVE'] = 'Для выгрузки в формат XLSX (Excel) необходимо наличие на сервере установленного PHP-расширения <code><b>Zip</b></code>.';
+	$MESS[$strLang.'ERROR_DESC_XLSX_NO_ZIPARCHIVE_INSTALL_GENERAL'] = '<br/><br/>
+		Для установки (или включения) расширения <code>Zip</code> обратитесь в техподдержку хостинга или к системному администратору.';
+	$MESS[$strLang.'ERROR_DESC_XLSX_NO_ZIPARCHIVE_INSTALL_VMBITRIX'] = '<br/><br/>
+		На виртуальной машине Битрикс необходимо выполнить установку данного расширения через SSH:<br/>
+		<code><b>yum install php-zip</b></code><br/><br/>
+		И после этого перезапустить веб-сервер:<br/>
+		<code><b>service httpd restart</b></code>';
+$MESS[$strLang.'ERROR_NAME_XLSX_NO_XMLWRITER'] = 'Не установлено PHP-расширение <code><b>XmlWriter</b></code>.';
+	$MESS[$strLang.'ERROR_DESC_XLSX_NO_XMLWRITER'] = 'Для выгрузки в формат XLSX необходимо наличие на сервере установленного PHP-расширения <code><b>XmlWriter</b></code>.';
+	$MESS[$strLang.'ERROR_DESC_XLSX_NO_XMLWRITER_INSTALL_GENERAL'] = '<br/><br/>
+		Для установки (или включения) расширения <code>XmlWriter</code> обратитесь в техподдержку хостинга или к системному администратору.';
+	$MESS[$strLang.'ERROR_DESC_XLSX_NO_XMLWRITER_INSTALL_VMBITRIX'] = '<br/><br/>
+		На виртуальной машине Битрикс необходимо найти в папке <code><b>/etc/php.d/</b><code> файл <code><b>20-xmlwriter.ini.disabled</b></code> и переименовать его в <code><b>20-xmlwriter.ini</b></code>. Затем перезапустить веб-сервер:<br/>
+		<code><b>service httpd restart</b></code>';
+
 # Errors
 $MESS[$strLang.'ERROR_NO_FILE_SPECIFIED'] = 'Не указан файл для выгрузки.';
 $MESS[$strLang.'ERROR_EXPORT_FILE_IS_NOT_WRITEABLE'] = 'Нет доступа для записи в экспортируемый файл.';

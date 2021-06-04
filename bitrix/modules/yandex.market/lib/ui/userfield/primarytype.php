@@ -7,7 +7,7 @@ use Bitrix\Main;
 
 class PrimaryType extends StringType
 {
-	function getAdminListViewHtml($userField, $additionalParameters)
+	public static function getAdminListViewHtml($userField, $additionalParameters)
 	{
 		$value = (string)$additionalParameters['VALUE'];
 		$result = '&mdash;';

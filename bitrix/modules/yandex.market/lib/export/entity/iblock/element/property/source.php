@@ -186,6 +186,8 @@ class Source extends Market\Export\Entity\Reference\Source
 					'IBLOCK_ID' => $propertyRow['IBLOCK_ID'],
 				];
 
+				// export self
+
 				$result[] = [
 					'ID' => $propertyRow['ID'],
 					'TYPE' => $dataType,
@@ -195,32 +197,56 @@ class Source extends Market\Export\Entity\Reference\Source
 					'LINK_IBLOCK_ID' => $linkIblockId
 				] + $propertyData;
 
-				if ($propertyRow['WITH_DESCRIPTION'] === 'Y')
+				// export inner fields
+
+				foreach ($this->getPropertyInnerFields($propertyRow) as $innerField)
 				{
-					$descriptionSuffix = Market\Config::getLang($langPrefix . 'FIELD_DESCRIPTION_SUFFIX');
+					$innerFieldTitle = Market\Config::getLang($langPrefix . 'FIELD_INNER_' . $innerField, null, $innerField);
 
 					$result[] = [
-						'ID' => $propertyRow['ID'] . '.DESCRIPTION',
-						'VALUE' => $propertyData['VALUE']  . $descriptionSuffix,
-						'TYPE' => Market\Export\Entity\Data::TYPE_STRING,
-						'FILTERABLE' => false,
-						'SELECTABLE' => true,
-					] + $propertyData;
-				}
-
-				if ($propertyRow['PROPERTY_TYPE'] === 'L')
-				{
-					$xmlIdSuffix = Market\Config::getLang($langPrefix . 'FIELD_XML_ID_SUFFIX');
-
-					$result[] = [
-						'ID' => $propertyRow['ID'] . '.VALUE_XML_ID',
-						'VALUE' => $propertyData['VALUE'] . $xmlIdSuffix,
+						'ID' => $propertyRow['ID'] . '.' . $innerField,
+						'VALUE' => sprintf('%s (%s)', $propertyData['VALUE'], $innerFieldTitle),
 						'TYPE' => Market\Export\Entity\Data::TYPE_STRING,
 						'FILTERABLE' => false,
 						'SELECTABLE' => true,
 					] + $propertyData;
 				}
 			}
+		}
+
+		return $result;
+	}
+
+	protected function getPropertyInnerFields($property)
+	{
+		$propertyType = $this->getPropertyType($property);
+		$result = $this->getPropertyTypeInnerFields($propertyType);
+
+		if ($property['WITH_DESCRIPTION'] === 'Y')
+		{
+			array_unshift($result, 'DESCRIPTION');
+		}
+
+		return $result;
+	}
+
+	protected function getPropertyTypeInnerFields($propertyType)
+	{
+		if ($propertyType === Market\Export\Entity\Data::TYPE_ENUM)
+		{
+			$result = [
+				'VALUE_XML_ID',
+			];
+		}
+		else if ($propertyType === Market\Export\Entity\Data::TYPE_IBLOCK_SECTION)
+		{
+			$result = [
+				'NAME',
+			];
+		}
+		else
+		{
+			$result = [];
 		}
 
 		return $result;
@@ -930,12 +956,18 @@ class Source extends Market\Export\Entity\Reference\Source
 	protected function extendInnerValue(&$result, $propertyValuesList, $selectMap, $nameMap, $context)
 	{
 		$valuesMap = $this->extractPropertyValuesListField($propertyValuesList, $selectMap);
-		$propertyList = reset($propertyValuesList);
 		$propertyListMap = [];
 
-		foreach ($propertyList as $propertyKey => $property)
+		foreach ($propertyValuesList as $propertyList)
 		{
-			$propertyListMap[$property['ID']] = $propertyKey;
+			if (empty($propertyList)) { continue; }
+
+			foreach ($propertyList as $propertyKey => $property)
+			{
+				$propertyListMap[$property['ID']] = $propertyKey;
+			}
+
+			break;
 		}
 
 		foreach ($valuesMap as $propertyId => $propertyValuesToElementMap)
@@ -1063,6 +1095,34 @@ class Source extends Market\Export\Entity\Reference\Source
 						}
 					break;
 
+					case 'G':
+						foreach ($this->splitIblockSectionsByIblockId($property, $propertyValues) as $iblockId => $sectionIds)
+						{
+							$sectionSource = Market\Export\Entity\Manager::getSource(Market\Export\Entity\Manager::TYPE_IBLOCK_SECTION);
+							$sectionContext = Market\Export\Entity\Iblock\Provider::getContext($iblockId) + $context;
+							$sectionEmulatedRows = [];
+
+							foreach ($sectionIds as $sectionId)
+							{
+								$sectionEmulatedRows[$sectionId] = [
+									'IBLOCK_ID' => $iblockId,
+									'ID' => $sectionId,
+								];
+							}
+
+							if (!($sectionSource instanceof Market\Export\Entity\Reference\HasSectionValues))
+							{
+								throw new Main\NotImplementedException(sprintf(
+									'Source %s must implements %s',
+									Market\Export\Entity\Manager::TYPE_IBLOCK_SECTION,
+									Market\Export\Entity\Reference\HasSectionValues::class
+								));
+							}
+
+							$innerResult += $sectionSource->getSectionListValues($sectionEmulatedRows, $propertySelect, $sectionContext);
+						}
+					break;
+
 					case 'F':
 						$query = \CFile::GetList([], ['@ID' => $propertyValues]);
 
@@ -1104,43 +1164,44 @@ class Source extends Market\Export\Entity\Reference\Source
 
 				// fill display value
 
-				foreach ($innerResult as $innerId => $innerFields)
+				foreach ($propertyValuesToElementMap as $innerId => $elementIds)
 				{
-					if (isset($propertyValuesToElementMap[$innerId]))
+					if (!isset($innerResult[$innerId])) { continue; }
+
+					$innerFields = $innerResult[$innerId];
+
+					foreach ($elementIds as $elementId)
 					{
-						foreach ($propertyValuesToElementMap[$innerId] as $elementId)
+						if (!isset($result[$elementId]))
 						{
-							if (!isset($result[$elementId]))
-							{
-								$result[$elementId] = [];
-							}
+							$result[$elementId] = [];
+						}
 
-							foreach ($propertySelect as $fieldName)
-							{
-								$resultKey = $property['ID'] . '.' . $fieldName;
+						foreach ($propertySelect as $fieldName)
+						{
+							$resultKey = $property['ID'] . '.' . $fieldName;
 
-								if (isset($innerFields[$fieldName]))
+							if (isset($innerFields[$fieldName]))
+							{
+								$innerValue = $innerFields[$fieldName];
+
+								if (isset($result[$elementId][$resultKey]))
 								{
-									$innerValue = $innerFields[$fieldName];
-
-									if (isset($result[$elementId][$resultKey]))
+									if (!is_array($result[$elementId][$resultKey]))
 									{
-										if (!is_array($result[$elementId][$resultKey]))
-										{
-											$result[$elementId][$resultKey] = (array)$result[$elementId][$resultKey];
-										}
-
-										$result[$elementId][$resultKey][] = $innerValue;
-									}
-									else
-									{
-										$result[$elementId][$resultKey] = $innerValue;
+										$result[$elementId][$resultKey] = (array)$result[$elementId][$resultKey];
 									}
 
-									if (isset($nameMap[$resultKey]))
-									{
-										$result[$elementId][$nameMap[$resultKey]] = $result[$elementId][$resultKey];
-									}
+									$result[$elementId][$resultKey][] = $innerValue;
+								}
+								else
+								{
+									$result[$elementId][$resultKey] = $innerValue;
+								}
+
+								if (isset($nameMap[$resultKey]))
+								{
+									$result[$elementId][$nameMap[$resultKey]] = $result[$elementId][$resultKey];
 								}
 							}
 						}
@@ -1148,6 +1209,39 @@ class Source extends Market\Export\Entity\Reference\Source
 				}
 			}
 		}
+	}
+
+	protected function splitIblockSectionsByIblockId($property, $sectionIds)
+	{
+		if (!empty($property['LINK_IBLOCK_ID']))
+		{
+			$iblockId = (int)$property['LINK_IBLOCK_ID'];
+
+			return [
+				$iblockId => $sectionIds,
+			];
+		}
+
+		$result = [];
+
+		$query = Iblock\SectionTable::getList([
+			'filter' => [ '=ID' => $sectionIds ],
+			'select' => [ 'IBLOCK_ID', 'ID' ]
+		]);
+
+		while ($row = $query->fetch())
+		{
+			$iblockId = (int)$row['IBLOCK_ID'];
+
+			if (!isset($result[$iblockId]))
+			{
+				$result[$iblockId] = [];
+			}
+
+			$result[$iblockId][] = (int)$row['ID'];
+		}
+
+		return $result;
 	}
 
 	protected function extendPlainValue(&$result, $propertyValuesList, $selectMap, $nameMap, $context)
@@ -1284,20 +1378,19 @@ class Source extends Market\Export\Entity\Reference\Source
 
 						foreach ($valueList as $value)
 						{
-							if (isset($value['TEXT'], $value['TYPE']))
+							if (!isset($value['TEXT'], $value['TYPE'])) { continue; }
+
+							$displayValue = $this->makeHtmlDisplayValue($value['TEXT'], $value['TYPE']);
+
+							if ($isMultipleProperty)
 							{
-								$displayValue = FormatText($value['TEXT'], $value['TYPE']);
+								if ($result === null) { $result = []; }
 
-								if ($isMultipleProperty)
-								{
-									if ($result === null) { $result = []; }
-
-									$result[] = $displayValue;
-								}
-								else
-								{
-									$result = $displayValue;
-								}
+								$result[] = $displayValue;
+							}
+							else
+							{
+								$result = $displayValue;
 							}
 						}
 					}
@@ -1322,6 +1415,28 @@ class Source extends Market\Export\Entity\Reference\Source
 		}
 
 		return $result;
+	}
+
+	protected function makeHtmlDisplayValue($text, $type)
+	{
+		if (Market\Data\TextString::toLower($type) !== 'html')
+		{
+			$text = $this->textToHtml($text);
+		}
+
+		return $text;
+	}
+
+	protected function textToHtml($str)
+	{
+		$str = trim($str);
+		$str = str_replace(
+			['<', '>', "\r\n", "\n"],
+			['&lt;', '&gt;', "\n", "<br />\n"],
+			$str
+		);
+
+		return $str;
 	}
 
 	/**

@@ -9,6 +9,7 @@ use Yandex\Market\Trading\Service as TradingService;
 
 class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 {
+	use TradingService\MarketplaceDbs\Concerns\Action\HasRegionHandler;
 	use TradingService\MarketplaceDbs\Concerns\Action\HasDeliveryDates;
 	use TradingService\MarketplaceDbs\Concerns\Action\HasAddress;
 
@@ -20,6 +21,19 @@ class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 	protected function createRequest(Main\HttpRequest $request, Main\Server $server)
 	{
 		return new Request($request, $server);
+	}
+
+	protected function sanitizeRegionMeaningfulValues($meaningfulValues)
+	{
+		if ($this->request->getOrder()->getDelivery()->getAddress() !== null)
+		{
+			$meaningfulValues = array_diff_key($meaningfulValues, [
+				'LAT' => true,
+				'LON' => true,
+			]);
+		}
+
+		return $meaningfulValues;
 	}
 
 	protected function fillProperties()
@@ -43,7 +57,6 @@ class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 	{
 		$deliveryRequest = $this->request->getOrder()->getDelivery();
 		$partnerType = $deliveryRequest->getPartnerType();
-		$deliveryId = null;
 		$price = null;
 
 		if ($this->provider->getDelivery()->isShopDelivery($partnerType))
@@ -71,16 +84,6 @@ class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 			$storeId = $this->environment->getStore()->findStore($storeField, $outletRequest->getCode());
 
 			$this->order->setShipmentStore($deliveryId, $storeId);
-		}
-	}
-
-	protected function fillPaySystem()
-	{
-		$paySystemId = $this->resolvePaySystem();
-
-		if ($paySystemId !== '')
-		{
-			$this->order->createPayment($paySystemId);
 		}
 	}
 
@@ -118,7 +121,7 @@ class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 			}
 		}
 
-		return $result;
+		return (string)$result;
 	}
 
 	protected function getCompatiblePaySystems()

@@ -1,7 +1,8 @@
 <?php
 
-use Bitrix\Sale\Tax;
+namespace Tinkoff;
 
+use Bitrix\Sale\Tax;
 
 /**
  * Class TinkoffMerchantAPI
@@ -31,7 +32,6 @@ class TinkoffMerchantAPI extends Tax
      *
      * @param string $terminalKey Your Terminal name
      * @param string $secretKey Secret key for terminal
-     * @param string $api_url Url for API
      */
     public function __construct($terminalKey, $secretKey)
     {

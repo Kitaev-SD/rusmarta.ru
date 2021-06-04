@@ -183,6 +183,9 @@ class SettingsMultiple extends SettingsBase {
 				Helper::arrayRemoveEmptyValues($arValueTmp, false);
 				static::applyScheme($arValueTmp, $arParams[$strCode.'_scheme']);
 				$strSeparator = $arParams[$strCode.'_separator'];
+				if(is_null($strSeparator)){
+					$strSeparator = 'comma';
+				}
 				$strSeparator = $strSeparator == 'other' 
 					? $arParams[$strCode.'_separator_other'] 
 					: static::$arSeparators[$strSeparator];

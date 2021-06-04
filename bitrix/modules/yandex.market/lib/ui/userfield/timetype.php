@@ -2,9 +2,9 @@
 
 namespace Yandex\Market\Ui\UserField;
 
-class TimeType extends \CUserTypeString
+class TimeType extends StringType
 {
-	function GetEditFormHTML($userField, $htmlControl)
+	public static function GetEditFormHTML($userField, $htmlControl)
 	{
 		if ($userField['ENTITY_VALUE_ID'] < 1 && (string)$userField['SETTINGS']['DEFAULT_VALUE'] !== '')
 		{

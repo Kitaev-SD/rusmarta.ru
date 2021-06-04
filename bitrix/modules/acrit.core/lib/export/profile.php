@@ -655,81 +655,85 @@ abstract class ProfileTable extends Entity\DataManager {
 			$arExistIBlocks = Helper::getIBlockList(false, true, false, false);
 			$resProfiles = Helper::call(static::MODULE_ID, 'Profile', 'getList', [$arQuery]);
 			while($arProfile = $resProfiles->fetch()){
-				// Get profile iblocks
-				$arProfile['IBLOCKS'] = array();
-				if($bGetIBlocks) {
+				// NEW: get profile iblocks
+				$arProfileIBlocks = [];
+				$arQuery = [
+					'filter' => ['PROFILE_ID' => $arProfile['ID']],
+					'order' => ['IBLOCK_ID' => 'ASC'],
+				];
+				$resProfileIBlocks = Helper::call(static::MODULE_ID, 'ProfileIBlock', 'getList', [$arQuery]);
+				while($arProfileIBlock = $resProfileIBlocks->fetch()){
+					// Skip deleted iblocks
+					if(!array_key_exists($arProfileIBlock['IBLOCK_ID'], $arExistIBlocks)){
+						continue;
+					}
+					// unserialize params
+					$arProfileIBlock['PARAMS'] = strlen($arProfileIBlock['PARAMS']) ? unserialize($arProfileIBlock['PARAMS']) : [];
+					if(!is_array($arProfileIBlock['PARAMS'])){
+						$arProfileIBlock['PARAMS'] = [];
+					}
+					$arProfileIBlocks[] = $arProfileIBlock;
+				}
+				if($bGetFields){
+					// NEW: get profile fields
+					$arProfileFields = [];
 					$arQuery = [
-						'filter' => array(
-							'PROFILE_ID' => $arProfile['ID'],
-						),
-						'order' => array(
-							'IBLOCK_ID' => 'ASC',
-						),
+						'filter' => ['PROFILE_ID' => $arProfile['ID']],
+						'order' => ['FIELD' => 'ASC'],
 					];
-					$resProfileIBlocks = Helper::call(static::MODULE_ID, 'ProfileIBlock', 'getList', [$arQuery]);
-					while($arProfileIBlock = $resProfileIBlocks->fetch()){
-						if(!array_key_exists($arProfileIBlock['IBLOCK_ID'], $arExistIBlocks)){
-							continue;
+					$resProfileFields = Helper::call(static::MODULE_ID, 'ProfileField', 'getList', [$arQuery]);
+					while($arProfileField = $resProfileFields->fetch()){
+						// decompile params
+						$arProfileField['PARAMS'] = Helper::decompileParams($arProfileField['PARAMS']);
+						if(!Helper::isUtf()){
+							$arProfileField['PARAMS'] = Helper::convertEncoding($arProfileField['PARAMS'], 'UTF-8', 'CP1251');
 						}
-						// Get iblock fields
-						if($bGetFields){
-							$arProfileIBlock['FIELDS'] = array();
-							$arQuery = [
-								'filter' => array(
-									'PROFILE_ID' => $arProfile['ID'],
-									'IBLOCK_ID' => $arProfileIBlock['IBLOCK_ID'],
-								),
-								'order' => array(
-									'FIELD' => 'ASC',
-								),
-							];
-							$resProfileFields = Helper::call(static::MODULE_ID, 'ProfileField', 'getList', [$arQuery]);
-							while($arProfileField = $resProfileFields->fetch()){
-								// decompile params
-								$arProfileField['PARAMS'] = Helper::decompileParams($arProfileField['PARAMS']);
-								if(!Helper::isUtf()){
-									$arProfileField['PARAMS'] = Helper::convertEncoding($arProfileField['PARAMS'], 'UTF-8', 'CP1251');
-								}
-								// Get field values
-								$arProfileField['VALUES'] = array();
-								$arQuery = [
-									'filter' => array(
-										'PROFILE_ID' => $arProfile['ID'],
-										'IBLOCK_ID' => $arProfileIBlock['IBLOCK_ID'],
-										'FIELD' => $arProfileField['FIELD'],
-									),
-									'order' => array(
-										'ID' => 'ASC',
-									),
-								];
-								$resProfileValues = Helper::call(static::MODULE_ID, 'ProfileValue', 'getList', [$arQuery]);
-								while($arProfileValue = $resProfileValues->fetch()){
-									// decompile params
-									$arProfileValue['PARAMS'] = Helper::decompileParams($arProfileValue['PARAMS']);
-									if(!Helper::isUtf()){
-										$arProfileValue['PARAMS'] = Helper::convertEncoding($arProfileValue['PARAMS'], 'UTF-8', 'CP1251');
-									}
-									//
-									$arProfileField['VALUES'][] = $arProfileValue;
-								}
-								// Add to result
-								$arProfileIBlock['FIELDS'][$arProfileField['FIELD']] = $arProfileField;
-							}
+						$arProfileFields[] = $arProfileField;
+					}
+					// NEW: get profile values
+					$arProfileValues = [];
+					$arQuery = [
+						'filter' => ['PROFILE_ID' => $arProfile['ID']],
+						'order' => ['ID' => 'ASC'],
+					];
+					$resProfileValues = Helper::call(static::MODULE_ID, 'ProfileValue', 'getList', [$arQuery]);
+					while($arProfileValue = $resProfileValues->fetch()){
+						// decompile params
+						$arProfileValue['PARAMS'] = Helper::decompileParams($arProfileValue['PARAMS']);
+						if(!Helper::isUtf()){
+							$arProfileValue['PARAMS'] = Helper::convertEncoding($arProfileValue['PARAMS'], 'UTF-8', 'CP1251');
 						}
-						// unserialize params
-						$arProfileIBlock['PARAMS'] = strlen($arProfileIBlock['PARAMS']) ? unserialize($arProfileIBlock['PARAMS']) : array();
-						if(!is_array($arProfileIBlock['PARAMS'])){
-							$arProfileIBlock['PARAMS'] = array();
-						}
-						// Add to result
-						$arProfile['IBLOCKS'][$arProfileIBlock['IBLOCK_ID']] = $arProfileIBlock;
+						$arProfileValues[] = $arProfileValue;
 					}
 				}
+				//
+				if($bGetIBlocks) {
+					$arProfile['IBLOCKS'] = [];
+					foreach($arProfileIBlocks as $arIBlock){
+						$arIBlock['FIELDS'] = [];
+						if($bGetFields){
+							foreach($arProfileFields as $arField){
+								if($arField['IBLOCK_ID'] == $arIBlock['IBLOCK_ID']){
+									$arField['VALUES'] = [];
+									foreach($arProfileValues as $arValue){
+										if($arValue['IBLOCK_ID'] == $arField['IBLOCK_ID'] && $arValue['FIELD'] == $arField['FIELD']){
+											$arField['VALUES'][] = $arValue;
+										}
+									}
+									$arIBlock['FIELDS'][$arField['FIELD']] = $arField;
+								}
+							}
+						}
+						$arProfile['IBLOCKS'][$arIBlock['IBLOCK_ID']] = $arIBlock;
+					}
+				}
+				
 				// unserialize params
 				$arProfile['PARAMS'] = strlen($arProfile['PARAMS']) ? unserialize($arProfile['PARAMS']) : array();
 				if(!is_array($arProfile['PARAMS'])){
 					$arProfile['PARAMS'] = array();
 				}
+				
 				// Add to result
 				$arResult[$arProfile['ID']] = $arProfile;
 			}

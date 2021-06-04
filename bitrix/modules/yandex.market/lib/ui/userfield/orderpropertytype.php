@@ -11,7 +11,7 @@ class OrderPropertyType extends EnumerationType
 {
 	protected static $variants = [];
 
-	function GetList($arUserField)
+	public static function GetList($arUserField)
 	{
 		$personType = static::extractUserFieldPersonType($arUserField);
 		$variants = static::getVariants($personType);
@@ -25,7 +25,7 @@ class OrderPropertyType extends EnumerationType
 		return $result;
 	}
 
-	function GetEditFormHTML($arUserField, $arHtmlControl)
+	public static function GetEditFormHTML($arUserField, $arHtmlControl)
 	{
 		$htmlId = Market\Ui\UserField\Helper\Attributes::convertNameToId($arHtmlControl['NAME']) . '_REFRESH';
 

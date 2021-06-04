@@ -7,6 +7,8 @@
 
 		defaults: {
 			depend: null,
+			headingElement: '.heading',
+			siblingElement: 'tr',
 			formElement: 'form',
 		},
 
@@ -41,7 +43,50 @@
 		update: function() {
 			var isMatch = this.resolveDependRules();
 
+			this.toggleView(isMatch);
+			this.toggleHeaderView(isMatch);
+		},
+
+		toggleView: function(isMatch) {
 			this.$el.toggleClass('is--hidden', !isMatch);
+		},
+
+		toggleHeaderView: function(isMatch) {
+			var heading = this.getHeading();
+			var isHidden = heading.hasClass('is--hidden');
+			var siblings;
+
+			if (isHidden !== !isMatch) {
+				siblings = this.getSiblingsUnderHeading(heading);
+				siblings = siblings.not('.is--hidden');
+
+				heading.toggleClass('is--hidden', siblings.length === 0);
+			}
+		},
+
+		getHeading: function() {
+			var heading = this.getElement('heading', this.$el, 'prevAll');
+
+			return heading.first();
+		},
+
+		getSiblingsUnderHeading: function(heading) {
+			var headerSelector = this.getElementSelector('heading');
+			var fieldSelector = this.getElementSelector('sibling');
+			var sibling = heading;
+			var result = $();
+
+			do {
+				sibling = sibling.next();
+
+				if (sibling.is(headerSelector)) { break; }
+
+				if (sibling.is(fieldSelector)) {
+					result = result.add(sibling);
+				}
+			} while (sibling.length !== 0);
+
+			return result;
 		},
 
 		resolveDependRules: function() {
@@ -70,10 +115,16 @@
 		},
 
 		getFieldValue: function(field) {
+			var instance;
 			var result;
 
 			switch (this.getFieldType(field))
 			{
+				case 'plugin':
+					instance = Plugin.manager.getInstance(field);
+					result = !instance.isEmpty();
+				break;
+
 				case 'hidden':
 					if (field.length > 1) { // is checkbox sibling
 						result = this.getFieldValue(field.slice(1));
@@ -96,10 +147,16 @@
 		},
 
 		getFieldType: function(field) {
+			var pluginName = field.data('plugin');
+			var plugin = pluginName && Plugin.manager.getPlugin(pluginName);
 			var result = (field.prop('tagName') || '').toLowerCase();
 
 			if (result === 'input') {
 				result = (field.prop('type') || '').toLowerCase();
+			}
+
+			if (plugin && ('isEmpty' in plugin.prototype)) {
+				result = 'plugin';
 			}
 
 			return result;
@@ -114,8 +171,36 @@
 				break;
 
 				case 'ANY':
-					result = value == rule['VALUE'];
+					result = this.applyRuleAny(rule['VALUE'], value);
 				break;
+			}
+
+			return result;
+		},
+
+		applyRuleAny: function(ruleValue, formValue) {
+			var isRuleMultiple = Array.isArray(ruleValue);
+			var isFormMultiple = Array.isArray(formValue);
+			var formIndex;
+			var formItem;
+			var result = false;
+
+			if (isFormMultiple && isRuleMultiple) {
+				for (formIndex = formValue.length - 1; formIndex >= 0; --formIndex) {
+					formItem = formValue[formIndex];
+
+					if (ruleValue.indexOf(formItem) !== -1) {
+						result = true;
+						break;
+					}
+				}
+			} else if (isFormMultiple) {
+				result = (formValue.indexOf(ruleValue) !== -1);
+			} else if (isRuleMultiple) {
+				result = (ruleValue.indexOf(formValue) !== -1);
+			} else {
+				// noinspection EqualityComparisonWithCoercionJS
+				result = (formValue == ruleValue);
 			}
 
 			return result;

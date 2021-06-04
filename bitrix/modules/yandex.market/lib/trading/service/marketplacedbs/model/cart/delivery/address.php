@@ -46,6 +46,14 @@ class Address extends Market\Api\Reference\Model
 		];
 	}
 
+	public static function getCoordinatesFields()
+	{
+		return [
+			'LAT',
+			'LON',
+		];
+	}
+
 	public static function getFieldTitle($fieldName)
 	{
 		return static::getLang('API_MODEL_ORDER_DELIVERY_ADDRESS_FIELD_' . $fieldName, null, $fieldName);
@@ -101,6 +109,16 @@ class Address extends Market\Api\Reference\Model
 		$values = $this->getAddressValues();
 
 		return $this->combineAddress($values, $skipAdditionalTypes);
+	}
+
+	public function getLat()
+	{
+		return $this->getField('lat');
+	}
+
+	public function getLon()
+	{
+		return $this->getField('lon');
 	}
 
 	protected function combineValues($values)

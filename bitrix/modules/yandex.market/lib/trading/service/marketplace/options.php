@@ -14,8 +14,8 @@ class Options extends TradingService\Common\Options
 
 	protected static function includeMessages()
 	{
-		parent::includeMessages();
 		Main\Localization\Loc::loadMessages(__FILE__);
+		parent::includeMessages();
 	}
 
 	public function __construct(Provider $provider)
@@ -32,17 +32,22 @@ class Options extends TradingService\Common\Options
 
 	public function getPaySystemId()
 	{
-		return (int)$this->getValue('PAY_SYSTEM_ID');
+		return (string)$this->getValue('PAY_SYSTEM_ID');
 	}
 
 	public function getDeliveryId()
 	{
-		return (int)$this->getValue('DELIVERY_ID');
+		return (string)$this->getValue('DELIVERY_ID');
 	}
 
 	public function includeBasketSubsidy()
 	{
 		return (string)$this->getValue('BASKET_SUBSIDY_INCLUDE') === Market\Reference\Storage\Table::BOOLEAN_Y;
+	}
+
+	public function getSubsidyPaySystemId()
+	{
+		return (string)$this->getValue('SUBSIDY_PAY_SYSTEM_ID');
 	}
 
 	public function getProductStores()
@@ -53,6 +58,12 @@ class Options extends TradingService\Common\Options
 	public function isAllowModifyPrice()
 	{
 		return true;
+	}
+
+	/** @return Options\SelfTestOption */
+	public function getSelfTestOption()
+	{
+		return $this->getFieldset('SELF_TEST');
 	}
 
 	public function getTabs()
@@ -91,6 +102,7 @@ class Options extends TradingService\Common\Options
 			+ $this->getProductSkuMapFields($environment, $siteId)
 			+ $this->getProductStoreFields($environment, $siteId)
 			+ $this->getProductPriceFields($environment, $siteId)
+			+ $this->getProductSelfTestFields($environment, $siteId)
 			+ $this->getStatusInFields($environment, $siteId)
 			+ $this->getStatusOutFields($environment, $siteId);
 	}
@@ -131,7 +143,7 @@ class Options extends TradingService\Common\Options
 						'DEFAULT_VALUE' => $firstPaySystem !== false ? $firstPaySystem['ID'] : null,
 						'STYLE' => 'max-width: 220px;',
 					],
-					'SORT' => 3300,
+					'SORT' => 3400,
 				]
 			];
 		}
@@ -177,7 +189,7 @@ class Options extends TradingService\Common\Options
 						'DEFAULT_VALUE' => $defaultDelivery,
 						'STYLE' => 'max-width: 220px;',
 					],
-					'SORT' => 3400,
+					'SORT' => 3300,
 				],
 			];
 		}
@@ -191,13 +203,42 @@ class Options extends TradingService\Common\Options
 
 	protected function getOrderBasketSubsidyFields(TradingEntity\Reference\Environment $environment, $siteId)
 	{
-		return [
-			'BASKET_SUBSIDY_INCLUDE' => [
-				'TYPE' => 'boolean',
-				'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_BASKET_SUBSIDY_INCLUDE'),
-				'SORT' => 3450,
-			],
-		];
+		try
+		{
+			$paySystem = $environment->getPaySystem();
+			$paySystemEnum = $paySystem->getEnum($siteId);
+
+			$result = [
+				'BASKET_SUBSIDY_INCLUDE' => [
+					'TYPE' => 'boolean',
+					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_BASKET_SUBSIDY_INCLUDE'),
+					'SORT' => 3450,
+				],
+				'SUBSIDY_PAY_SYSTEM_ID' => [
+					'TYPE' => 'enumeration',
+					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_SUBSIDY_PAY_SYSTEM_ID'),
+					'HELP_MESSAGE' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_SUBSIDY_PAY_SYSTEM_ID_HELP'),
+					'VALUES' => $paySystemEnum,
+					'SETTINGS' => [
+						'CAPTION_NO_VALUE' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_SUBSIDY_PAY_SYSTEM_ID_NO_VALUE'),
+						'STYLE' => 'max-width: 220px;'
+					],
+					'SORT' => 3451,
+					'DEPEND' => [
+						'BASKET_SUBSIDY_INCLUDE' => [
+							'RULE' => 'ANY',
+							'VALUE' => Market\Ui\UserField\BooleanType::VALUE_Y,
+						],
+					],
+				],
+			];
+		}
+		catch (Market\Exceptions\NotImplemented $exception)
+		{
+			$result = [];
+		}
+
+		return $result;
 	}
 
 	protected function getOrderPropertyUtilFields(TradingEntity\Reference\Environment $environment, $siteId)
@@ -205,7 +246,7 @@ class Options extends TradingService\Common\Options
 		$result = parent::getOrderPropertyUtilFields($environment, $siteId);
 
 		return $this->applyFieldsOverrides($result, [
-			'GROUP' => static::getLang('TRADING_SERVICE_MARKETPLACE_GROUP_ORDER'),
+			'GROUP' => static::getLang('TRADING_SERVICE_MARKETPLACE_GROUP_ORDER_PROPERTY'),
 			'SORT' => 3500,
 		]);
 	}
@@ -231,5 +272,31 @@ class Options extends TradingService\Common\Options
 		}
 
 		return $result;
+	}
+
+	protected function getProductSelfTestFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		$result = [];
+		$defaults = [
+			'TAB' => 'STORE',
+			'GROUP' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_SELF_TEST'),
+			'SORT' => 2300,
+		];
+
+		foreach ($this->getSelfTestOption()->getFields($environment, $siteId) as $name => $field)
+		{
+			$key = sprintf('SELF_TEST[%s]', $name);
+
+			$result[$key] = $field + $defaults;
+		}
+
+		return $result;
+	}
+
+	protected function getFieldsetMap()
+	{
+		return [
+			'SELF_TEST' => Options\SelfTestOption::class,
+		];
 	}
 }

@@ -42,8 +42,11 @@ if ($accessLevel > 'D')
 				[
 					'text' => Loc::getMessage('YANDEX_MARKET_MENU_SETTINGS'),
 					'title' => Loc::getMessage('YANDEX_MARKET_MENU_SETTINGS'),
-					'url' => 'yamarket_trading_edit.php?lang='.LANGUAGE_ID . '&service=turbo',
-					'more_url' => []
+					'url' => 'yamarket_trading_list.php?lang='.LANGUAGE_ID . '&service=turbo',
+					'more_url' => [
+						'yamarket_trading_setup.php?lang='.LANGUAGE_ID . '&service=turbo',
+						'yamarket_trading_edit.php?lang='.LANGUAGE_ID . '&service=turbo',
+					]
 				],
 				[
 					'text' => Loc::getMessage('YANDEX_MARKET_MENU_EVENT'),
@@ -99,9 +102,11 @@ if ($accessLevel > 'D')
 				[
 					'text' => Loc::getMessage('YANDEX_MARKET_MENU_SETTINGS'),
 					'title' => Loc::getMessage('YANDEX_MARKET_MENU_SETTINGS'),
-					'url' => 'yamarket_trading_edit.php?lang='.LANGUAGE_ID . '&service=marketplace',
+					'url' => 'yamarket_trading_list.php?lang='.LANGUAGE_ID . '&service=marketplace',
 					'more_url' => [
 						'yamarket_trading_edit.php?lang='.LANGUAGE_ID . '&service=beru',
+						'yamarket_trading_setup.php?lang='.LANGUAGE_ID . '&service=marketplace',
+						'yamarket_trading_edit.php?lang='.LANGUAGE_ID . '&service=marketplace',
 					],
 				],
 				[

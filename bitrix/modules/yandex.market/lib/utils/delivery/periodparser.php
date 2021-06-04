@@ -90,7 +90,7 @@ class PeriodParser
 		];
 
 		if (Market\Data\TextString::match(
-			'/(?:(?P<pretext>\w{1,3})\s*)?(?P<first>\d+(?:[.,]\d+)?)(?:\s*?(?P<glue>[\w-]){1,2}\s*?(?P<second>\d+(?:[.,]\d+)?))?/u',
+			'/(?:(?P<pretext>[^\d\W]{1,3})\s*)?(?P<first>\d+(?:[.,]\d+)?)(?:\s*?(?P<glue>[^\d\W]{1,2}|-)\s*?(?P<second>\d+(?:[.,]\d+)?))?/u',
 			$textBefore,
 			$matches
 		))

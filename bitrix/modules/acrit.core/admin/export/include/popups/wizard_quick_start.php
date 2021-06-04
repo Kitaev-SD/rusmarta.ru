@@ -250,8 +250,47 @@ if($bSaveWizardQuickStart){
 		data-callback-out="acrit_exp_wizard_callback_out_iblocks">
 		<div class="acrit_exp_wizard_quick_start_step_header"><?=Helper::getMessage($strLang.'IBLOCKS_HEADER');?></div>
 		<div class="acrit_exp_wizard_quick_start_filter">
-			<input type="text" placeholder="<?=Helper::getMessage($strLang.'IBLOCKS_FILTER_PLACEHOLDER');?>"
-				data-role="acrit_exp_wizard_quick_start_iblocks_filter" />
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" placeholder="<?=Helper::getMessage($strLang.'IBLOCKS_FILTER_PLACEHOLDER');?>"
+								data-role="acrit_exp_wizard_quick_start_iblocks_filter" />
+						</td>
+						<td>
+							<select data-role="acrit_exp_wizard_quick_start_iblocks_filter_site">
+								<option value=""><?=Helper::getMessage($strLang.'IBLOCKS_FILTER_SITE_ALL');?></option>
+								<?foreach($arSites as $arSite):?>
+									<option value="<?=$arSite['ID'];?>" data-domain="<?=$arSite['SERVER_NAME'];?>"
+										<?if($arProfile['SITE_ID']==$arSite['ID']):?> selected="selected"<?endif?>>
+										[<?=$arSite['ID'];?>]
+										<?if(strlen($arSite['SERVER_NAME'])):?>
+											<?=$arSite['SERVER_NAME'];?>
+										<?endif?>
+									</option>
+								<?endforeach?>
+							</select>
+						</td>
+						<td>
+							<table>
+								<tbody>
+									<tr>
+										<td>
+											<input type="checkbox" name="" value="Y" id="acrit_exp_wizard_quick_start_iblocks_filter_catalogs"
+												data-role="acrit_exp_wizard_quick_start_iblocks_filter_catalogs" />
+										</td>
+										<td>
+											<label for="acrit_exp_wizard_quick_start_iblocks_filter_catalogs">
+												<span><?=Helper::getMessage($strLang.'IBLOCKS_FILTER_CATALOGS');?></span>
+											</label>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="acrit_exp_wizard_iblock_types_wrapper">
 			<div class="acrit_exp_wizard_iblock_types" data-role="acrit_exp_wizard_quick_start_iblocks">
@@ -269,16 +308,23 @@ if($bSaveWizardQuickStart){
 									if($bCatalog){
 										$strTitle .= sprintf(' (%s)', toLower(Helper::getMessage($strLang.'IBLOCKS_CATALOG')));
 									}
+									$arIBlockSites = [];
+									$resIBlockSites = \CIBlock::getSite($arIBlock['ID']);
+									while($arIBlockSite = $resIBlockSites->fetch()){
+										$arIBlockSites[] = $arIBlockSite['LID'];
+									}
 									?>
 									<div class="acrit_exp_wizard_iblock <?if($bCatalog):?> acrit_exp_wizard_iblock_catalog<?endif?>" 
 										data-code="<?=$arIBlock['CODE']?>" data-filter="<?=htmlspecialcharsbx($strTitle)?>"
-										data-role="acrit_exp_wizard_quick_start_iblock">
+										data-role="acrit_exp_wizard_quick_start_iblock"
+										data-site="<?=implode(',', $arIBlockSites)?>" data-catalog="<?=($arIBlock['CATALOG'] ? 'Y' : 'N')?>">
 										<div class="acrit_exp_wizard_iblock_name" title="<?=htmlspecialcharsbx($strTitle);?>">
 											<label>
 												<input type="checkbox" name="iblocks[]" value="<?=$arIBlock['ID']?>"
 													data-role="acrit_exp_wizard_quick_start_iblock_checkbox"
 													<?if($bCatalog):?>checked="checked"<?endif?> />
-												<?=$arIBlock['NAME'];?> [<?=$arIBlock['ID'];?>, <?=$arIBlock['CODE'];?>]
+												<?=$arIBlock['NAME'];?> [<?=$arIBlock['ID'];?>, <?=$arIBlock['CODE'];?>, 
+													<?=implode(',', $arIBlockSites)?>]
 											</label>
 										</div>
 									</div>

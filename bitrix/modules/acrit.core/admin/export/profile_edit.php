@@ -355,6 +355,7 @@ if(($bSave || $bApply) && $strRight == 'W'){
 		$arProfileFields = array_merge(['ID' => $intProfileID], $arProfileFields);
 		$obPlugin->setProfileArray($arProfileFields, true);
 	}
+	Helper::clearDomain($arProfileFields['DOMAIN']);
 	$arProfileFields['PARAMS'] = serialize($arProfileFields['PARAMS']);
 	$bCopySuccess = false;
 	if($intProfileID && $bCopy) {

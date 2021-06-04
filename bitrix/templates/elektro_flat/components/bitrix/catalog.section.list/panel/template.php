@@ -30,9 +30,9 @@ if(count($arResult["SECTIONS"]) < 1)
 												<?if(!empty($arChild["UF_ICON"])) {?>
 													<i class="<?=$arChild['UF_ICON']?>" aria-hidden="true"></i>
 												<?} elseif(is_array($arChild["PICTURE_PREVIEW"])) {?>								
-													<img src="<?=$arChild['PICTURE_PREVIEW']['SRC']?>" width="<?=$arChild['PICTURE_PREVIEW']['WIDTH']?>" height="<?=$arChild['PICTURE_PREVIEW']['HEIGHT']?>" alt="<?=$arChild['NAME']?>" title="<?=$arChild['NAME']?>" />
+													<img class="data-lazy-src" data-lazy-src="<?=$arChild['PICTURE_PREVIEW']['SRC']?>" width="<?=$arChild['PICTURE_PREVIEW']['WIDTH']?>" height="<?=$arChild['PICTURE_PREVIEW']['HEIGHT']?>" alt="<?=$arChild['NAME']?>" title="<?=$arChild['NAME']?>" />
 												<?} else {?>
-													<img src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="50" height="50" alt="<?=$arChild['NAME']?>" title="<?=$arChild['NAME']?>" />
+													<img class="data-lazy-src" data-lazy-src="<?=SITE_TEMPLATE_PATH?>/images/no-photo.jpg" width="50" height="50" alt="<?=$arChild['NAME']?>" title="<?=$arChild['NAME']?>" />
 												<?}?>
 											</span>
 											<span class="text-cont">

@@ -9,6 +9,7 @@ use Yandex\Market\Trading\Service as TradingService;
 
 class Action extends TradingService\Marketplace\Action\Cart\Action
 {
+	use TradingService\MarketplaceDbs\Concerns\Action\HasRegionHandler;
 	use TradingService\MarketplaceDbs\Concerns\Action\HasAddress;
 
 	/** @var TradingService\MarketplaceDbs\Provider */
@@ -41,6 +42,19 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		return new Request($request, $server);
 	}
 
+	protected function sanitizeRegionMeaningfulValues($meaningfulValues)
+	{
+		if ($this->request->getCart()->getDelivery()->getAddress() !== null)
+		{
+			$meaningfulValues = array_diff_key($meaningfulValues, [
+				'LAT' => true,
+				'LON' => true,
+			]);
+		}
+
+		return $meaningfulValues;
+	}
+
 	protected function fillProperties()
 	{
 		$this->fillAddressProperties();
@@ -48,18 +62,24 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 
 	protected function collectResponse()
 	{
-		$this->collectDelivery();
+		$this->collectDeliveryDefaults();
 		$this->collectTaxSystem();
 		$this->collectItems();
+		$this->collectDelivery();
 		$this->collectPaymentMethods();
+
+		$this->applySelfTest();
+	}
+
+	protected function collectDeliveryDefaults()
+	{
+		$this->response->setField('cart.deliveryCurrency', $this->request->getCart()->getCurrency());
+		$this->response->setField('cart.deliveryOptions', []);
 	}
 
 	protected function collectDelivery()
 	{
-		$this->response->setField('cart.deliveryCurrency', $this->request->getCart()->getCurrency());
-		$this->response->setField('cart.deliveryOptions', []);
-
-		if (empty($this->basketMap)) { return; }
+		if (!$this->hasCollectedItems()) { return; }
 
 		$delivery = $this->environment->getDelivery();
 		$deliveryOptions = $this->provider->getOptions()->getDeliveryOptions();
@@ -81,6 +101,7 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 				$calculationResult = $delivery->calculate($deliveryId, $this->order);
 
 				$this->extendDeliveryCalculation($deliveryId, $calculationResult, $deliveryOption);
+				$this->sanitizeDeliveryCalculation($deliveryId, $calculationResult, $deliveryOption);
 				$this->validateDeliveryCalculation($calculationResult);
 
 				if ($calculationResult->isSuccess())
@@ -202,6 +223,7 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		$this->extendDeliveryCalculationServiceName($deliveryId, $calculationResult, $deliveryOption);
 		$this->extendDeliveryCalculationDatesFromOption($deliveryId, $calculationResult, $deliveryOption);
 		$this->extendDeliveryCalculationDateDefaults($deliveryId, $calculationResult, $deliveryOption);
+		$this->extendDeliveryCalculationDateIntervals($deliveryId, $calculationResult, $deliveryOption);
 		$this->extendDeliveryCalculationOutlet($deliveryId, $calculationResult, $deliveryOption);
 	}
 
@@ -301,6 +323,56 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		}
 	}
 
+	protected function extendDeliveryCalculationDateIntervals(
+		$deliveryId,
+		TradingEntity\Reference\Delivery\CalculationResult $calculationResult,
+		TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption = null
+	)
+	{
+		try
+		{
+			if ($deliveryOption === null) { return; }
+
+			$dateFrom = $calculationResult->getDateFrom();
+			$dateTo = $calculationResult->getDateTo();
+
+			if ($dateFrom === null) { return; }
+
+			$readyDate = $this->getDeliveryOptionReadyDate($deliveryOption);
+			$daysLimit = $this->getDeliveryOptionDateIntervalsDaysLimit();
+
+			$command = new TradingService\MarketplaceDbs\Command\DeliveryIntervalsMake(
+				$deliveryOption,
+				$dateFrom,
+				$dateTo
+			);
+			$command->setMinDate($readyDate);
+			$command->setMaxDaysCount($daysLimit);
+
+			if ($command->canExecute())
+			{
+				$intervals = $command->execute();
+
+				$calculationResult->setDateIntervals($intervals);
+			}
+		}
+		catch (Main\SystemException $exception)
+		{
+			$message = static::getLang('TRADING_MARKETPLACE_CART_DELIVERY_SERVICE_MAKE_INTERVALS_FAILED', [
+				'#ERROR#' => $exception->getMessage(),
+			]);
+
+			$calculationResult->addWarning(new Market\Error\Base($message));
+		}
+	}
+
+	protected function getDeliveryOptionReadyDate(TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption)
+	{
+		$command = new TradingService\MarketplaceDbs\Command\DeliveryOptionReadyDate($deliveryOption);
+
+		return $command->execute();
+	}
+
 	protected function extendDeliveryCalculationOutlet(
 		$deliveryId,
 		TradingEntity\Reference\Delivery\CalculationResult $calculationResult,
@@ -326,8 +398,92 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		}
 	}
 
+	protected function sanitizeDeliveryCalculation(
+		$deliveryId,
+		TradingEntity\Reference\Delivery\CalculationResult $calculationResult,
+		TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption = null
+	)
+	{
+		$this->sanitizeDeliveryCalculationDatesIntervals($deliveryId, $calculationResult, $deliveryOption);
+		$this->sanitizeDeliveryCalculationDatesByIntervals($deliveryId, $calculationResult, $deliveryOption);
+	}
+
+	protected function sanitizeDeliveryCalculationDatesIntervals(
+		$deliveryId,
+		TradingEntity\Reference\Delivery\CalculationResult $calculationResult,
+		TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption = null
+	)
+	{
+		try
+		{
+			$intervals = $calculationResult->getDateIntervals();
+
+			if ($intervals === null) { return; }
+
+			$daysLimit = $this->getDeliveryOptionDateIntervalsDaysLimit();
+
+			$command = new TradingService\MarketplaceDbs\Command\DeliveryIntervalsNormalize($intervals);
+			$command->setMinDuration(2);
+			$command->setMaxDuration(8);
+			$command->setMaxTimesCount(5);
+			$command->setMaxDaysCount($daysLimit);
+
+			if ($deliveryOption !== null)
+			{
+				$readyDate = $this->getDeliveryOptionReadyDate($deliveryOption);
+				$command->setMinDate($readyDate);
+			}
+
+			$intervals = $command->execute();
+
+			$calculationResult->setDateIntervals($intervals);
+		}
+		catch (Main\SystemException $exception)
+		{
+			$message = static::getLang('TRADING_MARKETPLACE_CART_DELIVERY_SERVICE_NORMALIZE_INTERVALS_FAILED', [
+				'#ERROR#' => $exception->getMessage(),
+			]);
+
+			$calculationResult->addWarning(new Market\Error\Base($message));
+		}
+	}
+
+	protected function sanitizeDeliveryCalculationDatesByIntervals(
+		$deliveryId,
+		TradingEntity\Reference\Delivery\CalculationResult $calculationResult,
+		TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption = null
+	)
+	{
+		$intervals = $calculationResult->getDateIntervals();
+
+		if ($intervals === null) { return; }
+
+		$dateFrom = $calculationResult->getDateFrom();
+		$dateTo = $calculationResult->getDateTo();
+		$firstInterval = reset($intervals);
+		$lastInterval = end($intervals);
+
+		if (
+			isset($firstInterval['date'])
+			&& ($dateFrom === null || Market\Data\Date::compare($firstInterval['date'], $dateFrom) === 1)
+		)
+		{
+			$calculationResult->setDateFrom($firstInterval['date']);
+		}
+
+		if (
+			isset($lastInterval['date'])
+			&& ($dateTo === null || Market\Data\Date::compare($lastInterval['date'], $dateTo) === 1)
+		)
+		{
+			$calculationResult->setDateTo($lastInterval['date']);
+		}
+	}
+
 	protected function validateDeliveryCalculation(TradingEntity\Reference\Delivery\CalculationResult $calculationResult)
 	{
+		if (!$calculationResult->isSuccess()) { return; }
+
 		$this->validateDeliveryCalculationDateFrom($calculationResult);
 		$this->validateDeliveryCalculationPickup($calculationResult);
 	}
@@ -391,13 +547,15 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 			'id' => (string)$deliveryId,
 			'type' => $calculationResult->getDeliveryType(),
 			'serviceName' => $this->makeDeliveryOptionServiceName($calculationResult),
-			'price' => $calculationResult->getPrice(),
+			'price' => Market\Data\Price::round($calculationResult->getPrice()),
 		];
 		$result += array_filter([
 			'dates' => $this->makeDeliveryOptionDates($calculationResult),
 			'outlets' => $this->makeDeliveryOptionOutlets($calculationResult),
-			'paymentMethods' => $this->makeDeliveryOptionPaymentMethods($deliveryId),
 		]);
+		$result += [
+			'paymentMethods' => $this->makeDeliveryOptionPaymentMethods($deliveryId),
+		];
 
 		return $result;
 	}
@@ -433,14 +591,45 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 			'fromDate' => Market\Data\Date::convertForService($dateFrom, Market\Data\Date::FORMAT_DEFAULT_SHORT),
 		];
 
-		if ($dateTo !== null && Market\Data\Date::compare($dateTo, $dateFrom) === 1)
+		if ($dateTo !== null && Market\Data\Date::compare($dateTo, $dateFrom) !== -1)
 		{
 			$result['toDate'] = Market\Data\Date::convertForService($dateTo, Market\Data\Date::FORMAT_DEFAULT_SHORT);
+		}
 
-			if ($calculationResult->getDeliveryType() === TradingService\MarketplaceDbs\Delivery::TYPE_DELIVERY)
+		if ($calculationResult->getDeliveryType() === TradingService\MarketplaceDbs\Delivery::TYPE_DELIVERY)
+		{
+			$dateIntervals = $calculationResult->getDateIntervals();
+
+			if ($dateIntervals !== null)
+			{
+				$result['intervals'] = $this->formatDeliveryOptionDateIntervals($dateIntervals);
+			}
+			else if ($dateTo !== null)
 			{
 				$result['intervals'] = $this->emulateDeliveryOptionDateIntervals($dateFrom, $dateTo);
 			}
+		}
+
+		return array_filter($result);
+	}
+
+	protected function formatDeliveryOptionDateIntervals(array $intervals)
+	{
+		$result = [];
+
+		foreach ($intervals as $interval)
+		{
+			$resultInterval = [
+				'date' => Market\Data\Date::convertForService($interval['date'], Market\Data\Date::FORMAT_DEFAULT_SHORT),
+			];
+
+			if (isset($interval['fromTime'], $interval['toTime']))
+			{
+				$resultInterval['fromTime'] = Market\Data\Time::format($interval['fromTime']);
+				$resultInterval['toTime'] = Market\Data\Time::format($interval['toTime']);
+			}
+
+			$result[] = $resultInterval;
 		}
 
 		return $result;
@@ -450,7 +639,7 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 	{
 		$iterator = clone $from;
 		$iterateCount = 0;
-		$iterateLimit = 7;
+		$iterateLimit = $this->getDeliveryOptionDateIntervalsDaysLimit();
 		$result = [];
 
 		do
@@ -467,6 +656,11 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		);
 
 		return $result;
+	}
+
+	protected function getDeliveryOptionDateIntervalsDaysLimit()
+	{
+		return 7;
 	}
 
 	protected function makeDeliveryOptionOutlets(TradingEntity\Reference\Delivery\CalculationResult $calculationResult)
@@ -496,7 +690,7 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 					$methodMap[$method] = true;
 				}
 			}
-			else if (!$options->isPaySystemStrict())
+			else if (!$options->isPaySystemStrict() && !$this->isInternalPaySystem($paySystemId))
 			{
 				$meaningfulMap = $servicePaySystem->getMethodMeaningfulMap();
 				$suggestMethods = $environmentPaySystem->suggestPaymentMethod($paySystemId, $meaningfulMap);
@@ -521,6 +715,14 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		$paySystem = $this->environment->getPaySystem();
 
 		return $paySystem->getCompatible($this->order, $deliveryId);
+	}
+
+	protected function isInternalPaySystem($paySystemId)
+	{
+		$options = $this->provider->getOptions();
+		$subsidyPaySystemId = $options->getSubsidyPaySystemId();
+
+		return ($subsidyPaySystemId !== '' && (int)$subsidyPaySystemId === (int)$paySystemId);
 	}
 
 	protected function storeDeliveryOptionUsage($responseOption)
@@ -582,12 +784,21 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		}
 	}
 
+	protected function hasCollectedItems()
+	{
+		$items = $this->response->getField('cart.items');
+
+		return is_array($items) && !empty($items);
+	}
+
 	protected function collectPaymentMethods()
 	{
-		$methods = array_unique(array_merge(
+		$methods = array_merge(
 			$this->getUsedPaySystemMethods(),
 			$this->getConfiguredPaySystemMethods()
-		));
+		);
+		$methods = array_unique($methods);
+		$methods = array_values($methods);
 
 		$this->response->setField('cart.paymentMethods', $methods);
 	}
@@ -623,5 +834,18 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 	protected function createTimeout()
 	{
 		return new TradingService\Common\Helper\Timeout(5.5);
+	}
+
+	protected function applySelfTestOutOfStock()
+	{
+		if (!$this->provider->getOptions()->getSelfTestOption()->isOutOfStock()) { return; }
+
+		$this->response->setField('cart.deliveryOptions', []);
+		$this->response->setField('cart.items', []);
+		$this->response->setField('cart.paymentMethods', []);
+
+		$this->provider->getLogger()->warning(static::getLang(
+			'TRADING_MARKETPLACE_CART_SELF_TEST_OUT_OF_STOCK_ON'
+		));
 	}
 }

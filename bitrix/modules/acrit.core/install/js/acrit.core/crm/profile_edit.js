@@ -1,6 +1,6 @@
 
 /**
- * Manual import start
+ * Manual import start (with progress bar)
  */
 
 function AcritMansyncStartExportResetVars() {
@@ -37,7 +37,6 @@ function AcritMansyncStartExport(next_item, count) {
 		"next_item": next_item,
 		"count": count,
 	}, function (JsonResult, textStatus, jqXHR) {
-		console.log(JsonResult);
 		if (JsonResult.result == 'ok') {
 			if (JsonResult.errors.length > 0) {
 				JsonResult.errors.forEach(function(item, i, arr) {
@@ -61,6 +60,9 @@ function AcritMansyncStartExport(next_item, count) {
 				$('#man_sync_start').removeClass("adm-btn-disabled");
 			}
 		}
+		else {
+			console.log(JsonResult);
+		}
 	}, function (jqXHR) {
 		console.log(jqXHR);
 	}, true);
@@ -70,6 +72,42 @@ function AcritMansyncMessageAdd(message) {
 	var text = $('#start_mansync_errors').val();
 	text += message + "\n";
 	$('#start_mansync_errors').val(text);
+}
+
+
+/**
+ * Manual import start (without progress bar)
+ */
+
+function AcritMansyncNoprogressStartExport(next_item) {
+	if (!run_enabled) {
+		return false;
+	}
+	acritExpAjax('man_sync_run', {
+		"next_item": next_item,
+		"count": 0,
+	}, function (JsonResult, textStatus, jqXHR) {
+		if (JsonResult.result == 'ok') {
+			if (JsonResult.errors.length > 0) {
+				JsonResult.errors.forEach(function(item, i, arr) {
+					AcritMansyncMessageAdd(item);
+				});
+			}
+			$('#man_sync_result_count span').text(JsonResult.report.all);
+			if (JsonResult.next_item && JsonResult.next_item > next_item) {
+				AcritMansyncNoprogressStartExport(JsonResult.next_item);
+			}
+			else {
+				$('#man_sync_stop').addClass("adm-btn-disabled");
+				$('#man_sync_noprogress_start').removeClass("adm-btn-disabled");
+			}
+		}
+		else {
+			console.log(JsonResult);
+		}
+	}, function (jqXHR) {
+		console.log(jqXHR);
+	}, true);
 }
 
 
@@ -92,7 +130,6 @@ $(function() {
 			$('#man_sync_stop').removeClass("adm-btn-disabled");
 			// $('#man_sync_result').show();
 			acritExpAjax('man_sync_count', {}, function (JsonResult, textStatus, jqXHR) {
-				console.log(JsonResult);
 				if (JsonResult.result == 'ok') {
 					mansync_count = JsonResult.count;
 					if (JsonResult.errors.length > 0) {
@@ -107,9 +144,23 @@ $(function() {
 						AcritMansyncStartExport(0, mansync_count);
 					}
 				}
+				else {
+					console.log(JsonResult);
+				}
 			}, function (jqXHR) {
 				console.log(jqXHR);
 			}, true);
+		}
+		return false;
+	});
+
+	$("#man_sync_noprogress_start").click(function() {
+		if (!$(this).hasClass("adm-btn-disabled")) {
+			AcritMansyncStartExportResetVars();
+			$('#man_sync_noprogress_start').addClass("adm-btn-disabled");
+			$('#man_sync_stop').removeClass("adm-btn-disabled");
+			// $('#man_sync_result').show();
+			AcritMansyncNoprogressStartExport(0);
 		}
 		return false;
 	});
@@ -118,6 +169,7 @@ $(function() {
 		if (!$(this).hasClass("adm-btn-disabled")) {
 			$('#man_sync_stop').addClass("adm-btn-disabled");
 			$('#man_sync_start').removeClass("adm-btn-disabled");
+			$('#man_sync_noprogress_start').removeClass("adm-btn-disabled");
 			run_enabled = false;
 		}
 		return false;

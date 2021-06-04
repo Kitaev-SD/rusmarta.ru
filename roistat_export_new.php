@@ -7,7 +7,7 @@ const ROISTAT_LOGIN    = 'minin@rusmarta.ru';
 const ROISTAT_PASSWORD = 'rusmarta';
 
 if(!isset($_REQUEST['token']) || md5(ROISTAT_LOGIN.ROISTAT_PASSWORD) != $_REQUEST['token']) {
-    die('Invalid token');
+   die('Invalid token');
 }
 
 $app_id = 230833;
@@ -137,11 +137,10 @@ switch ($_GET['action']) {
             });
             $email = !empty($email) ? array_shift($email)['contact_info'] : null;
             $email = mb_strtolower($email);
-
-            $order = array_shift(array_filter($tmp['result'], function ($order) use ($item) {
+            $order_filter = array_filter($tmp['result'], function ($order) use ($item) {
                 return $item['id'] == $order['partner_id'];
-            }));
-
+            });
+            $order = array_shift($order_filter);
 
             return array(
                 'order_id'      => $order['id'],
@@ -155,7 +154,11 @@ switch ($_GET['action']) {
         $search = array_map(function ($item) use ($proxyleads) {
             if(!empty($item['order_number'])) {
                 $proxylead = array_filter($proxyleads, function ($proxy) use ($item) {
-                    return $item['order_number'] == $proxy->order_fields->order;
+                    if (isset($proxy->order_fields)) {
+                        if (isset($proxy->order_fields->order)) {
+                            return $item['order_number'] == $proxy->order_fields->order;
+                        }
+                    }
                 });
             } elseif (!empty($item['partner_email'])) {
                 $proxylead = array_filter($proxyleads, function ($proxy) use ($item) {
@@ -168,19 +171,19 @@ switch ($_GET['action']) {
             }
 
             $proxylead = array_shift($proxylead);
-
-
+            $proxylead_roistat = $proxylead->roistat ? (isset($proxylead->roistat)) : null;
             return [
                 'client_id' => $item['partner_id'],
-                'visit'     => $proxylead->roistat,
+                'visit'     => $proxylead_roistat,
             ];
         }, $clients);
 
 
         foreach($tmp['result'] as $row) {
-            $client = array_shift(array_filter($search, function ($item) use ($row) {
+            $client_id_filtered = array_filter($search, function ($item) use ($row) {
                 return $item['client_id'] == $row['partner_id'];
-            }));
+            });
+            $client = array_shift($client_id_filtered);
 
             $visit = !empty($client['visit']) ? $client['visit'] : '';
 
@@ -243,9 +246,9 @@ switch ($_GET['action']) {
             'orders' => $orders,
         ];
 
-//        writeToLog($_GET, 'Запрос');
-//        writeToLog($tmp, 'Ответ API');
-//        writeToLog($json, 'Ответ');
+        writeToLog($_GET, 'Запрос');
+        writeToLog($tmp, 'Ответ API');
+        writeToLog($json, 'Ответ');
 
         break;
     case 'export_clients':
@@ -313,13 +316,16 @@ switch ($_GET['action']) {
                 $info = array_filter($row['partnercontactinfo'], function ($item) {
                     return in_array($item['contact_info_type_id'], array(1, 4));
                 });
-
-                $clients[$index]['phone'] = preg_replace('/\D/', '', array_shift(array_filter($info, function ($item) {
+                
+                $clients_phone_filtered = array_filter($info, function ($item) {
                     return $item['contact_info_type_id'] == 1;
-                }))['contact_info']);
-                $clients[$index]['email'] = array_shift(array_filter($info, function ($item) {
+                });
+                $clients[$index]['phone'] = preg_replace('/\D/', '', array_shift($clients_phone_filtered)['contact_info']);
+                
+                $clients_email_filtered = array_filter($info, function ($item) {
                     return $item['contact_info_type_id'] == 4;
-                }))['contact_info'];
+                });
+                $clients[$index]['email'] = array_shift($clients_email_filtered)['contact_info'];
             }
         }
 

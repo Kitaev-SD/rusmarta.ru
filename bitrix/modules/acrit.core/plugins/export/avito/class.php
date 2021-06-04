@@ -808,6 +808,7 @@ class Avito extends Plugin {
 			$bFinished = $intCountBulk < $intLimit;
 			# Step-by-step: Check breaked
 			if($bStepByStep){
+				$bFinished = $intCountBulk < $intCountExportedAtStep || $intCountExportedAtStep == 0;
 				$this->setLastExportedItem($this->arProfile['ID'], array_merge($arLastExportedItem, array(
 					'SORT' => $strLastExportedSort,
 					'ELEMENT_ID' => $strLastExportedElementId,

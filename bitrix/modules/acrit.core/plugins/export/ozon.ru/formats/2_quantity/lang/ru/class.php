@@ -3,7 +3,7 @@
 $strMessPrefix = 'ACRIT_EXP_OZON_RU_QUANTITY_';
 
 // General
-$MESS[$strMessPrefix . 'NAME'] = 'OZON.RU API остатки';
+$MESS[$strMessPrefix . 'NAME'] = 'Ozon.Ru API остатки (не поддерживается)';
 $MESS[$strMessPrefix . 'SETTINGS_TITLE'] = 'Настройки интеграции с площадкой OZON.RU';
 $MESS[$strMessPrefix . 'SETTINGS_CLIENT_ID'] = 'Client Id';
 $MESS[$strMessPrefix . 'SETTINGS_API_KEY'] = 'API key';

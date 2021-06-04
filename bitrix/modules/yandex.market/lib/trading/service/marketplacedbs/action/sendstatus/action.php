@@ -22,48 +22,6 @@ class Action extends TradingService\Marketplace\Action\SendStatus\Action
 		return new Request($data);
 	}
 
-	protected function isChangedOrderStatus($orderId, $state)
-	{
-		$serviceKey = $this->provider->getUniqueKey();
-		$storedStatusEncoded = Market\Trading\State\OrderStatus::getValue($serviceKey, $orderId);
-		$result = false;
-
-		if ($storedStatusEncoded === null)
-		{
-			$result = true;
-		}
-		else
-		{
-			/** @var Market\Trading\Service\MarketplaceDbs\Status $serviceStatus */
-			list($submitStatus, $submitSubStatus) = $this->getExternalStatus($state);
-			list($storedStatus, $storedSubStatus) = explode(':', $storedStatusEncoded);
-			$serviceStatus = $this->provider->getStatus();
-			$serviceCancelReason = $this->provider->getCancelReason();
-			$submitStatusOrder = $serviceStatus->getStatusOrder($submitStatus);
-			$storedStatusOrder = $serviceStatus->getStatusOrder($storedStatus);
-
-			if ($submitStatusOrder !== null && $submitStatusOrder < $storedStatusOrder)
-			{
-				$result = false;
-			}
-			else if ($storedStatus !== $submitStatus)
-			{
-				$result = true;
-			}
-			else if (
-				$submitStatus === TradingService\MarketplaceDbs\Status::STATUS_CANCELLED
-				&& $submitSubStatus !== null
-				&& $submitSubStatus !== $storedSubStatus
-				&& ((string)$storedSubStatus === '' || in_array($storedSubStatus, $serviceCancelReason->getVariants(), true))
-			)
-			{
-				$result = true;
-			}
-		}
-
-		return $result;
-	}
-
 	protected function checkHasStatus($orderId, $state)
 	{
 		try

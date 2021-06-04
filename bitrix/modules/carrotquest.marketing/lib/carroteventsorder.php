@@ -2,234 +2,449 @@
 
 namespace CarrotQuest\Marketing;
 
+use Bitrix\Catalog;
 use Bitrix\Main\Application;
-use Bitrix\Main\Loader;
+use Bitrix\Main\Event;
+use Bitrix\Main\EventManager;
+use Bitrix\Main\EventResult;
 use Bitrix\Main\Config\Option;
+use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ModuleManager;
-use Bitrix\Main\EventManager;
+use Bitrix\Main\UserTable;
 use Bitrix\Sale;
 use Bitrix\Sale\Compatible\BasketCompatibility;
-use Bitrix\Sale\Compatible\OrderCompatibility;
 use Bitrix\Sale\Compatible\EventCompatibility;
-use Bitrix\Catalog;
-use Bitrix\Main\EventResult;
-use Bitrix\Main\Event;
+use Bitrix\Sale\Compatible\OrderCompatibility;
+
+
 
 class CarrotEventsOrder extends CarrotEvents
 {
 
-    public static function onOrderAdd($id, $order)
-    {
-        try {
-            if (defined("CARROTQUEST_API_KEY") && defined("CARROTQUEST_API_SECRET") && $order != null) {
-                $userId = $order["USER_ID"];
-                $send_userId = $userId;
-                $by_user_id = true;
+	/**
+	 * User placed an order
+	 * D7 event
+	 *
+	 * @param Event|array|null $event
+	 * @return EventResult
+	 */
+	public static function newOnOrderAdd(Event $event){
+		$order = $event->getParameter('ENTITY');
+		$isNew = $event->getParameter('IS_NEW');
 
-                $status = \CSaleStatus::GetByID($order["STATUS_ID"]);
-                if ($status["NAME"]) {
-                    $arrItem[] = array(
-                        "op" => "update_or_create",
-                        "key" => '$last_order_status',
-                        "value" => $status["NAME"]
-                    );
-                }
+		if (self::WatchLegacyEvents(true) || !self::WatchSite($order->getField('LID'))) { return new EventResult(EventResult::SUCCESS); }
 
-                $dbOrdUser = \CUser::GetByID($userId);
-                $ord_user = $dbOrdUser->Fetch();
-                if (Option::get(self::$MODULE_ID, "phone_prop")) {
-                    $phone_codes_str = Option::get(self::$MODULE_ID, "phone_prop");
-                    $phone_codes = explode(',', $phone_codes_str);
-                    $count = count($phone_codes);
-                    $i = -1;
-                    do {
-                        $i++;
-                        if (isset($_POST[trim($phone_codes[$i])])) {
-                            $arrItem[] = array(
-                                "op" => "update_or_create",
-                                "key" => '$phone',
-                                "value" => $_POST[trim($phone_codes[$i])]
-                            );
-                        }
-                    } while ($i < $count - 1 && !isset($_POST[trim($phone_codes[$i])])); 
+		try {
+			if (defined('CARROTQUEST_API_KEY') && defined('CARROTQUEST_API_SECRET') && isset($order) && $isNew) {
+				$userId = $order->getUserId();
+				$byUserId = true;
+				$statusesList = Sale\OrderStatus::getAllStatusesNames();
+				$status_id = $order->getField('STATUS_ID');
+				if (isset($statusesList[$status_id])) {
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$last_order_status',
+						'value' => $statusesList[$status_id]
+					);
+				}
+
+				// Get data on user that placed an order
+				$user = UserTable::getById($userId)->fetch();
+
+				// Get user phone from order (if we know in which fields to look for it)
+				if (Option::get(self::$MODULE_ID, 'phone_prop')) {
+					$phone_codes_str = Option::get(self::$MODULE_ID, 'phone_prop');
+					$phone_codes = explode(',', $phone_codes_str);
+					$count = count($phone_codes);
+					$i = -1;
+					do {
+						$i++;
+						if (isset($_POST[trim($phone_codes[$i])])) {
+							$arrItem[] = array(
+								'op' => 'update_or_create',
+								'key' => '$phone',
+								'value' => $_POST[trim($phone_codes[$i])]
+							);
+						}
+					} while ($i < $count - 1 && !isset($_POST[trim($phone_codes[$i])]));
+				}
+
+				if ($user) {
+					// user name
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$name',
+						'value' => trim($user['LAST_NAME'] . ' ' . $user['NAME'] . ' ' . $user['SECOND_NAME'])
+					);
 
 
-                }
-                if ($ord_user) {
-                    // user name
-                    $arrItem[] = array(
-                        "op" => "update_or_create",
-                        "key" => '$name',
-                        "value" => trim($ord_user['LAST_NAME'] . ' ' . $ord_user['NAME'] . ' ' . $ord_user['SECOND_NAME'])
-                    );
+					// user email
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$email',
+						'value' => $user['EMAIL']
+					);
+				}
+
+				// Empty the cart amount prop in cq. It's 100% saved for user by carrotquest_uid, and other props and events might create new anon and this will go to vain.
+				$arrItemCQUID = array(
+					array(
+					'op' => 'delete',
+					'key' => '$cart_amount',
+					'value' => 0
+					),
+					array(
+						'op' => 'delete',
+						'key' => '$cart_items',
+						'value' => ''
+					)
+				);
+
+				$arrItem[] = array(
+					'op' => 'add',
+					'key' => '$revenue',
+					'value' => round(floatval($order->getPrice()))
+				);
+
+				$arrItem[] = array(
+					'op' => 'update_or_create',
+					'key' => '$last_payment',
+					'value' => round(floatval($order->getPrice()))
+				);
+				$carrotquest_uid = CarrotEvents::GetCarrotquestUID($userId);
+
+				CarrotEvents::SendOperations($carrotquest_uid, $arrItemCQUID);
+				CarrotEvents::SendOperations($userId, $arrItem, $byUserId);
+				CarrotEvents::SendEvent($userId, '$order_completed', array(
+					'$order_id' => $order->getId(),
+					'$order_amount' => round(floatval($order->getPrice()))
+				), $byUserId);
+			}
+		} catch (\Exception $e) {
+			self::WriteLog('Error', $e->getMessage());
+		}
+
+		return new EventResult(EventResult::SUCCESS); // says that it is OK to continue CMS functions
+	}
+
+	/**
+	 * User placed an order
+	 *
+	 * @param string|integer $id
+	 * @param Sale\Order|array|null $order
+	 * @return EventResult
+	 */
+	public static function onOrderAdd($id, $order)
+	{
+		if (!self::WatchLegacyEvents(true) || !self::WatchSite($order['LID'])) { return new EventResult(EventResult::SUCCESS); }
+
+		try {
+			if (defined('CARROTQUEST_API_KEY') && defined('CARROTQUEST_API_SECRET') && $order != null) {
+				$userId = $order['USER_ID'];
+				$byUserId = true;
+
+				$status = \CSaleStatus::GetByID($order['STATUS_ID']);
+				if ($status['NAME']) {
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$last_order_status',
+						'value' => $status['NAME']
+					);
+				}
+
+				// Get data on user that placed an order
+				$dbOrdUser = \CUser::GetByID($userId);
+				$ord_user = $dbOrdUser->Fetch();
+
+				// Get user phone from order (if we know in which fields to look for it)
+				if (Option::get(self::$MODULE_ID, 'phone_prop')) {
+					$phone_codes_str = Option::get(self::$MODULE_ID, 'phone_prop');
+					$phone_codes = explode(',', $phone_codes_str);
+					$count = count($phone_codes);
+					$i = -1;
+					do {
+						$i++;
+						if (isset($_POST[trim($phone_codes[$i])])) {
+							$arrItem[] = array(
+								'op' => 'update_or_create',
+								'key' => '$phone',
+								'value' => $_POST[trim($phone_codes[$i])]
+							);
+						}
+					} while ($i < $count - 1 && !isset($_POST[trim($phone_codes[$i])]));
+				}
+
+				if ($ord_user) {
+					// user name
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$name',
+						'value' => trim($ord_user['LAST_NAME'] . ' ' . $ord_user['NAME'] . ' ' . $ord_user['SECOND_NAME'])
+					);
 
 
-                    // user email
-                    $arrItem[] = array(
-                        "op" => "update_or_create",
-                        "key" => '$email',
-                        "value" => $ord_user['EMAIL']
-                    );
-                }
+					// user email
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$email',
+						'value' => $ord_user['EMAIL']
+					);
+				}
 
-                // the cart is empty
-                $arrItem[] = array(
-                    "op" => "delete",
-                    "key" => '$cart_amount',
-                    "value" => 0
-                );
-                // the cart is empty
-                $arrItem[] = array(
-                    "op" => "delete",
-                    "key" => '$cart_items',
-                    "value" => ""
-                );
+				// Empty the cart amount prop in cq. It's 100% saved for user by carrotquest_uid, and other props and events might create new anon and this will go to vain.
+				$arrItemCQUID = array(
+					array(
+						'op' => 'delete',
+						'key' => '$cart_amount',
+						'value' => 0
+					),
+					array(
+						'op' => 'delete',
+						'key' => '$cart_items',
+						'value' => ''
+					)
+				);
 
-                $arrItem[] = array(
-                    "op" => "add",
-                    "key" => '$revenue',
-                    "value" => round(floatval($order["PRICE"]))
-                );
+				$arrItem[] = array(
+					'op' => 'add',
+					'key' => '$revenue',
+					'value' => round(floatval($order['PRICE']))
+				);
 
-                $arrItem[] = array(
-                    "op" => "update_or_create",
-                    "key" => '$last_payment',
-                    "value" => round(floatval($order["PRICE"]))
-                );
+				$arrItem[] = array(
+					'op' => 'update_or_create',
+					'key' => '$last_payment',
+					'value' => round(floatval($order['PRICE']))
+				);
 
-                CarrotEvents::SendOperations($send_userId, $arrItem, $by_user_id);
-                CarrotEvents::SendEvent($send_userId, '$order_completed', array(
-                        '$order_id' => $id,
-                        '$order_amount' => round(floatval($order["PRICE"]))
-                    ), $by_user_id);
-            }
-        } catch (Exception $e) {
-            CarrotEvents::WriteLog("Error", $e->getMessage());
-        }
+				$carrotquest_uid = CarrotEvents::GetCarrotquestUID($userId);
 
-        return new EventResult(EventResult::SUCCESS); // says that it is OK to continue CMS functions
-    }
+				CarrotEvents::SendOperations($carrotquest_uid, $arrItemCQUID);
+				CarrotEvents::SendOperations($userId, $arrItem, $byUserId);
+				CarrotEvents::SendEvent($userId, '$order_completed', array(
+					'$order_id' => $id,
+					'$order_amount' => round(floatval($order['PRICE']))
+				), $byUserId);
+			}
+		} catch (\Exception $e) {
+			self::WriteLog('Error', $e->getMessage());
+		}
 
-    /**
-     * Order status changing
-     *
-     * @param $order
-     * @param $value
-     * @param $oldValue
-     * @return EventResult
-     */
-    public static function onSaleStatusOrderChange($order, $value, $oldValue)
-    {
+		return new EventResult(EventResult::SUCCESS);
+	}
 
-        try {
-            if (defined("CARROTQUEST_API_KEY") && defined("CARROTQUEST_API_SECRET") && $order != null && $order instanceof Sale\Order) {
-                // send info to customer linked to order
-                $userId = $order->getField("USER_ID");
-                $arFilter = Array(
-                    "USER_ID" => $userId,
-                );
-                // list of orders, sorted desc by creation date
-                $rsSales = \CSaleOrder::GetList(array("DATE_INSERT" => "DESC"), $arFilter);
-                $rsSalesFirst = $rsSales->Fetch();
+	/**
+	 * Order status changing
+	 *
+	 * @param Sale\Order|array|null $order
+	 * @param string|integer $value New order status ID
+	 * @param string|integer $oldValue Old order status ID
+	 * @return EventResult
+	 */
+	public static function onSaleStatusOrderChange($order, $value, $oldValue)
+	{
+		try {
+			if (defined("CARROTQUEST_API_KEY") && defined("CARROTQUEST_API_SECRET")
+				&& $order != null && $order instanceof Sale\Order
+				&& self::WatchSite($order->getField('LID'))
+			) {
+				// send info to customer linked to order
+				$userId = $order->getUserId();
+				$arFilter = array(
+					"USER_ID" => $userId,
+				);
+				// list of orders, sorted desc by there date of creation
+				$rsSales = \CSaleOrder::GetList(array("DATE_INSERT" => "DESC"), $arFilter);
+				$rsSalesFirst = $rsSales->Fetch();
 
-                // if it is last order changing then send data to Carrot
-                if ($rsSalesFirst && $rsSalesFirst["ID"] == $order->getId()) {
-                    $status = \CSaleStatus::GetByID($value);
-                    $arrItem[] = array(
-                        "op" => "update_or_create",
-                        "key" => '$last_order_status',
-                        "value" => $status["NAME"] // new status name
-                    );
-                    CarrotEvents::SendOperations($userId, $arrItem, true);
-                }
+				// if it is currently the last order changing then send data to cq
+				if ($rsSalesFirst && $rsSalesFirst["ID"] == $order->getId()) {
+					$status = \CSaleStatus::GetByID($value);
+					$arrItem[] = array(
+						"op" => "update_or_create",
+						"key" => '$last_order_status',
+						"value" => $status["NAME"] // new status name
+					);
+					CarrotEvents::SendOperations($userId, $arrItem, true);
+				}
 
-                if (strtoupper($value) == "F") {
-                    CarrotEvents::SendEvent($userId, '$order_closed', array('$order_id' => $order->getId()), true);
-                }
-            }
-        } catch (Exception $e) {
-            CarrotEvents::WriteLog("Error", $e->getMessage());
-        }
+				if (strtoupper($value) == "F") {
+					CarrotEvents::SendEvent($userId, '$order_closed', array('$order_id' => $order->getId()), true);
+				}
+			}
+		} catch (\Exception $e) {
+			self::WriteLog("Error", $e->getMessage());
+		}
 
-        return new EventResult(EventResult::SUCCESS); // says that it is OK to continue CMS functions
-    }
+		return new EventResult(EventResult::SUCCESS); // says that it is OK to continue CMS functions
+	}
 
-    /**
-     * Sends data when order or order cancelation is canceled
-     *
-     * @param $id
-     * @param $cancel
-     * @param $description
-     * @return EventResult
-     */
-    public static function onSaleCancelOrder($id, $cancel, $description)
-    {
+	/**
+	 * Sends data when order or order cancelation is canceled
+	 * D7 event
+	 *
+	 * @param Event $event
+	 * @return EventResult
+	 */
+	public static function newOnSaleCancelOrder(Event $event) {
+		$order = $event->getParameter('ENTITY');
 
-        try {
-            $order = \CSaleOrder::GetByID($id);
+		if (self::WatchLegacyEvents(true) || !self::WatchSite($order->getField('LID'))) { return new EventResult(EventResult::SUCCESS); }
 
-            if (defined("CARROTQUEST_API_KEY") && defined("CARROTQUEST_API_SECRET") && $order != null && count($order) > 0) {
-                $userId = $order["USER_ID"];
-                $arFilter = Array(
-                    "USER_ID" => $userId,
-                );
-                // list of orders, sorted desc by creation date
-                $rsSales = \CSaleOrder::GetList(array("DATE_INSERT" => "DESC"), $arFilter);
-                $rsSalesFirst = $rsSales->Fetch();
-                // if it is last order changing then send data to Carrot
-                if ($rsSalesFirst && $rsSalesFirst["ID"] == $order["ID"]) {
-                    $status = \CSaleStatus::GetByID($order["STATUS_ID"]);
-                    $arrItem[] = array(
-                        "op" => "update_or_create",
-                        "key" => '$last_order_status',
-                        "value" => $cancel == "Y" ? "Заказ отменён" : $status["NAME"] // set status to canceled or to actual (depending on action)
-                    );
-                    CarrotEvents::SendOperations($userId, $arrItem, true);
-                }
+		try {
+			if (defined('CARROTQUEST_API_KEY') && defined('CARROTQUEST_API_SECRET') && isset($order)) {
+				$userId = $order->getUserId();
+				$arFilter = array(
+					'USER_ID' => $userId,
+				);
+				// list of orders, sorted desc by creation date
+				$rsSales = Sale\Order::getList(array("order" => array('DATE_INSERT' => 'DESC'), "filter" => $arFilter));
+				$rsSalesFirst = $rsSales->fetch();
+				// if it is the last order changing then send data to Carrot
+				if (isset($rsSalesFirst) && $rsSalesFirst['ID'] === $order->getId()) {
+					$statusesList = Sale\OrderStatus::getAllStatusesNames();
+					$status_id = $order->getField('STATUS_ID');
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$last_order_status',
+						'value' => $order->isCanceled() ? 'Заказ отменён' : $statusesList[$status_id]// set status to canceled or to active (depending on action)
+					);
+					CarrotEvents::SendOperations($userId, $arrItem, true);
+				}
 
-                if ($cancel == "Y") {
-                    $eArrItem = array(
-                        '$order_id' => $id
-                    );
+				if ($order->isCanceled()) {
+					$eArrItem = array(
+						'$order_id' => $order->getId()
+					);
 
-                    if (strlen($order["ORDER_CANCEL_DESCRIPTION"]) > 0) {
-                        $eArrItem['$comment'] = $order["ORDER_CANCEL_DESCRIPTION"];
-                    }
-                    CarrotEvents::SendEvent($userId, '$order_cancelled', $eArrItem, true);
-                }
-            }
-        } catch (Exception $e) {
-            CarrotEvents::WriteLog("Error", $e->getMessage());
-        }
+					if (strlen($order->getField('REASON_CANCELED')) > 0) {
+						$eArrItem['$comment'] = $order->getField('REASON_CANCELED');
+					}
+					CarrotEvents::SendEvent($userId, '$order_cancelled', $eArrItem, true);
+				}
+			}
+		} catch (\Exception $e) {
+			self::WriteLog('Error', $e->getMessage());
+		}
 
-        return new EventResult(EventResult::SUCCESS);
-    }
+		return new EventResult(EventResult::SUCCESS);
+	}
 
-    /**
-     *
-     * Sends data when order is set to payd
-     *
-     * @param $id
-     * @param $value
-     * @return EventResult
-     */
-    public static function onSalePayOrder($id, $value)
-    {
-        try {
-            $order = \CSaleOrder::GetByID($id);
-            if (defined("CARROTQUEST_API_KEY") && defined("CARROTQUEST_API_SECRET") && $order != null && count($order) > 0) {
-                $userId = $order["USER_ID"];
-                $arFilter = Array(
-                    "USER_ID" => $userId,
-                );
-                CarrotEvents::SendEvent($userId, $value == "Y" ? '$order_paid' : '$order_refunded', array('$order_id' => $id), true);
 
-            }
-        } catch (Exception $e) {
-            CarrotEvents::WriteLog("Error", $e->getMessage());
-        }
+	/**
+	 * Sends data when order or order cancelation is canceled
+	 *
+	 * @param string|integer $id
+	 * @param string|bool $cancel
+	 * @param string $description
+	 * @return EventResult
+	 */
+	public static function onSaleCancelOrder($id, $cancel, $description)
+	{
+		if (!self::WatchLegacyEvents(true)) { return new EventResult(EventResult::SUCCESS); }
 
-        return new EventResult(EventResult::SUCCESS);
-    }
+		try {
+			$order = \CSaleOrder::GetByID($id);
+
+			if (defined('CARROTQUEST_API_KEY')
+				&& defined('CARROTQUEST_API_SECRET')
+				&& $order != null && count($order) > 0
+				&& self::WatchSite($order['LID'])
+			) {
+				$userId = $order['USER_ID'];
+				$arFilter = array(
+					'USER_ID' => $userId,
+				);
+				// list of orders, sorted desc by creation date
+				$rsSales = \CSaleOrder::GetList(array('DATE_INSERT' => 'DESC'), $arFilter);
+				$rsSalesFirst = $rsSales->Fetch();
+				// if it is last order changing then send data to Carrot
+				if ($rsSalesFirst && $rsSalesFirst['ID'] == $order['ID']) {
+					$status = \CSaleStatus::GetByID($order['STATUS_ID']);
+					$arrItem[] = array(
+						'op' => 'update_or_create',
+						'key' => '$last_order_status',
+						'value' => $cancel == 'Y' ? 'Заказ отменён' : $status['NAME'] // set status to canceled or to active (depending on action)
+					);
+					CarrotEvents::SendOperations($userId, $arrItem, true);
+				}
+
+				if ($cancel == 'Y') {
+					$eArrItem = array(
+						'$order_id' => $id
+					);
+
+					if (strlen($order['ORDER_CANCEL_DESCRIPTION']) > 0) {
+						$eArrItem['$comment'] = $order['ORDER_CANCEL_DESCRIPTION'];
+					}
+					CarrotEvents::SendEvent($userId, '$order_cancelled', $eArrItem, true);
+				}
+			}
+		} catch (\Exception $e) {
+			self::WriteLog('Error', $e->getMessage());
+		}
+
+		return new EventResult(EventResult::SUCCESS);
+	}
+
+	/**
+	 * Sends data when order is set to paid
+	 * D7 event
+	 *
+	 * @param Event $event
+	 * @return EventResult
+	 */
+	public static function newOnSaleOrderPaid(Event $event)
+	{
+		$order = $event->getParameter('ENTITY');
+		
+		if (self::WatchLegacyEvents(true) || !self::WatchSite($order->getField('LID'))) { return new EventResult(EventResult::SUCCESS); }
+
+		try {
+			if (defined('CARROTQUEST_API_KEY') && defined('CARROTQUEST_API_SECRET') && isset($order)) {
+				$userId = $order->getUserId();
+				// $sumPaid = $order->getSumPaid();
+				CarrotEvents::SendEvent($userId, $order->isPaid() ? '$order_paid' : '$order_refunded', array('$order_id' => $order->getId()), true);
+
+			}
+		} catch (\Exception $e) {
+			self::WriteLog('Error', $e->getMessage());
+		}
+
+		return new EventResult(EventResult::SUCCESS);
+	}
+
+	/**
+	 * Sends data when order is set to paid
+	 *
+	 * @param string|integer $id
+	 * @param string|bool $value
+	 * @return EventResult
+	 */
+	public static function onSalePayOrder($id, $value)
+	{
+		if (!self::WatchLegacyEvents(true)) { return new EventResult(EventResult::SUCCESS); }
+
+		try {
+			$order = \CSaleOrder::GetByID($id);
+			if (defined('CARROTQUEST_API_KEY')
+				&& defined('CARROTQUEST_API_SECRET')
+				&& $order != null && count($order) > 0
+				&& self::WatchSite($order['LID'])
+			) {
+				$userId = $order['USER_ID'];
+				$arFilter = array(
+					'USER_ID' => $userId,
+				);
+				CarrotEvents::SendEvent($userId, $value == 'Y' ? '$order_paid' : '$order_refunded', array('$order_id' => $id), true);
+
+			}
+		} catch (\Exception $e) {
+			self::WriteLog('Error', $e->getMessage());
+		}
+
+		return new EventResult(EventResult::SUCCESS);
+	}
+
 }

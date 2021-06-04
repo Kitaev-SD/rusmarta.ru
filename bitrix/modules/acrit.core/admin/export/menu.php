@@ -44,6 +44,11 @@ if($APPLICATION->GetGroupRight($strModuleId) != 'D'){
 		'more_url' => [],
 	);
 	$arSubmenu[] = array(
+		'text' => Loc::getMessage('ACRIT_EXP_MENU_ORDERS_TITLE'),
+		'url' => $strModuleCode.'_orders_list.php?lang='.LANGUAGE_ID,
+		'more_url' => array($strModuleCode.'_orders_list.php', $strModuleCode.'_orders_edit.php'),
+	);
+	$arSubmenu[] = array(
 		'text' => Loc::getMessage('ACRIT_EXP_MENU_CRM_TITLE'),
 		'url' => $strModuleCode.'_crm_list.php?lang='.LANGUAGE_ID,
 		'more_url' => array($strModuleCode.'_crm_list.php', $strModuleCode.'_crm_edit.php'),

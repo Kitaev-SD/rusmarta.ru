@@ -38,7 +38,7 @@ class Options extends TradingService\Common\Options
 	{
 		$paySystemTypeUpper = Market\Data\TextString::toUpper($paySystemType);
 
-		return $this->getValue('PAY_SYSTEM_' . $paySystemTypeUpper);
+		return (string)$this->getValue('PAY_SYSTEM_' . $paySystemTypeUpper);
 	}
 
 	public function isAllowModifyBasket()

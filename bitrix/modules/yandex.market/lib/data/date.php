@@ -16,6 +16,35 @@ class Date
 		return ConvertTimeStamp($timestamp, 'SHORT');
 	}
 
+	public static function sanitize($date)
+	{
+		$result = null;
+
+		if ($date instanceof Main\Type\Date)
+		{
+			$result = $date;
+		}
+		else if ($date instanceof \DateTime)
+		{
+			$result = Main\Type\Date::createFromPhp($date);
+		}
+		else if (is_numeric($date) && (int)$date > 0) // timestamp
+		{
+			$result = Main\Type\Date::createFromTimestamp($date);
+		}
+		else if (is_scalar($date) && (string)$date !== '')
+		{
+			$timestamp = MakeTimeStamp($date);
+
+			if ($timestamp !== false)
+			{
+				$result = Main\Type\Date::createFromTimestamp($timestamp);
+			}
+		}
+
+		return $result;
+	}
+
 	public static function compare(Main\Type\Date $first, Main\Type\Date $second)
 	{
 		$firstValue = $first->format('Y-m-d');

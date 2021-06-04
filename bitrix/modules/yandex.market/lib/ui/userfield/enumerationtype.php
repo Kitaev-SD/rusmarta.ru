@@ -5,13 +5,24 @@ namespace Yandex\Market\Ui\UserField;
 use Yandex\Market;
 use Bitrix\Main;
 
-class EnumerationType extends \CUserTypeEnum
+class EnumerationType
 {
 	use Concerns\HasMultipleRow;
+	use Concerns\HasCompatibleExtends;
 
-	function getUserTypeDescription()
+	public static function getCommonExtends()
 	{
-		$result = parent::getUserTypeDescription();
+		return Main\UserField\Types\EnumType::class;
+	}
+
+	public static function getCompatibleExtends()
+	{
+		return \CUserTypeEnum::class;
+	}
+
+	public static function getUserTypeDescription()
+	{
+		$result = static::callParent('getUserTypeDescription');
 
 		if (!empty($result['USE_FIELD_COMPONENT']))
 		{
@@ -21,7 +32,7 @@ class EnumerationType extends \CUserTypeEnum
 		return $result;
 	}
 
-	function GetList($arUserField)
+	public static function GetList($arUserField)
 	{
 		$values = (array)$arUserField['VALUES'];
 
@@ -31,7 +42,17 @@ class EnumerationType extends \CUserTypeEnum
 		return $result;
 	}
 
-	function GetEditFormHTML($arUserField, $arHtmlControl)
+	public static function GetFilterHTML($arUserField, $arHtmlControl)
+	{
+		return static::callParent('GetFilterHTML', [$arUserField, $arHtmlControl]);
+	}
+
+	public static function GetFilterData($arUserField, $arHtmlControl)
+	{
+		return static::callParent('GetFilterData', [$arUserField, $arHtmlControl]);
+	}
+
+	public static function GetEditFormHTML($arUserField, $arHtmlControl)
 	{
 		$attributes = Helper\Attributes::extractFromSettings($arUserField['SETTINGS']);
 
@@ -39,7 +60,7 @@ class EnumerationType extends \CUserTypeEnum
 		{
 			$arUserField['MANDATORY'] = 'Y'; // hide no value for all variants
 
-			$result = parent::GetEditFormHTML($arUserField, $arHtmlControl);
+			$result = static::callParent('GetEditFormHTML', [$arUserField, $arHtmlControl]);
 			$result = Helper\Attributes::insert($result, $attributes);
 		}
 		else
@@ -77,7 +98,7 @@ class EnumerationType extends \CUserTypeEnum
 		return $result;
 	}
 
-	function GetEditFormHTMLMulty($userField, $htmlControl)
+	public static function GetEditFormHTMLMulty($userField, $htmlControl)
 	{
 		$attributes = Helper\Attributes::extractFromSettings($userField['SETTINGS']);
 
@@ -85,7 +106,12 @@ class EnumerationType extends \CUserTypeEnum
 		{
 			$userField['MANDATORY'] = 'Y'; // hide no value for all variants
 
-			$result = parent::GetEditFormHTMLMulty($userField, $htmlControl);
+			if (class_exists(Main\UserField\Types\EnumType::class))
+			{
+				$htmlControl['NAME'] = preg_replace('/\[\]$/', '', $htmlControl['NAME']);
+			}
+
+			$result = static::callParent('GetEditFormHTMLMulty', [$userField, $htmlControl]);
 			$result = Helper\Attributes::insert($result, $attributes);
 		}
 		else
@@ -149,7 +175,7 @@ class EnumerationType extends \CUserTypeEnum
 		return $settings;
 	}
 
-	function GetAdminListViewHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)
 	{
 		$result = '&nbsp;';
 		$isFoundResult = false;
@@ -180,7 +206,7 @@ class EnumerationType extends \CUserTypeEnum
 		return $result;
 	}
 
-	function GetAdminListViewHTMLMulty($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTMLMulty($arUserField, $arHtmlControl)
 	{
 		$result = '';
 

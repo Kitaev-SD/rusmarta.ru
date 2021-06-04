@@ -7,7 +7,7 @@ use Bitrix\Main;
 
 class TradingOrderItemType extends StringType
 {
-	function getAdminListViewHtml($userField, $additionalParameters)
+	public static function getAdminListViewHtml($userField, $additionalParameters)
 	{
 		$result = '';
 
@@ -19,7 +19,7 @@ class TradingOrderItemType extends StringType
 		return $result;
 	}
 
-	function getAdminListViewHtmlMulty($userField, $additionalParameters)
+	public static function getAdminListViewHtmlMulty($userField, $additionalParameters)
 	{
 		$items = [];
 

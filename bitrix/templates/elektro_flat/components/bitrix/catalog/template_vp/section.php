@@ -257,7 +257,7 @@ if($_REQUEST["order"] == "desc") {
 <?//LIMIT//
 $arAvailableLimit = array("12", "48", "900");
 
-$limit = $APPLICATION->get_cookie("limit") ? $APPLICATION->get_cookie("limit") : "48";
+$limit = $APPLICATION->get_cookie("limit") ? $APPLICATION->get_cookie("limit") : "12";
 
 if($_REQUEST["limit"]) {
 	$limit = "12";	
@@ -439,9 +439,9 @@ if ($list[0]['ID'] == 263) {
 
 
 $APPLICATION->IncludeComponent("bitrix:main.include", "template3", Array(
-	"AREA_FILE_SHOW" => "file",	// Показывать включаемую область
-		"EDIT_TEMPLATE" => "",	// Шаблон области по умолчанию
-		"PATH" => SITE_DIR."/include/why_rusmarta.php",	// Путь к файлу области
+	"AREA_FILE_SHOW" => "file",	
+		"EDIT_TEMPLATE" => "",	
+		"PATH" => SITE_DIR."/include/why_rusmarta.php",	
 	),
 	false
 );

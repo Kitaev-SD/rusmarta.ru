@@ -29,7 +29,7 @@ abstract class Options extends TradingService\Reference\Options
 
 	public function getCampaignId()
 	{
-		return (string)$this->getRequiredValue('CAMPAIGN_ID');
+		return trim($this->getRequiredValue('CAMPAIGN_ID'));
 	}
 
 	/**
@@ -213,8 +213,9 @@ abstract class Options extends TradingService\Reference\Options
 		foreach ($this->provider->getStatus()->getOutgoingVariants() as $status)
 		{
 			$value = $this->getValue('STATUS_OUT_' . Market\Data\TextString::toUpper($status));
+			$isMatched = is_array($value) ? in_array($bitrixStatus, $value, true) : $value === $bitrixStatus;
 
-			if ($value === $bitrixStatus)
+			if ($isMatched)
 			{
 				$result = $status;
 				break;
@@ -247,7 +248,8 @@ abstract class Options extends TradingService\Reference\Options
 		{
 			$serviceCode = $this->provider->getCode();
 			$request = Main\Context::getCurrent()->getRequest();
-			$incomingPath = $environment->getRoute()->getPublicPath($serviceCode, $siteId);
+			$urlId = $this->getUrlId($siteId);
+			$incomingPath = $environment->getRoute()->getPublicPath($serviceCode, $urlId);
 			$incomingVariables = array_filter([
 				'protocol' => 'https',
 				'host' => Market\Data\SiteDomain::getHost($siteId),
@@ -654,16 +656,25 @@ abstract class Options extends TradingService\Reference\Options
 
 			foreach ($incomingVariants as $statusVariant)
 			{
+				$isRequired = in_array($statusVariant, $incomingRequired, true);
+				$defaultValue = isset($statusDefaults[$statusVariant]) ? $statusDefaults[$statusVariant] : null;
+
+				if (is_array($defaultValue))
+				{
+					$defaultValue = reset($defaultValue);
+				}
+
 				$result['STATUS_IN_' . $statusVariant] = [
 					'TYPE' => 'enumeration',
 					'TAB' => 'STATUS',
 					'GROUP' => static::getLang('TRADING_SERVICE_' . $serviceCode . '_GROUP_STATUS_IN'),
 					'NAME' => $serviceStatus->getTitle($statusVariant),
-					'MANDATORY' => in_array($statusVariant, $incomingRequired, true) ? 'Y' : 'N',
+					'MANDATORY' => $isRequired ? 'Y' : 'N',
 					'VALUES' => $environmentEnum,
 					'SETTINGS' => [
-						'DEFAULT_VALUE' => isset($statusDefaults[$statusVariant]) ? $statusDefaults[$statusVariant] : null,
+						'DEFAULT_VALUE' => $defaultValue,
 						'STYLE' => 'max-width: 300px;',
+						'ALLOW_NO_VALUE' => $defaultValue === null || !$isRequired ? 'Y' : 'N',
 					],
 					'SORT' => $sort,
 				];
@@ -690,22 +701,38 @@ abstract class Options extends TradingService\Reference\Options
 			$serviceStatus = $this->provider->getStatus();
 			$serviceOutgoingVariants = $serviceStatus->getOutgoingVariants();
 			$serviceOutgoingRequired = $serviceStatus->getOutgoingRequired();
+			$serviceOutgoingMultiple = $serviceStatus->getOutgoingMultiple();
 			$statusDefaults = $this->makeStatusDefaults($environmentStatus->getMeaningfulMap(), $serviceStatus->getOutgoingMeaningfulMap());
 			$sort = 2000;
 			$result = [];
 
 			foreach ($serviceOutgoingVariants as $serviceOutgoingVariant)
 			{
+				$isMultiple = in_array($serviceOutgoingVariant, $serviceOutgoingMultiple, true);
+				$isRequired = in_array($serviceOutgoingVariant, $serviceOutgoingRequired, true);
+				$defaultValue = isset($statusDefaults[$serviceOutgoingVariant]) ? $statusDefaults[$serviceOutgoingVariant] : null;
+
+				if ($isMultiple)
+				{
+					$defaultValue = (array)$defaultValue;
+				}
+				else if (is_array($defaultValue))
+				{
+					$defaultValue = reset($defaultValue);
+				}
+
 				$result['STATUS_OUT_' . $serviceOutgoingVariant] = [
 					'TYPE' => 'enumeration',
 					'TAB' => 'STATUS',
 					'GROUP' => static::getLang('TRADING_SERVICE_' . $serviceCode . '_GROUP_STATUS_OUT'),
 					'NAME' => $serviceStatus->getTitle($serviceOutgoingVariant) . ' (' . $serviceOutgoingVariant . ')',
-					'MANDATORY' => in_array($serviceOutgoingVariant, $serviceOutgoingRequired, true) ? 'Y' : 'N',
+					'MULTIPLE' => $isMultiple ? 'Y' : 'N',
+					'MANDATORY' => $isRequired ? 'Y' : 'N',
 					'VALUES' => $environmentStatusEnum,
 					'SETTINGS' => [
-						'DEFAULT_VALUE' => isset($statusDefaults[$serviceOutgoingVariant]) ? $statusDefaults[$serviceOutgoingVariant] : null,
+						'DEFAULT_VALUE' => $defaultValue,
 						'STYLE' => 'max-width: 300px;',
+						'ALLOW_NO_VALUE' => $defaultValue === null || !$isRequired ? 'Y' : 'N',
 					],
 					'SORT' => $sort,
 				];

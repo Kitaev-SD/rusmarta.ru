@@ -4,7 +4,7 @@ namespace Yandex\Market\Ui\UserField\Fieldset;
 
 use Bitrix\Main;
 use Yandex\Market;
-use Yandex\Market\Ui\UserField\Helper;
+use Yandex\Market\Ui\UserField;
 
 class SummaryLayout extends AbstractLayout
 {
@@ -20,10 +20,9 @@ class SummaryLayout extends AbstractLayout
 	{
 		static::onceStatic('loadRowAssets');
 
-		return $this->editRow($this->name, $value, [
-			'class' => 'js-plugin',
-			'data-base-name' => $this->name,
-		]);
+		$pluginAttributes = $this->getPluginAttributes($this->name);
+
+		return $this->editRow($this->name, $value, $pluginAttributes);
 	}
 
 	public function editMultiple($values)
@@ -41,18 +40,22 @@ class SummaryLayout extends AbstractLayout
 			$values[] = [];
 		}
 
-		$result = '<div class="js-plugin" data-plugin="Field.Fieldset.SummaryCollection" data-base-name="' . $inputName . '">';
+		$collectionAttributes = $this->getPluginAttributes($inputName) + [
+			'data-plugin' => 'Field.Fieldset.SummaryCollection',
+		];
+
+		$result = sprintf('<div %s>', UserField\Helper\Attributes::stringify($collectionAttributes));
 
 		foreach ($values as $value)
 		{
 			$valueName = $inputName . '[' . $valueIndex . ']';
 			$rowHtml = $this->editRow($valueName, $value, [
-				'class' => 'js-fieldset-collection__item' . ($onlyPlaceholder ? ' is--hidden' : ''),
+				'class' => $this->getFieldsetName('collection__item') . ($onlyPlaceholder ? ' is--hidden' : ''),
 			]);
 
 			if ($onlyPlaceholder)
 			{
-				$rowHtml = Helper\Attributes::sliceInputName($rowHtml);
+				$rowHtml = UserField\Helper\Attributes::sliceInputName($rowHtml);
 			}
 
 			$result .= $rowHtml;
@@ -61,8 +64,8 @@ class SummaryLayout extends AbstractLayout
 		}
 
 		$result .= '<div class="b-field-add">';
-		$result .= '<input ' . Helper\Attributes::stringify([
-			'class' => 'adm-btn js-fieldset-collection__item-add',
+		$result .= '<input ' . UserField\Helper\Attributes::stringify([
+			'class' => 'adm-btn ' . $this->getFieldsetName('collection__item-add'),
 			'type' => 'button',
 			'value' => static::getLang('USER_FIELD_FIELDSET_ADD'),
 		]) . ' />';
@@ -98,7 +101,7 @@ class SummaryLayout extends AbstractLayout
 		$fields = $this->extendFields($name, $this->fields);
 		$summaryTemplate = isset($this->userField['SETTINGS']['SUMMARY']) ? $this->userField['SETTINGS']['SUMMARY'] : null;
 		$summary = !empty($value)
-			? (string)Helper\Summary::make($fields, $value, $summaryTemplate)
+			? (string)UserField\Helper\Summary::make($fields, $value, $summaryTemplate)
 			: '';
 
 		$rootAttributes =
@@ -109,17 +112,19 @@ class SummaryLayout extends AbstractLayout
 					'MODAL_TITLE' => $this->userField['NAME'],
 				]),
 				'data-summary' => $summaryTemplate,
+				'data-modal-width' => isset($this->userField['SETTINGS']['MODAL_WIDTH']) ? $this->userField['SETTINGS']['MODAL_WIDTH'] : null,
+				'data-modal-height' => isset($this->userField['SETTINGS']['MODAL_HEIGHT']) ? $this->userField['SETTINGS']['MODAL_HEIGHT'] : null,
 			])
 			+ $this->collectFieldsSummaryAttributes($fields);
 
 		$rootAttributes['class'] = 'b-form-pill' . (isset($rootAttributes['class']) ? ' ' . $rootAttributes['class'] : '');
 
-		$result = '<div ' . Helper\Attributes::stringify($rootAttributes) . '>';
-		$result .= '<a class="b-link action--heading target--inside js-fieldset-summary__text" href="#">';
+		$result = '<div ' . UserField\Helper\Attributes::stringify($rootAttributes) . '>';
+		$result .= sprintf('<a class="b-link action--heading target--inside %s" href="#">', $this->getFieldsetName('summary__text'));
 		$result .= $summary ?: static::getLang('USER_FIELD_FIELDSET_SUMMARY_HOLDER');
 		$result .= '</a>';
-		$result .= '<button class="b-close js-fieldset-collection__item-delete" type="button" title=""></button>';
-		$result .= '<div class="is--hidden js-fieldset-summary__edit-modal">';
+		$result .= sprintf('<button class="b-close %s" type="button" title=""></button>', $this->getFieldsetName('collection__item-delete'));
+		$result .= sprintf('<div class="is--hidden %s">', $this->getFieldsetName('summary__edit-modal'));
 		$result .= $this->renderEditForm($fields, $value);
 		$result .= '</div>';
 		$result .= '</div>';
@@ -155,13 +160,41 @@ class SummaryLayout extends AbstractLayout
 
 	protected function renderEditForm($fields, $values)
 	{
-		$result = '<table class="edit-table js-fieldset-summary__field" width="100%" data-plugin="Field.Fieldset.Row">';
+		$activeGroup = null;
+		$groupHtml = '';
+		$hasGroupFields = false;
+
+		$result = sprintf('<table %s>', UserField\Helper\Attributes::stringify(array_filter([
+			'class' => 'edit-table ' . $this->getFieldsetName('summary__field'),
+			'width' => '100%',
+			'data-plugin' => 'Field.Fieldset.Row',
+			'data-element-namespace' => $this->hasParentFieldset() ? '.' . $this->fieldsetName : null,
+		])));
 
 		foreach ($fields as $fieldKey => $field)
 		{
-			$value = isset($values[$fieldKey]) ? $values[$fieldKey] : null;
+			$value = Market\Utils\Field::getChainValue($values, $fieldKey, Market\Utils\Field::GLUE_BRACKET);
 
-			$row = Helper\Renderer::getEditRow($field, $value, $values);
+			$row = UserField\Helper\Renderer::getEditRow($field, $value, $values);
+
+			// write result
+
+			if (isset($field['GROUP']) && $field['GROUP'] !== $activeGroup)
+			{
+				if ($activeGroup !== null)
+				{
+					$result .= sprintf(
+						'<tr class="heading %s"><td colspan="2">%s</td></tr>',
+						$hasGroupFields ? '' : 'is--hidden',
+						$activeGroup
+					);
+				}
+
+				$result .= $groupHtml;
+				$groupHtml = '';
+				$activeGroup = $field['GROUP'];
+				$hasGroupFields = false;
+			}
 
 			// row attributes
 
@@ -181,12 +214,20 @@ class SummaryLayout extends AbstractLayout
 					. 'js-plugin-delayed';
 				$rowAttributes['data-plugin'] = 'Ui.Input.DependField';
 				$rowAttributes['data-depend'] = Market\Utils::jsonEncode($field['DEPEND'], JSON_UNESCAPED_UNICODE);
-				$rowAttributes['data-form-element'] = '.js-fieldset-summary__field';
+				$rowAttributes['data-form-element'] = '.' . $this->getFieldsetName('summary__field');
 
 				if (!Market\Utils\UserField\DependField::test($field['DEPEND'], $values))
 				{
 					$rowAttributes['class'] .= ' is--hidden';
 				}
+				else
+				{
+					$hasGroupFields = true;
+				}
+			}
+			else
+			{
+				$hasGroupFields = true;
 			}
 
 			// title cell
@@ -200,27 +241,45 @@ class SummaryLayout extends AbstractLayout
 
 			// control
 
-			$control = $row['CONTROL'];
-			$control = Helper\Attributes::insert($control, [
-				'class' => 'js-fieldset-row__input',
-			]);
-			$control = Helper\Attributes::insertDataName($control, $fieldKey, $field['FIELD_NAME']);
-			$control = Helper\Attributes::delayPluginInitialization($control);
+			$control = $this->prepareFieldControl($row['CONTROL'], $fieldKey, $field);
+			$control = UserField\Helper\Attributes::delayPluginInitialization($control);
 
-			// write result
+			$titleCell = $field['NAME'];
 
-			$result .= sprintf(
+			if (!empty($field['HELP_MESSAGE']))
+			{
+				$titleHelp = sprintf(
+					'<span class="b-icon icon--question indent--right b-tag-tooltip--holder">'
+					. '<span class="b-tag-tooltip--content b-tag-tooltip--content_right">%s</span>'
+					. '</span>',
+					$field['HELP_MESSAGE']
+				);
+
+				$titleCell = $titleHelp . $titleCell;
+			}
+
+			$groupHtml .= sprintf(
 				'<tr %s>'
 				. '<td class="adm-detail-content-cell-l" width="40%%" %s>%s</td>'
 				. '<td class="adm-detail-content-cell-r" width="60%%">%s</td>'
 				. '</tr>',
-				Helper\Attributes::stringify($rowAttributes),
-				Helper\Attributes::stringify($titleAttributes),
-				$field['NAME'],
+				UserField\Helper\Attributes::stringify($rowAttributes),
+				UserField\Helper\Attributes::stringify($titleAttributes),
+				$titleCell,
 				$control
 			);
 		}
 
+		if ($activeGroup !== null)
+		{
+			$result .= sprintf(
+				'<tr class="heading %s"><td colspan="2">%s</td></tr>',
+				$hasGroupFields ? '' : 'is--hidden',
+				$activeGroup
+			);
+		}
+
+		$result .= $groupHtml;
 		$result .= '</table>';
 
 		return $result;

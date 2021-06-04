@@ -11,7 +11,7 @@ class BuyerProfileType extends EnumerationType
 {
 	protected static $variants = [];
 
-	function GetList($arUserField)
+	public static function GetList($arUserField)
 	{
 		$userId = static::extractUserFieldUserId($arUserField);
 		$personType = static::extractUserFieldPersonType($arUserField);
@@ -23,7 +23,7 @@ class BuyerProfileType extends EnumerationType
 		return $result;
 	}
 
-	function GetEditFormHTML($arUserField, $arHtmlControl)
+	public static function GetEditFormHTML($arUserField, $arHtmlControl)
 	{
 		$result = parent::GetEditFormHTML($arUserField, $arHtmlControl);
 		$result .= ' ';

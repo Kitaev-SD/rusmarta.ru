@@ -14,7 +14,7 @@ class TradingOutletType extends EnumerationType
 		Main\Localization\Loc::loadMessages(__FILE__);
 	}
 
-	public function GetList($userField)
+	public static function GetList($userField)
 	{
 		$serviceCode = static::getUserFieldServiceCode($userField);
 		$optionValues = static::getUserFieldOptionValues($userField);
@@ -51,7 +51,7 @@ class TradingOutletType extends EnumerationType
 		return $result;
 	}
 
-	function GetEditFormHTMLMulty($arUserField, $arHtmlControl)
+	public static function GetEditFormHTMLMulty($arUserField, $arHtmlControl)
 	{
 		$result = parent::GetEditFormHTMLMulty($arUserField, $arHtmlControl);
 

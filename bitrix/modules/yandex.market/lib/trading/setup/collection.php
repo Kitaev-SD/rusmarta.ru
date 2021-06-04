@@ -5,6 +5,7 @@ namespace Yandex\Market\Trading\Setup;
 use Bitrix\Main;
 use Yandex\Market;
 
+/** @method getItemById($id) Model */
 class Collection extends Market\Reference\Storage\Collection
 {
 	public static function getItemReference()

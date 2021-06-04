@@ -40,7 +40,7 @@ class CancelReason extends AbstractExtension
 
 	public function onEndBufferContent(&$content)
 	{
-		$content = preg_replace_callback('/<textarea(?P<attributes>\s.*?name="FORM_REASON_CANCELED".*?)>(?P<value>.*?)<\/textarea>/s', function($matches) {
+		$content = preg_replace_callback('/<textarea(?P<attributes>\s[^>]*name="FORM_REASON_CANCELED"[^>]*)>(?P<value>.*?)<\/textarea>/s', function($matches) {
 			/** @var TradingService\MarketplaceDbs\CancelReason $cancelReason */
 			$cancelReason = $this->setup->getService()->getCancelReason();
 			$attributes = preg_replace('/min-height:\s*\d+px;/', '', $matches['attributes']);

@@ -36,7 +36,10 @@ $arCourses = [
 	'email-marketolog' => 'https://sale.maed.ru/email-marketolog/?utm_source=cpa_partner&utm_medium=offer&utm_campaign=email_web_--acrit&utm_content=text_ad',
 ];
 
-if(isset($arGet['goto']) && strlen($arGet['goto']) && isset($arCourses[$arGet['goto']])){
+if(isset($arGet['code']) && strlen($arGet['code']) && isset($arCourses[$arGet['code']])){
+	localRedirect($arCourses[$arGet['code']], true);
+}
+elseif(isset($arGet['goto']) && strlen($arGet['goto']) && isset($arCourses[$arGet['goto']])){
 	localRedirect($arCourses[$arGet['goto']], true);
 }
 
@@ -119,7 +122,7 @@ $obTabControl->BeginCustomField('COURSES', Helper::getMessage($strCourseLang.'LI
 			<ul>
 				<?foreach($arCourses as $strCourseCode => $strCourseUrl):?>
 					<li>
-						<a href="<?=$APPLICATION->getCurPageParam('goto='.$strCourseCode, ['goto']);?>" target="_blank">
+						<a href="<?=$APPLICATION->getCurPageParam('code='.$strCourseCode, ['code']);?>" target="_blank">
 							<span class="text"><?=Helper::getMessage($strCourseLang.$strCourseCode);?></span>
 							<span class="more"><?=Helper::getMessage($strCourseLang.'DETAIL');?></span>
 						</a>

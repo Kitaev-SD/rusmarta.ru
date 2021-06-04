@@ -5,60 +5,64 @@ namespace Yandex\Market\Ui\UserField;
 use Yandex\Market;
 use Bitrix\Main;
 
-class StringType extends \CUserTypeString
+class StringType
 {
 	use Market\Reference\Concerns\HasLang;
-	use Concerns\HasMultipleRow;
+	use Concerns\HasCompatibleExtends;
+
+	public static function getCommonExtends()
+	{
+		return Main\UserField\Types\StringType::class;
+	}
+
+	public static function getCompatibleExtends()
+	{
+		return \CUserTypeString::class;
+	}
 
 	protected static function includeMessages()
 	{
 		Main\Localization\Loc::loadMessages(__FILE__);
 	}
 
-	function getUserTypeDescription()
+	public static function getUserTypeDescription()
 	{
-		$result = parent::getUserTypeDescription();
-
-		if (!empty($result['USE_FIELD_COMPONENT']))
-		{
-			$result['USE_FIELD_COMPONENT'] = false;
-		}
-
-		return $result;
+		return array_diff_key(static::callParent('getUserTypeDescription'), [
+			'USE_FIELD_COMPONENT' => true,
+		]);
 	}
 
-	function GetEditFormHtmlMulty($userField, $htmlControl)
+	public static function CheckFields($arUserField, $value)
+	{
+		return static::callParent('CheckFields', [$arUserField, $value]);
+	}
+
+	public static function GetFilterHTML($userField, $htmlControl)
+	{
+		return static::callParent('GetFilterHTML', [$userField, $htmlControl]);
+	}
+
+	public static function GetFilterData($arUserField, $arHtmlControl)
+	{
+		return static::callParent('GetFilterData', [$arUserField, $arHtmlControl]);
+	}
+
+	public static function GetEditFormHtmlMulty($userField, $htmlControl)
 	{
 		$values = Helper\Value::asMultiple($userField, $htmlControl);
 		$values = static::sanitizeMultipleValues($values);
-		$valueIndex = 0;
-
-		if (empty($values)) { $values[] = ''; }
-
-		$result = sprintf('<table id="%s">', static::makeFieldHtmlId($userField, 'table'));
-
-		foreach ($values as $value)
-		{
-			$result .= '<tr><td>';
-			$result .= static::GetEditFormHTML($userField, [
-				'NAME' => $userField['FIELD_NAME'] . '[' . $valueIndex . ']',
+		$attributes = Fieldset\Helper::makeChildAttributes($userField);
+		$renderer = function($name, $value) use ($userField) {
+			return static::GetEditFormHTML($userField, [
+				'NAME' => $name,
 				'VALUE' => $value,
 			]);
-			$result .= '</td></tr>';
+		};
 
-			++$valueIndex;
-		}
-
-		$result .= '<tr><td style="padding-top: 6px;">';
-		$result .= static::getMultipleAddButton($userField);
-		$result .= '</td></tr>';
-		$result .= '</table>';
-		$result .= static::getMultipleAutoSaveScript($userField);
-
-		return $result;
+		return View\Collection::render($userField['FIELD_NAME'], $values, $renderer, $attributes);
 	}
 
-	function GetEditFormHTML($userField, $htmlControl)
+	public static function GetEditFormHTML($userField, $htmlControl)
 	{
 		$attributes = Helper\Attributes::extractFromSettings($userField['SETTINGS']);
 
@@ -73,7 +77,7 @@ class StringType extends \CUserTypeString
 		return $result;
 	}
 
-	function GetAdminListViewHtml($userField, $htmlControl)
+	public static function GetAdminListViewHtml($userField, $htmlControl)
 	{
 		$value = (string)Helper\Value::asSingle($userField, $htmlControl);
 

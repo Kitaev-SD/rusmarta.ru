@@ -17,7 +17,7 @@ class FieldsetType
 		{
 			if (isset($field['DEPEND']) && !Market\Utils\UserField\DependField::test($field['DEPEND'], $value)) { continue; }
 
-			$fieldValue = isset($value[$name]) ? $value[$name] : null;
+			$fieldValue = Market\Utils\Field::getChainValue($value, $name, Market\Utils\Field::GLUE_BRACKET);
 
 			if ($field['MULTIPLE'] === 'Y')
 			{
@@ -36,12 +36,12 @@ class FieldsetType
 
 				if (!empty($sanitizedValues))
 				{
-					$result[$name] = $sanitizedValues;
+					Market\Utils\Field::setChainValue($result, $name, $sanitizedValues, Market\Utils\Field::GLUE_BRACKET);
 				}
 			}
 			else
 			{
-				$result[$name] = static::sanitizeUserFieldValue($field, $fieldValue);
+				Market\Utils\Field::setChainValue($result, $name, $fieldValue, Market\Utils\Field::GLUE_BRACKET);
 			}
 		}
 

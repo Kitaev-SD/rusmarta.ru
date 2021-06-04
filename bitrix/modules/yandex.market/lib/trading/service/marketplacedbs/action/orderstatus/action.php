@@ -7,7 +7,7 @@ use Bitrix\Main;
 use Yandex\Market\Trading\Entity as TradingEntity;
 use Yandex\Market\Trading\Service as TradingService;
 
-class Action extends TradingService\Common\Action\OrderStatus\Action
+class Action extends TradingService\Marketplace\Action\OrderStatus\Action
 {
 	use TradingService\Common\Concerns\Action\HasUserRegistration;
 	use TradingService\MarketplaceDbs\Concerns\Action\HasDeliveryDates;
@@ -26,18 +26,6 @@ class Action extends TradingService\Common\Action\OrderStatus\Action
 	protected function createRequest(Main\HttpRequest $request, Main\Server $server)
 	{
 		return new Request($request, $server);
-	}
-
-	protected function loadOrder()
-	{
-		try
-		{
-			parent::loadOrder();
-		}
-		catch (Main\InvalidOperationException $exception)
-		{
-			throw new Market\Exceptions\Trading\NotRecoverable($exception->getMessage(), $exception->getCode(), '', 0, $exception);
-		}
 	}
 
 	protected function fillOrder()
@@ -79,9 +67,15 @@ class Action extends TradingService\Common\Action\OrderStatus\Action
 
 		if ($propertyId === '') { return; }
 
-		$this->order->fillProperties([
+		$fillResult = $this->order->fillProperties([
 			$propertyId => $subStatus,
 		]);
+		$fillData = $fillResult->getData();
+
+		if (!empty($fillData['CHANGES']))
+		{
+			$this->pushChange('PROPERTIES', $fillData['CHANGES']);
+		}
 	}
 
 	protected function fillUser()

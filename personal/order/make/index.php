@@ -128,6 +128,6 @@ if(!empty($arSetting["ORDER_MIN_PRICE"]["VALUE"])){
 </div>
  <?}?> <br>
 <p style="text-align: center;">
- <a href="/promotions/darim-200-rubley-na-telefon-za-otzyv/" target="_blank"><img width="512" alt="Дарим-200-рублей-за-отзыв-веб.jpg" src="/upload/medialibrary/136/Darim_200_rubley_za_otzyv_veb.jpg" height="148" title="Дарим-200-рублей-за-отзыв-веб.jpg" align="middle"></a> <img width="740" alt="dostavka.jpg" src="/upload/medialibrary/9a7/dostavka.jpg" height="148" title="dostavka.jpg">
+ <a href="/promotions/darim-200-rubley-na-telefon-za-otzyv/" target="_blank"><img width="512" alt="Дарим-200-рублей-за-отзыв-веб.jpg" src="/upload/medialibrary/136/Darim_200_rubley_za_otzyv_veb.jpg" height="148" title="Дарим-200-рублей-за-отзыв-веб.jpg" align="middle"></a> <img width="740" alt="dostavka2_1000x200.jpg" src="/upload/medialibrary/219/dostavka2_1000x200.jpg" height="148" title="dostavka2_1000x200.jpg">
 </p>
  <br><? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

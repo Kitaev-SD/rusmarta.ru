@@ -85,8 +85,15 @@ class SettingsMath extends SettingsBase {
 				static::processMultipleValue($mValue, $arParams, $obField, function(&$strValue, $arParams, $obField){
 					$bEval = $arParams[static::getCode().'_eval'] == 'Y';
 					if($bEval) {
-						$strExpression = 'return '.$strValue.';';
-						$strValue = eval($strExpression);
+						$strExpression = htmlspecialchars_decode($strValue, ENT_QUOTES | ENT_HTML5);
+						$strExpression = 'return '.$strExpression.';';
+						try{
+							$strValue = eval($strExpression);
+						}
+						catch(\Error $error){
+							$errorMessage = sprintf('[ID: %s, %s] %s, expression: %s', $obField->getElementId(), $obField->getCode(), $error->getMessage(), $strExpression);
+							Log::getInstance($obField->getModuleId())->add($errorMessage, $obField->getProfileID());
+						}
 					}
 					else {
 						$strValue = static::calculateValue($strValue, $arParams, $obField);
@@ -117,11 +124,11 @@ class SettingsMath extends SettingsBase {
 		}
 		catch(\Exception $e){
 			$strMessage = static::getMessage('ERROR', array(
-				'#VALUE#' => print_r($mValue,1),
+				'#VALUE#' => print_r($mValue, true),
 				'#ERROR#' => $e->getMessage(),
 			));
 			if(is_object($obField) && Helper::strlen($obField->getModuleId())){
-				$strMessage = '['.$obField->getCode().'] '.$strMessage;
+				$strMessage = sprintf('[ID: %s, %s] %s', $obField->getElementId(), $obField->getCode(), $strMessage);
 				Log::getInstance($obField->getModuleId())->add($strMessage, $obField->getProfileID());
 			}
 			$mValue = '';

@@ -75,7 +75,11 @@ class Helper {
 		$strMicroTime = sprintf('%06d', ($intTime - floor($intTime)) * 1000000);
 		$obDate = new \DateTime(date('d.m.Y H:i:s.'.$strMicroTime, $intTime));
 		$strTime = $obDate->format('d.m.Y H:i:s.u');
-		$strFilename = realpath(__DIR__.'/../').'/!log.txt';
+		$strDir = realpath(__DIR__.'/../log/');
+		if(!is_dir($strDir)){
+			$strDir = realpath(__DIR__.'/../');
+		}
+		$strFilename = $strDir.'/!log.txt';
 		$resHandle = fopen($strFilename, 'a+');
 		@flock($resHandle, LOCK_EX);
 		fwrite($resHandle, '['.$strTime.'] '.$mMessage.PHP_EOL);
@@ -325,11 +329,14 @@ class Helper {
 	/**
 	 *	Show success
 	 */
-	public static function showSuccess($strMessage=null, $strDetails=null, $bCompact=false) {
+	public static function showSuccess($strMessage=null, $strDetails=null, $bCompact=false, $bNoIcon=false) {
 		ob_start();
 		$arClass = [];
 		if($bCompact){
 			$arClass[] = 'acrit_core_note_compact';
+		}
+		if($bNoIcon){
+			$arClass[] = 'acrit_core_note_noicon';
 		}
 		print '<div class="'.implode(' ', $arClass).'">';
 		\CAdminMessage::showMessage([
@@ -396,11 +403,15 @@ class Helper {
 	/**
 	 *	Show error
 	 */
-	public static function showHeading($strMessage, $bNoMargin=false){
+	public static function showHeading($strMessage, $bNoMargin=false, $bLeft=false){
 		$strResult = '';
 		$strClass = $bNoMargin ? ' class="acrit_core_table_nomargin"' : '';
-		$strResult .= '<table style="width:100%"'.$strClass.'><tbody><tr class="heading"><td>'
-			.$strMessage.'</td></tr></tbody></table>';
+		$strCss = '';
+		if($bLeft){
+			$strCss .= 'padding-left:15px!important; text-align:left!important;';
+		}
+		$strResult .= '<table style="width:100%"'.$strClass.'><tbody><tr class="heading">'.
+			'<td style="'.htmlspecialcharsbx($strCss).'">'.$strMessage.'</td></tr></tbody></table>';
 		return $strResult;
 	}
 	
@@ -1594,7 +1605,10 @@ class Helper {
 		}
 		$strModuleDir = realpath(__DIR__.'/..');
 		#
-		if(checkVersion(PHP_VERSION, '7.2.0')){
+		if(checkVersion(PHP_VERSION, '7.3.0')){
+			$strPhpSpreadsheetVersion = '1.17.1';
+		}
+		elseif(checkVersion(PHP_VERSION, '7.2.0')){
 			$strPhpSpreadsheetVersion = '1.15.0';
 		}
 		elseif(checkVersion(PHP_VERSION, '7.1.0')){
@@ -1816,6 +1830,14 @@ class Helper {
 		$arClasses = $arClassesTmp;
 		# Autoload
 		Loader::registerAutoLoadClasses($strModuleId, $arClasses);
+	}
+	
+	/**
+	 *	Get current domain (without http://)
+	 */
+	public static function clearDomain(&$strDomain){
+		$strDomain = trim($strDomain, " \t/");
+		$strDomain = preg_replace('#^https?://#i', '', $strDomain);
 	}
 	
 	/**
@@ -2267,6 +2289,14 @@ class Helper {
 		return \CAgent::removeAgent($arAgent['FUNC'], is_string($arAgent['MODULE_ID']) ? $arAgent['MODULE_ID'] : '');
 	}
 	
+	/**
+	 *	Generate UUID
+	 *	https://stackoverflow.com/questions/2040240/php-function-to-generate-v4-uuid
+	 */
+	public static function generateUuid(){
+		return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4));
+	}
+	
 	/*** MBSTRING *******************************************************************************************************/
 	
 	/**
@@ -2404,6 +2434,46 @@ class Helper {
 	 */
 	public static function ucfirst($str){
 		return toUpper(static::substr($str, 0, 1)).static::substr($str, 1);
+	}
+
+	/**
+	 * Get full video information from YouTube
+	 * $strVideo is:
+	 * ene4qDMdn6A
+	 * https://youtu.be/ene4qDMdn6A
+	 * https://www.youtube.com/watch?v=ene4qDMdn6A
+	 * https://www.youtube.com/embed/ene4qDMdn6A
+	 */
+	public static function getYoutubeVideoInfo(string $strVideo){
+		if(strlen($strVideoId = $strVideo)){
+			if(preg_match('#http[s]?://www\.youtube\.com/watch\?v=([A-z0-9-_]+)#i', $strVideo, $arMatch)){
+				$strVideoId = $arMatch[1];
+			}
+			elseif(preg_match('#http[s]?://www\.youtube\.com/embed/([A-z0-9-_]+)#i', $strVideo, $arMatch)){
+				$strVideoId = $arMatch[1];
+			}
+			elseif(preg_match('#http[s]?://youtu\.be/([A-z0-9-_]+)#i', $strVideo, $arMatch)){
+				$strVideoId = $arMatch[1];
+			}
+			$strUrl = sprintf('https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=%s&format=json',
+				urlencode($strVideoId));
+			$strJson = file_get_contents($strUrl, false, stream_context_create([
+				'http' => [
+					'methog' => 'GET',
+					'header' => 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 '.
+						'(KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+					'ignore_errors' => true,
+				]
+			]));
+			try{
+				$arJson = \Bitrix\Main\Web\Json::decode($strJson);
+				$arJson['_video_id'] = $strVideoId;
+			}
+			catch(\Exception $obError){
+				$arJson = [];
+			}
+			return $arJson;
+		}
 	}
 	
 }

@@ -1803,105 +1803,107 @@ class BlizkoRu extends Plugin {
 		$bExportNPlusM = $arData['PROFILE']['PARAMS']['YANDEX_MARKET_EXPORT_N_PLUS_M'] == 'Y';
 
 		# Export promocodes
-		if ($bExportPromoCodes && count($arData['PROFILE']['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS'])) {
-			$arDiscounts = $arDiscountSections = $arDiscountElements = $arDiscountUnits = [];
-			$db = \Bitrix\Sale\Internals\DiscountTable::getList(array(
-									'filter' => array('ID' => $arData['PROFILE']['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS'], 'ACTIVE' => 'Y')
-			));
-			while ($arRes = $db->fetch()) {
-				$discountId = $arRes['ID'];
-				$arDiscounts[$discountId] = $arRes;
+		if(\Bitrix\Main\Loader::includeModule('sale')){
+			if ($bExportPromoCodes && count($arData['PROFILE']['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS'])) {
+				$arDiscounts = $arDiscountSections = $arDiscountElements = $arDiscountUnits = [];
+				$db = \Bitrix\Sale\Internals\DiscountTable::getList(array(
+										'filter' => array('ID' => $arData['PROFILE']['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS'], 'ACTIVE' => 'Y')
+				));
+				while ($arRes = $db->fetch()) {
+					$discountId = $arRes['ID'];
+					$arDiscounts[$discountId] = $arRes;
 
-				// collect Elements and Sections from discount
-				// with sort collected items by discount unit and value
-				// because discount can include many discount values and units
-				foreach ($arRes['ACTIONS_LIST']['CHILDREN'] as $arCondition) {
-					$discountValue = '';
-					$discountUnit = $arCondition['DATA']['Unit'];
-					if ($arCondition['DATA']['Type'] == 'Discount') {
-						$discountValue = $discountUnit . $arCondition['DATA']['Value'];
-						if (!$arDiscountUnits[$discountId][$discountValue]) {
-							$arDiscountUnits[$discountId][$discountValue] = $arCondition['DATA']['Value'];
-						}
-					} else {
-						continue;
-					}
-					foreach ($arCondition['CHILDREN'] as $subCondition) {
-						if ($subCondition['CLASS_ID'] == 'CondIBElement' && $subCondition['DATA']['logic'] == 'Equal') {
-							if (!$arDiscountElements[$discountId][$discountValue]) {
-								$arDiscountElements[$discountId][$discountValue] = [];
+					// collect Elements and Sections from discount
+					// with sort collected items by discount unit and value
+					// because discount can include many discount values and units
+					foreach ($arRes['ACTIONS_LIST']['CHILDREN'] as $arCondition) {
+						$discountValue = '';
+						$discountUnit = $arCondition['DATA']['Unit'];
+						if ($arCondition['DATA']['Type'] == 'Discount') {
+							$discountValue = $discountUnit . $arCondition['DATA']['Value'];
+							if (!$arDiscountUnits[$discountId][$discountValue]) {
+								$arDiscountUnits[$discountId][$discountValue] = $arCondition['DATA']['Value'];
 							}
-							$arDiscountElements[$discountId][$discountValue] = array_merge($subCondition['DATA']['value'], $arDiscountElements[$discountId][$discountValue]);
+						} else {
+							continue;
 						}
-						if ($subCondition['CLASS_ID'] == 'CondIBSection' && $subCondition['DATA']['logic'] == 'Equal') {
-							$arDiscountSections[$discountId][$discountValue][] = $subCondition['DATA']['value'];
+						foreach ($arCondition['CHILDREN'] as $subCondition) {
+							if ($subCondition['CLASS_ID'] == 'CondIBElement' && $subCondition['DATA']['logic'] == 'Equal') {
+								if (!$arDiscountElements[$discountId][$discountValue]) {
+									$arDiscountElements[$discountId][$discountValue] = [];
+								}
+								$arDiscountElements[$discountId][$discountValue] = array_merge($subCondition['DATA']['value'], $arDiscountElements[$discountId][$discountValue]);
+							}
+							if ($subCondition['CLASS_ID'] == 'CondIBSection' && $subCondition['DATA']['logic'] == 'Equal') {
+								$arDiscountSections[$discountId][$discountValue][] = $subCondition['DATA']['value'];
+							}
 						}
 					}
 				}
-			}
 
-			$arDiscountsCoupons = [];
-			$db = \Bitrix\Sale\Internals\DiscountCouponTable::getList(array(
-									'filter' => array('DISCOUNT_ID' => array_keys($arDiscounts), 'ACTIVE' => 'Y'),
-			));
-			while ($arRes = $db->fetch()) {
-				$arDiscountsCoupons[$discountId] = $arRes;
-			}
-			foreach ($arDiscountsCoupons as $couponId => $arCoupon) {
+				$arDiscountsCoupons = [];
+				$db = \Bitrix\Sale\Internals\DiscountCouponTable::getList(array(
+										'filter' => array('DISCOUNT_ID' => array_keys($arDiscounts), 'ACTIVE' => 'Y'),
+				));
+				while ($arRes = $db->fetch()) {
+					$arDiscountsCoupons[$discountId] = $arRes;
+				}
+				foreach ($arDiscountsCoupons as $couponId => $arCoupon) {
 
-				$arDiscount = $arDiscounts[$arCoupon['DISCOUNT_ID']];
+					$arDiscount = $arDiscounts[$arCoupon['DISCOUNT_ID']];
 
-				$startDate = ($arCoupon['ACTIVE_FROM']) ? $arCoupon['ACTIVE_FROM'] : $arDiscount['ACTIVE_FROM'];
-				$endDate = ($arCoupon['ACTIVE_TO']) ? $arCoupon['ACTIVE_TO'] : $arDiscount['ACTIVE_TO'];
+					$startDate = ($arCoupon['ACTIVE_FROM']) ? $arCoupon['ACTIVE_FROM'] : $arDiscount['ACTIVE_FROM'];
+					$endDate = ($arCoupon['ACTIVE_TO']) ? $arCoupon['ACTIVE_TO'] : $arDiscount['ACTIVE_TO'];
 
-				foreach ($arDiscountUnits[$arDiscount['ID']] as $discountValue => $discount) {
-					$unit = (strpos($discountValue, 'Perc') !== false) ? 'percent' : 'currency';
-					$xmlProducts = [];
-					foreach ($arDiscountElements[$arDiscount['ID']][$discountValue] as $id) {
-						$xmlProducts[] = array('@' => array('offer-id' => $id));
+					foreach ($arDiscountUnits[$arDiscount['ID']] as $discountValue => $discount) {
+						$unit = (strpos($discountValue, 'Perc') !== false) ? 'percent' : 'currency';
+						$xmlProducts = [];
+						foreach ($arDiscountElements[$arDiscount['ID']][$discountValue] as $id) {
+							$xmlProducts[] = array('@' => array('offer-id' => $id));
+						}
+						foreach ($arDiscountSections[$arDiscount['ID']][$discountValue] as $id) {
+							$xmlProducts[] = array('@' => array('category-id' => $id));
+						}
+						$arXml = array(
+								'promo' => array(
+										'@' => array(
+												'id' => 'PromoCode_' . $discountValue . '_' . $arCoupon['ID'],
+												'type' => 'promo code',
+										),
+										'#' => array(
+												'start-date' => array(
+														array('#' => $startDate),
+												),
+												'end-date' => array(
+														array('#' => $endDate),
+												),
+												'description' => array(
+														array('#' => $arCoupon['DESCRIPTION']),
+												),
+												'promo-code' => array(
+														array('#' => $arCoupon['COUPON']),
+												),
+												'discount' => array(
+														array(
+																'#' => $discount,
+																'@' => array(
+																		'unit' => $unit,
+																		'currency' => $arDiscount['CURRENCY'],
+																),
+														),
+												),
+												'purchase' => array(
+														array(
+																'#' => array(
+																		'product' => $xmlProducts
+																),
+														),
+												),
+										),
+								),
+						);
+						$strXml .= rtrim(Xml::addOffset(Xml::arrayToXml($arXml), 3)) . "\n";
 					}
-					foreach ($arDiscountSections[$arDiscount['ID']][$discountValue] as $id) {
-						$xmlProducts[] = array('@' => array('category-id' => $id));
-					}
-					$arXml = array(
-							'promo' => array(
-									'@' => array(
-											'id' => 'PromoCode_' . $discountValue . '_' . $arCoupon['ID'],
-											'type' => 'promo code',
-									),
-									'#' => array(
-											'start-date' => array(
-													array('#' => $startDate),
-											),
-											'end-date' => array(
-													array('#' => $endDate),
-											),
-											'description' => array(
-													array('#' => $arCoupon['DESCRIPTION']),
-											),
-											'promo-code' => array(
-													array('#' => $arCoupon['COUPON']),
-											),
-											'discount' => array(
-													array(
-															'#' => $discount,
-															'@' => array(
-																	'unit' => $unit,
-																	'currency' => $arDiscount['CURRENCY'],
-															),
-													),
-											),
-											'purchase' => array(
-													array(
-															'#' => array(
-																	'product' => $xmlProducts
-															),
-													),
-											),
-									),
-							),
-					);
-					$strXml .= rtrim(Xml::addOffset(Xml::arrayToXml($arXml), 3)) . "\n";
 				}
 			}
 		}

@@ -5,9 +5,9 @@ namespace Yandex\Market\Ui\UserField;
 use Yandex\Market;
 use Bitrix\Main;
 
-class HtmlType extends \CUserTypeString
+class HtmlType extends StringType
 {
-	function GetEditFormHTML($arUserField, $arHtmlControl)
+	public static function GetEditFormHTML($arUserField, $arHtmlControl)
     {
         $html = '';
 

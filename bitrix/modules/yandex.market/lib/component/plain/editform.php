@@ -346,10 +346,9 @@ abstract class EditForm extends Market\Component\Base\EditForm
 
 		foreach ($fields as $fieldName => $field)
 		{
-			if (!empty($field['DEPEND_HIDDEN']) && array_key_exists($fieldName, $values))
-			{
-				unset($result[$fieldName]);
-			}
+			if (empty($field['DEPEND_HIDDEN'])) { continue; }
+
+			Market\Utils\Field::unsetChainValue($result, $fieldName, Market\Utils\Field::GLUE_BRACKET);
 		}
 
 		return $result;
@@ -370,11 +369,14 @@ abstract class EditForm extends Market\Component\Base\EditForm
 				$userField['ENTITY_VALUE_ID'] = $this->getComponentParam('PRIMARY') ?: null;
 				$userField['VALUE'] = $this->component->getOriginalValue($field);
 
-				$result[$fieldName] = call_user_func(
+				$fieldValue = Market\Utils\Field::getChainValue($values, $fieldName, Market\Utils\Field::GLUE_BRACKET);
+				$fieldValue = call_user_func(
 					[$field['USER_TYPE']['CLASS_NAME'], 'onBeforeSave'],
 					$userField,
-					$values[$fieldName]
+					$fieldValue
 				);
+
+				Market\Utils\Field::setChainValue($result, $fieldName, $fieldValue, Market\Utils\Field::GLUE_BRACKET);
 			}
 		}
 

@@ -1006,17 +1006,32 @@ class AdminGridList extends \CBitrixComponent
                 {
                     $actionMethod = isset($action['ACTION']) ? $action['ACTION'] : 'delete';
 
-                    $queryParams = bitrix_sessid_get() . '&' . http_build_query([
-                        'action_button' => $actionMethod,
-                        'ID' => $item['ID'],
-                    ]);
+	                $queryParams = [
+		                'sessid' => bitrix_sessid(),
+		                'action_button' => $actionMethod,
+		                'ID' => $item['ID'],
+	                ];
 
-                    $url = $APPLICATION->GetCurPageParam(
-                        $queryParams,
-                        [ 'action_button', 'ID' ]
-                    );
+                    if ($this->useUiView())
+                    {
+                    	$queryParams['action'] = $actionMethod;
+                    	unset($queryParams['action_button']);
 
-                    $actionMethod = $this->arParams['GRID_ID'] . '.GetAdminList("' . \CUtil::addslashes($url) . '");';
+                    	$actionMethod = sprintf(
+                    		'BX.Main.gridManager.getById("%s").instance.reloadTable("POST", %s)',
+		                    $this->arParams['GRID_ID'],
+		                    Main\Web\Json::encode($queryParams)
+	                    );
+                    }
+                    else
+                    {
+	                    $url = $APPLICATION->GetCurPageParam(
+		                    http_build_query($queryParams),
+		                    array_keys($queryParams)
+	                    );
+
+	                    $actionMethod = $this->arParams['GRID_ID'] . '.GetAdminList("' . \CUtil::addslashes($url) . '");';
+                    }
                 }
                 else
                 {

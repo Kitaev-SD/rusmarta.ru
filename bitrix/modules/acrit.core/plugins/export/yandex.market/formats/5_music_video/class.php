@@ -257,6 +257,8 @@ class YandexMarketMusicVideo extends YandexMarket {
 			$arXmlTags['age'] = $this->getXmlTag_Age($intProfileID, $arFields['AGE']);
 		if(!Helper::isEmpty($arFields['BARCODE']))
 			$arXmlTags['barcode'] = $this->getXmlTag_Barcode($intProfileID, $arFields['BARCODE']);
+		if(!Helper::isEmpty($arFields['CPA']))
+			$arXmlTags['cpa'] = Xml::addTag($arFields['CPA']);
 		
 		# Not in example
 		if(!Helper::isEmpty($arFields['SALES_NOTES']))

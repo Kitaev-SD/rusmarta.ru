@@ -12,6 +12,7 @@ class CalculationResult extends Market\Result\Base
 	protected $price;
 	protected $dateFrom;
 	protected $dateTo;
+	protected $dateIntervals;
 	protected $outlets; /** Пункты выдачи сервиса */
 	protected $stores; /** Склады Битрикс */
 
@@ -59,6 +60,18 @@ class CalculationResult extends Market\Result\Base
 	public function getDateTo()
 	{
 		return $this->dateTo;
+	}
+
+	/** @return array{date: Main\Type\Date, fromTime: string, toTime: string}[]|null */
+	public function getDateIntervals()
+	{
+		return $this->dateIntervals;
+	}
+
+	/**  @param array{date: Main\Type\Date, fromTime: string, toTime: string}[]|null $intervals*/
+	public function setDateIntervals(array $intervals = null)
+	{
+		$this->dateIntervals = $intervals;
 	}
 
 	/** @return string|null */

@@ -13,7 +13,7 @@ class ExportFileType extends StringType
 		parent::includeMessages();
 	}
 
-	function GetAdminListViewHTML($userField, $htmlControl)
+	public static function GetAdminListViewHTML($userField, $htmlControl)
 	{
 		$result = '';
 		$fileName = trim($htmlControl['VALUE']);

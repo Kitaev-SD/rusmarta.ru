@@ -12,7 +12,7 @@ class LogMessageType extends StringType
 
 	protected static $debugCounter = 0;
 
-	function GetAdminListViewHtml($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHtml($arUserField, $arHtmlControl)
 	{
 		if ((string)$arHtmlControl['VALUE'] !== '')
 		{

@@ -123,6 +123,8 @@ class YandexMarketMedicine extends YandexMarket {
 			$arXmlTags['store'] = Xml::addTag($arFields['STORE']);
 		if(!Helper::isEmpty($arFields['BARCODE']))
 			$arXmlTags['barcode'] = $this->getXmlTag_Barcode($intProfileID, $arFields['BARCODE']);
+		if(!Helper::isEmpty($arFields['CPA']))
+			$arXmlTags['cpa'] = Xml::addTag($arFields['CPA']);
 		if(!Helper::isEmpty($arFields['SALES_NOTES']))
 			$arXmlTags['sales_notes'] = Xml::addTag($arFields['SALES_NOTES']);
 		if(!Helper::isEmpty($arFields['DESCRIPTION']))

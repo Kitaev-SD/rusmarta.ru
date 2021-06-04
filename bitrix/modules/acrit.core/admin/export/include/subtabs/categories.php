@@ -74,167 +74,169 @@ Helper::arrayRemoveEmptyValues($arSectionsID);
 				</div>
 			</td>
 		</tr>
-		<?if(is_object($obPlugin) && $obPlugin->areCategoriesExport()):?>
-			<tr id="tr_CATEGORIES_REDEFINITION_MODE">
-				<td>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE');?>
-				</td>
-				<td>
-					<?
-					$bIsCategoryStrict = false;
-					$bHasCategoryList = false;
-					if(is_object($obPlugin)) {
-						$bIsCategoryStrict = $obPlugin->isCategoryStrict();
-						$bHasCategoryList = $obPlugin->hasCategoryList();
-					}
-					$arOptions = array();
-					if($bIsCategoryStrict) {
-						$arOptions[CategoryRedefinition::MODE_STRICT] = Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE_STRICT');
-					}
-					else {
-						$arOptions[CategoryRedefinition::MODE_CUSTOM] = Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE_CUSTOM');
-						if($bHasCategoryList){
+		<?if(is_object($obPlugin)):?>
+			<?if($obPlugin->areCategoriesExport()):?>
+				<tr id="tr_CATEGORIES_REDEFINITION_MODE">
+					<td>
+						<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE_HINT'));?>
+						<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE');?>
+					</td>
+					<td>
+						<?
+						$bIsCategoryStrict = false;
+						$bHasCategoryList = false;
+						if(is_object($obPlugin)) {
+							$bIsCategoryStrict = $obPlugin->isCategoryStrict();
+							$bHasCategoryList = $obPlugin->hasCategoryList();
+						}
+						$arOptions = array();
+						if($bIsCategoryStrict) {
 							$arOptions[CategoryRedefinition::MODE_STRICT] = Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE_STRICT');
 						}
-					}
-					$bDisabled = count($arOptions) <= 1;
-					if($bDisabled){
-						$strDefaultOption = key($arOptions);
-					}
-					$arOptions = array(
-						'REFERENCE' => array_values($arOptions),
-						'REFERENCE_ID' => array_keys($arOptions),
-					);
-					print SelectBoxFromArray('PROFILE[PARAMS][CATEGORIES_REDEFINITION_MODE]', $arOptions, 
-						$arProfile['PARAMS']['CATEGORIES_REDEFINITION_MODE'], '',
-						'data-role="categories-redefinition-mode" '
-						.'data-strict-value="'.CategoryRedefinition::MODE_STRICT.'"'
-						.($bDisabled ? ' disabled="disabled"' : '')
-					);
-					?>
-					<?if($bDisabled):?>
-						<input type="hidden" name="PROFILE[PARAMS][CATEGORIES_REDEFINITION_MODE]" value="<?=$strDefaultOption;?>" />
-					<?endif?>
-				</td>
-			</tr>
-			<tr id="tr_CATEGORIES_REDEFINITION_SOURCE">
-				<td>
-					<?$bCategoryCustom = $obPlugin->isCategoryCustomName();?>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_HINT'.($bCategoryCustom ? '_CUSTOM' : '')));?>
-					<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE');?>
-				</td>
-				<td>
-					<?
-					$bIsCategoryStrict = false;
-					$bHasCategoryList = false;
-					if(is_object($obPlugin)) {
-						$bIsCategoryStrict = $obPlugin->isCategoryStrict();
-						$bHasCategoryList = $obPlugin->hasCategoryList();
-					}
-					$arOptions = [
-						CategoryRedefinition::SOURCE_REDEFINITIONS 
-							=> Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_REDEFINITIONS'),
-						CategoryRedefinition::SOURCE_USER_FIELDS 
-							=> Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_USER_FIELDS'),
-					];
-					if($bCategoryCustom){
-						$arOptions[CategoryRedefinition::SOURCE_CUSTOM] =
-							Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_CUSTOM');
-					}
-					$arOptions = [
-						'REFERENCE' => array_values($arOptions),
-						'REFERENCE_ID' => array_keys($arOptions),
-					];
-					print SelectBoxFromArray('iblockparams['.$intIBlockID.'][CATEGORIES_REDEFINITION_SOURCE]', $arOptions, 
-						$arIBlockParams['CATEGORIES_REDEFINITION_SOURCE'], '',
-						'data-role="categories-redefinition-source" '
-						.'data-uf-value="'.CategoryRedefinition::SOURCE_USER_FIELDS.'"'
-						.'data-custom-value="'.CategoryRedefinition::SOURCE_CUSTOM.'"'
-					);
-					?>
-				</td>
-			</tr>
-			<tr id="tr_CATEGORIES_REDEFINITION_SOURCE_UF" style="display:none;">
-				<td>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_UF_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_UF');?>
-				</td>
-				<td>
-					<div class="acrit-exp-select-wrapper">
-						<?
-						$arUserFields = Helper::call($strModuleId, 'CategoryRedefinition', 'getSectionUserFields', 
-							[$intProfileID, $intIBlockID]);
-						$arUserFields = array_merge([
-							'' => Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_UF_EMPTY'),
-						], $arUserFields);
-						$arOptions = [
-							'REFERENCE' => array_values($arUserFields),
-							'REFERENCE_ID' => array_keys($arUserFields),
-						];
-						print SelectBoxFromArray('iblockparams['.$intIBlockID.'][CATEGORIES_REDEFINITION_SOURCE_UF]', $arOptions, 
-							$arIBlockParams['CATEGORIES_REDEFINITION_SOURCE_UF'], '',
-							'data-role="categories-redefinition-source-uf" '
+						else {
+							$arOptions[CategoryRedefinition::MODE_CUSTOM] = Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE_CUSTOM');
+							if($bHasCategoryList){
+								$arOptions[CategoryRedefinition::MODE_STRICT] = Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MODE_STRICT');
+							}
+						}
+						$bDisabled = count($arOptions) <= 1;
+						if($bDisabled){
+							$strDefaultOption = key($arOptions);
+						}
+						$arOptions = array(
+							'REFERENCE' => array_values($arOptions),
+							'REFERENCE_ID' => array_keys($arOptions),
+						);
+						print SelectBoxFromArray('PROFILE[PARAMS][CATEGORIES_REDEFINITION_MODE]', $arOptions, 
+							$arProfile['PARAMS']['CATEGORIES_REDEFINITION_MODE'], '',
+							'data-role="categories-redefinition-mode" '
+							.'data-strict-value="'.CategoryRedefinition::MODE_STRICT.'"'
+							.($bDisabled ? ' disabled="disabled"' : '')
 						);
 						?>
-					</div>
-				</td>
-			</tr>
-			<tr id="tr_CATEGORIES_REDEFINITION_BUTTON">
-				<td>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MANAGE_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MANAGE');?>
-				</td>
-				<td>
-					<?if(is_object($obPlugin) && $obPlugin->areCategoriesExport()):?>
-						<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MANAGE_BUTTON');?>"
-							data-role="categories-redefinition-button"/>
-					<?endif?>
-				</td>
-			</tr>
-			<tr id="tr_CATEGORIES_EXPORT_PARENTS">
-				<td>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_EXPORT_PARENTS_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_EXPORT_PARENTS');?>
-				</td>
-				<td>
-					<input type="hidden" name="PROFILE[PARAMS][CATEGORIES_EXPORT_PARENTS]" value="N" />
-					<input type="checkbox" name="PROFILE[PARAMS][CATEGORIES_EXPORT_PARENTS]" value="Y" 
-						<?if($arProfile['PARAMS']['CATEGORIES_EXPORT_PARENTS']=='Y'):?>checked="checked"<?endif?>
-					/>
-				</td>
-			</tr>
-			<?if(is_object($obPlugin) && $obPlugin->hasCategoryList() && !$obPlugin->hideCategoriesUpdateButton() && ($obPlugin->areCategoriesExport() || $obPlugin->areCategoriesUpdate())):?>
-				<tr id="tr_CATEGORIES_UPDATE" style="display:none">
+						<?if($bDisabled):?>
+							<input type="hidden" name="PROFILE[PARAMS][CATEGORIES_REDEFINITION_MODE]" value="<?=$strDefaultOption;?>" />
+						<?endif?>
+					</td>
+				</tr>
+				<tr id="tr_CATEGORIES_REDEFINITION_SOURCE">
 					<td>
-						<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE_HINT'));?>
-						<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE');?>
+						<?$bCategoryCustom = $obPlugin->isCategoryCustomName();?>
+						<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_HINT'.($bCategoryCustom ? '_CUSTOM' : '')));?>
+						<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE');?>
 					</td>
 					<td>
-						<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE_BUTTON');?>"
-							data-role="categories-update" />
-						&nbsp;
-						<span data-role="categories-update-date">
-							<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE_DATE');?>
-							<span data-empty-value="---">
-								<?$fTime = $obPlugin->getCategoriesDate();?>
-								<?if($fTime):?>
-									<?=Helper::formatUnixDatetime($obPlugin->getCategoriesDate());?>
-								<?else:?>
-									---
-								<?endif?>
+						<?
+						$bIsCategoryStrict = false;
+						$bHasCategoryList = false;
+						if(is_object($obPlugin)) {
+							$bIsCategoryStrict = $obPlugin->isCategoryStrict();
+							$bHasCategoryList = $obPlugin->hasCategoryList();
+						}
+						$arOptions = [
+							CategoryRedefinition::SOURCE_REDEFINITIONS 
+								=> Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_REDEFINITIONS'),
+							CategoryRedefinition::SOURCE_USER_FIELDS 
+								=> Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_USER_FIELDS'),
+						];
+						if($bCategoryCustom){
+							$arOptions[CategoryRedefinition::SOURCE_CUSTOM] =
+								Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_CUSTOM');
+						}
+						$arOptions = [
+							'REFERENCE' => array_values($arOptions),
+							'REFERENCE_ID' => array_keys($arOptions),
+						];
+						print SelectBoxFromArray('iblockparams['.$intIBlockID.'][CATEGORIES_REDEFINITION_SOURCE]', $arOptions, 
+							$arIBlockParams['CATEGORIES_REDEFINITION_SOURCE'], '',
+							'data-role="categories-redefinition-source" '
+							.'data-uf-value="'.CategoryRedefinition::SOURCE_USER_FIELDS.'"'
+							.'data-custom-value="'.CategoryRedefinition::SOURCE_CUSTOM.'"'
+						);
+						?>
+					</td>
+				</tr>
+				<tr id="tr_CATEGORIES_REDEFINITION_SOURCE_UF" style="display:none;">
+					<td>
+						<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_UF_HINT'));?>
+						<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_UF');?>
+					</td>
+					<td>
+						<div class="acrit-exp-select-wrapper">
+							<?
+							$arUserFields = Helper::call($strModuleId, 'CategoryRedefinition', 'getSectionUserFields', 
+								[$intProfileID, $intIBlockID]);
+							$arUserFields = array_merge([
+								'' => Helper::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_SOURCE_UF_EMPTY'),
+							], $arUserFields);
+							$arOptions = [
+								'REFERENCE' => array_values($arUserFields),
+								'REFERENCE_ID' => array_keys($arUserFields),
+							];
+							print SelectBoxFromArray('iblockparams['.$intIBlockID.'][CATEGORIES_REDEFINITION_SOURCE_UF]', $arOptions, 
+								$arIBlockParams['CATEGORIES_REDEFINITION_SOURCE_UF'], '',
+								'data-role="categories-redefinition-source-uf" '
+							);
+							?>
+						</div>
+					</td>
+				</tr>
+				<tr id="tr_CATEGORIES_REDEFINITION_BUTTON">
+					<td>
+						<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MANAGE_HINT'));?>
+						<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MANAGE');?>
+					</td>
+					<td>
+						<?if(is_object($obPlugin) && $obPlugin->areCategoriesExport()):?>
+							<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_REDEFINITION_MANAGE_BUTTON');?>"
+								data-role="categories-redefinition-button"/>
+						<?endif?>
+					</td>
+				</tr>
+				<tr id="tr_CATEGORIES_EXPORT_PARENTS">
+					<td>
+						<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_EXPORT_PARENTS_HINT'));?>
+						<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_EXPORT_PARENTS');?>
+					</td>
+					<td>
+						<input type="hidden" name="PROFILE[PARAMS][CATEGORIES_EXPORT_PARENTS]" value="N" />
+						<input type="checkbox" name="PROFILE[PARAMS][CATEGORIES_EXPORT_PARENTS]" value="Y" 
+							<?if($arProfile['PARAMS']['CATEGORIES_EXPORT_PARENTS']=='Y'):?>checked="checked"<?endif?>
+						/>
+					</td>
+				</tr>
+				<?if($obPlugin->hasCategoryList() && !$obPlugin->hideCategoriesUpdateButton() && ($obPlugin->areCategoriesExport() || $obPlugin->areCategoriesUpdate())):?>
+					<tr id="tr_CATEGORIES_UPDATE" style="display:none">
+						<td>
+							<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE_HINT'));?>
+							<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE');?>
+						</td>
+						<td>
+							<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE_BUTTON');?>"
+								data-role="categories-update" />
+							&nbsp;
+							<span data-role="categories-update-date">
+								<?=Loc::getMessage('ACRIT_EXP_TAB_CATEGORIES_UPDATE_DATE');?>
+								<span data-empty-value="---">
+									<?$fTime = $obPlugin->getCategoriesDate();?>
+									<?if($fTime):?>
+										<?=Helper::formatUnixDatetime($obPlugin->getCategoriesDate());?>
+									<?else:?>
+										---
+									<?endif?>
+								</span>
 							</span>
-						</span>
-					</td>
-				</tr>
-				<tr id="tr_CATEGORIES_UPDATE_MESSAGE">
-					<td style="padding:0;"></td>
-					<td data-role="categories-update-error" style="padding:0;">
-						<style>
-							td[data-role="categories-update-error"] > span {display:inline-block; padding:4px 10px 16px;}
-						</style>
-					</td>
-				</tr>
+						</td>
+					</tr>
+					<tr id="tr_CATEGORIES_UPDATE_MESSAGE">
+						<td style="padding:0;"></td>
+						<td data-role="categories-update-error" style="padding:0;">
+							<style>
+								td[data-role="categories-update-error"] > span {display:inline-block; padding:4px 10px 16px;}
+							</style>
+						</td>
+					</tr>
+				<?endif?>
 			<?endif?>
 			<?if(strlen($strHtml = $obPlugin->categoriesCustomActions($intIBlockID, $arIBlockParams))):?>
 				<?=$strHtml;?>

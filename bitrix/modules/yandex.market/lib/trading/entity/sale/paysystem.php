@@ -27,9 +27,20 @@ class PaySystem extends Market\Trading\Entity\Reference\PaySystem
 	public function getEnum($siteId = null)
 	{
 		$result = [];
+		$filter = [
+			'=ACTIVE' => 'Y',
+		];
+
+		if (
+			method_exists(Sale\Payment::class, 'getRegistryType')
+			&& Sale\Internals\PaySystemActionTable::getEntity()->hasField('ENTITY_REGISTRY_TYPE')
+		)
+		{
+			$filter['=ENTITY_REGISTRY_TYPE'] = Sale\Payment::getRegistryType();
+		}
 
 		$query = Sale\PaySystem\Manager::getList([
-			'filter' => ['=ACTIVE' => 'Y'],
+			'filter' => $filter,
 			'order' => ['SORT' => 'ASC', 'NAME' => 'ASC'],
 			'select' => ['ID', 'NAME']
 		]);
@@ -49,11 +60,14 @@ class PaySystem extends Market\Trading\Entity\Reference\PaySystem
 	{
 		try
 		{
+			/** @var Sale\Order $calculatableOrder */
 			$calculatableOrder = $this->getOrderCalculatable($order);
 			$payment = $this->getOrderPayment($calculatableOrder);
+			$needRemovePayment = false;
 
 			if ($payment === null)
 			{
+				$needRemovePayment = true;
 				$payment = $this->createOrderPayment($calculatableOrder);
 			}
 
@@ -65,6 +79,11 @@ class PaySystem extends Market\Trading\Entity\Reference\PaySystem
 			$paySystems = Sale\PaySystem\Manager::getListWithRestrictions($payment);
 
 			$result = array_keys($paySystems);
+
+			if ($needRemovePayment && !$this->isCalculatableCloned($calculatableOrder))
+			{
+				$this->deleteOrderPayment($payment);
+			}
 		}
 		catch (Main\SystemException $exception)
 		{
@@ -113,6 +132,16 @@ class PaySystem extends Market\Trading\Entity\Reference\PaySystem
 		return $result;
 	}
 
+	protected function isCalculatableCloned(Sale\Order $calculatableOrder)
+	{
+		return method_exists($calculatableOrder, 'createClone');
+	}
+
+	protected function deleteOrderPayment(Sale\Payment $payment)
+	{
+		$payment->delete();
+	}
+
 	protected function configureShipment(TradingEntity\Reference\Order $calculatableOrder, $deliveryId)
 	{
 		$deliveryEntity = $this->environment->getDelivery();
@@ -127,6 +156,8 @@ class PaySystem extends Market\Trading\Entity\Reference\PaySystem
 
 	public function suggestPaymentMethod($paySystemId, array $supportedMethods = null)
 	{
+		if ((int)$paySystemId === Sale\PaySystem\Manager::getInnerPaySystemId()) { return null; }
+
 		$paySystemRow = Sale\PaySystem\Manager::getById($paySystemId);
 
 		if (!$paySystemRow) { return null; }

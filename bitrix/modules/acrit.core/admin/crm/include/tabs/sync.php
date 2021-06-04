@@ -44,6 +44,7 @@ $obTabControl->BeginCustomField('PROFILE[SYNC_MAN_RUN]', Loc::getMessage('ACRIT_
 			<label for="field_sync_man_run"><?=$obTabControl->GetCustomLabelHTML()?><label>
 		</td>
 		<td>
+			<?if ($obPlugin->isCountable()):?>
             <a href="#" class="adm-btn adm-btn-save" id="man_sync_start" style="margin-bottom: 4px;"><?=GetMessage("ACRIT_EXP_RUNNOW_START")?></a>
             <a href="#" class="adm-btn adm-btn-disabled" id="man_sync_stop" style="margin-bottom: 4px;"><?=GetMessage("ACRIT_EXP_RUNNOW_STOP")?></a>
             <div id="start_export_progress">
@@ -58,19 +59,22 @@ $obTabControl->BeginCustomField('PROFILE[SYNC_MAN_RUN]', Loc::getMessage('ACRIT_
                     </div>
                 </div>
             </div>
-            <div class="start-import-result" id="man_sync_result" style="display:none;">
-                <div class="start-import-result-all"><?=GetMessage("ACRIT_EXP_VSEGO_OBRABOTANO")?><span>0</span></div>
-                <div class="start-import-result-good"><?=GetMessage("ACRIT_EXP_USPESNO_IMPORTIROVAN")?><span>0</span></div>
-                <div class="start-import-result-skip"><?=GetMessage("ACRIT_EXP_PROPUSENO")?><span>0</span></div>
-                <div class="start-import-result-bad"><?=GetMessage("ACRIT_EXP_S_OSIBKAMI")?><span>0</span></div>
+            <?else:?>
+            <a href="#" class="adm-btn adm-btn-save" id="man_sync_noprogress_start" style="margin-bottom: 4px;"><?=GetMessage("ACRIT_EXP_RUNNOW_START")?></a>
+            <a href="#" class="adm-btn adm-btn-disabled" id="man_sync_stop" style="margin-bottom: 4px;"><?=GetMessage("ACRIT_EXP_RUNNOW_STOP")?></a><br /><br />
+            <div class="acrit-crm-man-sync-result">
+                <div class="acrit-crm-man-sync-result-row" id="man_sync_result_count"><?=GetMessage("ACRIT_CRM_TAB_SYNC_MAN_COUNT")?> <span>0</span></div>
             </div>
+            <?endif;?>
 		</td>
 	</tr>
 	<?
 $obTabControl->EndCustomField('PROFILE[SYNC_MAN_RUN]');
 
 $obTabControl->AddSection('HEADING_SYNC_ADD', Loc::getMessage('ACRIT_CRM_TAB_SYNC_ADD_TITLE'));
+$strCustomBlock = $obPlugin->getSettingsPeriodSyncBlock();
 $obTabControl->BeginCustomField('PROFILE[SYNC][add][period]', Loc::getMessage('ACRIT_CRM_TAB_SYNC_ADD_PERIOD'));
+if (!$strCustomBlock):
 ?>
 	<tr id="tr_sync_add_period">
 		<td>
@@ -81,6 +85,8 @@ $obTabControl->BeginCustomField('PROFILE[SYNC][add][period]', Loc::getMessage('A
 		</td>
 	</tr>
 	<?
+else:
+	echo $strCustomBlock;
+endif;
 $obTabControl->EndCustomField('PROFILE[SYNC][add][period]');
-
 ?>

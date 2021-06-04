@@ -324,11 +324,6 @@ class EditForm extends Market\Component\Model\EditForm
 			$result['EXPORT_SERVICE'] = $this->modifyExportServiceField($result['EXPORT_SERVICE']);
 		}
 
-		if (isset($result['ENABLE_CPA']) && Market\Config::getOption('trading_experiment_dbs', 'N') !== 'Y')
-		{
-			$result['ENABLE_CPA']['HIDDEN'] = true;
-		}
-
 		return $result;
 	}
 
@@ -610,10 +605,9 @@ class EditForm extends Market\Component\Model\EditForm
 
 			foreach ($iblockLink['PARAM'] as &$param)
 			{
-				if (!empty($param['SETTINGS']))
-				{
-					$param['SETTINGS'] = $this->compileParamSettings($param['SETTINGS']);
-				}
+				$param['SETTINGS'] = !empty($param['SETTINGS'])
+					? $this->compileParamSettings($param['SETTINGS'])
+					: null;
 
 				if (isset($param['PARAM_VALUE']))
 				{

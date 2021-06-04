@@ -41,7 +41,7 @@ class OrderRegistry extends EntityReference\OrderRegistry
 	/**
 	 * @param int $orderId
 	 *
-	 * @return array{TRADING_PLATFORM_ID: int, EXTERNAL_ORDER_ID: string}|null
+	 * @return array{TRADING_PLATFORM_ID: int, EXTERNAL_ORDER_ID: string, SETUP_ID: int|null}|null
 	 */
 	public static function searchPlatform($orderId)
 	{
@@ -51,13 +51,17 @@ class OrderRegistry extends EntityReference\OrderRegistry
 			'filter' => [
 				'=ORDER_ID' => $orderId,
 			],
-			'select' => [ 'TRADING_PLATFORM_ID', 'EXTERNAL_ORDER_ID' ],
+			'select' => [ 'TRADING_PLATFORM_ID', 'EXTERNAL_ORDER_ID', 'PARAMS' ],
 			'limit' => 1,
 		]);
 
 		if ($row = $query->fetch())
 		{
-			$result = $row;
+			$result = [
+				'TRADING_PLATFORM_ID' => (int)$row['TRADING_PLATFORM_ID'],
+				'EXTERNAL_ORDER_ID' => (string)$row['EXTERNAL_ORDER_ID'],
+				'SETUP_ID' => isset($row['PARAMS']['SETUP_ID']) ? (int)$row['PARAMS']['SETUP_ID'] : null,
+			];
 		}
 
 		return $result;

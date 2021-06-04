@@ -1,1 +1,1 @@
-<img width="307" alt="Лого Home.png" src="/upload/medialibrary/182/Logo-Home.png" height="70" title="Лого Home.png"><br>
+<img class="data-lazy-src" width="307" alt="Лого Home.png" data-lazy-src="/upload/medialibrary/182/Logo-Home.png" height="70" title="Лого Home.png"><br>

@@ -167,13 +167,16 @@ while($arUser = $resUsers->getNext()){
 								$bMultithreading = $arProfileHistory['MULTITHREADING'] == 'Y';
 								$intThreads = is_numeric($arProfileHistory['THREADS']) ? $arProfileHistory['THREADS'] : '---';
 								$intElementsPerThread = is_numeric($arProfileHistory['ELEMENTS_PER_THREAD']) ? $arProfileHistory['ELEMENTS_PER_THREAD'] : '---';
+								if(strlen($arProfileHistory['VERSION'])){
+									$arProfileHistory['VERSION'] = str_replace('/', ' / ', $arProfileHistory['VERSION']);
+								}
 								$strHint = Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_'.($arProfileHistory['AUTO'] == 'Y' ? 'CRON' : 'MANUAL').'_HINT', array(
 									'#COMMAND#' => strlen($strCommand) ? '<pre style="white-space:normal; word-break:break-all;">'.htmlspecialcharsbx($strCommand).'</pre>' : '???',
 									'#MULTITHREADING#' => Loc::getMessage('MAIN_'.($bMultithreading ? 'YES' : 'NO')),
 									'#THREADS#' => $intThreads,
 									'#ELEMENTS_PER_THREAD#' => $intElementsPerThread,
 									'#PID#' => is_numeric($arProfileHistory['PID']) ? $arProfileHistory['PID'] : '???',
-									'#VERSION#' => is_numeric($arProfileHistory['PID']) ? $arProfileHistory['VERSION'] : '???',
+									'#VERSION#' => strlen($arProfileHistory['VERSION']) ? $arProfileHistory['VERSION'] : '???',
 								));
 								print Helper::showHint($strHint);
 							}

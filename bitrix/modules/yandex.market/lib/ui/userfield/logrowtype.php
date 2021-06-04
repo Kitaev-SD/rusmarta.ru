@@ -2,9 +2,9 @@
 
 namespace Yandex\Market\Ui\UserField;
 
-class LogRowType extends \CUserTypeString
+class LogRowType extends StringType
 {
-	function GetAdminListViewHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)
 	{
 		$result = '';
 		$value = null;
@@ -26,7 +26,7 @@ class LogRowType extends \CUserTypeString
 		return $result;
 	}
 
-	function GetAdminListViewHtmlMulty($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHtmlMulty($arUserField, $arHtmlControl)
 	{
 		$result = '';
 

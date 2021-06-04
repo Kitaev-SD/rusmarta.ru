@@ -21,4 +21,5 @@ Main\Loader::registerAutoLoadClasses('yandex.market', [
 	'Yandex\Market\Trading\Setup\Table' => '/lib/trading/setup/table.php',
 	'Yandex\Market\Trading\Settings\Table' => '/lib/trading/settings/table.php',
 	'Yandex\Market\Confirmation\Setup\Table' => '/lib/confirmation/setup/table.php',
+	'Yandex\Market\Trading\Service\MarketplaceDbs\Options\Timetable' => '/lib/trading/service/marketplacedbs/options/timetable.php',
 ]);

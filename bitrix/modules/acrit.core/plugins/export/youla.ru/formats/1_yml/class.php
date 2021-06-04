@@ -36,6 +36,7 @@ class YoulaRuYml extends YoulaRu {
 
 	# Other export settings
 	protected $bZip = true;
+	protected $bStepByStep = true;
 
 	/**
 	 * 	Get available fields for current plugin

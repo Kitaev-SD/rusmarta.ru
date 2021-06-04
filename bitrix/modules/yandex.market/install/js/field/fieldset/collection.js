@@ -6,12 +6,42 @@
 	const constructor = Fieldset.Collection = Reference.Collection.extend({
 
 		defaults: {
+			elementDefault: '.js-fieldset',
+			elementNamespace: null,
+
+			headerElement: '.js-fieldset-collection__header',
 			itemElement: '.js-fieldset-collection__item',
 			itemAddElement: '.js-fieldset-collection__item-add',
 			itemDeleteElement: '.js-fieldset-collection__item-delete',
 
 			lang: {},
 			langPrefix: 'YANDEX_MARKET_FIELD_FIELDSET_'
+		},
+
+		setOptions: function(options) {
+			this.callParent('setOptions', [options], constructor);
+
+			if (
+				this.options.elementNamespace != null
+				&& this.options.elementNamespace !== this.options.elementDefault
+			) {
+				this.overrideElementOptions(
+					this.options.elementDefault,
+					this.options.elementNamespace
+				);
+			}
+		},
+
+		overrideElementOptions: function(from, to) {
+			var key;
+
+			for (key in this.options) {
+				if (!this.options.hasOwnProperty(key)) { continue; }
+				if (key.indexOf('Element') === -1) { continue; }
+				if (this.options[key] == null) { continue; }
+
+				this.options[key] = this.options[key].replace(from, to);
+			}
 		},
 
 		initialize: function() {
@@ -77,7 +107,26 @@
 
 		getItemPlugin: function() {
 			return Fieldset.Row;
-		}
+		},
+
+		addItem: function(source, context, method, isCopy) {
+			const result = this.callParent('addItem', [source, context, method, isCopy], constructor);
+
+			this.refreshEmptyState(true);
+
+			return result;
+		},
+
+		deleteItem: function(item, silent) {
+			this.callParent('deleteItem', [item, silent], constructor);
+			this.refreshEmptyState();
+		},
+
+		refreshEmptyState: function(state) {
+			if (state == null) { state = !this.isEmpty(); }
+
+			this.getElement('header').toggleClass('is--hidden', !state);
+		},
 
 	}, {
 		dataName: 'FieldFieldsetCollection',

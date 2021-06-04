@@ -1,8 +1,8 @@
-<?
+<?php
 
-Class CTinkoffPayment
+class CTinkoffPayment
 {
-    function OnBuildGlobalMenu(&$aGlobalMenu, &$aModuleMenu)
+    public function OnBuildGlobalMenu(&$aGlobalMenu, &$aModuleMenu)
     {
         $MODULE_ID = basename(dirname(__FILE__));
         $aMenu = array(
@@ -45,4 +45,3 @@ Class CTinkoffPayment
     }
 }
 
-?>

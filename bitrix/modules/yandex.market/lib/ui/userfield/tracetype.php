@@ -9,7 +9,7 @@ class TraceType extends StringType
 {
 	protected static $viewCounter = 0;
 
-	function GetAdminListViewHtml($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHtml($arUserField, $arHtmlControl)
 	{
 		if ((string)$arHtmlControl['VALUE'] !== '')
 		{

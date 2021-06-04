@@ -1,7 +1,5 @@
 <?
-
 define("CDEK_IBLOCK_ID", 27);
-
 // Функция дебага
 function pr($var, $die = false, $all = false)
 {
@@ -9,7 +7,6 @@ function pr($var, $die = false, $all = false)
     if (($USER->GetID() == 4) || ($all == true)) {
         $bt = debug_backtrace();
         $bt = $bt[0];
-
         ?>
         <div style='font-size:9pt; color:#000; background:#fff; border:1px dashed #000;'>
             <div style='padding:3px 5px; background:#99CCFF; font-weight:bold;'>File: <?= $bt["file"] ?>
@@ -32,15 +29,12 @@ function pr($var, $die = false, $all = false)
         }
     }
 }
-
 //ROISTAT start
 use Bitrix\Main\Event;
-
 $eventManager = \Bitrix\Main\EventManager::getInstance();
 $eventManager->addEventHandler('iblock', 'OnAfterIBlockElementAdd', 'rsOnFormAdd');
 function rsOnFormAdd($arFields)
 {
-
     if($arFields['IBLOCK_ID'] == 2) {
         $formName = 'Заказать товар';
         $name     = $arFields['PROPERTY_VALUES']['NAME'];
@@ -48,7 +42,6 @@ function rsOnFormAdd($arFields)
         $comment  = "Вопрос по товару '{$arFields['PROPERTY_VALUES']['PRODUCT']}'.";
         $comment .= (isset($arFields['PROPERTY_VALUES']['TIME']) && !empty($arFields['PROPERTY_VALUES']['TIME'])) ? "Время: {$arFields['PROPERTY_VALUES']['TIME']}." : 'Время: не указано';
         $comment .= (isset($arFields['PROPERTY_VALUES']['MESSAGE']['VALUE']['TEXT']) && !empty($arFields['PROPERTY_VALUES']['MESSAGE']['VALUE']['TEXT'])) ? "Комментарий: {$arFields['PROPERTY_VALUES']['MESSAGE']['VALUE']['TEXT']}." : 'Комментарий: не указан';
-
         // Send
         $data = array(
             'key'     => 'ODkzODM6NjcxMjQ6MThlOThkOGE0YTFlMDY3ZWRjNDFhMDgzOTlkN2IzZGU=',
@@ -63,7 +56,6 @@ function rsOnFormAdd($arFields)
                 'google_id' => '{googleClientId}',
             )
         );
-
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
@@ -74,7 +66,6 @@ function rsOnFormAdd($arFields)
         curl_close($curl);
     }
 }
-
 if ($_POST['PostAction'] == 'Add' && !empty($_POST['EMAIL'])) {
     $data = array(
         'key'     => 'ODkzODM6NjcxMjQ6MThlOThkOGE0YTFlMDY3ZWRjNDFhMDgzOTlkN2IzZGU=',
@@ -88,7 +79,6 @@ if ($_POST['PostAction'] == 'Add' && !empty($_POST['EMAIL'])) {
             'google_id' => '{googleClientId}',
         )
     );
-
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_RETURNTRANSFER => 1,
@@ -97,16 +87,12 @@ if ($_POST['PostAction'] == 'Add' && !empty($_POST['EMAIL'])) {
     ));
     $resp = curl_exec($curl);
     curl_close($curl);
-
-
-
 	$curl = curl_init();
 	curl_setopt($curl, CURLOPT_URL, 'https://cloud.roistat.com/api/proxy/1.0/leads/add?' . http_build_query($data));
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
 	$out = curl_exec($curl);
 	curl_close($curl);
 }
-
 $eventManager->addEventHandler('main', 'OnBeforeEventAdd', 'SendFormToRoistat');
 function SendFormToRoistat(&$event, &$lid, &$arFields)
 {
@@ -130,7 +116,6 @@ function SendFormToRoistat(&$event, &$lid, &$arFields)
                 'google_id' => '{googleClientId}',
             )
         );
-
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
@@ -139,15 +124,11 @@ function SendFormToRoistat(&$event, &$lid, &$arFields)
         ));
         $resp = curl_exec($curl);
         curl_close($curl);
-
-
-
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, 'https://cloud.roistat.com/api/proxy/1.0/leads/add?' . http_build_query($data));
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
 		$out = curl_exec($curl);
 		curl_close($curl);
-
         file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/roistat/test.log', print_r(array(
             'event' => 'OnBeforeEventAdd',
             'post' => $_POST,
@@ -155,9 +136,7 @@ function SendFormToRoistat(&$event, &$lid, &$arFields)
             'cookie' => $_COOKIE,
         ), true), FILE_APPEND);
     }
-
 }
-
 $eventManager->addEventHandler('sale', 'OnSaleOrderSaved', 'rsOnAddOrder'); 
 function rsOnAddOrder(Event $event) {
     if(!$event->getParameter('IS_NEW')) return;
@@ -170,8 +149,6 @@ function rsOnAddOrder(Event $event) {
     ), true), FILE_APPEND);
 }
 //ROISTAT end
-
-
 AddEventHandler("main", "OnEndBufferContent", "ChangeMyContent");
 function ChangeMyContent(&$content) {
 	$srcs = array(
@@ -186,21 +163,15 @@ function ChangeMyContent(&$content) {
 		'images/cms/data/triggeri/ic3.png',
 		'images/cms/data/triggeri/ic1.png',
 	);
-	
 	$srcs_preg = '('.implode('|', array_map(function ($v) { return preg_quote($v, '#'); }, $srcs)).')';
 	$content = preg_replace('#\<img[^\>]*src\=["\'][^"\']*'.$srcs_preg.'["\'][^\>]*\>#', '', $content);
 }
-
 //-- Добавление обработчика события
-
 AddEventHandler("sale", "OnOrderNewSendEmail", "bxModifySaleMails");
-
 //-- Собственно обработчик события
-
 function bxModifySaleMails($orderID, &$eventName, &$arFields)
 {
     $arOrder = CSaleOrder::GetByID($orderID);
-
     //-- получаем телефоны и адрес
     $order_props = CSaleOrderPropsValue::GetOrderProps($orderID);
     $phone="";
@@ -220,7 +191,6 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
             $country_name =  $arLocs["COUNTRY_NAME_ORIG"];
             $city_name = $arLocs["CITY_NAME_ORIG"];
         }
-
         if ($arProps["CODE"] == "INDEX")
         {
             $index = $arProps["VALUE"];
@@ -231,9 +201,7 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
             $address = $arProps["VALUE"];
         }
     }
-
     $full_address = $index.", ".$country_name." ".$city_name.", ".$address;
-
     //-- получаем название службы доставки
     $arDeliv = CSaleDelivery::GetByID($arOrder["DELIVERY_ID"]);
     $delivery_name = "";
@@ -241,7 +209,6 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
     {
         $delivery_name = $arDeliv["NAME"];
     }
-
     //-- генерируем срок достаки
     $delivery_period_type = "";
 
@@ -256,7 +223,6 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
             $delivery_period_type = "месяцев";
             break;
     }
-
     //-- получаем название платежной системы
     $arPaySystem = CSalePaySystem::GetByID($arOrder["PAY_SYSTEM_ID"]);
     $pay_system_name = "";
@@ -264,18 +230,15 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
     {
         $pay_system_name = $arPaySystem["NAME"];
     }
-
     //-- добавляем новые поля в массив результатов
     $arFields["ORDER_DESCRIPTION"] = $arOrder["USER_DESCRIPTION"];
     $arFields["PHONE"] =  $phone;
-
     $arFields["DELIVERY_NAME"] =  $delivery_name;
     $arFields["DELIVERY_PRICE"] =  $arOrder["PRICE_DELIVERY"];
     $arFields["DELIVERY_PERIOD_TYPE"] =  $delivery_period_type;
     $arFields["DELIVERY_PERIOD_FROM"] =  $arDeliv["PERIOD_FROM"];
     $arFields["DELIVERY_PERIOD_TO"] =  $arDeliv["PERIOD_TO"];
-
     $arFields["FULL_ADDRESS"] = $full_address;
     $arFields["PAY_SYSTEM_NAME"] =  $pay_system_name;
 }
-
+?>

@@ -100,14 +100,12 @@ Loc::loadMessages(__FILE__);
 );?>
 
 
-<?$APPLICATION->IncludeComponent(
-	"bitrix:main.include",
-	"",
-	Array(
-		"AREA_FILE_SHOW" => "file",
+<?$APPLICATION->IncludeComponent("bitrix:main.include", "template5", Array(
+	"AREA_FILE_SHOW" => "file",
 		"EDIT_TEMPLATE" => "",
-		"PATH" => SITE_DIR."/include/why_rusmarta.php"
-	)
+		"PATH" => SITE_DIR."/include/why_rusmarta.php",
+	),
+	false
 );?>
 
 <?//RELATED_ITEMS//

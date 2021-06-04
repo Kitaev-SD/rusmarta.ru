@@ -18,11 +18,13 @@ class Field {
 	const CONDITIONS_SEPARATOR = '{{{#SEPARATOR#}}}'; // for multicondition
 	
 	protected $strModuleId;
+	protected $intElementId;
 	protected $obPlugin;
 	protected $arInitialParams;
 	protected $strCode;
 	protected $strDisplayCode;
 	protected $strName;
+	protected $strNameSuffix;
 	protected $intSort;
 	protected $strInputName;
 	protected $strDescription;
@@ -85,6 +87,7 @@ class Field {
 		$this->strCode = $arParams['CODE'];
 		$this->strDisplayCode = $arParams['DISPLAY_CODE'];
 		$this->strName = $arParams['NAME'];
+		$this->strNameSuffix = $arParams['NAME_SUFFIX'];
 		$this->intSort = isset($arParams['SORT']) && is_numeric($arParams['SORT']) ? IntVal($arParams['SORT']) : 100;
 		$this->strType = isset($arParams['DEFAULT_TYPE']) ? $arParams['DEFAULT_TYPE'] : 'FIELD';
 		$this->strInputName = $arParams['INPUT_NAME'];
@@ -134,6 +137,20 @@ class Field {
 	 */
 	public function getModuleId(){
 		return $this->strModuleId;
+	}
+	
+	/**
+	 *	Set element id
+	 */
+	public function setElementId($intElementId){
+		$this->intElementId = $intElementId;
+	}
+	
+	/**
+	 *	Get element id
+	 */
+	public function getElementId(){
+		return $this->intElementId;
 	}
 	
 	/**
@@ -210,6 +227,13 @@ class Field {
 	 */
 	public function getName(){
 		return $this->strName;
+	}
+	
+	/**
+	 *	Get name suffix
+	 */
+	public function getNameSuffix(){
+		return is_string($this->strNameSuffix) ? $this->strNameSuffix : '';
 	}
 	
 	/**
@@ -632,13 +656,14 @@ class Field {
 		#
 		$strFieldCode = $this->getCode();
 		$strName = $this->getName();
+		$strNameSuffix = $this->getNameSuffix();
 		$strHint = $this->getDescription();
 		$mAllowedValues = $this->getAllowedValues();
 		ob_start();
 		?>
 		<?if($this->isHeader()):?>
 			<tr class="heading acrit-exp-fields-table-heading<?if($this->bNormalCase):?> acrit-exp-fields-table-heading-normal-case<?endif?>" data-header="<?=$strFieldCode;?>">
-				<td colspan="4"><?=$strName;?></td>
+				<td colspan="4"><?=$strName;?><?=$strNameSuffix;?></td>
 			</tr>
 		<?else:?>
 			<tr class="adm-list-table-row" data-role="field_row" data-field="<?=$strFieldCode;?>"
@@ -680,13 +705,13 @@ class Field {
 								print Helper::showHint($strContent, true, true, $strPopupTitle, $this->getCustomAllowedValuesJs());
 							}
 							if($this->isRequired()){
-								print '<b>'.$strName.' *</b>';
+								print '<b>'.$strName.$strNameSuffix.' *</b>';
 							}
 							elseif($this->isCustomRequired()){
-								print $strName.' *';
+								print $strName.$strNameSuffix.' *';
 							}
 							else {
-								print $strName;
+								print $strName.$strNameSuffix;
 							}
 						?></div>
 						<div class="acrit-exp-fields-table-field-code">

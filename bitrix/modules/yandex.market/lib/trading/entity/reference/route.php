@@ -16,11 +16,11 @@ abstract class Route
 
 	/**
 	 * @param string $serviceCode
-	 * @param string $siteId
+	 * @param string $urlId
 	 *
 	 * @return string
 	 */
-	public function getPublicPath($serviceCode, $siteId)
+	public function getPublicPath($serviceCode, $urlId)
 	{
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'getPublicPath');
 	}

@@ -25,6 +25,24 @@ class Model extends Market\Reference\Storage\Model
 		return Table::getClassName();
 	}
 
+	public static function loadByTradingInfo(array $tradingInfo)
+	{
+		if (isset($tradingInfo['SETUP_ID']))
+		{
+			$result = static::loadById($tradingInfo['SETUP_ID']);
+		}
+		else if (isset($tradingInfo['TRADING_PLATFORM_ID'], $tradingInfo['SITE_ID']))
+		{
+			$result = static::loadByExternalIdAndSite($tradingInfo['TRADING_PLATFORM_ID'], $tradingInfo['SITE_ID']);
+		}
+		else
+		{
+			throw new Main\ArgumentException('unknown trading info format');
+		}
+
+		return $result;
+	}
+
 	/**
 	 * @param string $serviceCode
 	 * @param string $siteId
@@ -41,6 +59,27 @@ class Model extends Market\Reference\Storage\Model
 				'=TRADING_SERVICE' => $serviceCode,
 				'=TRADING_BEHAVIOR' => $behaviorCode ?: TradingService\Manager::BEHAVIOR_DEFAULT,
 				'=SITE_ID' => $siteId,
+			],
+			'order' => [ 'ID' => 'ASC' ], // compatibility
+			'limit' => 1,
+		]);
+
+		if (empty($list))
+		{
+			$message = static::getLang('TRADING_SETUP_MODEL_NOT_FOUND');
+			throw new Main\ObjectNotFoundException($message);
+		}
+
+		return reset($list);
+	}
+
+	public static function loadByServiceAndUrlId($serviceCode, $urlId, $behaviorCode = null)
+	{
+		$list = static::loadList([
+			'filter' => [
+				'=TRADING_SERVICE' => $serviceCode,
+				'=TRADING_BEHAVIOR' => $behaviorCode ?: TradingService\Manager::BEHAVIOR_DEFAULT,
+				'=CODE' => $urlId,
 			],
 			'limit' => 1,
 		]);
@@ -69,6 +108,7 @@ class Model extends Market\Reference\Storage\Model
 				'=EXTERNAL_ID' => $externalId,
 				'=SITE_ID' => $siteId,
 			],
+			'order' => [ 'ID' => 'ASC' ], // compatibility
 			'limit' => 1,
 		]);
 
@@ -100,6 +140,13 @@ class Model extends Market\Reference\Storage\Model
 		$this->uninstallService();
 	}
 
+	public function getDefaultName()
+	{
+		$service = $this->getService();
+
+		return $this->combineName($service);
+	}
+
 	protected function fillName()
 	{
 		if ((string)$this->getField('NAME') === '')
@@ -110,8 +157,7 @@ class Model extends Market\Reference\Storage\Model
 
 	protected function resetName()
 	{
-		$service = $this->getService();
-		$title = $this->combineName($service);
+		$title = $this->getDefaultName();
 
 		$this->setField('NAME', $title);
 	}
@@ -394,6 +440,11 @@ class Model extends Market\Reference\Storage\Model
 		return $this->getField('EXTERNAL_ID');
 	}
 
+	public function getUrlId()
+	{
+		return $this->getField('CODE');
+	}
+
 	public function getEnvironment()
 	{
 		if ($this->environment === null)
@@ -469,6 +520,7 @@ class Model extends Market\Reference\Storage\Model
 				'SETUP_ID' => $this->getId(),
 				'SITE_ID' => $this->getSiteId(),
 				'PLATFORM_ID' => $this->getExternalId(),
+				'URL_ID' => $this->getUrlId(),
 			]
 		);
 	}

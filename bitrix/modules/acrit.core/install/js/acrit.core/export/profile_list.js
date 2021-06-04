@@ -278,11 +278,16 @@ AcritExpPopupWizardQuickStart.PrevNextClick = function(){
 				AcritExpProfiles.GetAdminList(''); //location.reload();
 			}
 			else{
-				alert('Error.');
+				if(alert(JsonResult.ErrorMessage)){
+					alert(JsonResult.ErrorMessage);
+				}
+				else{
+					alert('Error create profiles.');
+				}
 			}
 		}, function(jqXHR){
 			wizardControls.removeAttr('disabled');
-			alert('Error.');
+			alert('Request error.');
 			console.log(jqXHR.responseText);
 		}, true);
 	}
@@ -407,7 +412,6 @@ function acritExpRestoreIFrameLoaded(iframe){
 	var response = $(iframe).contents().find('body').text();
 	if(response.length) {
 		var JsonResult = BX.parseJSON(response);
-		console.log(JsonResult);
 		if(typeof JsonResult == 'object' && JsonResult.HTML) {
 			$('[data-role="restore-status"]').html(JsonResult.HTML);
 		}
@@ -512,14 +516,25 @@ $(document).delegate('input[data-role="acrit_exp_wizard_quick_start_iblocks_filt
 		text = $(this).val().trim().toLowerCase(),
 		types = $('div[data-role="acrit_exp_wizard_quick_start_iblock_type"]'),
 		iblocks = $('div[data-role="acrit_exp_wizard_quick_start_iblock"]'),
-		divNothing = $('div[data-role="acrit_exp_wizard_quick_start_iblocks_nothing_found"]');
-	if(text.length){
+		divNothing = $('div[data-role="acrit_exp_wizard_quick_start_iblocks_nothing_found"]'),
+		site = $('select[data-role="acrit_exp_wizard_quick_start_iblocks_filter_site"]').val(),
+		justCatalogs = $('input[data-role="acrit_exp_wizard_quick_start_iblocks_filter_catalogs"]').prop('checked');
+	if(text.length || site.length || justCatalogs){
 		types.each(function(){
 			let
 				found = false,
 				filtered;
 			$('div[data-role="acrit_exp_wizard_quick_start_iblock"]', this).each(function(){
-				filtered = $(this).attr('data-filter').toLowerCase().indexOf(text) != -1;
+				filtered = true;
+				if(text.length){
+					filtered = filtered && $(this).attr('data-filter').toLowerCase().indexOf(text) != -1;
+				}
+				if(site.length){
+					filtered = filtered && $(this).attr('data-site').indexOf(site) != -1;
+				}
+				if(justCatalogs){
+					filtered = filtered && $(this).attr('data-catalog') == 'Y';
+				}
 				$(this).toggle(filtered);
 				found = found || filtered;
 			});
@@ -540,6 +555,12 @@ $(document).delegate('input[data-role="acrit_exp_wizard_quick_start_iblocks_filt
 	else{
 		divNothing.show();
 	}
+});
+$(document).delegate('select[data-role="acrit_exp_wizard_quick_start_iblocks_filter_site"]', 'change', function(e){
+	$('input[data-role="acrit_exp_wizard_quick_start_iblocks_filter"]').trigger('input');
+});
+$(document).delegate('input[data-role="acrit_exp_wizard_quick_start_iblocks_filter_catalogs"]', 'change', function(e){
+	$('input[data-role="acrit_exp_wizard_quick_start_iblocks_filter"]').trigger('input');
 });
 
 /* Teacher set icon (if has submenu) */

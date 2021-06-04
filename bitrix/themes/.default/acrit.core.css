@@ -196,9 +196,6 @@
 	   -moz-box-sizing:border-box;
 	        box-sizing:border-box;
 }
-.acrit-core-log-detail-wrapper .acrit-core-log-content {
-	/**/
-}
 .acrit-core-log-detail-wrapper .acrit-core-log-content pre {
 	margin:0;
 	white-space:pre-wrap;
@@ -550,7 +547,18 @@
 	padding:0;
 }
 #acrit_exp_form #tr_PLUGIN_DESCRIPTION ul li {
-	margin:0 0 2px;
+	margin:0 0 4px;
+}
+#acrit_exp_form #tr_PLUGIN_DESCRIPTION a[data-role="acrit_exp_spoiler_toggle"] {
+	border-bottom:1px dashed #2675d7;
+	text-decoration:none;
+}
+#acrit_exp_form #tr_PLUGIN_DESCRIPTION a[data-role="acrit_exp_spoiler_toggle"]:hover {
+	border-bottom:0;
+}
+#acrit_exp_form #tr_PLUGIN_DESCRIPTION [data-role="acrit_exp_spoiler_data"] {
+	display:none;
+	padding:10px;
 }
 
 /* [Profile edit] iblocks tabs */
@@ -1363,9 +1371,11 @@ tr.acrit-exp-table-additional-attributes-pattern + tr.acrit-exp-table-additional
 	line-height:16px;
 	vertical-align:bottom;
 }
+/* This is trash since change show results
 .acrit-exp-progress-report {
 	margin-top:20px;
 }
+*/
 
 /* Popup: Preview (on an element admin page) */
 .acrit-exp-preview {
@@ -1458,6 +1468,7 @@ code.hljs span.hljs-cdata,
 }
 .acrit_core_note_compact > .adm-info-message-wrap.adm-info-message-red > .adm-info-message,
 .acrit_core_note_compact > .adm-info-message-wrap.adm-info-message-green > .adm-info-message {
+	min-width:100px;
 	padding-left:56px!important;
 }
 .acrit_core_note_compact > .adm-info-message-wrap.adm-info-message-red > .adm-info-message > .adm-info-message-icon,
@@ -1469,6 +1480,17 @@ code.hljs span.hljs-cdata,
 	left:12px!important;
 	zoom:0.75;
 }
+.acrit_core_note_compact .adm-info-message-icon:before {
+	top:26px!important;
+}
+/**/
+.acrit_core_note_noicon .adm-info-message-icon {
+	display:none;
+}
+.acrit_core_note_compact.acrit_core_note_noicon > .adm-info-message-wrap > .adm-info-message {
+	padding-left:20px!important;
+}
+/**/
 .acrit-exp-note-center > .adm-info-message-wrap, /* ToDo: delete this */
 .acrit_core_note_center > .adm-info-message-wrap {
 	text-align:center;
@@ -1697,11 +1719,36 @@ div.acrit_exp_wizard_quick_start_filter {
 	width:100%;
 	z-index:1;
 }
+div.acrit_exp_wizard_quick_start_filter table {
+	border-collapse:collapse;
+	width:100%;
+}
+div.acrit_exp_wizard_quick_start_filter table td {
+	padding:0;
+	vertical-align:middle;
+}
+div.acrit_exp_wizard_quick_start_filter table td:first-child {
+	width:100%;
+}
+div.acrit_exp_wizard_quick_start_filter table td + td {
+	padding-left:4px;
+}
+div.acrit_exp_wizard_quick_start_filter table td select {
+	height:25px;
+	padding-top:3px;
+}
+div.acrit_exp_wizard_quick_start_filter table td label > span {
+	display:block;
+	line-height:12px;
+}
 div.acrit_exp_wizard_quick_start_filter input[type="text"] {
 	width:100%;
 	-webkit-box-sizing:border-box;
 	   -moz-box-sizing:border-box;
 	        box-sizing:border-box;
+}
+div.acrit_exp_wizard_quick_start_filter input[type="checkbox"] + span {
+	vertical-align:middle;
 }
 /* Controls */
 div.acrit_exp_wizard_quick_start_controls {
@@ -1799,6 +1846,47 @@ table.acrit_exp_wizard_quick_start_confirm_table select {
 span.acrit_exp_wizard_quick_start_confirm_table span.acrit_exp_wizard_quick_start_https {
 	display:inline-block;
 }
-	
-	
-	
+
+/* Export results table */
+table.acrit_core_export_results{
+	border-collapse:collapse;
+	cursor:default;
+	margin-bottom:10px;
+	width:100%;
+}
+table.acrit_core_export_results td {
+	border-bottom:1px solid silver;
+	padding:4px;
+	vertical-align:top;
+}
+table.acrit_core_export_results tr:hover td {
+	background-color:rgba(185, 146, 115, .12);
+}
+table.acrit_core_export_results td.acrit_core_export_results_text {
+	font-weight:bold;
+}
+table.acrit_core_export_results tr[data-type="SUCCESS"] td.acrit_core_export_results_text {
+	color:green;
+}
+table.acrit_core_export_results tr[data-type="ERROR"] td.acrit_core_export_results_text {
+	color:maroon;
+}
+table.acrit_core_export_results tr[data-type="WARNING"] td.acrit_core_export_results_text {
+	color:orange;
+}
+table.acrit_core_export_results td.acrit_core_export_results_text i {
+	font-weight:normal;
+}
+table.acrit_core_export_results td.acrit_core_export_results_text span[data-role="acrit_exp_results_go_to_log"] {
+	border-bottom:1px dashed #2675d7;
+	color:#2675d7;
+	cursor:pointer;
+	display:inline-block;
+	line-height:100%;
+}
+table.acrit_core_export_results td.acrit_core_export_results_text span[data-role="acrit_exp_results_go_to_log"]:hover {
+	border-bottom:0;
+}
+table.acrit_core_export_results td.acrit_core_export_results_hint {
+	width:10px;
+}

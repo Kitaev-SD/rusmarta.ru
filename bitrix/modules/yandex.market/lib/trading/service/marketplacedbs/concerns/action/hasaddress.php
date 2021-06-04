@@ -37,6 +37,8 @@ trait HasAddress
 			'ZIP' => $address->getMeaningfulZip(),
 			'CITY' => $address->getMeaningfulCity(),
 			'ADDRESS' => $address->getMeaningfulAddress($configuredAddressParts),
+			'LAT' => $address->getLat(),
+			'LON' => $address->getLon(),
 		];
 
 		if ($useDetails)

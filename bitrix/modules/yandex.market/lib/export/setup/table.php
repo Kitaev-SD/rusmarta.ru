@@ -108,7 +108,7 @@ class Table extends Market\Reference\Storage\Table
 				'UPDATE %s SET %s=\'%s\'',
 				$sqlHelper->quote($tableName),
 				$sqlHelper->quote('ENABLE_CPA'),
-				$sqlHelper->forSql('1')
+				$sqlHelper->forSql('0')
 			));
 		}
 	}

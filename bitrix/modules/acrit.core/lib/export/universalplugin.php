@@ -103,6 +103,9 @@ abstract class UniversalPlugin extends Plugin{
 	protected $bCategoryNameInAttribute = false;
 	# Misc settings
 	protected $bAdmin = false;
+
+	# Tmp variables
+	protected $arStepByStep = null;
 	
 	/**
 	 * Base constructor.
@@ -465,10 +468,26 @@ abstract class UniversalPlugin extends Plugin{
 		$arSettings['FORMAT'] = $this->showSettingsFormat();
 		$arSettings['ENCODING'] = $this->showSettingsEncoding();
 		$arSettings['ARCHIVE'] = $this->showSettingsArchive();
+		$arSettings['STEP_BY_STEP'] = [
+			'HTML' => $this->showStepByStepSettings(),
+			'FULL' => true,
+			'SORT' => 200,
+		];
+		$arSettings['CHECK_CONFIG'] = [
+			'HTML' => $this->showSettingsCheckConfig(),
+			'FULL' => true,
+			'SORT' => 1000000,
+		];
 		$this->handler('onUpShowSettings', array(&$arSettings));
 		# Remove empty
 		foreach($arSettings as $key => $arSettingsItem){
-			if(!strlen($arSettingsItem)){
+			if(is_null($arSettingsItem) || $arSettingsItem === false){
+				unset($arSettings[$key]);
+			}
+			elseif(is_string($arSettingsItem) && !strlen($arSettingsItem)){
+				unset($arSettings[$key]);
+			}
+			elseif(is_array($arSettingsItem) && !strlen($arSettingsItem['HTML'])){
 				unset($arSettings[$key]);
 			}
 		}
@@ -650,6 +669,56 @@ abstract class UniversalPlugin extends Plugin{
 			}).trigger("change");</script>';
 			return $strHtml;
 		}
+	}
+	protected function showSettingsCheckConfig(){
+		$strHtml = '';
+		$bHideStartButton = false;
+		if($this->arParams['EXPORT_FORMAT'] == 'XLSX'){
+			if(!extension_loaded('zip')){
+				$bHideStartButton = true;
+				$strError = static::getMessage('ERROR_DESC_XLSX_NO_ZIPARCHIVE');
+				if(Helper::strlen($_SERVER['BITRIX_VA_VER'])){
+					$strError .= static::getMessage('ERROR_DESC_XLSX_NO_ZIPARCHIVE_INSTALL_VMBITRIX');
+				}
+				else{
+					$strError .= static::getMessage('ERROR_DESC_XLSX_NO_ZIPARCHIVE_INSTALL_GENERAL');
+				}
+				$strHtml = Helper::showError(static::getMessage('ERROR_NAME_XLSX_NO_ZIPARCHIVE'), $strError);
+			}
+			elseif(!extension_loaded('xmlwriter')){
+				$strError = static::getMessage('ERROR_DESC_XLSX_NO_XMLWRITER');
+				if(Helper::strlen($_SERVER['BITRIX_VA_VER'])){
+					$strError .= static::getMessage('ERROR_DESC_XLSX_NO_XMLWRITER_INSTALL_VMBITRIX');
+				}
+				else{
+					$strError .= static::getMessage('ERROR_DESC_XLSX_NO_XMLWRITER_INSTALL_GENERAL');
+				}
+				$strHtml = Helper::showError(static::getMessage('ERROR_NAME_XLSX_NO_XMLWRITER'), $strError);
+				$bHideStartButton = true;
+			}
+		}
+		# Restrict manual execute
+		if($bHideStartButton){
+			$strHtml .= '
+			<style>
+			#acrit-exp-button-run{
+				pointer-events: none;
+				opacity: 0.5;
+				color: gray;
+			}
+			#acrit-exp-button-run:before{
+				opacity:0.5;
+			}
+			</style>
+			<script>
+			$(document).ready(function(){
+				$("#acrit-exp-button-run").attr("disabled", "disabled");
+				$("[data-role=\"run-manual\"]").attr("disabled", "disabled");
+				$("[data-role=\"run-background\"]").attr("disabled", "disabled");
+			});
+			</script>';
+		}
+		return $strHtml;
 	}
 	
 	/**
@@ -938,7 +1007,7 @@ abstract class UniversalPlugin extends Plugin{
 				'FUNC' => array($this, 'stepArchive'),
 			);
 		}
-		# ToDo: add handler
+		$this->handler('onUpGetSteps', [&$arResult]);
 		return $arResult;
 	}
 	
@@ -962,8 +1031,8 @@ abstract class UniversalPlugin extends Plugin{
 		return Helper::showSuccess(ob_get_clean());
 	}
 	
-	public function showFileOpenLink($strFile=false, $strTitle=false){
-		$strHtml = parent::showFileOpenLink($strFile, $strTitle);
+	public function showFileOpenLink($strFile=false, $strTitle=false, $bCompact=false){
+		$strHtml = parent::showFileOpenLink($strFile, $strTitle, $bCompact);
 		if(strlen($this->arParams['ARCHIVE'])){
 			$strFilenameArchive = $this->getExportFileNameArchive($this->arParams['ARCHIVE']);
 			if($strTitle === false){
@@ -1266,6 +1335,8 @@ abstract class UniversalPlugin extends Plugin{
 	 */
 	protected function stepExport_ExportItems($arStep){
 		$arSession = &$this->arData['SESSION']['EXPORT'];
+		# Step-by-step: prepare
+		$bStepByStep = $this->stepExport_ExportItems_StepByStepPrepare();
 		#
 		$this->handler('onUpBeforeExportItems', [&$arStep]);
 		if($this->isExcel()){
@@ -1278,6 +1349,35 @@ abstract class UniversalPlugin extends Plugin{
 				call_user_func_array(array($this, 'stepExport_'.$this->strCurrentFormat.'_ExportItem'), array($arItem)); // eg, stepExport_XML_ExportItem
 				$this->setDataItemExported($arItem['ID']);
 				$arSession['INDEX']++;
+				# Step-by-step
+				if($bStepByStep){
+					# Step-by-step: Check resume (find next)
+					if(!$this->arStepByStep['FOUND_NEXT']){
+						if(empty($this->arStepByStep['LAST_ITEM'])){
+							$this->arStepByStep['FOUND_NEXT'] = true;
+						}
+						elseif(strcmp(toLower($arItem['SORT']), toLower($this->arStepByStep['LAST_ITEM']['SORT'])) > 0){
+							$this->arStepByStep['FOUND_NEXT'] = true;
+						}
+						elseif($arItem['SORT'] == $this->arStepByStep['LAST_ITEM']['SORT']){
+							if($arItem['ELEMENT_ID'] > $this->arStepByStep['LAST_ITEM']['ELEMENT_ID']){
+								$this->arStepByStep['FOUND_NEXT'] = true;
+							}
+						}
+					}
+					# Step-by-step: Check stop step, if stop then save last exported item
+					if($this->arStepByStep['FOUND_NEXT']){
+						$this->arStepByStep['COUNT_EXPORTED']++;
+						if($this->arStepByStep['COUNT_EXPORTED'] >= $this->arStepByStep['COUNT_PER_STEP']){
+							$this->arStepByStep['BREAKED'] = true;
+							break 2;
+						}
+					}
+				}
+				if($this->handler('onStepExportGetHaveTime', [&$arSession]) === false){
+					$bBreaked = true;
+					break 2;
+				}
 				if(!Exporter::getInstance($this->strModuleId)->haveTime()){
 					$bBreaked = true;
 					break 2;
@@ -1289,12 +1389,49 @@ abstract class UniversalPlugin extends Plugin{
 		if($this->isExcel()){
 			$this->stepExport_ExcelSaveFile($bBreaked);
 		}
+		# If breaked by step-by-step
+		if($bStepByStep){
+			$arLastExportedItem = array_merge($this->arStepByStep['LAST_ITEM'], [
+				'ELEMENT_ID' => $arItem['ELEMENT_ID'],
+				'SORT' => $arItem['SORT'],
+				'COUNT_EXPORTED' => $this->arStepByStep['COUNT_EXPORTED'],
+			]);
+			if($this->arStepByStep['BREAKED']){
+				unset($arLastExportedItem['COUNT_EXPORTED']);
+			}
+			elseif(!$bBreaked){
+				$arLastExportedItem['FINISHED'] = 'Y';
+			}
+			$intStep = intVal($arLastExportedItem['STEP']) + ($this->arStepByStep['COUNT_EXPORTED'] ? 1 : 0);
+			$this->setLastExportedItem($this->arProfile['ID'], $arLastExportedItem, $intStep);
+		}
 		#
 		if($bBreaked){
 			return Exporter::RESULT_CONTINUE;
 		}
 		#
 		return Exporter::RESULT_SUCCESS;
+	}
+
+	/**
+	 * Prepare step-by-step export
+	 **/
+	protected function stepExport_ExportItems_StepByStepPrepare(){
+		$this->arStepByStep = null;
+		if($this->isStepByStepMode() && $this->arProfile['PARAMS']['STEP_BY_STEP'] == 'Y'){
+			if(($intCountPerStep = intVal($this->arProfile['PARAMS']['STEP_BY_STEP_COUNT'])) > 0){
+				$this->arStepByStep = [
+					'LAST_ITEM' => $this->getLastExportedItem($this->arProfile['ID']),
+					'COUNT_PER_STEP' => $intCountPerStep,
+					'COUNT_EXPORTED' => 0,
+					'FOUND_NEXT' => false,
+				];
+				if($this->arStepByStep['LAST_ITEM']['COUNT_EXPORTED']){
+					$this->arStepByStep['COUNT_EXPORTED'] = $this->arStepByStep['LAST_ITEM']['COUNT_EXPORTED'];
+				}
+			}
+		}
+		return is_array($this->arStepByStep) && !empty($this->arStepByStep);
 	}
 	
 	/**
@@ -1764,9 +1901,10 @@ abstract class UniversalPlugin extends Plugin{
 			foreach($arRedefinitions as $intSectionID => $strSectionName){
 				if(is_array($arResult[$intSectionID])){
 					$arResult[$intSectionID]['NAME_ORIGINAL'] = $arResult[$intSectionID]['NAME_ORIGINAL'];
-					#
 					$strSectionName = trim(end(explode($this->strCategoryNameSeparator, $strSectionName)));
-					$arResult[$intSectionID]['NAME'] = $strSectionName;
+					if(strlen($strSectionName)){
+						$arResult[$intSectionID]['NAME'] = $strSectionName;
+					}
 				}
 			}
 		}
@@ -2311,7 +2449,7 @@ abstract class UniversalPlugin extends Plugin{
 	/**
 	 *	Get export data items
 	 */
-	protected function getExportDataItems($arFilter=null, $arSelect=null){
+	protected function getExportDataItems($arFilter=null, $arSelect=null, $bWithExported=false){
 		$arResult = array();
 		#
 		$strSortOrder = $this->arProfile['PARAMS']['SORT_ORDER'];
@@ -2319,11 +2457,15 @@ abstract class UniversalPlugin extends Plugin{
 			$strSortOrder = 'ASC';
 		}
 		#
-		$arFilter = array_merge(array(
+		$arBaseFilter = [
 			'PROFILE_ID' => $this->arProfile['ID'],
 			'!TYPE' => ExportData::TYPE_DUMMY,
 			'EXPORTED' => false
-		), is_array($arFilter) ? $arFilter : array());
+		];
+		if($bWithExported){
+			unset($arBaseFilter['EXPORTED']);
+		}
+		$arFilter = array_merge($arBaseFilter, is_array($arFilter) ? $arFilter : []);
 		$arOrder = array(
 			'SORT' => $strSortOrder,
 			'ELEMENT_ID' => 'ASC',
@@ -2332,7 +2474,11 @@ abstract class UniversalPlugin extends Plugin{
 		if(!in_array('ID', $arSelect)){
 			$arSelect[] = 'ID';
 		}
-		if(!in_array('DATA', $arSelect)){
+		$key = array_search('_SKIP_DATA_FIELD', $arSelect);
+		if($key !== false){
+			unset($arSelect[$key]);
+		}
+		elseif(!in_array('DATA', $arSelect)){
 			$arSelect[] = 'DATA';
 		}
 		$arQuery = [

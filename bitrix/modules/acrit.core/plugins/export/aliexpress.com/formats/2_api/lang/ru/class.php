@@ -1,7 +1,9 @@
 <?
 \Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+
 $strSName = $strLang.'SETTINGS_NAME_';
 $strSHint = $strLang.'SETTINGS_HINT_';
+$strSValues = $strLang.'SETTINGS_VALUES_';
 
 // General
 $MESS[$strLang.'NAME'] = 'Aliexpress.com (обмен через API)';
@@ -16,16 +18,18 @@ $MESS[$strLang.'CHECK_ERROR'] = 'Ошибка: ';
 $MESS[$strLang.'CHECK_SUCCESS'] = 'Успешно';
 $MESS[$strSName.'SECTIONS'] = 'Раздел каталога';
 $MESS[$strSHint.'SECTIONS'] = 'Выберите раздел товароного каталога AliExpress, в который будут выгружаться товары данного профиля. От этого выбора будет зависеть набор полей, доступных для выгрузки.';
+$MESS[$strLang.'SECTION_EMPTY'] = 'Выбрать вариант';
 
 // Fields
 $MESS[$strHead.'HEADER_GENERAL'] = 'Общая информация';
+$MESS[$strLang.'LOAD_WARNING'] = 'Внимание! Справочная информация не загрузилась с сервера AliExpress. Попробуйте обновить страницу через несколько минут.';
 
 $MESS[$strName.'sku_code'] = 'Артикул';
 $MESS[$strHint.'sku_code'] = 'Артикул или штрихкод товара';
 $MESS[$strName.'title'] = 'Название товара';
 $MESS[$strHint.'title'] = 'Название - это категория, бренд, модель и дополнительные атрибуты. Например, «Кроссовки летние AliExpress женские для города и прогулок TMALL W TM55555».';
 $MESS[$strName.'locale'] = 'Локализация';
-$MESS[$strHint.'locale'] = 'Языковой код. Варианты: #VARIANTS#';
+$MESS[$strHint.'locale'] = 'Языковой код';
 $MESS[$strName.'description'] = 'Описание товара';
 $MESS[$strHint.'description'] = 'Текст описания товара может содержать HTML-теги.';
 $MESS[$strName.'brand_name'] = 'Бренд';
@@ -33,9 +37,10 @@ $MESS[$strHint.'brand_name'] = 'Название бренда';
 $MESS[$strName.'images'] = ' Изображения';
 $MESS[$strHint.'images'] = 'Будет загружено до шести изображений.';
 $MESS[$strName.'product_units_type'] = 'Единица измерения';
-$MESS[$strHint.'product_units_type'] = 'Числовой код единицы измерения. Варианты: #VARIANTS#';
+$MESS[$strHint.'product_units_type'] = 'Числовой код единицы измерения.';
 $MESS[$strName.'inventory_deduction_strategy'] = 'Вычет запасов';
-$MESS[$strHint.'inventory_deduction_strategy'] = 'После заказа товара - place_order_withhold, после оплаты - payment_success_deduct';
+$MESS[$strSValues.'inventory_deduction_strategy_withhold'] = 'После заказа товара';
+$MESS[$strSValues.'inventory_deduction_strategy_deduct'] = 'После оплаты';
 $MESS[$strName.'inventory'] = 'Остаток';
 $MESS[$strHint.'inventory'] = 'Остаток товара на складе';
 $MESS[$strName.'price'] = 'Цена';
@@ -53,7 +58,7 @@ $MESS[$strHint.'package_width'] = 'Используется для расчета стоимости и определе
 $MESS[$strName.'shipping_preparation_time'] = 'Время подготовки заказа, в днях';
 $MESS[$strHint.'shipping_preparation_time'] = 'Время, за которое данный товар должен быть отправлен покупателю (отправленным заказ считается после введения трек-номера). Отсчет начинается с момента оплаты.';
 $MESS[$strName.'shipping_template_id'] = 'Шаблон доставки';
-$MESS[$strHint.'shipping_template_id'] = 'Шаблон доставки – это сценарий доставки товара, включающий в себя все ваши курьерские службы. Вариант по-умолчанию: Почта России. Другие варианты: #VARIANTS#';
+$MESS[$strHint.'shipping_template_id'] = 'Шаблон доставки – это сценарий доставки товара, включающий в себя все ваши курьерские службы. Вариант по-умолчанию: Почта России';
 $MESS[$strName.'service_template_id'] = 'Шаблон услуг';
-$MESS[$strHint.'service_template_id'] = 'Варианты: #VARIANTS#';
+$MESS[$strHint.'service_template_id'] = '';
 ?>

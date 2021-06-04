@@ -44,7 +44,7 @@ class AdminExtension extends Market\Trading\Entity\Reference\AdminExtension
 		try
 		{
 			$orderInfo = static::getOrderInfo($parameters);
-			$setup = TradingSetup\Model::loadByExternalIdAndSite($orderInfo['TRADING_PLATFORM_ID'], $orderInfo['SITE_ID']);
+			$setup = TradingSetup\Model::loadByTradingInfo($orderInfo);
 			$tabSet = new UiTrading\OrderViewTabSet($setup, $orderInfo['EXTERNAL_ORDER_ID']);
 
 			$tabSet->checkReadAccess();
@@ -73,7 +73,7 @@ class AdminExtension extends Market\Trading\Entity\Reference\AdminExtension
 		try
 		{
 			$orderInfo = static::getOrderInfo($parameters);
-			$setup = TradingSetup\Model::loadByExternalIdAndSite($orderInfo['TRADING_PLATFORM_ID'], $orderInfo['SITE_ID']);
+			$setup = TradingSetup\Model::loadByTradingInfo($orderInfo);
 			$tabSet = new UiTrading\OrderViewTabSet($setup, $orderInfo['EXTERNAL_ORDER_ID']);
 
 			$tabSet->checkReadAccess();
@@ -142,12 +142,10 @@ class AdminExtension extends Market\Trading\Entity\Reference\AdminExtension
 	 */
 	protected static function createTabSet($parameters)
 	{
-		$orderId = static::extractParametersOrderId($parameters);
-		$tradingInfo = static::getTradingInfo($orderId);
-		$order = static::getOrder($orderId);
-		$setup = TradingSetup\Model::loadByExternalIdAndSite($tradingInfo['TRADING_PLATFORM_ID'], $order->getSiteId());
+		$orderInfo = static::getOrderInfo($parameters);
+		$setup = TradingSetup\Model::loadByTradingInfo($orderInfo);
 
-		return new UiTrading\OrderViewTabSet($setup, $tradingInfo['EXTERNAL_ORDER_ID']);
+		return new UiTrading\OrderViewTabSet($setup, $orderInfo['EXTERNAL_ORDER_ID']);
 	}
 
 	protected static function getOrderInfo($parameters)

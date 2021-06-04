@@ -83,7 +83,7 @@ class StringType extends AbstractType
 
 	protected function replaceXmlEntity($value)
 	{
-		return str_replace('&', '&amp;', $value);
+		return Market\Utils\XmlValue::escape($value);
 	}
 
 	protected function truncateText($text, $maxLength)

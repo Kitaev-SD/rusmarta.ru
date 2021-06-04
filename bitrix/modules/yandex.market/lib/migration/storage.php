@@ -29,5 +29,6 @@ class Storage
 	public static function reset()
 	{
 		Market\Reference\Storage\Controller::createTable();
+		Market\Trading\UseCase\TradeBindingPreserve::restore();
 	}
 }

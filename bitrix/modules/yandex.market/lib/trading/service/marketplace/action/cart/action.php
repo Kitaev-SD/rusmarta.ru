@@ -7,8 +7,15 @@ use Bitrix\Main;
 use Yandex\Market\Trading\Entity as TradingEntity;
 use Yandex\Market\Trading\Service as TradingService;
 
+/** @property TradingService\Marketplace\Provider $provider */
 class Action extends TradingService\Common\Action\Cart\Action
 {
+	protected static function includeMessages()
+	{
+		Main\Localization\Loc::loadMessages(__FILE__);
+		parent::includeMessages();
+	}
+
 	protected function createRequest(Main\HttpRequest $request, Main\Server $server)
 	{
 		return new Request($request, $server);
@@ -18,6 +25,8 @@ class Action extends TradingService\Common\Action\Cart\Action
 	{
 		$this->collectTaxSystem();
 		$this->collectItems();
+
+		$this->applySelfTest();
 	}
 
 	protected function collectItems()
@@ -67,5 +76,21 @@ class Action extends TradingService\Common\Action\Cart\Action
 		{
 			$this->response->setField('cart.items', []);
 		}
+	}
+
+	protected function applySelfTest()
+	{
+		$this->applySelfTestOutOfStock();
+	}
+
+	protected function applySelfTestOutOfStock()
+	{
+		if (!$this->provider->getOptions()->getSelfTestOption()->isOutOfStock()) { return; }
+
+		$this->response->setField('cart.items', []);
+
+		$this->provider->getLogger()->warning(static::getLang(
+			'TRADING_MARKETPLACE_CART_SELF_TEST_OUT_OF_STOCK_ON'
+		));
 	}
 }

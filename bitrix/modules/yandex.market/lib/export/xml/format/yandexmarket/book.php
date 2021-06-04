@@ -21,7 +21,7 @@ class Book extends VendorModel
 	 */
 	public function getOffer()
 	{
-		return new Xml\Tag\Base([
+		return new Xml\Tag\Offer([
 			'name' => 'offer',
 			'required' => true,
 			'attributes' => [

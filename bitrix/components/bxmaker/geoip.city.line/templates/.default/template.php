@@ -45,7 +45,7 @@
 				<i class="fa fa-times"></i>
 			</span>
 			<div class="popup-window-buttons">
-				<button name="cityConfirmYes" class="btn_buy popdef js-bxmaker__geoip__city__line-question-btn-yes">Да</button>
+				<button name="cityConfirmYes" class="btn_buy popdef js-bxmaker__geoip__city__line-question-btn-yes">ДА</button>
 				<button name="cityConfirmChange" class="btn_buy apuo js-bxmaker__geoip__city__line-question-btn-no">Выбрать другой город</button>
 			</div>
 		</div>

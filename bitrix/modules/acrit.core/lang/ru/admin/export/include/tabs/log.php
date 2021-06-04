@@ -9,4 +9,6 @@ $MESS['ACRIT_EXP_TAB_LOG_EMPTY_PLACEHOLDER'] = 'Лог пуст.';
 
 $MESS['ACRIT_EXP_TAB_LOG_HISTORY'] = 'История выгрузок';
 
+$MESS['ACRIT_EXP_TAB_LOG_EMAIL'] = 'Отправка уведомлений на Email';
+
 ?>

@@ -16,21 +16,27 @@ $arPluginParams = $obPlugin->getPluginParams();
 // EXPORT PROMOCODES
 $obTabControl->BeginCustomField($strPluginParams . '[EXPORT_PROMOCODES]', $obPlugin::getMessage('EXPORT_PROMOCODES'));
 ?>
+<?/*
 <tr>
 	<td colspan="2" valign="top" style="text-align: center;">
 		<?= $obPlugin::getMessage('EXPORT') ?>
 	</td>
 </tr>
+*/?>
 <tr id="row_YANDEX_MARKET_EXPORT_PROMOCODES">
 	<td width="40%" valign="top">
 		<?= Helper::showHint($obPlugin::getMessage('EXPORT_PROMOCODES_DESC')); ?>
 		<?= $obTabControl->GetCustomLabelHTML() ?>:
 	</td>
 	<td width="60%">
+		<?$disabled = !\Bitrix\Main\Loader::includeModule('sale')?>
 		<label>
-			<input type="checkbox" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_PROMOCODES]" value="Y"
+			<input type="checkbox" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_PROMOCODES]" value="Y"<?=($disabled ? ' disabled' : '');?>
 						 <? if ($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES'] == 'Y'): ?>checked="checked"<? endif ?>/>
 		</label>
+		<?if($disabled):?>
+			<?=$obPlugin::getMessage('EXPORT_PROMOCODES_NO_SALE');?>
+		<?endif?>
 	</td>
 </tr><? $display = ($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES'] == 'Y') ? 'block' : 'none'; ?>
 <tr id="row_YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS" style="display:<?= $display ?>;">
@@ -43,14 +49,14 @@ $obTabControl->BeginCustomField($strPluginParams . '[EXPORT_PROMOCODES]', $obPlu
 			<? /* ?><input class="YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS" type="text" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS]" value="" /><?/* */ ?>
 			<select multiple="true" type="text" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS][]" >
 				<?
-				\Bitrix\Main\Loader::includeModule('sale');
-
-				$discountIterator = \Bitrix\Sale\Internals\DiscountTable::getList(array(
-										'select' => array('ID', 'NAME'),
-				));
-				while ($discount = $discountIterator->fetch()) {
-					$selected = (in_array($discount['ID'], $arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS'])) ? 'selected="selected"' : '';
-					?><option <?= $selected ?> value="<?= $discount['ID'] ?>"><?= $discount['NAME'] ?></option><?
+				if(\Bitrix\Main\Loader::includeModule('sale')){
+					$discountIterator = \Bitrix\Sale\Internals\DiscountTable::getList(array(
+											'select' => array('ID', 'NAME'),
+					));
+					while ($discount = $discountIterator->fetch()) {
+						$selected = (in_array($discount['ID'], $arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS'])) ? 'selected="selected"' : '';
+						?><option <?= $selected ?> value="<?= $discount['ID'] ?>"><?= $discount['NAME'] ?></option><?
+					}
 				}
 				?>
 

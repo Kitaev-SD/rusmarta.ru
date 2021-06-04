@@ -16,6 +16,15 @@ class Changes
 		static::initializeQueue();
 	}
 
+	public static function releaseAll($setupId)
+	{
+		Storage\ChangesTable::deleteBatch([
+			'filter' => [
+				'=SETUP_ID' => $setupId,
+			]
+		]);
+	}
+
 	public static function release($setupId, Main\Type\DateTime $dateTime)
 	{
 		Storage\ChangesTable::deleteBatch([

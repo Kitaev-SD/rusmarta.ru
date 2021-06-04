@@ -7,6 +7,7 @@ include(GetLangFileName($strPath2opt . '/lang/', '/options.php'));
 
 IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"] . BX_ROOT . "/modules/main/options.php");
 CModule::IncludeModule($module_id);
+global $APPLICATION;
 
 $RIGHT = $APPLICATION->GetGroupRight($module_id);
 if ($RIGHT >= "R") :
@@ -54,7 +55,7 @@ if ($RIGHT >= "R") :
     $tabControl = new CAdminTabControl("tabControl", $aTabs);
 
 
-    if ($RIGHT == "W" && $REQUEST_METHOD == "POST" && strlen($Update . $RestoreDefaults) > 0 && check_bitrix_sessid()) {
+    if ("W" === $RIGHT && "POST" === $REQUEST_METHOD && strlen($Update . $RestoreDefaults) > 0 && check_bitrix_sessid()) {
 
         if (strlen($RestoreDefaults) > 0) {
             COption::RemoveOption($module_id);

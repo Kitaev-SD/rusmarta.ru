@@ -155,8 +155,10 @@ class Action extends TradingService\Common\Action\Cart\Action
 	{
 		$platform = $this->getPlatform();
 		$externalId = $this->request->getOrder()->getId();
+		$setupId = $this->provider->getOptions()->getSetupId();
 
 		$this->order->fillXmlId($externalId, $platform);
+		$this->order->fillTradingSetup($setupId, $platform);
 	}
 
 	protected function fillProperties()

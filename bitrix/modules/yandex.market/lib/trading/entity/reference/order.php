@@ -157,6 +157,15 @@ abstract class Order
 	}
 
 	/**
+	 * @param int $setupId
+	 * @param Platform $platform
+	 */
+	public function fillTradingSetup($setupId, Platform $platform)
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'fillTradingSetup');
+	}
+
+	/**
 	 * @param array $values
 	 *
 	 * @return Main\Result
@@ -164,6 +173,14 @@ abstract class Order
 	public function fillProperties(array $values)
 	{
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'fillProperties');
+	}
+
+	/**
+	 * @return Main\Result
+	 */
+	public function resetLocation()
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'resetLocation');
 	}
 
 	/**
@@ -346,11 +363,11 @@ abstract class Order
 
 	/**
 	 * @param string $status
-	 * @param string|null $reason
+	 * @param mixed $payload
 	 *
 	 * @return Main\Result
 	 */
-	public function setStatus($status, $reason = null)
+	public function setStatus($status, $payload = null)
 	{
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'setStatus');
 	}

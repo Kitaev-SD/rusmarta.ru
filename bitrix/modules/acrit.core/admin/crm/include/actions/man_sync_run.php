@@ -43,7 +43,7 @@ if ($start_sync_ts) {
 
 // Process
 //Helper::Log('(sync) cnt '.$cnt);
-if ($next_item < $cnt) {
+if (!$cnt || $next_item < $cnt) {
 	$orders_ids = $obPlugin->getOrdersIDsList($filter);
 	$i = 0;
 	foreach($orders_ids as $order_id) {
@@ -85,5 +85,7 @@ $next_item   = $i;
 $arJsonResult['result'] = 'ok';
 $arJsonResult['next_item'] = (int)$next_item;
 $arJsonResult['errors'] = [];
-$arJsonResult['report'] = [];
+$arJsonResult['report'] = [
+	'all' => (int)$next_item,
+];
 $arJsonResult['sync_period_opt'] = $sync_period_opt;

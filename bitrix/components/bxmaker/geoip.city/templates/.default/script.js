@@ -118,7 +118,7 @@ if (!!window.BXmakerGeoIPCity === false) {
             if (typeof num == 'number' || typeof num == 'string') {
                 num = num.toString();
                 var dotLocation = num.indexOf('.');
-                if (dotLocation > 0) {//Àìïóòàöèÿ äğîáíîé ÷àñòè
+                if (dotLocation > 0) {//  
                     num = num.substr(0, dotLocation);
                 }
                 if (isNaN(Number(num))) {
@@ -129,13 +129,13 @@ if (!!window.BXmakerGeoIPCity === false) {
                 }
                 return Number(num);
             }
-            else if (typeof num == 'object' && num.length != null && num.length > 0) {//Íåïóñòîé ìàññèâ/îáúåêò -> 1
+            else if (typeof num == 'object' && num.length != null && num.length > 0) {// / -> 1
                 return 1;
             }
             else if (typeof num == 'boolean' && num === true) {//true -> 1
                 return 1;
             }
-            return 0;//×óòü ÷òî íå òàê - ñğàçó â íîëü
+            return 0;//    -   
         };
 
         BXmakerGeoIPCityConstructor.prototype.cookie = function (name, value, params) {
@@ -431,7 +431,7 @@ if (!!window.BXmakerGeoIPCity === false) {
                 that.popup.find('.js-bxmaker__geoip__popup-search-options').hide();
 
                 if (that.params.bUseYandexSearch) {
-                    // ñîõğàíÿåì íà ñåğâåğå
+                    //   
                     that.selectLocation(false, {
                         location: item.attr('data-location'),
                         city: item.attr('data-city'),
@@ -766,7 +766,7 @@ if (!!window.BXmakerGeoIPCity === false) {
                         if (that.params.reload) {
                             that.log('need page reload');
 
-                            //åñëè åñòü ôîğìà îôîğìëåíèÿ çàêàçà
+                            //    
                             if (!!BX.Sale && !!BX.Sale.OrderAjaxComponent && !!BX.Sale.OrderAjaxComponent.sendRequest) {
                                 that.log('order page - send request');
                                 // BX.Sale.OrderAjaxComponent.sendRequest()
@@ -1081,7 +1081,10 @@ if (!!window.BXmakerGeoIPYandexGeo === false) {
             if (that.bInit) return true;
 
             that.bInit = true; //&ns=BXmakerGeoIPYandexMap
-            $('head').append($('<script id="BXmakerGeoIPYandexGeo" type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&load=geolocation,geocode&ns=&onload=BXmakerGeoIPYandexGeo.onload" />'));
+            function api_maps_yandex() {
+                $('head').append($('<script async id="BXmakerGeoIPYandexGeo" type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&load=geolocation,geocode&ns=&onload=BXmakerGeoIPYandexGeo.onload" />'));
+            }
+            setTimeout(api_maps_yandex, 5000);
         };
 
         GeoIPYandexGeo.prototype.onload = function (ym) {

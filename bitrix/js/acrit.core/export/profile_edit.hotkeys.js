@@ -1,5 +1,8 @@
 // Run export [Alt+R]
 $.alt('R', function() {
+	if($('#acrit-exp-button-run').is('[disabled]')){
+		return false;
+	}
 	if(AcritExpPopupExecute.isOpen){
 		var buttonStart = $('#acrit-exp-popup-execute-button-start'),
 			buttonUnlock = $('[data-role="profile-unlock"]', AcritExpPopupExecute.PARTS.CONTENT_DATA);

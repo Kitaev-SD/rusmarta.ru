@@ -9,7 +9,7 @@ Main\Localization\Loc::loadMessages(__FILE__);
 
 class SetupEdit extends Market\Ui\Reference\Form
 {
-	const STATE_INACTIVE = 'inactive';
+	const STATE_NOT_INSTALLED = 'notInstalled';
 	const STATE_DEPRECATED = 'deprecated';
 	const STATE_MIGRATE = 'migrate';
 	const STATE_EDIT = 'edit';
@@ -32,6 +32,7 @@ class SetupEdit extends Market\Ui\Reference\Form
 		{
 			$action = $this->getRequestAction();
 			$selfHandled = [
+				static::ACTION_ACTIVATE => true,
 				static::ACTION_DEACTIVATE => true,
 				static::ACTION_DEPRECATE => true,
 			];
@@ -59,6 +60,7 @@ class SetupEdit extends Market\Ui\Reference\Form
 		$query = [
 			'site' => $setup->getSiteId(),
 			'service' => $setup->getServiceCode(),
+			'id' => $setup->getId(),
 		];
 		$url = $APPLICATION->GetCurPageParam(
 			http_build_query($query),
@@ -163,24 +165,23 @@ class SetupEdit extends Market\Ui\Reference\Form
 	public function resolveState()
 	{
 		$setup = $this->getSetup();
-		$isActive = $setup->isActive();
 		$isInstalled = $setup->isInstalled();
 
-		if ($isActive)
+		if ($isInstalled)
 		{
 			$result = static::STATE_EDIT;
 		}
-		else if (!$isInstalled && $this->isServiceDeprecated())
+		else if ($this->isServiceDeprecated())
 		{
 			$result = static::STATE_DEPRECATED;
 		}
-		else if (!$isInstalled && $this->hasServiceMigrated() && $this->existsMigratedSetup())
+		else if ($this->hasServiceMigrated() && $this->existsMigratedSetup())
 		{
 			$result = static::STATE_MIGRATE;
 		}
 		else
 		{
-			$result = static::STATE_INACTIVE;
+			$result = static::STATE_NOT_INSTALLED;
 		}
 
 		return $result;
@@ -191,7 +192,7 @@ class SetupEdit extends Market\Ui\Reference\Form
 		$this->applyTitle('INTRO');
 	}
 
-	public function setStateTitle($state = self::STATE_INACTIVE)
+	public function setStateTitle($state = self::STATE_NOT_INSTALLED)
 	{
 		if ($state === static::STATE_EDIT)
 		{
@@ -238,7 +239,7 @@ class SetupEdit extends Market\Ui\Reference\Form
 				$query = [
 					'lang' => LANGUAGE_ID,
 					'service' => $setup->getServiceCode(),
-					'siteId' => $setup->getSiteId(),
+					'id' => $setup->getId(),
 				];
 				$url = $APPLICATION->GetCurPageParam(
 					http_build_query($query),
@@ -263,28 +264,23 @@ class SetupEdit extends Market\Ui\Reference\Form
 		echo sprintf('<a class="adm-btn" href="%s">%s</a><br /><br />', $url, $title);
 	}
 
-	public function show($state = self::STATE_INACTIVE)
+	public function show($state = self::STATE_NOT_INSTALLED)
 	{
 		switch ($state)
 		{
 			case static::STATE_DEPRECATED:
-				$this->showSiteSelector();
 				$this->showDeprecatedMessage();
 			break;
 
 			case static::STATE_MIGRATE:
-				$this->showSiteSelector();
 				$this->showMigrationForm();
 			break;
 
-			case static::STATE_INACTIVE:
-				$this->showSiteSelector();
-				$this->showDeprecateProposal();
-				$this->showActivateForm();
+			case static::STATE_NOT_INSTALLED:
+				$this->redirectToAddForm();
 			break;
 
 			case static::STATE_EDIT:
-				$this->showSiteSelector();
 				$this->showDeprecateProposal();
 				$this->showEditForm();
 				$this->showCheckAnnouncement();
@@ -303,43 +299,13 @@ class SetupEdit extends Market\Ui\Reference\Form
 		$query = array_filter([
 			'service' => $this->getServiceCode(),
 			'behaviour' => $this->getRequestBehaviorCode(),
+			'id' => $this->getRequestedId(),
 		]);
 
 		return $APPLICATION->GetCurPageParam(
 			http_build_query($query),
 			array_keys($query)
 		);
-	}
-
-	protected function showSiteSelector()
-	{
-		global $APPLICATION;
-
-		$selected = $this->getSetup()->getSiteId();
-		$enum = $this->getSiteEnum();
-
-		if (count($enum) > 1)
-		{
-			$redirectUrl = $APPLICATION->GetCurPageParam('', ['site']);
-			$redirectUrl .= (Market\Data\TextString::getPosition($redirectUrl, '?') === false ? '?' : '&') . 'site=';
-			$onChange = "window.location = '" . htmlspecialcharsbx($redirectUrl) . "' + this.value;";
-
-			echo '<select name="site" onchange="' . $onChange . '">';
-
-			foreach ($enum as $option)
-			{
-				$isSelected = ($option['ID'] === $selected);
-
-				echo
-					'<option value="' . htmlspecialcharsbx($option['ID']) . '" ' . ($isSelected ? 'selected' : '') . '>'
-					. htmlspecialcharsbx($option['VALUE'])
-					. '</option>';
-			}
-
-			echo '</select>';
-			echo '<br />';
-			echo '<br />';
-		}
 	}
 
 	protected function showDeprecatedMessage()
@@ -431,51 +397,15 @@ class SetupEdit extends Market\Ui\Reference\Form
 		}
 	}
 
-	protected function showActivateForm()
+	protected function redirectToAddForm()
 	{
-		$this->showFormProlog();
-		$this->showActivateNote();
-		$this->showBehaviorSelector();
-		$this->showActivateButton();
-		$this->showFormEpilog();
-	}
+		$url = Market\Ui\Admin\Path::getModuleUrl('trading_setup', [
+			'lang' => LANGUAGE_ID,
+			'service' => $this->getServiceCode(),
+		]);
 
-	protected function showActivateNote()
-	{
-		echo BeginNote();
-		echo Market\Config::getLang('ADMIN_TRADING_ACTIVATE_NOTE');
-		echo EndNote();
-	}
-
-	protected function showBehaviorSelector()
-	{
-		$selected = $this->getSetup()->getBehaviorCode();
-		$enum = $this->getServiceBehaviorEnum();
-
-		if (count($enum) > 1)
-		{
-			echo sprintf('<label>%s</label>', Market\Config::getLang('ADMIN_TRADING_BEHAVIOR_SERVICE'));
-			echo '<div style="margin-top: 5px">';
-			echo Market\Ui\UserField\View\Select::getControl($enum, $selected, [
-				'name' => 'behaviour',
-				'style' => 'max-width: 220px',
-			]);
-			echo '</div>';
-			echo '<br />';
-		}
-	}
-
-	protected function showActivateButton()
-	{
-		$isAllowed = $this->isAuthorized($this->getWriteRights());
-
-		echo sprintf('<input type="hidden" name="action" value="%s" />', static::ACTION_ACTIVATE);
-		echo '<input 
-			class="adm-btn-save ' . ($isAllowed ? '' : 'adm-btn-disabled') . '" 
-			type="submit" 
-			value="' . Market\Config::getLang('ADMIN_TRADING_ACTIVATE_BUTTON') . '" 
-			' . ($isAllowed ? '' : 'disabled') . '
-		 />';
+		LocalRedirect($url);
+		die();
 	}
 
 	protected function showEditForm()
@@ -519,51 +449,44 @@ class SetupEdit extends Market\Ui\Reference\Form
 	protected function getEditFormContextMenu()
 	{
 		return array_filter([
-			$this->getEditFormContextBehaviorItem(),
+			$this->getEditFormContextListItem(),
+			$this->getEditFormContextActivateItem(),
 			$this->getEditFormContextDeactivateItem(),
 		]);
 	}
 
-	protected function getEditFormContextBehaviorItem()
+	protected function getEditFormContextListItem()
+	{
+		return [
+			'ICON' => 'btn_list',
+			'LINK' => Market\Ui\Admin\Path::getModuleUrl('trading_list', [
+				'service' => $this->getServiceCode(),
+				'lang' => LANGUAGE_ID,
+			]),
+			'TEXT' => Market\Config::getLang('ADMIN_TRADING_MENU_LIST')
+		];
+	}
+
+	protected function getEditFormContextActivateItem()
 	{
 		global $APPLICATION;
 
-		$behaviorEnum = $this->getServiceBehaviorEnum();
+		if ($this->getSetup()->isActive()) { return null; }
 
-		if (count($behaviorEnum) <= 1) { return null; }
-
-		$selectedBehavior = $this->getSetup()->getBehaviorCode();
-		$result = [
-			'TEXT' => Market\Config::getLang('ADMIN_TRADING_BEHAVIOR_SERVICE'),
-			'MENU' => [],
+		return [
+			'TEXT' => Market\Config::getLang('ADMIN_TRADING_ACTIVATE_BUTTON'),
+			'LINK' => $APPLICATION->GetCurPageParam(
+				http_build_query(['sessid' => bitrix_sessid(), 'action' => static::ACTION_ACTIVATE]),
+				[ 'sessid', 'action' ]
+			),
 		];
-
-		foreach ($behaviorEnum as $behaviorOption)
-		{
-			$behaviorQuery = [ 'behaviour' => $behaviorOption['ID'] ];
-
-			$menuItem = [
-				'TEXT' => $behaviorOption['VALUE'],
-				'LINK' => $APPLICATION->GetCurPageParam(
-					http_build_query($behaviorQuery),
-					array_keys($behaviorQuery)
-				),
-			];
-
-			if ($behaviorOption['ID'] === $selectedBehavior)
-			{
-				$menuItem['CHECKED'] = true;
-			}
-
-			$result['MENU'][] = $menuItem;
-		}
-
-		return $result;
 	}
 
 	protected function getEditFormContextDeactivateItem()
 	{
 		global $APPLICATION;
+
+		if (!$this->getSetup()->isActive()) { return null; }
 
 		return [
 			'TEXT' => Market\Config::getLang('ADMIN_TRADING_DEACTIVATE_BUTTON'),
@@ -585,7 +508,7 @@ class SetupEdit extends Market\Ui\Reference\Form
 	protected function getEditFormFields()
 	{
 		$setup = $this->getSetup();
-		$service = $setup->getService();
+		$service = $setup->wakeupService();
 		$environment = $setup->getEnvironment();
 		$siteId = $setup->getSiteId();
 
@@ -744,11 +667,15 @@ class SetupEdit extends Market\Ui\Reference\Form
 
 	protected function resolveSetup()
 	{
+		$requestId = $this->getRequestedId();
 		$requestedSiteId = $this->getRequestedSiteId();
 		$serviceSetupCollection = $this->getServiceSetupCollection();
-		$result = null;
 
-		if ($requestedSiteId !== null)
+		if ($requestId !== null)
+		{
+			$result = Market\Trading\Setup\Model::loadById($requestId);
+		}
+		else if ($requestedSiteId !== null)
 		{
 			$result = $serviceSetupCollection->getBySite($requestedSiteId);
 
@@ -886,6 +813,11 @@ class SetupEdit extends Market\Ui\Reference\Form
 		}
 
 		return $result;
+	}
+
+	protected function getRequestedId()
+	{
+		return $this->request->get('id');
 	}
 
 	protected function getRequestedSiteId()

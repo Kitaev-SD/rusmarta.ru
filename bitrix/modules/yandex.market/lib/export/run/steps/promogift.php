@@ -270,14 +270,15 @@ class PromoGift extends Offer
             {
 	            $promoProductIblockId = $promoGift->getIblockId();
 	            $iblockLink = $iblockLinkCollection->getByIblockId($promoProductIblockId);
-	            $offerPrimarySource = $iblockLink !== null ? $this->getOfferPrimarySource($iblockLink) : null;
+	            $context = $promoGift->getContext();
+	            $offerPrimarySource = $iblockLink !== null ? $this->getOfferPrimarySource($iblockLink, $context) : null;
 
                 $iblockConfig = [
                     'ID' => $promoGift->getId(),
                     'EXPORT_ALL' => false,
                     'TAG_DESCRIPTION_LIST' => $promoGift->getTagDescriptionList($offerPrimarySource),
                     'FILTER_LIST' => [],
-                    'CONTEXT' => $promoGift->getContext(),
+                    'CONTEXT' => $context,
                     'LIMIT' => $promo->getGiftLimit()
                 ];
 				$isFirstFilter = true;

@@ -2,8 +2,8 @@
 
 $MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_SERVICE_CODE_NOT_SET'] = 'Не указан код торгового сервиса';
 $MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_SERVICE_CODE_INVALID'] = 'Сервис #SERVICE# не найден';
-$MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_SETUP_NOT_FOUND'] = 'Профиль обработки заказов не найден #SITE_ID#';
-$MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_SETUP_INACTIVE'] = 'Профиль обработки заказов деактивирован #SITE_ID#';
+$MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_SETUP_NOT_FOUND'] = 'Профиль обработки заказов №#ID# не найден';
+$MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_SETUP_INACTIVE'] = 'Профиль обработки заказов №#ID# деактивирован';
 $MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_SETUP_NOT_EXISTS'] = 'Не найдено активных профилей обработки заказов';
 $MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_ACTION_ORDER_VIEW'] = 'Посмотреть информацию о заказе';
 $MESS['YANDEX_MARKET_UI_TRADING_ORDER_LIST_ACTION_ORDER_VIEW_MODAL_TITLE'] = 'Заказ #ID#';

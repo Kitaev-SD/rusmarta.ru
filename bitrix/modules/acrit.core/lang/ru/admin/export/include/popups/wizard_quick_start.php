@@ -5,7 +5,9 @@ $MESS[$strLang.'PLUGINS_HEADER'] = 'Выберите необходимые Вам форматы выгрузки';
 $MESS[$strLang.'PLUGINS_FILTER_PLACEHOLDER'] = 'Фильтр по форматам выгрузки';
 
 $MESS[$strLang.'IBLOCKS_HEADER'] = 'Выберите инфоблоки для выгрузки';
-$MESS[$strLang.'IBLOCKS_FILTER_PLACEHOLDER'] = 'Фильтр по форматам выгрузки';
+$MESS[$strLang.'IBLOCKS_FILTER_PLACEHOLDER'] = 'Фильтр по инфоблокам';
+$MESS[$strLang.'IBLOCKS_FILTER_SITE_ALL'] = '--- все сайты ---';
+$MESS[$strLang.'IBLOCKS_FILTER_CATALOGS'] = 'Только каталоги';
 $MESS[$strLang.'IBLOCKS_CATALOG'] = 'Торговый каталог';
 
 $MESS[$strLang.'NOTHING_FOUND'] = 'Ничего не найдено';

@@ -402,10 +402,12 @@ class OzonRuQuantity extends OzonRu
 			if (count($arSendNewItemsStocks))
 			{
 				$resProductImport = $this->requestBx('/v1/product/import/stocks', $arSendNewItemsStocks, $intProfileID);
+				$this->logErrorFromRequest($arSendNewItemsStocks, '[debug] prepare /v1/product/import/stocks ', $intProfileID, true);
 			}
 			if (is_array($resProductImport) && $resProductImport['result'])
 			{
 				$arData['SESSION']['EXPORT']['INDEX'] += $intCount;
+				$this->logErrorFromRequest($resProductImport, '[debug] request /v1/product/import/stocks ', $intProfileID, true);
 			} else
 			{
 				$this->logErrorFromRequest($resProductImport, 'request /v1/product/import/stocks ', $intProfileID);
@@ -414,11 +416,12 @@ class OzonRuQuantity extends OzonRu
 			if (count($arSendNewItemsPrices))
 			{
 				$resProductImport = $this->requestBx('/v1/product/import/prices', $arSendNewItemsPrices, $intProfileID);
+				$this->logErrorFromRequest($arSendNewItemsPrices, '[debug] prepare /v1/product/import/prices ', $intProfileID, true);
 			}
 
 			if (is_array($resProductImport) && $resProductImport['result'])
 			{
-
+				$this->logErrorFromRequest($resProductImport, '[debug] request /v1/product/import/prices ', $intProfileID, true);
 			} else
 			{
 				$this->logErrorFromRequest($resProductImport, 'request /v1/product/import/prices ', $intProfileID);
@@ -435,7 +438,7 @@ class OzonRuQuantity extends OzonRu
 	/**
 	 * Log::getInstance
 	 */
-	public function logErrorFromRequest($result, $strActionTitle, $intProfileID)
+	public function logErrorFromRequest($result, $strActionTitle, $intProfileID, $debug=false)
 	{
 		if ($result['error'])
 		{
@@ -445,13 +448,21 @@ class OzonRuQuantity extends OzonRu
 				$strErrorMessage .= ', ' . $error['key'] . '-' . $error['value'];
 			}
 			$strErrorMessage = $result['error']['code'] = $result['error']['message'];
-			Log::getInstance($this->strModuleId)->add('Error ' . $strActionTitle . ': code[' . $result['error']['code'] . ']message[' . $result['error']['message'] . ']' . $strErrorMessage, $intProfileID);
+			Log::getInstance($this->strModuleId)->add('Error ' . $strActionTitle . ': code[' . $result['error']['code'] . ']message[' . $result['error']['message'] . ']' . $strErrorMessage, $intProfileID, $debug);
 		}
 	}
 
 	public function deb()
 	{
 		return $_GET['deb'] != '';
+	}
+	
+	/**
+	 *	Handler for format file open link
+	 */
+	protected function onGetFileOpenLink(&$strFile, &$strTitle, $bSingle=false){
+		return $this->getExtFileOpenLink('https://seller.ozon.ru/products?filter=all', 
+			Helper::getMessage('ACRIT_EXP_FILE_OPEN_EXTERNAL'));
 	}
 
 }

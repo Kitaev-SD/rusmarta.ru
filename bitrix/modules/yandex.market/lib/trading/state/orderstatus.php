@@ -19,6 +19,11 @@ class OrderStatus
 		return Internals\StatusProxy::get($serviceUniqueKey, $orderId);
 	}
 
+	public static function commit($serviceUniqueKey, $orderId)
+	{
+		Internals\StatusProxy::commit($serviceUniqueKey, $orderId);
+	}
+
 	/** @deprecated */
 	public static function releaseValue($serviceUniqueKey, $orderId)
 	{

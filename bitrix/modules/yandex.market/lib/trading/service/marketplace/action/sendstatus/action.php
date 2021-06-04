@@ -22,51 +22,6 @@ class Action extends TradingService\Common\Action\SendStatus\Action
 		return new Request($data);
 	}
 
-	protected function isChangedOrderStatus($orderId, $state)
-	{
-		$serviceKey = $this->provider->getUniqueKey();
-		$storedStatusEncoded = Market\Trading\State\OrderStatus::getValue($serviceKey, $orderId);
-		$result = false;
-
-		if ($storedStatusEncoded === null)
-		{
-			$result = true;
-		}
-		else
-		{
-			/** @var Market\Trading\Service\Marketplace\Status $serviceStatus */
-			list($submitStatus, $submitSubStatus) = $this->getExternalStatus($state);
-			list($storedStatus, $storedSubStatus) = explode(':', $storedStatusEncoded);
-			$serviceStatus = $this->provider->getStatus();
-			$submitStatusOrder = $serviceStatus->getStatusOrder($submitStatus);
-			$storedStatusOrder = $serviceStatus->getStatusOrder($storedStatus);
-
-			if ($submitStatusOrder !== null && $submitStatusOrder < $storedStatusOrder)
-			{
-				$result = false;
-			}
-			else if ($storedStatus !== $submitStatus)
-			{
-				$result = true;
-			}
-			else if (
-				$submitStatus === TradingService\Marketplace\Status::STATUS_PROCESSING
-				&& $submitSubStatus !== $storedSubStatus
-			)
-			{
-				$submitSubStatusOrder = $serviceStatus->getSubStatusOrder($submitSubStatus);
-				$storedSubStatusOrder = $serviceStatus->getSubStatusOrder($storedSubStatus);
-
-				$result = (
-					$submitSubStatusOrder === null
-					|| $submitSubStatusOrder > $storedSubStatusOrder
-				);
-			}
-		}
-
-		return $result;
-	}
-
 	protected function checkHasStatus($orderId, $state)
 	{
 		$result = false;

@@ -140,12 +140,11 @@ class PromoProduct extends Offer
 
                 if ($iblockLink === null) { continue; } // no promo iblock in setup
 
-	            $offerPrimarySource = $this->getOfferPrimarySource($iblockLink);
-
                 $promoProductContext = $promoProduct->getContext();
                 $promoProductContext['IBLOCK_LINK'] = $iblockLink;
                 $promoProductContext['PROMO'] = $promo;
 
+	            $offerPrimarySource = $this->getOfferPrimarySource($iblockLink, $promoProductContext);
                 $tagDescriptionList = $promoProduct->getTagDescriptionList($offerPrimarySource);
 
                 if ($promoProductContext['HAS_DISCOUNT_PRICE'])

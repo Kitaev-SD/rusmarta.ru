@@ -10,14 +10,10 @@ use Yandex\Market\Trading\Service as TradingService;
 class DeliveryOption extends TradingService\Reference\Options\Fieldset
 {
 	use Market\Reference\Concerns\HasLang;
+	use Market\Reference\Concerns\HasMessage;
 
 	/** @var TradingService\MarketplaceDbs\Provider */
 	protected $provider;
-
-	protected static function includeMessages()
-	{
-		Main\Localization\Loc::loadMessages(__FILE__);
-	}
 
 	/** @return int */
 	public function getServiceId()
@@ -64,74 +60,169 @@ class DeliveryOption extends TradingService\Reference\Options\Fieldset
     	return $values !== null ? (array)$values : null;
     }
 
+	/** @return ScheduleOptions */
+	public function getSchedule()
+    {
+    	return $this->getFieldsetCollection('SCHEDULE');
+    }
+
+	/** @return string|null */
+	public function getShipmentDelay()
+    {
+	    return $this->getValue('SHIPMENT_DELAY');
+    }
+
+	/** @return bool */
+	public function increasePeriodOnWeekend()
+    {
+    	return (string)$this->getValue('INCREASE_PERIOD_ON_WEEKEND') === Market\Ui\UserField\BooleanType::VALUE_Y;
+    }
+
+	/** @return HolidayOption */
+	public function getHoliday()
+	{
+		return $this->getFieldset('HOLIDAY');
+	}
+
 	public function getFieldDescription(TradingEntity\Reference\Environment $environment, $siteId)
 	{
 		return parent::getFieldDescription($environment, $siteId) + [
 			'SETTINGS' => [
-				'SUMMARY' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_SUMMARY', null, '#TYPE# &laquo;#ID#&raquo;, #DAYS#'),
+				'SUMMARY' => self::getMessage('SUMMARY', null, '#TYPE# &laquo;#ID#&raquo;, #DAYS#'),
 				'LAYOUT' => 'summary',
-			]
+				'MODAL_WIDTH' => 600,
+				'MODAL_HEIGHT' => 450,
+			],
 		];
 	}
 
 	public function getFields(TradingEntity\Reference\Environment $environment, $siteId)
 	{
-		try
-		{
-			$result = [
-				'ID' => [
-					'TYPE' => 'enumeration',
-					'MANDATORY' => 'Y',
-					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_ID'),
-					'VALUES' => $this->getDeliveryEnum($environment, $siteId),
-					'SETTINGS' => [
-						'STYLE' => 'max-width: 220px;',
+		return
+			$this->getSelfFields($environment, $siteId)
+			+ $this->getHolidayFields($environment, $siteId);
+	}
+
+	protected function getSelfFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		return [
+			'ID' => [
+				'TYPE' => 'enumeration',
+				'MANDATORY' => 'Y',
+				'NAME' => self::getMessage('ID'),
+				'VALUES' => $this->getDeliveryEnum($environment, $siteId),
+				'SETTINGS' => [
+					'STYLE' => 'max-width: 220px;',
+				],
+			],
+			'NAME' => [
+				'TYPE' => 'string',
+				'NAME' => self::getMessage('NAME'),
+				'SETTINGS' => [
+					'MAX_LENGTH' => 50,
+				],
+			],
+			'TYPE' => [
+				'TYPE' => 'enumeration',
+				'MANDATORY' => 'Y',
+				'NAME' => self::getMessage('TYPE'),
+				'HELP_MESSAGE' => self::getMessage('TYPE_HELP'),
+				'VALUES' => $this->provider->getDelivery()->getTypeEnum(),
+			],
+			'DAYS' => [
+				'TYPE' => 'numberRange',
+				'NAME' => self::getMessage('DAYS'),
+				'HELP_MESSAGE' => self::getMessage('DAYS_HELP'),
+				'SETTINGS' => [
+					'SUMMARY' => '#FROM#-#TO#',
+					'UNIT' => array_filter([
+						self::getMessage('DAYS_UNIT_1', null, ''),
+						self::getMessage('DAYS_UNIT_2', null, ''),
+						self::getMessage('DAYS_UNIT_5', null, ''),
+					]),
+				],
+			],
+			'OUTLET' => [
+				'TYPE' => 'tradingOutlet',
+				'NAME' => self::getMessage('OUTLET'),
+				'MULTIPLE' => 'Y',
+				'DEPEND' => [
+					'TYPE' => [
+						'RULE' => 'ANY',
+						'VALUE' => TradingService\MarketplaceDbs\Delivery::TYPE_PICKUP,
 					],
 				],
-				'NAME' => [
-					'TYPE' => 'string',
-					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_NAME'),
-					'SETTINGS' => [
-						'MAX_LENGTH' => 50,
-					],
+				'SETTINGS' => [
+					'SERVICE' => $this->provider->getCode(),
 				],
-				'TYPE' => [
-					'TYPE' => 'enumeration',
-					'MANDATORY' => 'Y',
-					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_TYPE'),
-					'VALUES' => $this->provider->getDelivery()->getTypeEnum(),
-				],
-				'DAYS' => [
-					'TYPE' => 'numberRange',
-					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_DAYS'),
-					'SETTINGS' => [
-						'SUMMARY' => '#FROM#-#TO#',
-						'UNIT' => array_filter([
-							static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_DAYS_UNIT_1', null, ''),
-							static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_DAYS_UNIT_2', null, ''),
-							static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_DAYS_UNIT_5', null, ''),
-						]),
-					],
-				],
-				'OUTLET' => [
-					'TYPE' => 'tradingOutlet',
-					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTIONS_DELIVERY_OPTION_OUTLET'),
-					'MULTIPLE' => 'Y',
-					'DEPEND' => [
-						'TYPE' => [
-							'RULE' => 'ANY',
-							'VALUE' => TradingService\MarketplaceDbs\Delivery::TYPE_PICKUP,
+			],
+			'SCHEDULE' => $this->getSchedule()->getFieldDescription($environment, $siteId) + [
+				'TYPE' => 'fieldset',
+				'NAME' => self::getMessage('SCHEDULE'),
+				'GROUP' => self::getMessage('SCHEDULE_GROUP'),
+				'HELP_MESSAGE' => self::getMessage('SCHEDULE_HELP'),
+				'DEPEND' => [
+					'TYPE' => [
+						'RULE' => 'ANY',
+						'VALUE' => [
+							TradingService\MarketplaceDbs\Delivery::TYPE_DELIVERY,
+							TradingService\MarketplaceDbs\Delivery::TYPE_PICKUP,
 						],
 					],
-					'SETTINGS' => [
-						'SERVICE' => $this->provider->getCode(),
+				],
+			],
+			'SHIPMENT_DELAY' => [
+				'TYPE' => 'time',
+				'NAME' => self::getMessage('SHIPMENT_DELAY'),
+				'HELP_MESSAGE' => self::getMessage('SHIPMENT_DELAY_HELP'),
+				'DEPEND' => [
+					'TYPE' => [
+						'RULE' => 'ANY',
+						'VALUE' => [
+							TradingService\MarketplaceDbs\Delivery::TYPE_DELIVERY,
+							TradingService\MarketplaceDbs\Delivery::TYPE_PICKUP,
+						],
 					],
 				],
-			];
-		}
-		catch (Market\Exceptions\NotImplemented $exception)
+			],
+			'INCREASE_PERIOD_ON_WEEKEND' => [
+				'TYPE' => 'boolean',
+				'NAME' => self::getMessage('INCREASE_PERIOD_ON_WEEKEND'),
+				'HELP_MESSAGE' => self::getMessage('INCREASE_PERIOD_ON_WEEKEND_HELP'),
+				'DEPEND' => [
+					'TYPE' => [
+						'RULE' => 'ANY',
+						'VALUE' => [
+							TradingService\MarketplaceDbs\Delivery::TYPE_DELIVERY,
+							TradingService\MarketplaceDbs\Delivery::TYPE_PICKUP,
+						],
+					],
+				],
+			],
+		];
+	}
+
+	protected function getHolidayFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		$result = [];
+		$defaults = [
+			'GROUP' => self::getMessage('HOLIDAY_GROUP'),
+			'DEPEND' => [
+				'TYPE' => [
+					'RULE' => 'ANY',
+					'VALUE' => [
+						TradingService\MarketplaceDbs\Delivery::TYPE_DELIVERY,
+						TradingService\MarketplaceDbs\Delivery::TYPE_PICKUP,
+					],
+				],
+			],
+		];
+
+		foreach ($this->getHoliday()->getFields($environment, $siteId) as $name => $field)
 		{
-			$result = [];
+			$key = sprintf('HOLIDAY[%s]', $name);
+
+			$result[$key] = $field + $defaults;
 		}
 
 		return $result;
@@ -144,5 +235,19 @@ class DeliveryOption extends TradingService\Reference\Options\Fieldset
 		return array_filter($delivery->getEnum($siteId), static function($option) {
 			return $option['TYPE'] !== Market\Data\Trading\Delivery::EMPTY_DELIVERY;
 		});
+	}
+
+	protected function getFieldsetCollectionMap()
+	{
+		return [
+			'SCHEDULE' => ScheduleOptions::class,
+		];
+	}
+
+	protected function getFieldsetMap()
+	{
+		return [
+			'HOLIDAY' => HolidayOption::class,
+		];
 	}
 }

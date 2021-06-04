@@ -40,6 +40,10 @@ class Location extends Market\Trading\Entity\Reference\Location
 		$externalData = $this->fetchLocationExternalData($locationId, [
 			'ZIP' => 'ZIP',
 			'ZIP_LOWER' => 'ZIP',
+			'LAT' => 'LAT',
+			'LATITUDE' => 'LAT',
+			'LON' => 'LON',
+			'LONGITUDE' => 'LON',
 		]);
 
 		return array_filter($externalData);

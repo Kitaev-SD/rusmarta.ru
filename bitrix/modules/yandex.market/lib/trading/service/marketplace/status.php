@@ -90,8 +90,8 @@ class Status extends TradingService\Common\Status
 	{
 		return [
 			static::STATE_READY_TO_SHIP,
-			static::STATE_SHOP_FAILED,
 			static::STATE_SHIPPED,
+			static::STATE_SHOP_FAILED,
 		];
 	}
 
@@ -99,8 +99,15 @@ class Status extends TradingService\Common\Status
 	{
 		return [
 			static::STATE_READY_TO_SHIP,
-			static::STATE_SHOP_FAILED,
 			static::STATE_SHIPPED,
+			static::STATE_SHOP_FAILED,
+		];
+	}
+
+	public function getOutgoingMultiple()
+	{
+		return [
+			static::STATE_SHOP_FAILED,
 		];
 	}
 
@@ -108,8 +115,8 @@ class Status extends TradingService\Common\Status
 	{
 		return [
 			Market\Data\Trading\MeaningfulStatus::ALLOW_DELIVERY => static::STATE_READY_TO_SHIP,
-			Market\Data\Trading\MeaningfulStatus::CANCELED => static::STATE_SHOP_FAILED,
 			Market\Data\Trading\MeaningfulStatus::DEDUCTED => static::STATE_SHIPPED,
+			Market\Data\Trading\MeaningfulStatus::CANCELED => static::STATE_SHOP_FAILED,
 		];
 	}
 
@@ -187,6 +194,48 @@ class Status extends TradingService\Common\Status
 				'status' => static::STATUS_PROCESSING,
 				'substatus' => $status,
 			];
+		}
+
+		return $result;
+	}
+
+	public function isChanged($orderId, $status, $substatus = null)
+	{
+		$serviceKey = $this->provider->getUniqueKey();
+		$storedStatusEncoded = Market\Trading\State\OrderStatus::getValue($serviceKey, $orderId);
+		$result = false;
+
+		if ($storedStatusEncoded === null)
+		{
+			$result = true;
+		}
+		else
+		{
+			list($storedStatus, $storedSubStatus) = explode(':', $storedStatusEncoded);
+			$submitStatusOrder = $this->getStatusOrder($status);
+			$storedStatusOrder = $this->getStatusOrder($storedStatus);
+
+			if ($submitStatusOrder !== null && $submitStatusOrder < $storedStatusOrder)
+			{
+				$result = false;
+			}
+			else if ($storedStatus !== $status)
+			{
+				$result = true;
+			}
+			else if (
+				$status === static::STATUS_PROCESSING
+				&& $substatus !== $storedSubStatus
+			)
+			{
+				$submitSubStatusOrder = $this->getSubStatusOrder($substatus);
+				$storedSubStatusOrder = $this->getSubStatusOrder($storedSubStatus);
+
+				$result = (
+					$submitSubStatusOrder === null
+					|| $submitSubStatusOrder > $storedSubStatusOrder
+				);
+			}
 		}
 
 		return $result;

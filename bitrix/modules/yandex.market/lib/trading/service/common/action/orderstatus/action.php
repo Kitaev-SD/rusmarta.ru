@@ -36,6 +36,7 @@ class Action extends TradingService\Common\Action\HttpAction
 	public function process()
 	{
 		$this->loadOrder();
+		$this->extendLogger();
 		$this->fillOrder();
 
 		if ($this->hasChanges())
@@ -44,7 +45,7 @@ class Action extends TradingService\Common\Action\HttpAction
 			$this->finalizeStatus();
 		}
 
-		$this->response->setRaw('');
+		$this->collectSuccess();
 	}
 
 	protected function loadOrder()
@@ -65,6 +66,16 @@ class Action extends TradingService\Common\Action\HttpAction
 		$this->order = $orderRegistry->loadOrder($orderId);
 	}
 
+	protected function extendLogger()
+	{
+		$logger = $this->provider->getLogger();
+
+		if (!($logger instanceof Market\Logger\Reference\Logger)) { return; }
+
+		$logger->setContext('ENTITY_TYPE', TradingEntity\Registry::ENTITY_TYPE_ORDER);
+		$logger->setContext('ENTITY_ID', $this->order->getAccountNumber());
+	}
+
 	protected function fillOrder()
 	{
 		$this->fillStatus();
@@ -75,7 +86,7 @@ class Action extends TradingService\Common\Action\HttpAction
 	{
 		$statuses = $this->getStatusIn();
 
-		if (!empty($statuses))
+		if (!empty($statuses) && $this->isStateChanged())
 		{
 			$this->saveState();
 			$this->setStatus($statuses);
@@ -89,6 +100,7 @@ class Action extends TradingService\Common\Action\HttpAction
 
 		if ($statusChange !== null)
 		{
+			$this->commitState();
 			$this->logStatus();
 		}
 	}
@@ -120,14 +132,30 @@ class Action extends TradingService\Common\Action\HttpAction
 
 	protected function setStatus($statuses)
 	{
-		$subStatus = $this->request->getOrder()->getSubStatus();
+		$environmentStatus = $this->environment->getStatus();
 
 		foreach ($statuses as $status)
 		{
-			$statusResult = $this->order->setStatus($status, $subStatus);
+			$meaningfulStatus = $environmentStatus->getMeaningful($status);
+			$payload = $meaningfulStatus !== null ? $this->makeStatusPayload($meaningfulStatus) : null;
+			$statusResult = $this->order->setStatus($status, $payload);
 
 			Market\Result\Facade::handleException($statusResult);
 		}
+	}
+
+	protected function makeStatusPayload($meaningfulStatus)
+	{
+		if ($meaningfulStatus === Market\Data\Trading\MeaningfulStatus::CANCELED)
+		{
+			$result = $this->request->getOrder()->getSubStatus();
+		}
+		else
+		{
+			$result = null;
+		}
+
+		return $result;
 	}
 
 	protected function fillProperties()
@@ -164,16 +192,37 @@ class Action extends TradingService\Common\Action\HttpAction
 		]);
 	}
 
+	protected function isStateChanged()
+	{
+		$orderId = $this->request->getOrder()->getId();
+		list($status, $substatus) = $this->getExternalStatus();
+
+		return $this->provider->getStatus()->isChanged($orderId, $status, $substatus);
+	}
+
 	protected function saveState()
 	{
 		$serviceKey = $this->provider->getUniqueKey();
 		$orderId = $this->request->getOrder()->getId();
-		$fullStatus = [
+		$incomingStatus = $this->getExternalStatus();
+
+		Market\Trading\State\OrderStatus::setValue($serviceKey, $orderId, implode(':', $incomingStatus));
+	}
+
+	protected function commitState()
+	{
+		$serviceKey = $this->provider->getUniqueKey();
+		$orderId = $this->request->getOrder()->getId();
+
+		Market\Trading\State\OrderStatus::commit($serviceKey, $orderId);
+	}
+
+	protected function getExternalStatus()
+	{
+		return [
 			$this->request->getOrder()->getStatus(),
 			$this->request->getOrder()->getSubStatus(),
 		];
-
-		Market\Trading\State\OrderStatus::setValue($serviceKey, $orderId, implode(':', $fullStatus));
 	}
 
 	/** @deprecated */
@@ -183,6 +232,18 @@ class Action extends TradingService\Common\Action\HttpAction
 		$orderId = $this->request->getOrder()->getId();
 
 		Market\Trading\State\OrderStatus::releaseValue($serviceKey, $orderId);
+	}
+
+	protected function collectSuccess()
+	{
+		if (Market\Config::getOption('ddos_guard', 'N') === 'Y')
+		{
+			$this->response->setField('ok', true);
+		}
+		else
+		{
+			$this->response->setRaw('');
+		}
 	}
 
 	protected function pushChange($key, $value)

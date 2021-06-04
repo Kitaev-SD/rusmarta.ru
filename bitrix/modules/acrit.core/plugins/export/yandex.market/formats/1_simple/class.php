@@ -213,6 +213,8 @@ class YandexMarketSimple extends YandexMarket {
 			$arXmlTags['country_of_origin'] = Xml::addTag($arFields['COUNTRY_OF_ORIGIN']);
 		if(!Helper::isEmpty($arFields['BARCODE']))
 			$arXmlTags['barcode'] = $this->getXmlTag_Barcode($intProfileID, $arFields['BARCODE']);
+		if(!Helper::isEmpty($arFields['CPA']))
+			$arXmlTags['cpa'] = Xml::addTag($arFields['CPA']);
 		
 		# Not in example
 		if(!Helper::isEmpty($arFields['MODEL']))

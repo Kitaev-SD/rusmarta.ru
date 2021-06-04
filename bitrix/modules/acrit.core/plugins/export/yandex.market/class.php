@@ -909,6 +909,15 @@ class YandexMarket extends Plugin {
 			),
 		));
 		$arResult[] = new Field(array(
+			'CODE' => 'CPA',
+			'DISPLAY_CODE' => 'cpa',
+			'NAME' => static::getMessage('FIELD_CPA_NAME'),
+			'SORT' => 2850,
+			'DESCRIPTION' => static::getMessage('FIELD_CPA_DESC'),
+			'REQUIRED' => false,
+			'MULTIPLE' => false,
+		));
+		$arResult[] = new Field(array(
 			'CODE' => 'EXPIRY',
 			'DISPLAY_CODE' => 'expiry',
 			'NAME' => static::getMessage('FIELD_EXPIRY_NAME'),

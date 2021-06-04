@@ -249,4 +249,13 @@ EventManager::getInstance()->unRegisterEventHandler(
 	'OnGroupDelete'
 );
 
+// Handler for work with discounts (prevent memory leak)
+EventManager::getInstance()->unRegisterEventHandler(
+	'catalog',
+	'OnGetDiscountResult',
+	$strModuleId,
+	'\Acrit\Core\Export\EventHandlerExport',
+	'OnGetDiscountResult'
+);
+
 ?>

@@ -26,7 +26,7 @@
 						'<div class="sc_icon sc_icon_#STATUS#"></div>' +
 						'<div class="sc_row_message">' +
 							'<span class="sc_#STATUS#">#MESSAGE#</span>' +
-							'#FIX#' +
+							'#RESOLVE#' +
 						'</div>' +
 						'#DESCRIPTION#' +
 					'</div>' +
@@ -34,10 +34,11 @@
 			'</tr>',
 
 			fixElement: '.js-checker__fix',
-			fixTemplate: '<br /><a class="js-checker__fix" href="#">#TITLE#</a>',
+			fixTemplate: '<br /><br /><a class="js-checker__fix" href="#">#TITLE#</a>',
 
 			descriptionElement: '.js-checker__description',
 			descriptionTemplate: '<div class="sc_help_link js-checker__description" tabindex="0"></div>',
+			descriptionOpenerTemplate: '<br /><br /><a class="js-checker__description" href="#">#TITLE#</a>',
 
 			dialogContentTemplate: '<div style="font-size:1.2em;">#CONTENT#</div>',
 
@@ -380,13 +381,24 @@
 		},
 
 		makeResultTemplateVariables: function(data) {
-			return {
+			const result = {
 				'STATUS': data.status,
 				'TITLE': data.title,
 				'MESSAGE': data.message,
-				'FIX': data.fixable ? this.renderResultFix() : '',
-				'DESCRIPTION': data.description ? this.renderResultDescription() : '',
+				'RESOLVE': '',
+				'DESCRIPTION': '',
 			};
+
+			if (data.description) {
+				result['DESCRIPTION'] = this.renderResultDescription();
+				result['RESOLVE'] = this.renderResultDescriptionOpener();
+			}
+
+			if (data.fixable) {
+				result['RESOLVE'] = this.renderResultFix();
+			}
+
+			return result;
 		},
 
 		renderResultFix: function() {
@@ -401,6 +413,14 @@
 			let template = this.getTemplate('description');
 
 			return Utils.compileTemplate(template);
+		},
+
+		renderResultDescriptionOpener: function() {
+			let template = this.getTemplate('descriptionOpener');
+
+			return Utils.compileTemplate(template, {
+				'TITLE': this.getLang('DESCRIPTION_OPEN'),
+			});
 		},
 
 		showDescription: function(data) {

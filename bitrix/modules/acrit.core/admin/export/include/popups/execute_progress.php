@@ -47,38 +47,38 @@ if(strlen($strCurrentStep) && !$arSession['FINISHED']){
 			]), true);?>
 			<br/>
 		<?endif?>
-		<div class="acrit-exp-progress-steps">
-			<ul>
-				<?foreach($arSteps as $strStep => $arStep):?>
-					<li data-step="<?=$strStep;?>">
-						<span class="acrit-exp-progress-item-name">
-							<?=$arStep['NAME'];?>
-						</span>
-						<span class="acrit-exp-progress-item-data">
-							<?if($strStep==$strCurrentStep && isset($arSession[$strCurrentStep]['PERCENT'])):?>
-								<span class="text-percent">(<?=number_format($arSession[$strCurrentStep]['PERCENT'], 1, '.', '');?>%)</span>
-							<?endif?>
-							<?if($arStep['STATUS']=='DONE'):?>
-								<span class="icon-success"></span>
-							<?elseif($arStep['STATUS']=='CURRENT'):?>
-								<span class="icon-current"></span>
-							<?elseif($arStep['STATUS']=='WAITING'):?>
-								<span class="icon-waiting"></span>
-							<?elseif($arStep['STATUS']=='ERROR'):?>
-								<span class="icon-error">ERROR</span>
-							<?endif?>
-						</span>
-					</li>
-				<?endforeach?>
-			</ul>
-		</div>
 		<?if($arSession['FINISHED']):?>
-			<?$strResult = $obPlugin->showResults($arSession);?>
-			<?if(strlen($strResult)):?>
+			<?if(strlen($strResult = $obPlugin->showResultsExt($arSession))):?>
 				<div class="acrit-exp-progress-report">
 					<?=$strResult;?>
 				</div>
 			<?endif?>
+		<?else:?>
+			<div class="acrit-exp-progress-steps">
+				<ul>
+					<?foreach($arSteps as $strStep => $arStep):?>
+						<li data-step="<?=$strStep;?>">
+							<span class="acrit-exp-progress-item-name">
+								<?=$arStep['NAME'];?>
+							</span>
+							<span class="acrit-exp-progress-item-data">
+								<?if($strStep==$strCurrentStep && isset($arSession[$strCurrentStep]['PERCENT'])):?>
+									<span class="text-percent">(<?=number_format($arSession[$strCurrentStep]['PERCENT'], 1, '.', '');?>%)</span>
+								<?endif?>
+								<?if($arStep['STATUS']=='DONE'):?>
+									<span class="icon-success"></span>
+								<?elseif($arStep['STATUS']=='CURRENT'):?>
+									<span class="icon-current"></span>
+								<?elseif($arStep['STATUS']=='WAITING'):?>
+									<span class="icon-waiting"></span>
+								<?elseif($arStep['STATUS']=='ERROR'):?>
+									<span class="icon-error">ERROR</span>
+								<?endif?>
+							</span>
+						</li>
+					<?endforeach?>
+				</ul>
+			</div>
 		<?endif?>
 	</div>
 <?endif?>

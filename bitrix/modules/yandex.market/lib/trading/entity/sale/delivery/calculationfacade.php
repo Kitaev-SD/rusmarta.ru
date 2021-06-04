@@ -13,6 +13,7 @@ class CalculationFacade
 	{
 		$result->setDateFrom(static::getDateFrom($saleResult));
 		$result->setDateTo(static::getDateTo($saleResult));
+		$result->setDateIntervals(static::getDateIntervals($saleResult));
 		$result->setData($saleResult->getData());
 
 		$errors = static::convertErrors($saleResult);
@@ -135,6 +136,40 @@ class CalculationFacade
 		}
 
 		return $result;
+	}
+
+	protected static function getDateIntervals(Sale\Delivery\CalculationResult $saleResult)
+	{
+		$saleData = $saleResult->getData();
+
+		if (!isset($saleData['MARKET_INTERVALS']) || !is_array($saleData['MARKET_INTERVALS'])) { return null; }
+
+		$intervals = [];
+
+		foreach ($saleData['MARKET_INTERVALS'] as $saleInterval)
+		{
+			if (!isset($saleInterval['DATE'])) { continue; }
+
+			$date = Market\Data\Date::sanitize($saleInterval['DATE']);
+			$fromTime = isset($saleInterval['FROM_TIME']) ? Market\Data\Time::sanitize($saleInterval['FROM_TIME']) : null;
+			$toTime = isset($saleInterval['TO_TIME']) ? Market\Data\Time::sanitize($saleInterval['TO_TIME']) : null;
+
+			if ($date === null) { continue; }
+
+			$interval = [
+				'date' => $date,
+			];
+
+			if ($fromTime !== null && $toTime !== null)
+			{
+				$interval['fromTime'] = $fromTime;
+				$interval['toTime'] = $toTime;
+			}
+
+			$intervals[] = $interval;
+		}
+
+		return $intervals;
 	}
 
 	protected static function convertErrors(Sale\Delivery\CalculationResult $saleResult)

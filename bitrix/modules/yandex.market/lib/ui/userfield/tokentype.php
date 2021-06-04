@@ -11,7 +11,7 @@ class TokenType extends EnumerationType
 {
 	protected static $variants;
 
-	function GetList($arUserField)
+	public static function GetList($arUserField)
 	{
 		$clientId = static::extractUserFieldClientId($arUserField);
 		$scope = $arUserField['SETTINGS']['SCOPE'];
@@ -23,7 +23,7 @@ class TokenType extends EnumerationType
 		return $result;
 	}
 
-	function GetEditFormHTML($arUserField, $arHtmlControl)
+	public static function GetEditFormHTML($arUserField, $arHtmlControl)
 	{
 		$arUserField = static::extendUserField($arUserField);
 

@@ -13,7 +13,17 @@ class IncomingUrlType extends StringType
 		parent::includeMessages();
 	}
 
-	function GetEditFormHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHtml($userField, $htmlControl)
+	{
+		$value = (string)Helper\Value::asSingle($userField, $htmlControl);
+		$value = trim($value);
+
+		return $value !== ''
+			? sprintf('<a href="%1$s" target="_blank">%1$s</a>', htmlspecialcharsbx($value))
+			: '&nbsp;';
+	}
+
+	public static function GetEditFormHTML($arUserField, $arHtmlControl)
 	{
 		$result = parent::GetEditFormHTML($arUserField, $arHtmlControl);
 		$result .= ' ' . static::getCheckButton($arUserField, $arHtmlControl);

@@ -6,6 +6,11 @@ use Yandex\Market;
 
 class Attributes
 {
+	protected static $supportMultiple = [
+		'class' => ' ',
+		'data-plugin' => ', ',
+	];
+
 	public static function convertNameToId($name)
 	{
 		$result = str_replace(['[', ']', '-', '__'], '_', $name);
@@ -45,15 +50,67 @@ class Attributes
 		return $result;
 	}
 
-	public static function insert($html, $attributes)
+	public static function parse($attributesString)
+	{
+		$hasMatches = preg_match_all('/(?<name>[\w-]+)(?:\s*=\s*["\'](?<value>.*?)["\'])?/', $attributesString, $matches);
+
+		if (!$hasMatches) { return []; }
+
+		$result = [];
+
+		foreach ($matches['name'] as $index => $name)
+		{
+			$result[$name] = isset($matches['value'][$index])
+				? htmlspecialcharsback($matches['value'][$index])
+				: true;
+		}
+
+		return $result;
+	}
+
+	public static function merge($first, ...$other)
+	{
+		$result = $first;
+
+		foreach ($other as $attributes)
+		{
+			foreach ($attributes as $name => $value)
+			{
+				if (!isset($result[$name]))
+				{
+					$result[$name] = $value;
+				}
+				else if (isset(static::$supportMultiple[$name]))
+				{
+					$result[$name] .=
+						static::$supportMultiple[$name]
+						. $value;
+				}
+				else
+				{
+					$result[$name] = $value;
+				}
+			}
+		}
+
+		return $result;
+	}
+
+	public static function insert($html, $attributes, \Closure $filter = null)
 	{
 		if (!empty($attributes))
 		{
-			$attributesString = static::stringify($attributes);
-			$result = preg_replace_callback('/(<input|<textarea|<select)(.*?)(\/?>)/si', static function($matches) use ($attributesString) {
-				return preg_match('/type=["\']button["\']/i', $matches[2])
-					? $matches[0]
-					: $matches[1] . $matches[2] . ' ' . $attributesString . $matches[3];
+			$result = preg_replace_callback('/(<)(input|textarea|select)(.*?)(\/?>)/si', static function($matches) use ($attributes, $filter) {
+				list(, $opener, $tagName, $existsAttributesString, $closer) = $matches;
+
+				$existsAttributes = Attributes::parse($existsAttributesString);
+
+				if ($filter !== null && !$filter($tagName, $existsAttributes)) { return $matches[0]; }
+				if (isset($existsAttributes['type']) && $existsAttributes['type'] === 'button') { return $matches[0]; }
+
+				$mergedAttributes = Attributes::merge($existsAttributes, $attributes);
+
+				return $opener . $tagName . ' ' . Attributes::stringify($mergedAttributes) . $closer;
 			}, $html);
 		}
 		else
@@ -70,6 +127,7 @@ class Attributes
 			list(, $tagStart, $attributes, $tagEnding) = $matches;
 			$dataName = $name;
 
+			if (Market\Data\TextString::getPosition($attributes, $attributeName . '=') !== false) { return $matches[0]; } // attribute already exists
 			if (preg_match('/type=["\']button["\']/i', $attributes)) { return $matches[0]; }
 
 			if (preg_match('/(^|\s)name=["\'](.*?)["\']/', $attributes, $nameMatch))
@@ -91,6 +149,7 @@ class Attributes
 			return
 				$tagStart
 				. $attributes
+				. ' '
 				. ($attributeName . '="' . htmlspecialcharsbx($dataName) . '"')
 				. $tagEnding;
 		}, $html);

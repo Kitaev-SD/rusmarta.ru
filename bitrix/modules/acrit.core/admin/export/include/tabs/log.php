@@ -27,7 +27,7 @@ $obTabControl->BeginCustomField('PROFILE[LOG]', Loc::getMessage('ACRIT_EXP_TAB_L
 			<div class="acrit-exp-log-wrapper">
 				<div data-role="profile-log-export-file-name-hidden" style="display:none">
 					<?if(is_object($obPlugin)):?>
-						<?=$obPlugin->showFileOpenLink(false, true);?>
+						<?=$obPlugin->showFileOpenLink(false, true, true);?>
 					<?endif?>
 				</div>
 				<?=Log::getInstance($strModuleId)->showLog($intProfileID);?>
@@ -74,4 +74,21 @@ if(is_object($obPlugin)) {
 		$obTabControl->EndCustomField('PROFILE[LOG_CUSTOM]');
 	}
 }
+
+// Email
+$obTabControl->BeginCustomField('PROFILE[EMAIL]', Loc::getMessage('ACRIT_EXP_TAB_LOG_EMAIL'));
+?>
+	<tr>
+		<td colspan="2"><br/></td>
+	</tr>
+	<tr class="heading" id="tr_EMAIL_HEADING">
+		<td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<?require __DIR__.'/_log_email.php';?>
+		</td>
+	</tr>
+<?
+$obTabControl->EndCustomField('PROFILE[EMAIL]');
 

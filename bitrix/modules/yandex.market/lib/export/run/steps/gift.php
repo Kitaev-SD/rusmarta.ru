@@ -3,6 +3,7 @@
 namespace Yandex\Market\Export\Run\Steps;
 
 use Bitrix\Main;
+use Bitrix\Iblock;
 use Yandex\Market;
 
 class Gift extends Offer
@@ -231,7 +232,14 @@ class Gift extends Offer
 
 	protected function getPromoGiftList($context)
     {
-        $result = [];
+    	$elementIds = $this->getPromoGiftElementIds($context);
+
+    	return $this->splitElementIdsByIblock($elementIds);
+    }
+
+    protected function getPromoGiftElementIds($context)
+    {
+    	$result = [];
 
         $filter = [
             '=SETUP_ID' => $context['SETUP_ID'],
@@ -249,33 +257,46 @@ class Gift extends Offer
 
         $query = Market\Export\Run\Storage\PromoGiftTable::getList([
             'filter' => $filter,
-            'select' => [
-                'ELEMENT_ID',
-                'IBLOCK_ID' => 'IBLOCK_ELEMENT.IBLOCK_ID'
-            ],
-            'runtime' => [
-                new Main\Entity\ReferenceField('IBLOCK_ELEMENT', '\Bitrix\Iblock\Element', [
-                    '=this.ELEMENT_ID' => 'ref.ID'
-                ])
-            ]
+            'select' => [ 'ELEMENT_ID' ],
         ]);
 
         while ($item = $query->fetch())
         {
-            $itemIblockId = (int)$item['IBLOCK_ID'];
-
-            if ($itemIblockId > 0)
-            {
-                if (!isset($result[$itemIblockId]))
-                {
-                    $result[$itemIblockId] = [];
-                }
-
-                $result[$itemIblockId][] = (int)$item['ELEMENT_ID'];
-            }
+	        $result[] = (int)$item['ELEMENT_ID'];
         }
 
         return $result;
+    }
+
+    protected function splitElementIdsByIblock($elementIds)
+    {
+    	if (empty($elementIds)) { return []; }
+
+	    $result = [];
+
+    	$query = Iblock\ElementTable::getList([
+    		'filter' => [
+    			'=ID' => $elementIds,
+		    ],
+		    'select' => [
+		    	'IBLOCK_ID',
+		    	'ID',
+		    ]
+	    ]);
+
+    	while ($row = $query->fetch())
+	    {
+		    $iblockId = (int)$row['IBLOCK_ID'];
+
+		    if (!isset($result[$iblockId]))
+		    {
+			    $result[$iblockId] = [];
+		    }
+
+		    $result[$iblockId][] = (int)$row['ID'];
+	    }
+
+	    return $result;
     }
 
     protected function getIblockContext($iblockId, Market\Export\IblockLink\Model $iblockLink = null)
@@ -309,7 +330,7 @@ class Gift extends Offer
         {
         	// primary
 
-	        $primarySource = $this->getOfferPrimarySource($iblockLink);
+	        $primarySource = $this->getOfferPrimarySource($iblockLink, $context);
 
 	        if ($primarySource !== null)
 	        {

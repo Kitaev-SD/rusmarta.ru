@@ -18,6 +18,7 @@ class Purchase extends \CBitrixComponent
 		$params['SEF_FOLDER'] = trim($params['SEF_FOLDER']);
 		$params['SERVICE_CODE'] = trim($params['SERVICE_CODE']);
 		$params['SITE_ID'] = trim($params['SITE_ID']);
+		$params['URL_ID'] = trim($params['URL_ID']);
 
 		return $params;
 	}
@@ -151,12 +152,18 @@ class Purchase extends \CBitrixComponent
 	 */
 	protected function logException($exception, Market\Psr\Log\LoggerInterface $logger = null, $routePath = null)
 	{
-		if ($logger !== null)
+		if ($logger === null) { return; }
+
+		$context = [
+			'AUDIT' => Market\Logger\Trading\Audit::INCOMING_RESPONSE,
+		];
+
+		if ($logger instanceof Market\Logger\Reference\Logger)
 		{
-			$logger->error($exception, [
-				'AUDIT' => Market\Logger\Trading\Audit::INCOMING_RESPONSE,
-			]);
+			$context = array_diff_key($context, $logger->getFullContext());
 		}
+
+		$logger->error($exception, $context);
 	}
 
 	/**
@@ -226,10 +233,10 @@ class Purchase extends \CBitrixComponent
 
 	protected function getSetup()
 	{
-		$siteId = $this->getParameterSiteId();
+		$urlId = $this->getParameterUrlId();
 		$serviceCode = $this->getParameterServiceCode();
 		$behaviorCode = $this->getParameterBehaviorCode();
-		$result = $this->loadSetup($serviceCode, $siteId, $behaviorCode);
+		$result = $this->loadSetup($serviceCode, $urlId, $behaviorCode);
 
 		if (!$result->isActive())
 		{
@@ -239,18 +246,18 @@ class Purchase extends \CBitrixComponent
 		return $result;
 	}
 
-	protected function loadSetup($serviceCode, $siteId, $behaviorCode = null)
+	protected function loadSetup($serviceCode, $urlId, $behaviorCode = null)
 	{
 		try
 		{
-			$result = Market\Trading\Setup\Model::loadByServiceAndSite($serviceCode, $siteId, $behaviorCode);
+			$result = Market\Trading\Setup\Model::loadByServiceAndUrlId($serviceCode, $urlId, $behaviorCode);
 		}
 		catch (Main\ObjectNotFoundException $exception)
 		{
 			if (!Market\Trading\Service\Migration::isDeprecated($serviceCode)) { throw $exception; }
 
 			$useCode = Market\Trading\Service\Migration::getDeprecateUse($serviceCode);
-			$result = Market\Trading\Setup\Model::loadByServiceAndSite($useCode, $siteId, $behaviorCode);
+			$result = Market\Trading\Setup\Model::loadByServiceAndUrlId($useCode, $urlId, $behaviorCode);
 		}
 
 		return $result;
@@ -271,6 +278,28 @@ class Purchase extends \CBitrixComponent
 		return $this->getParameter('BEHAVIOR_CODE') ?: null;
 	}
 
+	protected function getParameterUrlId()
+	{
+		$result = $this->getParameter('URL_ID');
+
+		if ($result === '')
+		{
+			$result = $this->getParameter('SITE_ID');
+		}
+
+		if ($result === '')
+		{
+			$message = $this->getLang('PARAMETER_URL_ID_REQUIRED');
+			throw new Market\Exceptions\Component\ParameterNull($message);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @deprecated
+	 * @return string
+	 */
 	protected function getParameterSiteId()
 	{
 		return $this->getRequiredParameter('SITE_ID');

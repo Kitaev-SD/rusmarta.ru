@@ -5,6 +5,8 @@ namespace Yandex\Market\Trading\Setup;
 use Bitrix\Main;
 use Yandex\Market;
 
+Main\Localization\Loc::loadMessages(__FILE__);
+
 class Table extends Market\Reference\Storage\Table
 {
 	public static function getTableName()
@@ -41,6 +43,10 @@ class Table extends Market\Reference\Storage\Table
 				'validation' => [__CLASS__, 'validateTradingBehavior'],
 				'default_value' => Market\Trading\Service\Manager::BEHAVIOR_DEFAULT,
 			]),
+			new Main\Entity\StringField('CODE', [
+				'required' => true,
+				'validation' => [__CLASS__, 'validateCode'],
+			]),
 			new Main\Entity\StringField('SITE_ID', [
 				'required' => true,
 				'validation' => [__CLASS__, 'validateSiteId'],
@@ -65,6 +71,7 @@ class Table extends Market\Reference\Storage\Table
 		parent::migrate($connection);
 		static::migrateIncreaseServiceLength($connection);
 		static::migrateFillDefaultBehavior($connection);
+		static::migrateCode($connection);
 	}
 
 	protected static function migrateIncreaseServiceLength(Main\DB\Connection $connection)
@@ -84,6 +91,19 @@ class Table extends Market\Reference\Storage\Table
 			$sqlHelper->quote($tableName),
 			$sqlHelper->quote('TRADING_BEHAVIOR'),
 			$sqlHelper->forSql(Market\Trading\Service\Manager::BEHAVIOR_DEFAULT)
+		));
+	}
+
+	protected static function migrateCode(Main\DB\Connection $connection)
+	{
+		$sqlHelper = $connection->getSqlHelper();
+		$tableName = static::getTableName();
+
+		$connection->queryExecute(sprintf(
+			'UPDATE %1$s SET %2$s=%3$s WHERE %2$s is null or %2$s=\'\'',
+			$sqlHelper->quote($tableName),
+			$sqlHelper->quote('CODE'),
+			$sqlHelper->quote('SITE_ID')
 		));
 	}
 
@@ -128,10 +148,115 @@ class Table extends Market\Reference\Storage\Table
 		];
 	}
 
+	public static function isReservedCode($code)
+	{
+		$reserved = [
+			'cart' => true,
+			'order' => true,
+			'stocks' => true,
+		];
+
+		return isset($reserved[$code]);
+	}
+
+	public static function validateCode()
+	{
+		return [
+			new Main\Entity\Validator\Length(null, 10),
+			static function ($value, $primary, $row, $field)
+			{
+				$value = trim($value);
+
+				if (!preg_match('/^[a-z0-9_-]+$/i', $value))
+				{
+					return Market\Config::getLang('EXPORT_TRADING_SETUP_CODE_INVALID_CHARS');
+				}
+
+				if (static::isReservedCode($value))
+				{
+					return Market\Config::getLang('EXPORT_TRADING_SETUP_CODE_MATCH_RESERVED');
+				}
+
+				if (static::testCodeChanged($value, $primary, $row) && !static::testCodeUnique($value, $primary, $row))
+				{
+					return Market\Config::getLang('EXPORT_TRADING_SETUP_CODE_NOT_UNIQUE');
+				}
+
+				return true;
+			}
+		];
+	}
+
 	public static function validateExternalId()
 	{
 		return [
 			new Main\Entity\Validator\Length(null, 20),
 		];
+	}
+
+	protected static function testCodeChanged($code, $primary, $row)
+	{
+		if ($primary === null) { return true; }
+
+		$result = true;
+		$primaryId = is_scalar($primary) ? $primary : $primary['ID'];
+
+		$query = static::getList([
+			'filter' => [ '=ID' => $primaryId ],
+			'select' => [ 'CODE' ],
+		]);
+
+		if ($exists = $query->fetch())
+		{
+			$result = ((string)$exists['CODE'] !== (string)$code);
+		}
+
+		return $result;
+	}
+
+	protected static function testCodeUnique($code, $primary, $row)
+	{
+		$row = static::fulfilExistsData($primary, $row, [
+			'TRADING_SERVICE',
+			'TRADING_BEHAVIOR',
+		]);
+
+		$filter = [
+			'=TRADING_SERVICE' => $row['TRADING_SERVICE'],
+			'=TRADING_BEHAVIOR' => $row['TRADING_BEHAVIOR'],
+			'=CODE' => $code,
+		];
+
+		if ($primary !== null)
+		{
+			$primaryId = is_scalar($primary) ? $primary : $primary['ID'];
+
+			$filter['!=ID'] = $primaryId;
+		}
+
+		$row = static::getList([ 'filter' => $filter, 'limit' => 1 ])->fetch();
+
+		return ($row === false);
+	}
+
+	protected static function fulfilExistsData($primary, $row, $select)
+	{
+		$needSelect = array_diff_key(array_flip($select), $row);
+
+		if (empty($needSelect)) { return $row; }
+
+		$primaryId = is_scalar($primary) ? $primary : $primary['ID'];
+
+		$query = static::getList([
+			'filter' => [ '=ID' => $primaryId ],
+			'select' => array_keys($needSelect),
+		]);
+
+		if ($exists = $query->fetch())
+		{
+			$row += $exists;
+		}
+
+		return $row;
 	}
 }

@@ -649,7 +649,7 @@ while ($arRow = $resData->NavNext(true, 'f_')) {
 	$strFormat .= '</span>';
 	$obRow->AddViewField('FORMAT', $strFormat);
 	// EXPORT_FILE_NAME
-	$obRow->AddViewField('EXPORT_FILE_NAME', is_object($obPlugin) ? $obPlugin->showFileOpenLink(false, true) : '');
+	$obRow->AddViewField('EXPORT_FILE_NAME', is_object($obPlugin) ? $obPlugin->showFileOpenLink(false, true, true) : '');
 	// AUTO_GENERATE
 	$obRow->AddCheckField('AUTO_GENERATE', $f_AUTO_GENERATE);
 	// AUTO_CRON

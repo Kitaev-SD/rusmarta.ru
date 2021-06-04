@@ -9,6 +9,8 @@ $MESS[$strMessPrefix . 'NAME'] = 'blizko.ru';
 $MESS[$strMessPrefix . 'TAB_PROMOS_NAME'] = 'Акции';
 $MESS[$strMessPrefix . 'TAB_PROMOS_DESC'] = 'Акции blizko.ru (&lt;promos&gt;)';
 
+$MESS[$strMessPrefix . 'EXPORT_PROMOCODES_NO_SALE'] = 'Выгрузка промокодов возможна только при наличии модуля "Интернет-магазин".';
+
 // Default settings
 $MESS[$strMessPrefix . 'SETTINGS_FILE'] = 'Итоговый файл';
 $MESS[$strMessPrefix . 'SETTINGS_FILE_PLACEHOLDER'] = 'Например, /upload/xml/yandex_market.xml';

@@ -52,12 +52,12 @@ class PersonType extends Market\Trading\Entity\Reference\PersonType
 
 	public function getIndividualId($siteId = null)
 	{
-		return $this->getIdByDomain(Sale\BusinessValue::INDIVIDUAL_DOMAIN);
+		return $this->getIdByDomain(Sale\BusinessValue::INDIVIDUAL_DOMAIN, $siteId);
 	}
 
 	public function getLegalId($siteId = null)
 	{
-		return $this->getIdByDomain(Sale\BusinessValue::ENTITY_DOMAIN);
+		return $this->getIdByDomain(Sale\BusinessValue::ENTITY_DOMAIN, $siteId);
 	}
 
 	protected function getIdByDomain($type, $siteId = null)

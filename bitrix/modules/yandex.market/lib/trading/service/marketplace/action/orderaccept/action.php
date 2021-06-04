@@ -30,12 +30,43 @@ class Action extends TradingService\Common\Action\OrderAccept\Action
 
 	protected function fillPaySystem()
 	{
-		$paySystemId = (string)$this->provider->getOptions()->getPaySystemId();
+		$this->fillPaySystemSubsidy();
+		$this->fillPaySystemCommon();
+	}
+
+	protected function fillPaySystemSubsidy()
+	{
+		$options = $this->provider->getOptions();
+		$subsidySystemId = $options->getSubsidyPaySystemId();
+
+		if ($subsidySystemId !== '' && $options->includeBasketSubsidy())
+		{
+			$items = $this->request->getOrder()->getItems();
+			$subsidySum = $items->getSubsidySum();
+
+			if ($subsidySum > 0)
+			{
+				$this->order->createPayment($subsidySystemId, $subsidySum, [
+					'SUBSIDY' => true,
+					'ORDER_ID' => $this->request->getOrder()->getId(),
+				]);
+			}
+		}
+	}
+
+	protected function fillPaySystemCommon()
+	{
+		$paySystemId = $this->resolvePaySystem();
 
 		if ($paySystemId !== '')
 		{
 			$this->order->createPayment($paySystemId);
 		}
+	}
+
+	protected function resolvePaySystem()
+	{
+		return $this->provider->getOptions()->getPaySystemId();
 	}
 
 	protected function getItemPrice(Market\Api\Model\Order\Item $item)

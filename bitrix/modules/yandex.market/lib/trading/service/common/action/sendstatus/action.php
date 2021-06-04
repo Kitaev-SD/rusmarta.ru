@@ -65,10 +65,9 @@ class Action extends TradingService\Reference\Action\DataAction
 
 	protected function isChangedOrderStatus($orderId, $state)
 	{
-		$serviceKey = $this->provider->getUniqueKey();
-		$submitStatus = $this->getExternalStatus($state);
+		list($status, $substatus) = $this->getExternalStatus($state);
 
-		return Market\Trading\State\OrderStatus::isChanged($serviceKey, $orderId, implode(':', $submitStatus));
+		return $this->provider->getStatus()->isChanged($orderId, $status, $substatus);
 	}
 
 	protected function sendStatus($orderId, $state)
@@ -132,6 +131,7 @@ class Action extends TradingService\Reference\Action\DataAction
 		$fullStatus = $this->getExternalStatus($state);
 
 		Market\Trading\State\OrderStatus::setValue($serviceKey, $orderId, implode(':', $fullStatus));
+		Market\Trading\State\OrderStatus::commit($serviceKey, $orderId);
 	}
 
 	protected function resolveOrderMarker($isStateReached, Main\Result $sendResult)

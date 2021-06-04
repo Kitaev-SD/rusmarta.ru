@@ -70,7 +70,7 @@ $strTitle = Helper::getMessage('ACRIT_CORE_LOG_TITLE', array(
 	<div class="acrit-core-log">
 		<div class="acrit-core-log-content">
 			<?if(strlen($strLogFilename) && is_file($strLogFilename) && filesize($strLogFilename)):?>
-				<pre><?=Log::getInstance($strModuleId)->getLogDetail($intProfileId);?></pre>
+				<pre><?=htmlspecialcharsbx(Log::getInstance($strModuleId)->getLogDetail($intProfileId));?></pre>
 			<?else:?>
 				<p><?=Helper::getMessage('ACRIT_CORE_LOG_EMPTY');?></p>
 			<?endif?>

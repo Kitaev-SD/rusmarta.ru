@@ -13,7 +13,7 @@ class IblockType extends EnumerationType
 {
 	protected static $values;
 
-	function GetList($arUserField)
+	public static function GetList($arUserField)
 	{
 		$values = static::getValues();
 
@@ -57,7 +57,7 @@ class IblockType extends EnumerationType
 	 * @throws \Bitrix\Main\ArgumentException
 	 * @throws \Bitrix\Main\LoaderException
 	 */
-	public function GetEditFormHTMLMulty($arUserField, $arHtmlControl)
+	public static function GetEditFormHTMLMulty($arUserField, $arHtmlControl)
 	{
 		$result = '';
 		$isFirstOption = true;

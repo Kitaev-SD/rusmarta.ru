@@ -288,43 +288,42 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 	protected static function getTradingInfo(Sale\OrderBase $order)
 	{
 		$platformRow = OrderRegistry::searchPlatform($order->getId());
-		$result = null;
 
-		if ($platformRow !== null)
-		{
-			$setup = static::getTradingSetup($platformRow['TRADING_PLATFORM_ID'], $order->getSiteId());
+		if ($platformRow === null) { return null; }
 
-			if ($setup !== null)
-			{
-				$result = [
-					'ORDER_ID' => $platformRow['EXTERNAL_ORDER_ID'],
-					'SETUP' => $setup,
-				];
-			}
-		}
+		$orderInfo = $platformRow + [ 'SITE_ID' => $order->getSiteId() ];
+		$setup = static::getTradingSetup($orderInfo);
 
-		return $result;
+		if ($setup === null) { return null; }
+
+		return [
+			'ORDER_ID' => $orderInfo['EXTERNAL_ORDER_ID'],
+			'SETUP' => $setup,
+		];
 	}
 
-	protected static function getTradingSetup($platformId, $siteId)
+	protected static function getTradingSetup(array $orderInfo)
 	{
-		$platformId = (int)$platformId;
-		$siteId = trim($siteId);
-		$cacheKey = $platformId . ':' . $siteId;
+		$signValues = array_intersect_key($orderInfo, [
+			'TRADING_PLATFORM_ID' => true,
+			'SITE_ID' => true,
+			'SETUP_ID' => true,
+		]);
+		$sign = implode(':', $signValues);
 
-		if (!array_key_exists($cacheKey, static::$tradingSetupCache))
+		if (!array_key_exists($sign, static::$tradingSetupCache))
 		{
-			static::$tradingSetupCache[$cacheKey] = static::loadTradingSetup($platformId, $siteId);
+			static::$tradingSetupCache[$sign] = static::loadTradingSetup($orderInfo);
 		}
 
-		return static::$tradingSetupCache[$cacheKey];
+		return static::$tradingSetupCache[$sign];
 	}
 
-	protected static function loadTradingSetup($platformId, $siteId)
+	protected static function loadTradingSetup(array $orderInfo)
 	{
 		try
 		{
-			$result = Market\Trading\Setup\Model::loadByExternalIdAndSite($platformId, $siteId);
+			$result = Market\Trading\Setup\Model::loadByTradingInfo($orderInfo);
 		}
 		catch (Main\ObjectNotFoundException $exception)
 		{

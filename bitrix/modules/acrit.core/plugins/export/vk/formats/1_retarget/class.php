@@ -1018,6 +1018,16 @@ class VkRetargeting extends Vk {
 		$strXml = Helper::convertEncodingTo($strXml, $arData['PROFILE']['PARAMS']['ENCODING']);
 		file_put_contents($strFile, $strXml, FILE_APPEND);
 	}
+	
+	/**
+	 *	Handler for format file open link
+	 */
+	protected function onGetFileOpenLink(&$strFile, &$strTitle, $bSingle=false){
+		$strUrl = strlen($this->arProfile['PARAMS']['GROUP_ID']) 
+			? 'https://vk.com/market-'.$this->arProfile['PARAMS']['GROUP_ID']
+			: 'https://vk.com/';
+		return $this->getExtFileOpenLink($strUrl, Helper::getMessage('ACRIT_EXP_FILE_OPEN_EXTERNAL'));
+	}
 
 }
 

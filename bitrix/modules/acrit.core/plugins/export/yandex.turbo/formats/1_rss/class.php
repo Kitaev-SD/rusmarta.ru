@@ -143,35 +143,19 @@ class YandexTurboGeneral extends YandexTurbo {
 										value="<?=htmlspecialcharsbx($this->arProfile['PARAMS']['EXPORT_FILE_NAME']);?>" size="40"
 										placeholder="<?=static::getMessage('SETTINGS_FILE_PLACEHOLDER');?>" /></td>
 									<td><input type="button" value="..." onclick="AcritExpPluginXmlFilenameSelect()" /></td>
-									<td style="padding-left:10px">
-										<?
-										$arFiles = array();
-										$strFile = $this->arProfile['PARAMS']['EXPORT_FILE_NAME'];
-										$intFileIndex = 0;
-										while(true){
-											$intFileIndex++;
-											$strFilename = Helper::getFileNameWithIndex($strFile, $intFileIndex);
-											if(is_file($_SERVER['DOCUMENT_ROOT'].$strFilename)){
-												$arFiles[$intFileIndex] = $strFilename;
-												continue;
-											}
-											break;
-										}
-										$intFilesCount = count($arFiles);
-										$arFiles = array_slice($arFiles, 0, static::MAX_SHOW_FILES, true);
-										?>
-										<?foreach($arFiles as $intFileIndex => $strFile):?>
-											<?=$this->showFileOpenLink($strFile, '#'.$intFileIndex);?>
-										<?endforeach?>
-										<?if($intFilesCount>1):?>
-											<div><?=static::getMessage('SETTINGS_FILE_COUNT', array('#COUNT#' => $intFilesCount));?>
-										<?endif?>
-									</td>
 								</tr>
 							</tbody>
 						</table>
 					</td>
 				</tr>
+				<?if($strFileLinksHtml = $this->showFileOpenLink()):?>
+					<tr>
+						<td></td>
+						<td style="padding-bottom:10px;">
+							<?=$strFileLinksHtml;?>
+						</td>
+					</tr>
+				<?endif?>
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?=Helper::ShowHint(static::getMessage('SETTINGS_ENCODING_HINT'));?>
@@ -1221,6 +1205,37 @@ class YandexTurboGeneral extends YandexTurbo {
 			}
 		}
 		return $strResult;
+	}
+	
+	/**
+	 *	Handler for format file open link
+	 */
+	protected function onGetFileOpenLink(&$strFile, &$strTitle, $bSingle=false){
+		# Obtain all files
+		$arFiles = [];
+		$strFile = $this->getExportFileName();
+		$intFileIndex = 0;
+		while(true){
+			$intFileIndex++;
+			$strFileItem = Helper::getFileNameWithIndex($strFile, $intFileIndex);
+			if(!is_file(Helper::root().$strFileItem)){
+				break;
+			}
+			$arFiles[$intFileIndex] = $strFileItem;
+		}
+		$intFilesCount = count($arFiles);
+		# Display
+		if($bSingle){
+			$strFile = $this->getSingleFileOpenLink($strFile);
+			return sprintf('%s (%s:&nbsp;%d)', $strFile, str_replace(' ', '&nbsp;', 
+				static::getMessage('ACRIT_EXP_FILE_OPEN_FILES_COUNT')), count($arFiles));
+		}
+		foreach($arFiles as $intFileIndex => &$strFile){
+			$this->addFileOpenLinkTimestamp($strFile);
+			$strFile = $this->getExtFileOpenLink($strFile, sprintf('#%s.xml', $intFileIndex));
+		}
+		unset($strFile);
+		return implode(' ', $arFiles);
 	}
 	
 }

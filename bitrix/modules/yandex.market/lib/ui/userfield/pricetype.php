@@ -5,9 +5,9 @@ namespace Yandex\Market\Ui\UserField;
 use Yandex\Market;
 use Bitrix\Main;
 
-class PriceType extends \CUserTypeDouble
+class PriceType extends StringType
 {
-	function getAdminListViewHtml($userField, $additionalParameters)
+	public static function getAdminListViewHtml($userField, $additionalParameters)
 	{
 		$value = (float)$additionalParameters['VALUE'];
 		$result = '&mdash;';

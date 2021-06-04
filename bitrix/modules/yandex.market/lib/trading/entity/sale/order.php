@@ -12,6 +12,8 @@ class Order extends Market\Trading\Entity\Reference\Order
 {
 	use Market\Reference\Concerns\HasLang;
 
+	const PAYMENT_SUBSIDY_PREFIX = 'MARKET_SUBSIDY_';
+
 	/** @var int|null */
 	protected $eventProcessing;
 	/** @var array */
@@ -26,6 +28,8 @@ class Order extends Market\Trading\Entity\Reference\Order
 	protected $calculatable;
 	/** @var Internals\BasketDataPreserver */
 	protected $basketDataPreserver;
+	/** @var int|null */
+	protected $tradingSetupId;
 
 	protected static function includeMessages()
 	{
@@ -239,6 +243,16 @@ class Order extends Market\Trading\Entity\Reference\Order
 		$this->updateTradeBinding($externalId, $platform);
 	}
 
+	public function fillTradingSetup($setupId, EntityReference\Platform $platform)
+	{
+		$suffix = $platform->getOrderXmlIdSuffix($setupId);
+		$xmlId = $this->internalOrder->getField('XML_ID');
+
+		$this->tradingSetupId = $setupId;
+		$this->internalOrder->setField('XML_ID', $xmlId . $suffix);
+		$this->linkTradeBinding($setupId, $platform);
+	}
+
 	public function fillProperties(array $values)
 	{
 		$propertyCollection = $this->internalOrder->getPropertyCollection();
@@ -360,23 +374,33 @@ class Order extends Market\Trading\Entity\Reference\Order
 			: Sale\PropertyValue::loadOptions($propertyRow['ID']);
 	}
 
+	public function resetLocation()
+	{
+		return $this->setLocationPropertyValue(null);
+	}
+
 	public function setLocation($locationId)
+	{
+		$locationCode = \CSaleLocation::getLocationCODEbyID($locationId);
+
+		return $this->setLocationPropertyValue($locationCode);
+	}
+
+	protected function setLocationPropertyValue($locationCode = null)
 	{
 		$propertyCollection = $this->internalOrder->getPropertyCollection();
 		$locationProperty = $propertyCollection->getDeliveryLocation();
+		$result = new Main\Result();
 
-		if ($locationProperty !== null)
+		if ($locationProperty === null)
 		{
-			$locationCode = \CSaleLocation::getLocationCODEbyID($locationId);
-			$result = $locationProperty->setValue($locationCode);
-		}
-		else
-		{
-			$result = new Main\Result();
-
 			$errorMessage = static::getLang('TRADING_ENTITY_SALE_ORDER_HASNT_LOCATION_PROPERTY');
 			$result->addError(new Main\Error($errorMessage));
+
+			return $result;
 		}
+
+		$locationProperty->setValue($locationCode);
 
 		return $result;
 	}
@@ -1056,7 +1080,6 @@ class Order extends Market\Trading\Entity\Reference\Order
 	{
 		$paymentCollection = $this->internalOrder->getPaymentCollection();
 
-		$this->clearOrderPayment($paymentCollection);
 		$payment = $this->buildOrderPayment($paymentCollection, $paySystemId, $data);
 		$this->fillPaymentPrice($payment, $price);
 
@@ -1106,6 +1129,13 @@ class Order extends Market\Trading\Entity\Reference\Order
 			$payment->setFields($settableData);
 		}
 
+		if (isset($data['SUBSIDY']) && $data['SUBSIDY'] === true)
+		{
+			$xmlId = $this->makeSubsidyPaymentXmlId($data);
+
+			$payment->setField('XML_ID', $xmlId);
+		}
+
 		return $payment;
 	}
 
@@ -1113,10 +1143,28 @@ class Order extends Market\Trading\Entity\Reference\Order
 	{
 		if ($price === null)
 		{
-			$price = $this->internalOrder->getPrice();
+			$orderPrice = $this->internalOrder->getPrice();
+			$paymentsSum = $this->internalOrder->getPaymentCollection()->getSum();
+			$selfSum = $payment->getSum();
+
+			$price = $orderPrice - ($paymentsSum - $selfSum);
 		}
 
 		$payment->setField('SUM', $price);
+	}
+
+	protected function isSubsidyPayment(Sale\Payment $payment)
+	{
+		$xmlId = (string)$payment->getField('XML_ID');
+
+		return (Market\Data\TextString::getPosition($xmlId, static::PAYMENT_SUBSIDY_PREFIX) === 0);
+	}
+
+	protected function makeSubsidyPaymentXmlId(array $data)
+	{
+		$orderId = isset($data['ORDER_ID']) ? $data['ORDER_ID'] : 'CART';
+
+		return static::PAYMENT_SUBSIDY_PREFIX . $orderId;
 	}
 
 	public function setNotes($notes)
@@ -1282,16 +1330,16 @@ class Order extends Market\Trading\Entity\Reference\Order
 		return $result;
 	}
 
-	public function setStatus($status, $reason = null)
+	public function setStatus($status, $payload = null)
 	{
 		switch ($status)
 		{
 			case Status::STATUS_CANCELED:
-				$result = $this->cancelOrder($reason);
+				$result = $this->cancelOrder($payload);
 			break;
 
 			case Status::STATUS_PAYED:
-				$result = $this->setPaid(true);
+				$result = $this->setPaid(true, $payload);
 			break;
 
 			case Status::STATUS_ALLOW_DELIVERY:
@@ -1407,14 +1455,13 @@ class Order extends Market\Trading\Entity\Reference\Order
 		}
 	}
 
-	protected function setPaid($value)
+	protected function setPaid($value, $payload = null)
 	{
 		$paymentCollection = $this->internalOrder->getPaymentCollection();
 		$result = new Sale\Result();
 		$value = (bool)$value;
 
-		/** @var Sale\Payment $payment */
-		foreach ($paymentCollection as $payment)
+		foreach ($this->filterPaymentCollection($paymentCollection, $payload) as $payment)
 		{
 			if ((bool)$payment->isPaid() === $value) { continue; }
 
@@ -1423,6 +1470,141 @@ class Order extends Market\Trading\Entity\Reference\Order
 			if (!$paymentResult->isSuccess())
 			{
 				$result->addErrors($paymentResult->getErrors());
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @param Sale\PaymentCollection $paymentCollection
+	 * @param array|float|null  $payload
+	 *
+	 * @return Sale\Payment[]
+	 */
+	protected function filterPaymentCollection(Sale\PaymentCollection $paymentCollection, $payload)
+	{
+		$payments = iterator_to_array($paymentCollection->getIterator());
+		$payload = $this->sanitizePaymentCollectionPayload($payload);
+
+		$payments = $this->filterPaymentCollectionExclude($payments, $payload['EXCLUDE']);
+		$payments = $this->filterPaymentCollectionSubsidy($payments, $payload['SUBSIDY']);
+		$payments = $this->filterPaymentCollectionPaySystem($payments, $payload['PAY_SYSTEM_ID']);
+		$payments = $this->filterPaymentCollectionSum($payments, $payload['SUM']);
+
+		return $payments;
+	}
+
+	protected function sanitizePaymentCollectionPayload($payload)
+	{
+		$result = [
+			'SUM' => null,
+			'PAY_SYSTEM_ID' => null,
+			'SUBSIDY' => null,
+			'EXCLUDE' => null,
+		];
+
+		if (is_array($payload))
+		{
+			if (isset($payload['SUM']) && is_numeric($payload['SUM']))
+			{
+				$result['SUM'] = (float)$payload['SUM'];
+			}
+
+			if (isset($payload['PAY_SYSTEM_ID']) && (string)$payload['PAY_SYSTEM_ID'] !== '')
+			{
+				$result['PAY_SYSTEM_ID'] = (int)$payload['PAY_SYSTEM_ID'];
+			}
+
+			if (isset($payload['SUBSIDY']))
+			{
+				$result['SUBSIDY'] = (bool)$payload['SUBSIDY'];
+			}
+
+			if (isset($payload['EXCLUDE']))
+			{
+				$exclude = $this->sanitizePaymentCollectionPayload($payload['EXCLUDE']);
+				$excludeFilled = array_filter($exclude, static function($value) { return $value !== null; });
+
+				if (!empty($excludeFilled))
+				{
+					$result['EXCLUDE'] = $exclude;
+				}
+			}
+		}
+		else if ($payload !== null && is_numeric($payload))
+		{
+			$result['SUM'] = (float)$payload;
+		}
+
+		return $result;
+	}
+
+	protected function filterPaymentCollectionExclude(array $payments, $payloadExclude)
+	{
+		if ($payloadExclude === null) { return $payments; }
+
+		$exclude = $this->filterPaymentCollectionSubsidy($payments, $payloadExclude['SUBSIDY']);
+		$exclude = $this->filterPaymentCollectionPaySystem($exclude, $payloadExclude['PAY_SYSTEM_ID']);
+		$exclude = $this->filterPaymentCollectionSum($exclude, $payloadExclude['SUM']);
+
+		foreach ($exclude as $excludePayment)
+		{
+			$index = array_search($excludePayment, $payments, true);
+
+			if ($index !== false)
+			{
+				array_splice($payments, $index, 1);
+			}
+		}
+
+		return $payments;
+	}
+
+	protected function filterPaymentCollectionSubsidy(array $payments, $payloadSubsidy)
+	{
+		if ($payloadSubsidy === null) { return $payments; }
+
+		return array_filter($payments, function(Sale\Payment $payment) use ($payloadSubsidy) {
+			return ($this->isSubsidyPayment($payment) === $payloadSubsidy);
+		});
+	}
+
+	protected function filterPaymentCollectionPaySystem(array $payments, $payloadPaySystem)
+	{
+		if ($payloadPaySystem === null) { return $payments; }
+
+		$result = [];
+
+		/** @var Sale\Payment $payment */
+		foreach ($payments as $payment)
+		{
+			$paySystemId = (int)$payment->getPaymentSystemId();
+
+			if ($paySystemId === $payloadPaySystem)
+			{
+				$result[] = $payment;
+			}
+		}
+
+		return $result;
+	}
+
+	protected function filterPaymentCollectionSum(array $payments, $payloadSum)
+	{
+		if ($payloadSum === null) { return $payments; }
+
+		$threshold = 1;
+		$result = [];
+
+		foreach ($payments as $payment)
+		{
+			$paymentDiff = abs($payment->getSum() - $payloadSum);
+
+			if ($paymentDiff < $threshold)
+			{
+				$result[] = $payment;
+				break;
 			}
 		}
 
@@ -1496,7 +1678,7 @@ class Order extends Market\Trading\Entity\Reference\Order
 			{
 				$paymentSum += $payment->getSum();
 
-				if (!$payment->isPaid() && !$payment->isInner())
+				if (!$payment->isPaid() && !$payment->isInner() && !$this->isSubsidyPayment($payment))
 				{
 					$lastPayment = $payment;
 				}
@@ -1632,6 +1814,21 @@ class Order extends Market\Trading\Entity\Reference\Order
 		return $bindingCollection->createItem($salePlatform);
 	}
 
+	protected function linkTradeBinding($setupId, EntityReference\Platform $platform)
+	{
+		if (!$this->supportsTradeBinding($platform)) { return; }
+
+		$binding = $this->searchTradeBinding($platform);
+
+		if ($binding === null) { return; }
+
+		$existsParams = $binding->getField('PARAMS');
+
+		if (!is_array($existsParams)) { $existsParams = []; }
+
+		$binding->setField('PARAMS', [ 'SETUP_ID' => $setupId ] + $existsParams);
+	}
+
 	protected function addTradingTable($orderId, $externalId, Market\Trading\Entity\Reference\Platform $platform)
 	{
 		if ($this->supportsTradeBinding($platform) && $this->searchTradeBinding($platform) !== null)
@@ -1643,6 +1840,9 @@ class Order extends Market\Trading\Entity\Reference\Order
 			'ORDER_ID' => $orderId,
 			'EXTERNAL_ORDER_ID' => $externalId,
 			'TRADING_PLATFORM_ID' => $platform->getId(),
+			'PARAMS' => [
+				'SETUP_ID' => $this->tradingSetupId,
+			],
 		]);
 	}
 

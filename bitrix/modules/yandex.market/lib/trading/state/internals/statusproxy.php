@@ -7,23 +7,52 @@ use Bitrix\Main;
 
 class StatusProxy
 {
-	protected static $fetched = [];
+	protected static $stored = [];
+	protected static $changed = [];
 
 	public static function get($service, $orderId)
 	{
 		$key = $service . ':' . $orderId;
 
-		if (!array_key_exists($key, static::$fetched))
-		{
-			static::$fetched[$key] = static::fetch($service, $orderId);
-		}
-
-		return static::$fetched[$key];
+		return isset(static::$changed[$key])
+			? static::$changed[$key]
+			: static::getStored($service, $orderId);
 	}
 
 	public static function set($service, $orderId, $value)
 	{
-		$stored = static::get($service, $orderId);
+		static::$changed[$service . ':' . $orderId] = (string)$value;
+	}
+
+	public static function commit($service, $orderId)
+	{
+		$key = $service . ':' . $orderId;
+
+		if (!isset(static::$changed[$key])) { return; }
+
+		$value = static::$changed[$key];
+
+		static::store($service, $orderId, $value);
+
+		static::$stored[$key] = $value;
+		unset(static::$changed[$key]);
+	}
+
+	protected static function getStored($service, $orderId)
+	{
+		$key = $service . ':' . $orderId;
+
+		if (!array_key_exists($key, static::$stored))
+		{
+			static::$stored[$key] = static::fetch($service, $orderId);
+		}
+
+		return static::$stored[$key];
+	}
+
+	protected static function store($service, $orderId, $value)
+	{
+		$stored = static::getStored($service, $orderId);
 		$value = (string)$value;
 
 		if ($stored === $value) { return; }
@@ -41,8 +70,6 @@ class StatusProxy
 			: StatusTable::update($primary, $fields);
 
 		Market\Result\Facade::handleException($writeResult);
-
-		static::$fetched[$service . ':' . $orderId] = $value;
 	}
 
 	protected static function fetch($service, $orderId)

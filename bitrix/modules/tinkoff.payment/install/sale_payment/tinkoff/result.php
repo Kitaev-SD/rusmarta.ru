@@ -1,6 +1,11 @@
 <?php
+
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);
+
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-include(GetLangFileName(dirname(__FILE__) . "/", "/tinkoff.php"));
+
 CModule::IncludeModule('sale');
 
 $APPLICATION->SetPageProperty("title", GetMessage("SALE_TINKOFF_ORDER_INFO"));
@@ -25,4 +30,3 @@ if ($order) {
 } else {
     echo sprintf(GetMessage("SALE_TINKOFF_FAIL_TEXT"), $orderID);
 }
-?>

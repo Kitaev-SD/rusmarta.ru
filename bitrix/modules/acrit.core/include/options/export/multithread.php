@@ -66,13 +66,19 @@ return [
 			'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_MULTITHREADED_HINT'),
 			'ATTR' => $bMultithreadingSupported && $bMultithreadingAvailable ? '' : 'disabled="disabled"',
 			'TYPE' => 'checkbox',
-			'HEAD_DATA' => function(){
+			'HEAD_DATA' => function($obOptions, $arOption, $strOption){
+				$strModuleIdU = $obOptions->getModuleIdUnderlined();
 				?>
 				<script>
-				$(document).delegate('tr#acrit_exp_option_multithreaded input[type=checkbox]', 'change', function(e){
-					$('tr#acrit_exp_option_threads').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
-					$('tr#acrit_exp_option_elements_per_thread_cron').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
-					$('tr#acrit_exp_option_elements_per_thread_manual').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+				$(document).on('change', '#<?=$strModuleIdU;?>_row_option_multithreaded input[type=checkbox]', function(e){
+					let inputs = $('#<?=$strModuleIdU;?>_row_option_threads')
+						.add('#<?=$strModuleIdU;?>_row_option_elements_per_thread_cron')
+						.add('#<?=$strModuleIdU;?>_row_option_elements_per_thread_manual');
+					console.log(inputs);
+					inputs.toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+				});
+				$(document).ready(function(){
+					$('#<?=$strModuleIdU;?>_row_option_multithreaded input[type=checkbox]').trigger('change');
 				});
 				</script>
 				<?

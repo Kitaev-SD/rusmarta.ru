@@ -299,7 +299,11 @@ class User extends Market\Trading\Entity\Reference\User
 
 	protected function extractPayerField($data)
 	{
-		return $this->extractMultipleField($data, [ 'NAME', 'LAST_NAME', 'SECOND_NAME' ]);
+		return $this->extractMultipleField($data, [
+			'NAME' => ['FIRST_NAME', 'NAME'],
+			'LAST_NAME' => ['LAST_NAME'],
+			'SECOND_NAME' => ['MIDDLE_NAME', 'SECOND_NAME'],
+		]);
 	}
 
 	protected function extractSingleField($data, $keys)
@@ -325,17 +329,27 @@ class User extends Market\Trading\Entity\Reference\User
 		$keys = (array)$keys;
 		$field = null;
 
-		foreach ($keys as $key)
+		foreach ($keys as $target => $variants)
 		{
-			if (!isset($data[$key])) { continue; }
-
-			if ($field === null)
+			if (is_numeric($target) && is_string($variants))
 			{
-				$field = [];
+				$target = $variants;
+				$variants = [ $variants ];
 			}
 
-			$field[$key] = $data[$key];
-			unset($data[$key]);
+			foreach ($variants as $variant)
+			{
+				if (!isset($data[$variant])) { continue; }
+
+				if ($field === null)
+				{
+					$field = [];
+				}
+
+				$field[$target] = $data[$variant];
+				unset($data[$variant]);
+				break;
+			}
 		}
 
 		return [$field, $data];

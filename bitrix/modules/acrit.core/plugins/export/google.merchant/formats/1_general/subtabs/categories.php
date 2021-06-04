@@ -36,7 +36,7 @@ Helper::arrayRemoveEmptyValues($arSectionsID);
 					'REFERENCE_ID' => array_keys($arOptions),
 				);
 				print SelectBoxFromArray('PROFILE[PARAMS][GOOGLE_CATEGORIES_MODE]', $arOptions, 
-					$arProfile['PARAMS']['GOOGLE_CATEGORIES_MODE'], '', 'data-role="googe-categories-mode" ', ''
+					$arProfile['PARAMS']['GOOGLE_CATEGORIES_MODE'], '', 'data-role="google-categories-mode" ', ''
 				);
 				?>
 			</td>

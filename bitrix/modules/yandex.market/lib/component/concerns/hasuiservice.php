@@ -45,10 +45,12 @@ trait HasUiService
 		return $this->getComponentParam('SERVICE');
 	}
 
-	protected function getUiServiceFilter($fieldName = 'EXPORT_SERVICE')
+	protected function getUiServiceFilter($fieldName = 'EXPORT_SERVICE', $behavior = 'EXPORT')
 	{
 		$uiService = $this->getUiService();
-		$exportServices = $uiService->getExportServices();
+		$exportServices = $behavior === 'TRADING'
+			? $uiService->getTradingServices()
+			: $uiService->getExportServices();
 
 		if (!$uiService->isInverted())
 		{

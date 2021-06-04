@@ -4,7 +4,7 @@ namespace Yandex\Market\Ui\UserField\Fieldset;
 
 use Bitrix\Main;
 use Yandex\Market;
-use Yandex\Market\Ui\UserField\Helper;
+use Yandex\Market\Ui\UserField;
 
 class TableLayout extends AbstractLayout
 {
@@ -20,11 +20,10 @@ class TableLayout extends AbstractLayout
 	{
 		static::onceStatic('loadRowAssets');
 
+		$attributes = $this->getPluginAttributes($this->name);
+
 		$result = '<table>';
-		$result .= $this->editRow($this->name, $value, [
-			'class' => 'js-plugin',
-			'data-base-name' => $this->name,
-		]);
+		$result .= $this->editRow($this->name, $value, $attributes);
 		$result .= '</table>';
 
 		return $result;
@@ -45,10 +44,8 @@ class TableLayout extends AbstractLayout
 			$values[] = [];
 		}
 
-		$collectionAttributes = [
-			'class' => 'js-plugin',
+		$collectionAttributes = $this->getPluginAttributes($inputName) + [
 			'data-plugin' => 'Field.Fieldset.Collection',
-			'data-base-name' => $inputName,
 		];
 
 		if ($this->userField['MANDATORY'] === 'Y')
@@ -56,19 +53,24 @@ class TableLayout extends AbstractLayout
 			$collectionAttributes['data-persistent'] = 'true';
 		}
 
-		$result = sprintf('<table %s>', Helper\Attributes::stringify($collectionAttributes));
+		$result = sprintf('<table %s>', UserField\Helper\Attributes::stringify($collectionAttributes));
+
+		if ($this->useTableHeader())
+		{
+			$result .= $this->getTableHeader($onlyPlaceholder);
+		}
 
 		foreach ($values as $value)
 		{
 			$valueName = $inputName . '[' . $valueIndex . ']';
 			$rowAttributes = [
-				'class' => 'js-fieldset-collection__item' . ($onlyPlaceholder ? ' is--hidden' : ''),
+				'class' => $this->getFieldsetName('collection__item') . ($onlyPlaceholder ? ' is--hidden' : ''),
 			];
 			$rowHtml = $this->editRow($valueName, $value, $rowAttributes, true);
 
 			if ($onlyPlaceholder)
 			{
-				$rowHtml = Helper\Attributes::sliceInputName($rowHtml);
+				$rowHtml = UserField\Helper\Attributes::sliceInputName($rowHtml);
 			}
 
 			$result .= $rowHtml;
@@ -77,8 +79,8 @@ class TableLayout extends AbstractLayout
 		}
 
 		$result .= '</table>';
-		$result .= '<input ' . Helper\Attributes::stringify([
-			'class' => 'adm-btn js-fieldset-collection__item-add',
+		$result .= '<input ' . UserField\Helper\Attributes::stringify([
+			'class' => 'adm-btn ' . $this->getFieldsetName('collection__item-add'),
 			'type' => 'button',
 			'value' => static::getLang('USER_FIELD_FIELDSET_ADD'),
 		]) . ' />';
@@ -105,23 +107,45 @@ class TableLayout extends AbstractLayout
 		]);
 	}
 
+	protected function useTableHeader()
+	{
+		return !empty($this->userField['SETTINGS']['USE_HEADER']);
+	}
+
+	protected function getTableHeader($isHidden = false)
+	{
+		$result = sprintf('<thead %s><tr>', UserField\Helper\Attributes::stringify([
+			'class' => $this->getFieldsetName('collection__header') . ' ' . ($isHidden ? 'is--hidden' : ''),
+		]));
+
+		foreach ($this->fields as $field)
+		{
+			$fieldHeader = isset($field['SETTINGS']['TABLE_HEADER'])
+				? $field['SETTINGS']['TABLE_HEADER']
+				: $field['NAME'];
+
+			$result .= sprintf('<td>%s</td>', $fieldHeader);
+		}
+
+		$result .= '</tr></thead>';
+
+		return $result;
+	}
+
 	protected function editRow($name, $values, array $attributes = [], $allowDelete = false)
 	{
 		$fields = $this->extendFields($name, $this->fields);
-		$result = sprintf('<tr %s>', Helper\Attributes::stringify($attributes + [
+		$result = sprintf('<tr %s>', UserField\Helper\Attributes::stringify($attributes + array_filter([
 			'data-plugin' => 'Field.Fieldset.Row',
-		]));
+			'data-element-namespace' => $this->hasParentFieldset() ? '.' . $this->fieldsetName : null,
+		])));
 
 		foreach ($fields as $fieldKey => $field)
 		{
-			$value = isset($values[$fieldKey]) ? $values[$fieldKey] : null;
+			$value = Market\Utils\Field::getChainValue($values, $fieldKey, Market\Utils\Field::GLUE_BRACKET);
 
-			$row = Helper\Renderer::getEditRow($field, $value, $values);
-			$control = $row['CONTROL'];
-			$control = Helper\Attributes::insert($control, [
-				'class' => 'js-fieldset-row__input',
-			]);
-			$control = Helper\Attributes::insertDataName($control, $fieldKey, $field['FIELD_NAME']);
+			$row = UserField\Helper\Renderer::getEditRow($field, $value, $values);
+			$control = $this->prepareFieldControl($row['CONTROL'], $fieldKey, $field);
 
 			// write result
 
@@ -131,7 +155,8 @@ class TableLayout extends AbstractLayout
 		if ($allowDelete)
 		{
 			$result .= sprintf(
-				'<td><button class="adm-btn js-fieldset-collection__item-delete" type="button" title="%s">-</button></td>',
+				'<td><a class="b-remove %s" href="#" title="%s"></a></td>',
+				$this->getFieldsetName('collection__item-delete'),
 				static::getLang('USER_FIELD_FIELDSET_DELETE')
 			);
 		}

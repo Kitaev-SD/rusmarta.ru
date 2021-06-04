@@ -57,7 +57,7 @@ class ZakupkiMosRuSimple extends ZakupkiMosRu {
 		$arResult['vendor'] = ['FIELD' => 'PROPERTY_MANUFACTURER'];
 		$arResult['model'] = ['FIELD' => 'PROPERTY_MODEL'];
 		$arResult['vendorCode'] = ['FIELD' => 'PROPERTY_VENDOR_CODE'];
-		$arResult['OKSM'] = ['FIELD' => 'PROPERTY_COUNTRY'];
+		$arResult['oksm'] = ['FIELD' => 'PROPERTY_COUNTRY'];
 		$arResult['vat'] = ['FIELD' => 'CATALOG_VAT_VALUE'];
 		$arResult['delivery'] = ['CONST' => ''];
 		$arResult['manufacturer_warranty'] = ['CONST' => ''];

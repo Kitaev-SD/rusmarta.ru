@@ -65,6 +65,7 @@ $arAutoload = [
 	'Acrit\Core\Seo\GooglePageSpeedV5' => 'lib/seo/googlepagespeedv5.php',
 	/*** CRM INTEGRATION ***/
 	'Acrit\Core\Crm\ProfilesTable' => 'lib/crm/profiles.php',
+	'Acrit\Core\Orders\ProfilesTable' => 'lib/orders/profiles.php',
 ];
 \Bitrix\Main\Loader::registerAutoLoadClasses(ACRIT_CORE, $arAutoload);
 $GLOBALS['ACRIT_CORE_AUTOLOAD_CLASSES'] = &$arAutoload;

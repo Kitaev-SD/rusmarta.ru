@@ -57,6 +57,7 @@ class Renderer
 
 		if ($row !== null)
 		{
+			$defaults['ENTITY_VALUE_ID'] = isset($row['ID']) ? $row['ID'] : null;
 			$defaults['ROW'] = $row;
 		}
 

@@ -25,4 +25,5 @@ $MESS["ACRIT_CRM_TAB_SYNC_MAN_ONLY_NEW"] = "Выгружать только ещё не выгруженные 
 $MESS["ACRIT_CRM_TAB_SYNC_MAN_RUN_TITLE"] = "Запустить выгрузку данных заказов";
 $MESS["ACRIT_CRM_TAB_SYNC_ADD_TITLE"] = "Фоновая регулярная синхронизация";
 $MESS["ACRIT_CRM_TAB_SYNC_ADD_PERIOD"] = "Период синхронизации (мин):";
+$MESS["ACRIT_CRM_TAB_SYNC_MAN_COUNT"] = "Загружено в CRM сделок:";
 ?>

@@ -15,7 +15,7 @@ class SetupLinkType extends EnumerationType
 		Main\Localization\Loc::loadMessages(__FILE__);
 	}
 
-	function GetList($arUserField)
+	public static function GetList($arUserField)
 	{
 		static $result = null;
 
@@ -45,7 +45,7 @@ class SetupLinkType extends EnumerationType
 		return $queryResult;
 	}
 
-	function GetAdminListViewHTML($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)
 	{
 		if (static::isExportAllRow($arUserField))
 		{
@@ -61,7 +61,7 @@ class SetupLinkType extends EnumerationType
 		return $result;
 	}
 
-	function GetAdminListViewHTMLMulty($arUserField, $arHtmlControl)
+	public static function GetAdminListViewHTMLMulty($arUserField, $arHtmlControl)
 	{
 		if (static::isExportAllRow($arUserField))
 		{
@@ -77,7 +77,7 @@ class SetupLinkType extends EnumerationType
 		return $result;
 	}
 
-	function GetEditFormHTML($arUserField, $arHtmlControl)
+	public static function GetEditFormHTML($arUserField, $arHtmlControl)
 	{
 		if (isset($arUserField['SETTINGS'])) { $arUserField['SETTINGS'] = []; }
 
@@ -87,7 +87,7 @@ class SetupLinkType extends EnumerationType
 		return parent::GetEditFormHTML($arUserField, $arHtmlControl);
 	}
 
-	public function GetEditFormHTMLMulty($arUserField, $arHtmlControl)
+	public static function GetEditFormHTMLMulty($arUserField, $arHtmlControl)
 	{
 		if (isset($arUserField['SETTINGS'])) { $arUserField['SETTINGS'] = []; }
 

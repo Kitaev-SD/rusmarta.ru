@@ -340,6 +340,8 @@ class YandexMarketBooks extends YandexMarket {
 			$arXmlTags['country_of_origin'] = Xml::addTag($arFields['COUNTRY_OF_ORIGIN']);
 		if(!Helper::isEmpty($arFields['BARCODE']))
 			$arXmlTags['barcode'] = $this->getXmlTag_Barcode($intProfileID, $arFields['BARCODE']);
+		if(!Helper::isEmpty($arFields['CPA']))
+			$arXmlTags['cpa'] = Xml::addTag($arFields['CPA']);
 		if(!Helper::isEmpty($arFields['EXPIRY']))
 			$arXmlTags['expiry'] = Xml::addTag($arFields['EXPIRY']);
 		if(!Helper::isEmpty($arFields['ADULT']))

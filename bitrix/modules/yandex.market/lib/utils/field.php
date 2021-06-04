@@ -2,11 +2,17 @@
 
 namespace Yandex\Market\Utils;
 
+use Bitrix\Main;
+use Yandex\Market;
+
 class Field
 {
-	public static function getChainValue($values, $key)
+	const GLUE_DOT = 'dot';
+	const GLUE_BRACKET = 'bracket';
+
+	public static function getChainValue($values, $key, $glue = Field::GLUE_DOT)
 	{
-		$keyParts = explode('.', $key);
+		$keyParts = static::splitKey($key, $glue);
 		$lastLevel = $values;
 
 		foreach ($keyParts as $keyPart)
@@ -25,9 +31,9 @@ class Field
 		return $lastLevel;
 	}
 
-	public static function setChainValue(&$values, $key, $value)
+	public static function setChainValue(&$values, $key, $value, $glue = Field::GLUE_DOT)
 	{
-		$keyParts = explode('.', $key);
+		$keyParts = static::splitKey($key, $glue);
 		$keyPartIndex = 0;
 		$keyPartCount = count($keyParts);
 		$lastLevel = &$values;
@@ -52,9 +58,9 @@ class Field
 		}
 	}
 
-	public static function pushChainValue(&$values, $key, $value)
+	public static function pushChainValue(&$values, $key, $value, $glue = Field::GLUE_DOT)
 	{
-		$keyParts = explode('.', $key);
+		$keyParts = static::splitKey($key, $glue);
 		$keyPartIndex = 0;
 		$keyPartCount = count($keyParts);
 		$lastLevel = &$values;
@@ -84,9 +90,9 @@ class Field
 		}
 	}
 
-	public static function unsetChainValue(&$values, $key)
+	public static function unsetChainValue(&$values, $key, $glue = Field::GLUE_DOT)
 	{
-		$keyParts = explode('.', $key);
+		$keyParts = static::splitKey($key, $glue);
 		$keyPartIndex = 0;
 		$keyPartCount = count($keyParts);
 		$lastLevel = &$values;
@@ -108,5 +114,82 @@ class Field
 
 			$keyPartIndex++;
 		}
+	}
+
+	public static function splitKey($key, $glue = Field::GLUE_DOT)
+	{
+		if (is_array($key))
+		{
+			$result = $key;
+		}
+		else if ($glue === static::GLUE_DOT)
+		{
+			$result = explode('.', $key);
+		}
+		else if ($glue === static::GLUE_BRACKET)
+		{
+			$result = static::splitKeyByBrackets($key);
+		}
+		else
+		{
+			throw new Main\ArgumentException(sprintf('unknown glue %s', $glue));
+		}
+
+		return $result;
+	}
+
+	protected static function splitKeyByBrackets($key)
+	{
+		$keyOffset = 0;
+		$keyLength = Market\Data\TextString::getLength($key);
+		$keyChain = [];
+
+		do
+		{
+			$keyPart = null;
+
+			if ($keyOffset === 0)
+			{
+				$arrayEnd = Market\Data\TextString::getPosition($key, '[');
+
+				if ($arrayEnd === false)
+				{
+					$keyPart = $key;
+					$keyOffset = $keyLength;
+				}
+				else
+				{
+					$keyPart = Market\Data\TextString::getSubstring($key, $keyOffset, $arrayEnd - $keyOffset);
+					$keyOffset = $arrayEnd + 1;
+				}
+			}
+			else
+			{
+				$arrayEnd = Market\Data\TextString::getPosition($key, ']', $keyOffset);
+
+				if ($arrayEnd === false)
+				{
+					$keyPart = Market\Data\TextString::getSubstring($key, $keyOffset);
+					$keyOffset = $keyLength;
+				}
+				else
+				{
+					$keyPart = Market\Data\TextString::getSubstring($key, $keyOffset, $arrayEnd - $keyOffset);
+					$keyOffset = $arrayEnd + 2;
+				}
+			}
+
+			if ((string)$keyPart !== '')
+			{
+				$keyChain[] = $keyPart;
+			}
+			else
+			{
+				break;
+			}
+		}
+		while ($keyOffset < $keyLength);
+
+		return $keyChain;
 	}
 }

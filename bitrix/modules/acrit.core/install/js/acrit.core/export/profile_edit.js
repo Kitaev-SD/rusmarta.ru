@@ -410,14 +410,18 @@ $(document).ready(function(){
 	};
 	window.acritExpPluginSelect2Object = $('#field_PLUGIN').select2(window.acritExpPluginSelect2Config);
 	// Refresh select2 on tabs change
+	window.acritExpLastTab = '';
 	BX.addCustomEvent('OnAdminTabsChange', function(){
-		if(window.acritExpPluginSelect2Object){
-			window.acritExpPluginSelect2Object.select2(window.acritExpPluginSelect2Config);
+		let tab = $('.adm-detail-tab-active', AcritExpProfile.TABS_BLOCK).attr('id');
+		if(window.acritExpLastTab != tab){
+			if(window.acritExpPluginSelect2Object){
+				window.acritExpPluginSelect2Object.select2(window.acritExpPluginSelect2Config);
+			}
+			if(window.acritExpFormatSelect2Object){
+				window.acritExpFormatSelect2Object.select2(window.acritExpFormatSelect2Config);
+			}
+			window.acritExpLastTab = tab;
 		}
-		if(window.acritExpFormatSelect2Object){
-			window.acritExpFormatSelect2Object.select2(window.acritExpFormatSelect2Config);
-		}
-		//acritExpIBlocksSelectStylize();
 	});
 	// Initial trigger
 	$('#field_PLUGIN').trigger('change', {initial:true});
@@ -827,7 +831,7 @@ $(document).ready(function(){
 			}).trigger('change');
 			$('select[data-role="field-select-list"]', thisPopup.DIV).dblclick(function(){
 				$('.bx-core-adm-dialog-buttons input[type=button]', thisPopup.DIV).first().trigger('click');
-			});
+			}).focus();
 			acritExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
 			acritExpHandleAjaxError(jqXHR, true);
@@ -1382,6 +1386,16 @@ $(document).ready(function(){
 	$('select[data-role="categories-redefinition-source"]').trigger('change');
 });
 
+// New display results
+$(document).delegate('span[data-role="acrit_exp_results_go_to_log"]', 'click', function(e){
+	e.preventDefault();
+	AcritExpPopupExecute.Close();
+	$('#tab_cont_log').trigger('click');
+	setTimeout(function(){
+		$('html,body').animate({scrollTop:$('#tr_LOG_HEADING').offset().top - 50})
+	}, 100);
+});
+
 /**
  *	POPUP: Categories redefinition general
  */
@@ -1673,8 +1687,8 @@ $(document).ready(function(){
 		content: '',
 		resizable: true,
 		draggable: true,
-		height: 400,
-		width: 500
+		height: 350,
+		width: 550
 	});
 	AcritExpPopupExecute.Open = function(){
 		this.repeatDelay = acritExpExportTimeDelay && acritExpExportTimeDelay>0 ? acritExpExportTimeDelay : 50;
@@ -2108,6 +2122,14 @@ $(document).ready(function(){
 	span.html((fileName.length ? fileName : ''));
 });
 
+/* Email */
+$(document).delegate('select[data-role="acrit_exp_profile_send_email"]', 'change', function(e){
+	$('#tr_ADMIN_EMAIL').toggle($(this).val() == 'C');
+});
+$(document).ready(function(){
+	$('select[data-role="acrit_exp_profile_send_email"]').trigger('change');
+});
+
 /* Offers sort (for get first offer of element) */
 $(document).delegate('input[data-role="offers-sort--add"]', 'click', function(e){
 	var block = $('div[data-role="offers-sort--block"]'),	
@@ -2283,3 +2305,13 @@ $(document).delegate('.acrit-exp-field-settings select', 'mousedown', acritExpSe
 $(document).ready(function(){
 	$('.adm-detail-toolbar a[onclick*="acritTeacher"]').attr('id', 'acrit-exp-button-teacher');
 });
+
+/* Spoilers for plugin description */
+$(document).delegate('#acrit_exp_form [data-role="acrit_exp_spoiler_toggle"]', 'click', function(e){
+	let target = $(this).parent().find('[data-role="acrit_exp_spoiler_data"]');
+	e.preventDefault();
+	if(!target.is(':animated')){
+		target.slideToggle();
+	}
+});
+

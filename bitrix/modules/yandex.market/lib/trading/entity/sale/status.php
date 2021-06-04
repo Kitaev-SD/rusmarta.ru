@@ -73,7 +73,7 @@ class Status extends Market\Trading\Entity\Reference\Status
 
 	public function getMeaningfulMap()
 	{
-		return [
+		$result = [
 			Market\Data\Trading\MeaningfulStatus::CREATED => 'N',
 			Market\Data\Trading\MeaningfulStatus::ALLOW_DELIVERY => static::STATUS_ALLOW_DELIVERY,
 			Market\Data\Trading\MeaningfulStatus::DEDUCTED => static::STATUS_DEDUCTED,
@@ -81,6 +81,90 @@ class Status extends Market\Trading\Entity\Reference\Status
 			Market\Data\Trading\MeaningfulStatus::CANCELED => static::STATUS_CANCELED,
 			Market\Data\Trading\MeaningfulStatus::FINISHED => 'F',
 		];
+
+		if (Main\ModuleManager::isModuleInstalled('intaro.retailcrm'))
+		{
+			$result = $this->extendMeaningfulMapByRetailCrm($result);
+		}
+
+		return $result;
+	}
+
+	protected function extendMeaningfulMapByRetailCrm($map)
+	{
+		$cancelOption = (string)Main\Config\Option::get('intaro.retailcrm', 'cansel_order');
+
+		if ($cancelOption === '') { return $map; }
+
+		$cancelStatuses = unserialize($cancelOption, [ 'allowed_classes' => false ]);
+
+		if (!is_array($cancelStatuses)) { return $map; }
+
+		$cancelStatuses = array_filter($cancelStatuses, static function($status) {
+			return is_string($status) && trim($status) !== '';
+		});
+
+		if (empty($cancelStatuses)) { return $map; }
+
+		$map[Market\Data\Trading\MeaningfulStatus::CANCELED] = (array)$map[Market\Data\Trading\MeaningfulStatus::CANCELED];
+
+		array_push($map[Market\Data\Trading\MeaningfulStatus::CANCELED], ...$cancelStatuses);
+
+		return $map;
+	}
+
+	public function getCancelReasonMeaningfulMap()
+	{
+		$result = [];
+
+		if (Main\ModuleManager::isModuleInstalled('intaro.retailcrm'))
+		{
+			$result = $this->extendCancelReasonMeaningfulMapByRetailCrm($result);
+		}
+
+		return $result;
+	}
+
+	protected function extendCancelReasonMeaningfulMapByRetailCrm($cancelReasonMap)
+	{
+		$statusMapOption = (string)Main\Config\Option::get('intaro.retailcrm', 'pay_statuses_arr');
+
+		if ($statusMapOption === '') { return $cancelReasonMap; }
+
+		$statusMap = unserialize($statusMapOption, [ 'allowed_classes' => false ]);
+
+		if (!is_array($statusMap)) { return $cancelReasonMap; }
+
+		$retailReasonMap = [
+			'no-call' => Market\Data\Trading\CancelReason::USER_CHANGED_MIND,
+			'already-buyed' => Market\Data\Trading\CancelReason::USER_CHANGED_MIND,
+			'delyvery-did-not-suit' => Market\Data\Trading\CancelReason::SHOP_FAILED,
+			'prices-did-not-suit' => Market\Data\Trading\CancelReason::SHOP_FAILED,
+			'no-product' => Market\Data\Trading\CancelReason::SHOP_FAILED,
+		];
+
+		foreach ($statusMap as $status => $retailReason)
+		{
+			if (!isset($retailReasonMap[$retailReason])) { continue; }
+
+			$cancelReason = $retailReasonMap[$retailReason];
+
+			if (!isset($cancelReasonMap[$cancelReason]))
+			{
+				$cancelReasonMap[$cancelReason] = $status;
+			}
+			else
+			{
+				if (!is_array($cancelReasonMap[$cancelReason]))
+				{
+					$cancelReasonMap[$cancelReason] = (array)$cancelReasonMap[$cancelReason];
+				}
+
+				$cancelReasonMap[$cancelReason][] = $status;
+			}
+		}
+
+		return $cancelReasonMap;
 	}
 
 	protected function getSpecialVariants()

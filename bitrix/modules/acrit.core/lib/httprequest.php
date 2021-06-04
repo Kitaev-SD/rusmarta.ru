@@ -15,6 +15,7 @@ class HttpRequest {
 	 *	Do http request
 	 */
 	public static function getHttpContent($strURL, $arParams=array()){
+		$bDebug = !!$arParams['DEBUG'];
 		if(substr($strURL, 0, 2)=='//') {
 			$strURL = 'http:'.$strURL;
 		}
@@ -27,7 +28,14 @@ class HttpRequest {
 		if(is_array($arParams['HEADER'])){
 			$strHeader = '';
 			foreach($arParams['HEADER'] as $strKey => $strValue){
-				$strHeader .= sprintf("%s: %s\r\n", $strKey, $strValue);
+				if(is_array($strValue)){
+					foreach($strValue as $strValueItem){
+						$strHeader .= sprintf("%s: %s\r\n", $strKey, $strValueItem);
+					}
+				}
+				else{
+					$strHeader .= sprintf("%s: %s\r\n", $strKey, $strValue);
+				}
 			}
 			$arParams['HEADER'] = $strHeader;
 		}
@@ -49,7 +57,8 @@ class HttpRequest {
 		}
 		if(!empty($arParams['USER_AGENT'])) {
 			$arParams['HEADER'] .= 'User-Agent: '.$arParams['USER_AGENT']."\r\n";
-		} else {
+		}
+		elseif(!is_null($arParams['USER_AGENT'])) {
 			$arParams['HEADER'] .= 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, '
 				.'like Gecko) Chrome/59.0.3071.86 Safari/537.36'."\r\n";
 		}
@@ -61,6 +70,9 @@ class HttpRequest {
 				$arParams['HEADER'] = 'Accept: */*'."\r\n".'Connection: close'."\r\n".$arParams['HEADER'];
 			}
 			$Curl = curl_init();
+			if($bDebug){
+				curl_setopt($Curl, CURLINFO_HEADER_OUT, true);
+			}
 			curl_setopt($Curl, CURLOPT_URL, $strURL);
 			curl_setopt($Curl, CURLOPT_HEADER, true);
 			curl_setopt($Curl, CURLOPT_RETURNTRANSFER, true);
@@ -89,6 +101,9 @@ class HttpRequest {
 			}
 			$strResult = curl_exec($Curl);
 			$HeaderSize = curl_getinfo($Curl, CURLINFO_HEADER_SIZE);
+			if($bDebug){
+				Helper::L(curl_getinfo($Curl));
+			}
 			static::$arHttpResponseHeaders = explode("\r\n", (substr($strResult, 0, $HeaderSize)));
 			foreach(static::$arHttpResponseHeaders as $Key => $strHeader) {
 				if (trim($strHeader)=='') {

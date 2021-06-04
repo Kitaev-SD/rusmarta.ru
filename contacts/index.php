@@ -7,6 +7,10 @@ use Bitrix\Main\Application,
     Bitrix\Main\Text\Encoding,
     Bitrix\Main\Localization\Loc;
 
+	header('Cache-Control: private, no-cache="set-cookie"');
+	header('Expires: 0');
+	header('Pragma: no-cache');
+
 //$request = Application::getInstance()->getContext()->getRequest();
 //$locationCity = $request->getCookie("GEOLOCATION_CITY");
 $locationCity = $_COOKIE['bxmaker_geoip_2_3_8_s1_city'];
@@ -24,7 +28,28 @@ if (!empty($locationCity)){
 }
 
 if (!empty($locationCity)):
-?><h2>Пункты выдачи заказов в г. <?echo $locationCity;?></h2>
+?>
+<script>
+	function get_cookie ( cookie_name )
+	{
+	var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+	
+	if ( results )
+		return ( unescape ( results[2] ) );
+	else
+		return null;
+	}
+
+	var x = get_cookie ( "contacts" );
+
+	console.log(document.cookie);
+
+	if (x == 1) {
+		document.cookie = "contacts=0; path=/";
+		window.location.reload();
+	}
+</script>
+<h2>Пункты выдачи заказов в г. <?echo $locationCity;?></h2>
  <?$APPLICATION->IncludeComponent(
 	"bitrix:news",
 	"cdek",
@@ -39,8 +64,8 @@ if (!empty($locationCity)):
 		"BROWSER_TITLE" => "-",
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "N",
-		"CACHE_TIME" => "36000000",
-		"CACHE_TYPE" => "A",
+		"CACHE_TIME" => "0",
+		"CACHE_TYPE" => "N",
 		"CHECK_DATES" => "N",
 		"COMPONENT_TEMPLATE" => "cdek",
 		"COMPOSITE_FRAME_MODE" => "A",
@@ -76,7 +101,7 @@ if (!empty($locationCity)):
 		"NEWS_COUNT" => "1000",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"PAGER_DESC_NUMBERING" => "N",
-		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+		"PAGER_DESC_NUMBERING_CACHE_TIME" => "0",
 		"PAGER_SHOW_ALL" => "N",
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_TEMPLATE" => ".default",

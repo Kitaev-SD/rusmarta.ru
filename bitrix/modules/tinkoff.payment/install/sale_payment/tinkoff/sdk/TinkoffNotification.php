@@ -1,5 +1,7 @@
 <?php
 
+use Tinkoff\TinkoffMerchantAPI;
+
 /**
  * Class Tinkoff
  */
@@ -134,6 +136,8 @@ class TinkoffNotification extends TinkoffMerchantAPI
      */
     public function checkNotification($params)
     {
+        global $DB;
+
         $originalToken = $params->Token;
 
         if (isset($params->Token)) {
@@ -160,6 +164,15 @@ class TinkoffNotification extends TinkoffMerchantAPI
         }
 
         $this->isRequestSuccess($params->Success);
+        if ($params->Status == self::STATUS_AUTHORIZED) {
+            $selectSql = $DB->Query("SELECT * FROM tinkoffRefund WHERE PaymentId = '$params->PaymentId'")->Fetch();
+            if (empty($selectSql)){
+                $strSql = "INSERT INTO tinkoffRefund (OrderId,PaymentId) values ('$params->OrderId', '$params->PaymentId')";
+                $result = $DB->Query($strSql);
+            } else {
+                throw new TinkoffException(sprintf(GetMessage("SALE_TINKOFF_PAYMENT_ID_ERROR"), serialize($params)));
+            }
+        }
 
         $this->paymentStatus = $params->Status;
         $this->paymentId = $params->PaymentId;
@@ -172,10 +185,16 @@ class TinkoffNotification extends TinkoffMerchantAPI
      * @throws TinkoffException
      */
     public function isOrderPaid()
+    {   $this->checkStatus();
+
+        return in_array($this->paymentStatus, array(self::STATUS_CONFIRMED));
+    }
+
+    public function isOrderAuthorized()
     {
         $this->checkStatus();
 
-        return in_array($this->paymentStatus, array(self::STATUS_CONFIRMED));
+        return in_array($this->paymentStatus, array(self::STATUS_AUTHORIZED));
     }
 
     /**
@@ -185,7 +204,7 @@ class TinkoffNotification extends TinkoffMerchantAPI
      */
     public function isOrderFailed()
     {
-        return in_array($this->paymentStatus, array(self::STATUS_CANCELED, self::STATUS_REVERSED, self::STATUS_REJECTED)); //self::STATUS_REFUNDED,
+        return in_array($this->paymentStatus, array(self::STATUS_CANCELED, self::STATUS_REVERSED, self::STATUS_REJECTED));
     }
 
     /**

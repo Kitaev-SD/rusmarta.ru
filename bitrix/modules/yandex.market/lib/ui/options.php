@@ -59,6 +59,7 @@ class Options extends Market\Ui\Reference\Page
 			+ $this->getUserPhoneOptions()
 			+ $this->getTradingLogOptions()
 			+ $this->getTradingTaxSystemOptions()
+			+ $this->getTradingServerOptions()
 		;
 	}
 
@@ -356,6 +357,17 @@ class Options extends Market\Ui\Reference\Page
 				'TYPE' => 'boolean',
 				'TAB' => 'TRADING',
 				'NAME' => Market\Config::getLang('UI_OPTION_TRADING_USE_TAX_SYSTEM'),
+			],
+		];
+	}
+
+	protected function getTradingServerOptions()
+	{
+		return [
+			'ddos_guard' => [
+				'TYPE' => 'boolean',
+				'TAB' => 'TRADING',
+				'NAME' => Market\Config::getLang('UI_OPTION_TRADING_DDOS_GUARD'),
 			],
 		];
 	}

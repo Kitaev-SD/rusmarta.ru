@@ -40,6 +40,7 @@ $arTabs = [
 			'export/multithread.php',
 			'core/log.php',
 			'export/old_core.php',
+			'export/email.php',
 			'export/misc.php',
 		],
 	], [

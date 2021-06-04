@@ -94,7 +94,7 @@ class RetailCrmGeneral extends RetailCrm {
 
         $arResult[] = new Field(array(
             'CODE' => 'ACTIVE',
-            'DISPLAY_CODE' => 'Active',
+            'DISPLAY_CODE' => 'productActivity',
             'NAME' => static::getMessage('FIELD_ACTIVE'),
             'SORT' => 500,
             'DESCRIPTION' => static::getMessage('FIELD_ACTIVE_DESC'),
@@ -421,6 +421,8 @@ class RetailCrmGeneral extends RetailCrm {
 
         # Build XML
         $arXmlTags = array();
+        if(!Helper::isEmpty($arFields['ACTIVE']))
+            $arXmlTags['productActivity'] = Xml::addTag($arFields['ACTIVE']);
         if(!Helper::isEmpty($arFields['URL']))
             $arXmlTags['url'] = $this->getXmlTag_Url($intProfileID, $arFields['URL'], $arFields);
         if(!Helper::isEmpty($arFields['PRICE']))
