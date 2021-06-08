@@ -13907,6 +13907,11 @@ table.compare-grid .delay .catalog-item-delayed i:nth-child(2){
     -moz-box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.36);
      box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.36);
 }
+@media(max-width: 787px) {
+	.catalog-item-info .postfix, .catalog-item-info:hover .postfix {
+		display: none;
+	}
+}
 .catalog-item-info {
     position:relative;
 }
