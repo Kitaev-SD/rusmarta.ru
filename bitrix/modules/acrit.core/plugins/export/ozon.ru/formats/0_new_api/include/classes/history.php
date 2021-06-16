@@ -58,8 +58,11 @@ class HistoryTable extends Entity\DataManager {
 			'ELEMENT_ID' => new Entity\IntegerField('ELEMENT_ID', array(
 				'title' => Helper::getMessage($strLang.'ELEMENT_ID'),
 			)),
-			'JSON' => new Entity\StringField('JSON', array(
+			'JSON' => new Entity\TextField('JSON', array(
 				'title' => Helper::getMessage($strLang.'JSON'),
+			)),
+			'RESPONSE' => new Entity\TextField('RESPONSE', array(
+				'title' => Helper::getMessage($strLang.'RESPONSE'),
 			)),
 			'STOCK_VALUE' => new Entity\IntegerField('STOCK_VALUE', array(
 				'title' => Helper::getMessage($strLang.'STOCK_VALUE'),

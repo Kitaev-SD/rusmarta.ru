@@ -738,6 +738,10 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_VALUE_FLOAT'),
 						'TYPE' => 'N',
 					),
+					'VAT_VALUE_YANDEX' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_VALUE_YANDEX'),
+						'TYPE' => 'S',
+					),
 					'VAT_INCLUDED' => array(
 						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_INCLUDED'),
 						'TYPE' => 'S',

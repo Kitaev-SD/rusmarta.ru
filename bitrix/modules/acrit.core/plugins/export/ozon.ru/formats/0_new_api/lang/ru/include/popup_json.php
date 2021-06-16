@@ -4,6 +4,7 @@
 // General
 $MESS[$strLang.'TAB_FORMATTED'] = 'Форматированный JSON';
 $MESS[$strLang.'TAB_UNFORMATTED'] = 'Оригинальный JSON';
+$MESS[$strLang.'TAB_RESPONSE'] = 'Ответ сервера';
 $MESS[$strLang.'TAB_STOCKS'] = 'Остатки';
 
 $MESS[$strLang.'JSON_COPY'] = 'Копировать в буфер';

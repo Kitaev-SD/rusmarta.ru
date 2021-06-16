@@ -1,0 +1,56 @@
+<?
+use \Bitrix\Main\Localization\Loc;
+?>
+<h2>Полезные ссылки:</h2>
+<ul>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/index.html" target="_blank">
+			Базовая информация для начала работы
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/models.html" target="_blank">
+			Модели продаж
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/terms.html" target="_blank">
+			Словарь терминов
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/catalog/about-catalog.html" target="_blank">
+			Подготовка каталога и создание карточек товаров
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/product-restrictions.html" target="_blank">
+			Ограничения по товарам
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/get-started.html" target="_blank">
+			Как начать работу
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/catalog/yml.html" target="_blank">
+			Подготовка каталога с помощью YML-файла
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/catalog/yml-requirements.html" target="_blank">
+			Требование к YML-файлу
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/catalog/faq.html" target="_blank">
+			Вопросы и ответы
+		</a>
+	</li>
+	<li>
+		<a href="https://yandex.ru/support/marketplace/troubleshooting/support.html" target="_blank">
+			Служба поддержки партнеров
+		</a>
+	</li>
+</ul>

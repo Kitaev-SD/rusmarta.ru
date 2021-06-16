@@ -985,6 +985,9 @@ if(strlen($strAjaxAction)){
 				#$arModuleAutoload = &$GLOBALS['ACRIT_'.toUpper($strModuleCode).'_AUTOLOAD_CLASSES'];
 				foreach($arCoreAutoload as $strClass => $strClassDir){
 					$arClass = explode('\\', $strClass);
+					if(count($arClass) > 3 && toLower($arClass[2]) != 'export'){
+						continue;
+					}
 					$strClassBasename = array_pop($arClass); 
 					$strAs = '';
 					if(substr($strClassBasename, -5) === 'Table'){

@@ -460,6 +460,10 @@ class OzonRuV2 extends UniversalPlugin {
 			'HTML' => $this->includeHtml(__DIR__.'/include/settings/stock_and_price.php'),
 			'SORT' => 170,
 		];
+		$arSettings['ZERO_PRICES'] = [
+			'HTML' => $this->includeHtml(__DIR__.'/include/settings/zero_prices.php'),
+			'SORT' => 180,
+		];
 	}
 	
 	/**
@@ -954,7 +958,9 @@ class OzonRuV2 extends UniversalPlugin {
 			'STOCKS' => [], // All stocks
 		];
 		# Transfer stock from main data to DATA_MORE
-		$arDataMore['STOCK'] = $arFields['stock'];
+		if(($intStock = intVal($arFields['stock'])) > 0){
+			$arDataMore['STOCK'] = $intStock;
+		}
 		unset($arItem['stock'], $arFields['stock']);
 		# Transfer new stocks
 		foreach($arItem as $key => $value){
@@ -967,7 +973,7 @@ class OzonRuV2 extends UniversalPlugin {
 		if($arIBlockParams['OZON_CONSIDER_RESERVED_STOCK'] == 'Y'){
 			$arProductInfo = $this->getOzonProductInfo($arFields['offer_id']);
 			if($arProductInfo['stocks']){
-				$arDataMore['STOCK']['stock_reserved'] = $arProductInfo['stocks']['reserved'];
+				$arDataMore['STOCK_RESERVED'] = $arProductInfo['stocks']['reserved'];
 			}
 		}
 		# Detect category id
@@ -1061,8 +1067,21 @@ class OzonRuV2 extends UniversalPlugin {
 			}
 		}
 		# Transform some fields
-		if($arItem['old_price'] == $arItem['price']){
-			$arItem['old_price'] = '0';
+		if($arItem['price'] >= $arItem['old_price']){
+			if($this->arParams['ZERO_PRICE_OLD'] != 'N'){
+				$arItem['old_price'] = '0';
+			}
+			else{
+				unset($arItem['old_price']);
+			}
+		}
+		if($arItem['premium_price'] >= $arItem['price']){
+			if($this->arParams['ZERO_PRICE_PREMIUM'] != 'N'){
+				$arItem['premium_price'] = '0';
+			}
+			else{
+				unset($arItem['premium_price']);
+			}
 		}
 		if(!$this->isStockAndPrice()){
 			$arNumericToFloat = ['depth', 'height', 'width', 'weight'];
@@ -1364,6 +1383,7 @@ class OzonRuV2 extends UniversalPlugin {
 					'TASK_ID' => $intOzonTaskId,
 					'PRODUCTS_COUNT' => count($arItemsId),
 					'JSON' => $strJsonFullRaw,
+					'RESPONSE' => \Bitrix\Main\Web\Json::encode($arResult, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
 					'SESSION_ID' => session_id(),
 					'TIMESTAMP_X' => $obDate,
 				];
@@ -1375,6 +1395,18 @@ class OzonRuV2 extends UniversalPlugin {
 					if(!Helper::isUtf()){
 						$strJson = Helper::convertEncoding($strJson, 'UTF-8', 'CP1251');
 					}
+					$strResponse = null;
+					if(is_array($arResult['result']) && isset($arResult['result'][0])){
+						foreach($arResult['result'] as $arResultItem){
+							if($arResultItem['offer_id'] == $arItem['offer_id']){
+								$strResponse = \Bitrix\Main\Web\Json::encode($arResultItem, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+								if(!$arResultItem['updated']){
+									$this->addToLog('Error export product in stock mode: '.print_r($arResultItem, true));
+								}
+								break;
+							}
+						}
+					}
 					History::add([
 						'MODULE_ID' => $this->strModuleId,
 						'PROFILE_ID' => $this->intProfileId,
@@ -1383,6 +1415,7 @@ class OzonRuV2 extends UniversalPlugin {
 						'OFFER_ID' => $arItem['offer_id'],
 						'ELEMENT_ID' => $intElementId,
 						'JSON' => $strJson,
+						'RESPONSE' => $strResponse,
 						'SESSION_ID' => session_id(),
 						'TIMESTAMP_X' => $obDate,
 					]);
@@ -1392,14 +1425,14 @@ class OzonRuV2 extends UniversalPlugin {
 				$arStocksExt = []; // stocks by warehouses
 				if(is_array($arDataMore)){
 					foreach($arDataMore as $arStock){
-						if(isset($arStock['OFFER_ID'])){
-							if(isset($arStock['STOCK'])){
+						if(Helper::strlen($arStock['OFFER_ID'])){
+							if(!empty($arStock['STOCK'])){
 								$arStocks[] = [
 									'offer_id' => strVal($arStock['OFFER_ID']),
 									'stock' => intVal($arStock['STOCK']),
 								];
 							}
-							if(isset($arStock['STOCKS'])){
+							if(!empty($arStock['STOCKS'])){
 								foreach($arStock['STOCKS'] as $intStoreId => $intStock){
 									$arStocksExt[] = [
 										'offer_id' => strVal($arStock['OFFER_ID']),
@@ -1411,7 +1444,7 @@ class OzonRuV2 extends UniversalPlugin {
 						}
 					}
 				}
-				if(!empty($arStocks)){
+				if(!empty($arStocks) || !empty($arStocksExt)){
 					$this->sendStocks($intTaskId, $arStocks, $arStocksExt);
 				}
 			}
@@ -1446,7 +1479,7 @@ class OzonRuV2 extends UniversalPlugin {
 				}
 			}
 			else{
-				$this->addToLog('Error send stocks: '.print_r($arResponse, true));
+				$this->addToLog('Error send stocks (v1): '.print_r($arResponse, true));
 			}
 		}
 		else{
@@ -1470,7 +1503,7 @@ class OzonRuV2 extends UniversalPlugin {
 				}
 			}
 			else{
-				$this->addToLog('Error send stocks: '.print_r($arResponse, true));
+				$this->addToLog('Error send stocks (v2): '.print_r($arResponse, true));
 			}
 		}
 		else{
@@ -1675,6 +1708,7 @@ class OzonRuV2 extends UniversalPlugin {
 			],
 			'select' => [
 				'JSON',
+				'RESPONSE',
 			],
 		];
 		$arParams = [
@@ -1841,7 +1875,7 @@ class OzonRuV2 extends UniversalPlugin {
 		$arQuery = [
 			'offer_id' => $strOfferId,
 		];
-		$arResult = $this->API->execute('/v2/product/info', $arQuery, ['METHOD' => 'POST']);
+		$arResult = $this->API->execute('/v2/product/info', $arQuery, ['METHOD' => 'POST', 'SKIP_ERRORS' => true]);
 		return is_array($arResult['result']) ? $arResult['result'] : [];
 	}
 	

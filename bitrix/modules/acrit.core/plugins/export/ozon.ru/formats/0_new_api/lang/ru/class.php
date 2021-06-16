@@ -24,6 +24,10 @@ $MESS[$strLang.'EXPORT_STOCKS_CHECKBOX'] = 'Выгружать остатки по складам';
 $MESS[$strLang.'STOCK_AND_PRICE_CHECKBOX'] = 'Режим выгрузки только остатков и цен';
 	$MESS[$strLang.'STOCK_AND_PRICE_HINT'] = '<b>Внимание!</b> Данный режим убирает из профиля все поля кроме необходимых для выгрузки остатков.<br/><br/>
 	При этом offer_id является обязательным, т.к. это поле является идентификатором в Ozon.';
+$MESS[$strLang.'ZERO_PRICE_OLD_CHECKBOX'] = 'Сброс <code>old_price</code> при отсутствии скидок';
+$MESS[$strLang.'ZERO_PRICE_OLD_HINT'] = 'Опция управляет отправкой поля <code>old_price</code> только для случаев когда цена со скидкой не меньше обычной цены: при включённой опции <code>old_price</code> будет отправляться равным нулю, при отключённой опции <code>old_price</code> не будет передавать вовсе.';
+$MESS[$strLang.'ZERO_PRICE_PREMIUM_CHECKBOX'] = 'Сброс <code>premium_price</code> при совпадении с price';
+$MESS[$strLang.'ZERO_PRICE_PREMIUM_HINT'] = 'Опция управляет отправкой поля <code>premium_price</code> только для случаев когда premium-цена не меньше обычной цены: при включённой опции <code>premium_price</code> будет отправляться равным нулю, при отключённой опции <code>premium_price</code> не будет передавать вовсе.';
 
 //
 $MESS[$strLang.'GUESS_BRAND'] = 'Бренд';

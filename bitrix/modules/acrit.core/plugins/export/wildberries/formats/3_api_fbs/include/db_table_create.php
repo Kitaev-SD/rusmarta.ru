@@ -40,6 +40,7 @@ $arTables = [
 		'TIMESTAMP_X' => 'DATETIME NOT NULL',
 		'PRIMARY KEY (ID)',
 		'KEY `ix_perf_acrit_wb_image_1` (`UUID`)',
+		'KEY `ix_perf_acrit_wb_image_2` (`ELEMENT_ID`,`PROFILE_ID`)',
 	],
 	'acrit_wb_task' => [
 		'ID' => 'int NOT NULL AUTO_INCREMENT',
@@ -81,6 +82,7 @@ $arTables = [
 		'SESSION_ID' => 'varchar(32) NOT NULL',
 		'TIMESTAMP_X' => 'datetime NOT NULL',
 		'PRIMARY KEY (`ID`)',
+		'KEY `ix_perf_acrit_wb_history_1` (`TASK_ID`,`PROFILE_ID`)',
 	],
 	'acrit_wb_history_stock' => [
 		'ID' => 'int NOT NULL AUTO_INCREMENT',
@@ -96,6 +98,7 @@ $arTables = [
 		'SESSION_ID' => 'varchar(32) NOT NULL',
 		'TIMESTAMP_X' => 'datetime NOT NULL',
 		'PRIMARY KEY (`ID`)',
+		'KEY `ix_perf_acrit_wb_history_st_1` (`NM_ID`,`TASK_ID`)',
 	],
 ];
 foreach($arTables as $strTableName => $arFields){

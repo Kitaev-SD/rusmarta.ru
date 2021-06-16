@@ -270,7 +270,7 @@ endif;?>
 
 
 <div class="filtered-items productSlider1">
-    <div class="h3">Вас может заинтересовать</div>
+    <div class="h3">пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</div>
     <?
     
     

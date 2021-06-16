@@ -24,6 +24,13 @@ use
 		'TAB' => static::getMessage('TAB_UNFORMATTED'), 
 		'ONSELECT' => 'acritExpOzonPopupJsonChangeTab();',
 	];
+	if(Helper::strlen($arData['RESPONSE'])){
+		$arSubTabs[] = [
+			'DIV' => 'response', 
+			'TAB' => static::getMessage('TAB_RESPONSE'), 
+			'ONSELECT' => 'acritExpOzonPopupJsonChangeTab();',
+		];
+	}
 	if($arParams['SHOW_STOCKS']){
 		$arSubTabs[] = [
 			'DIV' => 'stocks', 
@@ -51,6 +58,15 @@ use
 		<div data-role="acrit_ozon_json_copy_source" style="height:1px; width:1px; overflow:hidden;"><?
 			print $strJson;
 		?></div>
+	<?if(Helper::strlen($arData['RESPONSE'])):?>
+		<?
+		$obTabControl->beginNextTab();
+		?>
+		<pre style="margin-top:0;"><code class="json"><?=$arData['RESPONSE'];?></code></pre>
+		<div data-role="acrit_ozon_json_copy_source" style="height:1px; width:1px; overflow:hidden; white-space:pre;"><?
+			print $arData['RESPONSE'];
+		?></div>
+	<?endif?>
 	<?if($arParams['SHOW_STOCKS']):?>
 		<?
 		$obTabControl->beginNextTab();
@@ -103,29 +119,6 @@ use
 				<?endforeach?>
 			</tbody>
 		</table>
-		<?/*
-		<style>
-		.acrit_exp_ozon_table_stocks td:first-child{}
-		</style>
-		<table class="acrit_exp_ozon_table_stocks">
-			<tbody>
-				<tr>
-					<td><?=static::getMessage('STOCK_VALUE');?></td>
-					<td><?=$arData['STOCK_VALUE'];?></td>
-				</tr>
-				<tr>
-					<td><?=static::getMessage('STOCK_UPDATED');?></td>
-					<td><?=(static::getMessage('STOCK_UPDATED_'.($arArray['STOCK_UPDATED'] == 'Y' ? 'Y' : 'N')));?></td>
-				</tr>
-				<?if($arData['STOCK_UPDATED'] != 'Y'):?>
-					<tr>
-						<td><?=static::getMessage('STOCK_ERRORS');?></td>
-						<td><?=$arData['STOCK_ERRORS'];?></td>
-					</tr>
-				<?endif?>
-			</tbody>
-		</table>
-		*/?>
 	<?endif?>
 	<?
 	$obTabControl->end();
@@ -141,7 +134,6 @@ use
 						let
 							element = $('#acrit_exp_ozon_json_preview_popup div[data-role="acrit_ozon_json_copy_source"]:visible');
 						e.preventDefault();
-						console.log(element.get(0));
 						acritCoreCopyToClipboard(element.get(0), function(){
 							alert('<?=static::getMessage('JSON_COPIED');?>');
 						});
@@ -155,7 +147,7 @@ function acritExpOzonPopupJsonChangeTab(){
 	let tab = $('#acrit_exp_ozon_json_preview_popup .adm-detail-subtab-active'),
 		tabCode = tab.attr('id').replace(/^view_tab_/, ''),
 		bntCopy = $('#acrit_exp_ozon_json_preview_popup_copy');
-	if(tabCode.match(/^json_/)){
+	if(tabCode.match(/^json_/) || tabCode == 'response'){
 		bntCopy.show();
 	}
 	else{

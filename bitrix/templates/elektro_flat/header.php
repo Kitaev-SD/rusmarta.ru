@@ -168,7 +168,7 @@ Loc::loadMessages(__FILE__); ?>
 					</div>
 					<div class="modal_no_cookie modal_no_cookie_first">
 						<div class="modal_no_cookie_close">&times;</div>
-						˜˜˜˜˜˜˜˜˜˜˜˜˜˜ ˜˜˜ ˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜˜, <a href="https://yandex.ru/support/common/browsers-settings/browsers-cookies.html" target="_blank">˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜ cookie</a> ˜ ˜˜˜˜˜ ˜˜˜˜˜˜˜˜
+						ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, <a href="https://yandex.ru/support/common/browsers-settings/browsers-cookies.html" target="_blank">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ cookie</a> ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					</div>
 				</header>
 				<? if ($arSetting["CATALOG_LOCATION"]["VALUE"] == "LEFT") : ?>

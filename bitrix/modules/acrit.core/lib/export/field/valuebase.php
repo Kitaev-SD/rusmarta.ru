@@ -40,6 +40,9 @@ abstract class ValueBase {
 	static $bCurrencyModule;
 	static $arCacheProductPrice = array();
 	static $arCacheOptimalPrice = array();
+
+	# 
+	static $bGetOptimalPrice = false;
 	
 	/**
 	 *	Create
@@ -582,6 +585,17 @@ abstract class ValueBase {
 				$strVatValue = Helper::getVatValueByID($arFields['CATALOG_VAT_ID']);
 				$mResult = strlen($strVatValue) ? round($strVatValue / 100, 2) : '0';
 			}
+			# Catalog vat value (VAT_20)
+			elseif(preg_match('#^CATALOG_VAT_VALUE_YANDEX$#', $strFieldValue, $arMatch)){
+				$strVatValue = Helper::getVatValueByID($arFields['CATALOG_VAT_ID']);
+				if(is_numeric($strVatValue)){
+					$strVatValue = sprintf('VAT_%d', $strVatValue);
+				}
+				else{
+					$strVatValue = 'NO_VAT';
+				}
+				$mResult = $strVatValue;
+			}
 			# Is catalog field?
 			elseif(preg_match('#^CATALOG_(.*?)$#', $strFieldValue, $arMatch)){
 				switch($arMatch[1]){
@@ -756,7 +770,9 @@ abstract class ValueBase {
 		$arResult = &static::$arCacheOptimalPrice[$strKey];
 		if(!isset($arResult)){
 			\CCatalogProduct::setUsedCurrency($arPrice['CURRENCY']);
+			static::setGlobalFlag(true);
 			$arResult = \CCatalogProduct::getOptimalPrice($intProductID, 1, array(), 'N', array($arPrice), $this->strSiteID);
+			static::setGlobalFlag(false);
 			if(is_array($arResult)){
 				$arResult = $arResult['RESULT_PRICE'];
 				if(is_array($arResult) && isset($arResult['BASE_PRICE'])){
@@ -773,6 +789,20 @@ abstract class ValueBase {
 			}
 		}
 		return $arResult;
+	}
+
+	/**
+	 * Set global flag for OnGetOptimalPrice
+	 */
+	public static function setGlobalFlag($flag){
+		static::$bGetOptimalPrice = $flag;
+	}
+
+	/**
+	 * Get global flag for OnGetOptimalPrice
+	 */
+	public static function getGlobalFlag(){
+		return static::$bGetOptimalPrice;
 	}
 	
 	/**

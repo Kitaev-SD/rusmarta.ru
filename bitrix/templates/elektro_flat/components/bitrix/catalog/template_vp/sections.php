@@ -22,8 +22,8 @@
 <div class="clr"></div>
 <div class="catalog-section-descr">	
 	<?$APPLICATION->IncludeComponent("bitrix:main.include", "template2", Array(
-	"AREA_FILE_SHOW" => "file",	// Показывать включаемую область
-		"PATH" => SITE_DIR."include/catalog_descr.php",	// Путь к файлу области
+	"AREA_FILE_SHOW" => "file",	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		"PATH" => SITE_DIR."include/catalog_descr.php",	// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	),
 	false
 );?>

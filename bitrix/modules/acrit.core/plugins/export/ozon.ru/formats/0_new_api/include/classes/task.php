@@ -49,8 +49,11 @@ class TaskTable extends Entity\DataManager {
 			'PRODUCTS_COUNT' => new Entity\IntegerField('PRODUCTS_COUNT', array(
 				'title' => Helper::getMessage($strLang.'PRODUCTS_COUNT'),
 			)),
-			'JSON' => new Entity\StringField('JSON', array(
+			'JSON' => new Entity\TextField('JSON', array(
 				'title' => Helper::getMessage($strLang.'JSON'),
+			)),
+			'RESPONSE' => new Entity\TextField('RESPONSE', array(
+				'title' => Helper::getMessage($strLang.'RESPONSE'),
 			)),
 			'STATUS' => new Entity\StringField('STATUS', array(
 				'title' => Helper::getMessage($strLang.'STATUS'),
