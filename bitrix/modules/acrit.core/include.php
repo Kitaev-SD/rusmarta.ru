@@ -43,6 +43,7 @@ $arAutoload = [
 	# Other
 	'Acrit\Core\Export\AdditionalFieldTable' => 'lib/export/additionalfield.php',
 	'Acrit\Core\Export\Backup' => 'lib/export/backup.php',
+	'Acrit\Core\Export\Cleaner' => 'lib/export/cleaner.php',
 	'Acrit\Core\Export\CategoryCustomNameTable' => 'lib/export/categorycustomname.php',
 	'Acrit\Core\Export\CategoryRedefinitionTable' => 'lib/export/categoryredefinition.php',
 	'Acrit\Core\Export\Debug' => 'lib/export/debug.php',

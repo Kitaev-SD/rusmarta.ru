@@ -2271,12 +2271,13 @@ class Helper {
 	/**
 	 *	Add agent (remove it first, if exists)
 	 */
-	public static function addAgent(array $arAgent){
+	public static function addAgent(array $arAgent, $bStartTime=false){
 		$strFunc = $arAgent['FUNC'];
 		$strModuleId = is_string($arAgent['MODULE_ID']) ? $arAgent['MODULE_ID'] : '';
 		$strPeriod = $arAgent['PERIOD'] == true ? 'Y' : 'N';
 		$intInterval = is_numeric($arAgent['INTERVAL']) && $arAgent['INTERVAL'] ? $arAgent['INTERVAL'] : 24*60*60;
-		$strNextExec = (\Bitrix\Main\Type\DateTime::createFromTimestamp(time() + $intInterval - 60))->toString();
+		$intTime = $bStartTime ? time() - 60 : time() + $intInterval;
+		$strNextExec = (\Bitrix\Main\Type\DateTime::createFromTimestamp($intTime))->toString();
 		$intSort = is_numeric($arAgent['SORT']) && $arAgent['SORT'] > 0 ? $arAgent['SORT'] : 100;
 		static::removeAgent($arAgent);
 		return \CAgent::addAgent($strFunc, $strModuleId, $strPeriod, $intInterval, '', 'Y', $strNextExec, $intSort);

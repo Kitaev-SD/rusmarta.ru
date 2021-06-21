@@ -75,16 +75,16 @@ class OrderSync {
 			}
 		}
 		// Save changes
-//		if ($new_order || $status_changed || $props_changed || $params_changed || $other_changed || $products_changed) {
-////			Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order ' . $order_id, false, true);
-//			if ($new_order || Settings::get('run_save_final_action') != 'disabled') {
-//				$order->doFinalAction(true);
-//			}
-//			$result = $order->save();
-//			if (!$result->isSuccess()) {
-//				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order error: ' . print_r($result->getErrorMessages(), true), false, true);
-//			}
-//		}
+		if ($new_order || $status_changed || $props_changed || $params_changed || $other_changed || $products_changed) {
+//			Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order ' . $order_id, false, true);
+			if ($new_order || Settings::get('run_save_final_action') != 'disabled') {
+				$order->doFinalAction(true);
+			}
+			$result = $order->save();
+			if (!$result->isSuccess()) {
+				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order error: ' . print_r($result->getErrorMessages(), true), false, true);
+			}
+		}
 	}
 
 	/**
@@ -153,27 +153,28 @@ class OrderSync {
 		// Formation of a data for saving
 		$property_collection = $order->getPropertyCollection();
 		foreach ($comp_table as $e_field_code => $o_prop_id) {
-			$prop = $order_data['PROPERTIES'][$o_prop_id];
-			$prop_value = $property_collection->getItemByOrderPropertyId($prop['ID']);
-			$new_value = [];
-			$ext_field = $ext_order[$e_field_code];
-			$ext_value = $ext_field['VALUE'];
-			if (!is_array($ext_value)) {
-				$ext_value = [$ext_value];
-			}
-			// Store types
-			if ($prop['TYPE'] == 'LOCATION' || $prop['TYPE'] == 'FILE') {
-				continue;
-			}
-			if ($prop['TYPE'] == 'ENUM') {
-				foreach ($ext_value as $e_val_variant) {
-					foreach ($prop['OPTIONS'] as $prop_code => $prop_val) {
-						if ($prop_val == $e_val_variant) {
-							$new_value[] = $prop_code;
+			$prop = (array) $order_data['PROPERTIES'][$o_prop_id];
+			$prop_value = $property_collection->getItemByOrderPropertyId($o_prop_id);
+			if ($prop_value) {
+				$new_value = [];
+				$ext_field = $ext_order[$e_field_code];
+				$ext_value = $ext_field['VALUE'];
+				if ( ! is_array($ext_value)) {
+					$ext_value = [$ext_value];
+				}
+				// Store types
+				if ($prop['TYPE'] == 'LOCATION' || $prop['TYPE'] == 'FILE') {
+					continue;
+				}
+				if ($prop['TYPE'] == 'ENUM') {
+					foreach ($ext_value as $e_val_variant) {
+						foreach ($prop['OPTIONS'] as $prop_code => $prop_val) {
+							if ($prop_val == $e_val_variant) {
+								$new_value[] = $prop_code;
+							}
 						}
 					}
 				}
-			}
 //			elseif ($prop['TYPE'] == 'FILE') {
 //				foreach ($deal[$d_field_code] as $deal_value) {
 //					if ($deal_value['downloadUrl']) {
@@ -195,26 +196,25 @@ class OrderSync {
 //					}
 //				}
 //			}
-			elseif ($prop['TYPE'] == 'DATE') {
-				$new_value = $ext_value;
-				if ($new_value[0]) {
-					if ($prop['TIME'] == 'Y') {
-						$new_value[0] = ConvertTimeStamp(strtotime($new_value[0]), "FULL", SITE_ID);
+				elseif ($prop['TYPE'] == 'DATE') {
+					$new_value = $ext_value;
+					if ($new_value[0]) {
+						if ($prop['TIME'] == 'Y') {
+							$new_value[0] = ConvertTimeStamp(strtotime($new_value[0]), "FULL", SITE_ID);
+						} else {
+							$new_value[0] = ConvertTimeStamp(strtotime($new_value[0]), "SHORT", SITE_ID);
+						}
 					}
-					else {
-						$new_value[0] = ConvertTimeStamp(strtotime($new_value[0]), "SHORT", SITE_ID);
-					}
+				} else {
+					$new_value = $ext_value;
 				}
-			}
-			else {
-				$new_value = $ext_value;
-			}
-			// Has new value
-			if (!self::isEqual($prop['VALUE'], $new_value)) {
-				$new_value = count($new_value) == 1 ? $new_value[0] : $new_value;
-				$prop_value->setValue($new_value);
-				$has_changes = true;
-				Log::getInstance(Controller::$MODULE_ID)->add('(updateOrderProps) order ' . $order_data['ID'] . ' new ' . $o_prop_id . ': ' . print_r($new_value, true), false, true);
+				// Has new value
+				if ( ! self::isEqual($prop['VALUE'], $new_value)) {
+					$new_value = count($new_value) == 1 ? $new_value[0] : $new_value;
+					$prop_value->setValue($new_value);
+					$has_changes = true;
+					Log::getInstance(Controller::$MODULE_ID)->add('(updateOrderProps) order ' . $order_data['ID'] . ' new ' . $o_prop_id . ': ' . print_r($new_value, true), false, true);
+				}
 			}
 		}
 		return $has_changes;
@@ -235,7 +235,7 @@ class OrderSync {
 		}
 		// Create user
 		if (!$user_id) {
-			$user_id = self::createBuyer($user_fields);
+			$user_id = self::createBuyer($user_fields, $profile);
 		}
 		// Default buyer
 		if (!$user_id) {
@@ -300,13 +300,15 @@ class OrderSync {
 	 * Create new buyer
 	 */
 
-	public static function createBuyer(array $fields) {
+	public static function createBuyer(array $fields, array $profile) {
 		$user_id = false;
-		if (!empty($fields) && $fields['EMAIL']) {
+		$fields['EMAIL'] = $fields['EMAIL'] ? : $profile['CONTACTS']['email_def'];
+		$email = $fields['EMAIL'];
+		if (!empty($fields) && $email) {
 			if (!$fields['LOGIN']) {
-				$fields['LOGIN'] = $fields['EMAIL'];
+				$fields['LOGIN'] = $email;
 			}
-			$fields['PASSWORD'] = md5($fields['EMAIL'] . rand(1000, 9999));
+			$fields['PASSWORD'] = md5($email . rand(1000, 9999));
 			$user = new \CUser;
 			$user_id = $user->Add($fields);
 			if (!intval($user_id)) {
@@ -546,28 +548,28 @@ class OrderSync {
 	}
 
 	// Values equal check
-	public static function isEqual($order_value, $deal_value) {
+	public static function isEqual($order_value, $ext_value) {
 		$res = false;
 		if ($order_value == [false]) {
 			$order_value = [];
 		}
-		if ($deal_value == [false]) {
-			$deal_value = [];
+		if ($ext_value == [false]) {
+			$ext_value = [];
 		}
-		if ( !is_array($order_value) && !is_array($deal_value)) {
-			if ($order_value == $deal_value) {
+		if ( !is_array($order_value) && !is_array($ext_value)) {
+			if ($order_value == $ext_value) {
 				$res = true;
 			}
 		}
-		elseif (is_array($order_value) && is_array($deal_value)) {
-			if (count($order_value) == count($deal_value)) {
+		elseif (is_array($order_value) && is_array($ext_value)) {
+			if (count($order_value) == count($ext_value)) {
 				$res = true;
 				foreach ($order_value as $k => $value) {
-					if ($value != $deal_value[$k]) {
+					if ($value != $ext_value[$k]) {
 						$res = false;
 					}
 				}
-				foreach ($deal_value as $k => $value) {
+				foreach ($ext_value as $k => $value) {
 					if ($value != $order_value[$k]) {
 						$res = false;
 					}

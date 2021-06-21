@@ -41954,3 +41954,177 @@ RM89233;9420132;yamarket8_21466339_10020
 RM89234;9420145;direct6_search_9728957478_страж видео vip сигнализация
 RM89235;9404841;direct6_context_9788757958_gsm камеры (ретаргетинг)
 RM89236;9419911;google7_g_116526279279_496104686846_4g камеры видеонаблюдения уличные
+C6170;;
+C6171;9420889;:utm:leadhit_email_lastchance
+C6172;;
+C6173;;
+RM89237;9421173;nomarker
+RM89238;9421266;direct6_search_10792867248_видеокамера для видеонаблюдения уличная цена
+RM89239;9421390;direct6_search_8442349205_русмарта ру
+C6174;;
+RM89240;9417233;direct6_search_8753186525_видеонаблюдение официальный сайт
+RM89241;9421628;direct6_search_8935371881_русмарта видеонаблюдение интернет магазин
+RM89242;9413704;seo_google_
+RM89243;9422124;:utm:regmarkets_rusmarta_sale_model_videoglazok-v-dver-s-zapisyu-na-sd-kartu-zvonkomi-datchikom-dvizheniya-pst-4-3dm-black
+RM89244;9422105;google7_g_121477515743_524339044004_rusmarta
+RM89245;9389996;site_carrotquest.io_/
+RM89246;9413704;seo_google_
+RM89247;9422245;seo_yandex_
+RM89248;9415175;seo_yandex_
+RM89249;9409579;direct6_search_8935371881_РусМарта РУ ГОТОВЫЕ КОМПЛЕКТЫ видеонаблюдения
+RM89250;9413704;seo_google_
+RM89251;9421259;seo_google_
+RM89252;9411212;nomarker
+RM89253;9418309;seo_yandex_
+RM89254;9418094;direct6_search_8753186469_видеонаблюдение%2
+RM89255;9422481;yamarket8_21437237_1618
+RM89256;9389996;site_carrotquest.io_/
+RM89257;9415334;nomarker
+RM89258;9422744;direct6_search_8935371881_русмарта видеонаблюдение
+RM89259;nocookie;nomarker
+RM89261;9422988;direct6_search_9693246437_беспроводные камеры видеонаблюдения для дома
+RM89262;9418094;direct6_search_8753186469_видеонаблюдение%2
+RM89263;9413704;seo_google_
+RM89264;9422777;google7_g_115352918573_488629352816_комплект видеонаблюдения ahd камер
+RM89266;9423209;google7_g_121477515743_524339044004_русмарта
+RM89267;9411104;seo_google_
+RM89268;9413704;seo_google_
+RM89269;9382585;nomarker
+RM89270;9350113;nomarker
+RM89271;9423577;direct6_search_8585645335_сигнализации
+RM89272;9423585;seo_yandex_
+RM89273;9423837;nomarker
+RM89274;9413704;seo_google_
+RM89275;9401825;nomarker
+RM89276;9424052;merchant20_u_78353825186_online:ru:ru:4950
+RM89277;9424142;yamarket8_21437237_6796
+RM89278;9424515;direct6_search_8935371881_русмарта видеонаблюдение интернет магазин
+RM89279;9424432;nomarker
+RM89280;9424962;youtube_review_wificamera_gbuf20
+C6175;9425144;
+RM89281;9425052;direct6_context_9031596964_ahd камеры
+RM89282;9416856;seo_yandex_
+RM89283;nocookie;nomarker
+C6176;;
+RM89284;9425490;yamarket8_21437237_3400
+RM89285;9418958;merchant20_u_78353825186_online:ru:ru:287
+RM89286;9406214;yamarket8_21437237_282
+C6177;;
+C6178;;
+RM89287;9426769;seo_google_
+RM89288;9414691;merchant20_u_78353825186_online:ru:ru:12168
+RM89289;9426946;nomarker
+RM89290;9426879;direct6_search_9340492075_gsm розетка
+RM89291;9419911;google7_g_116526279279_496104686846_4g камеры видеонаблюдения уличные
+RM89292;9424891;yamarket8_21437237_6796
+RM89293;9427442;nomarker
+RM89294;9427416;nomarker
+C6179;9427564;seo_yandex_
+RM89295;9427756;yamarket8_21437237_11282
+RM89296;9413704;seo_google_
+RM89297;9381871;seo_google_
+RM89298;9427894;merchant20_u_78353825186_online:ru:ru:2659
+RM89299;9427291;merchant20_u_78353825186_online:ru:ru:282
+RM89300;9377174;nomarker
+RM89301;9413704;seo_google_
+RM89302;9428117;nomarker
+RM89303;9425919;merchant20_u_78353825186_online:ru:ru:2418
+RM89304;9355115;direct6_context_10757119895_wifi камеры
+RM89305;9428064;seo_yandex_
+RM89306;9355115;direct6_context_10757119895_wifi камеры
+RM89307;9428325;yamarket8_21437237_2391
+RM89308;9428189;google7_g_121477515743_524339044004_rusmarta
+RM89309;9428379;:utm:regmarkets_rusmarta_sale_model_gsm-rozetka-s-datchikom-temperatury-umnaya-distantsionnaya-sms-rozetka-simpal-t40
+RM89310;9428062;direct6_search_8935375297_айпи видеокамеры для видеонаблюдения
+RM89311;9428498;seo_yandex_
+RM89312;9389996;site_carrotquest.io_/
+RM89313;9397657;direct6_search_8585444529_видеонаблюдение wifi
+C6180;;
+C6181;9428731;seo_yandex_
+RM89314;9407642;seo_yandex_
+RM89315;9391214;yamarket8_21437237_11916
+RM89316;9428997;nomarker
+RM89317;9397657;direct6_search_8585444529_видеонаблюдение wifi
+RM89318;9427550;yamarket8_21437237_378
+RM89319;9429324;merchant20_u_78353825186_online:ru:ru:12168
+RM89320;9429347;nomarker
+RM89321;9429414;direct6_search_8935368652_комплект видеонаблюдения ahd
+RM89322;9429445;nomarker
+RM89323;9429693;nomarker
+RM89324;9429727;seo_yandex_
+RM89325;9429705;direct6_search_9287213175_видеонаблюдение ip
+RM89326;9412411;nomarker
+C6182;;
+RM89327;9430219;direct6_search_8935371881_русмарта ру готовые комплекты видеонаблюдения
+RM89328;9429570;google7_g_121477515743_524339044004_русмарта
+RM89329;9430786;google7_d_126042558634_525364829254_
+RM89330;9431068;google7_g_115352919093_488629352837_купить уличную видеокамеру ahd
+RM89331;9431896;seo_yandex_
+RM89332;9405158;direct6_search_8753186465_продажа видеонаблюдения
+RM89333;9431165;seo_google_
+RM89334;9423984;nomarker
+RM89335;9372977;google7_d_126042558634_525364829254_
+RM89336;9407663;nomarker
+RM89337;9397657;direct6_search_8585444529_видеонаблюдение wifi
+RM89338;9389996;site_carrotquest.io_/
+RM89339;9432674;seo_yandex_
+RM89340;9432747;direct6_search_8935375289_ip камера купить
+RM89341;9389996;site_carrotquest.io_/
+RM89342;nocookie;nomarker
+RM89343;9433009;seo_google_
+RM89344;9432799;merchant20_u_78353825186_online:ru:ru:487
+RM89345;9433215;direct6_search_8442349205_русмарта
+RM89346;9402220;direct6_context_9788757958_gsm камеры (ретаргетинг)
+RM89347;9389996;site_carrotquest.io_/
+RM89348;9433796;nomarker
+RM89349;9433896;seo_yandex_
+RM89350;9433946;google7_g_116526279119_496104686837_поворотная 3g 4g камера видеонаблюдения
+C6183;;
+RM89351;9433889;merchant20_u_78353825186_online:ru:ru:6818
+RM89352;9434800;google7_g_115916942596_497339240343_цифровая видеокамера цена
+RM89353;9435343;seo_yandex_
+RM89354;9435282;seo_yandex_
+RM89355;9435679;yamarket8_21437237_9963
+RM89356;9434027;direct6_search_8753186528_камера видеонаблюдения в россии
+RM89357;9435986;direct6_search_9340492078_розетка для вайфая
+RM89358;9436264;direct6_search_8935371881_русмарта видеонаблюдение
+RM89359;9436316;yamarket8_21437237_9963
+RM89360;9436188;google7_g_115916941156_497339240313_видеорегистратор гибридный ip
+RM89361;9436539;nomarker
+RM89362;9435986;direct6_search_9340492078_розетка для вайфая
+RM89363;9436557;seo_yandex_
+RM89364;9436740;direct6_search_8742791190_wi fi камера уличная
+RM89365;9436793;nomarker
+RM89366;9434660;seo_google_
+RM89367;9437283;nomarker
+RM89368;9437400;seo_yandex_
+RM89369;9437493;seo_yandex_
+RM89370;9437122;seo_google_
+RM89371;9418833;nomarker
+RM89372;9437950;merchant20_u_78353825186_online:ru:ru:480
+RM89373;9438092;direct6_search_8442349205_русмарта
+RM89374;nocookie;nomarker
+RM89375;9438460;merchant20_u_78353825186_online:ru:ru:13271
+RM89376;9438042;direct6_search_8442349205_русмарта ру
+RM89377;9429569;direct6_search_9340492066_умная розетка
+RM89378;9438892;yamarket8_21437237_9963
+C6184;9438231;seo_yandex_
+RM89379;9439333;merchant20_u_78353825186_online:ru:ru:10020
+RM89380;nocookie;nomarker
+RM89381;9439628;direct6_search_8935371881_русмарта видеонаблюдение интернет магазин
+RM89382;9439824;site_away.vk.com_/
+RM89383;9440324;yamarket8_21437237_4629
+C6185;;
+RM89384;9440366;nomarker
+RM89385;9440635;direct6_search_8585575478_ip комплект
+C6186;;
+RM89386;9440981;direct6_context_10757119859_комплект wi fi камер
+C6187;;
+RM89387;9441414;direct6_search_8935371881_русмарта ру готовые комплекты видеонаблюдения
+RM89388;9441478;merchant20_u_78353825186_online:ru:ru:13895
+RM89389;9441514;seo_yandex_
+RM89390;9441600;google7_g_115352919973_488549962242_аналоговая камера hd
+RM89391;9418094;direct6_search_8753186469_видеонаблюдение%2
+RM89392;9421638;direct6_search_8442349206_rus marta
+RM89393;9440868;yamarket8_21437237_6004
+RM89394;9418094;direct6_search_8753186469_видеонаблюдение%2

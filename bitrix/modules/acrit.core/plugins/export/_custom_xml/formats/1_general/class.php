@@ -747,14 +747,8 @@ class CustomXmlGeneral extends CustomXml {
 					$arJsonResult['Message'] = static::getMessage('CHECK_XML_VALID_EMPTY');
 				}
 				else {
-					$arData = Xml::xmlToArray($strXml);
-					if(is_array($arData)){
-						if(!Helper::isUtf()){
-							$arData = Helper::convertEncoding($arData, 'UTF-8', 'CP1251');
-						}
-					}
-					unset($obXml);
-					if(is_array($arData)){
+					$bResult = Xml::checkXml($strXml);
+					if($bResult){
 						$arJsonResult['Success'] = true;
 						$arJsonResult['Message'] = static::getMessage('CHECK_XML_VALID_SUCCESS');
 					}

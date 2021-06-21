@@ -1,0 +1,140 @@
+.acrit_exp_wildberries_settings_header {
+	font-size:110%;
+	font-weight:bold;
+}
+
+/**
+ *	Auth
+ */
+input[data-role="acrit_exp_wildberries_auth_button"],
+input[data-role="acrit_exp_wildberries_token_check"],
+input[data-role="acrit_exp_wildberries_token_clear"] {
+	height:25px!important;
+	margin:0!important;
+}
+input[data-role="acrit_exp_wildberries_refresh_token"] {
+	background-color: #eff0f1!important;
+	cursor: default;
+	opacity: 1!important;
+}
+span.acrit_exp_wildberries_token_status {
+	display: none;
+	height:16px;
+	margin-right:10px;
+	vertical-align:middle;
+	width:16px;
+}
+span.acrit_exp_wildberries_token_status.wildberries_token_status_loading {
+	background:url("data:image/gif;base64,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");
+	display:inline-block;
+}
+span.acrit_exp_wildberries_token_status.wildberries_token_status_y {
+	background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACEklEQVR42q1TPWhTURg9qVsGFQfRpUOhU0EpmZyrqf2RNhHBiHRxUHetLWQQWqk2rzUv5r08mwpVBCFpwcG4pFaKafW1EWulLYiKgghOXQTdjt/3EtK8YDt54XD/vnO+c797L/C/W7eBUPgOiifHwA6B9jJnVwLF3gmE9iSfHocVs/fz+cY1fvs1w0/baZZ/xFnYHOBY4Rij5j72GsjtRs5dmj7K35yn+32AU0ug/QrMlOCNH6200F48znP3mihOLB+5R2yfTwf5888cn6wdoSWkzDLoKF5XoHNbhG4VDrH/Lnhmsu444dtYeOzGOP+li2kNfiMkF7zvVnpdmxQ32sZfgJdnwJ4EXtYLcPnrIJ1VMClZTMlmiUhGydIbVbK2lIhdz4uAAdYETonAwucrNN2dQENETCEnlnbWtNllcGgO7E7UCeg1PV2PMlX2B4+W/PMJEZxaA4cbBeQG+KB0gs57sbvqJ9UcrUgR34HZdXAwH2g4wgjcofxh2u5BZj6IyFu/iCHOLBHPbsjeYoBXHwbYOQq3JtAeQySSBEeeHaAjGRwJTAkhKRlNsWyLaHYTnkPN3i+x7RcQqX8KwY44clETvDHb5FU9uwVOf6xiS28i4JHPpuR5x73XGGx8jM3hmyiqulrU4OHZCnSsa7pXJTfv9h1a2vpwsVNqokXSSit0rGu6txe5dhxBqyDUgNZ/2f4LS0ebpeXEoPUAAAAASUVORK5CYII=');
+	display:inline-block;
+}
+span.acrit_exp_wildberries_token_status.wildberries_token_status_n {
+	background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADHElEQVR42oWSa0iTURjHZ3My5zQv5eyyMjRT56bzmhratnTLKV6mpSKGhWhf8kPQt+hLSnitwAjM1aRADOd9ajHckjLFS6ZzKZvObeorXhI1Vyg9nTNLkIwO/ODP857/c573/A+JdMBam9ExdI318ePVDwvGq6sKpxpeCddm9O6k/61NYt55uOTerXf86MHBMO76eGT4NmJnIDRwXcWP6v/8qPSGZXXF4UDz6uTECZVE3DDCZW8TCQnwNT0DVjMQ6elWcG2QG/C9Ny/7ycacyXmfGXdVZ0tkY1wOrEoksIIM88nJYEpKAmNiIpjEYlhAejklBT4Fc3b6igpKti1b5L0GmprqzN6znhYTnw8E2mTGZtTEnJlpBetZ1MgoEgGBmvUG+i0ZutqirOYfmxt2qvSk12Msf9DHxMC0UAizaWlgzsmB+et5VrDGtRmREIzo+5fwUOgvKiz//e/ak51BrImJoCDQCC+BrrQEjDVPwSStAfOLWitY45r2zm2Y4l2E6ago6E2M69laWaaTFvo/+Ld5MU1jHA5orkjg2yIB/1pEjxK0Ah7oIiJAfSF8FEXLIC2Njni1+Hjq+729QSMWgaFOCkRHKxCKdiC6OnbBWtEGUw/uwySaYCo0FFS86AGUhitOgNYdH9vZ7eYKWjSaPuEyGFB8pmu5YM7Pt4I1rulRlNM8Hgz5ngNVtqRu22LZTWKkrPhmo6P9jvr0adAJBGBKTYW5rCyYz821YkbaiGoGdIGakBBoP3ZkSyurSduLcX125qgi9ryymWYPPUwmaNAkBnSaEUWKwRHqUMTDbA4oXJ3hTbKwfmtlaf+LNKuVwW1c/+FmOg0ULi6gYp6Cj76+MMBiwXt0P0oPD2g9TIdOXqRyaXTY68DnPNQi93sWxn4pc6SuNTk5QIsj3UqTE/1nrRN1sZYX+XhU+Zb5l7GqqspGJBLZBbDZVCbDneFDsREnUMklWTRK3VUa5bmASr57xtZGcJzBcPNnBdjHxcXZFRcXH9rXpK+vz0Yul5NlMplteWUluayiglJeUUHFIG2LkUqlFLwH7/3j+wUMs+oVr78NVAAAAABJRU5ErkJggg==');
+	display:inline-block;
+}
+
+/**
+ *	Stores
+ */
+div[data-role="acrit_exp_wildberries_stores_wrapper"]{
+	display:none;
+	margin-top:10px;
+}
+div[data-role="acrit_exp_wildberries_stock_token"]{
+	margin-bottom:10px;
+}
+
+/**
+ *	Categories
+ */
+div[data-role="acrit_wb_categories_list"] {
+	display:inline-block;
+	max-width:100%;
+}
+div[data-role="acrit_wb_categories_item"] {
+	margin-bottom:4px;
+	padding:4px 80px 4px 8px;
+	position:relative;
+}
+div[data-role="acrit_wb_categories_item"]:hover {
+	background:#eaeaea;
+}
+div[data-role="acrit_wb_categories_item"]:first-child {
+	display:none;
+}
+div[data-role="acrit_wb_categories_item"]:last-child {
+	margin-bottom:10px;
+}
+div[data-role="acrit_wb_categories_item_name"] {
+	display:block;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+div[data-role="acrit_wb_categories_item_delete"] {
+	right:4px;
+	margin-top:-8px;
+	position:absolute;
+	text-align:right;
+	top:50%;
+	width:70px;
+}
+div[data-role="acrit_wb_categories_item_delete"] a {
+	cursor:pointer;
+}
+div[data-role="acrit_wb_categories_item_sample"] {
+	display:none;
+}
+
+/* Log (history) */
+a[data-role="log-task-json-preview"] {
+	cursor:pointer;
+	-webkit-user-select:none;
+	   -moz-user-select:none;
+	    -ms-user-select:none;
+	     -o-user-select:none;
+	        user-select:none;
+}
+a[data-role="log-tasks-status-toggle"],
+a[data-role="log-tasks-item-update-status"],
+a[data-role="log-tasks-status-stocks-preview"] {
+	cursor:pointer;
+	-webkit-user-select:none;
+	   -moz-user-select:none;
+	    -ms-user-select:none;
+	     -o-user-select:none;
+	        user-select:none;
+}
+div[data-role="log-tasks-status-details-table"] {
+	display:none;
+	margin-top:4px;
+}
+div[data-role="log-tasks-status-details-table"] table {
+	border-collapse:collapse;
+	min-width:250px;
+}
+div[data-role="log-tasks-status-details-table"] table thead th {
+	background:silver;
+	border:1px solid gray;
+	padding:4px 6px;
+}
+div[data-role="log-tasks-status-details-table"] table tbody td {
+	border:1px solid gray;
+	padding:2px 6px;
+}
+div[data-role="log-tasks-status-details-table"] table tbody td a {
+	cursor:pointer;
+	display:inline-block;
+}
+div[data-role="log-tasks-status-details-table"] table tbody td a:hover {
+	padding-bottom:1px;
+}
+
+/* Popup */
+#acrit_wb_json_preview_popup pre {
+	word-break:break-word;
+}

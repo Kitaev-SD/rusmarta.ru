@@ -207,7 +207,7 @@ class Options {
 								$strValue = implode($strSeparator, $strValue);
 							}
 							if(is_callable($arOption['CALLBACK_BEFORE_SAVE'])){
-								call_user_func_array($arOption['CALLBACK_BEFORE_SAVE'], [$this, &$strValue, $arOption]);
+								call_user_func_array($arOption['CALLBACK_BEFORE_SAVE'], [$this, &$strValue, $arOption, $strOption]);
 							}
 							Helper::setOption($this->strModuleId, $strOption, $strValue);
 						}
@@ -222,7 +222,7 @@ class Options {
 							if(is_callable($arOption['CALLBACK_SAVE'])){
 								$arOption['VALUE_OLD'] = $arOldValues[$strOption];
 								$arOption['VALUE_NEW'] = $arNewValues[$strOption];
-								call_user_func_array($arOption['CALLBACK_SAVE'], [$this, $arOption]);
+								call_user_func_array($arOption['CALLBACK_SAVE'], [$this, $arOption, $strOption]);
 							}
 						}
 					}

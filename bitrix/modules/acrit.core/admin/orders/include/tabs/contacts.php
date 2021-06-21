@@ -16,7 +16,7 @@ $ext_fields = $obPlugin->getContactFields();
 $orders_fields = OrdersInfo::getUserFields();
 ?>
     <tr id="tr_contacts_table_compare">
-        <td>
+        <td colspan="2">
             <table class="adm-list-table" id="acrit_imp_agents_list">
                 <thead>
                 <tr class="adm-list-table-header">
@@ -42,11 +42,19 @@ $orders_fields = OrdersInfo::getUserFields();
                     </td>
                 </tr>
                 <?endforeach;?>
+                <tr class="adm-list-table-row action-add-row" id="acrit_imp_agents_add">
+                    <td class="adm-list-table-cell"><label for="field_contacts_email_def"><?=Loc::getMessage('ACRIT_CRM_TAB_CONTACTS_EMAIL_DEF');?></label><?=Helper::showHint(Loc::getMessage('ACRIT_CRM_TAB_CONTACTS_EMAIL_DEF_HINT'));?></td>
+                    <td class="adm-list-table-cell">
+                        <input type="text" name="PROFILE[CONTACTS][email_def]" id="field_contacts_email_def" size="50" maxlength="255" data-role="profile-name"
+                               data-default-name="<?=Loc::getMessage('ACRIT_EXP_FIELD_CODE_DEFAULT');?>"
+	                           <?if($intProfileID):?>data-custom-name="true"<?endif?>
+                               value="<?=htmlspecialcharsbx($arProfile['CONTACTS']['email_def']);?>" />
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </td>
     </tr>
 <?
 $obTabControl->EndCustomField('PROFILE[CONTACTS][table_compare]');
-
 ?>

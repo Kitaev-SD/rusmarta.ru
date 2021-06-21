@@ -46,11 +46,44 @@ return [
 			'TYPE' => 'text',
 			'ATTR' => 'MAXLENGTH="6"',
 		],
-		// 'prevent_discount_memory_leak' => [
-		// 	'NAME' => Loc::getMessage('ACRIT_CORE_OPTION_PREVENT_DISCOUNT_MEMORY_LEAK'),
-		// 	'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_PREVENT_DISCOUNT_MEMORY_LEAK_HINT'),
-		// 	'TYPE' => 'checkbox',
-		// ],
+		'auto_clean_history' => [
+			'NAME' => Loc::getMessage('ACRIT_CORE_OPTION_AUTO_CLEAN_HISTORY'),
+			'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_AUTO_CLEAN_HISTORY_HINT'),
+			'TYPE' => 'checkbox',
+			'HEAD_DATA' => function($obOptions, $arOption, $strOption){
+				$strModuleIdU = $obOptions->getModuleIdUnderlined();
+				?>
+				<script>
+				$(document).on('change', '#<?=$strModuleIdU;?>_row_option_auto_clean_history input[type=checkbox]', function(e){
+					let inputs = $('#<?=$strModuleIdU;?>_row_option_auto_clean_history_days');
+					inputs.toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+				});
+				$(document).ready(function(){
+					$('#<?=$strModuleIdU;?>_row_option_auto_clean_history input[type=checkbox]').trigger('change');
+				});
+				</script>
+				<?
+			},
+			'CALLBACK_SAVE' => function($obOptions, $arOption, $strOption){
+				if($arOption['VALUE_OLD'] != $arOption['VALUE_NEW']){
+					$arAgent = [
+						'MODULE_ID' => ACRIT_CORE,
+						'FUNC' => \Acrit\Core\Export\Cleaner::getAgentName($obOptions->getModuleId()),
+					];
+					if($arOption['VALUE_NEW'] == 'Y'){
+						Helper::addAgent($arAgent, true);
+					}
+					else{
+						Helper::removeAgent($arAgent);
+					}
+				}
+			},
+		],
+		'auto_clean_history_days' => [
+			'NAME' => Loc::getMessage('ACRIT_CORE_OPTION_AUTO_CLEAN_HISTORY_DAYS'),
+			'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_AUTO_CLEAN_HISTORY_DAYS_HINT'),
+			'TYPE' => 'text',
+		],
 	],
 ];
 	

@@ -14,7 +14,19 @@ $obTabControl->AddSection('HEADING_PRODUCTS_TBLCMPR', Loc::getMessage('ACRIT_CRM
 // Default payment type
 $obTabControl->BeginCustomField('PROFILE[PRODUCTS][search_fields]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_SEARCH_FIELD'));
 $iblock_list = Products::getIblockList(true);
+$ext_search_field = $obPlugin->getIdField();
 ?>
+    <tr>
+        <td colspan="2">
+            <div id="acrit-module-update-notifier">
+                <div class="acrit-exp-note-compact">
+                    <div class="adm-info-message-wrap">
+                        <div class="adm-info-message"><?=Loc::getMessage('ACRIT_CRM_TAB_BASIC_SEARCH_EXT_ID', ['#ID#' => $ext_search_field['id'], '#NAME#' => $ext_search_field['name']]);?></div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
     <tr id="tr_products_search_fields">
         <td>
             <label for="field_products_search_fields">

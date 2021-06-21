@@ -44,6 +44,21 @@ class Controller
 		return $link;
 	}
 
+	public static function getPlugin($profile) {
+		$plugin = false;
+		if (strlen($profile['PLUGIN'])) {
+			$arProfilePlugin = Exporter::getInstance(self::$MODULE_ID)->getPluginInfo($profile['PLUGIN']);
+			if (is_array($arProfilePlugin)) {
+				$strPluginClass = $arProfilePlugin['CLASS'];
+				if (strlen($strPluginClass) && class_exists($strPluginClass)) {
+					$plugin = new $strPluginClass(self::$MODULE_ID);
+					$plugin->setProfileArray($profile);
+				}
+			}
+		}
+		return $plugin;
+	}
+
 	public static function setBulkRun() {
 		self::$MANUAL_RUN = true;
 		Rest::setBulkRun();
@@ -108,17 +123,7 @@ class Controller
 	function syncByPeriod($sync_interval=0) {
 		Log::getInstance(self::$MODULE_ID)->add('(syncByPeriod) run period ' . $sync_interval);
 		// Get plugin object
-		$plugin = false;
-		if (strlen(self::$profile['PLUGIN'])) {
-			$arProfilePlugin = Exporter::getInstance(self::$MODULE_ID)->getPluginInfo(self::$profile['PLUGIN']);
-			if (is_array($arProfilePlugin)) {
-				$strPluginClass = $arProfilePlugin['CLASS'];
-				if (strlen($strPluginClass) && class_exists($strPluginClass)) {
-					$plugin = new $strPluginClass(self::$MODULE_ID);
-					$plugin->setProfileArray(self::$profile);
-				}
-			}
-		}
+		$plugin = self::getPlugin(self::$profile);
 		// List of orders, changed by last period (if period is not set than get all orders)
 		if ($plugin) {
 			$filter = [];

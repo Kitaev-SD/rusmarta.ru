@@ -20,5 +20,6 @@ $acrit_googlemerchant_default_option = array(
 	'categories_depth' => '3',
 	'history_count' => '5000',
 	'check_lock' => 'Y',
+	'auto_clean_history' => 'Y',
+	'auto_clean_history_days' => '365',
 );
-?>

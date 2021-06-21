@@ -254,36 +254,36 @@ class OzonRu extends Plugin {
 		?>
         <tr id="tr_sync_add_period">
             <td>
-                <label for="field_sync_add_period">1-й интервал синхронизации<label>
+                <label for="field_sync_add_period"><?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_PERIOD_1');?><label>
             </td>
             <td>
-                <input type="text" name="PROFILE[SYNC][add][1][period]" id="field_sync_add_1_period" value="<?=$arValues[1]['period'];?>" placeholder="10" /> минут
+                <input type="text" name="PROFILE[SYNC][add][1][period]" id="field_sync_add_1_period" value="<?=$arValues[1]['period'];?>" placeholder="10" /> <?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_MINUTES');?>
                 <input type="hidden" name="PROFILE[SYNC][add][1][measure]" value="m" />
             </td>
         </tr>
         <tr id="tr_sync_add_range">
             <td>
-                <label for="field_sync_add_range">Охватываемый период<label>
+                <label for="field_sync_add_range"><?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_RANGE_1');?><label>
             </td>
             <td>
-                <input type="text" name="PROFILE[SYNC][add][1][range]" id="field_sync_add_1_range" value="<?=$arValues[1]['range'];?>" placeholder="60" /> минут
+                <input type="text" name="PROFILE[SYNC][add][1][range]" id="field_sync_add_1_range" value="<?=$arValues[1]['range'];?>" placeholder="60" /> <?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_MINUTES');?>
             </td>
         </tr>
         <tr id="tr_sync_add_period">
             <td>
-                <label for="field_sync_add_period">2-й интервал синхронизации<label>
+                <label for="field_sync_add_period"><?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_PERIOD_2');?><label>
             </td>
             <td>
-                <input type="text" name="PROFILE[SYNC][add][2][period]" id="field_sync_add_2_period" value="<?=$arValues[2]['period'];?>" placeholder="24" /> часов
+                <input type="text" name="PROFILE[SYNC][add][2][period]" id="field_sync_add_2_period" value="<?=$arValues[2]['period'];?>" placeholder="24" /> <?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_HOURS');?>
                 <input type="hidden" name="PROFILE[SYNC][add][2][measure]" value="h" />
             </td>
         </tr>
         <tr id="tr_sync_add_range">
             <td>
-                <label for="field_sync_add_range">Охватываемый период<label>
+                <label for="field_sync_add_range"><?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_RANGE_1');?><label>
             </td>
             <td>
-                <input type="text" name="PROFILE[SYNC][add][2][range]" id="field_sync_add_2_range" value="<?=$arValues[2]['range'];?>" placeholder="336" /> часов
+                <input type="text" name="PROFILE[SYNC][add][2][range]" id="field_sync_add_2_range" value="<?=$arValues[2]['range'];?>" placeholder="336" /> <?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SYNC_ADD_HOURS');?>
             </td>
         </tr>
 		<?

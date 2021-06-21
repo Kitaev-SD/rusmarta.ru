@@ -2,7 +2,7 @@
 $strMessPrefix = 'ACRIT_EXP_WILDBERRIES_';
 
 // General
-$MESS[$strMessPrefix.'NAME'] = 'Wildberries';
+$MESS[$strMessPrefix.'NAME'] = 'Wildberries.ru';
 
 // Default settings
 $MESS[$strMessPrefix.'SETTINGS_TOKEN'] = 'Токен';

@@ -1,7 +1,10 @@
 <?
-$strModuleId = 'acrit.googlemerchant';
+$strModuleId = 'acrit.Googlemerchant';
 
 // Agent for autobackup
-\CAgent::AddAgent('Acrit\GoogleMerchant\Backup::autobackup();', $strModuleId, 'N', 3600);
+\CAgent::addAgent('\Acrit\Googlemerchant\Backup::autobackup();', $strModuleId, 'N', 3600);
+
+// Agent for autoclean
+\CAgent::addAgent('\Acrit\Core\Export\Cleaner::agent(\''.$strModuleId.'\');', 'acrit.core', 'N', 24*60*60);
 
 ?>

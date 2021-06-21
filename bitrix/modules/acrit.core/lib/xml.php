@@ -93,6 +93,28 @@ class Xml {
 	public static function includeBitrixLib(){
 		require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/classes/general/xml.php');
 	}
+
+	/**
+	 * Check XML is correct
+	 */
+	public static function checkXml($strXml){
+		$bResult = false;
+		if(function_exists('simplexml_load_string')){
+			$strXml = preg_replace('#^<\?xml.*?\?>\s*#i', '', $strXml);
+			try{
+				ob_start();
+				$obXml = simplexml_load_string($strXml);
+				ob_get_clean();
+				$bResult = is_object($obXml);
+			}
+			catch(\Exception $obError){}
+		}
+		else{
+			static::includeBitrixLib();
+			$bResult = is_array(Xml::xmlToArray($strXml));
+		}
+		return $bResult;
+	}
 	
 	/**
 	 *	XML to array (using Bitrix library)
