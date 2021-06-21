@@ -1,4 +1,3 @@
-<!-- Yandex.Metrika counter -->
 <script async type="text/javascript">
   $(document).ready(function(){
 
@@ -57,6 +56,7 @@
             
             //------------------------------------//
 
+            // <!-- Yandex.Metrika counter -->
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?v=1", "ym");
@@ -68,7 +68,7 @@
                     webvisor:true,
                     trackHash:true 
             });
-            //------------------------------------//
+            // <!-- /Yandex.Metrika counter -->
 
             // <!-- Google Tag Manager -->
 
@@ -122,8 +122,9 @@
   });
 </script>
 
+<!-- /Yandex.Metrika counter (noscript) -->
 <noscript><div><img src="https://mc.yandex.ru/watch/22745254" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+<!-- /Yandex.Metrika counter (noscript) -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M32PPZL"
