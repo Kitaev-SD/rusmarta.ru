@@ -739,9 +739,9 @@ endif;
 if($productTypeFound)
 	$APPLICATION->SetTitle($arCurSection["NAME"]);
 if(!empty($_REQUEST["PAGEN_1"]) && $_REQUEST["PAGEN_1"] > 1):
-	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"])." | ".Loc::getMessage("SECT_TITLE")." ".$_REQUEST["PAGEN_1"]);
+	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"])." — страница ".$_REQUEST["PAGEN_1"]);
 	$APPLICATION->SetPageProperty("keywords", "");
-	$APPLICATION->SetPageProperty("description", "");
+	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " Страница " . $_REQUEST["PAGEN_1"]);
 endif;
 
 //BACKGROUND_IMAGE//
