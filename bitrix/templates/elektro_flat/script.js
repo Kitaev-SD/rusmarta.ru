@@ -4,6 +4,7 @@ $(function(){
         variableWidth: true,
         dots: false,
         arrows: false,
+		infinite: false,
     });
     
     if ($('.show-more-subcategories').length){
