@@ -8,8 +8,8 @@
 
 <h2>Что нужно сделать до начала загрузки?</h2>
 <ul>
-	<li>Создать <a href="https://freighttemplate.aliexpress.com/wsproduct/freight/freightTemplateList.htm?spm=5261.ams_87855.SellerCenter.30.7699425f6n4kUz" target="_blank">шаблон доставки</a> / <a href="https://sell.aliexpress.com/Shipping_Template.htm?spm=5261.ams_87855.SellerCenter.31.7699425f6n4kUz" target="_blank">Инструкция</a></li>
-	<li>Подать <a href="https://sellerjoin.aliexpress.com/oversea/getBrandList.htm?spm=5261.ams_87855.SellerCenter.32.7699425f6n4kUz" target="_blank">запросы на бренды</a> / <a href="https://sell.aliexpress.com/HELPTmall_add_brand_category_new.htm?spm=5261.ams_87855.SellerCenter.33.7699425f6n4kUz" target="_blank">Инструкция</a></li>
+	<li>Создать <a href="https://seller.aliexpress.ru/products/shipping-templates-online" target="_blank">шаблон доставки</a> / <a href="https://business.aliexpress.ru/help/category/1000023487" target="_blank">Инструкция</a></li>
+	<li>Подать <a href="https://sellerjoin.aliexpress.com/oversea/getBrandList.htm" target="_blank">запросы на бренды</a> / <a href="https://business.aliexpress.ru/help/article/1060585183" target="_blank">Инструкция</a></li>
 </ul>
 <p><br/></p>
 

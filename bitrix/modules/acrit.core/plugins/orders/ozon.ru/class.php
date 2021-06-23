@@ -57,6 +57,16 @@ class OzonRu extends Plugin {
 	}
 
 	/**
+	 * Get id of products in marketplace
+	 */
+	public static function getIdField() {
+		return [
+			'id' => 'order_id',
+			'name' => Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_PRODUCTS_ID_FIELD_NAME'),
+		];
+	}
+
+	/**
 	 * Store fields for deal contact
 	 * @return array
 	 */

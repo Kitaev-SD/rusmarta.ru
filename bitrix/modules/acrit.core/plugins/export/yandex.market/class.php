@@ -110,7 +110,7 @@ class YandexMarket extends Plugin {
 	 */
 	public function updateCategories($intProfileID){
 		$bSuccess = false;
-		$strFileContent = HttpRequest::get(static::CATEGORIES_XLS_URL, array('TIMEOUT' => 5));
+		$strFileContent = HttpRequest::get(static::CATEGORIES_XLS_URL, array('TIMEOUT' => 29));
 		if(strlen($strFileContent)){
 			#$strTmpDir = Profile::getTmpDir($intProfileID);
 			$strTmpDir = Helper::call($this->strModuleId, 'Profile', 'getTmpDir', [$intProfileID]);

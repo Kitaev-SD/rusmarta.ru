@@ -958,8 +958,8 @@ class OzonRuV2 extends UniversalPlugin {
 			'STOCKS' => [], // All stocks
 		];
 		# Transfer stock from main data to DATA_MORE
-		if(($intStock = intVal($arFields['stock'])) > 0){
-			$arDataMore['STOCK'] = $intStock;
+		if(is_numeric($arFields['stock'])){
+			$arDataMore['STOCK'] = intVal($arFields['stock']);
 		}
 		unset($arItem['stock'], $arFields['stock']);
 		# Transfer new stocks
@@ -1426,7 +1426,7 @@ class OzonRuV2 extends UniversalPlugin {
 				if(is_array($arDataMore)){
 					foreach($arDataMore as $arStock){
 						if(Helper::strlen($arStock['OFFER_ID'])){
-							if(!empty($arStock['STOCK'])){
+							if(Helper::strlen($arStock['STOCK'])){
 								$arStocks[] = [
 									'offer_id' => strVal($arStock['OFFER_ID']),
 									'stock' => intVal($arStock['STOCK']),

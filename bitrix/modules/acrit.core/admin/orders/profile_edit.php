@@ -276,11 +276,11 @@ if($intProfileID) {
 		'MENU' => $arActionsMenu,
 	);
 	if(!$bCopy){
-		$arMenu[] = array(
-			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_RUN'),
-			'ICON' => 'acrit-exp-button-run',
-			'ONCLICK' => 'AcritExpPopupExecute.Open();',
-		);
+//		$arMenu[] = array(
+//			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_RUN'),
+//			'ICON' => 'acrit-exp-button-run',
+//			'ONCLICK' => 'AcritExpPopupExecute.Open();',
+//		);
 	}
 }
 $context = new \CAdminContextMenu($arMenu);
