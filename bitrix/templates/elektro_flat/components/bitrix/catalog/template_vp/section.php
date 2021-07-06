@@ -739,9 +739,23 @@ endif;
 if($productTypeFound)
 	$APPLICATION->SetTitle($arCurSection["NAME"]);
 if(!empty($_REQUEST["PAGEN_1"]) && $_REQUEST["PAGEN_1"] > 1):
-	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"])." — страница ".$_REQUEST["PAGEN_1"]);
+	global $page;
+	$page = [];
+
+	$requestArr = str_split($_REQUEST["PAGEN_1"]);
+	foreach ($requestArr as $value) {
+		if (is_numeric($value)) {
+			array_push($page, $value);
+		} else {
+			break;
+		}
+	}
+
+	$page = implode($page);
+
+	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"]) . " — страница " . $page);
 	$APPLICATION->SetPageProperty("keywords", "");
-	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " Страница " . $_REQUEST["PAGEN_1"]);
+	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " Страница " . $page);
 endif;
 
 //BACKGROUND_IMAGE//
