@@ -32,6 +32,9 @@ class Helper {
 	
 	// Work with options.php
 	protected static $obTabControl = null;
+
+	//
+	protected static $strLastMonitoringError;
 	
 	/**
 	 *	Simple debug
@@ -1152,6 +1155,7 @@ class Helper {
 	 */
 	public static function startBitrixCloudMonitoring($strNewEmail){
 		$bResult = false;
+		#static::$strLastMonitoringError = null;
 		if(Loader::includeModule('bitrixcloud')){
 			$strDomain = $_SERVER['SERVER_NAME'];
 			$obMonitoring = \CBitrixCloudMonitoring::getInstance();
@@ -1163,9 +1167,12 @@ class Helper {
 						$bDomainFound = true;
 						if(!in_array($strNewEmail, $arItem['EMAILS'])){
 							$arItem['EMAILS'][] = $strNewEmail;
-							$obMonitoring->startMonitoring($strDomain, $arItem['IS_HTTPS'] == 'Y', LANGUAGE_ID, 
+							$strResult = $obMonitoring->startMonitoring($strDomain, $arItem['IS_HTTPS'] == 'Y', LANGUAGE_ID, 
 								$arItem['EMAILS'], $arItem['TESTS']);
-							$bResult = true;
+							static::$strLastMonitoringError = $strResult;
+							if(empty($strResult)){
+								$bResult = true;
+							}
 						}
 					}
 				}
@@ -1179,13 +1186,41 @@ class Helper {
 						'test_lic',
 						'test_ssl_cert_validity',
 					);
-					$obMonitoring->startMonitoring($strDomain, \CMain::IsHTTPS(), LANGUAGE_ID, $arEmail, $arTests);
-					$bResult = true;
+					$strResult = $obMonitoring->startMonitoring($strDomain, \CMain::IsHTTPS(), LANGUAGE_ID, $arEmail, $arTests);
+					static::$strLastMonitoringError = $strResult;
+					if(empty($strResult)){
+						$bResult = true;
+					}
 				}
 			}
 			catch(\Exception $e){}
 		}
 		return $bResult;
+	}
+
+	/**
+	 *	Stop bitrixcloud monitoring
+	 */
+	public static function stopBitrixCloudMonitoring($strNewEmail){
+		$bResult = false;
+		#static::$strLastMonitoringError = null;
+		if(Loader::includeModule('bitrixcloud')){
+			$strDomain = static::getCurrentDomain();
+			$obMonitoring = \CBitrixCloudMonitoring::getInstance();
+			$strResult = $obMonitoring->stopMonitoring($strDomain);
+			static::$strLastMonitoringError = $strResult;
+			if(empty($strResult)){
+				$bResult = true;
+			}
+		}
+		return $bResult;
+	}
+
+	/**
+	 *	Stop bitrixcloud monitoring
+	 */
+	public static function getLastMonitoringError(){
+		return static::$strLastMonitoringError;
 	}
 	
 	/**

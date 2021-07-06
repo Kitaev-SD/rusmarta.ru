@@ -54,9 +54,18 @@ class EditForm extends Market\Component\Plain\EditForm
 		{
 			$setup = Market\Trading\Setup\Model::loadById($primary);
 			$settings = $setup->getSettings()->getValues();
-			$result = !empty($settings)
-				? $setup->wakeupService()->getOptions()->getValues()
-				: [];
+
+			if (!empty($settings))
+			{
+				$reservedKeys = $setup->getReservedSettingsKeys();
+
+				$result = $setup->wakeupService()->getOptions()->getValues();
+				$result = array_diff_key($result, array_flip($reservedKeys));
+			}
+			else
+			{
+				$result = [];
+			}
 		}
 		catch (Main\ObjectNotFoundException $exception)
 		{

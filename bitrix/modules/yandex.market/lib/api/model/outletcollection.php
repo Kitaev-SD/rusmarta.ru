@@ -7,21 +7,21 @@ use Yandex\Market;
 
 class OutletCollection extends Market\Api\Reference\Collection
 {
-	protected $pager;
+	protected $paging;
 
 	public static function getItemReference()
 	{
 		return Outlet::class;
 	}
 
-	/** @return Pager|null */
-	public function getPager()
+	/** @return Paging|null */
+	public function getPaging()
 	{
-		return $this->pager;
+		return $this->paging;
 	}
 
-	public function setPager(Pager $pager)
+	public function setPaging(Paging $paging)
 	{
-		$this->pager = $pager;
+		$this->paging = $paging;
 	}
 }

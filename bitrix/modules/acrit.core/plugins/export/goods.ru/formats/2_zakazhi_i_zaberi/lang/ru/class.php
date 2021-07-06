@@ -2,7 +2,7 @@
 \Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 // General
-$MESS[$strLang.'NAME'] = 'goods.ru (Закажи и забери)';
+$MESS[$strLang.'NAME'] = 'СберМегаМаркет (Закажи и забери)';
 
 // Settings
 $MESS[$strLang.'SETTINGS_NAME_STORAGE_DIRECTORY_SWITCHER'] = 'Способ указания папки для выгрузки';

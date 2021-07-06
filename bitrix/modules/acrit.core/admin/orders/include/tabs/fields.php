@@ -14,10 +14,11 @@ $obTabControl->AddSection('HEADING_FIELDS_TBLCMPR', Loc::getMessage('ACRIT_CRM_T
 $obTabControl->BeginCustomField('PROFILE[FIELDS][table_compare]', Loc::getMessage('ACRIT_CRM_FIELDS_TBLCMPR'));
 $store_fields = $obPlugin->getFields();
 $order_fields = OrdersInfo::getProps();
+$order_pt = (int)$arProfile['CONNECT_DATA']['pay_type'];
+$order_pt_fields = $order_fields[$order_pt];
 ?>
     <tr id="tr_fields_table_compare">
         <td>
-	        <?foreach ($order_fields as $order_pt => $order_pt_fields):?>
             <table class="adm-list-table" id="acrit_imp_agents_list">
                 <thead>
                 <tr class="adm-list-table-header">
@@ -42,8 +43,6 @@ $order_fields = OrdersInfo::getProps();
                     <?endforeach;?>
                 </tbody>
             </table>
-            <br />
-	        <?endforeach;?>
         </td>
     </tr>
 <?

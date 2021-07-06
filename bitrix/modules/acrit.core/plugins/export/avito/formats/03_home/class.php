@@ -17,7 +17,7 @@ Loc::loadMessages(__FILE__);
 
 class AvitoHome extends Avito {
 
-   CONST DATE_UPDATED = '2021-03-05';
+   CONST DATE_UPDATED = '2021-06-29';
 
    protected static $bSubclass = true;
 
@@ -86,6 +86,19 @@ class AvitoHome extends Avito {
           'DESCRIPTION' => static::getMessage('FIELD_AD_TYPE_DESC'),
           'REQUIRED' => true,
       ));
+      $arResult[] = new Field(array(
+          'CODE' => 'AVAILABILITY',
+          'DISPLAY_CODE' => 'Availability',
+          'NAME' => static::getMessage('FIELD_AVAILABILITY_NAME'),
+          'SORT' => 1030,
+          'DESCRIPTION' => static::getMessage('FIELD_AVAILABILITY_DESC'),
+					'DEFAULT_VALUE' => [
+						array(
+							'TYPE' => 'CONST',
+							'CONST' => static::getMessage('FIELD_AVAILABILITY_IN'),
+						),
+					],
+      ));
       #
       $this->sortFields($arResult);
       return $arResult;
@@ -152,6 +165,8 @@ class AvitoHome extends Avito {
          $arXmlTags['GoodsSubType'] = Xml::addTag($arFields['GOODS_SUB_TYPE']);
       if (!Helper::isEmpty($arFields['AD_TYPE']))
          $arXmlTags['AdType'] = Xml::addTag($arFields['AD_TYPE']);
+      if (!Helper::isEmpty($arFields['AVAILABILITY']))
+         $arXmlTags['Availability'] = Xml::addTag($arFields['AVAILABILITY']);
       # build XML
       $arXml = array(
           'Ad' => array(

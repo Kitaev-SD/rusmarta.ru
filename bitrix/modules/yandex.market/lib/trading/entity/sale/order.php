@@ -700,22 +700,11 @@ class Order extends Market\Trading\Entity\Reference\Order
 
 		if ($basketItem === null)
 		{
-			$errorMessage = static::getLang('ENTITY_ORDER_BASKET_ITEM_NOT_FOUND');
+			$errorMessage = static::getLang('TRADING_ENTITY_SALE_ENTITY_ORDER_BASKET_ITEM_NOT_FOUND');
 			$result->addError(new Main\Error($errorMessage));
 		}
 		else
 		{
-			if ((float)$basketItem->getQuantity() <= 0)
-			{
-				$errorMessage = static::getLang('ENTITY_ORDER_BASKET_ITEM_EMPTY_QUANTITY');
-				$result->addError(new Main\Error($errorMessage));
-			}
-			else if ((float)$basketItem->getPrice() <= 0)
-			{
-				$errorMessage = static::getLang('ENTITY_ORDER_BASKET_ITEM_EMPTY_PRICE');
-				$result->addError(new Main\Error($errorMessage));
-			}
-
 			$result->setData([
 				'NAME' => $basketItem->getField('NAME'),
 				'PRICE' => $basketItem->getPrice(),

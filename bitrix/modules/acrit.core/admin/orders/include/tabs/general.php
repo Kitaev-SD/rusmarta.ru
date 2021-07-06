@@ -151,7 +151,7 @@ $obTabControl->BeginCustomField('PROFILE[PLUGIN]', Loc::getMessage('ACRIT_EXP_FI
 				<?if(is_object($obPlugin)):?>
 					<?=$obPlugin->includeCss();?>
 					<?=$obPlugin->includeJs();?>
-					<?=$obPlugin->showSettings();?>
+					<?=$obPlugin->showSettings($arProfile);?>
 				<?endif?>
 			</div>
 		</td>

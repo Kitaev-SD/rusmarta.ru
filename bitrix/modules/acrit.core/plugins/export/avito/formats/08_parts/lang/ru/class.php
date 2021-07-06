@@ -94,10 +94,16 @@ $MESS[$strMessPrefix.'FIELD_RIM_OFFSET_NAME'] = 'Вылет (ET)';
 $MESS[$strMessPrefix.'FIELD_BRAND_NAME'] = 'Производитель шин';
 	$MESS[$strMessPrefix.'FIELD_BRAND_DESC'] = 'Производитель шин - строка из списка:
 Aeolus, Aeolus Neo, Altenzo, Amtel, Antares, Aplus, Autogrip, Avatyre, Barum, Bfgoodrich, Bridgestone, Cachland, Compasal, Continental, Contyre, Cordiant, CrossLeader, Delinte, Dmack, DoubleStar, Dunlop, Effiplus, Falken, Firenza, Firestone, Forward, General Tire, Gislaved, Goodyear, GT Radial, Habilead, Hankook, Hifly, Imperial, Jinyu, Joyroad, Kama, Kleber, Kormoran, Kumho, Landsail, Laufenn, LingLong, Marshal, Matador, Maxxis, Michelin, Mickey Thompson, Minerva, Nankang, Nexen, Nitto, Nokian, Nordman, Nortec, Orium, Ovation, Pirelli, Pirelli Formula, Rapid, Roadstone, Rosava, Sailun, Satoya, Sava, Starmaxx, Sunfull, Sunny, Tigar, Toyo, Trayal, Triangle, Tunga, Tyrex, Uniroyal, Viatti, Vredestein, Windforce, Yokohama, Белшина, Волтайр.';
-
 $MESS[$strMessPrefix.'FIELD_DISPLAY_AREAS_NAME'] = 'Зоны показа объявления';
 	$MESS[$strMessPrefix.'FIELD_DISPLAY_AREAS_DESC'] = 'Зоны показа объявления - значения из <a href="https://autoload.avito.ru/format/DisplayAreas.xml" target="_blank">справочника</a>.<br/><br/>
 	Поле должно выгружаться как множественное!<br/><br/>
 	<b>Внимание, данная функциональность Avito находится на стадии тестирования.</b>';
+$MESS[$strMessPrefix.'FIELD_AVAILABILITY_NAME'] = 'Доступность';
+	$MESS[$strMessPrefix.'FIELD_AVAILABILITY_DESC'] = 'Доступность — одно из значений списка:
+	<ul>
+		<li>В наличии</li>
+		<li>Под заказ</li>
+	</ul>';
+	$MESS[$strMessPrefix.'FIELD_AVAILABILITY_IN'] = 'В наличии';
 	
 ?>

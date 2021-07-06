@@ -26,10 +26,7 @@ if ($start_date_ts) {
 		$start_sync_ts = $start_date_ts;
 	}
 }
-if ($start_sync_ts) {
-	$filter['create_date_from'] = $start_sync_ts;
-}
-$cnt = $obPlugin->getOrdersCount($filter);
+$cnt = $obPlugin->getOrdersCount($start_sync_ts);
 // Result
 $count = 0;
 $arJsonResult['result'] = 'ok';

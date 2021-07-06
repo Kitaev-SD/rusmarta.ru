@@ -14,7 +14,7 @@
 			lazy: false,
 
 			lang: {},
-			langPrefix: 'CHOSEN_'
+			langPrefix: 'YANDEX_MARKET_CHOSEN_'
 		},
 
 		initVars: function() {

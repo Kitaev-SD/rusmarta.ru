@@ -6,7 +6,7 @@ use Yandex\Market\Data;
 use Yandex\Market\Export\Xml;
 use Yandex\Market\Type;
 
-class Price extends VendorModel
+class Price extends Catalog
 {
 	public function getDocumentationLink()
 	{
@@ -20,45 +20,21 @@ class Price extends VendorModel
 		];
 	}
 
-	public function getRoot()
+	protected function sanitizeRoot(Xml\Tag\Base $root)
 	{
-		$result = parent::getRoot();
-		$shop = $result->getChild('shop');
+		$shop = $root->getChild('shop');
 
-		if ($shop !== null)
-		{
-			$this->removeChildTags($shop, [ 'cpa', 'categories', 'enable_auto_discounts', 'gifts', 'promos' ]);
-		}
+		if ($shop === null) { return; }
 
-		return $result;
+		$this->removeChildTags($shop, [ 'cpa', 'enable_auto_discounts', 'categories', 'gifts', 'promos' ]);
 	}
 
-	public function isSupportDeliveryOptions()
+	public function getCurrency()
 	{
-		return false;
+		return Xml\Format\YandexMarket\Simple::getCurrency();
 	}
 
 	public function getCategory()
-	{
-		return null;
-	}
-
-	public function getPromo($type = null)
-	{
-		return null;
-	}
-
-	public function getPromoProduct($type = null)
-	{
-		return null;
-	}
-
-	public function getPromoGift($type = null)
-	{
-		return null;
-	}
-
-	public function getGift()
 	{
 		return null;
 	}

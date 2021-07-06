@@ -6,6 +6,13 @@ use Yandex\Market;
 
 abstract class Collection extends Market\Reference\Common\Collection
 {
+	/**
+	 * @param array[] $dataList
+	 * @param Market\Reference\Common\Model|null $parent
+	 * @param string $relativePath
+	 *
+	 * @return static
+	 */
 	public static function initialize($dataList, Market\Reference\Common\Model $parent = null, $relativePath = '')
 	{
 		$result = parent::initialize($dataList, $parent);

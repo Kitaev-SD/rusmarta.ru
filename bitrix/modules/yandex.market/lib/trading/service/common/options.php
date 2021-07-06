@@ -277,6 +277,7 @@ abstract class Options extends TradingService\Reference\Options
 					'SETTINGS' => [
 						'READONLY' => true,
 						'COPY_BUTTON' => true,
+						'SITE_ID' => $siteId,
 					],
 					'SORT' => 2100,
 				],

@@ -159,11 +159,8 @@ class Rule
 		switch ($entityType)
 		{
 			case static::ENTITY_TYPE_DELIVERY:
-				$result = $feature->supportsDeliveryChoose();
-			break;
-
 			case static::ENTITY_TYPE_PAY_SYSTEM:
-				$result = $feature->supportPaySystemChoose();
+				$result = true;
 			break;
 
 			default:

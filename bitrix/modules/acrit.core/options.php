@@ -32,6 +32,7 @@ $arTabs = [
 			'core/remarketing.php',
 			'core/menu.php',
 			'core/updates.php',
+			'core/misc.php',
 		],
 	], [
 		'DIV' => 'log',

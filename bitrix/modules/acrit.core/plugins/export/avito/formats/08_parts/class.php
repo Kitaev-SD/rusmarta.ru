@@ -189,6 +189,19 @@ class AvitoParts extends Avito {
           'SORT' => 1130,
           'DESCRIPTION' => static::getMessage('FIELD_BRAND_DESC'),
       ));
+      $arResult[] = new Field(array(
+          'CODE' => 'AVAILABILITY',
+          'DISPLAY_CODE' => 'Availability',
+          'NAME' => static::getMessage('FIELD_AVAILABILITY_NAME'),
+          'SORT' => 1140,
+          'DESCRIPTION' => static::getMessage('FIELD_AVAILABILITY_DESC'),
+					'DEFAULT_VALUE' => [
+						array(
+							'TYPE' => 'CONST',
+							'CONST' => static::getMessage('FIELD_AVAILABILITY_IN'),
+						),
+					],
+      ));
       #
       $this->sortFields($arResult);
       return $arResult;
@@ -284,6 +297,8 @@ class AvitoParts extends Avito {
          $arXmlTags['RimOffset'] = Xml::addTag($arFields['RIM_OFFSET']);
       if (!Helper::isEmpty($arFields['BRAND']))
          $arXmlTags['Brand'] = Xml::addTag($arFields['BRAND']);
+      if (!Helper::isEmpty($arFields['AVAILABILITY']))
+         $arXmlTags['Availability'] = Xml::addTag($arFields['AVAILABILITY']);
       # build XML
       $arXml = array(
           'Ad' => array(

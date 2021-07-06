@@ -153,18 +153,130 @@ class AvitoTrucks extends Avito {
 			'DESCRIPTION' => static::getMessage('FIELD_TYPE_OF_VEHICLE_DESC'),
 		));
 		$arResult[] = new Field(array(
+			'CODE' => 'SUB_TYPE_OF_VEHICLE',
+			'DISPLAY_CODE' => 'SubTypeOfVehicle',
+			'NAME' => static::getMessage('FIELD_SUB_TYPE_OF_VEHICLE_NAME'),
+			'SORT' => 1000,
+			'DESCRIPTION' => static::getMessage('FIELD_SUB_TYPE_OF_VEHICLE_DESC'),
+		));
+		$arResult[] = new Field(array(
 			'CODE' => 'TYPE_OF_TRAILER',
 			'DISPLAY_CODE' => 'TypeOfTrailer',
 			'NAME' => static::getMessage('FIELD_TYPE_OF_TRAILER_NAME'),
-			'SORT' => 1000,
+			'SORT' => 1001,
 			'DESCRIPTION' => static::getMessage('FIELD_TYPE_OF_TRAILER_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'TRAILER_VIN',
 			'DISPLAY_CODE' => 'TrailerVIN',
 			'NAME' => static::getMessage('FIELD_TRAILER_VIN_NAME'),
-			'SORT' => 1001,
+			'SORT' => 1002,
 			'DESCRIPTION' => static::getMessage('FIELD_TRAILER_VIN_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MAKE_KMU',
+			'DISPLAY_CODE' => 'MakeKmu',
+			'NAME' => static::getMessage('FIELD_MAKE_KMU_NAME'),
+			'SORT' => 1003,
+			'DESCRIPTION' => static::getMessage('FIELD_MAKE_KMU_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MODEL_KMU',
+			'DISPLAY_CODE' => 'ModelKmu',
+			'NAME' => static::getMessage('FIELD_MODEL_KMU_NAME'),
+			'SORT' => 1004,
+			'DESCRIPTION' => static::getMessage('FIELD_MODEL_KMU_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'BRAND',
+			'DISPLAY_CODE' => 'Brand',
+			'NAME' => static::getMessage('FIELD_BRAND_NAME'),
+			'SORT' => 1005,
+			'DESCRIPTION' => static::getMessage('FIELD_BRAND_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'BODY',
+			'DISPLAY_CODE' => 'Body',
+			'NAME' => static::getMessage('FIELD_BODY_NAME'),
+			'SORT' => 1006,
+			'DESCRIPTION' => static::getMessage('FIELD_BODY_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'DOORS_COUNT',
+			'DISPLAY_CODE' => 'DoorsCount',
+			'NAME' => static::getMessage('FIELD_DOORS_COUNT_NAME'),
+			'SORT' => 1007,
+			'DESCRIPTION' => static::getMessage('FIELD_DOORS_COUNT_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'GENERATION',
+			'DISPLAY_CODE' => 'Generation',
+			'NAME' => static::getMessage('FIELD_GENERATION_NAME'),
+			'SORT' => 1008,
+			'DESCRIPTION' => static::getMessage('FIELD_GENERATION_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'ENGINE_TYPE',
+			'DISPLAY_CODE' => 'EngineType',
+			'NAME' => static::getMessage('FIELD_ENGINE_TYPE_NAME'),
+			'SORT' => 1009,
+			'DESCRIPTION' => static::getMessage('FIELD_ENGINE_TYPE_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'DRIVE_TYPE',
+			'DISPLAY_CODE' => 'DriveType',
+			'NAME' => static::getMessage('FIELD_DRIVE_TYPE_NAME'),
+			'SORT' => 1010,
+			'DESCRIPTION' => static::getMessage('FIELD_DRIVE_TYPE_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'TRANSMISSION',
+			'DISPLAY_CODE' => 'Transmission',
+			'NAME' => static::getMessage('FIELD_TRANSMISSION_NAME'),
+			'SORT' => 1011,
+			'DESCRIPTION' => static::getMessage('FIELD_TRANSMISSION_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MODIFICATION',
+			'DISPLAY_CODE' => 'Modification',
+			'NAME' => static::getMessage('FIELD_MODIFICATION_NAME'),
+			'SORT' => 1012,
+			'DESCRIPTION' => static::getMessage('FIELD_MODIFICATION_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'TRIM',
+			'DISPLAY_CODE' => 'Trim',
+			'NAME' => static::getMessage('FIELD_TRIM_NAME'),
+			'SORT' => 1013,
+			'DESCRIPTION' => static::getMessage('FIELD_TRIM_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'WHEEL_TYPE',
+			'DISPLAY_CODE' => 'WheelType',
+			'NAME' => static::getMessage('FIELD_WHEEL_TYPE_NAME'),
+			'SORT' => 1014,
+			'DESCRIPTION' => static::getMessage('FIELD_WHEEL_TYPE_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'OWNERS_BY_DOCUMENTS',
+			'DISPLAY_CODE' => 'OwnersByDocuments',
+			'NAME' => static::getMessage('FIELD_OWNERS_BY_DOCUMENTS_NAME'),
+			'SORT' => 1015,
+			'DESCRIPTION' => static::getMessage('FIELD_OWNERS_BY_DOCUMENTS_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'COLOR',
+			'DISPLAY_CODE' => 'Color',
+			'NAME' => static::getMessage('FIELD_COLOR_NAME'),
+			'SORT' => 1016,
+			'DESCRIPTION' => static::getMessage('FIELD_COLOR_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'ACCIDENT',
+			'DISPLAY_CODE' => 'Accident',
+			'NAME' => static::getMessage('FIELD_ACCIDENT_NAME'),
+			'SORT' => 1017,
+			'DESCRIPTION' => static::getMessage('FIELD_ACCIDENT_DESC'),
 		));
 		#
 		$this->sortFields($arResult);
@@ -249,13 +361,45 @@ class AvitoTrucks extends Avito {
 		if(!Helper::isEmpty($arFields['BODY_TYPE']))
 			$arXmlTags['BodyType'] = Xml::addTag($arFields['BODY_TYPE']);
 		if(!Helper::isEmpty($arFields['TYPE_OF_VEHICLE']))
-			$arXmlTags['TypeOfVehicle'] = [Xml::addEmptyTagWithAttr('name', $arFields['TYPE_OF_VEHICLE'])];
+			$arXmlTags['TypeOfVehicle'] = Xml::addTag($arFields['TYPE_OF_VEHICLE']);
+		if(!Helper::isEmpty($arFields['SUB_TYPE_OF_VEHICLE']))
+			$arXmlTags['SubTypeOfVehicle'] = Xml::addTag($arFields['SUB_TYPE_OF_VEHICLE']);
 		if(!Helper::isEmpty($arFields['TYPE_OF_TRAILER']))
-			$arXmlTags['TypeOfTrailer'] = [Xml::addEmptyTagWithAttr('name', $arFields['TYPE_OF_TRAILER'])];
+			$arXmlTags['TypeOfTrailer'] = Xml::addTag($arFields['TYPE_OF_TRAILER']);
 		if(!Helper::isEmpty($arFields['TRAILER_VIN']))
 			$arXmlTags['TrailerVIN'] = Xml::addTag($arFields['TRAILER_VIN']);
 		if(!Helper::isEmpty($arFields['GOODS_TYPE']))
 			$arXmlTags['GoodsType'] = Xml::addTag($arFields['GOODS_TYPE']);
+		if(!Helper::isEmpty($arFields['MAKE_KMU']))
+			$arXmlTags['MakeKmu'] = Xml::addTag($arFields['MAKE_KMU']);
+		if(!Helper::isEmpty($arFields['MODEL_KMU']))
+			$arXmlTags['ModelKmu'] = Xml::addTag($arFields['MODEL_KMU']);
+		if(!Helper::isEmpty($arFields['BRAND']))
+			$arXmlTags['Brand'] = Xml::addTag($arFields['BRAND']);
+		if(!Helper::isEmpty($arFields['BODY']))
+			$arXmlTags['Body'] = Xml::addTag($arFields['BODY']);
+		if(!Helper::isEmpty($arFields['DOORS_COUNT']))
+			$arXmlTags['DoorsCount'] = Xml::addTag($arFields['DOORS_COUNT']);
+		if(!Helper::isEmpty($arFields['GENERATION']))
+			$arXmlTags['Generation'] = Xml::addTag($arFields['GENERATION']);
+		if(!Helper::isEmpty($arFields['ENGINE_TYPE']))
+			$arXmlTags['EngineType'] = Xml::addTag($arFields['ENGINE_TYPE']);
+		if(!Helper::isEmpty($arFields['DRIVE_TYPE']))
+			$arXmlTags['DriveType'] = Xml::addTag($arFields['DRIVE_TYPE']);
+		if(!Helper::isEmpty($arFields['TRANSMISSION']))
+			$arXmlTags['Transmission'] = Xml::addTag($arFields['TRANSMISSION']);
+		if(!Helper::isEmpty($arFields['MODIFICATION']))
+			$arXmlTags['Modification'] = Xml::addTag($arFields['MODIFICATION']);
+		if(!Helper::isEmpty($arFields['TRIM']))
+			$arXmlTags['Trim'] = Xml::addTag($arFields['TRIM']);
+		if(!Helper::isEmpty($arFields['WHEEL_TYPE']))
+			$arXmlTags['WheelType'] = Xml::addTag($arFields['WHEEL_TYPE']);
+		if(!Helper::isEmpty($arFields['OWNERS_BY_DOCUMENTS']))
+			$arXmlTags['OwnersByDocuments'] = Xml::addTag($arFields['OWNERS_BY_DOCUMENTS']);
+		if(!Helper::isEmpty($arFields['COLOR']))
+			$arXmlTags['Color'] = Xml::addTag($arFields['COLOR']);
+		if(!Helper::isEmpty($arFields['ACCIDENT']))
+			$arXmlTags['Accident'] = Xml::addTag($arFields['ACCIDENT']);
 		# build XML
 		$arXml = array(
 			'Ad' => array(

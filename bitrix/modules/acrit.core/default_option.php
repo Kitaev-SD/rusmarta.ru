@@ -20,5 +20,8 @@ $acrit_core_default_option = array(
 	'discount_recalculation_calc_value' => 'Y',
 	'discount_recalculation_calc_discount' => 'Y',
 	'discount_recalculation_calc_percent' => 'Y',
+	#
+	'allow_external_request' => 'N',
+	'bitrixcloud_monitoring' => 'Y',
 );
 ?>

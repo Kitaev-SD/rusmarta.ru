@@ -15,6 +15,7 @@ use Bitrix\Main,
 	Bitrix\Sale\PaySystem,
 	\Acrit\Core\Log,
 	\Acrit\Core\Helper;
+use PhpOffice\PhpSpreadsheet\Exception;
 
 Loc::loadMessages(__FILE__);
 
@@ -50,12 +51,16 @@ class OrderSync {
 			}
 		}
 		if ($order) {
-			// Update status
-			$status_changed = self::updateOrderStatus($ext_order, $order_data, $profile, $order);
-			// Update properties
-			$props_changed = self::updateOrderProps($ext_order['FIELDS'], $order_data, $profile, $order);
-			// Update order products
-			$products_changed = self::updateOrderProducts($ext_order, $order_data, $profile, $order);
+			try {
+				// Update status
+				$status_changed = self::updateOrderStatus($ext_order, $order_data, $profile, $order);
+				// Update properties
+				$props_changed = self::updateOrderProps($ext_order['FIELDS'], $order_data, $profile, $order);
+				// Update order products
+				$products_changed = self::updateOrderProducts($ext_order, $order_data, $profile, $order);
+			} catch (Exception $e) {
+				Log::getInstance(Controller::$MODULE_ID)->add($e->getMessage() . ' [' . $e->getCode() . ']', false, true);
+			}
 			Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) order ' . $order_id . ' changed fields [status:' . $status_changed . ', props:' . $props_changed . ', params:' . $params_changed . ', other:' . $other_changed . ', products:' . $products_changed . ']', false, true);
 		}
 		// Delivery
@@ -345,7 +350,7 @@ class OrderSync {
 			// Find products
 			$product_id = Products::findIblockProduct($product['PRODUCT_CODE'], $profile);
 			if ($product_id) {
-				// Add products
+				// Update product
 				if ($item = $basket->getExistsItem('catalog', $product_id)) {
 					if ($item->getField('QUANTITY') && $product['QUANTITY'] && $item->getField('QUANTITY') != $product['QUANTITY']) {
 						$item->setField('QUANTITY', $product['QUANTITY']);
@@ -355,9 +360,9 @@ class OrderSync {
 						$item->setField('PRICE', $product['PRICE']);
 						$has_changes = true;
 					}
-				} // Update products
+				}
+				// Add product
 				else {
-					// Add product
 					$item = $basket->createItem('catalog', $product_id);
 					$prod_fields = [
 						'QUANTITY'     => $product['QUANTITY'],

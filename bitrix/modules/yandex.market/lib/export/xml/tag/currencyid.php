@@ -28,22 +28,10 @@ class CurrencyId extends Base
 	{
 		if ($context['HAS_CATALOG'])
 		{
-			$exportService = isset($context['EXPORT_SERVICE']) ? $context['EXPORT_SERVICE'] : null;
-
-			if ($exportService === Market\Export\Xml\Format\Manager::EXPORT_SERVICE_TURBO)
-			{
-				$result = array_merge(
-					$this->getSiteCurrencyRecommendation(),
-					$this->getCatalogPriceRecommendation()
-				);
-			}
-			else
-			{
-				$result = array_merge(
-					$this->getCatalogPriceRecommendation(),
-					$this->getSiteCurrencyRecommendation()
-				);
-			}
+			$result = array_merge(
+				$this->getSiteCurrencyRecommendation(),
+				$this->getCatalogPriceRecommendation()
+			);
 		}
 		else
 		{

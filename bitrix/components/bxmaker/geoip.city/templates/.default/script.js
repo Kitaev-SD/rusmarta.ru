@@ -1081,10 +1081,39 @@ if (!!window.BXmakerGeoIPYandexGeo === false) {
             if (that.bInit) return true;
 
             that.bInit = true; //&ns=BXmakerGeoIPYandexMap
+            var fired_map = false;
+
+            window.addEventListener('click', () => {
+                if (fired_map === false) {
+                    fired_map = true;
+                    api_maps_yandex();
+              }
+            });
+         
+            window.addEventListener('scroll', () => {
+                if (fired_map === false) {
+                    fired_map = true;
+                    api_maps_yandex();
+              }
+            });
+
+            window.addEventListener('mousemove', () => {
+                if (fired_map === false) {
+                    fired_map = true;
+                    api_maps_yandex();
+              }
+            });
+
+            window.addEventListener('touchmove', () => {
+                if (fired_map === false) {
+                    fired_map = true;
+                    api_maps_yandex();
+              }
+            });
             function api_maps_yandex() {
                 $('head').append($('<script async id="BXmakerGeoIPYandexGeo" type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&load=geolocation,geocode&ns=&onload=BXmakerGeoIPYandexGeo.onload" />'));
             }
-            setTimeout(api_maps_yandex, 5000);
+            //setTimeout(api_maps_yandex, 500);
         };
 
         GeoIPYandexGeo.prototype.onload = function (ym) {

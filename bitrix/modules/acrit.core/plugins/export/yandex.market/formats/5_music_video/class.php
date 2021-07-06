@@ -218,6 +218,8 @@ class YandexMarketMusicVideo extends YandexMarket {
 			$arXmlTags['oldprice'] = Xml::addTag($arFields['OLD_PRICE']);
 		if(!Helper::isEmpty($arFields['CURRENCY_ID']))
 			$arXmlTags['currencyId'] = Xml::addTag($arFields['CURRENCY_ID']);
+		if(!Helper::isEmpty($arFields['COUNT']))
+			$arXmlTags['count'] = Xml::addTag($arFields['COUNT']);
 		if(!Helper::isEmpty($arFields['VAT']))
 			$arXmlTags['vat'] = $this->getXmlTag_Vat($intProfileID, $arFields['VAT'], $arFields);
 		if(!Helper::isEmpty($arFields['ENABLE_AUTO_DISCOUNTS']))

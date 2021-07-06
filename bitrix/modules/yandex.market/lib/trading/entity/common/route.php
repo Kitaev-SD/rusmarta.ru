@@ -7,6 +7,11 @@ use Bitrix\Main;
 
 class Route extends Market\Trading\Entity\Reference\Route
 {
+	public function getScriptPath()
+	{
+		return $this->getPublicBasePath() . '/index.php';
+	}
+
 	public function getPublicPath($serviceCode, $urlId)
 	{
 		$serviceCodeSanitized = str_replace(':', '-', $serviceCode);
@@ -32,12 +37,13 @@ class Route extends Market\Trading\Entity\Reference\Route
 	protected function getUrlRewriteRule()
 	{
 		$path = $this->getPublicBasePath();
+		$scriptPath = $this->getScriptPath();
 
 		return [
 			'CONDITION' => '#^' . $path . '/#',
 			'RULE' => '',
 			'ID' => '',
-			'PATH' => $path . '/index.php',
+			'PATH' => $scriptPath,
 		];
 	}
 

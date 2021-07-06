@@ -179,8 +179,11 @@ class HelloTest
 		}
 		else if ($status === 404)
 		{
-			$code = 'HTTP_NOT_FOUND';
-			$message = static::getLang('UI_TRADING_HELLO_TEST_ERROR_HTTP_NOT_FOUND');
+			$code = $this->isUrlRewriteRuleMissing() ? 'URLREWRITE_RULE_MISSING' : 'HTTP_NOT_FOUND';
+			$message = static::getLang('UI_TRADING_HELLO_TEST_ERROR_' . $code);
+			$data = [
+				'script_path' => $this->getRouteScriptPath(),
+			];
 		}
 		else if ($responseError === HelloDebug\Response::ERROR_MARKER)
 		{
@@ -250,6 +253,23 @@ class HelloTest
 			&& isset($response['hello'])
 			&& $response['hello'] === true
 		);
+	}
+
+	protected function isUrlRewriteRuleMissing()
+	{
+		$siteId = $this->getParameter('site') ?: SITE_ID;
+		$rules = Main\UrlRewriter::getList($siteId, [
+			'PATH' => $this->getRouteScriptPath(),
+		]);
+
+		return empty($rules);
+	}
+
+	protected function getRouteScriptPath()
+	{
+		$environment = Market\Trading\Entity\Manager::createEnvironment();
+
+		return $environment->getRoute()->getScriptPath();
 	}
 
 	protected function getRequiredParameter($key)

@@ -361,16 +361,19 @@ $bCancel = !!strlen($arPost['cancel']);
 if(($bSave || $bApply) && $strRight == 'W'){
     // TODO
 	$arProfileFields = $arPost['PROFILE'];
-//	if(is_object($obPlugin)) {
+//	if (is_object($obPlugin)) {
 //		$obPlugin->setProfileArray($arProfileFields);
 //	}
+	if(is_object($obPlugin)) {
+		$arProfileFields = $obPlugin->eventPageEditBeforeSave($arProfileFields);
+	}
 	foreach ($arProfileFields as $k => $value) {
-        if (in_array($k, ['PARAMS', 'CONNECT_CRED', 'CONNECT_DATA', 'OPTIONS', 'STAGES', 'FIELDS', 'CONTACTS', 'PRODUCTS', 'OTHER', 'SYNC'])) {
+        if (in_array($k, ['PARAMS', 'CONNECT_CRED', 'CONNECT_DATA', 'STAGES', 'FIELDS', 'CONTACTS', 'PRODUCTS', 'OTHER', 'SYNC'])) {
 	        $arProfileFields[$k] = serialize($value);
         }
     }
 	$bCopySuccess = false;
-	if($intProfileID && $bCopy) {
+	if ($intProfileID && $bCopy) {
 		#$intNewProfileID = Profiles::copyProfile($intProfileID);
 		$intNewProfileID = Helper::call($strModuleId, 'OrdersProfiles', 'copyProfile', [$intProfileID]);
 		if ($intNewProfileID) {
@@ -419,6 +422,10 @@ if(($bSave || $bApply) && $strRight == 'W'){
 		print Helper::showError(is_array($arErrors) ? implode('<br/>', $arErrors) : $arErrors);
 		$arProfile = $arPost['PROFILE'];
 	}
+}
+
+if (is_object($obPlugin)) {
+	$arProfile = $obPlugin->eventPageEditGetProfile($arProfile);
 }
 
 // Ajax actions
@@ -719,7 +726,7 @@ $arTabs[] = array(
 	'SORT' => 1,
 	'FILE' => __DIR__.$strTabsDir.'/general.php',
 );
-if($intProfileID){
+if($intProfileID && is_object($obPlugin)){
 	$arTabs[] = array(
 		'DIV' => 'basic',
 		'TAB' => Loc::getMessage('ACRIT_EXP_TAB_BASIC_NAME'),
@@ -916,9 +923,9 @@ $obTabControl->EndPrologContent();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // All tabs
-foreach($arTabs as $arTab){
-	$obTabControl->BeginNextFormTab();
-	require $arTab['FILE'];
+foreach ($arTabs as $arTab) {
+    $obTabControl->BeginNextFormTab();
+    require $arTab['FILE'];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -92,9 +92,6 @@ class PriceProvider extends AbstractProvider
 			'FINISH_DATE' => [
 				'MANDATORY' => 'Y',
 			],
-			'URL' => [
-				'MANDATORY' => 'Y',
-			],
 		];
 	}
 

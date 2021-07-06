@@ -116,8 +116,8 @@ if ($requestAction)
 
 					$response['message'] .= BeginNote();
 					$response['message'] .=
-						Market\Config::getLang('ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_PUBLISH_' . Market\Data\TextString::toUpper($setup->getField('EXPORT_SERVICE')), null, '')
-							?: Market\Config::getLang('ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_PUBLISH');
+						$setup->getFormat()->getPublishNote()
+						?: Market\Config::getLang('ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_PUBLISH');
 					$response['message'] .= EndNote();
 
 					// export result

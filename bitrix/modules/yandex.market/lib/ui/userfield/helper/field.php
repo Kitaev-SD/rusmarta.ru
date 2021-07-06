@@ -24,4 +24,22 @@ class Field
 
 		return $field;
 	}
+
+	public static function extendValue($userField, $value, $row)
+	{
+		$defaults = [];
+
+		if ($value !== null)
+		{
+			$defaults['VALUE'] = $value;
+		}
+
+		if ($row !== null)
+		{
+			$defaults['ENTITY_VALUE_ID'] = isset($row['ID']) ? $row['ID'] : null;
+			$defaults['ROW'] = $row;
+		}
+
+		return $userField + $defaults;
+	}
 }

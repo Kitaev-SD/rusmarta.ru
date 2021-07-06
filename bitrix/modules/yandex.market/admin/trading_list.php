@@ -94,6 +94,11 @@ else
 				'TEXT' => Market\Config::getLang('ADMIN_TRADING_LIST_ROW_ACTION_LOG'),
 				'DEFAULT' => true
 			],
+			'COPY' => [
+				'URL' => Market\Ui\Admin\Path::getModuleUrl('trading_setup', $baseQuery) . '&id=#ID#&copy=Y',
+				'ICON' => 'copy',
+				'TEXT' => Market\Config::getLang('ADMIN_TRADING_LIST_ROW_ACTION_COPY')
+			],
 			'ACTIVATE' => [
 				'ACTION' => 'activate',
 				'TEXT' => Market\Config::getLang('ADMIN_TRADING_LIST_ROW_ACTION_ACTIVATE')

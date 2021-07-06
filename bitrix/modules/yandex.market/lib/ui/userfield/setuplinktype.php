@@ -10,6 +10,8 @@ class SetupLinkType extends EnumerationType
 {
 	use Market\Reference\Concerns\HasLang;
 
+	protected static $getListCache;
+
 	protected static function includeMessages()
 	{
 		Main\Localization\Loc::loadMessages(__FILE__);
@@ -17,32 +19,41 @@ class SetupLinkType extends EnumerationType
 
 	public static function GetList($arUserField)
 	{
-		static $result = null;
-
-		if ($result === null)
+		if (static::$getListCache === null)
 		{
-			$result = [];
-
-			if (Main\Loader::includeModule('yandex.market'))
-			{
-				$querySetupList = Market\Export\Setup\Table::getList([
-					'select' => [ 'ID', 'NAME' ]
-				]);
-
-				while ($setup = $querySetupList->fetch())
-				{
-					$result[] = [
-						'ID' => $setup['ID'],
-						'VALUE' => '[' . $setup['ID'] . '] ' . $setup['NAME']
-					];
-				}
-			}
+			static::$getListCache = static::fetchList();
 		}
 
 		$queryResult = new \CDBResult();
-		$queryResult->InitFromArray($result);
+		$queryResult->InitFromArray(static::$getListCache);
 
 		return $queryResult;
+	}
+
+	protected static function fetchList()
+	{
+		$result = [];
+
+		foreach (Market\Export\Setup\Model::loadList() as $setup)
+		{
+			try
+			{
+				$format = $setup->getFormat();
+
+				if ($format->getPromo() === null) { continue; }
+
+				$result[] = [
+					'ID' => $setup->getId(),
+					'VALUE' => sprintf('[%s] %s', $setup->getId(), $setup->getField('NAME')),
+				];
+			}
+			catch (Main\SystemException $exception)
+			{
+				continue;
+			}
+		}
+
+		return $result;
 	}
 
 	public static function GetAdminListViewHTML($arUserField, $arHtmlControl)

@@ -7,14 +7,13 @@
 	Input.TradingOutletFetcher = constructor = Plugin.Base.extend({
 
 		initVars: function() {
-			this._enum = null;
-			this._sign = null;
+			this._cache = {};
 		},
 
 		load: function(url, formData, sign) {
 			return this.makeLoadQuery(url, formData)
 				.then($.proxy(this.loadEnd, this), $.proxy(this.loadStop, this))
-				.then($.proxy(this.storeEnum, this, sign));
+				.then($.proxy(this.store, this, sign));
 		},
 
 		makeLoadQuery: function(url, formData) {
@@ -32,28 +31,23 @@
 
 		loadEnd: function(response) {
 			return (response && response.status === 'ok')
-				? response.enum
+				? response
 				: (new $.Deferred()).reject(response ? response.message : 'Unknown error');
 		},
 
-		storeEnum: function(sign, values) {
-			this._sign = sign;
-			this._enum = values;
+		store: function(sign, values) {
+			this._cache[sign] = values;
 
 			return values;
 		},
 
-		hasEnum: function() {
-			return this._enum != null;
+		has: function(sign) {
+			return this._cache[sign] != null;
 		},
 
-		getEnum: function() {
-			return this._enum;
+		get: function(sign) {
+			return this._cache[sign];
 		},
-
-		getSign: function() {
-			return this._sign;
-		}
 
 	}, {
 		dataName: 'uiInputTradingOutletFetcher'

@@ -21,7 +21,10 @@ try
 
 	$httpRequest = Main\Context::getCurrent()->getRequest();
 	$httpRequestData = $httpRequest->getPostList()->toArray();
-	$testParameters = array_intersect_key($httpRequestData, [ 'url' => true ]);
+	$testParameters = array_intersect_key($httpRequestData, [
+		'url' => true,
+		'site' => true,
+	]);
 	$test = new Market\Ui\Trading\HelloTest($testParameters);
 
 	$testResult = $test->run();

@@ -154,6 +154,8 @@ class YandexMarketAlcohol extends YandexMarket {
 			$arXmlTags['oldprice'] = Xml::addTag($arFields['OLD_PRICE']);
 		if(!Helper::isEmpty($arFields['CURRENCY_ID']))
 			$arXmlTags['currencyId'] = Xml::addTag($arFields['CURRENCY_ID']);
+		if(!Helper::isEmpty($arFields['COUNT']))
+			$arXmlTags['count'] = Xml::addTag($arFields['COUNT']);
 		$arXmlTags['categoryId'] = Xml::addTag(reset($arElementSections));
 		if(!Helper::isEmpty($arFields['MARKET_CATEGORY']))
 			$arXmlTags['market_category'] = Xml::addTag($arFields['MARKET_CATEGORY']);

@@ -13,13 +13,6 @@ Loc::loadMessages(__FILE__); ?>
 <!DOCTYPE html>
 <html lang="<?= LANGUAGE_ID ?>">
 <head>
-	<link rel="preconnect" href="https://cdn.carrotquest.io">
-	<link rel="preconnect" href="https://antisovetnic.ru">
-	<link rel="preload" href="https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc" as="script"> 
-	<script data-skip-moving='true' async src='https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc'></script>
-	<link rel="preload" href="/upload/uf/c8d/fon_AHD_03.png" as="image">
-	<link rel="preload" href="/bitrix/js/ui/fonts/opensans/opensans-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
-	<link rel="preload" href="/bitrix/templates/elektro_flat/css/awesome_bootstrap/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -107,7 +100,13 @@ Loc::loadMessages(__FILE__); ?>
 	<? if (CModule::IncludeModule("altop.elektroinstrument")) {
 		CElektroinstrument::getBackground(SITE_ID);
 	} ?>
-
+	<link rel="preconnect" href="https://antisovetnic.ru">
+	<link rel="preload" href="https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc" as="script">
+	<script type="text/javascript" async src="https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc"></script>
+	<link rel="preconnect" href="https://cdn.carrotquest.io">
+	<link rel="preload" href="/upload/uf/c8d/fon_AHD_03.png" as="image">
+	<link rel="preload" href="/bitrix/js/ui/fonts/opensans/opensans-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
+	<link rel="preload" href="/bitrix/templates/elektro_flat/css/awesome_bootstrap/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 </head>
 
 <body <?= $APPLICATION->ShowProperty("bgClass") ?><?= $APPLICATION->ShowProperty("backgroundColor") ?><?= $APPLICATION->ShowProperty("backgroundImage") ?>>
@@ -168,7 +167,7 @@ Loc::loadMessages(__FILE__); ?>
 					</div>
 					<div class="modal_no_cookie modal_no_cookie_first">
 						<div class="modal_no_cookie_close">&times;</div>
-						пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, <a href="https://yandex.ru/support/common/browsers-settings/browsers-cookies.html" target="_blank">пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ cookie</a> пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+						Предупреждение Для совершения покупок пожалуйста, <a href="https://yandex.ru/support/common/browsers-settings/browsers-cookies.html" target="_blank">разрешите принимать cookie</a> в своем браузере
 					</div>
 				</header>
 				<? if ($arSetting["CATALOG_LOCATION"]["VALUE"] == "LEFT") : ?>
@@ -565,7 +564,51 @@ Loc::loadMessages(__FILE__); ?>
 												); ?>
 											</div>
 											<div class="share">
-												<script type="text/javascript" async src="//yastatic.net/share/share.js?v=1" charset="utf-8"></script>
+												<script>
+													$(document).ready(function(){
+
+													    var fired_share = false;
+
+													    window.addEventListener('click', () => {
+													        if (fired_share === false) {
+													            fired_share = true;
+													            load_share();
+													      }
+													    });
+													 
+													    window.addEventListener('scroll', () => {
+													        if (fired_share === false) {
+													            fired_share = true;
+													            load_share();
+													      }
+													    });
+
+													    window.addEventListener('mousemove', () => {
+													        if (fired_share === false) {
+													            fired_share = true;
+													            load_share();
+													      }
+													    });
+
+													    window.addEventListener('touchmove', () => {
+													        if (fired_share === false) {
+													            fired_share = true;
+													            load_share();
+													      }
+													    });
+
+													    function load_share() {
+													        setTimeout(function() {
+													        	var share_div = document.getElementsByClassName('share');
+													        	var share = document.createElement("script");
+														        share.type = "text/javascript"; 
+														        share.async = !0; 
+														        share.src = "//yastatic.net/share/share.js?v=1";
+														        share_div[0].appendChild(share);
+													        },100)
+													    }
+													})
+												</script>
 												<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki" data-yashareTheme="counter"></div>
 											</div>
 										</div>

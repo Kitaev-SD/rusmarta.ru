@@ -342,7 +342,7 @@ setTimeout(run_regmarkets, 3000);
 
 <!-- /Regmarkets -->
 
-<!-- Roistat Begin -->
+<?/*<!-- Roistat Begin -->
 <script>
 function run_roistat() {
 	(function(w, d, s, h, id) {
@@ -355,10 +355,10 @@ function run_roistat() {
 }
 setTimeout(run_roistat, 5000);
 </script>
-<!-- Roistat End -->
+<!-- Roistat End -->*/?>
 
 <!-- Pixel VK -->
-<script type="text/javascript">
+<?/*<script type="text/javascript">
 
 function run_vk() {
 ! function() {
@@ -369,7 +369,7 @@ function run_vk() {
 	}();
 }
 setTimeout(run_vk, 5000);
-</script>
+</script>*/?>
 
 <noscript><img src="https://vk.com/rtrg?p=VK-RTRG-431265-egnQ4" style="position:fixed; left:-999px;" alt=""/></noscript>
 <!-- Pixel VK END -->
@@ -393,11 +393,11 @@ $file = $path.'invis-counter.php';
 	}
 
 	function handleImg(myImg, observer) {
-		myImg.forEach(function(myImgSingle) {
+		setTimeout(function(){myImg.forEach(function(myImgSingle) {
 			if (myImgSingle.intersectionRatio > 0) {
 				loadImage(myImgSingle.target);
 			}
-		})
+		})},500)
 	}
 
 	function handleSpan(elements, observer) {

@@ -31,6 +31,7 @@ class Response extends Market\Api\Partner\Reference\Response
 		return $result;
 	}
 
+	/** @return Market\Api\Model\OutletCollection */
 	public function getOutletCollection()
 	{
 		return $this->once('loadOutletCollection');
@@ -39,10 +40,10 @@ class Response extends Market\Api\Partner\Reference\Response
 	protected function loadOutletCollection()
 	{
 		$dataList = (array)$this->getField('outlets');
-		$pager = $this->getPager();
+		$pager = $this->getPaging();
 
 		$collection = Market\Api\Model\OutletCollection::initialize($dataList);
-		$collection->setPager($pager);
+		$collection->setPaging($pager);
 
 		return $collection;
 	}
@@ -61,15 +62,10 @@ class Response extends Market\Api\Partner\Reference\Response
 		return $result;
 	}
 
-	public function getPager()
+	public function getPaging()
 	{
-		return $this->once('loadPager');
-	}
+		$data = (array)$this->getField('paging');
 
-	protected function loadPager()
-	{
-		$data = (array)$this->getField('pager');
-
-		return new Market\Api\Model\Pager($data);
+		return new Market\Api\Model\Paging($data);
 	}
 }

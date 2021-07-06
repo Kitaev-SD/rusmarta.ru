@@ -7,6 +7,16 @@ use Yandex\Market\Export\Xml;
 
 class Simple extends Xml\Format\YandexMarket\Simple
 {
+	public function getPublishNote()
+	{
+		return Data\Info::getPublishNote();
+	}
+
+	public function getSupportedFields()
+	{
+		return [];
+	}
+
 	public function getRoot()
 	{
 		$result = parent::getRoot();

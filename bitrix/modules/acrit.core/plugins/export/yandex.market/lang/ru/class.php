@@ -85,6 +85,8 @@ $MESS[$strMessPrefix.'FIELD_ENABLE_AUTO_DISCOUNTS_NAME'] = 'Автоматический расче
 <a href="https://yandex.ru/support/partnermarket/elements/enable_auto_discounts.html" target="_blank">Подробное описание элемента</a>.';
 $MESS[$strMessPrefix.'FIELD_CURRENCY_ID_NAME'] = 'Код валюты';
 	$MESS[$strMessPrefix.'FIELD_CURRENCY_ID_DESC'] = 'Валюта, в которой указана цена товара: RUB, USD, EUR, UAH, KZT, BYN. Цена и валюта должны соответствовать друг другу. Например, вместе с USD надо указывать цену в долларах, а не в рублях.<br/><br/><b>Примечание</b>. В текстовом формате нет возможности указать свои условия конвертации валют. При показе цены покупателю она будет пересчитана в нужную валюту по текущему курсу ЦБ РФ.';
+$MESS[$strMessPrefix.'FIELD_COUNT_NAME'] = 'Остаток товара';
+	$MESS[$strMessPrefix.'FIELD_COUNT_DESC'] = 'Остаток товара, передаваемый в Яндекс.';
 $MESS[$strMessPrefix.'FIELD_PICTURE_NAME'] = 'Картинка';
 	$MESS[$strMessPrefix.'FIELD_PICTURE_DESC'] = 'URL-ссылка на картинку товара.<br/><br/><a href="https://yandex.ru/support/partnermarket/picture.html#requirements" target="_blank">Рекомендуем ознакомиться с требованиями к ссылке и изображению</a>.';
 $MESS[$strMessPrefix.'FIELD_DELIVERY_NAME'] = 'Возможность курьерской доставки';

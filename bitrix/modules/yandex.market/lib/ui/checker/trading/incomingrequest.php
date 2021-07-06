@@ -31,6 +31,7 @@ class IncomingRequest extends Checker\Reference\AbstractTest
 
 			$helloTest = new UiTrading\HelloTest([
 				'url' => $this->getIncomingUrl($setup),
+				'site' => $setup->getSiteId(),
 			]);
 
 			$helloResult = $helloTest->run();
@@ -79,7 +80,8 @@ class IncomingRequest extends Checker\Reference\AbstractTest
 	{
 		$serviceCode = $setup->getService()->getCode();
 		$siteId = $setup->getSiteId();
-		$publicPath = $setup->getEnvironment()->getRoute()->getPublicPath($serviceCode, $siteId);
+		$urlId = $setup->getUrlId();
+		$publicPath = $setup->getEnvironment()->getRoute()->getPublicPath($serviceCode, $urlId);
 
 		return Market\Utils\Url::absolutizePath($publicPath, array_filter([
 			'protocol' => 'https',

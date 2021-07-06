@@ -379,7 +379,7 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 		{
 			$result = false;
 		}
-		else if (!$USER || !$USER->IsAuthorized()) // hasn't valid user
+		else if (!($USER instanceof \CUser) || !$USER->IsAuthorized()) // hasn't valid user
 		{
 			$result = false;
 		}

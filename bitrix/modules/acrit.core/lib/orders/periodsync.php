@@ -21,37 +21,46 @@ class PeriodSync
 
 	public static function set($profile_id) {
 		$result = true;
-		self::remove($profile_id);
 		$profile = Helper::call(self::$MODULE_ID, 'OrdersProfiles', 'getProfiles', [$profile_id]);
 		// Create agent
 		if ($profile['SYNC']['add']['period']) {
 			$sync_schedule = $profile['SYNC']['add']['period'];
 			$agent_period = $sync_schedule * 60;
-			if ($agent_period) {
+			if ($profile['SYNC']['add_active'] == 'Y' && $agent_period) {
 				\CAgent::AddAgent("\\Acrit\\Core\\Orders\\PeriodSync::run('" . self::$MODULE_ID . "', $profile_id);", self::$MODULE_ID, "N", $agent_period);
+			}
+			else {
+				self::remove($profile_id);
 			}
 		}
 		elseif (is_array($profile['SYNC']['add']) && !empty($profile['SYNC']['add'])) {
 			foreach ($profile['SYNC']['add'] as $variant => $item) {
 				$agent_period = $profile['SYNC']['add'][$variant]['period'];
-				if ($profile['SYNC']['add'][$variant]['measure'] == 'h') {
-					$agent_period *= 3600;
+				if ($profile['SYNC']['add_active'] == 'Y' && $agent_period) {
+					if ($profile['SYNC']['add'][$variant]['measure'] == 'h') {
+						$agent_period *= 3600;
+					} else {
+						$agent_period *= 60;
+					}
+					\CAgent::AddAgent("\\Acrit\\Core\\Orders\\PeriodSync::run('" . self::$MODULE_ID . "', $profile_id, $variant);", self::$MODULE_ID, "N", $agent_period);
 				}
 				else {
-					$agent_period *= 60;
-				}
-				if ($agent_period) {
-					\CAgent::AddAgent("\\Acrit\\Core\\Orders\\PeriodSync::run('" . self::$MODULE_ID . "', $profile_id, $variant);", self::$MODULE_ID, "N", $agent_period);
+					self::remove($profile_id, $variant);
 				}
 			}
 		}
 		return $result;
 	}
 
-	public static function remove($profile_id) {
+	public static function remove($profile_id, $variant=0) {
 		$result = true;
 		// Remove agent
-		\CAgent::RemoveAgent("\\Acrit\\Core\\Orders\\PeriodSync::run('".self::$MODULE_ID."', $profile_id);", self::$MODULE_ID);
+		if (!$variant) {
+			\CAgent::RemoveAgent("\\Acrit\\Core\\Orders\\PeriodSync::run('" . self::$MODULE_ID . "', $profile_id);", self::$MODULE_ID);
+		}
+		else {
+			\CAgent::RemoveAgent("\\Acrit\\Core\\Orders\\PeriodSync::run('" . self::$MODULE_ID . "', $profile_id, $variant);", self::$MODULE_ID);
+		}
 		return $result;
 	}
 

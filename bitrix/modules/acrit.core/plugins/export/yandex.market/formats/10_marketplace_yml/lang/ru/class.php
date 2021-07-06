@@ -2,7 +2,10 @@
 \Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 // General
-$MESS[$strLang.'NAME'] = 'Яндекс.Маркет (Маркетплейс, YML, единый каталог)';
+$MESS[$strLang.'NAME'] = 'Яндекс.Маркет (Маркетплейс, YML)';
+
+$MESS[$strLang.'STEP_PROCESS_STOCKS'] = 'Обработка остатков';
+$MESS[$strLang.'STEP_RESET_OLD_STOCKS'] = 'Сброс старых остатков';
 
 // Default
 $MESS[$strLang.'DEFAULT_'.'comment-validity-days'] = 'Не хранить в помещениях с повышенной влажностью.';
@@ -12,6 +15,20 @@ $MESS[$strLang.'DEFAULT_'.'comment-warranty'] = 'Гарантия на комплектующие не пр
 // Settings
 $MESS[$strLang.'SETTINGS_NAME_ASSORTMENT_MODE'] = 'Схема выгрузки';
 $MESS[$strLang.'SETTINGS_HINT_ASSORTMENT_MODE'] = 'Выберите схему выгрузки. Подробнее о <a href="https://yandex.ru/support/marketplace/catalog/about-catalog.html" target="_blank">едином каталоге</a>.';
+
+// Export stocks
+$MESS[$strLang.'EXPORT_STOCKS_CHECKBOX'] = 'Выгружать остатки по складам';
+	$MESS[$strLang.'EXPORT_STOCKS_HINT'] = 'Данная опция включает выгрузку остатков по товарам.<br/><br/
+	При этом остатки лишь помещаются в отдельную таблицу, но не выгружаются сразу - Яндекс сам периодически будет запрашивать остатки на сайте.';
+	$MESS[$strLang.'EXPORT_STOCKS_ADD'] = 'Добавить';
+	$MESS[$strLang.'EXPORT_STOCKS_DELETE'] = 'Удалить';
+	$MESS[$strLang.'EXPORT_STOCKS_DELETE_CONFIRM'] = 'Действительно удалить выбранный склад?';
+
+// External access
+$MESS[$strLang.'EXTERNAL_REQUEST_CHECKBOX'] = 'Разрешить внешний запрос (для обновления остатков)';
+	$MESS[$strLang.'EXTERNAL_REQUEST_HINT'] = 'Данная опция позволяет разрешить внешние запросы напрямую к данному профилю.<br/><br/>В поле ниже укажите страницу сайта, на которую будут поступать запросы Яндекса.';
+	$MESS[$strLang.'EXTERNAL_REQUEST_URL'] = 'Страница сайта (напр., /yandex_market/api/stocks/)';
+	$MESS[$strLang.'EXTERNAL_REQUEST_OFF'] = 'Не забудьте включить опцию «Разрешить внешние обращения к профилям» в <a href="/bitrix/admin/settings.php?lang=#LANGUAGE_ID#&mid=#MODULE_ID#" target="_blank">настройках модуля</a>.';
 
 // Fields
 $MESS[$strHead.'HEADER_GENERAL'] = 'Общая информация';
@@ -234,5 +251,10 @@ $MESS[$strHead.'HEADER_STORES'] = 'Данные для рекомендаций о пополнении товаров 
 			<li>SATURDAY — суббота</li>
 			<li>SUNDAY — воскресенье</li>
 		</ul>';
+
+$MESS[$strLang.'HEADER_STOCK'] = 'Остатки на складе «#NAME#» [#ID#]';
+$MESS[$strLang.'STOCK_COUNT'] = 'Остаток';
+$MESS[$strLang.'STOCK_TYPE'] = 'Тип остатка';
+$MESS[$strLang.'STOCK_UPDATED_AT'] = 'Дата изменения';
 
 ?>

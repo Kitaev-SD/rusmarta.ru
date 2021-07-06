@@ -91,7 +91,7 @@ if ($APPLICATION->GetPageProperty('YANDEX_MARKET_FORM_FIELD_CONDITION_LANG') !==
 			var utils = BX.namespace('YandexMarket.Utils');
 
 			utils.registerLang(<?= Market\Utils::jsonEncode($lang, JSON_UNESCAPED_UNICODE); ?>, 'YANDEX_MARKET_FIELD_CONDITION_'); // field lang
-			utils.registerLang(<?= Market\Utils::jsonEncode($langChosen, JSON_UNESCAPED_UNICODE); ?>); // chosen lang
+			utils.registerLang(<?= Market\Utils::jsonEncode($langChosen, JSON_UNESCAPED_UNICODE); ?>, 'YANDEX_MARKET_'); // chosen lang
 		})();
 	</script>
 	<?

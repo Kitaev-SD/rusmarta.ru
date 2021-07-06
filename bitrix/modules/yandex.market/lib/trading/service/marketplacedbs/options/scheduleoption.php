@@ -15,6 +15,9 @@ class ScheduleOption extends IntervalOption
 	const MATCH_DAY = 'day';
 	const MATCH_FULL = 'full';
 
+	const WEEKDAY_FIRST = 1;
+	const WEEKDAY_LAST = 7;
+
 	/** @var TradingService\MarketplaceDbs\Provider $provider */
 	protected $provider;
 
@@ -37,8 +40,19 @@ class ScheduleOption extends IntervalOption
 	public function isMatchDay(Main\Type\Date $date)
 	{
 		$dateWeekday = (int)$date->format('N');
+		$from = $this->getFromWeekday();
+		$to = $this->getToWeekday();
 
-		return ($dateWeekday >= $this->getFromWeekday() && $dateWeekday <= $this->getToWeekday());
+		if ($from <= $to)
+		{
+			$result = ($dateWeekday >= $from && $dateWeekday <= $to);
+		}
+		else
+		{
+			$result = ($dateWeekday >= $from || $dateWeekday <= $to);
+		}
+
+		return $result;
 	}
 
 	public function isValid()
@@ -49,10 +63,15 @@ class ScheduleOption extends IntervalOption
 		$toTime = $this->getToTime();
 
 		return (
-			$fromWeekday !== null && $toWeekday !== null
-			&& $fromWeekday <= $toWeekday
+			$this->isValidWeekday($fromWeekday)
+			&& $this->isValidWeekday($toWeekday)
 			&& ($fromTime === null || $toTime === null || $fromTime < $toTime)
 		);
+	}
+
+	protected function isValidWeekday($number)
+	{
+		return ($number !== null && $number >= static::WEEKDAY_FIRST && $number <= static::WEEKDAY_LAST);
 	}
 
 	/** @return int */
@@ -95,7 +114,7 @@ class ScheduleOption extends IntervalOption
 	{
 		$result = [];
 
-		for ($day = 1; $day <= 7; ++$day)
+		for ($day = static::WEEKDAY_FIRST; $day <= static::WEEKDAY_LAST; ++$day)
 		{
 			$result[] = [
 				'ID' => (string)$day,

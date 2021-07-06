@@ -107,5 +107,13 @@ $MESS[$strMessPrefix.'FIELD_TITLE_NAME'] = 'Название объявления';
 Примечание: не пишите в название цену и контактную информацию — для этого есть отдельные поля — и не используйте слово «продам».';
 $MESS[$strMessPrefix.'FIELD_PRICE_NAME'] = 'Цена в рублях';
 	$MESS[$strMessPrefix.'FIELD_PRICE_DESC'] = 'Цена в рублях — целое число. ';
+$MESS[$strMessPrefix.'FIELD_AVAILABILITY_NAME'] = 'Доступность';
+	$MESS[$strMessPrefix.'FIELD_AVAILABILITY_DESC'] = 'Доступность используется в категории "Мебель и интерьер" для видов товаров: "Кровати, диваны и кресла" и "Кухонные гарнитуры".<br/>
+	Возможные значения:
+	<ul>
+		<li>В наличии</li>
+		<li>Под заказ</li>
+	</ul>';
+	$MESS[$strMessPrefix.'FIELD_AVAILABILITY_IN'] = 'В наличии';
 
 ?>

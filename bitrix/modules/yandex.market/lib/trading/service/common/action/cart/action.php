@@ -211,7 +211,11 @@ class Action extends TradingService\Common\Action\HttpAction
 			$offerId = $item->getOfferId();
 			$productId = $this->getProductId($offerId, $offerMap);
 
-			if ($productId !== null)
+			if ($productId === null)
+			{
+				$this->basketErrors[$itemIndex] = static::getLang('TRADING_ACTION_CART_ITEM_SKU_NOT_FOUND');
+			}
+			else
 			{
 				$meaningfulValues = $item->getMeaningfulValues();
 				$quantity = $item->getCount();
@@ -406,6 +410,10 @@ class Action extends TradingService\Common\Action\HttpAction
 					$basketData = $basketResult->getData();
 					$basketCount = (float)$basketData['QUANTITY'];
 				}
+				else if (empty($this->basketErrors[$itemIndex]))
+				{
+					$this->basketErrors[$itemIndex] = implode(', ', $basketResult->getErrorMessages());
+				}
 			}
 
 			if ($basketCount === null)
@@ -483,12 +491,13 @@ class Action extends TradingService\Common\Action\HttpAction
 			{
 				$basketCode = $this->basketMap[$itemIndex];
 				$basketResult = $this->order->getBasketItemData($basketCode);
+				$basketData = $basketResult->getData();
+				$basketQuantity = isset($basketData['QUANTITY']) ? (float)$basketData['QUANTITY'] : null;
 
-				if ($basketResult->isSuccess())
+				if ($basketQuantity > 0 && $basketResult->isSuccess())
 				{
 					$hasValidItems = true;
-					$basketData = $basketResult->getData();
-					$responseItem['count'] = (float)$basketData['QUANTITY'];
+					$responseItem['count'] = $basketQuantity;
 					$responseItem['delivery'] = true;
 					$responseItem['price'] = (float)$basketData['PRICE'];
 					$responseItem['vat'] = Market\Data\Vat::convertForService($basketData['VAT_RATE']);
@@ -556,9 +565,13 @@ class Action extends TradingService\Common\Action\HttpAction
 
 	protected function getItemName(Market\Api\Model\Cart\Item $item)
 	{
-		$result = (string)$item->getOfferName();
+		$offerName = (string)$item->getOfferName();
 
-		if ($result === '')
+		if ($offerName !== '')
+		{
+			$result = sprintf('[%s] %s', $item->getOfferId(), $item->getOfferName());
+		}
+		else
 		{
 			$offerId = $item->getOfferId();
 

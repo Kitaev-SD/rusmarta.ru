@@ -23,11 +23,27 @@ class OrderList extends Market\Ui\Reference\Page
 	public function show()
 	{
 		$setupCollection = $this->getSetupCollection();
-		$setupId = $this->getRequestSetupId();
-		$setup = $this->resolveSetup($setupCollection, $setupId);
 
-		$this->showSetupSelector($setupCollection, $setup->getId());
-		$this->showOrderList($setup);
+		try
+		{
+			$setupId = $this->getRequestSetupId() ?: $this->getCookieSetupId();
+			$setup = $this->resolveSetup($setupCollection, $setupId);
+
+			$this->showSetupSelector($setupCollection, $setup->getId());
+			$this->showOrderList($setup);
+
+			$this->setCookieSetupId($setup->getId());
+		}
+		catch (Main\ObjectException $exception)
+		{
+			$this->showSetupSelector($setupCollection);
+			$this->showError($exception->getMessage());
+		}
+		catch (Main\ObjectNotFoundException $exception)
+		{
+			$this->showSetupSelector($setupCollection);
+			$this->showError($exception->getMessage());
+		}
 	}
 
 	public function handleException(\Exception $exception)
@@ -39,14 +55,19 @@ class OrderList extends Market\Ui\Reference\Page
 
 		if (!$isHandled)
 		{
-			\CAdminMessage::ShowMessage([
-				'TYPE' => 'ERROR',
-				'MESSAGE' => $exception->getMessage(),
-			]);
+			$this->showError($exception->getMessage());
 		}
 	}
 
-	protected function showSetupSelector(Market\Trading\Setup\Collection $setupCollection, $selectedId)
+	protected function showError($message)
+	{
+		\CAdminMessage::ShowMessage([
+			'TYPE' => 'ERROR',
+			'MESSAGE' => $message,
+		]);
+	}
+
+	protected function showSetupSelector(Market\Trading\Setup\Collection $setupCollection, $selectedId = null)
 	{
 		global $APPLICATION;
 
@@ -391,6 +412,33 @@ class OrderList extends Market\Ui\Reference\Page
 		return $this->request->get('setup');
 	}
 
+	protected function getCookieSetupId()
+	{
+		$cookieName = $this->getCookieSetupIdName();
+
+		return $this->request->getCookie($cookieName);
+	}
+
+	protected function setCookieSetupId($setupId)
+	{
+		$response = Main\Context::getCurrent()->getResponse();
+
+		if ((string)$this->getCookieSetupId() !== (string)$setupId)
+		{
+			$response->addCookie(new Main\Web\Cookie(
+				$this->getCookieSetupIdName(),
+				$setupId
+			));
+		}
+	}
+
+	protected function getCookieSetupIdName()
+	{
+		$serviceCode = $this->getServiceCode();
+
+		return 'YAMARKET_TRADING_DOCUMENTS_SETUP_' . Market\Data\TextString::toUpper($serviceCode);
+	}
+
 	/**
 	 * @param Market\Trading\Setup\Collection $setupCollection
 	 * @param int|null $setupId
@@ -413,7 +461,7 @@ class OrderList extends Market\Ui\Reference\Page
 			if (!$setup->isActive())
 			{
 				$message = static::getLang('UI_TRADING_ORDER_LIST_SETUP_INACTIVE', [ '#ID#' => $setupId ]);
-				throw new Main\SystemException($message);
+				throw new Main\ObjectException($message);
 			}
 		}
 		else

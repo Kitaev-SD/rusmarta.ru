@@ -123,6 +123,12 @@ abstract class ProfileTable extends Entity\DataManager {
 			'ONE_TIME' => new Entity\StringField('ONE_TIME', array(
 				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_ONE_TIME'),
 			)),
+			'EXTERNAL_REQUEST' => new Entity\StringField('EXTERNAL_REQUEST', array(
+				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_EXTERNAL_REQUEST'),
+			)),
+			'EXTERNAL_REQUEST_URL' => new Entity\StringField('EXTERNAL_REQUEST_URL', array(
+				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_EXTERNAL_REQUEST_URL'),
+			)),
 		);
 	}
 	
@@ -601,7 +607,7 @@ abstract class ProfileTable extends Entity\DataManager {
 	 *	Get profiles with CACHE
 	 */
 	public static function getProfiles($arFilter=array(), $arSort=array(), $bGetIBlocks=true, $bGetFields=true, $arSelect=array()){
-		$strCacheKey = MD5(serialize([$arFilter, $arSort, $bGetIBlocks, $bGetFields, $arSelect]));
+		$strCacheKey = MD5(serialize([$arFilter, $arSort, $bGetIBlocks, $bGetFields, $arSelect, 'v2.3']));
 		$arResult = &static::$arCacheGetProfiles[static::MODULE_ID][$strCacheKey];
 		if(isset($arResult)){
 			return $arResult;
@@ -650,6 +656,9 @@ abstract class ProfileTable extends Entity\DataManager {
 				'order' => $arSort,
 			];
 			if(!empty($arSelect)){
+				if(!in_array('ID', $arSelect)){
+					$arSelect = array_merge(['ID'], $arSelect);
+				}
 				$arQuery['select'] = $arSelect;
 			}
 			$arExistIBlocks = Helper::getIBlockList(false, true, false, false);
@@ -729,9 +738,11 @@ abstract class ProfileTable extends Entity\DataManager {
 				}
 				
 				// unserialize params
-				$arProfile['PARAMS'] = strlen($arProfile['PARAMS']) ? unserialize($arProfile['PARAMS']) : array();
-				if(!is_array($arProfile['PARAMS'])){
-					$arProfile['PARAMS'] = array();
+				if(array_key_exists('PARAMS', $arProfile)){
+					$arProfile['PARAMS'] = strlen($arProfile['PARAMS']) ? unserialize($arProfile['PARAMS']) : array();
+					if(!is_array($arProfile['PARAMS'])){
+						$arProfile['PARAMS'] = array();
+					}
 				}
 				
 				// Add to result
@@ -1051,6 +1062,22 @@ abstract class ProfileTable extends Entity\DataManager {
 	public static function checkXDebug(){
 		if(extension_loaded('xdebug')){
 			print Helper::showNote(Helper::getMessage('ACRIT_EXP_PROFILE_XDEBUG_NOTICE'), true);
+		}
+	}
+
+	/**
+	 * Direct execute plugin/profile
+	 * Example:
+	 * \Bitrix\Main\Loader::includeModule('acrit.exportproplus');
+	 * \Acrit\Exportproplus\ProfileTable::execPlugin(68, 'get_stocks');
+	 */
+	public static function execPlugin($intProfileId, $arParams=[]){
+		if($arProfile = static::getProfiles($intProfileId)){
+			if($arFormat = \Acrit\Core\Export\Exporter::getInstance(static::MODULE_ID)->getPluginInfo($arProfile['FORMAT'])){
+				$obPlugin = new $arFormat['CLASS'](static::MODULE_ID);
+				$obPlugin->setProfileArray($arProfile);
+				$obPlugin->execPlugin($arParams);
+			}
 		}
 	}
 	

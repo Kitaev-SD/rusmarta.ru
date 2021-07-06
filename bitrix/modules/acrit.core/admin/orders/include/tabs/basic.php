@@ -10,7 +10,6 @@ Loc::loadMessages(__FILE__);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 $obTabControl->AddSection('HEADING_BASIC', Loc::getMessage('ACRIT_CRM_TAB_BASIC_HEADING'));
-
 // Order ID field
 $obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][orderid_field]', Loc::getMessage('ACRIT_CRM_GENERAL_ORDERID_FIELD'));
 $orderid_fields = OrdersInfo::getOrderExtIDFields($arProfile);

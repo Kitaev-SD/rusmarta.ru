@@ -8,6 +8,7 @@
 		defaults: {
 			inputElement: 'input',
 			url: null,
+			site: null,
 			modalWidth: 650,
 			modalHeight: 500,
 
@@ -37,6 +38,7 @@
 		getDialogData: function() {
 			return {
 				url: this.getTestingUrl(),
+				site: this.options.site,
 			};
 		},
 

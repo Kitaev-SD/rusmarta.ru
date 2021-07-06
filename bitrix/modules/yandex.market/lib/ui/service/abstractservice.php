@@ -45,6 +45,10 @@ abstract class AbstractService
 
 	abstract public function getExportServices();
 
+	/**
+	 * @deprecated
+	 * @return array
+	 */
 	public function getExportSetupDisabledFields()
 	{
 		return [];

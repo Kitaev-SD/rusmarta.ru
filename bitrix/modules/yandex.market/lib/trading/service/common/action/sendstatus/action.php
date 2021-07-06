@@ -46,7 +46,11 @@ class Action extends TradingService\Reference\Action\DataAction
 		if ($statusOut !== '' && $this->isChangedOrderStatus($orderId, $statusOut))
 		{
 			$sendResult = $this->sendStatus($orderId, $statusOut);
-			$isStateReached = ($sendResult->isSuccess() || $this->checkHasStatus($orderId, $statusOut));
+			$isStateReached = (
+				$sendResult->isSuccess()
+				|| $this->fixStatus($sendResult, $orderId, $statusOut)
+				|| $this->checkHasStatus($orderId, $statusOut)
+			);
 
 			$this->resolveOrderMarker($isStateReached, $sendResult);
 
@@ -93,6 +97,11 @@ class Action extends TradingService\Reference\Action\DataAction
 	protected function getExternalStatus($state)
 	{
 		return [ $state, null ];
+	}
+
+	protected function fixStatus(Main\Result $sendResult, $orderId, $state)
+	{
+		return false;
 	}
 
 	protected function checkHasStatus($orderId, $state)

@@ -1,0 +1,13 @@
+div[data-role="acrit_exp_yandex_marketplace_stores_list"] > div + div {
+	margin-top:4px;
+}
+div[data-role="acrit_exp_yandex_marketplace_stores_list"] > div:first-child input[data-role="acrit_exp_yandex_marketplace_store_delete"] {
+	display:none;
+}
+input[data-role="acrit_exp_yandex_marketplace_store_delete"]{
+	height:25px!important;
+	margin:0!important;
+}
+div[data-role="acrit_exp_yandex_marketplace_stores_add_wrapper"]{
+	padding-top:4px;
+}

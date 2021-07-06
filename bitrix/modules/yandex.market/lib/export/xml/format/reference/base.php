@@ -10,6 +10,22 @@ abstract class Base
 	abstract public function getDocumentationLink();
 
 	/**
+	 * @return string
+	 */
+	public function getPublishNote()
+	{
+		return '';
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getSupportedFields()
+	{
+		return [];
+	}
+
+	/**
 	 * @return bool
 	 */
 	abstract public function isSupportDeliveryOptions();

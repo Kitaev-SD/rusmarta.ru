@@ -59,7 +59,38 @@ class CarrotEvents
 				$carrotquest_script = "
 				<!-- Carrot quest BEGIN -->
 				<script>
-					!function(){function t(t,e){return function(){window.carrotquestasync.push(t,arguments)}}if('undefined'==typeof carrotquest){var e=document.createElement('script');e.async=!0,e.src='//cdn.carrotquest.app/api.min.js',document.getElementsByTagName('head')[0].appendChild(e),window.carrotquest={},window.carrotquestasync=[],carrotquest.settings={};for(var n=['connect','track','identify','auth','oth','onReady','addCallback','removeCallback','trackMessageInteraction'],a=0;a<n.length;a++)carrotquest[n[a]]=t(n[a])}}(),carrotquest.connect('" . Option::get(self::$MODULE_ID, "api_key") . "');
+					var fired_carrotquest = false;
+
+					window.addEventListener('click', () => {
+					    if (fired_carrotquest === false) {
+					        fired_carrotquest = true;
+				        	load_carrotquest();
+						}
+					});
+			 
+					window.addEventListener('scroll', () => {
+					    if (fired_carrotquest === false) {
+					        fired_carrotquest = true;
+				        	load_carrotquest();
+						}
+					});
+
+					window.addEventListener('mousemove', () => {
+				    	if (fired_carrotquest === false) {
+				        	fired_carrotquest = true;
+				        	load_carrotquest();
+						}
+					});
+
+					window.addEventListener('touchmove', () => {
+				    	if (fired_carrotquest === false) {
+				        	fired_carrotquest = true;
+				        	load_carrotquest();
+						}
+					});
+					function load_carrotquest(){
+						!function(){function t(t,e){return function(){window.carrotquestasync.push(t,arguments)}}if('undefined'==typeof carrotquest){var e=document.createElement('script');e.async=!0,e.src='//cdn.carrotquest.app/api.min.js',document.getElementsByTagName('head')[0].appendChild(e),window.carrotquest={},window.carrotquestasync=[],carrotquest.settings={};for(var n=['connect','track','identify','auth','oth','onReady','addCallback','removeCallback','trackMessageInteraction'],a=0;a<n.length;a++)carrotquest[n[a]]=t(n[a])}}(),carrotquest.connect('" . Option::get(self::$MODULE_ID, "api_key") . "');
+					}
 				</script >
 				<!--Carrot quest END-->
 				";

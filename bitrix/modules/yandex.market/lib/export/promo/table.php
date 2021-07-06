@@ -48,6 +48,7 @@ class Table extends Market\Reference\Storage\Table
 				'validation' => [__CLASS__, 'validateName']
 			]),
 			new Main\Entity\StringField('URL', [
+				'required' => true,
 				'validation' => [__CLASS__, 'validateUrl']
 			]),
 			new Main\Entity\TextField('DESCRIPTION', [

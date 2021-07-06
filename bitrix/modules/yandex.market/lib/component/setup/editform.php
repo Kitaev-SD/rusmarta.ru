@@ -10,6 +10,7 @@ Main\Localization\Loc::loadMessages(__FILE__);
 class EditForm extends Market\Component\Model\EditForm
 {
 	protected $uiService;
+	protected $repository;
 
 	public function modifyRequest($request, $fields)
 	{
@@ -317,46 +318,14 @@ class EditForm extends Market\Component\Model\EditForm
 	public function getFields(array $select = [], $item = null)
 	{
 		$result = parent::getFields($select, $item);
-		$result = $this->excludeServiceDisabledFields($result);
 
-		if (isset($result['EXPORT_SERVICE']))
-		{
-			$result['EXPORT_SERVICE'] = $this->modifyExportServiceField($result['EXPORT_SERVICE']);
-		}
+		if (!isset($result['EXPORT_SERVICE'], $result['EXPORT_FORMAT'])) { return $result; }
+
+		$result['EXPORT_SERVICE'] = $this->getRepository()->modifyExportServiceField($result['EXPORT_SERVICE']);
+		$result['EXPORT_FORMAT'] = $this->getRepository()->modifyExportServiceField($result['EXPORT_FORMAT']);
+		$result = $this->getRepository()->makeServiceDependFields($result);
 
 		return $result;
-	}
-
-	protected function excludeServiceDisabledFields($fields)
-	{
-		$uiService = $this->getUiService();
-		$disabledFields = $uiService->getExportSetupDisabledFields();
-		$disabledFieldsMap = array_flip($disabledFields);
-
-		return array_diff_key($fields, $disabledFieldsMap);
-	}
-
-	protected function modifyExportServiceField($field)
-	{
-		if (isset($field['VALUES']))
-		{
-			$uiService = $this->getUiService();
-			$exportServices = $uiService->getExportServices();
-			$exportServicesMap = array_flip($exportServices);
-			$isInverted = $uiService->isInverted();
-
-			foreach ($field['VALUES'] as $optionKey => $option)
-			{
-				$isExists = isset($exportServicesMap[$option['ID']]);
-
-				if ($isExists === $isInverted)
-				{
-					unset($field['VALUES'][$optionKey]);
-				}
-			}
-		}
-
-		return $field;
 	}
 
 	public function extend($data, array $select = [])
@@ -705,5 +674,23 @@ class EditForm extends Market\Component\Model\EditForm
 		{
 			$fields['GROUP'] = [ $groupId ];
 		}
+	}
+
+	protected function getRepository()
+	{
+		if ($this->repository === null)
+		{
+			$this->repository = $this->makeRepository();
+		}
+
+		return $this->repository;
+	}
+
+	protected function makeRepository()
+	{
+		$uiService = $this->getUiService();
+		$modelClass = $this->getModelClass();
+
+		return new Repository($uiService, $modelClass);
 	}
 }

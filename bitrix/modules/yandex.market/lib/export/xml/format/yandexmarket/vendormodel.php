@@ -17,6 +17,15 @@ class VendorModel extends Xml\Format\Reference\Base
 		return 'https://yandex.ru/support/partnermarket/export/vendor-model.html';
 	}
 
+	public function getSupportedFields()
+	{
+		return [
+			'SHOP_DATA',
+			'ENABLE_CPA',
+			'ENABLE_AUTO_DISCOUNTS',
+		];
+	}
+
 	public function getType()
 	{
 		return 'vendor.model';
@@ -151,14 +160,13 @@ class VendorModel extends Xml\Format\Reference\Base
             'children' => []
         ]);
         $isDateRequired = ($type === Promo\Table::PROMO_TYPE_FLASH_DISCOUNT || $type === Promo\Table::PROMO_TYPE_BONUS_CARD);
-        $isUrlRequired = ($type === Promo\Table::PROMO_TYPE_BONUS_CARD);
 
         // overview
 
         $result->addChild(new Xml\Tag\Base(['name' => 'start-date', 'value_type' => Type\Manager::TYPE_DATE, 'required' => $isDateRequired]));
         $result->addChild(new Xml\Tag\Base(['name' => 'end-date', 'value_type' => Type\Manager::TYPE_DATE, 'required' => $isDateRequired]));
         $result->addChild(new Xml\Tag\Base(['name' => 'description', 'value_type' => Type\Manager::TYPE_HTML, 'max_length' => 500]));
-        $result->addChild(new Xml\Tag\Base(['name' => 'url', 'value_type' => Type\Manager::TYPE_URL, 'required' => $isUrlRequired]));
+        $result->addChild(new Xml\Tag\Base(['name' => 'url', 'value_type' => Type\Manager::TYPE_URL, 'required' => true]));
 
         // promocode rules
 

@@ -116,7 +116,25 @@
           gtag('js', new Date());
 
           gtag('config', 'UA-59688382-1');
-           
+
+          (function(w, d, s, h, id) {
+            w.roistatProjectId = id; w.roistatHost = h;
+            var p = d.location.protocol == "https:" ? "https://" : "http://";
+            var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js?v=1" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
+            var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
+        })
+        (window, document, 'script', 'cloud.roistat.com', '9f4ad8a4374d7bf79c7198033ec9efd2');
+
+        var t = document.createElement("script");
+        t.type = "text/javascript", t.async = !0, t.src = "https://vk.com/js/api/openapi.js?162", t.onload = function() {
+            VK.Retargeting.Init("VK-RTRG-431265-egnQ4"), VK.Retargeting.Hit()
+        }, document.head.appendChild(t);
+
+       /* var antisovetnic = document.createElement("script");
+        antisovetnic.type = "text/javascript"; 
+        antisovetnic.async = !0; 
+        antisovetnic.src = "https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc";
+        document.head.appendChild(antisovetnic);*/
       }, 100);
     }
   });

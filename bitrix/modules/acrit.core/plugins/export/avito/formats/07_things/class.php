@@ -91,6 +91,27 @@ class AvitoThings extends Avito {
           'SORT' => 1040,
           'DESCRIPTION' => static::getMessage('FIELD_CONDITION_DESC'),
       ));
+      $arResult[] = new Field(array(
+          'CODE' => 'BRAND',
+          'DISPLAY_CODE' => 'Brand',
+          'NAME' => static::getMessage('FIELD_BRAND_NAME'),
+          'SORT' => 1050,
+          'DESCRIPTION' => static::getMessage('FIELD_BRAND_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'COLOR',
+          'DISPLAY_CODE' => 'Color',
+          'NAME' => static::getMessage('FIELD_COLOR_NAME'),
+          'SORT' => 1060,
+          'DESCRIPTION' => static::getMessage('FIELD_COLOR_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'TYPE',
+          'DISPLAY_CODE' => 'Type',
+          'NAME' => static::getMessage('FIELD_TYPE_NAME'),
+          'SORT' => 1070,
+          'DESCRIPTION' => static::getMessage('FIELD_TYPE_DESC'),
+      ));
       #
       $this->sortFields($arResult);
       return $arResult;
@@ -135,6 +156,12 @@ class AvitoThings extends Avito {
          $arXmlTags['Title'] = Xml::addTag($arFields['TITLE']);
       if (!Helper::isEmpty($arFields['PRICE']))
          $arXmlTags['Price'] = Xml::addTag($arFields['PRICE']);
+      if (!Helper::isEmpty($arFields['BRAND']))
+         $arXmlTags['Brand'] = Xml::addTag($arFields['BRAND']);
+      if (!Helper::isEmpty($arFields['COLOR']))
+         $arXmlTags['Color'] = Xml::addTag($arFields['COLOR']);
+      if (!Helper::isEmpty($arFields['TYPE']))
+         $arXmlTags['Type'] = Xml::addTag($arFields['TYPE']);
       if (!Helper::isEmpty($arFields['CONDITION']))
          $arXmlTags['Condition'] = Xml::addTag($arFields['CONDITION']);
       #

@@ -173,6 +173,10 @@
 				case 'ANY':
 					result = this.applyRuleAny(rule['VALUE'], value);
 				break;
+
+				case 'EXCLUDE':
+					result = !this.applyRuleAny(rule['VALUE'], value);
+				break;
 			}
 
 			return result;

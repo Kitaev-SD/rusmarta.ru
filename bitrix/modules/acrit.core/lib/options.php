@@ -136,6 +136,14 @@ class Options {
 						$arOption = array_merge(['CODE' => $strOption], $arOption);
 					}
 					unset($arOption);
+					foreach($arNewOptions['OPTIONS'] as $strOption => $arOption){
+						if(is_callable($arOption['CALLBACK_ENABLE'])){
+							if(call_user_func_array($arOption['CALLBACK_ENABLE'], [$this, $arOption, $strOption]) === false){
+								unset($arNewOptions['OPTIONS'][$strOption]);
+							}
+						}
+					}
+					unset($arOption);
 				}
 				$arResult[] = array_merge($arResult, $arNewOptions);
 			}

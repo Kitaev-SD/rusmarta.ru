@@ -311,6 +311,60 @@ class EventHandlerExport {
 				'OnEpilog'
 			);
 	 */
+	public static function OnProlog(){
+		if(defined('ADMIN_SECTION') && ADMIN_SECTION === true){
+			return;
+		}
+		if(php_sapi_name() == 'cli'){
+			return;
+		}
+		if(\Bitrix\Main\Context::getCurrent()->getRequest()->isAjaxRequest()){
+			return;
+		}
+		if(Helper::getOption(ACRIT_CORE, 'allow_external_request') != 'Y'){
+			return;
+		}
+		$strCurrentUrl = \Bitrix\Main\Context::getCurrent()->getServer()->getRequestUri();
+		$arFilter = ['EXTERNAL_REQUEST' => 'Y', '!EXTERNAL_REQUEST_URL' => false];
+		$arSelect = ['EXTERNAL_REQUEST', 'EXTERNAL_REQUEST_URL'];
+		$arArguments = [$arFilter, [], false, false, $arSelect];
+		foreach(Exporter::getExportModules() as $strModuleId){
+			if(\Bitrix\Main\Loader::includeModule($strModuleId)){
+				$arProfiles = Helper::call($strModuleId, 'Profile', 'getProfiles', $arArguments);
+				if(!empty($arProfiles)){
+					foreach($arProfiles as $intProfileId => $arProfile){
+						$bSuccess = false;
+						if($arProfile['EXTERNAL_REQUEST_URL'] == $strCurrentUrl){
+							$bSuccess = true;
+						}
+						else{
+							$atrPattern = sprintf('#%s#', $arProfile['EXTERNAL_REQUEST_URL']);
+							$bSuccess = !!preg_match($atrPattern, $strCurrentUrl, $arMatch);
+						}
+						if($bSuccess){
+							\CHTTP::setStatus('200 OK');
+							$arParams = [
+								'URL' => $strCurrentUrl,
+								'MATCH' => $arMatch,
+							];
+							Helper::call($strModuleId, 'Profile', 'execPlugin', [$intProfileId, $arParams]);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 *	Handler for epilog, process all queue
+			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
+				'main',
+				'OnEpilog',
+				'acrit.core',
+				'\Acrit\Core\Export\EventHandlerExport',
+				'OnEpilog'
+			);
+	 */
 	public static function OnEpilog(){
 		if(class_exists(__NAMESPACE__.'\Exporter')){
 			Exporter::processQueue();

@@ -762,13 +762,14 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 			{
 				$basketCode = $this->basketMap[$itemIndex];
 				$basketResult = $this->order->getBasketItemData($basketCode);
+				$basketData = $basketResult->getData();
+				$basketQuantity = isset($basketData['QUANTITY']) ? (float)$basketData['QUANTITY'] : null;
 
-				if ($basketResult->isSuccess())
+				if ($basketQuantity > 0 && $basketResult->isSuccess())
 				{
 					$hasValidItems = true;
-					$basketData = $basketResult->getData();
 					$responseItem['delivery'] = true;
-					$responseItem['count'] = (int)$basketData['QUANTITY'];
+					$responseItem['count'] = $basketQuantity;
 					$responseItem['vat'] = Market\Data\Vat::convertForService($basketData['VAT_RATE']);
 				}
 			}

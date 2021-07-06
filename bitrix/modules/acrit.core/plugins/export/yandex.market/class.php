@@ -224,7 +224,6 @@ class YandexMarket extends Plugin {
 			'FILE' => __DIR__.'/subtabs/pricelabs.php',
 		);
 		return $arResult;
-		return $arResult;
 	}
 	
 	/* END OF BASE STATIC METHODS */
@@ -585,6 +584,21 @@ class YandexMarket extends Plugin {
 				array(
 					'TYPE' => 'FIELD',
 					'VALUE' => 'CATALOG_PRICE_1__CURRENCY',
+				),
+			),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'COUNT',
+			'DISPLAY_CODE' => 'count',
+			'NAME' => static::getMessage('FIELD_COUNT_NAME'),
+			'SORT' => 1201,
+			'DESCRIPTION' => static::getMessage('FIELD_COUNT_DESC'),
+			'REQUIRED' => false,
+			'MULTIPLE' => false,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'VALUE' => 'CATALOG_QUANTITY',
 				),
 			),
 		));
@@ -2297,6 +2311,26 @@ class YandexMarket extends Plugin {
 		}
 		#
 		return Exporter::RESULT_SUCCESS;
+	}
+
+	public function getIsPromoGift(){
+		return $this->bPromoGift;
+	}
+
+	public function getIsPromoSpecialPrice(){
+		return $this->bPromoSpecialPrice;
+	}
+
+	public function getIsPromoPromoCard(){
+		return $this->bPromoPromoCard;
+	}
+
+	public function getIsPromoCode(){
+		return $this->bPromoCode;
+	}
+
+	public function getIsPromoNM(){
+		return $this->bPromoNM;
 	}
 	
 	/**

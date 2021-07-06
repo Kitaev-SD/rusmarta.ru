@@ -53,6 +53,7 @@ class Options extends Market\Ui\Reference\Page
 	{
 		return
 			$this->getExportOptions()
+			+ $this->getCurrencyOptions()
 			+ $this->getPromoOptions()
 			+ $this->getCatalogOptions()
 			+ $this->getAdditionalOptions()
@@ -97,7 +98,7 @@ class Options extends Market\Ui\Reference\Page
 				'SETTINGS' => [
 					'DEFAULT_VALUE' => 30,
 					'MIN_VALUE' => 1,
-					'MAX_VALUE' => 50,
+					'MAX_VALUE' => 580,
 				]
 			],
 			'export_run_agent_time_limit' => [
@@ -185,6 +186,17 @@ class Options extends Market\Ui\Reference\Page
 					[ 'ID' => 'Y', 'VALUE' => Market\Config::getLang('UI_OPTION_VALUE_Y') ],
 				],
 				'HIDDEN' => !$hasCatalog,
+			],
+		];
+	}
+
+	protected function getCurrencyOptions()
+	{
+		return [
+			'export_currency_rate' => [
+				'TYPE' => 'boolean',
+				'GROUP' => Market\Config::getLang('UI_OPTION_GROUP_CURRENCY'),
+				'NAME' => Market\Config::getLang('UI_OPTION_EXPORT_CURRENCY_RATE'),
 			],
 		];
 	}

@@ -13,9 +13,11 @@ class Manager
 	const EXPORT_SERVICE_BERU_RU = 'Beru.ru';
 	const EXPORT_SERVICE_MARKETPLACE = 'Marketplace';
 	const EXPORT_SERVICE_TURBO = 'Turbo';
+	const EXPORT_SERVICE_YANDEX_ADS = 'Yandex.Ads';
 
 	const EXPORT_FORMAT_SIMPLE = 'simple';
 	const EXPORT_FORMAT_VENDOR_MODEL = 'vendor.model';
+	const EXPORT_FORMAT_CATALOG = 'catalog'; // fbs
 	const EXPORT_FORMAT_BOOK = 'book';
 	const EXPORT_FORMAT_AUDIOBOOK = 'audiobook';
 	const EXPORT_FORMAT_ARTIST_TITLE = 'artist.title';
@@ -36,6 +38,7 @@ class Manager
 				static::EXPORT_SERVICE_YANDEX_MARKET,
 				static::EXPORT_SERVICE_MARKETPLACE,
 				static::EXPORT_SERVICE_TURBO,
+				static::EXPORT_SERVICE_YANDEX_ADS,
 			],
 			array_keys($customServiceList)
 		);
@@ -80,11 +83,12 @@ class Manager
 			case static::EXPORT_SERVICE_BERU_RU:
 			case static::EXPORT_SERVICE_MARKETPLACE:
 				$result = [
-					static::EXPORT_FORMAT_VENDOR_MODEL,
+					static::EXPORT_FORMAT_CATALOG,
 					static::EXPORT_FORMAT_PRICE,
 				];
 			break;
 
+			case static::EXPORT_SERVICE_YANDEX_ADS:
 			case static::EXPORT_SERVICE_TURBO:
 				$result = [
 					static::EXPORT_FORMAT_VENDOR_MODEL,

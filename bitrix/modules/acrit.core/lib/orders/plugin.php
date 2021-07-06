@@ -54,11 +54,18 @@ abstract class Plugin {
 
 
 	/**
-	 * Base constructor.
+	 * Base constructor
 	 */
 	public function __construct($strModuleId) {
 		$this->includeClasses();
 		$this->strModuleId = $strModuleId;
+	}
+
+	/**
+	 * Get module id
+	 */
+	public function getModuleId() {
+		return $this->strModuleId;
 	}
 
 	/**
@@ -79,6 +86,13 @@ abstract class Plugin {
 	 * Get plugin short name
 	 */
 	abstract public static function getName();
+
+	/**
+	 * Get lang code for getMessage
+	 */
+	public static function getLangCode($code) {
+		return 'ACRIT_ORDERS_PLUGIN_' . static::getCode() . '_' . $code;
+	}
 
 	/**
 	 *	Is current plugin universal?
@@ -372,8 +386,18 @@ abstract class Plugin {
 	/**
 	 *	Show plugin settings
 	 */
-	public function showSettings(){
+	public function showSettings($arProfile){
 		return '';
+	}
+
+	/**
+	 * Get id of products in marketplace
+	 */
+	public static function getIdField() {
+		return [
+			'id' => '',
+			'name' => '',
+		];
 	}
 
 
@@ -427,4 +451,49 @@ abstract class Plugin {
 		return $sync_interval;
 	}
 
+	/**
+	 * Get option of profile
+	 */
+	public function getOption($name) {
+		$value = false;
+		if ($name && $this->arProfile['ID']) {
+			$arProfile = Helper::call($this->strModuleId, 'OrdersProfiles', 'getProfiles', [$this->arProfile['ID']]);
+			$arOptions = $arProfile['OPTIONS'];
+			$value = $arOptions[$name];
+		}
+		return $value;
+	}
+
+	/**
+	 * Save option of profile
+	 */
+	public function setOption($name, $value) {
+		$result = true;
+		if ($name && $this->arProfile['ID']) {
+			$arProfile = Helper::call($this->strModuleId, 'OrdersProfiles', 'getProfiles', [$this->arProfile['ID']]);
+			$arOptions = $arProfile['OPTIONS'];
+			$arOptions[$name] = $value;
+			$obResult = Helper::call($this->strModuleId, 'OrdersProfiles', 'update', [$this->arProfile['ID'], [
+				'OPTIONS' => serialize($arOptions)
+			]]);
+		}
+		return $result;
+	}
+
+
+	// --- EVENTS ---
+
+	/**
+	 * Before the profile saved
+	 */
+	public function eventPageEditBeforeSave($arFields) {
+		return $arFields;
+	}
+
+	/**
+	 * When get the profile
+	 */
+	public function eventPageEditGetProfile($arFields) {
+		return $arFields;
+	}
 }

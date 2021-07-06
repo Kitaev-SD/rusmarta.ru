@@ -29,8 +29,9 @@ class YandexTurboSimple extends YandexMarketSimple {
 	protected $bPlatform = true;
 	protected $bZip = false;
 	protected $bPromoGift = false;
+	protected $bPromoPromoCard = false;
 	protected $bPromoSpecialPrice = false;
-	protected $bPromoCode = false;
+	protected $bPromoCode = true;
 	protected $bPromoNM = false;
 
 	public static function getCode() {
@@ -48,8 +49,12 @@ class YandexTurboSimple extends YandexMarketSimple {
 	/**
 	 *	Get custom tabs for profile edit
 	 */
-	public function getAdditionalTabs($intProfileID){
-		return array();
+	// public function getAdditionalTabs($intProfileID){
+	// 	return [];
+	// }
+
+	public function getAdditionalSubTabs($intProfileID, $intIBlockID){
+		return [];
 	}
 	
 	/**

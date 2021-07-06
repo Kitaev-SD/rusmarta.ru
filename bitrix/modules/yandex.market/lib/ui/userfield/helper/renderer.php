@@ -13,7 +13,7 @@ class Renderer
 	{
 		global $USER_FIELD_MANAGER;
 
-		$userField = static::extendUserFieldValue($userField, $value, $row);
+		$userField = Field::extendValue($userField, $value, $row);
 
 		if ($value === null && isset($userField['VALUE']))
 		{
@@ -32,7 +32,7 @@ class Renderer
 	{
 		global $USER_FIELD_MANAGER;
 
-		$userField = static::extendUserFieldValue($userField, $value, $row);
+		$userField = Field::extendValue($userField, $value, $row);
 
 		$html = $USER_FIELD_MANAGER->GetEditFormHTML(false, null, $userField);
 
@@ -44,24 +44,6 @@ class Renderer
 		$result = static::getEditRow($userField, $value, $row);
 
 		return $result['CONTROL'];
-	}
-
-	protected static function extendUserFieldValue($userField, $value, $row)
-	{
-		$defaults = [];
-
-		if ($value !== null)
-		{
-			$defaults['VALUE'] = $value;
-		}
-
-		if ($row !== null)
-		{
-			$defaults['ENTITY_VALUE_ID'] = isset($row['ID']) ? $row['ID'] : null;
-			$defaults['ROW'] = $row;
-		}
-
-		return $userField + $defaults;
 	}
 
 	protected static function sanitizeControlValue($value, $isMultiple)

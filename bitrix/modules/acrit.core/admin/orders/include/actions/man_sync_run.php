@@ -13,7 +13,6 @@ $cnt = $_REQUEST['count'] ? $_REQUEST['count'] : 0;
 $step_time = 20;
 $start_time = time();
 
-$filter = [];
 $start_sync_ts = false;
 $sync_period_opt = $arProfile['SYNC']['man']['period'];
 if ($sync_period_opt == '1d') {
@@ -37,14 +36,11 @@ if ($start_date_ts) {
 		$start_sync_ts = $start_date_ts;
 	}
 }
-if ($start_sync_ts) {
-	$filter['create_date_from'] = $start_sync_ts;
-}
 
 // Process
 //Helper::Log('(sync) cnt '.$cnt);
 if (!$cnt || $next_item < $cnt) {
-	$ext_orders_ids = $obPlugin->getOrdersIDsList($filter);
+	$ext_orders_ids = $obPlugin->getOrdersIDsList($start_sync_ts);
 	$i = 0;
 	foreach($ext_orders_ids as $ext_order_id) {
 		if ($i < $next_item) {

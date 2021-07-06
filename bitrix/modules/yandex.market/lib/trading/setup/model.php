@@ -525,6 +525,16 @@ class Model extends Market\Reference\Storage\Model
 		);
 	}
 
+	public function getReservedSettingsKeys()
+	{
+		return [
+			'SETUP_ID',
+			'SITE_ID',
+			'PLATFORM_ID',
+			'URL_ID',
+		];
+	}
+
 	protected function getChildCollectionReference($fieldKey)
 	{
 		$result = null;

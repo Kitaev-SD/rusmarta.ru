@@ -30,12 +30,10 @@ try
 
 	$serviceCode = $httpRequest->getPost('service');
 	$formData = $httpRequest->getPostList()->toArray();
+	$response = Market\Ui\UserField\TradingOutletType::getVariants($serviceCode, $formData, true);
 
-	$enum = Market\Ui\UserField\TradingOutletType::getVariants($serviceCode, $formData, true);
-
-	echo Main\Web\Json::encode([
+	echo Main\Web\Json::encode($response + [
 		'status' => 'ok',
-		'enum' => $enum
 	]);
 }
 catch (Main\SystemException $exception)

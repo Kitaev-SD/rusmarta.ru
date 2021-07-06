@@ -9,7 +9,6 @@ $MESS['YANDEX_MARKET_ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_TITLE'] = 'Прайс-лист го
 $MESS['YANDEX_MARKET_ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_DETAILS'] = '<a href="#URL#" target="_blank">Посмотреть YML</a>';
 $MESS['YANDEX_MARKET_ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_LOG'] = '<a href="#URL#" target="_blank">Журнал ошибок</a>';
 $MESS['YANDEX_MARKET_ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_PUBLISH'] = 'Не забудьте добавить прайс-лист в <a href="https://partner.market.yandex.ru" target="_blank">личный кабинет маркетплейса</a>.<br /> Для этого перейдите в раздел Ассортимент и выберите пункт Прайс-листы';
-$MESS['YANDEX_MARKET_ADMIN_SETUP_RUN_ACTION_RUN_SUCCESS_PUBLISH_TURBO'] = 'Просмотрите сформированный <nobr>YML-файл</nobr> и&nbsp;проверьте, соответствуют&nbsp;ли данные в&nbsp;нём выполненным настройкам и&nbsp;нет&nbsp;ли ошибок. Если нужны исправления, отредактируйте <nobr>прайс-лист</nobr>. Если ошибок нет, скопируйте ссылку и&nbsp;добавьте её в&nbsp;<a href="https://webmaster.yandex.ru" target="_blank">Вебмастер</a>: в&nbsp;разделе <nobr>&laquo;Турбо-страницы&raquo;</nobr> на&nbsp;странице &laquo;Источники&raquo;.';
 
 $MESS['YANDEX_MARKET_ADMIN_SETUP_RUN_ACTION_RUN_PROGRESS_TITLE'] = 'Выполняем выгрузку';
 $MESS['YANDEX_MARKET_ADMIN_SETUP_RUN_ACTION_RUN_PROGRESS_STEP'] = 'Шаг &laquo;#STEP#&raquo;';

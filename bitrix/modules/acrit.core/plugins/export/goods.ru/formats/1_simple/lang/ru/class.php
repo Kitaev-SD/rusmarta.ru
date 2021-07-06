@@ -3,7 +3,7 @@
 $strMessPrefix = 'ACRIT_EXP_GOODS_RU_SIMPLE_';
 
 // General
-$MESS[$strMessPrefix . 'NAME'] = 'goods.ru (XML)';
+$MESS[$strMessPrefix . 'NAME'] = 'СберМегаМаркет (XML)';
 
 // Fields personal
 $MESS[$strMessPrefix . 'FIELD_SHIPMENT_OPTIONS_DAYS_NAME'] = 'Параметры отгрузки. Количество рабочих дней для отгрузки';

@@ -159,6 +159,15 @@ EventManager::getInstance()->unRegisterEventHandler(
 	'OnAfterIBlockElementDelete'
 );
 
+// Handler for prolog
+EventManager::getInstance()->unRegisterEventHandler(
+	'main',
+	'OnProlog',
+	$strModuleId,
+	'\Acrit\Core\Export\EventHandlerExport',
+	'OnProlog'
+);
+
 // Handler for epilog, process all queue
 EventManager::getInstance()->unRegisterEventHandler(
 	'main',

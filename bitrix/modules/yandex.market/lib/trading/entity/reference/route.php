@@ -15,6 +15,14 @@ abstract class Route
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getScriptPath()
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'getScriptPath');
+	}
+
+	/**
 	 * @param string $serviceCode
 	 * @param string $urlId
 	 *

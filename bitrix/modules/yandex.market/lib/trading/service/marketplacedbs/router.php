@@ -11,6 +11,7 @@ class Router extends Market\Trading\Service\Marketplace\Router
 	protected function getSystemMap()
 	{
 		$result = [
+			'admin/view' => Action\AdminView\Action::class,
 			'cart' => Action\Cart\Action::class,
 			'order/accept' => Action\OrderAccept\Action::class,
 			'order/status' => Action\OrderStatus\Action::class,

@@ -29,7 +29,9 @@ else
 	$baseQuery = [
 		'lang' => LANGUAGE_ID,
 	];
-	$primary = !empty($_GET['id']) ? $_GET['id'] : null;
+	$primary = $request->get('id') ?: null;
+	$useCopy = ($request->get('copy') === 'Y');
+	$isNew = ($primary === null || $useCopy);
 
 	if ($service !== '')
 	{
@@ -39,14 +41,15 @@ else
 	$APPLICATION->IncludeComponent('yandex.market:admin.form.edit', '', [
 		'TITLE' => Market\Config::getLang('TRADING_ADD_TITLE'),
 		'TITLE_ADD' => Market\Config::getLang('TRADING_ADD_TITLE_ADD'),
-		'BTN_SAVE' => $primary !== null ? Market\Config::getLang('TRADING_ADD_BTN_SAVE') : Market\Config::getLang('TRADING_ADD_BTN_ADD'),
+		'BTN_SAVE' => $isNew ? Market\Config::getLang('TRADING_ADD_BTN_ADD') : Market\Config::getLang('TRADING_ADD_BTN_SAVE'),
 		'FORM_ID' => 'YANDEX_MARKET_ADMIN_TRADING_ADD',
 		'ALLOW_SAVE' => Market\Ui\Access::isWriteAllowed(),
 		'LIST_URL' => Market\Ui\Admin\Path::getModuleUrl('trading_list', $baseQuery),
-		'SAVE_URL' => $primary === null ? Market\Ui\Admin\Path::getModuleUrl('trading_edit', $baseQuery) . '&id=#ID#' : null,
+		'SAVE_URL' => $isNew ? Market\Ui\Admin\Path::getModuleUrl('trading_edit', $baseQuery) . '&id=#ID#' : null,
 		'PROVIDER_TYPE' => 'TradingSetup',
 		'MODEL_CLASS_NAME' => Market\Trading\Setup\Model::class,
 		'PRIMARY' => $primary,
+		'COPY' => $useCopy,
 		'SERVICE' => $service,
 		'USE_METRIKA' => 'Y',
 		'CONTEXT_MENU' => [

@@ -124,4 +124,70 @@ class Action extends TradingService\Marketplace\Action\SendStatus\Action
 	{
 		return $this->provider->getCancelReason()->getDefault();
 	}
+
+	protected function extractSendResultSkipErrorCurrentStatus(Main\Result $sendResult, $state)
+	{
+		list($status, $subStatus) = $this->getExternalStatus($state);
+		$result = null;
+
+		foreach ($sendResult->getErrors() as $error)
+		{
+			$message = $error->getMessage();
+			$regexp =
+				'#Order \d+ with status'
+				. ' (?<status>\w+)( and substatus (?<substatus>\w+))?'
+				. ' is not allowed for status'
+				. ' (?<requestStatus>\w+)( and substatus (?<requestSubstatus>\w+))?#';
+
+			if (!preg_match($regexp, $message, $matches)) { continue; }
+			if ($matches['requestStatus'] !== $status) { continue; }
+			if ($subStatus !== null && $matches['requestSubstatus'] !== $subStatus) { continue; }
+
+			$result = [
+				$matches['status'],
+				isset($matches['substatus']) ? $matches['substatus'] : null,
+			];
+			break;
+		}
+
+		return $result;
+	}
+
+	protected function getSubmitStack($fromStatus, $toStatus)
+	{
+		$disabled = [
+			TradingService\MarketplaceDbs\Status::STATUS_CANCELLED => true,
+		];
+
+		if ($fromStatus[0] === null || $toStatus[0] === null) { return null; }
+		if (isset($disabled[$toStatus[0]])) { return null; }
+
+		$statusProvider = $this->provider->getStatus();
+		$statusOrder = $statusProvider->getProcessOrder();
+
+		if (!isset($statusOrder[$fromStatus[0]], $statusOrder[$toStatus[0]])) { return null; }
+
+		$result = [];
+		$fromFound = false;
+		$skip = $disabled + [
+			TradingService\MarketplaceDbs\Status::STATUS_PICKUP => true,
+		];
+		$skip = array_diff_key($skip, [ $toStatus[0] => true ]);
+
+		foreach ($statusOrder as $processStatus => $processOrder)
+		{
+			if ($processStatus === $fromStatus[0])
+			{
+				$fromFound = true;
+			}
+			else if ($fromFound && !isset($skip[$processStatus]))
+			{
+				$result[$processOrder] = $processStatus;
+
+				if ($processStatus === $toStatus[0]) { break; }
+			}
+		}
+
+		return $result;
+	}
 }

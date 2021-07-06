@@ -8,6 +8,7 @@ use Yandex\Market;
 class DependField
 {
 	const RULE_ANY = 'ANY';
+	const RULE_EXCLUDE = 'EXCLUDE';
 	const RULE_EMPTY = 'EMPTY';
 
 	public static function test($rules, $values)
@@ -27,6 +28,10 @@ class DependField
 
 				case static::RULE_ANY:
 					$isMatch = static::applyRuleAny($rule['VALUE'], $value);
+				break;
+
+				case static::RULE_EXCLUDE:
+					$isMatch = !static::applyRuleAny($rule['VALUE'], $value);
 				break;
 
 				default:

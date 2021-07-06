@@ -83,6 +83,18 @@ return [
 			'NAME' => Loc::getMessage('ACRIT_CORE_OPTION_AUTO_CLEAN_HISTORY_DAYS'),
 			'HINT' => Loc::getMessage('ACRIT_CORE_OPTION_AUTO_CLEAN_HISTORY_DAYS_HINT'),
 			'TYPE' => 'text',
+			'CALLBACK_SAVE' => function($obOptions, $arOption, $strOption){
+				if(Helper::getOption($obOptions->getModuleId(), 'auto_clean_history') == 'Y'){
+					if($arOption['VALUE_OLD'] != $arOption['VALUE_NEW']){
+						$arAgent = [
+							'MODULE_ID' => ACRIT_CORE,
+							'FUNC' => \Acrit\Core\Export\Cleaner::getAgentName($obOptions->getModuleId()),
+						];
+						Helper::removeAgent($arAgent);
+						Helper::addAgent($arAgent, true);
+					}
+				}
+			},
 		],
 	],
 ];

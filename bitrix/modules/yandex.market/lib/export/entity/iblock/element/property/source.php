@@ -876,7 +876,7 @@ class Source extends Market\Export\Entity\Reference\Source
 	{
 		if (!empty($propertyValuesList) && !empty($parsedSelect['PLAIN_FIELD']))
 		{
-			$propertyList = reset($propertyValuesList);
+			$propertyList = $this->getFilledElementPropertyValues($propertyValuesList);
 			$optimizedTypes = [
 				'E' => 'NAME',
 				'F' => 'SRC',
@@ -956,18 +956,12 @@ class Source extends Market\Export\Entity\Reference\Source
 	protected function extendInnerValue(&$result, $propertyValuesList, $selectMap, $nameMap, $context)
 	{
 		$valuesMap = $this->extractPropertyValuesListField($propertyValuesList, $selectMap);
+		$propertyList = $this->getFilledElementPropertyValues($propertyValuesList);
 		$propertyListMap = [];
 
-		foreach ($propertyValuesList as $propertyList)
+		foreach ($propertyList as $propertyKey => $property)
 		{
-			if (empty($propertyList)) { continue; }
-
-			foreach ($propertyList as $propertyKey => $property)
-			{
-				$propertyListMap[$property['ID']] = $propertyKey;
-			}
-
-			break;
+			$propertyListMap[$property['ID']] = $propertyKey;
 		}
 
 		foreach ($valuesMap as $propertyId => $propertyValuesToElementMap)
@@ -1209,6 +1203,21 @@ class Source extends Market\Export\Entity\Reference\Source
 				}
 			}
 		}
+	}
+
+	protected function getFilledElementPropertyValues($propertyValuesList)
+	{
+		$result = [];
+
+		foreach ($propertyValuesList as $propertyList)
+		{
+			if (empty($propertyList)) { continue; }
+
+			$result = $propertyList;
+			break;
+		}
+
+		return $result;
 	}
 
 	protected function splitIblockSectionsByIblockId($property, $sectionIds)

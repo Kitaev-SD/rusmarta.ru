@@ -2406,4 +2406,11 @@ abstract class Plugin {
 		Helper::arrayInsert($arTeacher, $strKey, $arItem, $strAfter, $strBefore);
 	}
 
+	/**
+	 * Direct execute plugin/profile from ProfileTable
+	 */
+	public function execPlugin($arParams=[]){
+		//
+	}
+
 }

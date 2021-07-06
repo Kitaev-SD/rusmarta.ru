@@ -7,6 +7,7 @@ use Bitrix\Main;
 use Yandex\Market\Trading\Service as TradingService;
 
 /** @method Options getOptions() */
+/** @method Status getStatus() */
 class Provider extends TradingService\Marketplace\Provider
 {
 	protected $delivery;

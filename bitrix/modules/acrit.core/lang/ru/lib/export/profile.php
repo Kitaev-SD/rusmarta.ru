@@ -23,6 +23,8 @@ $MESS['ACRIT_EXP_PROFILE_FIELD_SESSION'] = 'Данные сессии';
 $MESS['ACRIT_EXP_PROFILE_FIELD_LAST_EXPORTED_ITEM'] = 'Последний экспортированный элемент';
 $MESS['ACRIT_EXP_PROFILE_FIELD_EXTERNAL_ID'] = 'Внешний код';
 $MESS['ACRIT_EXP_PROFILE_FIELD_ONE_TIME'] = 'Одноразовая выгрузка';
+$MESS['ACRIT_EXP_PROFILE_FIELD_EXTERNAL_REQUEST'] = 'Разрешить внешний запрос';
+$MESS['ACRIT_EXP_PROFILE_FIELD_EXTERNAL_REQUEST_URL'] = 'URL-адрес для внешнего запроса';
 
 #
 $MESS['ACRIT_EXP_PROFILE_FIELD_SORT_DATA'] = 'Данные для сортировки';

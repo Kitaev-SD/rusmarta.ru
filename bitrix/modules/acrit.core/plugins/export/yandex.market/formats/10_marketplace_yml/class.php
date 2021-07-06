@@ -7,11 +7,17 @@
 namespace Acrit\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Export\UniversalPlugin;
+	\Acrit\Core\Helper,
+	\Acrit\Core\Json,
+	\Acrit\Core\Export\Exporter,
+	\Acrit\Core\Export\UniversalPlugin,
+	\Acrit\Core\Export\Plugins\YandexMarketplaceHelpers\StockTable as Stock;
 
 class YandexMarketplaceYml extends UniversalPlugin {
 	
-	const DATE_UPDATED = '2021-06-08';
+	const DATE_UPDATED = '2021-06-24';
+	
+	const DATE_FORMAT = 'Y-m-d\TH:i:sP';
 
 	protected static $bSubclass = true;
 	
@@ -106,14 +112,62 @@ class YandexMarketplaceYml extends UniversalPlugin {
 		$arResult['leadtime'] = ['CONST' => '1'];
 		$arResult['box-count'] = ['CONST' => '2'];
 		$arResult['delivery-weekdays.delivery-weekday'] = ['CONST' => ['MONDAY', 'FRIDAY'], 'MULTIPLE' => true];
+		#
+		if($this->useStores()){
+			if($arStores = $this->getStores()){
+				foreach($arStores as $intStoreId => $strStoreName){
+					$arResult['HEADER_STOCK_'.$intStoreId] = [
+						'NAME' => static::getMessage('HEADER_STOCK', ['#ID#' => $intStoreId, '#NAME#' => $strStoreName]),
+					];
+					$arResult['stock_'.$intStoreId.'_count'] = [
+						'NAME' => static::getMessage('STOCK_COUNT'),
+						'DISPLAY_CODE' => 'count',
+						'CONST' => '1',
+					];
+					$arResult['stock_'.$intStoreId.'_type'] = [
+						'NAME' => static::getMessage('STOCK_TYPE'),
+						'DISPLAY_CODE' => 'type',
+						'CONST' => 'FIT',
+					];
+					$arResult['stock_'.$intStoreId.'_updatedAt'] = [
+						'NAME' => static::getMessage('STOCK_UPDATED_AT'),
+						'DISPLAY_CODE' => 'updatedAt',
+						'FIELD' => 'TIMESTAMP_X',
+						'FIELD_PARAMS' => [
+							'DATEFORMAT' => 'Y',
+							'DATEFORMAT_from' => \CDatabase::DateFormatToPHP(FORMAT_DATETIME),
+							'DATEFORMAT_to' => static::DATE_FORMAT,
+						],
+					];
+					$arStockAndPriceAllowedFields[] = 'stock_'.$intStoreId;
+				}
+			}
+		}
+		#
 		return $arResult;
+	}
+	
+	/**
+	 *	Include own classes and files
+	 */
+	public function includeClasses(){
+		require_once __DIR__.'/include/classes/stock.php';
+		require_once __DIR__.'/include/db_table_create.php';
 	}
 
 	/**
 	 * Add settings
 	 */
 	protected function onUpShowSettings(&$arSettings){
-		$arSettings['ASSORTMENT_MODE'] = require __DIR__.'/settings/assortment_mode.php';
+		$arSettings['ASSORTMENT_MODE'] = require __DIR__.'/include/settings/assortment_mode.php';
+		$arSettings['EXPORT_STOCKS'] = [
+			'HTML' => $this->includeHtml(__DIR__.'/include/settings/export_stocks.php'),
+			'SORT' => 160,
+		];
+		$arSettings['EXTERNAL_REQUEST'] = [
+			'HTML' => $this->includeHtml(__DIR__.'/include/settings/external_request.php'),
+			'SORT' => 160,
+		];
 	}
 
 	/**
@@ -130,7 +184,7 @@ class YandexMarketplaceYml extends UniversalPlugin {
 		# Build xml
 		$strXml = '<?xml version="1.0" encoding="#XML_ENCODING#"?>'.static::EOL;
 		$strXml .= '<!DOCTYPE yml_catalog SYSTEM "shops.dtd">'.static::EOL;
-		$strXml .= '<yml_catalog date="#YML_DATE#">'.static::EOL;
+		$strXml .= '<yml_catalog date="#XML_DATE#">'.static::EOL;
 		$strXml .= '	<shop>'.static::EOL;
 		$strXml .= '		<categories>'.static::EOL;
 		$strXml .= '			#EXPORT_CATEGORIES#'.static::EOL;
@@ -145,10 +199,233 @@ class YandexMarketplaceYml extends UniversalPlugin {
 		$strXml .= '</yml_catalog>'.static::EOL;
 		# Replace macros
 		$arReplace = [
-			'#YML_DATE#' => date('Y-m-d H:i'),
+			'#XML_DATE#' => date('Y-m-d H:i'),
 			'#XML_ENCODING#' => $this->arParams['ENCODING'],
 		];
 		$strXml = str_replace(array_keys($arReplace), array_values($arReplace), $strXml);
+	}
+
+	/**
+	 * Send stocks data?
+	 */
+	protected function useStores(){
+		return $this->arParams['EXPORT_STOCKS'] == 'Y';
+	}
+
+	/**
+	 * Get stores from profile params
+	 */
+	protected function getStores($bAddEmpty=false){
+		$arStocks = $this->arParams['STOCKS'];
+		if(!is_array($arStocks)){
+			$arStocks = [];
+		}
+		if(!is_array($arStocks['ID'])){
+			$arStocks['ID'] = [];
+		}
+		if(!is_array($arStocks['NAME'])){
+			$arStocks['NAME'] = [];
+		}
+		$arStocks = array_combine($arStocks['ID'], $arStocks['NAME']);
+		foreach($arStocks as $intStoreId => $strStoreName){
+			if(!is_numeric($intStoreId) || $intStoreId <= 0){
+				unset($arStocks[$intStoreId]);
+			}
+		}
+		if($bAddEmpty && empty($arStocks)){
+			$arStocks[''] = '';
+		}
+		return $arStocks;
+	}
+
+	/**
+	 *	Handler on generate XML for single item
+	 */
+	protected function onUpBuildXml(&$arXmlTags, &$arXmlAttr, &$strXmlItem, &$arElement, &$arFields, &$arElementSections, &$mDataMore){
+		$mDataMore = [
+			'SKU_ID' =>  $this->isNewMode() ? $arFields['@id'] : $arFields['shop-sku'],
+		];
+		if($this->useStores()){
+			$arStocks = [];
+			foreach($arFields as $field => $value){
+				if(preg_match('#^stock_(\d+)_([A-z0-9-_]+)$#', $field, $arMatch)){
+					$arStocks[$arMatch[1]][$arMatch[2]] = $value;
+					unset($arFields[$field]);
+					unset($arXmlTags[$field]);
+				}
+			}
+			if(!empty($arStocks)){
+				$mDataMore['STOCKS'] = $arStocks;
+			}
+			unset($arStocks);
+		}
+	}
+	
+	/**
+	 *	Add custom step
+	 */
+	protected function onUpGetSteps(&$arSteps){
+		if($this->useStores()){
+			$arSteps['YM_PROCESS_STOCKS'] = [
+				'NAME' => static::getMessage('STEP_PROCESS_STOCKS'),
+				'SORT' => 5010,
+				'FUNC' => [$this, 'stepProcessStocks'],
+			];
+			$arSteps['YM_RESET_OLD_STOCKS'] = [
+				'NAME' => static::getMessage('STEP_RESET_OLD_STOCKS'),
+				'SORT' => 5020,
+				'FUNC' => [$this, 'stepResetOldStocks'],
+			];
+		}
+	}
+	
+	/**
+	 * Save stocks to DB
+	 */
+	public function stepProcessStocks($intProfileID, $arData){
+		$arExportItems = $this->getExportDataItems(null, ['ID', 'ELEMENT_ID', 'DATA_MORE', '_SKIP_DATA_FIELD'], true);
+		foreach($arExportItems as $arItem){
+			$arDataMore = unserialize($arItem['DATA_MORE']);
+			if(Helper::strlen($arDataMore['SKU_ID']) && !empty($arDataMore['STOCKS'])){
+				foreach($arDataMore['STOCKS'] as $intWarehouseId => $arStockData){
+					$arStock = [
+						'MODULE_ID' => $this->strModuleId,
+						'PROFILE_ID' => $this->intProfileId,
+						'ELEMENT_ID' => $arItem['ELEMENT_ID'],
+						'SKU' => $arDataMore['SKU_ID'],
+						'WAREHOUSE_ID' => $intWarehouseId,
+						'TYPE' => $arStockData['type'],
+						'COUNT' => $arStockData['count'],
+						'UPDATED_AT' => $arStockData['updatedAt'],
+						'SESSION_ID' => $arData['SESSION']['SESSION_ID'],
+						'TIMESTAMP_X' => new \Bitrix\Main\Type\Datetime,
+					];
+					$arFilter = [
+						'=MODULE_ID' => $arStock['MODULE_ID'],
+						'PROFILE_ID' => $arStock['PROFILE_ID'],
+						'=SKU' => $arStock['SKU'],
+						'WAREHOUSE_ID' => $arStock['WAREHOUSE_ID'],
+					];
+					$arQuery = [
+						'filter' => $arFilter,
+						'select' => ['ID'],
+						'limit' => 1,
+					];
+					if($arDbStock = Stock::getList($arQuery)->fetch()){
+						$obResult = Stock::update($arDbStock['ID'], $arStock);
+					}
+					else{
+						$obResult = Stock::add($arStock);
+					}
+				}
+			}
+		}
+		return Exporter::RESULT_SUCCESS;
+	}
+	
+	/**
+	 * Reset old stocks to 0
+	 */
+	public function stepResetOldStocks($intProfileID, $arData){
+		$arQuery = [
+			'filter' => [
+				'=MODULE_ID' => $this->strModuleId,
+				'PROFILE_ID' => $this->intProfileId,
+				'!=SESSION_ID' => $arData['SESSION']['SESSION_ID'],
+			],
+			'select' => ['ID'],
+		];
+		$obDate = new \Bitrix\Main\Type\Datetime;
+		$strUpdatedAt = $obDate->format(static::DATE_FORMAT);
+		$resOldStocks = Stock::getList($arQuery);
+		while($arOldStock = $resOldStocks->fetch()){
+			Stock::update($arOldStock['ID'], [
+				'COUNT' => 0,
+				'UPDATED_AT' => $strUpdatedAt,
+				'SESSION_ID' => $arData['SESSION']['SESSION_ID'],
+				'DATE_RESET' => $obDate,
+			]);
+		}
+		return Exporter::RESULT_SUCCESS;
+	}
+
+	/**
+	 * Get SKU data for selected warehouse
+	 * Example: $arJson = $this->getWarehouseSkuData(1, '48286');
+	 */
+	public function getWarehouseSkuData($intWarehouseId, $arSku, $bForAllProfiles=false){
+		$arQuery = [
+			'order' => ['TIMESTAMP_X' => 'DESC'],
+			'filter' => [
+				'=MODULE_ID' => $this->strModuleId,
+				'PROFILE_ID' => $this->intProfileId,
+				'WAREHOUSE_ID' => $intWarehouseId,
+				'=SKU' => $arSku,
+			],
+			'select' => ['ID', 'SKU', 'WAREHOUSE_ID', 'TYPE', 'COUNT', 'UPDATED_AT'],
+		];
+		if($bForAllProfiles){
+			unset($arQuery['filter']['PROFILE_ID']);
+		}
+		$arStocks = [];
+		$resStocks = Stock::getList($arQuery);
+		while($arStock = $resStocks->fetch()){
+			$arStocks[$arStock['SKU']] = [
+				'sku' => $arStock['SKU'],
+				'warehouseId' => intVal($intWarehouseId),
+				'items' => [
+					[
+						'type' => $arStock['TYPE'],
+						'count' => intVal($arStock['COUNT']),
+						'updatedAt' => $arStock['UPDATED_AT'],
+					]
+				],
+			];
+		}
+		return $arStocks;
+	}
+
+	/**
+	 * Direct execute plugin/profile from ProfileTable
+	 */
+	public function execPlugin($arParams=[]){
+		Json::prepare();
+		$arResult = [];
+		if($arJson = $this->getRequestJson()){
+			if(is_array($arJson['skus'])){
+				$obDate = new \Bitrix\Main\Type\Datetime;
+				$arData = $this->getWarehouseSkuData($arJson['warehouseId'], $arJson['skus'], true);
+				foreach($arJson['skus'] as $strSku){
+					if(isset($arData[$strSku])){
+						$arResult[] = $arData[$strSku];
+					}
+					else{
+						$arResult[] = [
+							'sku' => strVal($strSku),
+							'warehouseId' => $arJson['warehouseId'],
+							'items' => [
+								[
+									'type' => 'FIT',
+									'count' => 0,
+									'updatedAt' => $obDate->format(static::DATE_FORMAT),
+								]
+							],
+						];
+					}
+				}
+			}
+		}
+		print Json::output($arResult);
+		die();
+	}
+
+	protected function getRequestJson(){
+		$arJson = null;
+		$strJson = file_get_contents('php://input');
+		try{
+			$arJson = \Bitrix\Main\Web\Json::decode($strJson);
+		}catch(\Exception $obError){}
+		return $arJson;
 	}
 
 }

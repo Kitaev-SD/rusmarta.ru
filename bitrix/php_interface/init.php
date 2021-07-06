@@ -165,6 +165,8 @@ function ChangeMyContent(&$content) {
 	);
 	$srcs_preg = '('.implode('|', array_map(function ($v) { return preg_quote($v, '#'); }, $srcs)).')';
 	$content = preg_replace('#\<img[^\>]*src\=["\'][^"\']*'.$srcs_preg.'["\'][^\>]*\>#', '', $content);
+
+    $content = preg_replace('/src="https:\/\/www\.youtube\.com/i', 'class="data-lazy-src" data-lazy-src="https://www.youtube.com', $content);
 }
 //-- Добавление обработчика события
 AddEventHandler("sale", "OnOrderNewSendEmail", "bxModifySaleMails");

@@ -35,6 +35,7 @@ class IncomingUrlType extends StringType
 	{
 		$attributes = array_filter([
 			'data-url' => static::getCheckUrl(),
+			'data-site' => isset($userField['SETTINGS']['SITE_ID']) ? $userField['SETTINGS']['SITE_ID'] : null,
 		]);
 		$attributeString = Helper\Attributes::stringify($attributes);
 

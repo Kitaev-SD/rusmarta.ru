@@ -7,13 +7,6 @@ use Bitrix\Main;
 
 class TradingOutletType extends EnumerationType
 {
-	use Market\Reference\Concerns\HasLang;
-
-	protected static function includeMessages()
-	{
-		Main\Localization\Loc::loadMessages(__FILE__);
-	}
-
 	public static function GetList($userField)
 	{
 		$serviceCode = static::getUserFieldServiceCode($userField);
@@ -21,7 +14,7 @@ class TradingOutletType extends EnumerationType
 		$outlets = static::getVariants($serviceCode, $optionValues);
 
 		$result = new \CDBResult();
-		$result->InitFromArray($outlets);
+		$result->InitFromArray($outlets['enum']);
 
 		return $result;
 	}
@@ -51,51 +44,87 @@ class TradingOutletType extends EnumerationType
 		return $result;
 	}
 
-	public static function GetEditFormHTMLMulty($arUserField, $arHtmlControl)
+	public static function GetEditFormHTML($userField, $htmlControl)
 	{
-		$result = parent::GetEditFormHTMLMulty($arUserField, $arHtmlControl);
+		static::loadEditAssets();
 
-		if (Market\Data\TextString::getPosition($result, '<table') !== false)
+		$attributes = Helper\Attributes::extractFromSettings($userField['SETTINGS']);
+		$attributes += static::makeSelectViewAttributes($userField);
+		$attributes['name'] = $userField['FIELD_NAME'];
+		$settings = static::makeSelectViewSettings($userField);
+		$value = Helper\Value::asSingle($userField, $htmlControl);
+		$enum = (string)$value !== '' ? static::makeEnumFromValues([$value]) : [];
+
+		return View\Select::getControl($enum, $value, $attributes, $settings);
+	}
+
+	public static function GetEditFormHTMLMulty($userField, $htmlControl)
+	{
+		static::loadEditAssets();
+
+		$attributes = Helper\Attributes::extractFromSettings($userField['SETTINGS']);
+		$attributes += static::makeSelectViewAttributes($userField);
+		$attributes['name'] = $userField['FIELD_NAME'] . '[]';
+		$settings = static::makeSelectViewSettings($userField);
+		$values = Helper\Value::asMultiple($userField, $htmlControl);
+		$enum = static::makeEnumFromValues($values);
+
+		return View\Select::getControl($enum, $values, $attributes, $settings);
+	}
+
+	protected static function makeEnumFromValues(array $values)
+	{
+		$result = [];
+
+		foreach ($values as $value)
 		{
-			$refreshButton = static::getRefreshButton($arUserField, [
-				'data-parent-element' => 'table',
-			]);
-
-			$result = static::insertTableRefreshButton($result, $refreshButton);
+			$result[] = [
+				'ID' => $value,
+				'VALUE' => $value,
+			];
 		}
 
 		return $result;
 	}
 
-	protected static function getRefreshButton($userField, array $attributes = [])
-	{
-		$optionValues = static::getUserFieldOptionValues($userField);
-		$valuesSign = static::makeOptionValuesSign($optionValues);
-
-		Market\Ui\Assets::loadPlugins([
-			'Ui.Input.TradingOutletFetcher',
-			'Ui.Input.TradingOutlet',
-		]);
-
-		static::loadLangMessages();
-
-		return sprintf('<input %s />', Helper\Attributes::stringify($attributes + [
-			'type' => 'button',
-			'value' => static::getLang('USER_FIELD_TRADING_OUTLET_REFRESH'),
-			'class' => 'js-plugin',
-			'data-plugin' => 'Ui.Input.TradingOutlet',
-			'data-service' => static::getUserFieldServiceCode($userField),
-			'data-refresh-url' => static::getRefreshUrl(),
-			'data-used-sign' => $valuesSign,
-			'data-used-keys' => implode('|', static::getUsedOptionValues()),
-		]));
-	}
-
 	protected static function loadLangMessages()
 	{
+		static::loadMessages();
+
 		Market\Ui\Assets::loadMessages([
-			'USER_FIELD_TRADING_OUTLET_REFRESH_FAIL',
+			'CHOSEN_SEARCHING',
+			'CHOSEN_PLACEHOLDER',
 		]);
+	}
+
+	protected static function loadEditAssets()
+	{
+		Market\Ui\Plugin\TradingOutlet::load();
+	}
+
+	protected static function makeSelectViewAttributes($userField)
+	{
+		$result = parent::makeSelectViewAttributes($userField);
+		$result = array_diff_key($result, [
+			'data-multiple' => true,
+		]);
+		$result += [
+			'class' => 'js-plugin',
+			'data-plugin' => 'Ui.Input.TradingOutlet',
+			'data-url' => static::getRefreshUrl(),
+			'data-service' => static::getUserFieldServiceCode($userField),
+			'data-used-keys' => implode('|', static::getUsedOptionValues()),
+		];
+
+		if ($userField['MULTIPLE'] !== 'N')
+		{
+			$result += [
+				'multiple' => true,
+				'size' => 1,
+			];
+		}
+
+		return $result;
 	}
 
 	protected static function getRefreshUrl()
@@ -103,24 +132,9 @@ class TradingOutletType extends EnumerationType
 		return BX_ROOT . '/tools/' . Market\Config::getModuleName() . '/tradingoutlet/enum.php';
 	}
 
-	protected static function insertTableRefreshButton($tableHtml, $refreshButton)
-	{
-		$lastCellPosition = Market\Data\TextString::getLastPosition($tableHtml, '</td>');
-		$result = $tableHtml;
-
-		if ($lastCellPosition !== false)
-		{
-			$result = Market\Data\TextString::getSubstring($tableHtml, 0, $lastCellPosition);
-			$result	.= $refreshButton;
-			$result	.= Market\Data\TextString::getSubstring($tableHtml, $lastCellPosition);
-		}
-
-		return $result;
-	}
-
 	public static function getVariants($serviceCode, $optionValues, $ignoreCache = false)
 	{
-		if (!static::validateServiceCode($serviceCode) || !static::validateOptionValues($optionValues)) { return []; }
+		if (!static::validateServiceCode($serviceCode) || !static::validateOptionValues($optionValues)) { return static::makeVariantsSkeleton(); }
 
 		$sign = static::makeVariantsSign($serviceCode, $optionValues);
 		$cache = Main\Application::getInstance()->getManagedCache();
@@ -176,7 +190,8 @@ class TradingOutletType extends EnumerationType
 	{
 		return implode('|', [
 			$serviceCode,
-			static::makeOptionValuesSign($optionValues)
+			static::makeOptionValuesSign($optionValues),
+			isset($optionValues['page']) ? (int)$optionValues['page'] : 1,
 		]);
 	}
 
@@ -203,8 +218,18 @@ class TradingOutletType extends EnumerationType
 		];
 	}
 
+	protected static function makeVariantsSkeleton()
+	{
+		return [
+			'enum' => [],
+			'hasNext' => false,
+		];
+	}
+
 	protected static function loadVariants($serviceCode, array $optionValues)
 	{
+		$result = static::makeVariantsSkeleton();
+
 		try
 		{
 			$service = Market\Trading\Service\Manager::createProvider($serviceCode);
@@ -212,12 +237,17 @@ class TradingOutletType extends EnumerationType
 
 			$options->setValues($optionValues);
 
-			$outletCollection = Market\Api\Model\OutletFacade::loadList($options);
-			$result = static::makeOutletCollectionEnum($outletCollection);
+			$outletCollection = Market\Api\Model\OutletFacade::loadList($options, [
+				'page' => isset($optionValues['page']) ? (int)$optionValues['page'] : 1,
+			]);
+			$paging = $outletCollection->getPaging();
+
+			$result['enum'] = static::makeOutletCollectionEnum($outletCollection);
+			$result['hasNext'] = $paging !== null && $paging->hasNext();
 		}
 		catch (Main\SystemException $exception)
 		{
-			$result = [];
+			// nothing
 		}
 
 		return $result;

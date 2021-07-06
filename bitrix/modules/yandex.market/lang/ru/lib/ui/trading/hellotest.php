@@ -16,6 +16,12 @@ $MESS['YANDEX_MARKET_UI_TRADING_HELLO_TEST_ERROR_HTTP_NOT_FOUND_DESCRIPTION'] = 
     RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
 &lt;/IfModule&gt;</div>
 ';
+$MESS['YANDEX_MARKET_UI_TRADING_HELLO_TEST_ERROR_URLREWRITE_RULE_MISSING'] = 'Отсутствует правило urlrewrite';
+$MESS['YANDEX_MARKET_UI_TRADING_HELLO_TEST_ERROR_URLREWRITE_RULE_MISSING_DESCRIPTION'] = '
+<h2 class="pos--top">Отсутствует правило urlrewrite</h2>
+<p>При обработке запросов используется urlrewrite, проверьте наличие правила скрипта #SCRIPT_PATH#.</p>
+<p>Повторно выполнить добавление правила можно, нажав &laquo;Отключить&raquo;  в форме настройки обработки заказов и &laquo;Включить&raquo; после перезагрузки страницы.</p>
+';
 $MESS['YANDEX_MARKET_UI_TRADING_HELLO_TEST_ERROR_HTTP_REDIRECT'] = 'Выполнен редирект';
 $MESS['YANDEX_MARKET_UI_TRADING_HELLO_TEST_ERROR_HTTP_REDIRECT_DESCRIPTION'] = '
 <h2 class="pos--top">Выполнен редирект</h2>

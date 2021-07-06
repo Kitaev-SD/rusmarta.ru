@@ -99,15 +99,23 @@ class Currencies extends Base
 			// push base currency, if not set
 
 			$baseCurrency = ($rates['BASE'] !== null ? $rates['BASE'] : $type->getDefaultBase());
+			$baseCurrencyFormatted = $type->format($baseCurrency);
 
 			if (!in_array($baseCurrency, $currencyIds, true))
 			{
-				$baseCurrencyFormatted = $type->format($baseCurrency);
-
 				$result[$baseCurrencyFormatted] = [
 					'CURRENCY' => $baseCurrencyFormatted,
 					'RATE' => 1
 				];
+			}
+
+			// exclude rates
+
+			if (Market\Config::getOption('export_currency_rate', 'N') !== 'Y')
+			{
+				$result = array_intersect_key($result, [
+					$baseCurrencyFormatted => true,
+				]);
 			}
 		}
 

@@ -15,6 +15,7 @@ class GridList extends Market\Component\Model\GridList
 	use Market\Component\Concerns\HasCalculatedFields;
 
 	protected $groupId;
+	protected $repository;
 
 	public function prepareComponentParams($params)
 	{
@@ -373,7 +374,6 @@ class GridList extends Market\Component\Model\GridList
 	public function getFields(array $select = [])
 	{
 		$result = parent::getFields($select);
-		$result = $this->excludeServiceDisabledFields($result);
 		$result = $this->allowGroupFields($result);
 
 		if (isset($result['GROUP']))
@@ -381,16 +381,12 @@ class GridList extends Market\Component\Model\GridList
 			$result['GROUP'] = $this->modifyGroupField($result['GROUP']);
 		}
 
-		if (isset($result['EXPORT_SERVICE']))
-		{
-			$result['EXPORT_SERVICE'] = $this->modifyExportServiceField($result['EXPORT_SERVICE']);
-
-			$this->resolveExportServiceFilter($result['EXPORT_SERVICE']);
-		}
-
 		if (isset($result['EXPORT_FORMAT'], $result['EXPORT_SERVICE']))
 		{
-			$result['EXPORT_FORMAT'] = $this->modifyExportFormatField($result['EXPORT_FORMAT'], $result['EXPORT_SERVICE']);
+			$result['EXPORT_SERVICE'] = $this->getRepository()->modifyExportServiceField($result['EXPORT_SERVICE']);
+			$result['EXPORT_FORMAT'] = $this->getRepository()->modifyExportFormatField($result['EXPORT_FORMAT'], $result['EXPORT_SERVICE']);
+
+			$this->resolveExportServiceFilter($result['EXPORT_SERVICE']);
 		}
 
 		$result += $this->getCalculatedFields();
@@ -415,15 +411,6 @@ class GridList extends Market\Component\Model\GridList
 		];
 	}
 
-	protected function excludeServiceDisabledFields($fields)
-	{
-		$uiService = $this->getUiService();
-		$disabledFields = $uiService->getExportSetupDisabledFields();
-		$disabledFieldsMap = array_flip($disabledFields);
-
-		return array_diff_key($fields, $disabledFieldsMap);
-	}
-
 	protected function modifyGroupField($field)
 	{
 		if (!isset($field['SETTINGS'])) { $field['SETTINGS'] = []; }
@@ -432,29 +419,6 @@ class GridList extends Market\Component\Model\GridList
 		$field['SETTINGS']['ALLOW_NO_VALUE'] = 'N';
 		$field['VALUES'] = $this->getGroupTreeEnum();
 		$field['SELECTABLE'] = false;
-
-		return $field;
-	}
-
-	protected function modifyExportServiceField($field)
-	{
-		if (isset($field['VALUES']))
-		{
-			$uiService = $this->getUiService();
-			$exportServices = $uiService->getExportServices();
-			$exportServicesMap = array_flip($exportServices);
-			$isInverted = $uiService->isInverted();
-
-			foreach ($field['VALUES'] as $optionKey => $option)
-			{
-				$isExists = isset($exportServicesMap[$option['ID']]);
-
-				if ($isExists === $isInverted)
-				{
-					unset($field['VALUES'][$optionKey]);
-				}
-			}
-		}
 
 		return $field;
 	}
@@ -473,35 +437,6 @@ class GridList extends Market\Component\Model\GridList
 				$this->setComponentParam('FILTER_FIELDS', $filterFields);
 			}
 		}
-	}
-
-	protected function modifyExportFormatField($field, $serviceField)
-	{
-		if (isset($field['VALUES'], $serviceField['VALUES']))
-		{
-			$exportServices = array_column($serviceField['VALUES'], 'ID');
-			$existsTypes = [];
-
-			foreach ($exportServices as $service)
-			{
-				$types = Market\Export\Xml\Format\Manager::getTypeList($service);
-
-				if ($types !== null)
-				{
-					$existsTypes += array_flip($types);
-				}
-			}
-
-			foreach ($field['VALUES'] as $optionKey => $option)
-			{
-				if (!isset($existsTypes[$option['ID']]))
-				{
-					unset($field['VALUES'][$optionKey]);
-				}
-			}
-		}
-
-		return $field;
 	}
 
 	/**
@@ -801,5 +736,23 @@ class GridList extends Market\Component\Model\GridList
 		}
 
 		return $result;
+	}
+
+	protected function getRepository()
+	{
+		if ($this->repository === null)
+		{
+			$this->repository = $this->makeRepository();
+		}
+
+		return $this->repository;
+	}
+
+	protected function makeRepository()
+	{
+		$uiService = $this->getUiService();
+		$modelClass = $this->getModelClass();
+
+		return new Repository($uiService, $modelClass);
 	}
 }

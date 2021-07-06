@@ -126,12 +126,12 @@ class Controller
 		$plugin = self::getPlugin(self::$profile);
 		// List of orders, changed by last period (if period is not set than get all orders)
 		if ($plugin) {
-			$filter = [];
+			$change_date_from = false;
 			if ($sync_interval > 0) {
-				$filter['change_date_from'] = time() - $plugin->modifSyncInterval($sync_interval);
+				$change_date_from = time() - $plugin->modifSyncInterval($sync_interval);
 			}
 			try {
-				$orders_ids = $plugin->getOrdersIDsList($filter);
+				$orders_ids = $plugin->getOrdersIDsList(false, $change_date_from);
 				Log::getInstance(self::$MODULE_ID)->add('(syncByPeriod) orders ' . print_r($orders_ids, true), false, true);
 			} catch (\Exception $e) {
 				Log::getInstance(self::$MODULE_ID)->add('(syncByPeriod) get orders error: "' . $e->getMessage() . '" [' . $e->getCode() . ']');
