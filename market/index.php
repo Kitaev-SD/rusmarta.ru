@@ -2,9 +2,18 @@
 $APPLICATION->SetPageProperty("title", "Каталог систем безопасности – перечень товаров интернет-магазина охранных систем – Rusmarta.ru");
 $APPLICATION->SetPageProperty("description", "Обширный каталог товаров систем безопасности. Большой выбор товаров, демократичные цены. Системы охраны и безопасности с доставкой по всей России в интернет-магазине Rusmarta.ru");
 $APPLICATION->SetTitle("Каталог товаров");
-?><p style="text-align: center;">
- <img class="data-lazy-src" width="1024" alt="Баннер преимуществ.png" data-lazy-src="/upload/medialibrary/053/Banner-preimushchestv.png" height="82" title="Баннер преимуществ.png">
-</p>
+?>
+
+<? 
+$url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+if (!stripos($url, 'noindex')) { ?>
+	<p style="text-align: center;">
+		<img class="data-lazy-src" width="1024" alt="Баннер преимуществ.png" data-lazy-src="/upload/medialibrary/053/Banner-preimushchestv.png" height="82" title="Баннер преимуществ.png">
+   	</p>
+<? } ?>
+
+
  <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
 	"template_vp", 
