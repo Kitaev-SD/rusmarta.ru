@@ -7,6 +7,7 @@ $count_per_page = 5000;			# количество товаров на одной 
 $iblock_id_catalog = 16;		# инфоблок каталога товаров
 
 $iblock_id_other = array(		# Остальные инфоблоки
+	'vendors'	=>	14,			#  - Производители
 	'promotions'=>	19,			#  - Новинки и акции
 	'news'		=>	20			#  - Новости
 );
@@ -18,7 +19,6 @@ $urlsStaticPages = array(		# статичные страницы
 	'about/',
 	'contacts/',
 	'delivery/',
-	'faq/',
 	'payments/',
 	'returns/',
 	'support/',
@@ -27,16 +27,13 @@ $urlsStaticPages = array(		# статичные страницы
 	'about/awards/',
 	'about/certificates/',
 	'about/details/',
-    'about/dogovor-postavki/',
     'about/employees/',
     'about/history/',
     'about/responses/',
     'about/vacancies/',
     'warranty/memory/',
-    'vendors/kivos/',
     'market/saleleader/',
     'market/newproduct/',
-    'agreement.php'
 );
 
 #------------------------------------------------------------------------------------------------------------
@@ -69,15 +66,17 @@ if($sitemap_mod == 0) {
 		getStaticPageList($domainName, $urlsStaticPages);
 		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=pages</loc><lastmod>'.$static_page_lastmod.'</lastmod></sitemap>';
 		getXMLtags($sectionArr, $domainName);
-		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=categories</loc><lastmod>'.$xml_lastmod.'</lastmod></sitemap>';
+		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=categories</loc><lastmod>'.getDateStaticPage($xml_lastmod).'</lastmod></sitemap>';
 		for ($i = 1; $i <= $page_count; $i++) {
 			getXMLtags($productArr, $domainName, $i);
-			echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=products-part-'.$i.'</loc><lastmod>'.$xml_lastmod.'</lastmod></sitemap>';
+			echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=products-part-'.$i.'</loc><lastmod>'.getDateStaticPage($xml_lastmod).'</lastmod></sitemap>';
 		}
 		getOtherList($domainName, $iblock_id_other['news']);
-		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=news</loc><lastmod>'.$xml_lastmod.'</lastmod></sitemap>';
+		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=news</loc><lastmod>'.getDateStaticPage($xml_lastmod).'</lastmod></sitemap>';
 		getOtherList($domainName, $iblock_id_other['promotions']);
-		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=promotions</loc><lastmod>'.$xml_lastmod.'</lastmod></sitemap>';
+		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=promotions</loc><lastmod>'.getDateStaticPage($xml_lastmod).'</lastmod></sitemap>';
+		getOtherList($domainName, $iblock_id_other['vendors']);
+		echo 	'<sitemap><loc>'.$domainName.'/sitemap.xml?type=vendors</loc><lastmod>'.getDateStaticPage($xml_lastmod).'</lastmod></sitemap>';
 		echo '</sitemapindex>';
 	} else {
 		echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
@@ -92,8 +91,8 @@ if($sitemap_mod == 0) {
 			echo getOtherList($domainName, $iblock_id_other['news']);
 		} elseif($_GET['type'] == 'promotions'){
 			echo getOtherList($domainName, $iblock_id_other['promotions']);
-		} elseif($_GET['type'] == 'sales'){
-			echo getOtherList($domainName, $iblock_id_other['sales']);
+		} elseif($_GET['type'] == 'vendors'){
+			echo getOtherList($domainName, $iblock_id_other['vendors']);
 		}
 		echo '</urlset>';
 	}
@@ -201,9 +200,10 @@ function getOtherList($link, $iblock_id_) {
 	$xml_lastmod = time();
 	$arSelect = Array("DETAIL_PAGE_URL", "TIMESTAMP_X");
 	$arFilter = Array("IBLOCK_ID" => $iblock_id_, "ACTIVE" => "Y", "INCLUDE_SUBSECTIONS" => "Y");
-	$res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
+	$res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), Array());//, $arSelect);
 	while($ob = $res->GetNextElement()){
 		$fl = $ob->GetFields();
+		if (!empty($fl["ACTIVE_TO"]) && time() - strtotime($fl["ACTIVE_TO"]) > 86400) continue;
 		$priority = 0.5;
 		$changefreq = 'weekly';	#always, hourly, daily, weekly, monthly, yearly, never
 		$output .=	'<url>';
