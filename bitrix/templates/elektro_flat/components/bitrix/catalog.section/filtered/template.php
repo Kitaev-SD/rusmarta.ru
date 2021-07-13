@@ -26,7 +26,6 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 	<?}?>
 	<div class="catalog-item-cards">
 		<?foreach($arResult["ITEMS"] as $key => $arElement) {	
-			print_r($arElement['IBLOCK_SECTION_ID']);
 			$arItemIDs = array(
 				"ID" => $arElement["STR_MAIN_ID"],
 				"PRICE_RANGES_BTN" => $arElement["STR_MAIN_ID"]."_price_ranges_btn",
