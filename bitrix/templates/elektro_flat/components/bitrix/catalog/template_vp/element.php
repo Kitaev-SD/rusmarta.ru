@@ -285,7 +285,7 @@ endif;?>
     <?
     
     
-    $GLOBALS['catalogFilter'] = array('ACTIVE' => 'Y', '!SECTION_ID' => array(482, '', 245, 261, 271, 276));
+    $GLOBALS['catalogFilter'] = array('ACTIVE' => 'Y', 'SECTION_ACTIVE' => 'Y', '!SECTION_ID' => array(482, ''));
     $APPLICATION->IncludeComponent("bitrix:catalog.section", 'filtered',
         array(
             "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
