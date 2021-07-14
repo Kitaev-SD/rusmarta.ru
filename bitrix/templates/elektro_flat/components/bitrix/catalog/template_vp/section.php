@@ -419,14 +419,14 @@ if ($list[0]['ID'] == 263) {
         if (count($GLOBALS['productSlider1']) == 0){
         
             if ($section["DEPTH_LEVEL"] >= 2){
-                $element_list = CIblockElement::GetList(Array("RAND" => "ASC"), Array("SECTION_ID"=>$section['IBLOCK_SECTION_ID'], "IBLOCK_ID"=>16, "INCLUDE_SUBSECTIONS"=>"Y", "!SECTION_ID"=>$arResult['VARIABLES']['SECTION_ID'], "!SECTION_ID"=>482), false, Array("nPageSize"=>4), Array("ID"));
+                $element_list = CIblockElement::GetList(Array("RAND" => "ASC"), Array("SECTION_ID"=>$section['IBLOCK_SECTION_ID'], "IBLOCK_ID"=>16, "INCLUDE_SUBSECTIONS"=>"Y", 'ACTIVE' => 'Y', '!SECTION_ID' => array($arResult['VARIABLES']['SECTION_ID'], 482, '', 245, 261, 271, 276)), false, Array("nPageSize"=>4), Array("ID"));
                 while($element = $element_list->GetNext()){
                     $GLOBALS['productSlider1']['ID'][] = $element['ID'];
                 }
                 if ($section["DEPTH_LEVEL"] > 2 && count($GLOBALS['productSlider1']) == 0){
                     $sections_list = CIblockSection::GetList(Array(), Array("ID"=>$section['IBLOCK_SECTION_ID'], "IBLOCK_ID"=>16), false, Array("ID", "IBLOCK_SECTION_ID"));
                     while($section = $sections_list->GetNext()){
-                        $element_list = CIblockElement::GetList(Array("RAND" => "ASC"), Array("SECTION_ID"=>$section['IBLOCK_SECTION_ID'], "IBLOCK_ID"=>16, "INCLUDE_SUBSECTIONS"=>"Y", "!SECTION_ID"=>$arResult['VARIABLES']['SECTION_ID'], "!SECTION_ID"=>482), false, Array("nPageSize"=>4), Array("ID"));
+                        $element_list = CIblockElement::GetList(Array("RAND" => "ASC"), Array("SECTION_ID"=>$section['IBLOCK_SECTION_ID'], "IBLOCK_ID"=>16, "INCLUDE_SUBSECTIONS"=>"Y", 'ACTIVE' => 'Y', '!SECTION_ID' => array($arResult['VARIABLES']['SECTION_ID'], 482, '', 245, 261, 271, 276)), false, Array("nPageSize"=>4), Array("ID"));
                         while($element = $element_list->GetNext()){
                             $GLOBALS['productSlider1']['ID'][] = $element['ID'];
                         }
