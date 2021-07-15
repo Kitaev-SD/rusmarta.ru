@@ -413,13 +413,17 @@ if ($list[0]['ID'] == 263) {
     if($section = $sections_list->GetNext()){
         if (is_array($section["UF_PRODUCT_SLIDER_1"]) && count($section["UF_PRODUCT_SLIDER_1"]) > 0)
 			$element_list = CIblockElement::GetList(Array("RAND" => "ASC"), Array("ID"=>$section["UF_PRODUCT_SLIDER_1"], "IBLOCK_ID"=>16, "INCLUDE_SUBSECTIONS"=>"Y", 'ACTIVE' => 'Y', 'SECTION_ACTIVE' => 'Y', '!SECTION_ID' => array(482, '')), false, false, Array("ID"));
-			while($element = $element_list->GetNext()){
-				$GLOBALS['productSlider1']['ID'][] = $element['ID'];
+			if ($element_list) {
+				while($element = $element_list->GetNext()){
+					$GLOBALS['productSlider1']['ID'][] = $element['ID'];
+				}
 			}
         if (is_array($section["UF_PRODUCT_SLIDER_2"]) && count($section["UF_PRODUCT_SLIDER_2"]) > 0)
 			$element_list = CIblockElement::GetList(Array("RAND" => "ASC"), Array("ID"=>$section["UF_PRODUCT_SLIDER_2"], "IBLOCK_ID"=>16, "INCLUDE_SUBSECTIONS"=>"Y", 'ACTIVE' => 'Y', 'SECTION_ACTIVE' => 'Y', '!SECTION_ID' => array(482, '')), false, false, Array("ID"));
-			while($element = $element_list->GetNext()){
-				$GLOBALS['productSlider2']['ID'][] = $element['ID'];
+			if ($element_list) {
+				while($element = $element_list->GetNext()){
+					$GLOBALS['productSlider2']['ID'][] = $element['ID'];
+				}
 			}
                 
         if (count($GLOBALS['productSlider1']) == 0){
