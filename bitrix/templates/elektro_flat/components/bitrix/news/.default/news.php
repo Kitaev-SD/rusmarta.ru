@@ -56,7 +56,7 @@ $this->setFrameMode(true);?>
 
 <?/***PAGE_TITLE***/
 if(!empty($_REQUEST['PAGEN_1']) && $_REQUEST['PAGEN_1']>1):
-	$APPLICATION->SetPageProperty("title", $arParams["PAGER_TITLE"]." | ".GetMessage('SECT_TITLE')." ".$_REQUEST['PAGEN_1']);
-	$APPLICATION->SetPageProperty("keywords", "");
-	$APPLICATION->SetPageProperty("description", "");
+	// $APPLICATION->SetPageProperty("title", $arParams["PAGER_TITLE"]." | ".GetMessage('SECT_TITLE')." ".$_REQUEST['PAGEN_1']);
+	// $APPLICATION->SetPageProperty("keywords", "");
+	// $APPLICATION->SetPageProperty("description", "");
 endif;?>

@@ -1,7 +1,8 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("title", "Новости и объявления – актуальная информация интернет-магазина – Rusmarta.ru");
 $APPLICATION->SetPageProperty("description", "Самая свежая информация для покупателей магазина. Статьи и объявления. Системы охраны и безопасности с доставкой по всей России в интернет-магазине Rusmarta.ru");
-$APPLICATION->SetTitle("Новости");?>
+$APPLICATION->SetTitle("Новости");
+$APPLICATION->AddHeadString('<link rel="canonical" href="https://'.SITE_SERVER_NAME.str_replace(" ", "",$APPLICATION->GetCurPage()).'">');?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	".default", 

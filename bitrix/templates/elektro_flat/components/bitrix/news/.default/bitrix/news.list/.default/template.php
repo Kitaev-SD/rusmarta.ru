@@ -2,8 +2,30 @@
 
 $this->setFrameMode(true);
 
-if(count($arResult["ITEMS"]) < 1)
-	return;?>
+if(count($arResult["ITEMS"]) < 1):
+	return;
+endif;
+
+if(!empty($_REQUEST["PAGEN_1"]) && $_REQUEST["PAGEN_1"] > 1):
+	global $page;
+	$page = [];
+
+	$requestArr = str_split($_REQUEST["PAGEN_1"]);
+	foreach ($requestArr as $value) {
+		if (is_numeric($value)) {
+			array_push($page, $value);
+		} else {
+			break;
+		}
+	}
+
+	$page = implode($page);
+
+	$APPLICATION->SetPageProperty("title", $APPLICATION->GetProperty('title') . " Ч cтраница " . $page);
+	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . ". Cтраница " . $page);
+	$APPLICATION->AddHeadString('<link rel="canonical" href="https://'.SITE_SERVER_NAME.str_replace(" ", "",$APPLICATION->GetCurPage()).'">');
+endif;
+?>
 
 <div class="news-list">
 	<?foreach($arResult["ITEMS"] as $arItem):?>
