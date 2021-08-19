@@ -1,14 +1,14 @@
 if (window.edost && (!edost.office || edost.office.temp)) {
 
 var edost_office = function(inside) {
-	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C
+	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C, A = edost.A, I = edost.I, P = edost.P, W = edost.W, N = edost.N
 	var main_function = 'edost.office' + (inside ? '2' : '');
 	var main_id = 'edost_office' + (inside ? '_inside' : '_window'), map_id = main_id + '_map', head_id = main_id + '_head'
 	var geo = false, format, param_profile, onkeydown_backup = 'free', scroll_backup = false, onclose = '', map_loading = false, api21 = false, browser_width = 0, browser_height = 0, post_count = 0, post_full = false
 	var address_data = [], address_draw = false, address_count = [0, 0, 0], address_draw_html = false, address_limit = true, address_search = [], address_search_now = -1, address_now = -1, address_width = 0, address_height = 0, address_balloon = false, address_scroll_reset = false
 	var search_value = '', search_value_code = '', search_values = [], search_value_original = '', search_value_min = 5, metro_near_disable = false, metro_near = false, metro_far = false, distance_near_max = 550, ico_path = '', balloon_draw, resize_update = 0, resize_count = 0, cod_info = false
 	var param_start, onclose_set_office_start, update_map = false, office_active = 'all', address_filter = false, address_filter_gps = false, address_filter_value = '', address_filter_mode = '', metro_key = -1, point_active_geo = false, point_active = false
-	var resize_start = false, search_start = false, local = false
+	var resize_start = false, search_start = false, local = false, preview = false, catalogdelivery = false, unsupported = false
 	var balloon_width = 0, balloon_map_active = false, show_price = true, show_price_address = true, address_get_data = [], city = '', yandex_api_key = '', balloon_main = false, near_hide = false, mobile_jump = false
 	var main_head = 'Выбор %name% <span style="display: inline-block;">и тарифа доставки</span>';
 	var delimiter_address = '<div class="edost_office_address_delimiter"></div>'
@@ -19,7 +19,7 @@ var edost_office = function(inside) {
 	var ignore = ['б-р','пр-кт','мк-рн','микрорайон','у','ул','улица','туп','тупик','ал','пр','пр-зд','просека','автодорога','пл','массив','кв-л','квартал','тракт','ряды','д','просп','проспект','ш','шоссе','бульвар']
 	var metro_data = [['Москва', ['Новокосино',55.7451,37.8641,0],['Новогиреево',55.7522,37.8146,0],['Перово',55.751,37.7842,0],['Шоссе Энтузиастов',55.7581,37.7517,0],['Авиамоторная',55.7519,37.7174,0],['Площадь Ильича',55.7471,37.6807,0],['Марксистская',55.7407,37.656,0],['Третьяковская',55.7411,37.6261,0],['Петровский парк',55.7923,37.5595,0],['ЦСКА',55.7864,37.535,0],['Хорошевская',55.7764,37.5198,0],['Шелепиха',55.7572,37.5257,0],['Деловой центр',55.7491,37.5395,0],['Парк Победы',55.7365,37.5144,0],['Минская',55.7232,37.5038,0],['Ломоносовский проспект',55.7055,37.5225,0],['Раменки',55.6961,37.505,0],['Мичуринский проспект',55.6888,37.485,0],['Озерная',55.6698,37.4495,0],['Говорово ',55.6588,37.4174,0],['Солнцево',55.649,37.3911,0],['Боровское шоссе',55.647,37.3701,0],['Новопеределкино',55.6385,37.3544,0],['Рассказовка',55.6324,37.3328,0],['Ховрино',55.8777,37.4877,1],['Беломорская',55.8651,37.4764,1],['Речной вокзал',55.8542,37.4767,1],['Водный стадион',55.839,37.4875,1],['Войковская',55.8189,37.4978,1],['Сокол',55.8056,37.5152,1],['Аэропорт',55.8004,37.5305,1],['Динамо',55.7897,37.5582,1],['Белорусская',55.7774,37.5821,1],['Маяковская',55.7698,37.5962,1],['Тверская',55.7653,37.6039,1],['Театральная',55.7588,37.6177,1],['Новокузнецкая',55.7424,37.6293,1],['Павелецкая',55.7297,37.6387,1],['Автозаводская',55.7066,37.657,1],['Технопарк',55.695,37.6642,1],['Коломенская',55.6774,37.6637,1],['Каширская',55.6557,37.6497,1],['Кантемировская',55.6361,37.6562,1],['Царицыно',55.621,37.6696,1],['Орехово',55.6127,37.6952,1],['Домодедовская',55.6101,37.7171,1],['Красногвардейская',55.6141,37.7427,1],['Алма-Атинская',55.6335,37.7657,1],['Медведково',55.8881,37.6616,2],['Бабушкинская',55.8706,37.6643,2],['Свиблово',55.8556,37.6534,2],['Ботанический сад',55.8446,37.6378,2],['ВДНХ',55.8196,37.6408,2],['Алексеевская',55.8078,37.6387,2],['Рижская',55.7925,37.6361,2],['Проспект Мира',55.7818,37.6332,2],['Сухаревская',55.7723,37.6329,2],['Тургеневская',55.7654,37.6367,2],['Китай-город',55.7565,37.6313,2],['Третьяковская',55.7407,37.6256,2],['Октябрьская',55.7312,37.6129,2],['Шаболовская',55.7188,37.6079,2],['Ленинский проспект',55.7068,37.585,2],['Академическая',55.6871,37.5723,2],['Профсоюзная',55.6777,37.5626,2],['Новые Черемушки',55.6701,37.5545,2],['Калужская',55.6567,37.5401,2],['Беляево',55.6424,37.5261,2],['Коньково',55.6319,37.5192,2],['Теплый Стан',55.6187,37.5059,2],['Ясенево',55.6062,37.5334,2],['Новоясеневская',55.6019,37.553,2],['Бульвар Рокоссовского',55.8149,37.7322,3],['Черкизовская',55.8028,37.7449,3],['Преображенская площадь',55.7963,37.7136,3],['Сокольники',55.7893,37.6799,3],['Красносельская',55.78,37.6661,3],['Комсомольская',55.7741,37.6546,3],['Красные ворота',55.7683,37.6478,3],['Чистые пруды',55.765,37.6383,3],['Лубянка',55.7599,37.6253,3],['Охотный ряд',55.7572,37.6151,3],['Библиотека им.Ленина',55.7521,37.6104,3],['Кропоткинская',55.7453,37.6042,3],['Парк культуры',55.7362,37.595,3],['Фрунзенская',55.7275,37.5802,3],['Спортивная',55.7224,37.562,3],['Воробьевы горы',55.7092,37.5573,3],['Университет',55.6933,37.5345,3],['Проспект Вернадского',55.6765,37.5046,3],['Юго-Западная',55.6631,37.4829,3],['Тропарево',55.6459,37.4725,3],['Румянцево',55.633,37.4419,3],['Саларьево',55.6227,37.424,3],['Филатов Луг',55.601,37.4082,3],['Прокшино',55.5864,37.4335,3],['Ольховая',55.5692,37.4588,3],['Коммунарка',55.5599,37.4691,3],['Щелковская',55.81,37.7983,4],['Первомайская',55.7944,37.7994,4],['Измайловская',55.7877,37.7799,4],['Партизанская',55.7884,37.7488,4],['Семеновская',55.7831,37.7193,4],['Электрозаводская',55.7821,37.7053,4],['Бауманская',55.7724,37.679,4],['Площадь Революции',55.7567,37.6224,4],['Курская',55.7586,37.659,4],['Арбатская',55.7523,37.6035,4],['Смоленская',55.7477,37.5838,4],['Киевская',55.7431,37.5641,4],['Парк Победы',55.7357,37.5169,4],['Славянский бульвар',55.7295,37.471,4],['Кунцевская',55.7306,37.4451,4],['Молодежная',55.7414,37.4156,4],['Крылатское',55.7568,37.4081,4],['Строгино',55.8038,37.4024,4],['Мякинино',55.8233,37.3852,4],['Волоколамская',55.8352,37.3825,4],['Митино',55.8461,37.3612,4],['Пятницкое шоссе',55.8536,37.3531,4],['Кунцевская',55.7308,37.4468,5],['Пионерская',55.736,37.4667,5],['Филевский парк',55.7397,37.4839,5],['Багратионовская',55.7435,37.497,5],['Фили',55.7468,37.514,5],['Кутузовская',55.7405,37.5341,5],['Студенческая',55.7388,37.5484,5],['Киевская',55.7432,37.5654,5],['Смоленская',55.7491,37.5822,5],['Арбатская',55.7521,37.6016,5],['Александровский сад',55.7523,37.6088,5],['Выставочная',55.7502,37.5426,5],['Международная',55.7483,37.5333,5],['Алтуфьево',55.899,37.5865,6],['Бибирево',55.8839,37.603,6],['Отрадное',55.8643,37.6051,6],['Владыкино',55.8482,37.5905,6],['Петровско-Разумовская',55.8366,37.5755,6],['Тимирязевская',55.8187,37.5745,6],['Дмитровская',55.8081,37.5817,6],['Савеловская',55.7941,37.5872,6],['Менделеевская',55.782,37.5991,6],['Цветной бульвар',55.7717,37.6205,6],['Чеховская',55.7657,37.6085,6],['Боровицкая',55.7504,37.6093,6],['Полянка',55.7368,37.6186,6],['Серпуховская',55.7265,37.6248,6],['Тульская',55.7096,37.6226,6],['Нагатинская',55.6821,37.6209,6],['Нагорная',55.673,37.6104,6],['Нахимовский проспект',55.6624,37.6053,6],['Севастопольская',55.6515,37.5981,6],['Чертановская',55.6405,37.6061,6],['Южная',55.6224,37.609,6],['Пражская',55.611,37.6024,6],['Улица Академика Янгеля',55.5968,37.6015,6],['Аннино',55.5835,37.597,6],['Бульвар Дмитрия Донского',55.5682,37.5769,6],['Планерная',55.8597,37.4368,7],['Сходненская',55.8493,37.4408,7],['Тушинская',55.8255,37.437,7],['Спартак',55.8182,37.4352,7],['Щукинская',55.8094,37.4632,7],['Октябрьское поле',55.7936,37.4933,7],['Полежаевская',55.7772,37.5179,7],['Беговая',55.7735,37.5455,7],['Улица 1905 года',55.7639,37.5623,7],['Баррикадная',55.7608,37.5812,7],['Пушкинская',55.7656,37.6044,7],['Кузнецкий мост',55.7615,37.6244,7],['Китай-город',55.7544,37.6339,7],['Таганская',55.7395,37.6536,7],['Пролетарская',55.7315,37.6669,7],['Волгоградский проспект',55.7255,37.6852,7],['Текстильщики',55.7092,37.7321,7],['Кузьминки',55.7055,37.7633,7],['Рязанский проспект',55.7161,37.7927,7],['Выхино',55.716,37.8168,7],['Лермонтовский проспект',55.702,37.851,7],['Жулебино',55.6847,37.8558,7],['Котельники',55.6743,37.8582,7],['Новослободская',55.7796,37.6013,8],['Проспект Мира',55.7796,37.6336,8],['Комсомольская',55.7757,37.6548,8],['Курская',55.7586,37.6611,8],['Таганская',55.7424,37.6533,8],['Павелецкая',55.7314,37.6363,8],['Добрынинская',55.729,37.6225,8],['Октябрьская',55.7293,37.611,8],['Парк культуры',55.7352,37.5931,8],['Киевская',55.7436,37.5674,8],['Краснопресненская',55.7604,37.5771,8],['Белорусская',55.7752,37.5823,8],['Селигерская',55.8648,37.5501,9],['Верхние Лихоборы',55.8557,37.5628,9],['Окружная',55.8489,37.5711,9],['Петровско-Разумовская',55.8367,37.5756,9],['Фонвизинская',55.8228,37.5881,9],['Бутырская ',55.8133,37.6028,9],['Марьина Роща',55.7937,37.6162,9],['Достоевская',55.7817,37.6139,9],['Трубная',55.7677,37.6219,9],['Сретенский бульвар',55.7661,37.6357,9],['Чкаловская',55.756,37.6593,9],['Римская',55.747,37.68,9],['Крестьянская застава',55.7323,37.6653,9],['Дубровка',55.7181,37.6763,9],['Кожуховская',55.7062,37.6854,9],['Печатники',55.6929,37.7283,9],['Волжская',55.6904,37.7543,9],['Люблино',55.6766,37.7616,9],['Братиславская',55.6588,37.7484,9],['Марьино',55.6492,37.7438,9],['Борисово',55.6325,37.7433,9],['Шипиловская',55.6217,37.7436,9],['Зябликово',55.6119,37.7453,9],['Каширская',55.6543,37.6477,10],['Варшавская',55.6533,37.6195,10],['Каховская',55.6529,37.5966,10],['Бунинская аллея',55.538,37.5159,11],['Улица Горчакова',55.5423,37.5321,11],['Бульвар Адмирала Ушакова',55.5452,37.5423,11],['Улица Скобелевская',55.5481,37.5527,11],['Улица Старокачаловская',55.5692,37.5761,11],['Лесопарковая',55.5817,37.5778,11],['Битцевский Парк',55.6001,37.5561,11],['Окружная',55.8489,37.5711,12],['Владыкино',55.8472,37.5919,12],['Ботанический сад',55.8456,37.6403,12],['Ростокино',55.8394,37.6678,12],['Белокаменная',55.83,37.7006,12],['Бульвар Рокоссовского',55.8172,37.7369,12],['Локомотив',55.8032,37.7457,12],['Измайлово',55.7886,37.7428,12],['Соколиная Гора',55.77,37.7453,12],['Шоссе Энтузиастов',55.7586,37.7485,12],['Андроновка',55.7411,37.7344,12],['Нижегородская',55.7322,37.7283,12],['Новохохловская',55.7239,37.7161,12],['Угрешская',55.7183,37.6978,12],['Дубровка',55.7127,37.6778,12],['Автозаводская',55.7063,37.6631,12],['ЗИЛ',55.6983,37.6483,12],['Верхние Котлы',55.69,37.6189,12],['Крымская',55.69,37.605,12],['Площадь Гагарина',55.7069,37.5858,12],['Лужники',55.7203,37.5631,12],['Кутузовская',55.7408,37.5333,12],['Деловой центр',55.7472,37.5322,12],['Шелепиха',55.7575,37.5256,12],['Хорошево',55.7772,37.5072,12],['Зорге',55.7878,37.5044,12],['Панфиловская',55.7992,37.4989,12],['Стрешнево',55.8136,37.4869,12],['Балтийская',55.8258,37.4961,12],['Коптево',55.8396,37.52,12],['Лихоборы',55.8472,37.5514,12],['Тимирязевская',55.819,37.5789,13],['Улица Милашенкова',55.8219,37.5912,13],['Телецентр',55.8218,37.609,13],['Улица Академика Королева',55.8218,37.6272,13],['Выставочный центр',55.8241,37.6385,13],['Улица Сергея Эйзенштейна',55.8293,37.645,13],['Петровский парк',55.7923,37.5595,14],['ЦСКА',55.7864,37.535,14],['Хорошевская',55.7764,37.5198,14],['Шелепиха',55.7572,37.5257,14],['Деловой центр',55.7491,37.5395,14],['Лефортово',55.76458,37.70616,15],['Стахановская',55.72729,37.75257,15],['Окская',55.71876,37.78145,15],['Юго-Восточная',55.70526,37.81795,15],['Косино',55.7033,37.8511,15],['Улица Дмитриевского',55.71,37.879,15],['Лухмановская',55.7083,37.9004,15],['Некрасовка',55.7029,37.9264,15]],['Санкт-Петербург', ['Девяткино',60.0502,30.443,16],['Гражданский проспект',60.035,30.4182,16],['Академическая',60.0128,30.396,16],['Политехническая',60.0089,30.3709,16],['Площадь Мужества',59.9998,30.3662,16],['Лесная',59.9849,30.3443,16],['Выборгская',59.9709,30.3474,16],['Площадь Ленина',59.9556,30.3561,16],['Чернышевская',59.9445,30.3599,16],['Площадь Восстания',59.9303,30.3611,16],['Владимирская',59.9276,30.3479,16],['Пушкинская',59.9207,30.3296,16],['Технологический институт',59.9165,30.3185,16],['Балтийская',59.9072,30.2996,16],['Нарвская',59.9012,30.2749,16],['Кировский завод',59.8797,30.2619,16],['Автово',59.8673,30.2613,16],['Ленинский проспект',59.8512,30.2683,16],['Проспект Ветеранов',59.8421,30.2506,16],['Парнас',60.067,30.3338,17],['Проспект Просвещения',60.0515,30.3325,17],['Озерки',60.0371,30.3215,17],['Удельная',60.0167,30.3156,17],['Пионерская',60.0025,30.2968,17],['Черная речка',59.9855,30.3008,17],['Петроградская',59.9664,30.3113,17],['Горьковская',59.9561,30.3189,17],['Невский проспект',59.9354,30.3271,17],['Сенная площадь',59.9271,30.3203,17],['Технологический институт 2',59.9165,30.3185,17],['Фрунзенская',59.9063,30.3175,17],['Московские ворота',59.8918,30.3179,17],['Электросила',59.8792,30.3187,17],['Парк Победы',59.8663,30.3218,17],['Московская',59.8489,30.3215,17],['Звездная',59.8332,30.3494,17],['Купчино',59.8298,30.3757,17],['Беговая',59.9872,30.2025,18],['Новокрестовская',59.9716,30.2117,18],['Приморская',59.9485,30.2345,18],['Василеостровская',59.9426,30.2783,18],['Гостиный двор',59.9339,30.3334,18],['Маяковская',59.9314,30.3546,18],['Площадь Александра Невского 1',59.9244,30.385,18],['Елизаровская',59.8967,30.4237,18],['Ломоносовская',59.8773,30.4417,18],['Пролетарская',59.8652,30.4703,18],['Обухово',59.8487,30.4577,18],['Рыбацкое',59.831,30.5013,18],['Спасская',59.9271,30.3203,19],['Достоевская',59.9282,30.346,19],['Лиговский проспект',59.9208,30.3551,19],['Площадь Александра Невского 2',59.9236,30.3834,19],['Новочеркасская',59.9291,30.4119,19],['Ладожская',59.9324,30.4393,19],['Проспект Большевиков',59.9198,30.4668,19],['Улица Дыбенко',59.9074,30.4833,19],['Комендантский проспект',60.0086,30.2587,20],['Старая Деревня',59.9894,30.2552,20],['Крестовский остров',59.9718,30.2594,20],['Чкаловская',59.961,30.292,20],['Спортивная',59.952,30.2913,20],['Адмиралтейская',59.9359,30.3152,20],['Садовая',59.9267,30.3178,20],['Звенигородская',59.9207,30.3296,20],['Обводный Канал',59.9147,30.3482,20],['Волковская',59.896,30.3575,20],['Бухарестская',59.8838,30.3689,20],['Международная',59.8702,30.3793,20],['Проспект Славы',59.8565,30.395,20],['Дунайская',59.8399, 30.411,20],['Шушары',59.82,30.4328,20]],['Минск', ['Уручье',53.9453,27.6878,21],['Борисовский тракт',53.9385,27.6659,21],['Восток',53.9345,27.6515,21],['Московская',53.928,27.6278,21],['Парк Челюскинцев',53.9242,27.6136,21],['Академия наук',53.9219,27.5991,21],['Площадь Якуба Коласа',53.9154,27.5833,21],['Площадь Победы',53.9086,27.5751,21],['Октябрьская',53.9016,27.5611,21],['Площадь Ленина',53.8939,27.548,21],['Институт Культуры',53.8859,27.5389,21],['Грушевка',53.8867,27.5148,21],['Михалово',53.8767,27.4969,21],['Петровщина',53.8646,27.4858,21],['Малиновка',53.8497,27.4747,21],['Каменная Горка',53.9068,27.4376,22],['Кунцевщина',53.9062,27.4539,22],['Спортивная',53.9085,27.4808,22],['Пушкинская',53.9095,27.4955,22],['Молодежная',53.9065,27.5213,22],['Фрунзенская',53.9053,27.5393,22],['Немига',53.9056,27.5542,22],['Купаловская',53.9014,27.5612,22],['Первомайская',53.8938,27.5702,22],['Пролетарская',53.8897,27.5855,22],['Тракторный завод',53.89,27.6144,22],['Партизанская',53.8758,27.629,22],['Автозаводская',53.8689,27.6488,22],['Могилевская',53.8619,27.6744,22]],['Казань', ['Авиастроительная ',55.8289,49.0814,23],['Северный вокзал ',55.8415,49.0818,23],['Яшьлек (Юность)',55.8278,49.0829,23],['Козья слобода',55.8176,49.0976,23],['Кремлевская',55.7952,49.1054,23],['Площадь Тукая',55.7872,49.1221,23],['Суконная слобода',55.7771,49.1423,23],['Аметьево',55.7653,49.1651,23],['Горки',55.7608,49.1897,23],['Проспект Победы',55.7501,49.2077,23],['Дубравная ',55.7425,49.2197,23]],['Екатеринбург', ['Проспект Космонавтов',56.9004,60.6139,24],['Уралмаш',56.8877,60.6142,24],['Машиностроителей',56.8785,60.6122,24],['Уральская',56.8581,60.6008,24],['Динамо',56.8478,60.5994,24],['Площадь 1905 года',56.838,60.5973,24],['Геологическая',56.8267,60.6038,24],['Бажовская',56.838,60.5973,24],['Чкаловская',56.8085,60.6107,24],['Ботаническая',56.7975,60.6334,24]],['Нижний Новгород', ['Горьковская',56.3139,43.9948,25],['Московская',56.3211,43.9458,25],['Чкаловская',56.3106,43.9369,25],['Ленинская',56.2978,43.9373,25],['Заречная',56.2851,43.9275,25],['Двигатель Революции',56.2771,43.922,25],['Пролетарская',56.2669,43.9141,25],['Автозаводская',56.2572,43.9024,25],['Комсомольская',56.2527,43.8899,25],['Кировская',56.2474,43.8767,25],['Парк Культуры',56.242,43.8582,25],['Стрелка ',56.3343,43.9597,26],['Московская 2',56.3211,43.9458,26],['Канавинская',56.3203,43.9274,26],['Бурнаковская',56.3257,43.9119,26],['Буревестник',56.3338,43.8928,26]],['Алматы', ['Райымбек батыра',43.2712,76.9448,27],['Жибек Жолы',43.2602,76.9461,27],['Алмалы',43.2513,76.9455,27],['Абая',43.2425,76.9496,27],['Байконур',43.2404,76.9277,27],['Драмтеатр имени Ауэзова',43.2404,76.9175,27],['Алатау',43.239,76.8976,27],['Сайран',43.2362,76.8764,27],['Москва',43.23,76.867,27]],['Новосибирск', ['Заельцовская',55.0593,82.9126,28],['Гагаринская',55.0511,82.9148,28],['Красный проспект',55.041,82.9174,28],['Площадь Ленина',55.0299,82.9207,28],['Октябрьская',55.0188,82.939,28],['Речной вокзал',55.0087,82.9383,28],['Студенческая',54.9891,82.9066,28],['площадь Карла Маркса',54.9829,82.8931,28],['Площадь Гарина-Михайловского',55.0359,82.8978,29],['Сибирская',55.0422,82.9192,29],['Маршала Покрышкина',55.0436,82.9356,29],['Березовая роща',55.0432,82.9529,29],['Золотая нива',55.0379,82.976,29]],['Самара', ['Алабинская',53.2097,50.1344,30],['Российская',53.2114,50.1502,30],['Московская',53.2038,50.1598,30],['Гагаринская',53.2004,50.1766,30],['Спортивная',53.2011,50.1993,30],['Советская',53.2017,50.2207,30],['Победа',53.2073,50.2364,30],['Безымянка',53.213,50.2489,30],['Кировская',53.2114,50.2698,30],['Юнгородок',53.2127,50.283,30]]]
 	var metro_color = ['FFCD1C','4FB04F','F07E24','E42313','0072BA','1EBCEF','ADACAC','943E90','915133','BED12C','88CDCF','BAC8E8','F9BCD1','006DA8','88CDCF','CC0066','D6083B','0078C9','009A49','EA7125','702785','0521C3','BF0808','CD0505','0A6F20','D80707','0071BC','CD0505','CD0505','0A6F20','CD0505']
-	var postamat_mode = ['postamat', 'postamat_qiwi']
+	var postamat_mode = ['postamat', 'postamat_qiwi', 'postamat_5post', 'postamat_cdek', 'postamat_halva', 'postamat_mypost']
 
 	this.map = false
 	this.map_save = false
@@ -40,7 +40,6 @@ var edost_office = function(inside) {
 	this.landscape = false
 	this.head_tariff = false
 	this.address_param_show = true
-	this.detailed = false
 	this.office_mode = ['shop', 'office', 'terminal', 'postmap', 'all', 'profile']
 
 	// расстояние между gps координатами
@@ -81,8 +80,9 @@ var edost_office = function(inside) {
 
 	// иконка
 	this.ico = function(company_id, mode, map) {
+
 		var s = '';
-        var postamat = (edost.in_array(mode, postamat_mode) ? true : false);
+        var postamat = (A(mode, postamat_mode) ? true : false);
 
 		if (map) s = edost.protocol + 'edostimg.ru/img/companymap/';
 		else if (postamat) s = edost.protocol + 'edostimg.ru/img/companyico/';
@@ -91,24 +91,29 @@ var edost_office = function(inside) {
 		if (company_id != 0 && postamat) s += mode;
 		else {
 			s += (map && company_id && company_id.substr(0, 1) == 's' ? 0 : company_id);
-			if ( map && mode == 'post' && company_id != 0) s += '-2';
+			if (map && mode == 'post' && company_id != 0) s += '-2';
 		}
 
 		return s + '.gif';
 	}
 
 	// метка для карты
-	this.placemark = function(gps, v, p, code, key) {
+	this.placemark = function(gps, v, p, code, key, company_id) {
 		var ico;
-		if (p) ico = {iconImageHref: self.ico(p.repeat_company === 'main' ? 0 : v.company_id, p.mode, true), iconImageSize: [36, 36], iconImageOffset: [-12, -36]};
+		if (company_id) ico = {iconImageHref: self.ico(company_id, '', true), iconImageSize: [36, 36], iconImageOffset: [-12, -36]};
+		else if (p) ico = {iconImageHref: self.ico(p.repeat_company === 'main' ? 0 : v.company_id, p.mode, true), iconImageSize: [36, 36], iconImageOffset: [-12, -36]};
 		else ico = {iconImageHref: edost.protocol + 'edostimg.ru/img/companymap/' + (format == 'postmap' || v.point.mode == 'post' ? '23-2' : '0') + '.gif', iconImageSize: [36, 36], iconImageOffset: [-12, -36]};
 		if (api21) ico.iconLayout = 'default#image';
 
 		var placemark = new ymaps.Placemark([gps[1], gps[0]], {}, ico);
 
 		var s = '';
-		if (post_full || format !== 'office' && (v.format == 'postmap' || v.point.mode == 'post')) s = '<div class="edost_ico_price edost_ico_zip">' + code + '</div>';
-		else if (show_price) s = '<div class="edost_ico_price' + (v.bold ? ' edost_ico_price_big' : '') + '">' + (v.price_min[1] == 0 ? free_ico : v.price_min[1]) + '</div>';
+		if (!preview)
+			if (post_full || format !== 'office' && (v.format == 'postmap' || v.point.mode == 'post')) s = '<div class="edost_ico_price edost_ico_zip">' + code + '</div>';
+			else if (show_price) {
+				s = (v.price_min[1] === '0' ? free_ico : v.price_min[1]);
+				if (s != '') s = '<div class="edost_ico_price' + (v.bold ? ' edost_ico_price_big' : '') + (p && p.near || v.point && v.point.near ? ' edost_unsupported' : '') + '">' + s + '</div>';
+			}
 		if (s != '') placemark.properties.set('iconContent', s);
 
 		placemark.properties.set('office', key);
@@ -139,35 +144,32 @@ var edost_office = function(inside) {
 		}
 
 		if (edost.window.cod) edost.window.submit();
-		if (id === undefined) {
+		if (!catalogdelivery) edost.window.set('close');
+		if (id === undefined && !catalogdelivery) {
 			if (V('edost_delivery_id') != 'edost:' + profile) submitForm();
 			return;
 		}
-		edost.window.set('close');
 
 		D('edost_office_inside', false);
 		H('edost_office_detailed', '<br>');
 
 		var s = document.getElementsByName('DELIVERY_ID');
-		if (s) for (var i = 0; i < s.length; i++) if (s[i].id == 'ID_DELIVERY_edost_' + mode || s[i].id == 'ID_DELIVERY_edost_' + mode + '_2') {
+		if (s) for (var i = 0; i < s.length; i++) if (A(s[i].id, ['ID_DELIVERY_edost_' + mode, 'ID_DELIVERY_edost_' + mode + '_2'])) {
 			s[i].value = 'edost' + ':' + profile + ':' + id + (cod != '' ? ':' + cod : '');
 			s[i].checked = true;
 			break;
 		}
 
 		var p = self.point(id);
-		if (p && p.city && E('edost_country')) {
-			var a = (p.mode == 'post' ? true : false);
-			edost.location.set('', true, p.city, V('edost_region'), V('edost_country').split('_')[0], a ? false : true, p.city, a ? p.code : false);
-			return;
+		if (p && E('edost_country')) {
+			if (p.city) {
+				edost.location.set_city(p.city, p.mode, p.code);
+				return;
+			}
+			if (p.mode == 'post') edost.location.zip(p.code, true);
 		}
 
-		edost.submit();
-
-//		edost_catalogdelivery.calculate('loading');
-//		BX.ajax.post('<?=$arResult['component_path']?>/edost_catalogdelivery.php', 'set_office=Y&id=' + id + '&profile=' + profile + '&cod=' + cod + '&mode=' + mode, function(r) {
-//			edost_catalogdelivery.calculate();
-//		});
+		if (catalogdelivery) edost.catalogdelivery.submit(id, mode, profile, cod); else edost.submit();
 
 	}
 
@@ -175,13 +177,15 @@ var edost_office = function(inside) {
 	this.set = function(param, onclose_set_office) {
 //		console.log('office.set: ' + param + ' | ' + onclose_set_office);
 
+		catalogdelivery = E('edost_catalogdelivery_param');
+
 		if (param instanceof Array) {
 			local = param;
 			param = 'all';
 		}
 
 		var format_new = '';
-		if (edost.in_array(param, self.office_mode)) format_new = param;
+		if (A(param, self.office_mode)) format_new = param;
 
 		var office_data = E('edost_office_data');
 		if (!office_data) return;
@@ -193,8 +197,7 @@ var edost_office = function(inside) {
 				self.data_string = office_data.value;
 				office_data.value = 'parsed';
 			}
-			var e = E('edost_office_data_parsed');
-			if (e) e.value = 'Y';
+			V('edost_office_data_parsed', 'Y');
 			return;
 		}
 
@@ -213,7 +216,7 @@ var edost_office = function(inside) {
 			resize_count = edost.resize.count;
 		}
 
-		if (edost.template_2019 && edost.in_array(edost.template_compact, ['Y', 'S', 'S2']) && edost.in_array(param, ['office', 'postmap'])) {
+		if (edost.template_2019 && A(edost.template_compact, ['Y', 'S', 'S2']) && A(param, ['office', 'postmap'])) {
 			if (edost.window.cod) {
 				// окно открыто из оплат с фильтром по наложенному платежу
 				if (self.cod_filter == 'close_0') param = 'cod_update';
@@ -242,7 +245,7 @@ var edost_office = function(inside) {
 		}
 
 		var office_start = false;
-		if (edost.in_array(param, self.office_mode) || param.substr(0, 7) == 'profile') {
+		if (A(param, self.office_mode) || param.substr(0, 7) == 'profile') {
 			office_start = true;
 			onclose_set_office_start = onclose_set_office;
 		}
@@ -265,7 +268,7 @@ var edost_office = function(inside) {
 		if (param == 'inside') param = format_new = 'all';
 		if (onclose_set_office == true) onclose = param;
 
-		if (edost.in_array(param, self.office_mode)) {
+		if (A(param, self.office_mode)) {
 			if (param_profile) format = 'profile_' + param_profile;
 			param = 'show';
 		}
@@ -298,7 +301,8 @@ var edost_office = function(inside) {
 
 		// интеграция окна
 		if (inside) {
-			var e = E(main_id);
+			var e = E('window_' + main_id);
+			if (!e) e = E(main_id);
 			if (!e) return;
 			var e2 = E('edost_office_inside_head');
 			if (!e2) H(e, '<div id="edost_office_inside_head" class="edost_office_inside_head"></div><div id="edost_office_inside_map"></div>');
@@ -367,6 +371,7 @@ var edost_office = function(inside) {
 			var tariff = [];
 			var point = v.point;
 			ico_path = v.ico_path + (v.ico_path.substr(-1) != '/' ? '/' : '');
+			preview = (v.preview ? true : false);
 			city = v.city;
 			region = v.region;
 			yandex_api_key = (v.yandex_api_key ? v.yandex_api_key : '');
@@ -383,6 +388,7 @@ var edost_office = function(inside) {
 			metro_near_disable = false;
 			if (v.template_ico) edost.template_ico = v.template_ico;
 			if (edost.template_priority == 'P') self.cod = false;
+			unsupported = (v.unsupported ? true : false);
 
 			metro_key = -1;
 			if (city != '') for (var k = 0; k < metro_data.length; k++) if (metro_data[k][0] == city) {
@@ -418,13 +424,14 @@ var edost_office = function(inside) {
 					if (a) tariff.push(p);
 				}
 			}
-//			console.log(tariff);
 
 			// распаковка офисов
             var s = {};
 			for (var i = 0; i < point.length; i++) {
 				var p = [];
 				var company_id = point[i].company_id.split('_')[0];
+				point[i].company_id2 = company_id;
+				var shop = (company_id.substr(0, 1) == 's' ? true : false);
 				for (var i2 = 0; i2 < point[i].data.length; i2++) {
 					var s2 = (s[ point[i].data[i2] ] ? s[ point[i].data[i2] ] : point[i].data[i2]);
 					var ar = s2.split('|');
@@ -436,7 +443,8 @@ var edost_office = function(inside) {
 						"detailed": (ar[8] != undefined ? ar[8] : false),
 						"code": (ar[9] != undefined ? ar[9] : ''),
 						"options": (ar[10] != undefined ? ar[10] : 0),
-						"city": (ar[11] != undefined ? ar[11] : '')
+						"city": (ar[11] != undefined ? ar[11] : ''),
+						"type2": (ar[12] != undefined ? ar[12] : '')
 					};
 
 					if (local) {
@@ -445,7 +453,7 @@ var edost_office = function(inside) {
 						v.type = 1;
 					}
 
-					if (local && !edost.in_array(v.id, local)) continue;
+					if (local && !A(v.id, local)) continue;
 
 					s[v.id] = s2;
 
@@ -454,20 +462,22 @@ var edost_office = function(inside) {
 						v.mode = 'post';
 					}
 					else {
-						if (edost.in_array(v.type, [5, 6, 11, 12])) v.mode = 'postamat';
-						else if (edost.in_array(v.type, [10])) v.mode = 'postamat_qiwi';
+						if (v.type == 10) v.mode = 'postamat_qiwi';
+						else if (v.type == 11) v.mode = 'postamat_halva';
+						else if (v.type == 14) v.mode = 'postamat_5post';
+						else if (v.type == 15) v.mode = 'postamat_mypost';
+						else if (company_id == 5 && v.type == 5) v.mode = 'postamat_cdek';
+						else if (A(v.type, [5, 6, 12])) v.mode = 'postamat';
 					}
 
 					if (v.code == '') v.code = v.id;
 					v.code2 = v.code.toLowerCase();
-
-					self.detailed = (ar[10] !== undefined ? true : false);
+					v.near = (v.city && !shop || (v.options & 512) && unsupported);
 
 					p.push(v);
 				}
 				point[i].data = p;
 			}
-//			console.log(point);
 
 			// разделение тарифов по группам (по службам доставки и эксклюзивным ценам)
 			var office = [];
@@ -481,16 +491,18 @@ var edost_office = function(inside) {
 				}
 
 				if (u == -1) {
-					var r = {"company": v.company, "company_id": v.company_id, "office_key": v.office_key, "ico": (v.ico != '' ? v.ico : v.tariff_id), "to_office": v.to_office, "format": v.format, "format_original": v.format_original, "point": [], "button": "", "price_count": 0, "button2_info": "", "button_cod": "", "cod": true, "head_tariff": "", "geo": false, "price_length": 0};
+					var r = {"company": v.company, "company_id": v.company_id, "office_key": v.office_key, "ico": (v.ico != '' ? v.ico : v.tariff_id), "to_office": v.to_office, "format": v.format, "format_original": v.format_original, "point": [], "button": "", "price_count": 0, "button2_info": "", "button_cod": "", "cod": true, "head_tariff": "", "geo": false, "price_length": 0, "name_active": true, "tariff_id": v.tariff_id};
 
 					var s = v.company;
 					if (v.format_original == 'shop') s = 'Магазин';
 					else if (v.company_id.substr(0, 1) == 's' && v.company.substr(0, 9) == 'Самовывоз') s = '';
-					r.header = s;
+					r.header = edost.trim(s.split(',')[0]);
 
 					u = office.length;
 					office[u] = r;
 				}
+
+				if (edost.template_ico == 'C' && v.tariff_id != office[u].tariff_id && v.name == '') office[u].name_active = false;
 
 				if (v.codplus == '') office[u].cod = false;
 				else if (office[u].codplus_max == undefined || v.codplus*1 > office[u].codplus_max[0]*1) office[u].codplus_max = [v.codplus, v.codplus_formatted];
@@ -512,8 +524,8 @@ var edost_office = function(inside) {
 					if (v.pricecod_original_formatted) price_original = v.pricecod_original_formatted;
 				}
 
-				price_formatted_span = (price_formatted == 0 ? '<span class="edost_price_free">' + free_ico + '</span>' : '<span class="edost_price">' + price_formatted + '</span>');
-				office[u].price_length = (price_formatted == 0 ? free_ico.length : price_formatted.length);
+				price_formatted_span = (price_formatted === '0' ? '<span class="edost_price_free">' + free_ico + '</span>' : '<span class="edost_price">' + price_formatted + '</span>');
+				office[u].price_length = (price_formatted === '0' ? free_ico.length : price_formatted.length);
 
 				if (v.pricecash !== '' && (office[u].pricecash_max == undefined || v.pricecash*1 > office[u].pricecash_max*1)) office[u].pricecash_max = v.pricecash;
 
@@ -530,7 +542,11 @@ var edost_office = function(inside) {
 				var insurance = (!edost.template_no_insurance && v.insurance == 1 && !self.cod && v.cod_tariff != 'Y' ? true : false);
 				if (insurance) name = edost.trim(name.replace('со страховкой', ''), true);
 
-				if (v.day != '') p += (!price_original ? '<br>' : '') + '<span class="edost_day">' + v.day + '</span>';
+				if (v.day != '') {
+					var s = v.day;
+					if (s.indexOf(' рабочи') > 0) { s = s.split(' '); s = s[0] + ' <span class="edost_day_work">' + s.slice(1).join('<br>') + '</span>'; }
+					p += (!price_original && price_formatted !== '' ? '<br>' : '') + '<span class="edost_day">' + s + '</span>';
+				}
 
 				var s = [];
 				if (v.name != '') s.push('<div class="edost_tariff">' + name + '</div>');
@@ -544,13 +560,13 @@ var edost_office = function(inside) {
 					if (!self.cod) cod += '<div class="edost_payment">возможна оплата за заказ при получении %payment_type%' + (v.codplus != 0 ? '<br><span>+ ' + v.codplus_formatted + '</span>' : '') + '</div>';
 					else {
 						cod += '<div class="edost_payment">при получении заказ можно оплатить %payment_type%</div>';
-						if (v.codplus != 0) cod += '<div class="edost_payment_green">при предоплате заказа <span>' + (v.price_formatted == 0 ? 'доставка <b>бесплатная!</b>' : 'доставка дешевле на ' + v.codplus_formatted) + '</span></div>';
+						if (v.codplus != 0) cod += '<div class="edost_payment_green">при предоплате заказа <span>' + (v.price_formatted === '0' ? 'доставка <b>бесплатная!</b>' : 'доставка дешевле на ' + v.codplus_formatted) + '</span></div>';
 					}
 					cod += '</tr>';
 				}
 
 				var button = '<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
-					+ '<td class="edost_balloon_tariff">%head% <br> ' + s + '</td>'
+					+ '<td class="edost_balloon_tariff">%head% <br> <span style="display: none;">' + v.company + '</span>' + s + '</td>'
 					+ '<td class="edost_balloon_price">' + p + '</td>'
 //					+ '<td class="edost_balloon_get"><div class="edost_button_get" onclick="' + main_function + '.set(\'close\'); ' + c + '"><span>выбрать</span></div></td>'
 					+ '<td class="edost_balloon_get"><div class="edost_button_get" onclick="' + c + '"><span>выбрать</span></div></td>'
@@ -598,12 +614,12 @@ var edost_office = function(inside) {
 								continue;
 							}
 
-							if (n == 0 && point[u].data[u2].type != office[i].to_office) continue;
+							if (n == 0 && point[u].data[u2].type2 != office[i].to_office) continue;
 
 							v.cod = (office[i].copy ? true : office[i].cod);
 							if (v.cod && v.codmax !== '' && office[i].pricecash_max*1 > v.codmax*1) v.cod = false;
 							if (v.cod && ((v.options & 6) == 2)) v.cod = false; // запрет на оплату наличными и невозможна оплата картой (0 - налиные, 4 - наличные и карта, 6 - карта, 2 - нет оплаты при получении)
-							if (n == 1 && office[i].copy && v.cod) continue;
+							if (office[i].copy && v.cod) continue;
 
 							var a = true;
 							if (office[i].cod && !v.cod)
@@ -673,7 +689,7 @@ var edost_office = function(inside) {
 				office.splice(i, 1); i--; n--; // удаление группы без пунктов выдачи
 			}
 
-			show_price = (office.length <= 1 || office.length == 2 && office[0].office_key == office[1].office_key ? false : true);
+			show_price = (office.length <= 1 || office.length == 2 && office[0].office_key == office[1].office_key && office[0].to_office == office[1].to_office ? false : true);
 
             show_price_address = false;
 			for (var i = 1; i < office.length; i++) if (office[i-1].price != office[i].price) show_price_address = true;
@@ -697,7 +713,7 @@ var edost_office = function(inside) {
 				var v = office[i];
 				for (var i2 = 0; i2 < v.point.length; i2++) {
 					var p = v.point[i2];
-					var n = 100000;
+					var n = 1000;
 					var k = Math.round(p.gps[0]*n) + '|' + Math.round(p.gps[1]*n);
 					if (!s[k]) s[k] = [];
 					s[k].push([i, i2]);
@@ -724,14 +740,14 @@ var edost_office = function(inside) {
 				var v = office[i];
 				for (var i2 = 0; i2 < v.point.length; i2++) {
 					var p = v.point[i2];
-					var k = p.address;
+					var k = (p.city ? p.city.split(';')[0] + '<br>' : '') + p.address;
 					if (!s[k]) s[k] = {
 						"point_key": [],
 						"company_id": [],
 						"name": p.name,
 						"name2": p.name.toLowerCase(),
-						"address": (p.city ? p.city + '<br>' : '') + p.address,
-						"address2": p.address.toLowerCase(),
+						"address": k,
+						"address2": k.toLowerCase(),
 						"cod": cod_info && v.cod ? true : false,
 						"gps": p.gps,
 						"metro_near": [],
@@ -876,7 +892,7 @@ var edost_office = function(inside) {
 			self.repeat = repeat;
 		}
 
-		balloon_main = (!local && !inside && !edost.office2.inside && self.data.length == 1 && self.data[0].point.length == 1 && (!self.cod_filter && !self.cod || self.cod_filter) ? true : false);
+		balloon_main = (!local && !preview && !inside && !edost.office2.inside && self.data.length == 1 && self.data[0].point.length == 1 && (!self.cod_filter && !self.cod || self.cod_filter) ? true : false);
 		near_hide = (address_data.length <= 1 ? true : false);
 
 		if (self.map && update_map && !balloon_main) {
@@ -905,9 +921,10 @@ var edost_office = function(inside) {
 
 						// отдельная группа меток для офисов с одинаковыми адресами всех служб доставки
 						var u = p.repeat;
-						if (repeat[u] == undefined) repeat[u] = {"point": p, "price_min": v.price_min, "bold": v.bold, "key": [i, i2]};
+						if (repeat[u] == undefined) repeat[u] = {"point": p, "price_min": v.price_min, "bold": v.bold, "key": [i, i2], "company_id": v.company_id};
 						if (v.bold) repeat[u].bold = v.bold;
 						if (v.price_min[0]*1 < repeat[u].price_min[0]*1) repeat[u].price_min = v.price_min;
+						if (repeat[u].company_id != v.company_id) repeat[u].company_id = false;
 					}
 				}
 
@@ -921,7 +938,7 @@ var edost_office = function(inside) {
 			var point = [];
 			for (var i = 0; i < repeat.length; i++) if (repeat[i] != undefined) {
 				var v = repeat[i];
-				var placemark = self.placemark(v.point.gps, v, false, v.point.code, v.key);
+				var placemark = self.placemark(v.point.gps, v, false, v.point.code, v.key, !v.point.repeat_company ? v.company_id : false);
 				point.push(placemark);
 			}
 			geo.add(point);
@@ -955,15 +972,14 @@ var edost_office = function(inside) {
 		else {
 			// подключение карты
 			var e = E(map_id);
-			if (e) {
-				var s = '<div style="padding: 100px 0 0 0;">' + edost.loading + '</div>';
-				if (inside)
-					if (window.edost_catalogdelivery && edost_catalogdelivery.loading != '') s = edost_catalogdelivery.loading;
-					else if (self.loading_inside != '') s = self.loading_inside;
+			if (!e) return;
+			var s = '<div style="padding: 100px 0 0 0;">' + edost.loading + '</div>';
+//				if (inside)
+//					if (window.edost_catalogdelivery && edost_catalogdelivery.loading != '') s = edost_catalogdelivery.loading; // !!!!!
+//					else if (self.loading_inside != '') s = self.loading_inside;
 
-				e.innerHTML = s;
-				self.add_map();
-			}
+			H(e, s);
+			self.add_map();
 		}
 
 	}
@@ -983,7 +999,8 @@ var edost_office = function(inside) {
 		}
 
 		resize_start = true;
-		var e = E(main_id);
+		var e = E('window_' + main_id);
+		if (!e) e = E(main_id);
 		if (!e || e.style.display == 'none' && !balloon_main) return;
 		resize_start = false;
 
@@ -1238,13 +1255,14 @@ var edost_office = function(inside) {
 
 				var E_hint = E('edost_office_window_search_hint');
 				if (E_hint && browser_width) {
+					E_hint.style.width = 'auto';
 					E_hint.innerHTML = 'введите адрес (' + (format == 'postmap' || post_full ? 'индекс или ' : '') + (metro_key != -1 ? 'метро или ' : '') + 'улицу, дом)';
-					var rect = E_search.getBoundingClientRect();
-					var a = (rect.width < (metro_key != -1 ? 235 : 180) ? true : false);
-					E_hint.style.width = (a ? E_main.offsetWidth + 'px' : '');
-
-					var x = 62;
-					if (self.fullscreen) x = (a ? 10 : Math.round(rect.left + 5));
+					var x = 62, rect = E_search.getBoundingClientRect();
+					if (E_hint.offsetWidth > rect.width) {
+						x = 0;
+						E_hint.style.width = E_head.offsetWidth + 'px';
+					}
+					else if (self.fullscreen) x = Math.round(rect.left + 5);
 					E_hint.style.left = x + 'px';
 				}
 			}
@@ -1262,7 +1280,7 @@ var edost_office = function(inside) {
 	// адреса пунктов выдачи + поиск
 	this.address = function(param, param2, event) {
 
-		if (inside && !edost.in_array(param, ['draw_metro', 'draw_distance'])) return;
+		if (inside && !A(param, ['draw_metro', 'draw_distance'])) return;
 
 		var warning = [];
 
@@ -1400,8 +1418,7 @@ var edost_office = function(inside) {
 			return;
 		}
 		else if (param == 'clear') {
-			var e = E('edost_office_window_search');
-			if (e) e.value = '';
+			V('edost_office_window_search', '');
 			search_value = '';
 			search_value_code = '';
 			search_values = [];
@@ -1466,7 +1483,6 @@ var edost_office = function(inside) {
 
 				var gps = [metro_data[metro_key][s[0]][1], metro_data[metro_key][s[0]][2]];
 				if (param == 'open') {
-
 					var E_near = E('edost_office_metro_near');
 					if (E_near) E_near.checked = false;
 
@@ -1506,11 +1522,14 @@ var edost_office = function(inside) {
 			if (param2[0] == -1) return '';
 			var m = metro_data[metro_key][ param2[0] ];
 			var c = metro_color[m[3]];
+			var n = self.address('draw_distance', [param2[1], 'metro']);
 			var s = '';
-			s += '<div class="edost_metro_main">';
-			s += '<div class="edost_metro" style="border: 1px solid #' + c + ';"><div style="background: #' + c + ';">м.</div> <span>' + m[0] + '</span></div>';
-			if (param2[1] != -1) s += self.address('draw_distance', [param2[1], 'metro']);
-			s += '</div>';
+			if (n != '' || param2[1] == -1) {
+				s += '<div class="edost_metro_main" ' + (param2[1] >= 2000 ? 'style="opacity: 0.5;"' : '') + '>';
+				s += '<div class="edost_metro" style="border: 1px solid #' + c + ';"><div style="background: #' + c + ';">м.</div> <span>' + m[0] + '</span></div>';
+				if (param2[1] != -1) s += n;
+				s += '</div>';
+			}
 			return s;
 		}
 		else if (param == 'draw_distance') {
@@ -1523,8 +1542,8 @@ var edost_office = function(inside) {
 
 			if (distance <= distance_near_max) c = '0A0';
 			else if (distance < 2000) c = '888';
-			else if (distance < 8000) c = 'A00';
-			else c = 'F00';
+			else if (distance < 4000) c = 'A66';
+			else c = 'D99';
 
 			if (distance == 0) {
 				distance = (metro ? 'рядом со станцией' : 'в точке поиска');;
@@ -1535,10 +1554,12 @@ var edost_office = function(inside) {
 				info = '';
 			}
 			else if (distance < 1000) distance += ' м';
-			else if (distance < 5000) distance = Math.round(distance/100)/10 + ' км';
-			else if (distance < 20000) distance = Math.round(distance/1000) + ' км';
-			else if (distance < 50000) distance = Math.round(distance/5000)*5 + ' км';
-			else distance = Math.round(distance/10000)*10 + ' км';
+			else if (distance < 4000) distance = Math.round(distance/100)/10 + ' км';
+			else if (distance < 8000) distance = Math.round(distance/1000) + ' км';
+			else return ''
+//			else if (distance < 20000) distance = Math.round(distance/1000) + ' км';
+//			else if (distance < 50000) distance = Math.round(distance/5000)*5 + ' км';
+//			else distance = Math.round(distance/10000)*10 + ' км';
 
 			if (info != '') info = ' <span>' + info + '</span>';
 
@@ -1561,7 +1582,7 @@ var edost_office = function(inside) {
 			if (edost.mobile) window.setTimeout(main_function + ".resize('mobile_jump_off')", 150);
 			return;
 		}
-		else if (param == 'search_keydown' || param == 'search_keyup') {
+		else if (A(param, ['search_keydown', 'search_keyup'])) {
 			if (event.keyCode == 38 || event.keyCode == 13)
 				if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
 
@@ -1589,7 +1610,7 @@ var edost_office = function(inside) {
 			}
 
 			var e = param2;
-			var value = e.value;
+			var value = V(e);
 			var value_code = edost.trim(e.value, true).toLowerCase();
 			var s1 = '', s2 = '';
 
@@ -1662,8 +1683,8 @@ var edost_office = function(inside) {
 		var E_main = E('edost_office_address_main');
 		var E_head_data = E('edost_office_address_head_data');
 		var E_close2 = E('edost_office_address_close');
-		var E_search = E('edost_office_window_search');
-		var E_hint = E('edost_office_window_search_hint');
+//		var E_search = E('edost_office_window_search');
+//		var E_hint = E('edost_office_window_search_hint');
 		if (!E_head || !E_main || !E_close2) return;
 
 		if (metro_key != -1) {
@@ -1849,7 +1870,7 @@ var edost_office = function(inside) {
 					zip[p.code] = (c ? '<span style="color: #' + c + ';">' + p.code + '</span>' : p.code);
 				}
 				var u = self.ico(v.company_id[i2], p.mode);
-				if (!local && (i2 == 0 || !ico[u])) s += '<img class="edost_ico_company_small" src="' + u + '" border="0">';
+				if (!local && !preview && (i2 == 0 || !ico[u])) s += '<img class="edost_ico_company_small" src="' + u + '" border="0">';
 				ico[u] = true;
 			}
 
@@ -1906,7 +1927,7 @@ var edost_office = function(inside) {
 //		if (address_filter !== false && address_filter_value != '') r_html = '<div class="edost_office_address_filter">точка поиска <span>' + address_filter_value + '</span></div>' + r_html;
 
 
-		if (!local && post_count > 0) hint.push('<div class="edost_office_button edost_office_button_red" style="width: 200px; margin-top: 10px;" onclick="' + main_function + '.save(\'post_manual\');"><span>переключить на ручной ввод индекса <div style="opacity: 0.7;">если почтового отделения нет в списке</div></span></div>');
+		if (!local && !preview && !catalogdelivery && post_count > 0) hint.push('<div class="edost_office_button edost_office_button_red" style="width: 200px; margin-top: 10px;" onclick="' + main_function + '.save(\'post_manual\');"><span>переключить на ручной ввод индекса <div style="opacity: 0.7;">если почтового отделения нет в списке</div></span></div>');
 
 
 		var h = 0;
@@ -2027,7 +2048,7 @@ var edost_office = function(inside) {
 		var e = E(map_id);
 		if (!e) return;
 
-		e.innerHTML = '';
+		H(e, '');
 
 		api21 = (window.ymaps && window.ymaps.control && window.ymaps.control.FullscreenControl ? true : false);
 
@@ -2046,7 +2067,7 @@ var edost_office = function(inside) {
 
 		map_loading = false;
 
-		if (inside) D('edost_office_detailed', true);
+		if (inside) { D('edost_office_detailed', ''); D('window_edost_office_detailed', ''); }
 		else if (D(main_id) == 'none') return;
 
 		self.set('show', '');
@@ -2132,7 +2153,7 @@ var edost_office = function(inside) {
 		var E_data = E('edost_office_balloon_data');
 		if (!E_head || !E_data) return;
 
-		if (local) E_data.style.display = 'none';
+		if (local || preview) D(E_data, false);
 
 		self.balloon_active = true;
 		var top_data = E_data.scrollTop;
@@ -2162,16 +2183,17 @@ var edost_office = function(inside) {
 
 				var head = 'Пункт выдачи', hint = '', ico = '';
 
-				if (edost.template_ico == 'C') ico = '<img class="edost_ico edost_ico_company_normal" src="' + self.ico(v.company_id, p.mode) + '" border="0">';
-				else if (edost.template_ico == 'T') ico = '<img class="edost_ico_normal" src="' + ico_path + v.ico + '.gif" border="0">';
-				else ico = '<img class="edost_ico_95" src="' + v.ico + '" border="0">';
+				if (!local && !preview)
+					if (edost.template_ico == 'C') ico = '<img class="edost_ico edost_ico_company_normal" src="' + self.ico(v.company_id, p.mode) + '" border="0">';
+					else if (edost.template_ico == 'T') ico = '<img class="edost_ico_normal" src="' + ico_path + v.ico + '.gif" border="0">';
+					else ico = '<img class="edost_ico_95" src="' + v.ico + '" border="0">';
 
 				var detailed = '';
-				if (self.detailed && p.detailed != 'N' && (!self.map_active || edost.mobile || !(p.options & 1) && p.mode != 'post')) detailed = '<div class="edost_button_detailed" onclick="' + main_function + '.info(\'%office%\'' + (p.detailed ? ', \'' + p.detailed + '\'' : '') + ')">подробнее...</div>';
+				if (p.detailed != 'N' && (!self.map_active || edost.mobile || !(p.options & 1) && p.mode != 'post')) detailed = '<div class="edost_button_detailed" onclick="' + main_function + '.info(\'%office%\'' + (p.detailed ? ', \'' + p.detailed + '\'' : '') + ')">подробнее...</div>';
 
 				if (v.company_id.substr(0, 1) == 's' && (v.company.substr(0, 9) == 'Самовывоз' || v.format_original == 'shop')) v.company = '';
 
-				if (edost.in_array(p.mode, postamat_mode)) head = 'Постамат';
+				if (A(p.mode, postamat_mode)) head = 'Постамат';
 				else if (p.mode == 'post') head = 'Почтовое отделение <span style="opacity: 0.6;">' + p.code + '</span>';
 				else if (v.format_original == 'shop') head = 'Магазин';
 				else if (p.type == 2) head = 'Терминал ТК';
@@ -2179,16 +2201,17 @@ var edost_office = function(inside) {
 
 				head = '<span class="edost_office_balloon_head">' + head + '</span>' + hint;
 				var head_tariff = ico;
-				if (edost.template_ico == 'C') head_tariff += (v.company.length >= 11 ? '<br>' : '') + ' <span class="edost_office_balloon_tariff">' + v.company + '</span>';
+				if (edost.template_ico == 'C' && v.name_active) head_tariff += (v.company.length >= 11 ? '<br>' : '') + ' <span class="edost_office_balloon_tariff">' + v.company + '</span>';
 
 				var s = [];
 				if (p.cod && (p.options & 6) == 6) s.push(!self.cod ? 'При получении заказ можно оплатить только банковскими картами.' : 'Оплата только банковскими картами!');
 				if (p.options & 256) s.push('Точка выдачи перегружена, срок <span style="display: inline-block;">доставки может быть увеличен.</span>');
+				if (p.near) s.push('<span style="font-size: 11px;">Стоимость доставки ориентировочная. <br> Точная стоимость будет рассчитана после выбора.</span>');
 				for (var i2 = 0; i2 < s.length; i2++) s[i2] = '<div style="padding-top: 5px;">' + s[i2] + '</div>';
 				warning = (s.length > 0 ? '<tr class="edost_balloon_warning"><td colspan="3">' + s.join('') + '</td></tr>' : '');
 
 				var s = [];
-				if (p.cod && self.detailed) {
+				if (p.cod) {
 					if ((p.options & 2) == 0) s.push(['cash', 'наличные']);
 					if (p.options & 4) s.push(['card', 'банковские карты']);
 					if (p.options & 16) s.push(['paypass', 'бесконтактный платеж']);
@@ -2196,9 +2219,9 @@ var edost_office = function(inside) {
 				for (var i2 = 0; i2 < s.length; i2++) s[i2] = '<img class="edost_ico_payment" src="' + edost.protocol + 'edostimg.ru/img/site/payment_' + s[i2][0] + '.svg" title="' + s[i2][1] + '" border="0">';
 				var payment_type = (s.length > 0 ? '<span style="display: inline-block;">' + s.join(' ') + '</span>' : '');
 
-				var button = '<div class="edost_office_balloon_div' + (!p.cod ? ' edost_office_balloon_cod_hide' : '') + (v.price_count == 1 && format != 'postmap' && (v.format_original != 'post' || post_count == 1) ? ' edost_office_balloon_tariff_hide' : '') + '">' + v.button.replace(/%office%/g, p.id).replace(/%head%/g, head_tariff).replace(/%payment_type%/g, payment_type).replace(/%warning%/g, warning) + '</div>';
-
-				var address = (p.name != '' ? '<span class="edost_office_balloon_name">' + p.name + '</span><br>' : '') + '<span class="edost_office_balloon_address">' + (p.city ? p.city + '<br>' : '') + p.address + '</span>';
+				var button = '<div class="edost_office_balloon_div' + (!p.cod ? ' edost_office_balloon_cod_hide' : '') + (v.price_count == 1 && format != 'postmap' && (v.format_original != 'post' || post_count == 1) ? ' edost_office_balloon_tariff_hide' : '') + (p.near ? ' edost_unsupported' : '') + '">' + v.button.replace(/%office%/g, p.id).replace(/%head%/g, head_tariff).replace(/%payment_type%/g, payment_type).replace(/%warning%/g, warning) + '</div>';
+				if (!v.name_active) button = button.replace(/<span style="display: none;">/g, '<span>');
+				var address = (p.name != '' ? '<span class="edost_office_balloon_name">' + p.name + '</span><br>' : '') + '<span class="edost_office_balloon_address">' + (p.city ? p.city.split(';')[0] + '<br>' : '') + p.address + '</span>';
 
 				var metro = '';
 				for (var i2 = 0; i2 < address_data[param].metro_near.length; i2++) if (i2 < 3 && (address_data[param].metro_near[i2][1] <= distance_near_max || address_data[param].metro_near[i2][1] - address_data[param].metro_near[0][1] <= 200)) metro += self.address('draw_metro', address_data[param].metro_near[i2]);
@@ -2206,10 +2229,10 @@ var edost_office = function(inside) {
 				if (p.closed) address += '<div style="padding-top: 4px; color: #F00;">временно закрыто</div>';
 				if (p.included) address += '<div style="padding-top: 4px; color: #E80;">внутреннее отделение</div>';
 
-				r[0] = (local && r[0] != '' ? r[0] + '<br>' : '') + head + '<br>' + address + ' ' + detailed.replace('%office%', p.id) + metro + '<div class="edost_balloon_schedule2">' + p.schedule + '</div>';
+				r[0] = ((local || preview) && r[0] != '' ? r[0] + '<br>' : '') + head + '<br>' + address + ' ' + detailed.replace('%office%', p.id) + metro + '<div class="edost_balloon_schedule2">' + p.schedule + '</div>';
 				r[1] = button;
 
-				if (!local && p.repeat != undefined) {
+				if (!local && !preview && p.repeat != undefined) {
 					// офисы с одинаковыми адресами
 					repeat_count++;
 					if (repeat_head == '') {
@@ -2237,7 +2260,7 @@ var edost_office = function(inside) {
 				for (var u = 0; u < repeat_data.length; u++) {
 					var c = repeat_data[u];
 					var n = c[2].length;
-					for (var u2 = 0; u2 < n; u2++) if (u2 == 0 || edost.in_array(c[2][u2][0], [30, 5, 26, 23]) && !c[2][u2][2]) o = c[2][u2][1] + (n > 1 ? '_repeat' : '');
+					for (var u2 = 0; u2 < n; u2++) if (u2 == 0 || A(c[2][u2][0], [30, 5, 26, 23]) && !c[2][u2][2]) o = c[2][u2][1] + (n > 1 ? '_repeat' : '');
 					s += c[1].replace('%office%', o);
 				}
 				r[0] = repeat_head.replace('%office%', o);
@@ -2271,7 +2294,6 @@ var edost_office = function(inside) {
 		var E_near = E('edost_balloon_near');
 		var E_office = E('edost_balloon_office');
 		var E_head_data = E('edost_balloon_head_data');
-
 
 		var fullscreen = false;
 		var mobile = edost.mobile;
@@ -2514,5 +2536,5 @@ var edost_office2 = edost.office2;
 edost_office.window = edost_office.set;
 edost_office.window2 = edost_office2.set;
 edost_office.loading = edost.loading;
-}
 
+}

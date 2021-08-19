@@ -52,7 +52,7 @@
 		validate: function() {
 			var sizes = this.getSizes();
 
-			if (sizes) {
+			if (sizes && !sizes.$el.hasClass('is--disabled')) {
 				sizes.validate();
 			}
 		},
@@ -102,6 +102,12 @@
 					FULFILMENT_ID: orderId + '-' + boxNumber
 				});
 			}
+		},
+
+		toggleSizes: function(dir) {
+			const field = this.getSizes();
+
+			field.$el.toggleClass('is--disabled', !dir);
 		},
 
 		setPartiallyValue: function(values) {

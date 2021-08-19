@@ -18,6 +18,7 @@ if ($requestView === 'print')
 	echo '<html><head>';
 	$APPLICATION->AddBufferContent([&$APPLICATION, 'GetCSS'], true, true, Main\Page\AssetShowTargetType::BODY);
 	$APPLICATION->AddBufferContent([&$APPLICATION, 'GetHeadStrings'], 'PRINT');
+	$APPLICATION->AddBufferContent([&$APPLICATION, 'GetHeadScripts'], Main\Page\AssetShowTargetType::TEMPLATE_PAGE);
 	echo '</head><body>';
 }
 else if ($requestView === 'popup')

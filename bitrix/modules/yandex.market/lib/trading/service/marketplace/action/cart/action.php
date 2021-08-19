@@ -10,6 +10,8 @@ use Yandex\Market\Trading\Service as TradingService;
 /** @property TradingService\Marketplace\Provider $provider */
 class Action extends TradingService\Common\Action\Cart\Action
 {
+	use TradingService\Marketplace\Concerns\Action\HasBasketWarehouses;
+
 	protected static function includeMessages()
 	{
 		Main\Localization\Loc::loadMessages(__FILE__);
@@ -19,6 +21,11 @@ class Action extends TradingService\Common\Action\Cart\Action
 	protected function createRequest(Main\HttpRequest $request, Main\Server $server)
 	{
 		return new Request($request, $server);
+	}
+
+	protected function getPriceCalculationMode()
+	{
+		return null;
 	}
 
 	protected function collectResponse()

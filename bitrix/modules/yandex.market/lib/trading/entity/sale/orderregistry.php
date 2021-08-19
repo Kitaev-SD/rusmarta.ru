@@ -171,7 +171,7 @@ class OrderRegistry extends EntityReference\OrderRegistry
 		$orderClassName = static::getOrderClassName();
 		$internalOrder = $orderClassName::create($siteId, $userId, $currency);
 
-		return new Order($this->environment, $internalOrder);
+		return $this->makeOrder($internalOrder);
 	}
 
 	public function loadOrderList($orderIds)
@@ -201,7 +201,7 @@ class OrderRegistry extends EntityReference\OrderRegistry
 
 		foreach ($internalOrders as $internalOrder)
 		{
-			$order = new Order($this->environment, $internalOrder);
+			$order = $this->makeOrder($internalOrder);
 			$orderId = $order->getId();
 
 			$result[$orderId] = $order;
@@ -229,7 +229,12 @@ class OrderRegistry extends EntityReference\OrderRegistry
 			throw new Main\ObjectNotFoundException();
 		}
 
-		return new Order($this->environment, $internalOrder, $processingStatus);
+		return $this->makeOrder($internalOrder, $processingStatus);
+	}
+
+	protected function makeOrder(Sale\OrderBase $internalOrder, $eventProcessing = null)
+	{
+		return new Order($this->environment, $internalOrder, $eventProcessing);
 	}
 
 	public function isExistMarker($orderId, $code, $condition = null)
@@ -355,6 +360,35 @@ class OrderRegistry extends EntityReference\OrderRegistry
 			$xmlId = $platform->getOrderXmlId($externalId);
 
 			$result[$xmlId] = $externalId;
+		}
+
+		return $result;
+	}
+
+	public function suggestExternalIds($value, $field, EntityReference\Platform $platform)
+	{
+		$result = [];
+		$select = [ 'EXTERNAL_ORDER_ID' ];
+		$search = $field;
+
+		if ($field === 'ACCOUNT_NUMBER')
+		{
+			$search = static::useAccountNumber() ? 'ORDER.ACCOUNT_NUMBER' : 'ORDER_ID';
+		}
+
+		$query = Sale\TradingPlatform\OrderTable::getList([
+			'filter' => [
+				'=TRADING_PLATFORM_ID' => $platform->getId(),
+				$search => $value,
+			],
+			'select' => $select,
+			'order' => [ 'ID' => 'DESC' ],
+			'limit' => 1000,
+		]);
+
+		while ($row = $query->fetch())
+		{
+			$result[] = $row['EXTERNAL_ORDER_ID'];
 		}
 
 		return $result;

@@ -209,6 +209,7 @@ class TinkoffMerchantAPI extends Tax
     public function buildQuery($path, $args)
     {
         $url = $this->_api_url;
+
         if (is_array($args)) {
             if (!array_key_exists('TerminalKey', $args)) {
                 $args['TerminalKey'] = $this->_terminalKey;
@@ -288,8 +289,8 @@ class TinkoffMerchantAPI extends Tax
         if (is_array($args)) {
             $args = json_encode($args);
         }
-
         if ($curl = curl_init()) {
+
             curl_setopt($curl, CURLOPT_URL, $api_url);
             curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -299,7 +300,6 @@ class TinkoffMerchantAPI extends Tax
             curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'Content-Type: application/json',
             ));
-
             $out = curl_exec($curl);
             $this->_response = $out;
 
@@ -316,6 +316,7 @@ class TinkoffMerchantAPI extends Tax
 
             curl_close($curl);
 
+
             return $out;
 
         } else {
@@ -323,6 +324,7 @@ class TinkoffMerchantAPI extends Tax
                 'Can not create connection to ' . $api_url . ' with args '
                 . $args, 404
             );
+
         }
     }
 }

@@ -31,9 +31,10 @@ class YandexMarketplaceYml extends UniversalPlugin {
 	# Basic settings
 	protected $bAdditionalFields = true;
 	protected $bCategoriesExport = true;
-	protected $bCategoriesUpdate = false;
+	protected $bCategoriesUpdate = true;
 	protected $bCurrenciesExport = true;
-	protected $bCategoriesList = false;
+	protected $bCategoriesList = true;
+	protected $strCategoriesUrl = 'http://download.cdn.yandex.net/market/market_categories.xls';
 	
 	# XML settings
 	protected $strXmlItemElement = 'offer';
@@ -83,6 +84,7 @@ class YandexMarketplaceYml extends UniversalPlugin {
 		$arResult['dimensions'] = ['CONST' => ['{=catalog.CATALOG_LENGTH} / 10', '{=catalog.CATALOG_WIDTH} / 10', '{=catalog.CATALOG_HEIGHT} / 10'], 'CONST_PARAMS' => ['MATH' => 'Y'], 'PARAMS' => ['MULTIPLE' => 'join', 'MULTIPLE_separator' => 'slash'], 'REQUIRED' => true];
 		$arResult['weight'] = ['CONST' => '{=catalog.CATALOG_WEIGHT} / 1000', 'CONST_PARAMS' => ['MATH' => 'Y'], 'REQUIRED' => true];
 		$arResult['tn-ved-codes.tn-ved-code'] = ['CONST' => ['1234567890', '1234567891'], 'MULTIPLE' => true];
+		$arResult['cpa'] = ['CONST' => '1'];
 		#
 		$arResult['HEADER_STORES'] = [];
 		$arResult['market-sku'] = [];
@@ -160,6 +162,18 @@ class YandexMarketplaceYml extends UniversalPlugin {
 	 */
 	protected function onUpShowSettings(&$arSettings){
 		$arSettings['ASSORTMENT_MODE'] = require __DIR__.'/include/settings/assortment_mode.php';
+		$arSettings['SHOP_NAME'] = [
+			'HTML' => $this->includeHtml(__DIR__.'/include/settings/shop_name.php'),
+			'SORT' => 150,
+		];
+		$arSettings['SHOP_COMPANY'] = [
+			'HTML' => $this->includeHtml(__DIR__.'/include/settings/shop_company.php'),
+			'SORT' => 151,
+		];
+		$arSettings['SHOP_CPA'] = [
+			'HTML' => $this->includeHtml(__DIR__.'/include/settings/shop_cpa.php'),
+			'SORT' => 152,
+		];
 		$arSettings['EXPORT_STOCKS'] = [
 			'HTML' => $this->includeHtml(__DIR__.'/include/settings/export_stocks.php'),
 			'SORT' => 160,
@@ -186,6 +200,10 @@ class YandexMarketplaceYml extends UniversalPlugin {
 		$strXml .= '<!DOCTYPE yml_catalog SYSTEM "shops.dtd">'.static::EOL;
 		$strXml .= '<yml_catalog date="#XML_DATE#">'.static::EOL;
 		$strXml .= '	<shop>'.static::EOL;
+		$strXml .= '		<name>#SHOP_NAME#</name>'.static::EOL;
+		$strXml .= '		<company>#SHOP_COMPANY#</company>'.static::EOL;
+		$strXml .= '		<url>#SHOP_URL#</url>'.static::EOL;
+		$strXml .= '		<cpa>#SHOP_CPA#</cpa>'.static::EOL;
 		$strXml .= '		<categories>'.static::EOL;
 		$strXml .= '			#EXPORT_CATEGORIES#'.static::EOL;
 		$strXml .= '		</categories>'.static::EOL;
@@ -201,6 +219,11 @@ class YandexMarketplaceYml extends UniversalPlugin {
 		$arReplace = [
 			'#XML_DATE#' => date('Y-m-d H:i'),
 			'#XML_ENCODING#' => $this->arParams['ENCODING'],
+			#
+			'#SHOP_NAME#' => $this->output(($this->arParams['SHOP_NAME'])),
+			'#SHOP_COMPANY#' => $this->output(($this->arParams['SHOP_COMPANY'])),
+			'#SHOP_URL#' => $this->output(Helper::siteUrl($this->arProfile['DOMAIN'], $this->arProfile['IS_HTTPS'] == 'Y')),
+			'#SHOP_CPA#' => in_array($this->arParams['SHOP_CPA'], ['0', '1']) ? $this->arParams['SHOP_CPA'] : '1',
 		];
 		$strXml = str_replace(array_keys($arReplace), array_values($arReplace), $strXml);
 	}
@@ -242,6 +265,9 @@ class YandexMarketplaceYml extends UniversalPlugin {
 	 *	Handler on generate XML for single item
 	 */
 	protected function onUpBuildXml(&$arXmlTags, &$arXmlAttr, &$strXmlItem, &$arElement, &$arFields, &$arElementSections, &$mDataMore){
+		if($arFields['oldprice'] <= $arFields['price']){
+			unset($arXmlTags['oldprice'], $arFields['oldprice']);
+		}
 		$mDataMore = [
 			'SKU_ID' =>  $this->isNewMode() ? $arFields['@id'] : $arFields['shop-sku'],
 		];
@@ -426,6 +452,25 @@ class YandexMarketplaceYml extends UniversalPlugin {
 			$arJson = \Bitrix\Main\Web\Json::decode($strJson);
 		}catch(\Exception $obError){}
 		return $arJson;
+	}
+
+	protected function processUpdatedCategories($strTmpFile){
+		require_once(realpath(__DIR__.'/../../../../../include/php_excel_reader/excel_reader2.php'));
+		$obExcelData = new \Spreadsheet_Excel_Reader($strTmpFile, false);
+		$intRowCount = $obExcelData->rowcount();
+		#
+		$strCategories = '';
+		for($intLine=0; $intLine<=$intRowCount; $intLine++) {
+			$strCategories .= $obExcelData->val($intLine, 1)."\n";
+		}
+		@unlink($strTmpFile);
+		if(Helper::strlen($strCategories)){
+			if(!Helper::isUtf()){
+				$strCategories = Helper::convertEncoding($strCategories, 'UTF-8', 'CP1251');
+			}
+			return $strCategories;
+		}
+		return false;
 	}
 
 }

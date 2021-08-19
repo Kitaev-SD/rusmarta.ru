@@ -14,6 +14,11 @@ class ModelFactory extends TradingService\Marketplace\ModelFactory
 		return Model\Cart::class;
 	}
 
+	public function getOrderFacadeClassName()
+	{
+		return Model\OrderFacade::class;
+	}
+
 	public function getOrderClassName()
 	{
 		return Model\Order::class;

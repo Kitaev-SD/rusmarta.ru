@@ -36,6 +36,11 @@ class Options extends TradingService\Marketplace\Options
 		return static::getLang('TRADING_SERVICE_MARKETPLACE_TITLE' . $suffix);
 	}
 
+	public function isAllowProductSkuPrefix()
+	{
+		return Market\Config::isExpertMode();
+	}
+
 	/**
 	 * @deprecated
 	 * @throws Main\NotSupportedException
@@ -63,6 +68,12 @@ class Options extends TradingService\Marketplace\Options
 	public function getDeliveryOptions()
 	{
 		return $this->getFieldsetCollection('DELIVERY_OPTIONS');
+	}
+
+	/** @return Options\ShipmentSchedule */
+	public function getShipmentSchedule()
+	{
+		return $this->getFieldset('SHIPMENT_SCHEDULE');
 	}
 
 	/** @return string|null */
@@ -108,6 +119,62 @@ class Options extends TradingService\Marketplace\Options
 	public function getCancelStatusOptions()
 	{
 		return $this->getFieldsetCollection('STATUS_OUT_CANCELLED_OPTION');
+	}
+
+	public function getEnvironmentFieldActions()
+	{
+		return array_filter([
+			$this->getEnvironmentCancellationAcceptActions(),
+			$this->getEnvironmentDeliveryDateActions(),
+		]);
+	}
+
+	protected function getEnvironmentCancellationAcceptActions()
+	{
+		$propertyId = (string)$this->getProperty('CANCELLATION_ACCEPT');
+
+		if ($propertyId === '') { return null; }
+
+		$cancellationAccept = $this->provider->getCancellationAccept();
+		$map = [
+			Market\Data\Trading\CancellationAccept::CONFIRM => [ 'accepted' => true ],
+		];
+
+		foreach ($cancellationAccept->getReasonVariants() as $variant)
+		{
+			$map[Market\Data\Trading\CancellationAccept::REJECT . ':' . $variant] = [
+				'accepted' => false,
+				'reason' => $variant,
+			];
+		}
+
+		return [
+			'FIELD' => sprintf('PROPERTY_%s.VALUE', $propertyId),
+			'PATH' => 'send/cancellation/accept',
+			'PAYLOAD_MAP' => $map,
+		];
+	}
+
+	protected function getEnvironmentDeliveryDateActions()
+	{
+		$propertyId = (string)$this->getProperty('DELIVERY_DATE_FROM');
+
+		if ($propertyId === '') { return null; }
+
+		return [
+			'FIELD' => sprintf('PROPERTY_%s.VALUE', $propertyId),
+			'PATH' => 'send/delivery/date',
+			'PAYLOAD' => static function(array $action) {
+				$value = is_array($action['VALUE']) ? reset($action['VALUE']) : $action['VALUE'];
+
+				if (Market\Utils\Value::isEmpty($value)) { return null; }
+
+				return [
+					'date' => $value,
+					'reason' => Action\SendDeliveryDate\Activity::REASON_USER_MOVED_DELIVERY_DATES,
+				];
+			},
+		];
 	}
 
 	protected function applyValues()
@@ -173,6 +240,7 @@ class Options extends TradingService\Marketplace\Options
 			+ $this->getAddressCoordinatesFields($environment, $siteId)
 			+ $this->getDeliveryDatesFields($environment, $siteId)
 			+ $this->getStatusInFields($environment, $siteId)
+			+ $this->getCancellationAcceptFields($environment, $siteId)
 			+ $this->getStatusOutFields($environment, $siteId)
 			+ $this->getCancelledStatusOutFields($environment, $siteId)
 			+ $this->getCancelReasonFields($environment, $siteId);
@@ -279,6 +347,7 @@ class Options extends TradingService\Marketplace\Options
 		try
 		{
 			$deliveryOptions = $this->getDeliveryOptions();
+			$shipmentSchedule = $this->getShipmentSchedule();
 
 			$result = [
 				'DELIVERY_STRICT' => [
@@ -295,6 +364,14 @@ class Options extends TradingService\Marketplace\Options
 					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_DELIVERY_OPTIONS'),
 					'NOTE' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_DELIVERY_OPTIONS_NOTE'),
 					'SORT' => 3010,
+				],
+				'SHIPMENT_SCHEDULE' => $shipmentSchedule->getFieldDescription($environment, $siteId) + [
+					'TYPE' => 'fieldset',
+					'TAB' => 'DELIVERY_AND_PAYMENT',
+					'GROUP' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_DELIVERY_GROUP'),
+					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_SHIPMENT_SCHEDULE'),
+					'HELP_MESSAGE' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_SHIPMENT_SCHEDULE_HELP'),
+					'SORT' => 3020,
 				],
 			];
 		}
@@ -505,6 +582,31 @@ class Options extends TradingService\Marketplace\Options
 		return $result;
 	}
 
+	protected function getCancellationAcceptFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		try
+		{
+			$fields = [
+				'CANCELLATION_ACCEPT' => [
+					'TAB' => 'STATUS',
+					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_CANCELLATION_ACCEPT'),
+					'SETTINGS' => [
+						'SERVICE_CODE' => $this->provider->getCode(),
+						'ADD_URL' => Market\Ui\Admin\Path::getToolsUrl('OrderProperty/CancellationAcceptCreate'),
+					],
+				],
+			];
+
+			$result = $this->createPropertyFields($environment, $siteId, $fields, 1100);
+		}
+		catch (Market\Exceptions\NotImplemented $exception)
+		{
+			$result = [];
+		}
+
+		return $result;
+	}
+
 	protected function getStatusOutFields(TradingEntity\Reference\Environment $environment, $siteId)
 	{
 		$result = parent::getStatusOutFields($environment, $siteId);
@@ -585,13 +687,8 @@ class Options extends TradingService\Marketplace\Options
 						'CAPTION_NO_VALUE' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_REASON_CANCELED_CAPTION_NO_VALUE'),
 						'DEFAULT_GROUP' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_REASON_CANCELED_DEFAULT_GROUP'),
 						'SERVICE_CODE' => $this->provider->getCode(),
-						'ADD_URL' => sprintf(
-							'%s/tools/%s/orderproperty/cancelreasoncreate.php',
-							BX_ROOT,
-							Market\Config::getModuleName()
-						),
+						'ADD_URL' => Market\Ui\Admin\Path::getToolsUrl('OrderProperty/CancelReasonCreate'),
 					],
-					'SORT' => 2110,
 				],
 			];
 
@@ -607,10 +704,17 @@ class Options extends TradingService\Marketplace\Options
 
 	protected function getFieldsetCollectionMap()
 	{
-		return [
+		return array_merge(parent::getFieldsetCollectionMap(), [
 			'DELIVERY_OPTIONS' => Options\DeliveryOptions::class,
 			'PAY_SYSTEM_OPTIONS' => Options\PaySystemOptions::class,
 			'STATUS_OUT_CANCELLED_OPTION' => Options\CancelStatusOptions::class,
-		];
+		]);
+	}
+
+	protected function getFieldsetMap()
+	{
+		return array_merge(parent::getFieldsetMap(), [
+			'SHIPMENT_SCHEDULE' => Options\ShipmentSchedule::class,
+		]);
 	}
 }

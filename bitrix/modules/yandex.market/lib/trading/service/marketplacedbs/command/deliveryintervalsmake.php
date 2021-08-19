@@ -66,15 +66,6 @@ class DeliveryIntervalsMake
 		$iterator = clone $this->dateFrom;
 		$dateTo = clone $this->dateTo;
 
-		if ($increasePeriodOnWeekend && $this->minDate !== null && Market\Data\Date::compare($this->now, $this->minDate) === -1)
-		{
-			$shipDelayDays = $this->getDaysDiff($this->now, $this->minDate);
-			$shipDelayInterval = sprintf('P%sD', $shipDelayDays);
-
-			$iterator->add($shipDelayInterval);
-			$dateTo->add($shipDelayInterval);
-		}
-
 		do
 		{
 			$minDateCompare = $this->minDate !== null ? Market\Data\Date::compare($iterator, $this->minDate) : 1;
@@ -111,6 +102,7 @@ class DeliveryIntervalsMake
 		return $intervals;
 	}
 
+	/** @deprecated */
 	protected function getDaysDiff(Main\Type\Date $from, Main\Type\Date $to)
 	{
 		$fromDate = (new \DateTime())->setTimestamp($from->getTimestamp());

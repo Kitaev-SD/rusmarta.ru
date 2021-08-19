@@ -20,7 +20,7 @@ if (!empty($arResult['edost']['locations_installed'])) {
 /*
 			// предупреждения (если указаны, тогда заменяют значения по умолчанию)
 			'zip_warning' => array(
-				1 => 'Такого индекса НЕ существует!2222',
+				1 => 'Такого индекса НЕ существует!',
 				2 => 'Индекс НЕ соответствует региону!',
 				'digit' => 'Должны быть только цифры!',
 			),
@@ -118,17 +118,18 @@ if (!empty($arResult['edost']['locations_installed'])) {
 
 			if (param === 'error') {
 				loadingForm(false);
-				edost.html('edost_location_city_template_div', '<div class="edost_delivery_loading" style="color: #F00;">' + data + '</div>');
+				edost.H('edost_location_city_template_div', '<div class="edost_delivery_loading" style="color: #F00;">' + data + '</div>');
 			}
 			else if (param === 'back') {
-				edost.html('edost_location_city_template_div', '');
-				edost.class('edost_location_div', ['edost_location_button_hide', ''], 1);
-				edost.display('edost_location_city_div', true);
+				edost.H('edost_location_city_template_div', '');
+				edost.C('edost_location_div', ['edost_location_button_hide'], 1);
+				edost.D('edost_location_city_div', true);
+				edost.D('edost_location_address_div', true);
 			}
 			else if (param === 'set') {
 				loadingForm();
-				edost.html('edost_location_city_template_div', '<div class="edost_delivery_loading"><?=GetMessage('SOA_TEMPL_LOADING')?></div>');
-				edost.display('edost_location_city_div', false);
+				edost.H('edost_location_city_template_div', '<div class="edost_delivery_loading"><?=GetMessage('SOA_TEMPL_LOADING')?></div>');
+				edost.D('edost_location_city_div', false);
 			}
 			else if (param === 'click') {
 				var E = edost.E('edost_location_address_div');
@@ -136,26 +137,23 @@ if (!empty($arResult['edost']['locations_installed'])) {
 					alert('<?=GetMessage('SOA_TEMPL_ADDRESS_ERROR')?>');
 					return;
 				}
-				s = E.style.display;
-
-				var c = edost.E(['.edost_city_link']);
-				if (c) c.click();
-
-				E.style.display = s;
+				s = edost.D(E);
+				edost.W('.edost_city_link, .edost_L2_city_link', function(v) { v.click(); } );
+				edost.D(E, s);
 			}
 			else if (param === 'new') {
-				edost_SetLocation('0', true);
+				edost.location.set('0', true);
 			}
 			else if (param === 'loading') {
-				edost.class('edost_location_div', ['edost_location_button_hide', ''], 0);
+				edost.C('edost_location_div', ['edost_location_button_hide'], 0);
 
 				var E = edost.E('edost_location_city_template_div');
 				var E2 = edost.E('edost_location_city_div');
 				if (E && E2) {
 					E.innerHTML = E2.innerHTML;
-					for (var i = 0; i < E.children.length; i++) if (E.children[i].className != 'edost_flag' && E.children[i].className != 'edost_city_name') { E.removeChild(E.children[i]); i--; }
-					E.style.display = 'block';
-					E2.style.display = 'none';
+					for (var i = 0; i < E.children.length; i++) if (!edost.A(E.children[i].className, ['edost_flag', 'edost_city_name', 'edost_L2_city_name'])) { E.removeChild(E.children[i]); i--; }
+					edost.D(E, true);
+					edost.D(E2, false);
 				}
 			}
 
@@ -253,6 +251,12 @@ if (!function_exists('PrintPropsForm')) {
 			}
 		}
 
+		// удаление системных полей модуля бонусов
+		if (!empty($arResult['JS_DATA']['LOGICTIM_BONUS'])) foreach ($field as $f_key => $f) if (!empty($f) && in_array($f_key, array('props_Y', 'props_N', 'props_related'))) {
+			foreach ($f as $k => $v) if (in_array($v['CODE'], array('LOGICTIM_ADD_BONUS', 'LOGICTIM_PAYMENT_BONUS'))) unset($field[$f_key][$k]);
+			if (empty($field[$f_key])) unset($field[$f_key]);
+		}
+
 		if (empty($field)) return;
 
 		if (isset($param['mono'])) $mono = $param['mono'];
@@ -293,8 +297,11 @@ if (!function_exists('PrintPropsForm')) {
 			$hide = (!empty($param['hide'][$f_key]) ? true : false);
 
 			// профиль покупателя
-			if ($f_key == 'profile' && !empty($arResult['ORDER_PROP']['USER_PROFILES'])) { $hide = ($arParams['ALLOW_USER_PROFILES'] != 'Y' ? true : false); ?>
-<?				if ($arParams['ALLOW_NEW_PROFILE'] == 'Y') {
+			if ($f_key == 'profile' && !empty($arResult['ORDER_PROP']['USER_PROFILES'])) { $hide = ($arParams['ALLOW_USER_PROFILES'] != 'Y' ? true : false);
+				foreach($arResult['ORDER_PROP']['USER_PROFILES'] as $arUserProfiles) if ($arUserProfiles['CHECKED'] == 'Y') { ?>
+					<input type="hidden" name="PROFILE_ID_OLD" value="<?=$arUserProfiles['ID']?>">
+<?				}
+				if ($arParams['ALLOW_NEW_PROFILE'] == 'Y') {
 				DrawPropHead($mono, GetMessage('SOA_TEMPL_PROP_CHOOSE'), false, $hide); ?>
 					<select name="PROFILE_ID" id="ID_PROFILE_ID" onChange="SetContact(this.value)">
 						<option value="0"><?=GetMessage('SOA_TEMPL_PROP_NEW_PROFILE')?></option>

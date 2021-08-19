@@ -101,7 +101,7 @@
 				}
 ?>
 
-				<?	/* компактный вариант */ ?>
+				<? /* компактный вариант */ ?>
 				<div <?=(!$total_compact ? 'class="edost_order_cart_compact"' : '')?>>
 					<div class="edost_order_cart_price">
 						<?=$price2?><br>
@@ -172,7 +172,7 @@
 		<? /* итого */ ?>
 		<div <?=(!$total_compact ? 'id="order_total2_inside"' : '')?> class="edost_order_total">
 <?			if (!empty($cart_count) && ($total_compact || !$total_compact && $arParams['CART'] == 'none')) { ?>
-			<div <?=($total_compact && $arParams['CART'] != 'none' ? 'id="order_total_cart_count"' : '')?> class="edost_order_total_price" <?=($total_compact && $arParams['CART'] == 'compact' ? 'style="display2222: none;"' : '')?>>
+			<div <?=($total_compact && $arParams['CART'] != 'none' ? 'id="order_total_cart_count"' : '')?> class="edost_order_total_price">
 				<div><?=GetMessage('SOA_TEMPL_SUM_COUNT')?></div>
 				<div>
 					<?=$cart_count?>
@@ -238,13 +238,29 @@
 
 			<div style="height: 8px;"></div>
 
+			<? /* основное "итого заказа" или поясняющая "сумма заказа" (при оплате с внутреннего счета или бонусами) */ ?>
 <?			$payed_from_account = (!empty($arResult['ORDER_TOTAL_LEFT_TO_PAY_FORMATED']) ? true : false);
-			if (!$payed_from_account || $arResult['ORDER_TOTAL_PRICE_FORMATED'] != $arResult['ORDER_PRICE_FORMATED']) {
-				$p = $arResult['ORDER_TOTAL_PRICE_FORMATED'];
-				if (!empty($active_tariff['price_formatted']) && !empty($active_cod) && $priority == 'C') $p = edost_class::GetPrice('formatted', $arResult['ORDER_TOTAL_PRICE'] + $active_tariff['transfer'], '', $arResult['BASE_LANG_CURRENCY']); ?>
-			<div class="edost_order_total_info <?=($payed_from_account ? 'edost_order_total_info2 edost_order_total_white' : 'edost_order_total_main')?>" style="margin-top: 0;">
-				<span class="edost_order_total_main_head"><?=GetMessage($payed_from_account ? 'SOA_TEMPL_SUM_IT_DISCOUNT' : 'SOA_TEMPL_SUM_IT')?></span>
+			$order_base_price = ($payed_from_account || $bonus_pay ? true : false);
+//			if (!$payed_from_account || $arResult['ORDER_TOTAL_PRICE_FORMATED'] != $arResult['ORDER_PRICE_FORMATED'] || $bonus_pay) {
+				if ($bonus_pay) {
+					$p = $logictim_bonus['ORDER_SUM_FORMATED'];
+					if (!empty($active_tariff['price_formatted']) && !empty($active_cod)) $p = edost_class::GetPrice('formatted', $logictim_bonus['ORDER_SUM'] + $active_tariff['pricecashplus'] + ($priority == 'C' ? $active_tariff['transfer'] : 0), '', $arResult['BASE_LANG_CURRENCY']);
+				}
+				else {
+					$p = $arResult['ORDER_TOTAL_PRICE_FORMATED'];
+					if (!empty($active_tariff['price_formatted']) && !empty($active_cod) && $priority == 'C') $p = edost_class::GetPrice('formatted', $arResult['ORDER_TOTAL_PRICE'] + $active_tariff['transfer'], '', $arResult['BASE_LANG_CURRENCY']);
+				} ?>
+			<div class="edost_order_total_info <?=($order_base_price? 'edost_order_total_info2 edost_order_total_white' : 'edost_order_total_main')?>" style="margin-top: 0;">
+				<span class="edost_order_total_main_head"><?=GetMessage($order_base_price ? 'SOA_TEMPL_SUM_IT_DISCOUNT' : 'SOA_TEMPL_SUM_IT')?></span>
 				<span class="edost_order_total_main_price"><?=$p?></span>
+			</div>
+<?
+//			}
+?>
+
+<?			if ($bonus_pay || $bonus_pay_total_original) { ?>
+			<div class="edost_order_total_info edost_order_total_info2_white edost_order_total_green">
+				<span><?=trim(str_replace(':', '', $logictim_bonus['TEXT_BONUS_PAY']))?></span> <span><?=$logictim_bonus['PAY_BONUS_FORMATED']?></span>
 			</div>
 <?			} ?>
 
@@ -255,9 +271,16 @@
 			</div>
 <?			} ?>
 
-<?			if (!empty($arResult['ORDER_TOTAL_LEFT_TO_PAY_FORMATED'])) {
-				$p = $arResult['ORDER_TOTAL_LEFT_TO_PAY_FORMATED'];
-				if (!empty($active_tariff['price_formatted']) && !empty($active_cod) && $priority == 'C') $p = edost_class::GetPrice('formatted', $arResult['ORDER_TOTAL_LEFT_TO_PAY'] + $active_tariff['transfer'], '', $arResult['BASE_LANG_CURRENCY']); ?>
+			<? /* итого заказа при оплате с внутреннего счета (осталось доплатить) */ ?>
+<?			if ($order_base_price) {
+				if ($bonus_pay) {
+					$p = $arResult['ORDER_TOTAL_PRICE_FORMATED'];
+					if (!empty($active_tariff['price_formatted']) && !empty($active_cod)) $p = edost_class::GetPrice('formatted', $arResult['ORDER_TOTAL_PRICE'] - $logictim_bonus['PAY_BONUS'] + ($priority == 'C' ? $active_tariff['transfer'] : 0), '', $arResult['BASE_LANG_CURRENCY']);
+				}
+				else {
+					$p = $arResult['ORDER_TOTAL_LEFT_TO_PAY_FORMATED'];
+					if (!empty($active_tariff['price_formatted']) && !empty($active_cod) && $priority == 'C') $p = edost_class::GetPrice('formatted', $arResult['ORDER_TOTAL_LEFT_TO_PAY'] + $active_tariff['transfer'], '', $arResult['BASE_LANG_CURRENCY']);
+				} ?>
 			<div class="edost_order_total_info edost_order_total_main">
 				<span class="edost_order_total_main_head"><?=GetMessage('SOA_TEMPL_SUM_IT')?></span>
 				<span class="edost_order_total_main_price"><?=$p?></span>
@@ -274,6 +297,12 @@
 			</div>
 <?				}
 			} ?>
+
+<?			if (!empty($logictim_bonus) && $logictim_bonus['LOGICTIM_BONUS_USER_DOSTUP'] == 'Y' && $logictim_bonus['ADD_BONUS'] > 0) { ?>
+			<div class="edost_order_total_info edost_order_total_info2 edost_order_total_bonus">
+				<span><?=trim(str_replace(':', '', $logictim_bonus['TEXT_BONUS_BALLS']))?></span> <span><?=$logictim_bonus['ADD_BONUS']?></span>
+			</div>
+<?			} ?>
 
 <?			if ($arParams['MODULE_VBCHEREPANOV_BONUS'] == 'Y' && !empty($arResult['JS_DATA']['TOTAL']['BONUS_ORDER'])) { ?>
 			<div class="edost_order_total_info edost_order_total_info2 edost_order_total_bonus">
@@ -304,8 +333,8 @@
 
 <?	if ($total_compact && ($arParams['FAST'] == 'full' || $arParams['FAST'] == 'compact')) { ?>
 	<div class="edost_delimiter" style="border-color: #EEE; margin: 0 10px;"></div>
-	<div class="edost_main2 edost_template_div2 edost_fast2" style="text-align2: center; padding: 20px;">
-		<div class="edost_button_big2" style="margin: 0 auto; width: 94%; padding: 8px 0;" onclick="edost.window.agreement('fast')"><span style="display: inline-block; font-size: 17px;"><?=GetMessage('SOA_TEMPL_FAST_BUTTON')?></span></div>
+	<div class="edost_main2 edost_template_div2 edost_fast2" style="padding: 20px;">
+		<div class="edost_button_big2" style="margin: 0 auto; width: 94%; padding: 8px 0;" onclick="edost.window.agreement('fast')"><span style="display: inline-block; padding: 0 5px; font-size: 17px;"><?=GetMessage('SOA_TEMPL_FAST_BUTTON')?></span></div>
 <?		if ($arParams['FAST_INFO'] == 'Y') { ?>
 		<div class="edost_fast_total"><?=GetMessage('SOA_TEMPL_FAST_INFO')?></div>
 <?		} ?>

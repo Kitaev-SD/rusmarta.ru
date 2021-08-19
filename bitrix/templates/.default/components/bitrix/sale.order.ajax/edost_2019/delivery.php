@@ -27,79 +27,57 @@
 
 <script type="text/javascript">
 	function edost_SetBookmark(id, bookmark) {
-
 		var start = false;
 		if (bookmark == undefined) bookmark = '';
 		if (id == 'start') {
 			start = true;
-			E2 = document.getElementById('edost_bookmark');
-			if (E2) id = E2.value;
+			var e = edost.E('edost_bookmark');
+			if (e) id = e.value;
 			if (id == '') return;
 		}
-
-		var ar = ['office', 'door', 'house', 'post', 'postmap', 'general', 'show'];
-		for (var i = 0; i < ar.length; i++) {
-			var E = document.getElementById('edost_' + ar[i] + '_div');
-			var E_map = (ar[i] == 'office' ? document.getElementById('edost_' + ar[i] + '_map_div') : false);
-			var E2 = document.getElementById('edost_' + ar[i] + '_td');
-			if (!E && !E2) continue;
-
-			var E3 = document.getElementById('edost_' + ar[i] + '_td_bottom');
-			var show = (ar[i] == id ? true : false);
-			if (E2) {
-				E2.className = 'edost_bookmark edost_active_' + (show ? 'on' : 'off');
-				var E5 = document.getElementById('edost_' + ar[i] + '_td2');
-				if (E5) E5.className = 'edost_bookmark edost_active_' + (show ? 'on' : 'off');
-			}
-			if (E3) {
-				E3.className = 'edost_active_fon_' + (show ? 'on' : 'off');
-				var E5 = document.getElementById('edost_' + ar[i] + '_td_bottom2');
-				if (E5) E5.className = 'edost_active_fon_' + (show ? 'on' : 'off');
-			}
+		edost.W('.edost_format_div', function(v) {
+			var f = edost.P(v, 'format');
+			var show = (f == id || (f + '_s' == id) ? true : false);
+			edost.W('.edost_bookmark_' + f, function(v) { edost.C(v, ['edost_active_off', 'edost_active_on'], show); });
 <?			if (!$edost_catalogdelivery) { ?>
-			if (E)
-				if (!start) E.style.display = 'none';
-				else if (bookmark == 1) E.style.display = (show ? '' : 'none');
+			if (v)
+				if (!start) {
+					edost.D(v, 0);
+					<?=$calculate_function?>;
+				}
+				else if (bookmark == 1) edost.D(v, show ? '' : 'none');
 <?			} else { ?>
-			if (E) E.style.display = (show ? '' : 'none');
+			edost.D(v, show ? '' : 'none');
 <?			} ?>
-			if (E_map) E_map.style.display = E.style.display;
-		}
 
-		var E = document.getElementById('edost_bookmark_delimiter');
-		if (E) E.className = 'edost_active_fon_on';
-
+			var a = false;
+			if (f == 'office') edost.W('.edost_office_map_div', function(v2) { edost.D(v2, show ? '' : 0); a = true; });
+			if (a && show) edost.office2.resize('redraw');
+		});
 		if (!start) {
-			var E = document.getElementById('edost_bookmark_loading');
-			if (E) {
-				E.innerHTML = '<span class="edost_template_color"><?=$sign['loading2']?></span>';
-				E.style.display = 'block';
-			}
-
-			var E = document.getElementById('edost_bookmark_info');
-			if (E) E.style.display = 'none';
-
-			E = document.getElementById('edost_bookmark');
-			if (E) E.value = id + '_s';
-
-<?			if (!$edost_catalogdelivery) { ?>
-			<?=$calculate_function?>;
+<?			if ($edost_catalogdelivery) { ?>
+			edost.W('.edost_bookmark_loading', function(v) { edost.E(v, {'html': '<span class="edost_template_color">' + edost.loading + '</span>', 'display': 1}); });
 <?			} ?>
+			edost.W('.edost_bookmark_info', function(v) { edost.D(v, 0); });
+			edost.V('edost_bookmark', id + '_s');
 		}
-
 <?		if ($edost_catalogdelivery && $map_inside == 'Y') { ?>
-		if (id == 'office') edost_RunScript('map_inside');
-<?		} ?>
-
-<?		if ($edost_catalogdelivery && $mode != 'manual') { ?>
-		edost_catalogdelivery.resize(true);
+//		if (id == 'office') edost_RunScript('map_inside');
+<?		}
+		if ($edost_catalogdelivery && $mode != 'manual') { ?>
+		if (edost && edost.resize) edost.resize.start();
 <?		} ?>
 	}
 </script>
 
 <? if (!empty($data['format']['data'])) { ?>
 <?
-	$active = (!empty($data['format']['active']['id']) ? true : false);
+	$active = (!empty($data['format']['active']['id']) || !empty($data['format']['active']['profile']) ? true : false);
+
+	foreach ($data['format']['data'] as $f_key => $f) if (!empty($f['tariff'])) foreach ($f['tariff'] as $k => $v) if (!empty($v['day']) && strpos($v['day'], $sign['day_work']) !== false) {
+		$s = explode(' ', $v['day']);
+		$data['format']['data'][$f_key]['tariff'][$k]['day'] = $s[0].' <span class="edost_day_work">'.implode('<br>', array_slice($s, 1)).'</span>';
+	}
 ?>
 <div id="edost_delivery_div" style="<?=($edost_catalogdelivery ? 'margin: 10px 0 0 0;' : '')?>" class="edost edost_main <?=(!$active ? 'edost_active_no' : '')?> <?=(!$edost_catalogdelivery ? ' edost_template_div' : '')?><?=$resize['cod']?><?=$resize['bookmark_cod']?><?=$resize['delimiter']?><?=$resize['bookmark']?><?=$resize['map']?>">
 
@@ -131,13 +109,15 @@
 		$sign['cod_head'] = '<span class="edost_payment_cod2">'.str_replace('<br>', ' ', $sign['cod_head']).'</span>';
 	}
 
-	$head_button = ($compact != '' && $data['format']['count'] != 1 ? true : false);
+	$head_button = ($compact != '' && ($data['format']['count'] != 1 || $data['format']['count_office'] > 1) ? true : false);
+	if ($supercompact_format !== false && in_array($supercompact_format, $office_main)) $head_button_click = "edost.office.set('".$supercompact_format."', false)";
+	else $head_button_click = "edost.window.set('".($supercompact_format !== false ? $supercompact_format : 'delivery')."', 'head=".GetMessage('SOA_TEMPL_DELIVERY_HEAD').";class=".($supercompact_format !== false ? '' : 'edost_compact_main edost_compact_main2')."')";
 ?>
 
 <? if (!$edost_catalogdelivery) { ?>
 <?	if ($head_button) { ?>
 	<div class="edost_window_hide edost_compact_hide">
-		<div id="edost_get_delivery_button" class="edost_button_big <?=($active ? 'edost_button_head' : 'edost_button_big_red edost_button_big_active')?>" onclick="edost.window.set('<?=($supercompact_format !== false ? $supercompact_format : 'delivery')?>', 'head=<?=GetMessage('SOA_TEMPL_DELIVERY_HEAD')?>;class=<?=($supercompact_format !== false ? '' : 'edost_compact_main edost_compact_main2')?>')">
+		<div id="edost_get_delivery_button" class="edost_button_big <?=($active ? 'edost_button_head' : 'edost_button_big_red edost_button_big_active')?>" onclick="<?=$head_button_click?>">
 			<span><?=GetMessage($active ? 'SOA_TEMPL_CHANGE_BUTTON' : 'SOA_TEMPL_DELIVERY_SET')?></span>
 		</div>
 	</div>
@@ -149,91 +129,41 @@
 	<div class="edost_div <?=($head_button && !$active ? 'edost_supercompact_hide' : '')?>">
 
 <?	if ($bookmark != '') { ?>
-	<div id="edost_bookmark_div" class="edost_compact_hide edost_supercompact_hide">
+	<div id="edost_bookmark_main" class="edost_compact_hide edost_supercompact_hide">
 		<input id="edost_bookmark" name="edost_bookmark" value="<?=$bookmark_id?>" type="hidden">
 
-		<div id="edost_bookmark_tariff2" class="edost_bookmark2 edost_format edost_resize_bookmark2" style="text-align: center;">
-<?			$id = false;
-			foreach ($data['format']['data'] as $f_key => $f) if ($bookmark !== 2 || $f_key !== 'general') { $id = $f_key; ?>
-				<div id="edost_<?=$id?>_td2" class="edost_bookmark edost_active" width="110" style="" onclick="edost_SetBookmark('<?=$id?>')">
-					<div class="edost_bookmark_head" style=""><?=$f['head']?></div>
-<?				if ($f_key != 'show') { ?>
-					<div style="padding-top: 2px;">
+		<div class="" style="text-align: center;">
+<?			foreach ($data['format']['data'] as $f_key => $f) if ($bookmark !== 2 || $f_key !== 'general') { $id = $f_key; ?>
+				<div class="edost_bookmark_<?=$id?> edost_active edost_bookmark_button" onclick="edost_SetBookmark('<?=$id?>')">
+<?					if (!empty($arParams['ICO_MANUAL']) && $arParams['ICO_MANUAL'] == 'Y') { ?>
+					<img src="<?=$arParams['ICO_PATH'].'/'.($f_key == 'postmap' ? 'post' : $f_key).'.'.$arParams['ICO_EXTENSION']?>" border="0">
+<?					} else { ?>
+					<span class="edost_ico_load" data-name="<?=($f_key == 'postmap' ? 'post' : $f_key)?>"></span>
+<?					} ?>
+					<span class="edost_bookmark_head"><?=$f['head']?>
+<?					if ($f_key != 'show') { ?>
+						<br>
 <?						if (isset($f['short']['free']) || isset($f['min']['free'])) { ?>
 						<span class="edost_format_price edost_price_free" style=""><?=(isset($f['short']['free']) ? $f['short']['free'] : $f['min']['free'])?></span>
 <?						} else if (isset($f['short']['price_formatted']) || isset($f['min']['price_formatted'])) { ?>
 						<span class="edost_format_price edost_price"<?=(isset($f['short']['price_formatted']) ? ' style="color: #888;"' : '')?>><?=(isset($f['short']['price_formatted']) ? $f['short']['price_formatted'] : $f['min']['price_formatted'])?></span>
 <?						} ?>
-<?						if (!empty($f['min']['day'])) { ?>
-						<br><span class="edost_format_price edost_day"><?=(!empty($f['min']['day']) ? $f['min']['day'] : '')?></span>
-<?						} ?>
-
-<?						if ($cod_bookmark && ($bookmark == 1 && $f['cod'] || $bookmark == 2 && (!$cod_tariff && isset($f['min']['pricecash']) || $f['min']['cod_tariff']))) { ?>
-							<div class="edost_price_head edost_payment" style="padding-top: 2px;"><?=$sign['cod_head_bookmark']?></div>
-<?						} ?>
-					</div>
+<?					} ?>
+				</span>
+<?				if ($cod_bookmark && ($bookmark == 1 && $f['cod'] || $bookmark == 2 && (!$cod_tariff && isset($f['min']['pricecash']) || $f['min']['cod_tariff']))) { ?>
+					<div class="edost_price_head edost_payment" style="padding-top: 4px;"><?=$sign['cod_head_bookmark']?></div>
 <?				} ?>
 				</div>
 <?			} ?>
-
-<?			if ($bookmark == 1) { ?>
-			<div class="edost_format edost_resize_bookmark2">
-				<div style="height: 4px; background: #888; margin: 10px 0;"></div>
-			</div>
-<?			} ?>
 		</div>
-
-		<div id="edost_bookmark_tariff" class="edost_resize_bookmark">
-		<table id="edost_bookmark_table" class="edost_bookmark" cellpadding="0" cellspacing="0" border="0">
-			<tr>
-<?			foreach ($data['format']['data'] as $f_key => $f) if ($bookmark !== 2 || $f_key !== 'general') { $id = $f_key; ?>
-				<td id="edost_<?=$id?>_td" class="edost_active" width="110" style="padding-bottom: 5px;" onclick="edost_SetBookmark('<?=$id?>')">
-					<img src="<?=$ico_path.'/'.$f_key.'.gif'?>" border="0">
-					<br>
-					<span class="edost_bookmark"><?=$f['head']?></span>
-					<br>
-<?				if ($f_key != 'show') { ?>
-					<div>
-<?						if (isset($f['free']) || isset($f['min']['free'])) { ?>
-						<span class="edost_format_price edost_price_free" style=""><?=(isset($f['free']) ? $f['free'] : $f['min']['free'])?></span>
-<?						} else if (isset($f['price_formatted']) || isset($f['min']['price_formatted'])) { ?>
-						<span class="edost_format_price edost_price"<?=(isset($f['price_formatted']) ? ' style="color: #888;"' : '')?>><?=(isset($f['price_formatted']) ? $f['price_formatted'] : $f['min']['price_formatted'])?></span>
-<?						} ?>
-
-<?						if (!empty($f['min']['day'])) { ?>
-						<br><span class="edost_format_price edost_day"><?=(!empty($f['min']['day']) ? $f['min']['day'] : '')?></span>
-<?						} ?>
-
-<?						if ($cod_bookmark && ($bookmark == 1 && $f['cod'] || $bookmark == 2 && (!$cod_tariff && isset($f['min']['pricecash']) || $f['min']['cod_tariff']))) { ?>
-							<div class="edost_price_head edost_payment" style="padding-top: 4px;"><?=$sign['cod_head_bookmark']?></div>
-<?						} ?>
-					</div>
-<?				} ?>
-				</td>
-				<td width="25"></td>
-<?			} ?>
-			</tr>
-<?			if ($bookmark == 1) { ?>
-			<tr>
-<?				foreach ($data['format']['data'] as $f_key => $f) { $id = $f_key; ?>
-				<td id="edost_<?=$id?>_td_bottom" style="height: 10px;"></td>
-				<td></td>
-<?				} ?>
-			</tr>
-			<tr>
-				<td id="edost_bookmark_delimiter" colspan="10" style="height: 5px;"></td>
-			</tr>
-<?			} ?>
-		</table>
-		</div>
-
 
 <?		if (!$edost_catalogdelivery) { ?>
-		<div id="edost_bookmark_loading" style="padding-top: 0px; display: none;"></div>
+		<div class="edost_bookmark_loading" style="padding-top: 0px; display: none;"></div>
 <?		} ?>
 <?		if ($bookmark_id == 'show') echo '<div style="height: 20px;"></div>'; ?>
 	</div>
 <?	} ?>
+
 
 <?
 	if ($bookmark == 2 && $bookmark_id != '' && $bookmark_id != 'show') foreach ($data['format']['data'] as $f_key => $f) if (!empty($f['tariff'])) foreach ($f['tariff'] as $v) if (!empty($v['checked'])) {
@@ -299,11 +229,12 @@
 <?		} ?>
 
 
-	<div id="edost_<?=$f_key?>_div" data-cod="<?=($cod && $f['cod'] ? 'Y' : 'N')?>" class="edost_compact_div <?=($map ? 'edost_resize_map2 ' : '')?><?=(!$border || $f['head'] == '' ? ' edost_format' : ' edost_format_border')?>" style="<?=$margin.$display?>">
+	<div id="edost_<?=$f_key?>_div" data-format="<?=$f_key?>" data-cod="<?=($cod && $f['cod'] ? 'Y' : 'N')?>" class="edost_format_div edost_compact_div <?=($map ? 'edost_resize_map2 ' : '')?><?=(!$border || $f['head'] == '' ? ' edost_format' : ' edost_format_border')?>" style="<?=$margin.$display?>">
 <?
 		$i++;
 
-		if ($bookmark == 1) echo '<div class="edost_resize_bookmark" style="height: 8px;"></div>';
+//		if ($bookmark == 1) echo '<div class="edost_resize_bookmark" style="height: 8px;"></div>';
+		if ($bookmark == 1) echo '<div style="margin-left: 0;" class="edost_delimiter edost_delimiter_format"></div>';
 
 		if ($cod && $f['cod']) {
 			echo '<div class="edost_compact_hide edost_supercompact_hide'.($head == '' ? ' edost_resize_cod' : '').'">';
@@ -377,8 +308,11 @@
 			$id = 'ID_DELIVERY_'.$v['html_id'] . ($compact != '' && in_array($v['html_id'], $office_main2) && $k != 0 ? '_2' : '');
 			$value = $v['html_value'];
 			$office_map = (isset($v['office_map']) ? $v['office_map'] : '');
+
 //			$onclick = 'submitForm('.($office_map == 'get' && $v['format'] != 'post' ? "'office', '".$v['office_mode']."'" : "'update'").')';
-			$onclick = 'submitForm('.($office_map == 'get' ? "'office', '".$v['office_mode']."'" : "'update'").')';
+			if ($edost_locations && !empty($v['office_city'])) $onclick = "edost.location.set_city('".$v['office_city']."', '".$v['office_mode']."')";
+			else $onclick = 'submitForm('.($office_map == 'get' ? "'office', '".$v['office_mode']."'" : "'update'").')';
+
 //			$onclick_get = "window.edost.window.submit('".$id."'".($office_map == 'get' && $v['format'] != 'post' ? ", '".$v['office_mode']."'" : '').")";
 			$onclick_get = "window.edost.window.submit('".$id."'".($office_map == 'get' ? ", '".$v['office_mode']."'" : '').")";
 			$price_long = (isset($v['price_long']) ? $v['price_long'] : '');
@@ -401,14 +335,11 @@
 				if (!empty($v['office_address'])) $row++;
 			}
 
-			if (isset($v['free'])) {
-			    $w = explode('_', $v['html_value']);
-				if (!empty($v['description']) && strpos($v['description'], '[no_free]') !== false) {
-					if (!empty($v['description'])) $v['description'] = str_replace('[no_free]', '', $v['description']);
-					$v['free'] = '';
-					if (!empty($v['checked'])) $active_tariff['free'] = '';
-				}
+			if (!empty($v['no_free']) && isset($v['free'])) {
+				$v['free'] = '';
+				if (!empty($v['checked'])) $active_tariff['free'] = '';
 			}
+
 			if (!empty($v['description']) && strpos($v['description'], '[address=') !== false) {
 				$s = explode('[address=', $v['description']);
 				$v['description'] = $s[0];
@@ -556,7 +487,9 @@
 						<label for="<?=$id?>" class="edost_compact_cod_hide edost_compact_tariff_cod_hide">
 <?						if ($compact != '' && $office_map == 'get' && empty($v['office_address'])) { ?>
 <?							if (isset($f['short']['free']) || isset($f['min']['free'])) { ?>
+<?								if (empty($v['no_free'])) { ?>
 							<span class="edost_format_price edost_price_free" style=""><?=(isset($f['short']['free']) ? $f['short']['free'] : $f['min']['free'])?></span>
+<?								} ?>
 <?							} else if (isset($f['short']['price_formatted']) || isset($f['min']['price_formatted'])) { ?>
 							<span class="edost_format_price edost_price"<?=(isset($f['short']['price_formatted']) ? ' style="color: #888;"' : '')?>><?=(isset($f['short']['price_formatted']) ? $f['short']['price_formatted'] : $f['min']['price_formatted'])?></span>
 <?							} ?>
@@ -589,7 +522,7 @@
 <?					} ?>
 
 <?					if (!empty($v['day'])) { ?>
-					<div class="<?=($compact == '' ? 'edost_resize_day2' : '')?>"><label for="<?=$id?>" class="" style="margin: 0;"><span class="edost_format_price edost_day"><?=$v['day']?></span></label></div>
+					<div class="<?=($compact == '' ? 'edost_resize_day2' : '')?>"><label for="<?=$id?>" class="" style="margin: 0;"><span class="edost_format_price edost_day"><?=str_replace('<br>', ' ', $v['day'])?></span></label></div>
 <?					} ?>
 				</td>
                                                                                          <? /* edost_compact_cod_hide */ ?>
@@ -614,7 +547,7 @@
 <?				} ?>
 
 <?				if ($compact != '') { ?>
-				<td class="edost_resize_tariff_show2 edost_supercompact_hide edost_order_hide edost_button_get" width="110" align="center"> <? /* edost_compact_nocod_hide */ ?>
+				<td class="edost_resize_tariff_show2 edost_supercompact_hide edost_order_hide edost_button_get" width="110" align="center">
 					<div class="edost_button_get" onclick="<?=$onclick_get?>"><span><?=GetMessage('SOA_TEMPL_GET')?></span></div>
 				</td>
 <?				} ?>
@@ -753,7 +686,9 @@
 
 <? if ($bookmark != '') { ?>
 	<script type="text/javascript">
-		edost_SetBookmark('start', '<?=$bookmark?>');
+//		edost_SetBookmark('start', '<?=$bookmark?>');
+		if (window.edost_run) edost_run('edost.js', ['ico.js']);
+//		if (window.edost && edost.ico) edost.ico.add();
 	</script>
 <? } ?>
 

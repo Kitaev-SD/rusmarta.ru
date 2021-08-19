@@ -6,7 +6,8 @@
 namespace Acrit\Core\Export\Settings;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Acrit\Core\Helper,
+	\Acrit\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -114,7 +115,29 @@ return ob_get_clean();
 						$intProfileId = $obField->getProfileID();
 						$intIBlockId = $obField->getIBlockID();
 						$intElementId = \Acrit\Core\Export\Exporter::getInstance($strModuleId)->getElementId();
-						$strValue = eval(static::getPhp($strPhp));
+						try{
+							$strValue = eval(static::getPhp($strPhp));
+						}
+						catch(\Error $obError){
+							$strLogMessage = static::getMessage('EVAL_ERROR_LOG', array(
+								'#MESSAGE#' => $obError->getMessage(),
+								'#FIELD#' => (is_object($obField) ? $obField->getCode() : (Helper::strlen($arParams['field_code']) ? $arParams['field_code'] : '?')),
+								'#PHP#' => $strPhp,
+							));
+							Log::getInstance($obField->getModuleId())->add($strLogMessage, 
+								(is_object($obField) ? $obField->getProfileID() : false), false);
+							$strValue = '';
+						}
+						catch(\Exception $obError){
+							$strLogMessage = static::getMessage('EVAL_ERROR_LOG', array(
+								'#MESSAGE#' => $obError->getMessage(),
+								'#FIELD#' => (is_object($obField) ? $obField->getCode() : (Helper::strlen($arParams['field_code']) ? $arParams['field_code'] : '?')),
+								'#PHP#' => $strPhp,
+							));
+							Log::getInstance($obField->getModuleId())->add($strLogMessage, 
+								(is_object($obField) ? $obField->getProfileID() : false), false);
+							$strValue = '';
+						}
 					}
 				});
 			}

@@ -45,4 +45,12 @@ class SessionCache
 
 		return $_SESSION[static::SESSION_KEY][$type][$id];
 	}
+
+	public static function release($type, $id)
+	{
+		if (isset($_SESSION[static::SESSION_KEY][$type][$id]))
+		{
+			unset($_SESSION[static::SESSION_KEY][$type][$id]);
+		}
+	}
 }

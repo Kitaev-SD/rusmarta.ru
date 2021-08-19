@@ -28,7 +28,7 @@ trait HasDeliveryDates
 		}
 	}
 
-	protected function getDeliveryDatesProperties(TradingService\MarketplaceDbs\Model\Order\Delivery\Dates $dates)
+	protected function getDeliveryDatesProperties(Market\Api\Model\Order\Dates $dates)
 	{
 		return [
 			'DELIVERY_DATE_FROM' => $dates->getFromDate(),

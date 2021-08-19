@@ -17,7 +17,7 @@ Loc::loadMessages(__FILE__);
 
 class AvitoParts extends Avito {
 
-   CONST DATE_UPDATED = '2021-03-05';
+   CONST DATE_UPDATED = '2021-08-05';
 
    protected static $bSubclass = true;
 
@@ -183,6 +183,20 @@ class AvitoParts extends Avito {
           'DESCRIPTION' => static::getMessage('FIELD_RIM_OFFSET_DESC'),
       ));
       $arResult[] = new Field(array(
+          'CODE' => 'RUNFLAT',
+          'DISPLAY_CODE' => 'RunFlat',
+          'NAME' => static::getMessage('FIELD_RUNFLAT_NAME'),
+          'SORT' => 1121,
+          'DESCRIPTION' => static::getMessage('FIELD_RUNFLAT_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'HOMOLOGATION',
+          'DISPLAY_CODE' => 'Homologation',
+          'NAME' => static::getMessage('FIELD_HOMOLOGATION_NAME'),
+          'SORT' => 1122,
+          'DESCRIPTION' => static::getMessage('FIELD_HOMOLOGATION_DESC'),
+      ));
+      $arResult[] = new Field(array(
           'CODE' => 'BRAND',
           'DISPLAY_CODE' => 'Brand',
           'NAME' => static::getMessage('FIELD_BRAND_NAME'),
@@ -295,6 +309,10 @@ class AvitoParts extends Avito {
          $arXmlTags['RimBoltsDiameter'] = Xml::addTag($arFields['RIM_BOLTS_DIAMETER']);
       if (!Helper::isEmpty($arFields['RIM_OFFSET']))
          $arXmlTags['RimOffset'] = Xml::addTag($arFields['RIM_OFFSET']);
+      if (!Helper::isEmpty($arFields['RUNFLAT']))
+         $arXmlTags['RunFlat'] = Xml::addTag($arFields['RUNFLAT']);
+      if (!Helper::isEmpty($arFields['HOMOLOGATION']))
+         $arXmlTags['Homologation'] = Xml::addTag($arFields['HOMOLOGATION']);
       if (!Helper::isEmpty($arFields['BRAND']))
          $arXmlTags['Brand'] = Xml::addTag($arFields['BRAND']);
       if (!Helper::isEmpty($arFields['AVAILABILITY']))

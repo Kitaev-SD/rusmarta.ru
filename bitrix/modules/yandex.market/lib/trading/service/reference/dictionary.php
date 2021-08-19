@@ -35,15 +35,24 @@ class Dictionary
 	/**
 	 * @param Market\Api\Model\Order\Item $item
 	 *
-	 * @return string|null
+	 * @return string
 	 */
 	public function getOrderItemXmlId(Market\Api\Model\Order\Item $item)
 	{
+		$prefix = $this->getCommonPrefix();
 		$itemId = $item->getId();
 
-		return $itemId !== null
-			? $this->getCommonPrefix() . $itemId
-			: null;
+		if ($itemId !== null) { return $prefix . $itemId; }
+
+		$order = $item->getParent();
+		$index = $item->getCollection()->getItemIndex($item);
+
+		if ($order === null)
+		{
+			throw new Main\ArgumentException('item without order not supported');
+		}
+
+		return $prefix . $order->getId() . '_' . $index;
 	}
 
 	protected function getCommonPrefix()

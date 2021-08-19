@@ -86,15 +86,45 @@ class OrdersInfo {
 	/**
 	 * Site users
 	 */
-	public static function getUsers() {
+	public static function getUsers($search='') {
 		$result = [];
-		$filter = [];
-		$db = \Bitrix\Main\UserTable::getList([
-			'select' => ['ID','SHORT_NAME', 'EMAIL'],
-			'order' => ['ID'=>'DESC'],
-		]);
+		$fields = [
+			'select' => ['ID', 'SHORT_NAME', 'EMAIL'],
+			'order' => ['ID' => 'DESC'],
+		];
+		if ($search) {
+			$fields['filter'][] = [
+				'LOGIC' => 'OR',
+				'SHORT_NAME' => $search . '%',
+				'EMAIL' => $search . '%',
+			];
+//			$fields['filter']['SHORT_NAME'] = $search . '%';
+//			$fields['filter']['EMAIL'] = $search . '%';
+		}
+		$db = \Bitrix\Main\UserTable::getList($fields);
 		while ($item = $db->fetch()) {
 			$result[] = [
+				'id' => $item['ID'],
+				'name' => $item['SHORT_NAME'],
+				'code' => $item['EMAIL'],
+			];
+		}
+		return $result;
+	}
+
+	/**
+	 * Get site user
+	 */
+	public static function getUser($id) {
+		$result = false;
+		$fields = [
+			'filter' => ['ID' => $id],
+			'select' => ['ID', 'SHORT_NAME', 'EMAIL'],
+			'order' => ['ID' => 'DESC'],
+		];
+		$db = \Bitrix\Main\UserTable::getList($fields);
+		if ($item = $db->fetch()) {
+			$result = [
 				'id' => $item['ID'],
 				'name' => $item['SHORT_NAME'],
 				'code' => $item['EMAIL'],

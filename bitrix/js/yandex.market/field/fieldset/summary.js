@@ -9,6 +9,7 @@
 		defaults: {
 			modalElement: '.js-fieldset-summary__edit-modal',
 			fieldElement: '.js-fieldset-summary__field',
+			clearElement: '.js-fieldset-summary__clear',
 			textElement: '.js-fieldset-summary__text',
 			summary: null,
 
@@ -31,10 +32,12 @@
 
 		bind: function() {
 			this.handleTextClick(true);
+			this.handleClearClick(true);
 		},
 
 		unbind: function() {
 			this.handleTextClick(false);
+			this.handleClearClick(false);
 		},
 
 		handleTextClick: function(dir) {
@@ -43,8 +46,20 @@
 			textElement[dir ? 'on' : 'off']('click', $.proxy(this.onTextClick, this));
 		},
 
+		handleClearClick: function(dir) {
+			var clearElement = this.getElement('clear');
+
+			clearElement[dir ? 'on' : 'off']('click', $.proxy(this.onClearClick, this));
+		},
+
 		onTextClick: function(evt) {
 			this.openEditModal();
+
+			evt.preventDefault();
+		},
+
+		onClearClick: function(evt) {
+			this.clear();
 
 			evt.preventDefault();
 		},
@@ -61,6 +76,10 @@
 				text = this.renderTemplate(template, summaryValues);
 			} else {
 				text = this.joinValues(summaryValues);
+			}
+
+			if (text === '') {
+				text = this.getLang('PLACEHOLDER');
 			}
 
 			textElement.html(text);
@@ -105,32 +124,51 @@
 		},
 
 		summaryValues: function(values) {
-			var key;
-			var template;
-			var unitOption;
-			var unit;
+			let key;
+			let value;
+			let displayValueParts;
+			let displayValue;
+			let template;
+			let unitOption;
 
 			for (key in values) {
 				if (!values.hasOwnProperty(key)) { continue; }
 				if (typeof values[key] !== 'object' || values[key] == null) { continue; }
 
+				value = values[key];
 				template = this.getFieldSummaryTemplate(key);
 				unitOption = this.getFieldSummaryUnit(key);
 
-				if (template != null) {
-					values[key] = this.renderTemplate(template, values[key]);
+				if (Array.isArray(value)) {
+					displayValueParts = value.map((valueItem) => this.summaryValueTemplate(valueItem, template, unitOption));
+					displayValue = displayValueParts.join(', ');
+				} else {
+					displayValue = this.summaryValueTemplate(value, template, unitOption);
 				}
 
-				if (unitOption != null) {
-					unit = this.formatUnit(values[key], unitOption);
-
-					if (unit != null) {
-						values[key] = '' + values[key] + ' ' + unit;
-					}
-				}
+				values[key] = displayValue;
 			}
 
 			return values;
+		},
+
+		summaryValueTemplate: function(value, template, unitOption) {
+			let result = value;
+			let unit;
+
+			if (template != null) {
+				result = this.renderTemplate(template, result);
+			}
+
+			if (unitOption != null) {
+				unit = this.formatUnit(result, unitOption);
+
+				if (unit != null) {
+					result = '' + result + ' ' + unit;
+				}
+			}
+
+			return result;
 		},
 
 		getFieldSummaryTemplate: function(key) {

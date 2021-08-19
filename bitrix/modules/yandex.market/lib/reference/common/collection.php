@@ -120,6 +120,13 @@ abstract class Collection implements \ArrayAccess, \Countable, \IteratorAggregat
 		return $result;
 	}
 
+	public function getItemIndex(Model $item)
+	{
+		$key = array_search($item, $this->collection, true);
+
+		return $key !== false ? $key : null;
+	}
+
 	/*
 	 * Array iterator
 	 * */

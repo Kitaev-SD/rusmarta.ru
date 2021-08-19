@@ -16,6 +16,8 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 	protected $environment;
 	/** @var Sale\Delivery\Services\Base[] */
 	protected $deliveryServices = [];
+	/** @var array<string, bool> */
+	protected $existsDeliveryDiscount = [];
 
 	protected static function includeMessages()
 	{
@@ -189,11 +191,49 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 					continue;
 				}
 
+				if (
+					!$this->isOrderLocationFilled($calculatableOrder)
+					&& $this->hasDeliveryLocationRestriction($serviceId)
+				)
+				{
+					continue;
+				}
+
 				$result[] = $serviceId;
 			}
 			catch (Main\SystemException $exception)
 			{
 				// silence
+			}
+		}
+
+		return $result;
+	}
+
+	protected function isOrderLocationFilled(Sale\OrderBase $order)
+	{
+		$propertyCollection = $order->getPropertyCollection();
+
+		if ($propertyCollection === null) { return false; }
+
+		$locationProperty = $propertyCollection->getDeliveryLocation();
+
+		if ($locationProperty === null) { return false; }
+
+		return (string)$locationProperty->getValue() !== '';
+	}
+
+	protected function hasDeliveryLocationRestriction($serviceId)
+	{
+		$result = false;
+		$restrictions = Sale\Delivery\Restrictions\Manager::getRestrictionsList($serviceId);
+
+		foreach ($restrictions as $restriction)
+		{
+			if ($restriction['CLASS_NAME'] === '\Bitrix\Sale\Delivery\Restrictions\ByLocation')
+			{
+				$result = true;
+				break;
 			}
 		}
 
@@ -245,7 +285,10 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 				$shipment->setField('BASE_PRICE_DELIVERY', $calculationResult->getPrice());
 			}
 
-			$calculatableOrder->doFinalAction(true);
+			if ($this->hasDeliveryDiscount($calculatableOrder))
+			{
+				$calculatableOrder->doFinalAction(true);
+			}
 
 			Delivery\CalculationFacade::mergeCalculationResult($result, $calculationResult);
 			Delivery\CalculationFacade::mergeDeliveryService($result, $deliveryService);
@@ -296,6 +339,11 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 		return $deliveryService;
 	}
 
+	/**
+	 * @param Order $order
+	 *
+	 * @return Sale\Order
+	 */
 	protected function getOrderCalculatable(TradingEntity\Reference\Order $order)
 	{
 		if (!($order instanceof Order))
@@ -327,6 +375,68 @@ class Delivery extends Market\Trading\Entity\Reference\Delivery
 		}
 
 		return $result;
+	}
+
+	protected function hasDeliveryDiscount(Sale\Order $order)
+	{
+		$siteId = $order->getSiteId();
+		$userGroups = Market\Data\UserGroup::getUserGroups($order->getUserId());
+		$cacheKey = $siteId . '|' . implode('.', $userGroups);
+
+		if (!isset($this->existsDeliveryDiscount[$cacheKey]))
+		{
+			$this->existsDeliveryDiscount[$cacheKey] = $this->searchDeliveryDiscount($siteId, $userGroups);
+		}
+
+		return $this->existsDeliveryDiscount[$cacheKey];
+	}
+
+	protected function searchDeliveryDiscount($siteId, $userGroups)
+	{
+		if (!method_exists('CSaleActionCtrlDelivery', 'GetControlID')) { return false; }
+
+		// query discounts
+
+		$queryDiscounts = Sale\Internals\DiscountTable::getList([
+			'filter' => [
+				'=LID' => $siteId,
+				'=ACTIVE' => 'Y',
+				[
+					'LOGIC' => 'OR',
+					'ACTIVE_FROM' => null,
+					'>=ACTIVE_FROM' => new Main\Type\DateTime(),
+				],
+				[
+					'LOGIC' => 'OR',
+					'ACTIVE_TO' => null,
+					'<=ACTIVE_TO' => new Main\Type\DateTime(),
+				],
+				[
+					'LOGIC' => 'OR',
+					'%ACTIONS' => serialize(\CSaleActionCtrlDelivery::GetControlID()),
+					'%APPLICATION' => '::applyToDelivery(',
+				],
+			],
+			'select' => [ 'ID' ],
+		]);
+
+		$discounts = $queryDiscounts->fetchAll();
+
+		if (empty($discounts)) { return false; }
+
+		// test user group access
+
+		$queryAccess = Sale\Internals\DiscountGroupTable::getList(array(
+			'select' => ['DISCOUNT_ID'],
+			'filter' => [
+				'=DISCOUNT_ID' => array_column($discounts, 'ID'),
+				'=GROUP_ID' => $userGroups,
+				'=ACTIVE' => 'Y',
+			],
+			'limit' => 1,
+		));
+
+		return (bool)$queryAccess->fetch();
 	}
 
 	public function suggestDeliveryType($deliveryId, array $supportedTypes = null)

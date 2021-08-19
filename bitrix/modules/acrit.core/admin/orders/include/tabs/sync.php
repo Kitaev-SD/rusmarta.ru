@@ -72,6 +72,24 @@ $obTabControl->BeginCustomField('PROFILE[SYNC_MAN_RUN]', Loc::getMessage('ACRIT_
 $obTabControl->EndCustomField('PROFILE[SYNC_MAN_RUN]');
 
 $obTabControl->AddSection('HEADING_SYNC_ADD', Loc::getMessage('ACRIT_CRM_TAB_SYNC_ADD_TITLE'));
+
+$obTabControl->BeginCustomField('PROFILE[SYNC][add_active]', Loc::getMessage('ACRIT_CRM_TAB_SYNC_ADD_ACTIVE'));
+if (!$strCustomBlock):
+	?>
+    <tr id="tr_sync_add_active">
+        <td>
+        </td>
+        <td>
+            <input type="checkbox" name="PROFILE[SYNC][add_active]" id="field_sync_add_active" value="Y"<?=$arProfile['SYNC']['add_active']=='Y'?' checked':'';?> />
+            <label for="field_sync_add_active"><?=$obTabControl->GetCustomLabelHTML()?><label>
+        </td>
+    </tr>
+<?
+else:
+	echo $strCustomBlock;
+endif;
+$obTabControl->EndCustomField('PROFILE[SYNC][add_active]');
+
 $strCustomBlock = $obPlugin->getSettingsPeriodSyncBlock();
 $obTabControl->BeginCustomField('PROFILE[SYNC][add][period]', Loc::getMessage('ACRIT_CRM_TAB_SYNC_ADD_PERIOD'));
 if (!$strCustomBlock):

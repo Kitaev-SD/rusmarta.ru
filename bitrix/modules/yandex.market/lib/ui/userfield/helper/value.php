@@ -36,7 +36,7 @@ class Value
 
 	protected static function isSingle($value)
 	{
-		return is_scalar($value);
+		return !is_array($value);
 	}
 
 	protected static function isMultiple($value)

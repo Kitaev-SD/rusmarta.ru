@@ -43,15 +43,26 @@ include __DIR__ . '/partials/form-prolog.php';
 			<?php
 		}
 
-		?>
-		<div class="yamarket-shipment-print-form__box">
-			<input class="adm-designed-checkbox" type="checkbox" name="entity[]" value="<?= $box['ENTITY_ID']; ?>" checked id="YAMARKET_PRINT_BOX_<?= $boxIndex; ?>" />
-			<label class="adm-designed-checkbox-label" for="YAMARKET_PRINT_BOX_<?= $boxIndex; ?>"></label>
-			<label for="YAMARKET_PRINT_BOX_<?= $boxIndex; ?>">
-				<?= Loc::getMessage('YANDEX_MARKET_T_TRADING_PRINT_FORM_BOX_NUMBER', [ '#NUMBER#' => $box['NUMBER'] ]); ?>
-			</label>
-		</div>
-		<?php
+		if ($box['VIRTUAL'])
+		{
+			?>
+			<div class="yamarket-shipment-print-form__box has--warning">
+				<?= Loc::getMessage('YANDEX_MARKET_T_TRADING_PRINT_FORM_BOX_VIRTUAL_WARNING'); ?>
+			</div>
+			<?php
+		}
+		else
+		{
+			?>
+			<div class="yamarket-shipment-print-form__box">
+				<input class="adm-designed-checkbox" type="checkbox" name="entity[]" value="<?= $box['ENTITY_ID']; ?>" checked id="YAMARKET_PRINT_BOX_<?= $boxIndex; ?>" />
+				<label class="adm-designed-checkbox-label" for="YAMARKET_PRINT_BOX_<?= $boxIndex; ?>"></label>
+				<label for="YAMARKET_PRINT_BOX_<?= $boxIndex; ?>">
+					<?= Loc::getMessage('YANDEX_MARKET_T_TRADING_PRINT_FORM_BOX_NUMBER', [ '#NUMBER#' => $box['NUMBER'] ]); ?>
+				</label>
+			</div>
+			<?php
+		}
 
 		++$boxIndex;
 	}

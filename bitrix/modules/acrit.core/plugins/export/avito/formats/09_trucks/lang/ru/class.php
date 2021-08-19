@@ -183,5 +183,57 @@ $MESS[$strMessPrefix.'FIELD_ACCIDENT_NAME'] = 'Состояние б/у';
 		<li>Битый</li>
 		<li>Не битый</li>
 	</ul>';
-	
+
+$MESS[$strMessPrefix.'FIELD_MAKE_CHASSIS_NAME'] = 'Марка шасси';
+	$MESS[$strMessPrefix.'FIELD_MAKE_CHASSIS_DESC'] = 'Марка шасси из <a href="https://autoload.avito.ru/format/chassis.xml" target="_blank">Справочника</a> (Make).<br/><br/>Используется для коммунальной техники.';
+$MESS[$strMessPrefix.'FIELD_MODEL_CHASSIS_NAME'] = 'Модель шасси';
+	$MESS[$strMessPrefix.'FIELD_MODEL_CHASSIS_DESC'] = 'Модель шасси из <a href="https://autoload.avito.ru/format/chassis.xml" target="_blank">Справочника</a> (Model).<br/><br/>Используется для коммунальной техники. Обязателен если указан MakeChassis';
+$MESS[$strMessPrefix.'FIELD_AVAILABILITY_NAME'] = 'Доступность';
+	$MESS[$strMessPrefix.'FIELD_AVAILABILITY_DESC'] = 'Доступность — одно из значений списка:
+	<ul>
+		<li>В наличии</li>
+		<li>Под заказ</li>
+	</ul>';
+	$MESS[$strMessPrefix.'FIELD_AVAILABILITY_IN'] = 'В наличии';
+$MESS[$strMessPrefix.'FIELD_ENGINE_CAPACITY_NAME'] = 'Объем двигателя, куб. см.';
+	$MESS[$strMessPrefix.'FIELD_ENGINE_CAPACITY_DESC'] = 'Объем двигателя в см<sup>3</sup> — целое число в диапазоне от 1000 до 900000.<br/><br/>Используется для грузовиков';
+$MESS[$strMessPrefix.'FIELD_GROSS_VEHICLE_WEIGHT_NAME'] = 'Грузоподъёмность, кг';
+	$MESS[$strMessPrefix.'FIELD_GROSS_VEHICLE_WEIGHT_DESC'] = 'Грузоподъёмность в кг — целое число в диапазоне от 500 до 500000.<br/><br/>Используется для грузовиков';
+$MESS[$strMessPrefix.'FIELD_PERMISSIBLE_GROSS_VEHICLE_WEIGHT_NAME'] = 'Разрешённая максимальная масса, кг';
+	$MESS[$strMessPrefix.'FIELD_PERMISSIBLE_GROSS_VEHICLE_WEIGHT_DESC'] = 'Разрешённая максимальная масса в кг — целое число в диапазоне от 3500 до 1000000.<br/><br/>Используется для грузовиков';
+$MESS[$strMessPrefix.'FIELD_WHEEL_FORMULA_NAME'] = 'Колесная формула';
+	$MESS[$strMessPrefix.'FIELD_WHEEL_FORMULA_DESC'] = 'Колесная формула — одно из значений списка:
+	<ul>
+		<li>4&times;2</li>
+		<li>4&times;4</li>
+		<li>6&times;2</li>
+		<li>6&times;4</li>
+		<li>6&times;6</li>
+		<li>8&times;2</li>
+		<li>8&times;4</li>
+		<li>8&times;6</li>
+		<li>8&times;8</li>
+		<li>10&times;2</li>
+		<li>10&times;4</li>
+		<li>10&times;6</li>
+		<li>10&times;8</li>
+		<li>12&times;4</li>
+		<li>12&times;8</li>
+	</ul>
+	<br/>Используется для грузовиков';
+$MESS[$strMessPrefix.'FIELD_POWER_NAME'] = 'Мощность, л.с.';
+	$MESS[$strMessPrefix.'FIELD_POWER_DESC'] = 'Мощность в л.с. — целое число в диапазоне от 40 до 900.<br/><br/>Используется для грузовиков';
+$MESS[$strMessPrefix.'FIELD_EMISSION_CLASS_NAME'] = 'Экологический класс';
+	$MESS[$strMessPrefix.'FIELD_EMISSION_CLASS_DESC'] = 'Экологический класс — одно из значений списка:
+	<ul>
+		<li>Евро 1</li>
+		<li>Евро 2</li>
+		<li>Евро 3</li>
+		<li>Евро 4</li>
+		<li>Евро 5</li>
+		<li>Евро 6</li>
+	</ul>
+	<br/>Используется для грузовиков';
+
+
 ?>

@@ -75,6 +75,10 @@
 			this.callItemList('refreshNumber');
 		},
 
+		toggleSizes: function(dir) {
+			this.callItemList('toggleSizes', [dir]);
+		},
+
 		getShipment: function() {
 			return this.getParentField();
 		},

@@ -32,14 +32,6 @@ $arUrlRewrite=array (
     'PATH' => '/acrit.googlemerchant/index.php',
     'SORT' => 100,
   ),
-  50 => 
-  array (
-    'CONDITION' => '#^/sitemap.xml#',
-    'RULE' => '',
-    'ID' => '',
-    'PATH' => '/sitemap.php',
-    'SORT' => 100,
-  ),
   0 => 
   array (
     'CONDITION' => '#^/bitrix/services/ymarket/#',
@@ -70,6 +62,14 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:sale.personal.order',
     'PATH' => '/personal/order/index.php',
+    'SORT' => 100,
+  ),
+  50 => 
+  array (
+    'CONDITION' => '#^/sitemap.xml#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/sitemap.php',
     'SORT' => 100,
   ),
   3 => 

@@ -18,9 +18,50 @@ class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 	/** @var Request */
 	protected $request;
 
+	protected static function includeMessages()
+	{
+		Main\Localization\Loc::loadMessages(__FILE__);
+		parent::includeMessages();
+	}
+
 	protected function createRequest(Main\HttpRequest $request, Main\Server $server)
 	{
 		return new Request($request, $server);
+	}
+
+	protected function collectOrder($orderNum, $hasWarnings = false)
+	{
+		parent::collectOrder($orderNum, $hasWarnings);
+		$this->collectShipmentDate();
+	}
+
+	protected function collectShipmentDate()
+	{
+		try
+		{
+			list($deliveryId) = $this->resolveDelivery();
+			$options = $this->provider->getOptions();
+			$deliveryOption = $options->getDeliveryOptions()->getItemByServiceId($deliveryId);
+			$schedule = $options->getShipmentSchedule();
+			$dates = $this->request->getOrder()->getDelivery()->getDates();
+			$deliveryDate = $dates !== null ? $dates->getFrom() : null;
+
+			$command = new TradingService\MarketplaceDbs\Command\DeliveryShipmentDate(
+				$schedule,
+				$deliveryOption,
+				$deliveryDate
+			);
+			$shipmentDate = $command->execute();
+
+			$this->response->setField(
+				'order.shipmentDate',
+				Market\Data\Date::convertForService($shipmentDate, Market\Data\Date::FORMAT_DEFAULT_SHORT)
+			);
+		}
+		catch (Main\SystemException $exception)
+		{
+			// nothing
+		}
 	}
 
 	protected function sanitizeRegionMeaningfulValues($meaningfulValues)
@@ -147,12 +188,64 @@ class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 		return $result;
 	}
 
-	protected function modifyPrice()
+	protected function check()
 	{
 		return Market\Result\Facade::merge([
-			parent::modifyPrice(),
-			$this->modifyDeliveryPrice()
+			parent::check(),
+			$this->checkDeliveryPrice(),
 		]);
+	}
+
+	protected function checkDeliveryPrice()
+	{
+		$validationResult = $this->validateDeliveryPrice();
+
+		if ($validationResult->isSuccess()) { return $validationResult; }
+
+		$allowModifyPrice = $this->provider->getOptions()->isAllowModifyPrice();
+		$checkPriceData = $validationResult->getData();
+
+		if ($checkPriceData['SIGN'] > 0) // requested price more then delivery price
+		{
+			$allowModifyPrice = true;
+		}
+
+		if (!$allowModifyPrice) { return $validationResult; }
+
+		$modifyPrice = $this->modifyDeliveryPrice();
+		$result = new Market\Result\Base();
+
+		if (!$modifyPrice->isSuccess())
+		{
+			$result->addErrors($modifyPrice->getErrors());
+		}
+
+		return $result;
+	}
+
+	protected function validateDeliveryPrice()
+	{
+		list($deliveryId, $price) = $this->resolveDelivery();
+		$result = new Market\Result\Base();
+
+		if ((string)$deliveryId === '' || $price === null) { return $result; }
+
+		$deliveryPrice = $this->order->getShipmentPrice($deliveryId);
+
+		if (Market\Data\Price::round($price) === Market\Data\Price::round($deliveryPrice)) { return $result; }
+
+		$currency = $this->order->getCurrency();
+
+		$message = static::getLang('TRADING_ACTION_ORDER_ACCEPT_ORDER_DELIVERY_PRICE_NOT_MATCH', [
+			'#REQUEST_PRICE#' => Market\Data\Currency::format($price, $currency),
+			'#DELIVERY_PRICE#' => Market\Data\Currency::format($deliveryPrice, $currency),
+		]);
+		$result->addError(new Market\Error\Base($message, 'PRICE_NOT_MATCH'));
+		$result->setData([
+			'SIGN' => $price < $deliveryPrice ? -1 : 1,
+		]);
+
+		return $result;
 	}
 
 	protected function modifyDeliveryPrice()

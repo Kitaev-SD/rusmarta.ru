@@ -18,7 +18,7 @@ class Feature extends TradingService\Marketplace\Feature
 		return true;
 	}
 
-	public function supportsCis()
+	public function supportsWarehouses()
 	{
 		return false;
 	}

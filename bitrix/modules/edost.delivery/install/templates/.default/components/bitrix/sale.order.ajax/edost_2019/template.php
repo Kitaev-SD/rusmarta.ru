@@ -1,5 +1,14 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
+
+// обход ошибки битрикса с заполнением $arResult["ORDER_PROP"]["RELATED"] всеми существующими свойствами
+if (!empty($arResult['ORDER_PROP']['RELATED'])) foreach ($arResult['ORDER_PROP']['RELATED'] as $v)
+	if (!empty($arResult['ORDER_PROP']['USER_PROPS_N'][$v['ID']]) || !empty($arResult['ORDER_PROP']['USER_PROPS_Y'][$v['ID']])) {
+		$arResult['ORDER_PROP']['RELATED'] = array();
+		break;
+	}
+
+
 $edost_locations = (!empty($arResult['edost']['locations_installed']) ? true : false);
 
 $APPLICATION->SetAdditionalCSS($templateFolder.'/style.css');
@@ -18,6 +27,7 @@ if (empty($arParams['COMPACT_CART_SHOW_IMG'])) $arParams['COMPACT_CART_SHOW_IMG'
 if (empty($arParams['CART_SHOW_PROPS'])) $arParams['CART_SHOW_PROPS'] = 'N';
 if (empty($arParams['ORDER_FORMAT'])) $arParams['ORDER_FORMAT'] = 'progress';
 if (empty($arParams['BORDER_COLOR'])) $arParams['BORDER_COLOR'] = 'Y';
+if (empty($arParams['BORDER_NO'])) $arParams['BORDER_NO'] = 'N';
 if (empty($arParams['FONT_BIG'])) $arParams['FONT_BIG'] = 'Y';
 if (empty($arParams['COD_LIGHT'])) $arParams['COD_LIGHT'] = 'N';
 if (empty($arParams['ACTIVE_LIGHT'])) $arParams['ACTIVE_LIGHT'] = 'Y';
@@ -46,9 +56,15 @@ if ($arParams['MODULE_VBCHEREPANOV_BONUS'] == 'Y') {
 	}
 }
 
+$logictim_bonus = (!empty($arResult['JS_DATA']['LOGICTIM_BONUS']) ? $arResult['JS_DATA']['LOGICTIM_BONUS'] : false);
+$bonus_pay = (!empty($logictim_bonus) && $logictim_bonus['LOGICTIM_BONUS_USER_DOSTUP'] == 'Y' && !empty($logictim_bonus['PAY_BONUS']) ? true : false);
+$bonus_pay_total_original = ($bonus_pay && COption::GetOptionString('logictim.balls', 'ORDER_TOTAL_BONUS', 'Y') != 'Y' ? true : false);
+if ($bonus_pay_total_original) {
+	$bonus_pay = false;
+	if ($logictim_bonus['DISCOUNT_TO_PRODUCTS'] == 'B') $bonus_pay_total_original = false;
+}
 
 $edost_catalogdelivery = false;
-
 $auth = (!$USER->IsAuthorized() && $arParams['ALLOW_AUTO_REGISTER'] == 'N' ? true : false);
 $data = (isset($arResult['edost']) ? $arResult['edost'] : false);
 $config = (!empty($data['config']) ? $data['config'] : false);
@@ -100,7 +116,7 @@ if (isset($arResult['edost']['format'])) {
 		'ico2' => array('class', 'edost_resize_ico', 'edost_compact_normal', 380, 'edost_compact_small2'),
 		'bookmark_cod' => array('id', 'edost_delivery_div', 'edost_bookmark_cod_normal', 350, 'edost_bookmark_cod_small'),
 		'delimiter' => array('class', 'edost_main', 'edost_delimiter_normal', 680, 'edost_delimiter_small'),
-		'bookmark' => array('id', 'edost_delivery_div', 'edost_bookmark_normal', 700, 'edost_bookmark_small'),
+//		'bookmark' => array('id', 'edost_delivery_div', 'edost_bookmark_normal', 700, 'edost_bookmark_small'),
 		'map' => array('id', 'edost_delivery_div', 'edost_map_normal', 500, 'edost_map_hide'),
 		'payment_window' => array('id-window', 'edost_window', 'edost_window_payment_normal', 500, 'edost_window_payment_small'),
 		'delivery_window' => array('id-window', 'edost_window', 'edost_window_delivery_normal', 500, 'edost_window_delivery_small', 440, 'edost_window_delivery_small2'),
@@ -290,7 +306,9 @@ order_form_div - стиль шаблона
 <? } ?>
 
 #order_form_div svg.edost_loading path { fill: #<?=$color?>; }
+.edost_ico_load svg path { fill: #<?=$color_active_tariff?>; }
 .edost_loading_128 svg.edost_loading { width: 128px; height: 128px; }
+.edost_bookmark_button.edost_active_on, .edost_bookmark_button.edost_active_off:hover { border-color: #<?=$color?>; }
 
 #edost_location_city_template_div .edost_delivery_loading { margin-top: 10px; text-align: center; font-size: 16px; color: #<?=$color?>; }
 .edost_template_color { color: #<?=$color?>; }
@@ -310,7 +328,7 @@ span.edost_payment, td.edost_format_price div.edost_payment, div.edost_resize_co
 <? } ?>
 
 <? if ($arParams['FONT_BIG'] == 'Y') { ?>
-	span.edost_city_name { font-size: 20px !important; }
+	span.edost_city_name, span.edost_L2_city_name { font-size: 20px !important; }
 <? } else { ?>
 	#edost_location_city_div { min-height: 20px !important; padding-top: 4px; }
 <? } ?>
@@ -338,15 +356,15 @@ span.edost_payment, td.edost_format_price div.edost_payment, div.edost_resize_co
 .edost_template_bright .edost_supercompact_main #edost_delivery_div span.edost_format_tariff2 { color: #<?=$color?>; }
 .edost_template_bright .edost_supercompact_main #edost_paysystem_div span.edost_format_tariff2 { color: #<?=$color_active_tariff?>; font-weight: bold; }
 
-#order_form_div span.edost_city_name { color: #<?=$color_active_tariff?>; }
-#order_form_div span.edost_city_name span { color: #<?=$color_active_tariff?>; opacity: 0.6; }
+#order_form_div span.edost_city_name, #order_form_div span.edost_L2_city_name { color: #<?=$color_active_tariff?>; }
+#order_form_div span.edost_city_name span, #order_form_div span.edost_L2_city_name span { color: #<?=$color_active_tariff?>; opacity: 0.6; }
 
 <?	 if ($compact == '') { ?>
 #ORDER_FORM div.edost_main_active span.edost_format_name { color: #<?=$color_active_tariff?> !important; }
 <?	 } ?>
 
 <? } else { ?>
-#order_form_div span.edost_city_name { color: #555; }
+#order_form_div span.edost_city_name, #order_form_div span.edost_L2_city_name { color: #555; }
 <? } ?>
 
 <? if ($arParams['ACTIVE_LIGHT2'] == 'Y') { ?>
@@ -363,6 +381,11 @@ span.edost_payment, td.edost_format_price div.edost_payment, div.edost_resize_co
 	border: 1px solid #<?=($arParams['BORDER_COLOR'] == 'Y' ? $color_light : 'CCC')?>;
 	border-radius: <?=$border_radius?>px;
 }
+
+<? if ($arParams['BORDER_NO'] == 'Y') { ?>
+div.edost_main { border: none !important; }
+.edost_template_bright div.edost_main { box-shadow: 0px 0px 20px rgba(192, 190, 205, 0.6) !important; }
+<? } ?>
 
 /* корзина */
 span.edost_cart_ico { border: 1px solid #<?=$color_ico?>; border-radius: <?=$border_radius?>px; }
@@ -411,10 +434,14 @@ div.edost_button_big2:hover { background: #<?=$color_button2_hover?>; }
 div.edost_person_type_active { background: #<?=$color_person?>; color: #000; opacity: 1; }
 div.edost_person_type:hover { color: #<?=$color_active_tariff?>; opacity: 0.8; }
 
-#order_form_div input[type="text"], #order_form_div input[type="tel"], #order_form_div input[type="email"], #order_form_div input[type="password"], #order_form_div textarea, #order_form_div select, #edost_window input[type="text"], #edost_window input[type="tel"], #edost_window input[type="email"], .bitrix_location .bx-ui-sls-input-block {
+#order_form_div input[type="text"], #order_form_div input[type="tel"], #order_form_div input[type="email"], #order_form_div input[type="password"], #order_form_div textarea, #order_form_div select, #edost_window input[type="text"], #edost_window input[type="tel"], #edost_window input[type="email"], .bitrix_location .bx-ui-sls-input-block, #edost_window select {
 	border: 1px solid #<?=$color_input_border?>;
 	background: #<?=$color_input?>;
 	border-radius: <?=$border_radius?>px;
+	font-family: arial;
+}
+#order_form_div div.edost_suggest_data, #edost_window div.edost_suggest_data {
+	border: 1px solid #<?=$color_input_border?>;
 	font-family: arial;
 }
 
@@ -453,9 +480,10 @@ div.edost_person_type:hover { color: #<?=$color_active_tariff?>; opacity: 0.8; }
 		$agreement_label = str_replace(array('%id%', '%button%'), array('edost_agreement', GetMessage($auth ? 'STOF_NEW' : 'SOA_TEMPL_BUTTON')), $s);
 		$agreement_label_fast = str_replace(array('%id%', '%button%'), array('edost_agreement_2', GetMessage('SOA_TEMPL_FAST_BUTTON2')), $s);
 	}
-	if ($arParams['POLICY'] == 'bitrix') { ?>
+	if ($arParams['POLICY'] == 'bitrix') {
+		$s = GetMessage('SOA_TEMPL_AGREEMEN_WARNING'); ?>
 		<div id="edost_agreement_div" style="display: none;">
-			<div class="edost_window_form_head"><?=GetMessage('SOA_TEMPL_AGREEMEN_WARNING')?></div>
+			<?=($s ? '<div class="edost_window_form_head">'.$s.'</div>' : '')?>
 			<div id="edost_agreement_text" class="edost_agreement_text"><?=$agreement_text?></div>
 			<div class="edost_button_div">
 				<div class="edost_button_left">
@@ -517,8 +545,7 @@ div.edost_person_type:hover { color: #<?=$color_active_tariff?>; opacity: 0.8; }
 					$props = $brand = array();
 					foreach ($v['PROPS'] as $v2) $props[] = $v2['VALUE'];
 					if (!empty($arParams['BRAND_PROPERTY']) && !empty($v[$arParams['BRAND_PROPERTY'].'_VALUE'])) $brand = explode(', ', $v[$arParams['BRAND_PROPERTY'].'_VALUE']);
-
-					$ecommerce_products[] = "{'id': '".$v['PRODUCT_ID']."', 'name': '".$GLOBALS['APPLICATION']->ConvertCharset($v['NAME'], LANG_CHARSET, 'utf-8')."', 'price': '".$v['PRICE']."', 'brand': '".$GLOBALS['APPLICATION']->ConvertCharset(implode('/', $brand), LANG_CHARSET, 'utf-8')."', 'variant': '".$GLOBALS['APPLICATION']->ConvertCharset(implode('/', $props), LANG_CHARSET, 'utf-8')."', 'quantity': '".$v['QUANTITY']."'}";
+					$ecommerce_products[] = "{'id': '".$v['PRODUCT_ID']."', 'name': '".$GLOBALS['APPLICATION']->ConvertCharset(str_replace(array('"', "'"), '', $v['NAME']), LANG_CHARSET, 'utf-8')."', 'price': '".$v['PRICE']."', 'brand': '".$GLOBALS['APPLICATION']->ConvertCharset(str_replace(array('"', "'"), '', implode('/', $brand)), LANG_CHARSET, 'utf-8')."', 'variant': '".$GLOBALS['APPLICATION']->ConvertCharset(str_replace(array('"', "'"), '', implode('/', $props)), LANG_CHARSET, 'utf-8')."', 'quantity': '".$v['QUANTITY']."'}";
 				}
 				$ecommerce_products = '['.implode(', ', $ecommerce_products).']'; ?>
 				'event': 'checkout',
@@ -639,6 +666,8 @@ div.edost_person_type:hover { color: #<?=$color_active_tariff?>; opacity: 0.8; }
 
 					if (edost.resize) edost.resize.start();
 					if (edost.office) edost.office.set('parse');
+					if (edost.ico) edost.ico.add();
+					if (window.edost_SetBookmark) edost_SetBookmark('start', '<?=$bookmark?>');
 
 <?					if (!empty($arResult['edost']['map_inside'])) { ?>
 					if (window.edost.office2) {
@@ -684,7 +713,7 @@ div.edost_person_type:hover { color: #<?=$color_active_tariff?>; opacity: 0.8; }
 				if ($compact == 'Y') $c = 'compact';
 				else if ($compact == 'S' || $compact == 'S2') $c = 'supercompact';
 ?>
-				<div id="order_form_loading" class="edost_loading_128" style="text-align: center;"><svg class="edost_loading" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path class="edost_loading_anim_1" d="M128,4C134.627,4 140,9.373 140,16L140,52C140,58.627 134.627,64 128,64C121.373,64 116,58.627 116,52L116,16C116,9.373 121.373,4 128,4Z"/><path class="edost_loading_anim_2" d="M191.305,20.998C197.044,24.312 199.011,31.651 195.697,37.39L177.697,68.567C174.383,74.307 167.044,76.273 161.305,72.959C155.565,69.646 153.599,62.307 156.912,56.567L174.912,25.39C178.226,19.651 185.565,17.684 191.305,20.998Z"/><path class="edost_loading_anim_3" d="M236.282,65.973C239.595,71.713 237.629,79.052 231.889,82.366L200.712,100.366C194.973,103.679 187.634,101.713 184.32,95.973C181.006,90.234 182.973,82.895 188.712,79.581L219.889,61.581C225.629,58.267 232.968,60.234 236.282,65.973Z"/><path class="edost_loading_anim_4" d="M252,128C252,134.627 246.627,140 240,140L204,140C197.373,140 192,134.627 192,128C192,121.373 197.373,116 204,116L240,116C246.627,116 252,121.373 252,128Z"/><path class="edost_loading_anim_5" d="M235.981,191C232.667,196.74 225.328,198.706 219.588,195.392L188.412,177.392C182.672,174.079 180.706,166.74 184.019,161C187.333,155.26 194.672,153.294 200.412,156.608L231.588,174.608C237.328,177.921 239.294,185.26 235.981,191Z"/><path class="edost_loading_anim_6" d="M189,235.981C183.26,239.294 175.921,237.328 172.608,231.588L154.608,200.412C151.294,194.672 153.26,187.333 159,184.019C164.74,180.706 172.079,182.672 175.392,188.412L193.392,219.588C196.706,225.328 194.74,232.667 189,235.981Z"/><path class="edost_loading_anim_7" d="M128,252C121.373,252 116,246.627 116,240L116,204C116,197.373 121.373,192 128,192C134.627,192 140,197.373 140,204L140,240C140,246.627 134.627,252 128,252Z"/><path class="edost_loading_anim_8" d="M65,235.981C59.26,232.667 57.294,225.328 60.608,219.588L78.608,188.412C81.921,182.672 89.26,180.706 95,184.019C100.74,187.333 102.706,194.672 99.392,200.412L81.392,231.588C78.079,237.328 70.74,239.294 65,235.981Z"/><path class="edost_loading_anim_9" d="M20.019,189C16.706,183.26 18.672,175.921 24.412,172.608L55.588,154.608C61.328,151.294 68.667,153.26 71.981,159C75.294,164.74 73.328,172.079 67.588,175.392L36.412,193.392C30.672,196.706 23.333,194.74 20.019,189Z"/><path class="edost_loading_anim_10" d="M4,128C4,121.373 9.373,116 16,116L52,116C58.627,116 64,121.373 64,128C64,134.627 58.627,140 52,140L16,140C9.373,140 4,134.627 4,128Z"/><path class="edost_loading_anim_11" d="M20.019,67C23.333,61.26 30.672,59.294 36.412,62.608L67.588,80.608C73.328,83.921 75.294,91.26 71.981,97C68.667,102.74 61.328,104.706 55.588,101.392L24.412,83.392C18.672,80.079 16.706,72.74 20.019,67Z"/><path class="edost_loading_anim_12" d="M65,20.019C70.74,16.706 78.079,18.672 81.392,24.412L99.392,55.588C102.706,61.328 100.74,68.667 95,71.981C89.26,75.294 81.921,73.328 78.608,67.588L60.608,36.412C57.294,30.672 59.26,23.333 65,20.019Z"/></svg></div>
+				<div id="order_form_loading" class="edost_loading_128" style="text-align: center;"><svg class="edost_loading" viewBox="0 0 256 256" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path class="edost_loading_anim_1" d="M128,4C134.627,4 140,9.373 140,16L140,52C140,58.627 134.627,64 128,64C121.373,64 116,58.627 116,52L116,16C116,9.373 121.373,4 128,4Z"/><path class="edost_loading_anim_2" d="M191.305,20.998C197.044,24.312 199.011,31.651 195.697,37.39L177.697,68.567C174.383,74.307 167.044,76.273 161.305,72.959C155.565,69.646 153.599,62.307 156.912,56.567L174.912,25.39C178.226,19.651 185.565,17.684 191.305,20.998Z"/><path class="edost_loading_anim_3" d="M236.282,65.973C239.595,71.713 237.629,79.052 231.889,82.366L200.712,100.366C194.973,103.679 187.634,101.713 184.32,95.973C181.006,90.234 182.973,82.895 188.712,79.581L219.889,61.581C225.629,58.267 232.968,60.234 236.282,65.973Z"/><path class="edost_loading_anim_4" d="M252,128C252,134.627 246.627,140 240,140L204,140C197.373,140 192,134.627 192,128C192,121.373 197.373,116 204,116L240,116C246.627,116 252,121.373 252,128Z"/><path class="edost_loading_anim_5" d="M235.981,191C232.667,196.74 225.328,198.706 219.588,195.392L188.412,177.392C182.672,174.079 180.706,166.74 184.019,161C187.333,155.26 194.672,153.294 200.412,156.608L231.588,174.608C237.328,177.921 239.294,185.26 235.981,191Z"/><path class="edost_loading_anim_6" d="M189,235.981C183.26,239.294 175.921,237.328 172.608,231.588L154.608,200.412C151.294,194.672 153.26,187.333 159,184.019C164.74,180.706 172.079,182.672 175.392,188.412L193.392,219.588C196.706,225.328 194.74,232.667 189,235.981Z"/><path class="edost_loading_anim_7" d="M128,252C121.373,252 116,246.627 116,240L116,204C116,197.373 121.373,192 128,192C134.627,192 140,197.373 140,204L140,240C140,246.627 134.627,252 128,252Z"/><path class="edost_loading_anim_8" d="M65,235.981C59.26,232.667 57.294,225.328 60.608,219.588L78.608,188.412C81.921,182.672 89.26,180.706 95,184.019C100.74,187.333 102.706,194.672 99.392,200.412L81.392,231.588C78.079,237.328 70.74,239.294 65,235.981Z"/><path class="edost_loading_anim_9" d="M20.019,189C16.706,183.26 18.672,175.921 24.412,172.608L55.588,154.608C61.328,151.294 68.667,153.26 71.981,159C75.294,164.74 73.328,172.079 67.588,175.392L36.412,193.392C30.672,196.706 23.333,194.74 20.019,189Z"/><path class="edost_loading_anim_10" d="M4,128C4,121.373 9.373,116 16,116L52,116C58.627,116 64,121.373 64,128C64,134.627 58.627,140 52,140L16,140C9.373,140 4,134.627 4,128Z"/><path class="edost_loading_anim_11" d="M20.019,67C23.333,61.26 30.672,59.294 36.412,62.608L67.588,80.608C73.328,83.921 75.294,91.26 71.981,97C68.667,102.74 61.328,104.706 55.588,101.392L24.412,83.392C18.672,80.079 16.706,72.74 20.019,67Z"/><path class="edost_loading_anim_12" d="M65,20.019C70.74,16.706 78.079,18.672 81.392,24.412L99.392,55.588C102.706,61.328 100.74,68.667 95,71.981C89.26,75.294 81.921,73.328 78.608,67.588L60.608,36.412C57.294,30.672 59.26,23.333 65,20.019Z"/></svg></div>
 
 				<form action="<?=$APPLICATION->GetCurPage();?>" method="POST" name="ORDER_FORM" class="<?=($c != '' ? 'edost_'.$c.'_main edost_'.$c.'_main2 edost_order_main' : '')?> edost_compact_head_normal edost_cart_normal edost_template_total_off" id="ORDER_FORM" enctype="multipart/form-data" onsubmit="return BXFormPosting">
 				<?=bitrix_sessid_post()?>
@@ -820,9 +849,6 @@ if ($arParams['FAST'] == 'full' || $arParams['FAST'] == 'inside' || $arParams['F
 			if (strlen($arResult["PREPAY_ADIT_FIELDS"]) > 0) echo $arResult["PREPAY_ADIT_FIELDS"]; ?>
 
 					</div> <? /* закрытие order_form_main */ ?>
-<? /*
-($template_param['mode'] == 'off' ? 'display2222: none;' : '')?>
-*/ ?>
 					<div id="order_form_total" style="<?=(!empty($template_param['width2']) ? 'width: '.$template_param['width2'].'px;' : '')?>">
 						<div class="edost_order_compact" id="order_form_total_div" style="<?=(!empty($template_param['width2']) ? 'width: '.$template_param['width2'].'px;' : '')?> <?=(!empty($template_param['fixed']) ? 'position: fixed;' : '')?> <?=(!empty($template_param['top']) ? 'top: '.$template_param['top'].'px;' : '')?>">
 <?						$total_compact = true; include($_SERVER['DOCUMENT_ROOT'].$templateFolder.'/summary.php'); ?>

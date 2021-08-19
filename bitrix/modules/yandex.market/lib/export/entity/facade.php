@@ -77,8 +77,26 @@ class Facade
 
 	protected static function initializeQueryContext(&$iblockContext, &$sourceSelect)
 	{
+		$originalSelect = $sourceSelect;
+
+		// initial
+
 		foreach ($sourceSelect as $sourceType => $sourceFields)
 		{
+			$source = static::getSource($sourceType);
+
+			$source->initializeQueryContext($sourceFields, $iblockContext, $sourceSelect);
+		}
+
+		// extended select
+
+		foreach ($sourceSelect as $sourceType => $sourceFields)
+		{
+			$originalFields = isset($originalSelect[$sourceType]) ? (array)$originalSelect[$sourceType] : [];
+			$diffFields = array_diff($sourceFields, $originalFields);
+
+			if (empty($diffFields)) { continue; }
+
 			$source = static::getSource($sourceType);
 
 			$source->initializeQueryContext($sourceFields, $iblockContext, $sourceSelect);

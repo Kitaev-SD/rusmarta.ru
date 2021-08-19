@@ -57,7 +57,7 @@ class Agent extends Market\Reference\Agent\Base
 				$progressOffset = null;
 
 				static::checkEnvironment($setupId, $method);
-				static::resolveGlobalVariables();
+				Market\Environment::restore();
 				$interceptor->bind();
 
 				try
@@ -128,7 +128,7 @@ class Agent extends Market\Reference\Agent\Base
 				}
 
 				$interceptor->unbind();
-				static::revertGlobalVariables();
+				Market\Environment::reset();
 
 				$readySetupIds[] = $setupId;
 				$isNeedRepeatAgent = true;
@@ -209,7 +209,7 @@ class Agent extends Market\Reference\Agent\Base
 			$progressOffset = null;
 
 			static::checkEnvironment($setupId, $method);
-			static::resolveGlobalVariables();
+			Market\Environment::restore();
 			$interceptor->bind();
 
 			try
@@ -275,7 +275,7 @@ class Agent extends Market\Reference\Agent\Base
 			}
 
 			$interceptor->unbind();
-			static::revertGlobalVariables();
+			Market\Environment::reset();
 		}
 
 		return $isNeedRepeatAgent;
@@ -310,6 +310,10 @@ class Agent extends Market\Reference\Agent\Base
 		}
 	}
 
+	/**
+	 * @deprecated
+	 * @use Market\Environment::restore()
+	 */
 	protected static function resolveGlobalVariables()
 	{
 		if (!empty($GLOBALS['USER']) && !($GLOBALS['USER'] instanceof \CUser))
@@ -319,6 +323,10 @@ class Agent extends Market\Reference\Agent\Base
 		}
 	}
 
+	/**
+	 * @deprecated
+	 * @use Market\Environment::reset()
+	 */
 	protected static function revertGlobalVariables()
 	{
 		foreach (static::$originGlobalVariables as $key => $value)

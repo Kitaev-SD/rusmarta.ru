@@ -3,26 +3,25 @@
 namespace Yandex\Market\Trading\Service\MarketplaceDbs;
 
 use Yandex\Market;
+use Yandex\Market\Trading\Service as TradingService;
 use Bitrix\Main;
 
-class CancelReason
+class CancelReason extends TradingService\Reference\CancelReason
 {
 	use Market\Reference\Concerns\HasLang;
 
 	const SHOP_FAILED = 'SHOP_FAILED';
-	const REPLACING_ORDER = 'REPLACING_ORDER';
+	const PICKUP_EXPIRED = 'PICKUP_EXPIRED';
 	const USER_CHANGED_MIND = 'USER_CHANGED_MIND';
+	const USER_UNREACHABLE  = 'USER_UNREACHABLE';
+	/** @deprecated */
+	const REPLACING_ORDER = 'REPLACING_ORDER';
 
 	protected $provider;
 
 	protected static function includeMessages()
 	{
 		Main\Localization\Loc::loadMessages(__FILE__);
-	}
-
-	public function __construct(Provider $provider)
-	{
-		$this->provider = $provider;
 	}
 
 	public function getDefault()
@@ -39,8 +38,9 @@ class CancelReason
 	{
 		return [
 			static::SHOP_FAILED,
-			static::REPLACING_ORDER,
+			static::PICKUP_EXPIRED,
 			static::USER_CHANGED_MIND,
+			static::USER_UNREACHABLE,
 		];
 	}
 

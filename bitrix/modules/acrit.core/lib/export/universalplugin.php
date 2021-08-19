@@ -188,6 +188,10 @@ abstract class UniversalPlugin extends Plugin{
 		}
 		return $strHtml;
 	}
+
+	public function getSupportedFormats(){
+		return $this->arSupportedFormats;
+	}
 	
 	/**
 	 *	Set profile array
@@ -2449,7 +2453,7 @@ abstract class UniversalPlugin extends Plugin{
 	/**
 	 *	Get export data items
 	 */
-	protected function getExportDataItems($arFilter=null, $arSelect=null, $bWithExported=false){
+	protected function getExportDataItems($arFilter=null, $arSelect=null, $bWithExported=false, $bNoLimit=false){
 		$arResult = array();
 		#
 		$strSortOrder = $this->arProfile['PARAMS']['SORT_ORDER'];
@@ -2485,7 +2489,7 @@ abstract class UniversalPlugin extends Plugin{
 			'filter' => $arFilter,
 			'order' => $arOrder,
 			'select' => $arSelect,
-			'limit' => $this->intExportPerStep,
+			'limit' => $bNoLimit ? null : $this->intExportPerStep,
 		];
 		$resItems = Helper::call($this->strModuleId, 'ExportData', 'getList', [$arQuery]);
 		while($arItem = $resItems->fetch()){

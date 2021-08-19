@@ -34,6 +34,11 @@ class Order extends Market\Api\Reference\Model
 		return $this->getRequiredCollection('SHIPMENT');
 	}
 
+	public function useDimensions()
+	{
+		return $this->getField('USE_DIMENSIONS') !== 'N';
+	}
+
 	protected function getChildCollectionReference()
 	{
 		return [

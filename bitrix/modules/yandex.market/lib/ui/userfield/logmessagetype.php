@@ -11,6 +11,7 @@ class LogMessageType extends StringType
 	const FORMAT_TEXT = 'text';
 
 	protected static $debugCounter = 0;
+	protected static $debugBase;
 
 	public static function GetAdminListViewHtml($arUserField, $arHtmlControl)
 	{
@@ -61,7 +62,7 @@ class LogMessageType extends StringType
 	protected static function renderDebugMessage($message)
 	{
 		$counter = ++static::$debugCounter;
-		$contentsId = 'ymLogMessageDebugContents' . $counter;
+		$contentsId = 'ymLogMessageDebugContents' . static::getDebugBase() . $counter;
 
 		$result = sprintf('<a href="#" onclick="(new BX.CAdminDialog({ content: BX(\'%s\'), width: 800, height: 700 })).Show(); return false;">', $contentsId);
 		$result .= static::getDebugPreview($message);
@@ -72,6 +73,16 @@ class LogMessageType extends StringType
 		$result .= '</div>';
 
 		return $result;
+	}
+
+	protected static function getDebugBase()
+	{
+		if (static::$debugBase === null)
+		{
+			static::$debugBase = randString(5);
+		}
+
+		return static::$debugBase;
 	}
 
 	protected static function getDebugPreview($message)

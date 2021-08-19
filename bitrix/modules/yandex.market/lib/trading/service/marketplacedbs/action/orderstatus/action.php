@@ -157,4 +157,28 @@ class Action extends TradingService\Marketplace\Action\OrderStatus\Action
 
 		return $result;
 	}
+
+	protected function makeData()
+	{
+		return $this->makeDeliveryData();
+	}
+
+	protected function makeDeliveryData()
+	{
+		$order = $this->request->getOrder();
+
+		if (!$order->hasDelivery()) { return []; }
+
+		$delivery = $order->getDelivery();
+		$dates = $delivery->getDates();
+		$deliveryDate = $dates !== null ? $dates->getFrom() : null;
+
+		return [
+			'DELIVERY_ID' => $delivery->getShopDeliveryId(),
+			'DELIVERY_SERVICE_ID' => $delivery->getServiceId(),
+			'DELIVERY_DATE' => $deliveryDate !== null
+				? $deliveryDate->format(Market\Data\Date::FORMAT_DEFAULT_SHORT)
+				: null,
+		];
+	}
 }

@@ -31,4 +31,9 @@ abstract class Options extends Options\Skeleton
 	{
 		return $this->getRequiredValue('URL_ID', $default);
 	}
+
+	public function getEnvironmentFieldActions()
+	{
+		return [];
+	}
 }

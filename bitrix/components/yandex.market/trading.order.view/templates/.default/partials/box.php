@@ -7,6 +7,7 @@ use Yandex\Market\Ui\UserField\Helper;
 /** @var string $boxInputName */
 /** @var int $boxNumber */
 /** @var array $box */
+/** @var bool $useDimensions */
 
 $disabledProperties = $arResult['SHIPMENT_EDIT'] ? [ 'WEIGHT' => true, 'SIZE' => true ] : [];
 
@@ -89,7 +90,7 @@ $disabledProperties = $arResult['SHIPMENT_EDIT'] ? [ 'WEIGHT' => true, 'SIZE' =>
 		?>
 		<tbody>
 			<tr></tr><?php // hack for bitrix css ?>
-			<tr class="bdb-line js-yamarket-box__child" data-plugin="OrderView.BoxSize" data-name="DIMENSIONS">
+			<tr class="bdb-line yamarket-box-sizes-wrap <?= $useDimensions ? '' : 'is--disabled'; ?> js-yamarket-box__child" data-plugin="OrderView.BoxSize" data-name="DIMENSIONS">
 				<td class="tal">
 					<div class="yamarket-box-pack-select">
 						<select class="yamarket-box-pack-select__origin js-yamarket-box-size__pack-select" data-plugin="OrderView.BoxSizePackSelect">

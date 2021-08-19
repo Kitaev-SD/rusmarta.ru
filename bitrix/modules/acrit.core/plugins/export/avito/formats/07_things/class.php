@@ -17,7 +17,7 @@ Loc::loadMessages(__FILE__);
 
 class AvitoThings extends Avito {
 
-   CONST DATE_UPDATED = '2021-03-05';
+   CONST DATE_UPDATED = '2021-08-05';
 
    protected static $bSubclass = true;
 
@@ -76,6 +76,13 @@ class AvitoThings extends Avito {
           'NAME' => static::getMessage('FIELD_APPAREL_NAME'),
           'SORT' => 1020,
           'DESCRIPTION' => static::getMessage('FIELD_APPAREL_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'APPAREL_TYPE',
+          'DISPLAY_CODE' => 'ApparelType',
+          'NAME' => static::getMessage('FIELD_APPAREL_TYPE_NAME'),
+          'SORT' => 1021,
+          'DESCRIPTION' => static::getMessage('FIELD_APPAREL_TYPE_DESC'),
       ));
       $arResult[] = new Field(array(
           'CODE' => 'SIZE',
@@ -184,6 +191,8 @@ class AvitoThings extends Avito {
          $arXmlTags['AdType'] = Xml::addTag($arFields['AD_TYPE']);
       if (!Helper::isEmpty($arFields['APPAREL']))
          $arXmlTags['Apparel'] = Xml::addTag($arFields['APPAREL']);
+      if (!Helper::isEmpty($arFields['APPAREL_TYPE']))
+         $arXmlTags['ApparelType'] = Xml::addTag($arFields['APPAREL_TYPE']);
       if (!Helper::isEmpty($arFields['SIZE']))
          $arXmlTags['Size'] = Xml::addTag($arFields['SIZE']);
       if (!Helper::isEmpty($arFields['CONDITION']))

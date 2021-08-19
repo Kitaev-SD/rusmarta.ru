@@ -34,11 +34,68 @@ class Date
 		}
 		else if (is_scalar($date) && (string)$date !== '')
 		{
-			$timestamp = MakeTimeStamp($date);
+			$timestamp = MakeTimeStamp($date, FORMAT_DATE);
 
 			if ($timestamp !== false)
 			{
 				$result = Main\Type\Date::createFromTimestamp($timestamp);
+			}
+		}
+
+		return $result;
+	}
+
+	public static function diff(Main\Type\Date $from, Main\Type\Date $to)
+	{
+		$fromDate = (new \DateTime())->setTimestamp($from->getTimestamp())->setTime(0, 0);
+		$toDate = (new \DateTime())->setTimestamp($to->getTimestamp())->setTime(0, 0);
+		$interval = $toDate->diff($fromDate);
+
+		return (int)$interval->format('%a');
+	}
+
+	public static function unique(array $dates)
+	{
+		$used = [];
+		$result = [];
+
+		foreach ($dates as $date)
+		{
+			$dateFormatted = static::format($date);
+
+			if (isset($used[$dateFormatted])) { continue; }
+
+			$used[$dateFormatted] = true;
+			$result[] = $date;
+		}
+
+		return $result;
+	}
+
+	public static function max(Main\Type\Date ...$dates)
+	{
+		$result = array_shift($dates);
+
+		foreach ($dates as $date)
+		{
+			if (static::compare($result, $date) === -1)
+			{
+				$result = $date;
+			}
+		}
+
+		return $result;
+	}
+
+	public static function min(Main\Type\Date ...$dates)
+	{
+		$result = array_shift($dates);
+
+		foreach ($dates as $date)
+		{
+			if (static::compare($result, $date) === 1)
+			{
+				$result = $date;
 			}
 		}
 

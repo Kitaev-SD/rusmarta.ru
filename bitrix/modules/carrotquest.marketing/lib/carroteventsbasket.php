@@ -32,17 +32,17 @@ class CarrotEventsBasket extends CarrotEvents
 	 */
 	public static function VisitedBasket()
 	{
-		if (!\CModule::IncludeModule('sale') or !\CModule::IncludeModule('catalog') or !self::WatchSite()) return;
+		if ( !\CModule::IncludeModule( 'sale' ) or !\CModule::IncludeModule( 'catalog' ) or !self::WatchSite() ) return;
 		$userId = $_COOKIE['carrotquest_uid'];
-		if (defined('CARROTQUEST_API_KEY') && defined('CARROTQUEST_API_SECRET') && '' != $userId) {
+		if ( defined( 'CARROTQUEST_API_KEY' ) && defined( 'CARROTQUEST_API_SECRET' ) && '' != $userId ) {
 			$dbBasketItems = \CSaleBasket::GetList(
 				array(
 					'NAME' => 'ASC',
-					'ID' => 'ASC',
+					'ID'   => 'ASC',
 				),
 				array(
 					'FUSER_ID' => \CSaleBasket::GetBasketUserID(),
-					'LID' => SITE_ID,
+					'LID'      => SITE_ID,
 					'ORDER_ID' => 'NULL',
 				),
 				false,
@@ -51,67 +51,81 @@ class CarrotEventsBasket extends CarrotEvents
 			);
 
 			$opArrItem[] = array(
-				'op' => 'delete',
-				'key' => '$cart_items',
+				'op'    => 'delete',
+				'key'   => '$cart_items',
 				'value' => "0",
 			);
+
 			$i = 0;
 
-			while ($bItem = $dbBasketItems->Fetch()) {
-				$itemPic = "";
-				$prodItem = \CCatalogProduct::GetByIDEx($bItem['PRODUCT_ID']);
+			while ( $bItem = $dbBasketItems->Fetch() ) {
 
-				if ($prodItem['DETAIL_PICTURE'] > 0) {
-					if (trim(\CFile::GetPath($prodItem['DETAIL_PICTURE'])) != "") {
-						$itemPic = self::getImageUrl(\CFile::GetPath($prodItem['DETAIL_PICTURE']));
+				$itemPic  = "";
+				$prodItem = \CCatalogProduct::GetByIDEx( $bItem['PRODUCT_ID'] );
+
+				if ( isset( $prodItem['DETAIL_PICTURE'] ) && $prodItem['DETAIL_PICTURE'] ) {
+
+					if ( trim( \CFile::GetPath( $prodItem['DETAIL_PICTURE'] ) ) != "" ) {
+
+						$itemPic = self::getImageUrl( \CFile::GetPath( $prodItem['DETAIL_PICTURE'] ) );
+
 					}
-				} else if ($prodItem['PREVIEW_PICTURE'] > 0) {
-					if (trim(\CFile::GetPath($prodItem['PREVIEW_PICTURE'])) != "") {
-						$itemPic = self::getImageUrl(\CFile::GetPath($prodItem['PREVIEW_PICTURE']));
+
+				} else if ( isset( $prodItem['PREVIEW_PICTURE'] ) && $prodItem['PREVIEW_PICTURE'] ) {
+
+					if ( trim( \CFile::GetPath( $prodItem['PREVIEW_PICTURE'] ) ) ) {
+						$itemPic = self::getImageUrl( \CFile::GetPath( $prodItem['PREVIEW_PICTURE'] ) );
 					}
+
 				}
 
-				if (strlen($itemPic) <= 0) {
-					if (count($prodItem['PROPERTIES'])) {
-						if (count($prodItem['PROPERTIES']['CML2_LINK'])) {
-							$cartItem = \CCatalogProduct::GetByIDEx($prodItem['PROPERTIES']['CML2_LINK']['VALUE']);
-							if ($cartItem['DETAIL_PICTURE'] > 0) {
-								if (trim(\CFile::GetPath($cartItem['DETAIL_PICTURE'])) != "") {
-									$itemPic = self::getImageUrl(\CFile::GetPath($cartItem['DETAIL_PICTURE']));
+				if ( strlen( $itemPic ) <= 0 ) {
+					if ( isset( $prodItem['PROPERTIES'] ) && $prodItem['PROPERTIES'] ) {
+
+						if ( isset( $prodItem['PROPERTIES']['CML2_LINK'] ) && $prodItem['PROPERTIES']['CML2_LINK'] ) {
+
+							$cartItem = \CCatalogProduct::GetByIDEx( $prodItem['PROPERTIES']['CML2_LINK']['VALUE'] );
+
+							if ( isset( $cartItem['DETAIL_PICTURE'] ) && $cartItem['DETAIL_PICTURE'] ) {
+
+								if ( trim( \CFile::GetPath( $cartItem['DETAIL_PICTURE'] ) ) ) {
+									$itemPic = self::getImageUrl( \CFile::GetPath( $cartItem['DETAIL_PICTURE'] ) );
 								}
-							} else if ($cartItem['PREVIEW_PICTURE'] > 0) {
-								if (trim(\CFile::GetPath($cartItem['PREVIEW_PICTURE'])) != "") {
-									$itemPic = self::getImageUrl(\CFile::GetPath($cartItem['PREVIEW_PICTURE']));
+
+							} else if ( isset( $cartItem['PREVIEW_PICTURE'] ) && $cartItem['PREVIEW_PICTURE'] ) {
+
+								if ( trim( \CFile::GetPath( $cartItem['PREVIEW_PICTURE'] ) ) ) {
+									$itemPic = self::getImageUrl( \CFile::GetPath( $cartItem['PREVIEW_PICTURE'] ) );
 								}
 							}
 						}
 					}
 				}
 
-				$strItem = $bItem["NAME"];
-				$arrItem['$name'][] = $bItem["NAME"];
-				$arrItem['$amount'][] = round(floatval($bItem["PRICE"])) * $bItem["QUANTITY"];
-				$arrItem['$url'][] = self::getImageUrl($bItem["DETAIL_PAGE_URL"]);
-				$arrItem['$img'][] = strlen($itemPic) > 0 ? $itemPic : '<Нет изображения>';
+				$strItem              = $bItem["NAME"];
+				$arrItem['$name'][]   = $bItem["NAME"];
+				$arrItem['$amount'][] = round( floatval( $bItem["PRICE"] ) ) * $bItem["QUANTITY"];
+				$arrItem['$url'][]    = self::getImageUrl( $bItem["DETAIL_PAGE_URL"] );
+				$arrItem['$img'][]    = $itemPic ?? '<Нет изображения>';
 
-				if (strlen($strItem) > 0) {
+				if ( $strItem ) {
 					$opArrItem[] = array(
-						"op" => "append",
-						"key" => '$cart_items',
-						"value" => $strItem
+						"op"    => "append",
+						"key"   => '$cart_items',
+						"value" => $strItem,
 					);
 				}
 				$i++;
 
 			}
 			$cart = $arrItem;
-			if (count($cart['$name']) == 0) {
+			if ( !$cart || !( isset( $cart['$name'] ) && $cart['$name'] ) ) {
 				$cart = array();
 			}
 
-			CarrotEvents::SendEvent($userId, '$cart_viewed', $cart);
-			CarrotEvents::SendOperations($userId, $opArrItem);
-			self::BusketSumm($userId);
+			CarrotEvents::SendEvent( $userId, '$cart_viewed', $cart );
+			CarrotEvents::SendOperations( $userId, $opArrItem );
+			self::BusketSumm( $userId );
 
 		}
 	}
@@ -123,31 +137,34 @@ class CarrotEventsBasket extends CarrotEvents
 	 * @param Event $event
 	 * @return EventResult
 	 */
-	public static function newOnBasketAdd(Event $event) {
-		$item = $event->getParameter('ENTITY');
-		$oldValues = $event->getParameter('VALUES');
+	public static function newOnBasketAdd( Event $event )
+	{
+		$item      = $event->getParameter( 'ENTITY' );
+		$oldValues = $event->getParameter( 'VALUES' );
 
-		$needsCheck = array_key_exists("ID", $oldValues) || array_key_exists("QUANTITY", $oldValues);
-		$oldItemId = $oldValues["ID"];
+		$needsCheck      = array_key_exists( "ID", $oldValues ) || array_key_exists( "QUANTITY", $oldValues );
+		$oldItemId       = $oldValues["ID"];
 		$oldItemQuantity = $oldValues["QUANTITY"];
 
-		if (self::WatchLegacyEvents() || !$needsCheck || !self::WatchSite($item->getField('LID'))) { return new EventResult(EventResult::SUCCESS); }
+		if ( self::WatchLegacyEvents() || !$needsCheck || !self::WatchSite( $item->getField( 'LID' ) ) ) {
+			return new EventResult( EventResult::SUCCESS );
+		}
 		try {
 			$carrotquest_uid = $_COOKIE['carrotquest_uid'];
-			if (defined('CARROTQUEST_API_KEY')
-				&& defined('CARROTQUEST_API_SECRET')
-				&& isset($item)
+			if ( defined( 'CARROTQUEST_API_KEY' )
+				&& defined( 'CARROTQUEST_API_SECRET' )
+				&& isset( $item )
 				&& '' !== $carrotquest_uid
-				&& (!isset($oldItemId) || isset($oldItemQuantity) && intval($oldItemQuantity) > $item->getQuantity())
+				&& ( !isset( $oldItemId ) || isset( $oldItemQuantity ) && intval( $oldItemQuantity ) > $item->getQuantity() )
 			) {
-				self::AddItem($item->getFields()->getValues(), $carrotquest_uid);
-				self::BusketSumm($carrotquest_uid, $item->getFields()->getValues());
+				self::AddItem( $item->getFields()->getValues(), $carrotquest_uid );
+				self::BusketSumm( $carrotquest_uid, $item->getFields()->getValues() );
 			}
-		} catch (\Exception $e) {
-			self::WriteLog('Error', $e->getMessage());
+		} catch ( \Exception $e ) {
+			self::WriteLog( 'Error', $e->getMessage() );
 		}
 
-		return new EventResult(EventResult::SUCCESS);
+		return new EventResult( EventResult::SUCCESS );
 	}
 
 	/**
@@ -157,73 +174,79 @@ class CarrotEventsBasket extends CarrotEvents
 	 * @param array $item
 	 * @return EventResult
 	 */
-	public static function onBasketAdd($id, $item)
+	public static function onBasketAdd( $id, $item )
 	{
-		if (!self::WatchLegacyEvents()) { return new EventResult(EventResult::SUCCESS); }
+		if ( !self::WatchLegacyEvents() ) {
+			return new EventResult( EventResult::SUCCESS );
+		}
 		try {
 			$carrotquest_uid = $_COOKIE['carrotquest_uid'];
-			if (defined('CARROTQUEST_API_KEY') && defined('CARROTQUEST_API_SECRET')
+			if ( defined( 'CARROTQUEST_API_KEY' ) && defined( 'CARROTQUEST_API_SECRET' )
 				&& $item != null
 				&& '' != $carrotquest_uid
-				&& self::WatchSite($item['LID'])
+				&& self::WatchSite( $item['LID'] )
 			) {
-				self::AddItem($item, $carrotquest_uid);
-				self::BusketSumm($carrotquest_uid, $item);
+				self::AddItem( $item, $carrotquest_uid );
+				self::BusketSumm( $carrotquest_uid, $item );
 			}
-		} catch (\Exception $e) {
-			self::WriteLog('Error', $e->getMessage());
+		} catch ( \Exception $e ) {
+			self::WriteLog( 'Error', $e->getMessage() );
 		}
 
-		return new EventResult(EventResult::SUCCESS);
+		return new EventResult( EventResult::SUCCESS );
 	}
 
 	/**
 	 * Iem added to the cart (item info handler)
 	 *
 	 * @param array $item
-	 * @param string|integer $carrotquest_uid
+	 * @param string|integer $carrotquestUID
 	 */
-	private static function AddItem($item, $carrotquest_uid)
+	private static function AddItem( $item, $carrotquestUID )
 	{
-		if (!\CModule::IncludeModule("catalog")) return;
-		$HTTP = $_SERVER['HTTPS'] ? "https://" : "http://";
+		if ( !\CModule::IncludeModule( "catalog" ) ) return;
+		$HTTP    = $_SERVER['HTTPS'] ? "https://" : "http://";
 		$arrItem = array(
-			'$name' => $item["NAME"],
-			'$amount' => round(floatval($item["PRICE"])),
-			'$url' => $HTTP . $_SERVER['SERVER_NAME'] . $item["DETAIL_PAGE_URL"]
+			'$name'   => $item["NAME"],
+			'$amount' => round( floatval( $item["PRICE"] ) ),
+			'$url'    => $HTTP . $_SERVER['SERVER_NAME'] . $item["DETAIL_PAGE_URL"],
 		);
 
-		$prodItem = \CCatalogProduct::GetByIDEx($item["PRODUCT_ID"]);
-		if ($prodItem["DETAIL_PICTURE"] > 0) {
-			if (trim(\CFile::GetPath($prodItem["DETAIL_PICTURE"])) !== "") {
-				$itemPic = self::getImageUrl(\CFile::GetPath($prodItem["DETAIL_PICTURE"]));
+		$prodItem = \CCatalogProduct::GetByIDEx( $item["PRODUCT_ID"] );
+		if ( isset( $prodItem["DETAIL_PICTURE"] ) && $prodItem["DETAIL_PICTURE"] ) {
+			$detailPicPath = trim( \CFile::GetPath( $prodItem["DETAIL_PICTURE"] ) );
+			if ( $detailPicPath ) {
+				$itemPic = self::getImageUrl( $detailPicPath );
 			}
-		} else if ($prodItem["PREVIEW_PICTURE"] > 0) {
-			if (trim(\CFile::GetPath($prodItem["PREVIEW_PICTURE"])) != "") {
-				$itemPic = self::getImageUrl(\CFile::GetPath($prodItem["PREVIEW_PICTURE"]));
+		} else if ( isset( $prodItem["PREVIEW_PICTURE"] ) && $prodItem["PREVIEW_PICTURE"] ) {
+			$previewPicPath = trim( \CFile::GetPath( $prodItem["PREVIEW_PICTURE"] ) );
+			if ( $previewPicPath ) {
+				$itemPic = self::getImageUrl( $previewPicPath );
 			}
 		}
 
-		if (strlen($itemPic) <= 0) {
-			if (count($prodItem["PROPERTIES"])) {
-				if (count($prodItem["PROPERTIES"]["CML2_LINK"])) {
-					$cartItem = \CCatalogProduct::GetByIDEx($prodItem["PROPERTIES"]["CML2_LINK"]["VALUE"]);
-					if ($cartItem["DETAIL_PICTURE"] > 0) {
-						if (trim(\CFile::GetPath($cartItem["DETAIL_PICTURE"])) != "") {
-							$itemPic = self::getImageUrl(\CFile::GetPath($cartItem["DETAIL_PICTURE"]));
+		if ( !( isset( $itemPic ) && $itemPic ) ) {
+			if ( isset( $prodItem["PROPERTIES"] ) && $prodItem["PROPERTIES"] ) {
+				if ( isset( $prodItem["PROPERTIES"]["CML2_LINK"] ) && $prodItem["PROPERTIES"]["CML2_LINK"] ) {
+					$cartItem = \CCatalogProduct::GetByIDEx( $prodItem["PROPERTIES"]["CML2_LINK"]["VALUE"] );
+					if ( isset( $cartItem["DETAIL_PICTURE"] ) && $cartItem["DETAIL_PICTURE"]) {
+						$detailPicPath = trim( \CFile::GetPath( $cartItem["DETAIL_PICTURE"] ) );
+						if ( $detailPicPath ) {
+							$itemPic = self::getImageUrl( $detailPicPath );
 						}
-					} else if ($cartItem["PREVIEW_PICTURE"] > 0) {
-						if (trim(\CFile::GetPath($cartItem["PREVIEW_PICTURE"])) != "") {
-							$itemPic = self::getImageUrl(\CFile::GetPath($cartItem["PREVIEW_PICTURE"]));
+					} else if ( isset( $cartItem["PREVIEW_PICTURE"] ) && $cartItem["PREVIEW_PICTURE"]  ) {
+						$previewPicPath = trim( \CFile::GetPath( $cartItem["PREVIEW_PICTURE"] ) );
+						if ( $previewPicPath ) {
+							$itemPic = self::getImageUrl( $previewPicPath );
 						}
 					}
 				}
 			}
 		}
-		if (strlen($itemPic) > 0) {
+		if ( isset( $itemPic ) && $itemPic ) {
 			$arrItem['$img'] = $itemPic;
 		}
-		CarrotEvents::SendEvent($carrotquest_uid, '$cart_added', $arrItem);
+		CarrotEvents::SendEvent( $carrotquestUID, '$cart_added', $arrItem );
 	}
 
 	/**
@@ -232,17 +255,17 @@ class CarrotEventsBasket extends CarrotEvents
 	 * @param string|integer $carrotquest_uid
 	 * @param array|null $item
 	 */
-	private static function BusketSumm($carrotquest_uid, $item = null)
+	private static function BusketSumm( $carrotquest_uid, $item = null )
 	{
-		if (!\CModule::IncludeModule('sale')) return;
+		if ( !\CModule::IncludeModule( 'sale' ) ) return;
 		$dbBasketItems = \CSaleBasket::GetList(
 			array(
 				'NAME' => 'ASC',
-				'ID' => 'ASC',
+				'ID'   => 'ASC',
 			),
 			array(
 				'FUSER_ID' => \CSaleBasket::GetBasketUserID(),
-				'LID' => SITE_ID,
+				'LID'      => SITE_ID,
 				'ORDER_ID' => 'NULL',
 			),
 			false,
@@ -252,29 +275,29 @@ class CarrotEventsBasket extends CarrotEvents
 
 		$basketSumm = 0;
 
-		while ($bItem = $dbBasketItems->Fetch()) {
-			if ($item == null || $item['PRODUCT_ID'] != $bItem['PRODUCT_ID']) {
+		while ( $bItem = $dbBasketItems->Fetch() ) {
+			if ( $item == null || $item['PRODUCT_ID'] != $bItem['PRODUCT_ID'] ) {
 				$basketSumm += (float)$bItem['PRICE'] * (float)$bItem['QUANTITY'];
 			}
 		}
-		if ($item != null) {
+		if ( $item != null ) {
 			$basketSumm += (float)$item['PRICE'] * (float)$item['QUANTITY'];
 		}
-		if ($basketSumm) {
+		if ( $basketSumm ) {
 			$arrItem[] = array(
-				'op' => 'update_or_create',
-				'key' => '$cart_amount',
-				'value' => round($basketSumm),
+				'op'    => 'update_or_create',
+				'key'   => '$cart_amount',
+				'value' => round( $basketSumm ),
 			);
 		} else {
 			$arrItem[] = array(
-				'op' => 'delete',
-				'key' => '$cart_amount',
+				'op'    => 'delete',
+				'key'   => '$cart_amount',
 				'value' => 0,
 			);
 		}
 
-		CarrotEvents::SendOperations($carrotquest_uid, $arrItem);
+		CarrotEvents::SendOperations( $carrotquest_uid, $arrItem );
 	}
 
 	/**
@@ -282,18 +305,18 @@ class CarrotEventsBasket extends CarrotEvents
 	 *
 	 * @param array $arFields
 	 */
-	public static function onProductViewedUpdate($arFields)
+	public static function onProductViewedUpdate( $arFields )
 	{
-		if (!self::WatchLegacyEvents()) {
+		if ( !self::WatchLegacyEvents() ) {
 			try {
-				$ID = intval($arFields['ID']);
-				$viewedProd = \Bitrix\Catalog\CatalogViewedProductTable::getRowById($ID);
-			} catch (\Exception $e) {
-				self::WriteLog("Error", $e->getMessage());
+				$ID         = intval( $arFields['ID'] );
+				$viewedProd = \Bitrix\Catalog\CatalogViewedProductTable::getRowById( $ID );
+			} catch ( \Exception $e ) {
+				self::WriteLog( "Error", $e->getMessage() );
 			}
-			if (isset($viewedProd)
-				&& array_key_exists('PRODUCT_ID', $viewedProd)) {
-				self::catalogOnBeforeViewed($viewedProd);
+			if ( isset( $viewedProd )
+				&& array_key_exists( 'PRODUCT_ID', $viewedProd ) ) {
+				self::catalogOnBeforeViewed( $viewedProd );
 			}
 		}
 	}
@@ -303,10 +326,10 @@ class CarrotEventsBasket extends CarrotEvents
 	 *
 	 * @param array $arResult
 	 */
-	public static function onProductViewedAdd($viewedProd)
+	public static function onProductViewedAdd( $viewedProd )
 	{
-		if (!self::WatchLegacyEvents()) {
-			self::catalogOnBeforeViewed($viewedProd);
+		if ( !self::WatchLegacyEvents() ) {
+			self::catalogOnBeforeViewed( $viewedProd );
 		}
 
 	}
@@ -316,10 +339,10 @@ class CarrotEventsBasket extends CarrotEvents
 	 *
 	 * @param array $arResult
 	 */
-	public static function onBeforeViewedAdd($viewedProd)
+	public static function onBeforeViewedAdd( $viewedProd )
 	{
-		if (self::WatchLegacyEvents()) {
-			self::catalogOnBeforeViewed($viewedProd);
+		if ( self::WatchLegacyEvents() ) {
+			self::catalogOnBeforeViewed( $viewedProd );
 		}
 	}
 
@@ -328,51 +351,55 @@ class CarrotEventsBasket extends CarrotEvents
 	 *
 	 * @param array $arResult
 	 */
-	private static function catalogOnBeforeViewed($arResult)
+	private static function catalogOnBeforeViewed( $arResult )
 	{
-		if (!\CModule::IncludeModule('catalog') || !self::WatchSite($arResult['LID'])) return;
-		$HTTP = $_SERVER['HTTPS'] ? 'https://' : 'http://';
+		if ( !\CModule::IncludeModule( 'catalog' ) || !self::WatchSite( $arResult['LID'] ) ) return;
+		$HTTP   = $_SERVER['HTTPS'] ? 'https://' : 'http://';
 		$userId = $_COOKIE['carrotquest_uid'];
 
-		$arProduct = \CCatalogProduct::GetByIDEx($arResult['PRODUCT_ID']);
-		if ($arProduct) {
+		$arProduct = \CCatalogProduct::GetByIDEx( $arResult['PRODUCT_ID'] );
+		if ( $arProduct ) {
 			$arrItem = array(
 				'$name' => $arProduct['NAME'],
-				'$url' => $HTTP . $_SERVER['SERVER_NAME'] . $arProduct['DETAIL_PAGE_URL'],
+				'$url'  => $HTTP . $_SERVER['SERVER_NAME'] . $arProduct['DETAIL_PAGE_URL'],
 			);
 
 
-			if ($arProduct['DETAIL_PICTURE'] > 0) {
-				$img = \CFile::GetPath($arProduct['DETAIL_PICTURE']);
-			} else if ($arProduct['PREVIEW_PICTURE'] > 0) {
-				$img = \CFile::GetPath($arProduct['PREVIEW_PICTURE']);
+			if ( isset( $arProduct['DETAIL_PICTURE'] ) && $arProduct['DETAIL_PICTURE'] ) {
+				$img = \CFile::GetPath( $arProduct['DETAIL_PICTURE'] );
+			} else if ( isset( $arProduct['PREVIEW_PICTURE'] ) && $arProduct['PREVIEW_PICTURE'] ) {
+				$img = \CFile::GetPath( $arProduct['PREVIEW_PICTURE'] );
 			}
-			if (strlen($img) <= 0) {
-				if (count($arProduct['PROPERTIES'])) {
-					if (count($arProduct['PROPERTIES']['CML2_LINK'])) {
-						$prodItem = \CCatalogProduct::GetByIDEx($arProduct['PROPERTIES']['CML2_LINK']['VALUE']);
-						if ($prodItem['DETAIL_PICTURE'] > 0) {
-							if (trim(\CFile::GetPath($prodItem['DETAIL_PICTURE'])) != '') {
-								$img = self::getImageUrl(\CFile::GetPath($prodItem['DETAIL_PICTURE']));
+			if ( !( isset( $img ) && $img ) ) {
+				if ( isset( $arProduct['PROPERTIES'] ) && $arProduct['PROPERTIES'] ) {
+					if ( isset( $arProduct['PROPERTIES']['CML2_LINK'] ) && $arProduct['PROPERTIES']['CML2_LINK'] ) {
+						$prodItem = \CCatalogProduct::GetByIDEx( $arProduct['PROPERTIES']['CML2_LINK']['VALUE'] );
+						if ( isset( $prodItem['DETAIL_PICTURE'] ) && $prodItem['DETAIL_PICTURE']) {
+							$detailPicPath = trim( \CFile::GetPath( $prodItem['DETAIL_PICTURE'] ) );
+							if ( $detailPicPath ) {
+								$img = self::getImageUrl( $detailPicPath );
 							}
-						} else if ($arProduct['PREVIEW_PICTURE'] > 0) {
-							if (trim(\CFile::GetPath($arProduct['PREVIEW_PICTURE'])) != '') {
-								$img = self::getImageUrl(\CFile::GetPath($arProduct['PREVIEW_PICTURE']));
+						} else if ( isset( $prodItem['PREVIEW_PICTURE'] ) && $prodItem['PREVIEW_PICTURE'] ) {
+							$previewPicPath = trim( \CFile::GetPath( $prodItem['PREVIEW_PICTURE'] ) );
+							if ( $previewPicPath ) {
+								$img = self::getImageUrl( $previewPicPath );
 							}
 						}
 					}
 				}
 			}
-			if (trim($img) != '')
-				$arrItem['$img'] = self::getImageUrl($img);
-			CarrotEvents::SendEvent($userId, '$product_viewed', $arrItem);
+
+			if ( isset( $img ) && trim( $img ) )
+				$arrItem['$img'] = self::getImageUrl( $img );
+
+			CarrotEvents::SendEvent( $userId, '$product_viewed', $arrItem );
 
 			$opArrItems[] = array(
-				'op' => 'union'
-			, 'key' => '$viewed_products'
-			, 'value' => $arProduct['NAME']
+				'op'    => 'union',
+				'key'   => '$viewed_products',
+				'value' => $arProduct['NAME'],
 			);
-			CarrotEvents::SendOperations($userId, $opArrItems);
+			CarrotEvents::SendOperations( $userId, $opArrItems );
 		}
 	}
 
@@ -382,9 +409,9 @@ class CarrotEventsBasket extends CarrotEvents
 	 * @param string $url
 	 * @return string
 	 */
-	private static function getImageUrl($url)
+	private static function getImageUrl( $url )
 	{
-		if (self::startsWith($url, "https://") or self::startsWith($url, "http://")) {
+		if ( self::startsWith( $url, "https://" ) or self::startsWith( $url, "http://" ) ) {
 			return $url;
 		} else {
 			$HTTP = $_SERVER['HTTPS'] ? "https://" : "http://";
@@ -399,10 +426,10 @@ class CarrotEventsBasket extends CarrotEvents
 	 * @param $needle
 	 * @return bool
 	 */
-	private static function startsWith($haystack, $needle)
+	private static function startsWith( $haystack, $needle )
 	{
-		$length = strlen($needle);
-		return (substr($haystack, 0, $length) === $needle);
+		$length = strlen( $needle );
+		return ( substr( $haystack, 0, $length ) === $needle );
 	}
 
 

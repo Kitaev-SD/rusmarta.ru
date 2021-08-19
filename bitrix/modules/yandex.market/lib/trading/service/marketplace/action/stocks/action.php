@@ -9,6 +9,8 @@ use Yandex\Market\Trading\Service as TradingService;
 
 class Action extends TradingService\Common\Action\HttpAction
 {
+	use Market\Reference\Concerns\HasMessage;
+
 	/** @var TradingService\Marketplace\Provider */
 	protected $provider;
 	/** @var Request */
@@ -36,23 +38,40 @@ class Action extends TradingService\Common\Action\HttpAction
 
 	protected function getStores()
 	{
-		return $this->provider->getOptions()->getProductStores();
+		$options = $this->provider->getOptions();
+
+		if ($options->useWarehouses())
+		{
+			$field = $options->getWarehouseStoreField();
+			$warehouseId = $this->request->getPartnerWarehouseId();
+			$result = $this->environment->getStore()->findStores($field, $warehouseId);
+
+			if (empty($result))
+			{
+				$message = self::getMessage('CANT_FIND_WAREHOUSE_STORE', [
+					'#CODE#' => $warehouseId,
+				]);
+
+				throw new Market\Exceptions\Api\InvalidOperation($message);
+			}
+		}
+		else
+		{
+			$result = $this->provider->getOptions()->getProductStores();
+		}
+
+		return $result;
 	}
 
 	protected function getOfferMap()
 	{
-		$skuMap = $this->provider->getOptions()->getProductSkuMap();
-		$result = null;
+		$offerIds = $this->request->getSkus();
+		$command = new TradingService\Common\Command\OfferMap(
+			$this->provider,
+			$this->environment
+		);
 
-		if (!empty($skuMap))
-		{
-			$product = $this->environment->getProduct();
-			$offerIds = $this->request->getSkus();
-
-			$result = $product->getOfferMap($offerIds, $skuMap);
-		}
-
-		return $result;
+		return $command->make($offerIds);
 	}
 
 	protected function getProductId($offerId, $offerMap)

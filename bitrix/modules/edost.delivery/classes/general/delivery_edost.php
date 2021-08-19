@@ -1,7 +1,7 @@
 <?
 /*********************************************************************************
 Обработчик расчета доставки калькулятора eDost.ru
-Версия 2.5.3, 12.07.2020
+Версия 2.5.5, 05.05.2021
 Автор: ООО "Айсден"
 
 Компании доставки и параметры расчета задаются в личном кабинете eDost.ru (требуется регистрация: http://edost.ru/reg.php)
@@ -73,7 +73,7 @@ IncludeModuleLangFile(__FILE__);
 include_once 'edost_const.php';
 if (defined('DELIVERY_EDOST_FUNCTION') && DELIVERY_EDOST_FUNCTION == 'Y') include_once 'edost_function.php';
 
-define('DELIVERY_EDOST_TARIFF_COUNT', 80); // количество тарифов доставки доступных в модуле (для контроля версий - не менять!)
+define('DELIVERY_EDOST_TARIFF_COUNT', 83); // количество тарифов доставки доступных в модуле (для контроля версий - не менять!)
 define('DELIVERY_EDOST_SERVER', 'api.edost.ru'); // сервер расчета доставки
 define('DELIVERY_EDOST_SERVER_ZIP', 'edostzip.ru'); // справочный сервер
 define('DELIVERY_EDOST_SERVER_RESERVE', 'xn--d1ab2amf.xn--p1ai'); // дополнительный сервер (едост.рф)
@@ -97,6 +97,7 @@ class CDeliveryEDOST {
 		'sale_discount' => 'N', 'sale_discount_cod' => 'off',
 		'edost_discount' => 'Y', 'template_ico' => 'C', 'template_script' => 'Y',
 		'package' => 1, 'postmap' => 'N',
+		'office_near' => 'N', 'office_unsupported' => 'N', 'office_unsupported_fix' => '', 'office_unsupported_percent' => '', 'office_tel' => 'Y',
 	);
 	public static $setting_param_key = array('zero_tariff' => 0, 'module_id' => 0);
 
@@ -104,11 +105,12 @@ class CDeliveryEDOST {
 	public static $zip_required = array(1,2,3,61,62,68,69,70,71,72,73,74,77,79,43); // почта, EMS + курьер boxberry (43)
 	public static $passport_required = array(14,16,15,22,39,40,41,42,48,49,50,51,52,53,54,55,59,60,63,64); // ТК
 	public static $post = array(1,2,61,68,69,70,71,72,73,74,79); // доставка в почтовые отделения (для контроля)
-	public static $register_tariff = array(23 => array(1,2,3,61,62,77,78,79), 5 => array(37,75,9,7,65, 38,76,6,8,10,17,66)); // тарифы для которых возможно оформление доставки: почта, СДЭК (для контроля)
-	public static $register_no_required = array(1,2); // для печати бланков требуется оформление доставки (для контроля)
+	public static $office = array(9,14,16,22,29,36,37,39,40,41,42,46,63,65,75,78,80,81,82); // доставка в пункты выдачи (для контроля)
+	public static $register_tariff = array(23 => array(1,2,3,61,62,77,78,79), 5 => array(37,75,9,7,65, 38,76,6,8,10,17,66), 30 => array(36,43), 19 => array(16,49)); // тарифы для которых возможно оформление доставки: почта, СДЭК, boxberry
+	public static $register_no_required = array(1,2); // для печати бланков требуется оформление доставки (для оформления)
 	public static $office_key = array('shop', 'office', 'terminal', 'postmap');
 	public static $company_shop = array('s1', 's2', 's3', 's4');
-	public static $postamat = array(5, 6, 10, 11, 12); // пункты выдачи с типом "постамат"
+	public static $postamat = array(5, 6, 10, 11, 12, 14, 15); // пункты выдачи с типом "постамат"
 
 	public static $country_code = array(0 => "Россия", 1 => "Австралия", 2 => "Австрия", 3 => "Азербайджан", 4 => "Албания", 5 => "Алжир", 6 => "Американское Самоа", 7 => "Ангилья", 8 => "Англия", 9 => "Ангола", 10 => "Андорра", 11 => "Антигуа и Барбуда", 12 => "Антильские острова", 13 => "Аргентина", 14 => "Армения", 15 => "Аруба", 16 => "Афганистан", 17 => "Багамские острова", 18 => "Бангладеш", 19 => "Барбадос", 20 => "Бахрейн", 21 => "Беларусь", 22 => "Белиз", 23 => "Бельгия", 24 => "Бенин", 25 => "Бермудские острова", 26 => "Болгария", 27 => "Боливия", 28 => "Бонайре", 29 => "Босния и Герцеговина", 30 => "Ботсвана", 31 => "Бразилия", 32 => "Бруней", 33 => "Буркина Фасо", 34 => "Бурунди", 35 => "Бутан", 36 => "Валлис и Футуна острова", 37 => "Вануату", 38 => "Великобритания", 39 => "Венгрия", 40 => "Венесуэла", 41 => "Виргинские острова (Британские)", 42 => "Виргинские острова (США)", 43 => "Восточный Тимор", 44 => "Вьетнам", 45 => "Габон", 46 => "Гаити", 47 => "Гайана", 48 => "Гамбия", 49 => "Гана", 50 => "Гваделупа", 51 => "Гватемала", 52 => "Гвинея", 53 => "Гвинея Экваториальная", 54 => "Гвинея-Бисау", 55 => "Германия", 56 => "Гернси (Нормандские острова)", 57 => "Гибралтар", 58 => "Гондурас", 59 => "Гонконг", 60 => "Гренада", 61 => "Гренландия", 62 => "Греция", 63 => "Грузия", 64 => "Гуам", 65 => "Дания", 66 => "Джерси (Нормандские острова)", 67 => "Джибути", 68 => "Доминика", 69 => "Доминиканская респ.", 70 => "Египет", 71 => "Замбия", 72 => "Зеленого Мыса острова (Кабо-Верде)", 73 => "Зимбабве", 74 => "Израиль", 75 => "Индия", 76 => "Индонезия", 77 => "Иордания", 78 => "Ирак", 79 => "Иран", 80 => "Ирландия", 81 => "Исландия", 82 => "Испания", 83 => "Италия", 84 => "Йемен", 85 => "Казахстан", 86 => "Каймановы острова", 87 => "Камбоджа", 88 => "Камерун", 89 => "Канада", 90 => "Канарские острова", 91 => "Катар", 92 => "Кения", 93 => "Кипр", 94 => "Кирибати", 95 => "Китайская Народная Республика", 96 => "Колумбия", 97 => "Коморские острова", 98 => "Конго", 99 => "Конго, Демократическая респ.", 100 => "Корея, Северная", 101 => "Корея, Южная", 102 => "Косово", 103 => "Коста-Рика", 104 => "Кот-д'Ивуар", 105 => "Куба", 106 => "Кувейт", 107 => "Кука острова", 108 => "Кыргызстан", 109 => "Кюрасао", 110 => "Лаос", 111 => "Латвия", 112 => "Лесото", 113 => "Либерия", 114 => "Ливан", 115 => "Ливия", 116 => "Литва", 117 => "Лихтенштейн", 118 => "Люксембург", 119 => "Маврикий", 120 => "Мавритания", 121 => "Мадагаскар", 122 => "Майотта", 123 => "Макао", 124 => "Македония", 125 => "Малави", 126 => "Малайзия", 127 => "Мали", 128 => "Мальдивские острова", 129 => "Мальта", 130 => "Марокко", 131 => "Мартиника", 132 => "Маршалловы острова", 133 => "Мексика", 134 => "Микронезия", 135 => "Мозамбик", 136 => "Молдова", 137 => "Монако", 138 => "Монголия", 139 => "Монтсеррат", 140 => "Мьянма", 141 => "Намибия", 142 => "Науру", 143 => "Невис", 144 => "Непал", 145 => "Нигер", 146 => "Нигерия", 147 => "Нидерланды (Голландия)", 148 => "Никарагуа", 149 => "Ниуэ", 150 => "Новая Зеландия", 151 => "Новая Каледония", 152 => "Норвегия", 153 => "Объединенные Арабские Эмираты", 154 => "Оман", 155 => "Пакистан", 156 => "Палау", 157 => "Панама", 158 => "Папуа-Новая Гвинея", 159 => "Парагвай", 160 => "Перу", 161 => "Польша", 162 => "Португалия", 163 => "Пуэрто-Рико", 164 => "Реюньон", 165 => "Руанда", 166 => "Румыния", 167 => "Сайпан", 168 => "Сальвадор", 169 => "Самоа", 170 => "Сан-Марино", 171 => "Сан-Томе и Принсипи", 172 => "Саудовская Аравия", 173 => "Свазиленд", 174 => "Северная Ирландия", 175 => "Сейшельские острова", 176 => "Сен-Бартельми", 177 => "Сенегал", 178 => "Сент-Винсент", 179 => "Сент-Китс", 180 => "Сент-Кристофер", 181 => "Сент-Люсия", 182 => "Сент-Маартен", 183 => "Сент-Мартин", 184 => "Сент-Юстас", 185 => "Сербия", 186 => "Сингапур", 187 => "Сирия", 188 => "Словакия", 189 => "Словения", 190 => "Соломоновы острова", 191 => "Сомали", 192 => "Сомалилэнд", 193 => "Судан", 194 => "Суринам", 195 => "США", 196 => "Сьерра-Леоне", 197 => "Таджикистан", 198 => "Таиланд", 199 => "Таити", 200 => "Тайвань", 201 => "Танзания", 202 => "Того", 203 => "Тонга", 204 => "Тринидад и Тобаго", 205 => "Тувалу", 206 => "Тунис", 207 => "Туркменистан", 208 => "Туркс и Кайкос", 209 => "Турция", 210 => "Уганда", 211 => "Узбекистан", 212 => "Украина", 213 => "Уругвай", 214 => "Уэльс", 215 => "Фарерские острова", 216 => "Фиджи", 217 => "Филиппины", 218 => "Финляндия", 219 => "Фолклендские (Мальвинские) острова", 220 => "Франция", 221 => "Французская Гвиана", 222 => "Французская Полинезия", 223 => "Хорватия", 224 => "Центральная Африканская Респ.", 225 => "Чад", 226 => "Черногория", 227 => "Чехия", 228 => "Чили", 229 => "Швейцария", 230 => "Швеция", 231 => "Шотландия", 232 => "Шри-Ланка", 233 => "Эквадор", 234 => "Эритрея", 235 => "Эстония", 236 => "Эфиопия", 237 => "ЮАР", 238 => "Ямайка", 239 => "Япония");
 	public static $region_code = array(
@@ -116,7 +118,8 @@ class CDeliveryEDOST {
 	);
 	public static $region_code2 = array(
 		0 => array(22 => 'Алтайский край', 28 => 'Амурская область', 29 => 'Архангельская область', 30 => 'Астраханская область', 31 => 'Белгородская область', 32 => 'Брянская область', 33 => 'Владимирская область', 34 => 'Волгоградская область', 35 => 'Вологодская область', 36 => 'Воронежская область', 79 => 'Еврейская АО', 75 => 'Забайкальский край', 37 => 'Ивановская область', 38 => 'Иркутская область', 7 => 'Кабардино-Балкарская Республика', 39 => 'Калининградская область', 40 => 'Калужская область', 41 => 'Камчатский край', 9 => 'Карачаево-Черкесская Республика', 42 => 'Кемеровская область', 43 => 'Кировская область', 44 => 'Костромская область', 23 => 'Краснодарский край', 24 => 'Красноярский край', 45 => 'Курганская область', 46 => 'Курская область', 47 => 'Ленинградская область', 48 => 'Липецкая область', 49 => 'Магаданская область', 50 => 'Московская область', 51 => 'Мурманская область', 83 => 'Ненецкий АО', 52 => 'Нижегородская область', 53 => 'Новгородская область', 54 => 'Новосибирская область', 55 => 'Омская область', 56 => 'Оренбургская область', 57 => 'Орловская область', 58 => 'Пензенская область', 59 => 'Пермский край', 25 => 'Приморский край', 60 => 'Псковская область', 1 => 'Республика Адыгея', 4 => 'Республика Алтай', 2 => 'Республика Башкортостан', 3 => 'Республика Бурятия', 5 => 'Республика Дагестан', 6 => 'Республика Ингушетия', 8 => 'Республика Калмыкия', 10 => 'Республика Карелия', 11 => 'Республика Коми', 12 => 'Республика Марий Эл', 13 => 'Республика Мордовия', 14 => 'Республика Саха (Якутия)', 15 => 'Республика Северная Осетия - Алания', 16 => 'Республика Татарстан', 17 => 'Республика Тыва', 19 => 'Республика Хакасия', 61 => 'Ростовская область', 62 => 'Рязанская область', 63 => 'Самарская область', 64 => 'Саратовская область', 65 => 'Сахалинская область', 66 => 'Свердловская область', 67 => 'Смоленская область', 26 => 'Ставропольский край', 68 => 'Тамбовская область', 69 => 'Тверская область', 70 => 'Томская область', 71 => 'Тульская область', 72 => 'Тюменская область', 18 => 'Удмуртская Республика', 73 => 'Ульяновская область', 27 => 'Хабаровский край', 86 => 'Ханты-Мансийский АО', 74 => 'Челябинская область', 20 => 'Чеченская Республика', 21 => 'Чувашская Республика', 87 => 'Чукотский АО', 89 => 'Ямало-Ненецкий АО', 76 => 'Ярославская область', 90 => 'Байконур', 91 => 'Республика Крым', 77 => 'Москва', 78 => 'Санкт-Петербург', 92 => 'Севастополь'),
-		85 => array(1 => 'Акмолинская область', 2 => 'Актюбинская область', 3 => 'Алматинская область', 4 => 'Атырауская область', 5 => 'Восточно-Казахстанская область', 6 => 'Жамбылская область', 7 => 'Западно-Казахстанская область', 8 => 'Карагандинская область', 9 => 'Костанайская область', 10 => 'Кызылординская область', 11 => 'Мангистауская область', 12 => 'Павлодарская область', 13 => 'Северо-Казахстанская область', 14 => 'Южно-Казахстанская область', 15 => 'Астана', 16 => 'Алматы'),
+
+		85 => array(1 => 'Акмолинская область', 2 => 'Актюбинская область', 3 => 'Алматинская область', 4 => 'Атырауская область', 5 => 'Восточно-Казахстанская область', 6 => 'Жамбылская область', 7 => 'Западно-Казахстанская область', 8 => 'Карагандинская область', 9 => 'Костанайская область', 10 => 'Кызылординская область', 11 => 'Мангистауская область', 12 => 'Павлодарская область', 13 => 'Северо-Казахстанская область', 14 => 'Туркестанская область', 15 => 'Нур-Султан', 16 => 'Алматы'),
 		21 => array(1 => 'Брестская область', 2 => 'Витебская область', 3 => 'Гомельская область', 4 => 'Гродненская область', 5 => 'Минская область', 6 => 'Могилевская область', 7 => 'Минск'),
 		14 => array(1 => 'Арагацотнская область', 2 => 'Араратская область', 3 => 'Армавирская область', 4 => 'Вайоцдзорская область', 5 => 'Гехаркуникская область', 6 => 'Котайкская область', 7 => 'Лорийская область', 8 => 'Сюникская область', 9 => 'Тавушская область', 10 => 'Ширакская область', 11 => 'Ереван'),
 		108 => array(1 => 'Баткенская область', 2 => 'Джалал-Абадская область', 3 => 'Иссык-Кульская область', 4 => 'Нарынская область', 5 => 'Ошская область', 6 => 'Таласская область', 7 => 'Чуйская область', 8 => 'Бишкек', 9 => 'Ош'),
@@ -124,7 +127,7 @@ class CDeliveryEDOST {
 
 	public static $fed_city = array(
 		'id' => array(77, 78, 92,  15, 16,  7,  8, 9), // 11
-		'name' => array('Москва', 'Санкт-Петербург', 'Севастополь',  'Астана', 'Алматы',  'Минск',  'Бишкек', 'Ош'), // 'Ереван'
+		'name' => array('Москва', 'Санкт-Петербург', 'Севастополь',  'Нур-Султан', 'Алматы',  'Минск',  'Бишкек', 'Ош'), // 'Ереван'
 		'region' => array(50, 47, 91,  1, 3,  5,  7, 5),
 	);
 
@@ -137,12 +140,12 @@ class CDeliveryEDOST {
 
 	public static $region_edost = array(
 		0 => array('Амурская область', 'Архангельская область', 'Астраханская область', 'Белгородская область', 'Брянская область', 'Владимирская область', 'Волгоградская область', 'Вологодская область', 'Воронежская область', 'Еврейская АО', 'Ивановская область', 'Иркутская область', 'Кабардино-Балкарская Республика', 'Калининградская область', 'Калужская область', 'Карачаево-Черкесская Республика', 'Кемеровская область', 'Кировская область', 'Костромская область', 'Курганская область', 'Курская область', 'Ленинградская область', 'Липецкая область', 'Магаданская область', 'Московская область', 'Мурманская область', 'Нижегородская область', 'Новгородская область', 'Новосибирская область', 'Омская область', 'Оренбургская область', 'Орловская область', 'Пензенская область', 'Псковская область', 'Республика Адыгея', 'Республика Алтай', 'Республика Башкортостан', 'Республика Бурятия', 'Республика Дагестан', 'Республика Ингушетия', 'Республика Калмыкия', 'Республика Карелия', 'Республика Коми', 'Республика Марий Эл', 'Республика Мордовия', 'Республика Саха (Якутия)', 'Республика Северная Осетия - Алания', 'Республика Татарстан', 'Республика Тыва', 'Республика Хакасия', 'Ростовская область', 'Рязанская область', 'Самарская область', 'Саратовская область', 'Сахалинская область', 'Свердловская область', 'Смоленская область', 'Тамбовская область', 'Тверская область', 'Томская область', 'Тульская область', 'Тюменская область', 'Удмуртская Республика', 'Ульяновская область', 'Ханты-Мансийский АО', 'Челябинская область', 'Чеченская Республика', 'Чувашская Республика', 'Ярославская область', 'Республика Крым', 'Республика Крым', 'Ямало-Ненецкий АО', 'Чукотский АО', 'Еврейская АО', 'Республика Северная Осетия - Алания', 'Ненецкий АО', 'Ханты-Мансийский АО', 'Москва', 'Москва', 'Санкт-Петербург', 'Санкт-Петербург', 'Севастополь', 'Севастополь'),
-		85 => array('Жамбылская область', 'Астана', 'Астана', 'Астана', 'Алматы'),
+		85 => array('Жамбылская область', 'Нур-Султан', 'Нур-Султан', 'Нур-Султан', 'Алматы', 'Туркестанская область'),
 		108 => array('Бишкек', 'Ош'),
 	);
 	public static $region_bitrix = array(
 		0 => array('Амурская обл', 'Архангельская обл', 'Астраханская обл', 'Белгородская обл', 'Брянская обл', 'Владимирская обл', 'Волгоградская обл', 'Вологодская обл', 'Воронежская обл', 'Еврейская Аобл', 'Ивановская обл', 'Иркутская обл', 'Кабардино-Балкарская Респ', 'Калининградская обл', 'Калужская обл', 'Карачаево-Черкесская Респ', 'Кемеровская обл', 'Кировская обл', 'Костромская обл', 'Курганская обл', 'Курская обл', 'Ленинградская обл', 'Липецкая обл', 'Магаданская обл', 'Московская обл', 'Мурманская обл', 'Нижегородская обл', 'Новгородская обл', 'Новосибирская обл', 'Омская обл', 'Оренбургская обл', 'Орловская обл', 'Пензенская обл', 'Псковская обл', 'Адыгея Респ', 'Алтай Респ', 'Башкортостан Респ', 'Бурятия Респ', 'Дагестан Респ', 'Ингушетия Респ', 'Калмыкия Респ', 'Карелия Респ', 'Коми Респ', 'Марий Эл Респ', 'Мордовия Респ', 'Саха /Якутия/ Респ', 'Северная Осетия - Алания Респ', 'Татарстан Респ', 'Тыва Респ', 'Хакасия Респ', 'Ростовская обл', 'Рязанская обл', 'Самарская обл', 'Саратовская обл', 'Сахалинская обл', 'Свердловская обл', 'Смоленская обл', 'Тамбовская обл', 'Тверская обл', 'Томская обл', 'Тульская обл', 'Тюменская обл', 'Удмуртская Респ', 'Ульяновская обл', 'Ханты-Мансийский Автономный округ - Югра АО', 'Челябинская обл', 'Чеченская Респ', 'Чувашская Респ', 'Ярославская обл', 'Крым Респ', 'Крым', 'Ямало-Ненецкий автономный округ', 'Чукотский автономный округ', 'Еврейская автономная область', 'Республика Северная Осетия-Алания', 'Ненецкий автономный округ', 'Ханты-Мансийский автономный округ', 'Москва - регион', 'Москва (регион)', 'Санкт-Петербург - регион', 'Санкт-Петербург (регион)', 'Севастополь - регион', 'Севастополь (регион)'),
-		85 => array('Жамбыльская область', 'Астана (регион)', 'Нур-Султан', 'Нур-Султан (регион)', 'Алматы (регион)'),
+		85 => array('Жамбыльская область', 'Астана (регион)', 'Астана', 'Нур-Султан (регион)', 'Алматы (регион)', 'Южно-Казахстанская область'),
 		108 => array('Бишкек (регион)', 'Ош (регион)'),
 	);
 
@@ -199,7 +202,7 @@ class CDeliveryEDOST {
 
 		// порядок сортировки
 		$s = array(
-			'id', 'ps', 'host', 'hide_error', 'show_zero_tariff', 'map', 'postmap', 'template_script', 'send_zip', 'autoselect', 'hide_payment', 'sort_ascending', 'admin', 'cod_status', 'edost_discount', 'sale_discount', 'sale_discount_cod', 'package',
+			'id', 'ps', 'host', 'hide_error', 'show_zero_tariff', 'map', 'postmap', 'office_near', 'office_unsupported', 'office_unsupported_fix', 'office_unsupported_percent', 'office_tel', 'template_script', 'send_zip', 'autoselect', 'hide_payment', 'sort_ascending', 'admin', 'cod_status', 'edost_discount', 'sale_discount', 'sale_discount_cod', 'package',
 			'control', 'control_auto', 'register_status', 'control_status_arrived', 'control_status_completed', 'control_status_completed_cod', 'browser',
 			'template', 'template_ico', 'template_format', 'template_block', 'template_block_type', 'template_cod', 'template_autoselect_office', 'template_map_inside'
 		);
@@ -277,7 +280,7 @@ class CDeliveryEDOST {
 			$p = false;
 			if ($mode == 'order_ajax' && !empty($_REQUEST['formData'])) $p = $_REQUEST['formData'];
 			if ($mode == 'crm_ajax' && !empty($_REQUEST['FORM_DATA'])) $p = $_REQUEST['FORM_DATA'];
-			if (!empty($p['edost_shop_LOCATION'])) $arOrder['LOCATION_TO'] = $p['edost_shop_LOCATION'];
+			if (!empty($p['edost_shop_LOCATION'])) $arOrder['LOCATION_TO'] = edost_class::GetLocationID($p['edost_shop_LOCATION']);
 			if (!empty($p['edost_shop_ZIP'])) $arOrder['LOCATION_ZIP'] = $p['edost_shop_ZIP'];
 		}
 
@@ -288,6 +291,12 @@ class CDeliveryEDOST {
 		if ($admin) {
 			$o = self::FilterOrder($arOrder);
 			if (!empty(self::$admin_order) && !self::OrderChanged($o, self::$admin_order)) $admin = false; else self::$admin_order = $o;
+		}
+
+		if ($mode == 'order_create' && !empty($_REQUEST['ID'])) {
+			$props = edost_class::GetProps(intval($_REQUEST['ID']), array('no_payment'));
+			if (!empty($props['office'])) $_SESSION['EDOST']['admin_order_edit_office'] = array(0 => array('id' => 'edost:'.$props['office']['profile'], 'profile' => $props['office']['profile'], 'office_id' => $props['office']['id']));
+			else if (isset($_SESSION['EDOST']['admin_order_edit_office'][0])) unset($_SESSION['EDOST']['admin_order_edit_office'][0]);
 		}
 
 		// форматирование тарифов при редактировании отгрузки в админке
@@ -328,7 +337,7 @@ class CDeliveryEDOST {
 			}
 
 			define('DELIVERY_EDOST_PRICE_FORMATTED', 'Y'); // форматирование цены по стандарту eDost
-			$c = array('hide_error' => 'N', 'show_zero_tariff' => 'N', 'template' => 'Y', 'map' => 'Y', 'template_block' => 'all', 'template_block_type' => 'none', 'template_cod' => 'off', 'template_map_inside' => 'N', 'NAME_NO_CHANGE' => true, 'NO_INSURANCE' => 'Y', 'ADD_ZERO_TARIFF' => true, 'NO_POST_MAIN' => 'Y');
+			$c = array('hide_error' => 'N', 'show_zero_tariff' => 'N', 'template' => 'Y', 'map' => 'Y', 'template_format' => 'odt', 'template_block' => 'all', 'template_block_type' => 'none', 'template_cod' => 'off', 'template_map_inside' => 'N', 'NAME_NO_CHANGE' => true, 'NO_INSURANCE' => 'Y', 'ADD_ZERO_TARIFF' => true, 'NO_POST_MAIN' => 'Y', 'NO_POST_CITY_UNSET' => true);
 			if (!empty($_REQUEST['formData']['edost_post_manual']) || !empty($_REQUEST['FORM_DATA']['edost_post_manual'])) $c['POST_MANUAL'] = true;
 			$format = edost_class::FormatTariff($ar, self::GetRUB(), $arOrder, $active, $c);
 //			echo '<br><b>format:</b> <pre style="font-size: 12px">'.print_r($format, true).'</pre>';
@@ -500,7 +509,7 @@ class CDeliveryEDOST {
 			$r['bitrix']['city'] = $r['city'];
 			$r['city'] = $GLOBALS['APPLICATION']->ConvertCharset($r['city'], LANG_CHARSET, 'windows-1251');
 			$r['city'] = str_replace('ё', 'е', $r['city']);
-			if (in_array($r['city'], array('Нур-Султан', 'Нур-Султан (Астана)'))) $r['city'] = 'Астана';
+			if (in_array($r['city'], array('Астана', 'Нур-Султан (Астана)'))) $r['city'] = 'Нур-Султан';
 
 			$region = (!empty($location['region']['name']) ? $location['region']['name'] : '');
 			if ($region != '') $region = self::GetEdostLocationID($country, $region);
@@ -580,13 +589,13 @@ class CDeliveryEDOST {
 
 	}
 
-
 	// получение тарифа по коду битрикса
-	public static function GetEdostTariff($profile, $office = false) {
+	public static function GetEdostTariff($profile, $office = false, $config = false) {
 
-		$type = $options = $office_key = 0;
-		if (isset($office['type'])) $type = $office['type'];
-		if (isset($office['office_type'])) $type = $office['office_type'];
+		$type2 = '';
+		$options = $office_key = 0;
+		if (isset($office['type2'])) $type2 = $office['type2'];
+		if (isset($office['office_type2'])) $type2 = $office['office_type2'];
 		if (isset($office['options'])) $options = $office['options'];
 		if (isset($office['office_options'])) $options = $office['office_options'];
 		if (isset($office['office_key'])) $office_key = $office['office_key'];
@@ -595,11 +604,12 @@ class CDeliveryEDOST {
 		if (isset($data['data'][$profile])) {
 			$v = $data['data'][$profile];
 			if ($v['id'] <= DELIVERY_EDOST_TARIFF_COUNT) {
-				if (isset($v['priceoffice'][$type])) {
+				if (isset($v['priceoffice'][$type2])) {
 					$v['priceoffice_active'] = true;
-					foreach ($v['priceoffice'][$type] as $k2 => $v2) if ($k2 != 'type') $v[$k2] = $v2;
+					foreach ($v['priceoffice'][$type2] as $k2 => $v2) if ($k2 != 'type') $v[$k2] = $v2;
 				}
 
+				if (edost_class::AddUnsupported($v, $options, $config)) $v['priceoffice_active'] = true;
 				if (edost_class::CodDisable($options)) $v['pricecash'] = -1;
 				if ($office_key != 0) $v['office_key'] = $office_key;
 
@@ -951,7 +961,7 @@ class CDeliveryEDOST {
 		if ($order['location'] === false) return self::SetResult(array('error' => 5), $order, $config); // в выбранное местоположение расчет доставки не производится
 
 		// загрузка старого расчета из кэша
-		$cache_id = 'sale|20.0.0|edost|delivery|'.$config['id'].'|'.$order['LOCATION_FROM'].'|'.$order['LOCATION_TO'].'|'.$order['WEIGHT'].'|'.ceil($order['PRICE']).'|'.implode('|', $order['size']).'|'.$order['LOCATION_ZIP'];
+		$cache_id = self::GetCacheID('delivery|'.$config['id'].'|'.$order['LOCATION_FROM'].'|'.$order['LOCATION_TO'].'|'.$order['WEIGHT'].'|'.ceil($order['PRICE']).'|'.implode('|', $order['size']).'|'.$order['LOCATION_ZIP']);
 		$cache = new CPHPCache();
 		if ($cache->InitCache(DELIVERY_EDOST_CACHE_LIFETIME, $cache_id, '/')) {
 			$r = $cache->GetVars();
@@ -1192,6 +1202,10 @@ class CDeliveryEDOST {
 		return (\Bitrix\Main\Application::getInstance()->getContext()->getRequest()->isHttps() || !empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? 'https://' : 'http://');
 	}
 
+	public static function GetCacheID($s) {
+		return 'sale|20.5.0|edost|'.(defined('DELIVERY_EDOST_CACHE_KEY') ? DELIVERY_EDOST_CACHE_KEY.'|' : '').$s;
+	}
+
 	public static function CommaToPoint(&$n) {
 		if (!empty($n)) {
 			$s = preg_replace("/[^0-9,. ]/i", "|", $n);
@@ -1214,23 +1228,23 @@ AddEventHandler('sale', 'onSaleDeliveryHandlersBuildList', array('CDeliveryEDOST
 
 
 class edost_class {
-	public static $version = '2.5.3';
+	public static $version = '2.5.5';
 	public static $error = false;
 	public static $cod_paysystem = null;
 	public static $control_key = array('id', 'flag', 'tariff', 'tracking_code', 'country', 'region', 'city', 'order_paid',  'zip', 'address_data', 'order_number', 'user_data', 'phone', 'email', 'comment', 'basket_data', 'package_data', 'batch_data');
 	public static $delimiter = array(array(',', ':'), array(';', '/'));
-	public static $delimiter2 = array('size' => array('x', array(0,0,0)), 'DIMENSIONS' => array('x', array(0,0,0)), 'service' => array('/', array()), 'doc' => array(';', array()));
+	public static $delimiter2 = array('size' => array('x', array(0,0,0)), 'DIMENSIONS' => array('x', array(0,0,0)), 'service' => array('/', array()), 'doc' => array(';', array()), 'marking_code' => array('/', array()));
 	public static $data_key = array(
-		'user' => array('company', 'name', 'name_first', 'name_middle', 'name_last', 'passport', 'companytype', 'account', 'secure', 'contract', 'appointment', 'represented', 'basis', 'vat', 'inn', 'format'),
+		'user' => array('company', 'name', 'name_first', 'name_middle', 'name_last', 'passport', 'companytype', 'account', 'secure', 'contract', 'appointment', 'represented', 'basis', 'vat', 'inn', 'format', 'token', 'zip', 'online_balance', 'batch_format'),
 		'address' => array('address', 'street', 'house_1', 'house_2', 'house_3', 'house_4', 'door_1', 'door_2', 'city2', 'id', 'code', 'city_id', 'phone', 'lunch', 'call', 'comment'),
-		'basket' => array('id', 'product_id', 'name', 'quantity', 'price', 'vat', 'vat_rate', 'weight', 'size', 'set' => array('name'), 'info'),
-		'basket2' => array('ID', 'PRODUCT_ID', 'NAME', 'QUANTITY', 'PRICE', 'VAT', 'VAT_RATE', 'WEIGHT', 'size', 'set' => array('NAME'), 'INFO_DATA'),
-		'package' => array('weight', 'size', 'insurance', 'cod', 'item' => array('id', 'quantity'), 'service'),
-		'package2' => array('shipment_id', 'weight', 'size', 'insurance', 'cod', 'item' => array('id', 'quantity'), 'service'),
+		'basket' => array('id', 'product_id', 'name', 'quantity', 'price', 'vat', 'vat_rate', 'weight', 'size', 'set' => array('name'), 'info', 'marking_code'),
+		'basket2' => array('ID', 'PRODUCT_ID', 'NAME', 'QUANTITY', 'PRICE', 'VAT', 'VAT_RATE', 'WEIGHT', 'size', 'set' => array('NAME'), 'INFO_DATA', 'marking_code'),
+		'package' => array('weight', 'size', 'insurance', 'cod', 'item' => array('id', 'quantity'), 'service', 'comment', 'type'),
+		'package2' => array('shipment_id', 'weight', 'size', 'insurance', 'cod', 'item' => array('id', 'quantity'), 'service', 'comment', 'type'),
 		'option' => array('id', 'service' => array('id', 'value')),
 		'batch_first' => array('date', 'number', 'type', 'call', 'profile_shop', 'profile_delivery'),
 	);
-	public static $depend = array('count', '62');
+	public static $depend = array('count', 'cod');
 	public static $cod_key = array('pricecod', 'pricecod_formatted', 'pricecash', 'pricecash_formatted', 'transfer', 'transfer_formatted', 'cod_tariff', 'codplus', 'codplus_formatted', 'pricecashplus', 'pricecashplus_formatted', 'pricecod_original', 'pricecod_original_formatted', 'pricecash_original', 'pricecash_original_formatted', 'codplus_original', 'codplus_original_formatted', 'cod', 'compact_cod', 'compact_link_cod', 'compact_head_cod');
 	public static $schedule_code = array(
 		' ' => 'system_1', '!' => 'system_2', '#' => 'system_3', '$' => 'system_4',
@@ -1295,6 +1309,7 @@ class edost_class {
 
 //			echo '<br>----------------<br>'.$out.'<br>----------------'; // !!!!!
 //			echo '<br><br>response from server (original): ----------------<br>'.$GLOBALS['APPLICATION']->ConvertCharset($r, 'windows-1251', LANG_CHARSET).'<br>----------------';
+//			die();
 //			if (!is_array($_SESSION['EDOST']['request'])) $_SESSION['EDOST']['request'] = array();
 //			$_SESSION['EDOST']['develop'][] = array('out' => $out, 'response' => $GLOBALS['APPLICATION']->ConvertCharset($r, 'windows-1251', LANG_CHARSET));
 
@@ -1303,6 +1318,17 @@ class edost_class {
 			else {
 				$r = substr($r, 9);
 				if (!in_array($type, array('develop', 'print'))) $r = self::ParseData($r, $type);
+			}
+
+			// принудительное переключение на загрузку скриптов с сервера eDost или с сервера магазина
+			if (!isset($r['error']) && $type == 'delivery') {
+				$script = COption::GetOptionString('edost.delivery', 'script', '');
+				if (!empty($r['script'])) {
+					if (in_array($r['script'], array('Y', 'N')) && $r['script'] != $script) COption::SetOptionString('edost.delivery', 'script', $r['script']);
+				}
+				else {
+					if (!empty($script)) COption::SetOptionString('edost.delivery', 'script', '');
+				}
 			}
 		}
 //		$_SESSION['EDOST']['develop'][] = $r; // !!!!!
@@ -1403,6 +1429,7 @@ class edost_class {
 			$p = self::UnPackDataArray($prop['PACKAGE']['value'], 'package2');
 			if (!empty($p) && !empty($shipment_id)) foreach ($p as $k => $v) if ($v['shipment_id'] != $shipment_id) unset($p[$k]);
 			$r['package'] = $p;
+//			echo '<br><b>data:</b><pre style="font-size: 12px">'.print_r($p, true).'</pre>';
 		}
 
 		$s = '';
@@ -1535,6 +1562,7 @@ class edost_class {
 			if (class_exists('edost_function') && method_exists('edost_function', 'AfterGetOrderOffice')) edost_function::AfterGetOrderOffice($order, $office);
 
 			$r['office'] = $office;
+			if (in_array($office['type'], CDeliveryEDOST::$postamat)) $r['postamat'] = true;
 
 			if (!empty($office['address_formatted'])) $s = $office['address_formatted'];
 			else {
@@ -1594,7 +1622,7 @@ class edost_class {
 		$register_tariff = edost_class::GetRegisterTariff();
 
 		$day = (!empty($param['day']) ? $param['day'] : false);
-		if (!$day && empty($shipment)) return false;
+		if ($day) $shipment = array(); else if (empty($shipment)) return false;
 
 		$r = array();
 		$id = array();
@@ -1625,16 +1653,15 @@ class edost_class {
 			if (!empty($param['user_id'])) $filter['=ORDER.USER_ID'] = $param['user_id'];
 
 			$ar = \Bitrix\Sale\Internals\ShipmentTable::getList(array(
-				'select' => array('ID', 'ORDER.LID', 'ORDER.PRICE', 'ORDER.CURRENCY', 'ORDER.SUM_PAID', 'ORDER.ACCOUNT_NUMBER', 'ORDER.DATE_INSERT', 'ORDER.DATE_STATUS', 'ORDER.STATUS_ID', 'ORDER.PAYED', 'ORDER_ID', 'DELIVERY_ID', 'ACCOUNT_NUMBER', 'STATUS_ID', 'ALLOW_DELIVERY', 'DEDUCTED', 'CANCELED', 'TRACKING_NUMBER', 'TRACKING_STATUS', 'TRACKING_DESCRIPTION', 'DELIVERY_NAME', 'COMMENTS', 'ORDER.COMMENTS', 'CURRENCY', 'PRICE_DELIVERY', 'ORDER.CANCELED'),
+				'select' => array('ID', 'ORDER.LID', 'ORDER.PRICE', 'ORDER.CURRENCY', 'ORDER.SUM_PAID', 'ORDER.ACCOUNT_NUMBER', 'ORDER.DATE_INSERT', 'ORDER.DATE_STATUS', 'ORDER.STATUS_ID', 'ORDER.PAYED', 'ORDER_ID', 'DELIVERY_ID', 'ACCOUNT_NUMBER', 'STATUS_ID', 'ALLOW_DELIVERY', 'DEDUCTED', 'CANCELED', 'TRACKING_NUMBER', 'TRACKING_STATUS', 'TRACKING_DESCRIPTION', 'DELIVERY_NAME', 'COMMENTS', 'ORDER.COMMENTS', 'CURRENCY', 'PRICE_DELIVERY', 'ORDER.CANCELED', 'ORDER.USER_DESCRIPTION'),
 				'filter' => $filter,
-				'limit' => 5000,
+				'limit' => 10000,
 			));
 			while ($v = $ar->fetch()) {
 				$s = array('ALLOW_DELIVERY', 'DEDUCTED', 'CANCELED', 'SALE_INTERNALS_SHIPMENT_ORDER_PAYED', 'SALE_INTERNALS_SHIPMENT_ORDER_CANCELED');
 				foreach ($s as $k) $v[$k] = ($v[$k] == 'Y' ? true : false);
 				$shipment[] = $v;
 			}
-//			echo '<br><b>GetShipmentData:</b> <pre style="font-size: 12px">'.print_r($shipment, true).'</pre>';
 		}
 
 		foreach ($shipment as $k => $v) {
@@ -1675,18 +1702,19 @@ class edost_class {
 				'order_canceled' => ($o ? $order->getField('CANCELED') : $v['SALE_INTERNALS_SHIPMENT_ORDER_CANCELED']),
 				'order_date' => ($o ? $order->getField('DATE_INSERT') : $v['SALE_INTERNALS_SHIPMENT_ORDER_DATE_INSERT']),
 				'order_status_date' => ($o ? $order->getField('DATE_STATUS') : $v['SALE_INTERNALS_SHIPMENT_ORDER_DATE_STATUS']),
-//				'order_comments' => ($o ? '' : $v['SALE_INTERNALS_SHIPMENT_ORDER_COMMENTS']),
+				'order_user_description' => ($o ? $order->getField('USER_DESCRIPTION') : $v['SALE_INTERNALS_SHIPMENT_ORDER_USER_DESCRIPTION']),
+//				'order_comments' => ($o ? $order->getField('COMMENTS') : $v['SALE_INTERNALS_SHIPMENT_ORDER_COMMENTS']),
 //				'location_id' => ($o ? $order->getDeliveryLocation() : ''),
 
 				'allow_delivery' => ($o ? $v->isAllowDelivery() : $v['ALLOW_DELIVERY']),
-				'deducted' => ($o ? $v->isShipped() : $v['DEDUCTED']),
+				'deducted' => ($o ? $v->isShipped() : $v['DEDUCTED']), // отгружен
 				'canceled' => ($o ? $v->isCanceled() : $v['CANCELED']),
 //				'comments' => ($o ? '' : $v['COMMENTS']),
 			);
 			if ($o) $r[$id]['order'] = $order;
 		}
 
-//		echo '<br><b>GetShipmentData:</b> <pre style="font-size: 12px">'.print_r($r, true).'</pre>';
+//		echo '<br><b>GetShipmentData:</b> <pre style="font-size: 12px">'.print_r($r[470], true).'</pre>';
 
 		return $r;
 
@@ -1749,16 +1777,20 @@ class edost_class {
 		while ($v = $ar->fetch()) if ($v['CAN_BUY'] == 'Y' && $v['DELAY'] == 'N' && !empty($v['QUANTITY'])) $data[$basket[$v['ID']]]['basket'][$v['ID']] = $v;
 //		echo '<br><b>basket:</b><pre style="font-size: 12px">'.print_r($data, true).'</pre>';
 
-		$prop = array();
+		$prop = $marking = array();
 		if (CModule::IncludeModule('iblock')) {
-			$item = array();
-			foreach ($data as $k => $v) if (!empty($v['basket'])) foreach ($v['basket'] as $k2 => $v2) $item[$v2['PRODUCT_ID']] = $v2['PRODUCT_ID'];
-			if (!empty($item)) {
-				$ar = CIBlockElement::GetList(array(), array('ID' => $item), false, false, array('ID', 'LID', 'PROPERTY_ARTNUMBER'));
+			$s = $s2 = array();
+			foreach ($data as $k => $v) if (!empty($v['basket'])) foreach ($v['basket'] as $k2 => $v2) {
+				$s[$v2['PRODUCT_ID']] = $v2['PRODUCT_ID'];
+//				if (!empty($v2['MARKING_CODE_GROUP'])) $marking[$k][$k2] = $v2['ID'];
+			}
+			if (!empty($s)) {
+				$ar = CIBlockElement::GetList(array(), array('ID' => $s), false, false, array('ID', 'LID', 'PROPERTY_ARTNUMBER'));
 				while ($v = $ar->fetch()) $prop[$v['ID'].'_'.$v['LID']] = $v;
 			}
 		}
 //		echo '<br><b>prop:</b><pre style="font-size: 12px">'.print_r($prop, true).'</pre>';
+//		echo '<br><b>marking:</b><pre style="font-size: 12px">'.print_r($marking, true).'</pre>';
 
 		// расчет стоимости товаров + распределение товаров из комплекта
 		foreach ($data as $k => $v) {
@@ -1808,8 +1840,8 @@ class edost_class {
 					$p = $v2['PRICE']*$v2['QUANTITY'];
 					$n = $v2['QUANTITY'];
 
-                    $p2 = 0;
-                    $n2 = 0;
+					$p2 = 0;
+					$n2 = 0;
 					foreach ($v2['set'] as $s_key => $s) {
 						$p2 += $s['PRICE']*$s['QUANTITY'];
 						$n2 += $s['QUANTITY'];
@@ -1841,7 +1873,8 @@ class edost_class {
 
 			$v += self::GetPrice('basket_price', $price, $v['order_currency'], '', false);
 			$v['depend_count'] = ($basket_count > 1 ? true : false); // зависимость от количества товаров: true - можно редактировать места и подключить опцию частичной доставки
-			if ($v['tariff'] == 62) $v['depend_62'] = true; // зависимость от тарифа курьер онлайн: true - можно подключить опцию проверки комплектности (4)
+//			if ($v['tariff'] == 62) $v['depend_62'] = true; // зависимость от тарифа курьер онлайн: true - можно подключить опцию почты "проверки комплектности" (4)
+			if (!empty($v['cod'])) $v['depend_cod'] = true; // зависимость от наложенного платежа: true - можно подключить опцию СДЭК "обязательная оплата доставки" (1000)
 
 			$data[$k] = $v;
 		}
@@ -1883,7 +1916,7 @@ class edost_class {
 
 		$ar = $order->getPropertyCollection();
 		foreach ($ar->getGroups() as $g) foreach ($ar->getGroupProperties($g['ID']) as $v2) if ($v2->getField('CODE') == 'PACKAGE') {
-			$v2->setValue(edost_class::PackDataArray($package, 'package2'));
+			$v2->setValue($GLOBALS['APPLICATION']->ConvertCharset(edost_class::PackDataArray($package, 'package2'), 'windows-1251', LANG_CHARSET));
 			$v2->save();
 			break;
 		}
@@ -2031,6 +2064,17 @@ class edost_class {
 		self::AddBasketData($data);
 		foreach ($data as $k => $v) if (empty($v['basket'])) unset($data[$k]);
 
+        // единицы измерения, отличающиеся от штук, переносить в название товара
+		if ($cookie['register_pcs'] == 'Y') foreach ($data as $k => $v) foreach ($v['basket'] as $k2 => $v2) if ($v2['MEASURE_CODE'] != 796) {
+			$v2['NAME'] .= ' ('.$v2['QUANTITY'].' '.$v2['MEASURE_NAME'].')';
+			$v2['PRICE'] = $v2['PRICE']*$v2['QUANTITY'];
+			$v2['BASE_PRICE'] = $v2['BASE_PRICE']*$v2['QUANTITY'];
+			$v2['QUANTITY'] = 1;
+			$v2['MEASURE_CODE'] = 796;
+			$v2['MEASURE_NAME'] = trim($control_sign['quantity']);
+			$data[$k]['basket'][$k2] = $v2;
+		}
+
 		// определение составного заказа (с двумя и более отгрузками)
 		if (!empty($data)) {
 			$o = $ar = array();
@@ -2052,7 +2096,7 @@ class edost_class {
 			$ar = array();
 			foreach ($doc as $v2) {
 				if (isset($v2['company_id'])) {
-					if ($v2['id'] == 'batch' || $v['company_id'] != $v2['company_id']) continue;
+					if ($v2['id'] == 'batch' || !in_array($v['company_id'], $v2['company_id'])) continue;
 				}
 				else if (!isset($v2['delivery'])) continue;
 				else if (!is_array($v2['delivery']) || empty($v['tariff']) || !in_array($v['tariff'], $v2['delivery'])) continue;
@@ -2067,7 +2111,7 @@ class edost_class {
 
 			$v['props'] = $p = edost_class::GetProps($v['order_id'], array('no_payment'), $v['id']);
 
-            // проверка полей
+			// проверка полей
 			$e = array();
 			if (empty($p['location_data'])) $e['city'] = true;
 			else {
@@ -2090,6 +2134,8 @@ class edost_class {
 				if (!empty($p['office']) || !isset($p['address_part'])) $s .= trim($p['address']);
 				else foreach ($p['address_part'] as $k2 => $v2) $s .= trim($v2);
 				if (empty($s)) $e['address'] = true;
+
+				if (in_array($v['tariff'], CDeliveryEDOST::$office) && empty($v['props']['office'])) $e['office'] = true;
 			}
 			if (!empty($e)) $v['field_error'] = $e;
 
@@ -2105,16 +2151,22 @@ class edost_class {
 			if ($cod) $v['cod_price'] = $price;
 
 			$o = $option[$v['company_id']];
-			foreach ($o['service'] as $k2 => $v2) foreach (self::$depend as $key) if (!empty($v2['depend_'.$key]) && empty($v['depend_'.$key])) { unset($o['service'][$k2]); break; }
+//		echo '<br><b>O=============</b><pre style="font-size: 12px">'.print_r($o, true).'</pre>';
+//		echo '<br><b>V=============</b><pre style="font-size: 12px">'.print_r($v, true).'</pre>';
+			foreach ($o['service'] as $k2 => $v2) {
+				foreach (self::$depend as $key) if (!empty($v2['depend_'.$key]) && empty($v['depend_'.$key])) { unset($o['service'][$k2]); break; }
+				if (!empty($v2['depend_tariff']) && !in_array($v['tariff'], $v2['depend_tariff'])) unset($o['service'][$k2]);
+				if (!empty($v2['depend_postamat']) && ($v2['depend_postamat'] == 'N' && !empty($v['props']['postamat']) || $v2['depend_postamat'] == 'Y' && empty($v['props']['postamat']))) unset($o['service'][$k2]);
+			}
 
-			if (!empty($v['props']['package'])) {
+			if (!empty($v['props']['package']) && ($v['company_id'] != 23 || count($v['props']['package']) <= 1)) {
 				$package = $v['props']['package'];
 				if (count($package) == 1) {
 					$package[0]['item'] = array();
 					foreach ($v['basket'] as $v2) $package[0]['item'][$v2['ID']] = array('id' => $v2['ID'], 'quantity' => $v2['QUANTITY']);
 				}
 			}
-            else {
+			else {
 				$p = array(
 					'new' => true,
 					'shipment_id' => $v['id'],
@@ -2129,20 +2181,26 @@ class edost_class {
 			}
 
 			foreach ($package as $p_key => $p) {
+				if (!empty($p['service'])) foreach ($p['service'] as $k2 => $v2) if (empty($o['service'][$v2])) { unset($p['service'][$k2]); break; }
+
 				$p['insurance'] = ($insurance ? $price : 0);
 				$p['cod'] = ($cod ? $price : 0);
 
-				$s = '<span style="font-weight: bold;">'.(!empty($p['weight']) ? $p['weight'] : '0').'</span> '.$control_sign['kg'];
-				if (!empty($p['size'][0])) {
-					$s .= ', ';
-					foreach ($p['size'] as $k2 => $v2) $s .= '<span style="font-weight: bold;">'.(!empty($p['size'][$k2]) ? $p['size'][$k2] : '0').'</span>'.($k2 != 2 ? 'x' : '');
-					$s .= ' '.$control_sign['cm'];
+				$s = '';
+				if (!empty($p['weight']) || !empty($p['size'][0])) {
+					$s = '<span style="font-weight: bold;">'.(!empty($p['weight']) ? $p['weight'] : '0').'</span> '.$control_sign['kg'];
+					if (!empty($p['size'][0])) {
+						$s .= ', ';
+						foreach ($p['size'] as $k2 => $v2) $s .= '<span style="font-weight: bold;">'.(!empty($p['size'][$k2]) ? $p['size'][$k2] : '0').'</span>'.($k2 != 2 ? 'x' : '');
+						$s .= ' '.$control_sign['cm'];
+					}
 				}
 				$p['param_formatted'] = $s;
 
 				$package[$p_key] = $p;
 			}
 
+//		echo '<br><b>package:</b> <pre style="font-size: 12px">'.print_r($package, true).'</pre>';
 			$n = count($package);
 			if ($n > 0) {
 				$basket_name = array();
@@ -2169,7 +2227,7 @@ class edost_class {
 					}
 
 					$volume = round($volume*100)/100;
-					$s = '<span style="cursor: pointer;" data-param="id='.$v['id'].'" onclick="edost_window.set(\'package_detail\', this)"><b>'.self::draw_string('box', $n).'</b> (<b>'.$weight.'</b> '.$control_sign['kg'].($volume > 0 ? ', <b>'.$volume.'</b> '.$control_sign['meter'].'<sup>3</sup>' : '').')</span>';
+					$s = '<span style="cursor: pointer;" data-param="id='.$v['id'].'" onclick="edost.window.set(\'package_detail\', this)"><b>'.self::draw_string('box', $n).'</b> (<b>'.$weight.'</b> '.$control_sign['kg'].($volume > 0 ? ', <b>'.$volume.'</b> '.$control_sign['meter'].'<sup>3</sup>' : '').')</span>';
 					$s .= '<div id="edost_package_detail_'.$v['id'].'_div" style="display: none;">'.implode(' ', $package_detail).'</div>';
 				}
 				$v['package_formatted'] = $s;
@@ -2239,7 +2297,7 @@ class edost_class {
   		$v = $v[$id];
 
 		$cache = new CPHPCache();
-		if ($cache->InitCache(300, 'sale|20.0.0|edost|detail|'.$id, '/')) $r = $cache->GetVars();
+		if ($cache->InitCache(300, CDeliveryEDOST::GetCacheID('detail|'.$id), '/')) $r = $cache->GetVars();
 		else {
 			$config = CDeliveryEDOST::GetEdostConfig($v['site_id']);
 			$r = self::RequestData('', $config['id'], $config['ps'], 'type=control&mode=detail&data='.$id.'|end|', 'detail');
@@ -2263,6 +2321,8 @@ class edost_class {
 		$r = '';
 		$error_code = '';
 		$control_sign = GetMessage('EDOST_DELIVERY_CONTROL');
+		$format = self::GetFormat($data);
+		$cookie = edost_class::GetCookie();
 
 		// список с товарами (для мест)
 		if ($param == 'full' || $param == 'package') {
@@ -2289,8 +2349,7 @@ class edost_class {
 			$count = count($data['props']['package']);
 			if ($count == 1) {
 				$p = $data['props']['package'][0];
-				$input_update = 'onfocus="edost.register.input_focus(this)" onblur="edost.register.input_blur()"';
-
+				$input_update = 'oninput="edost.register.input(this)"';
 				$r .= '<input class="edost_package edost_package_weight '.($p['weight'] == 0 ? 'edost_package_error' : 'edost_package_on').'" data-code="'.$data['id'].'_package_0_weight" style="height: 18px; width: 35px;" value="'.($p['weight'] != 0 ? $p['weight'] : '').'" type="input" '.$input_update.'> '.$control_sign['kg'];
 				foreach ($p['size'] as $k2 => $v2) $r .= '<input class="edost_package edost_package_size '.($p['size'][$k2] == 0 ? 'edost_package_error2' : 'edost_package_on').'" data-code="'.$data['id'].'_package_0_size_'.$k2.'" style="height: 18px;'.($k2 == 0 ? ' margin-left: 10px;' : '').' width: 35px;" value="'.($p['size'][$k2] != 0 ? $p['size'][$k2] : '').'" type="input" '.$input_update.'> '.($k2 != 2 ? ' x ' : '');
 				$r .= ' '.$control_sign['cm'];
@@ -2304,11 +2363,11 @@ class edost_class {
 				}
 				if ($weight) $error_code = 'package_weight';
 				foreach ($ar as $k => $v) if (!$v['hide'] && $v['box_quantity'] != $v['QUANTITY']) { $error_code = 'package_pack'; break; }
-					$s = '<span style="cursor: pointer;" onclick="edost_window.set(\'package_detail_'.$v['id'].'\')"><b>'.self::draw_string('box', $n).'</b> (<b>'.$weight.'</b> '.$control_sign['kg'].($volume > 0 ? ', <b>'.$volume.'</b> '.$control_sign['meter'].'<sup>3</sup>' : '').')</span>';
-				if (!empty($data['package_formatted'])) $r .= ($error_code != '' ? '<span style="color: #F88;">' : '').str_replace(array('cursor: pointer;', 'onclick="edost_window.set(\'package_detail\', this)"'), '', $data['package_formatted']).($error_code != '' ? '</span>' : '');
+					$s = '<span style="cursor: pointer;" onclick="edost.window.set(\'package_detail_'.$v['id'].'\')"><b>'.self::draw_string('box', $n).'</b> (<b>'.$weight.'</b> '.$control_sign['kg'].($volume > 0 ? ', <b>'.$volume.'</b> '.$control_sign['meter'].'<sup>3</sup>' : '').')</span>';
+				if (!empty($data['package_formatted'])) $r .= ($error_code != '' ? '<span style="color: #F88;">' : '').str_replace(array('cursor: pointer;', 'onclick="edost.window.set(\'package_detail\', this)"'), '', $data['package_formatted']).($error_code != '' ? '</span>' : '');
 			}
 
-			if ($change && $data['company_id'] == 5 && (!empty($data['depend_count']) || $error_code != '')) $r .= ' <span class="edost_control_button edost_control_button_low" style="padding-left: 5px;" onclick="edost.package.open(\''.$data['order_id'].'_'.$data['id'].'\', this)">'.($count == 1 ? $control_sign['button']['package_change'] : $control_sign['button']['package_change2']).'</span>';
+			if ($change && $data['company_id'] != 23 && (!empty($data['depend_count']) || $error_code != '')) $r .= ' <span class="edost_control_button edost_control_button_low" style="padding-left: 5px;" onclick="edost.package.open(\''.$data['order_id'].'_'.$data['id'].'\', this)">'.($count == 1 ? $control_sign['button']['package_change'] : $control_sign['button']['package_change2']).'</span>';
 
 			$r .= '<input id="edost_package_error_'.$data['id'].'" type="hidden" data-error="'.$error_code.'" data-box="'.$count.'" data-tariff="'.$data['tariff'].'">';
 			$r .= '<input id="edost_package_'.$data['order_id'].'_'.$data['id'].'_item_data" type="hidden" value=\''.$item.'\'>';
@@ -2317,19 +2376,48 @@ class edost_class {
 			if ($param == 'full') $r .= '</div>';
 		}
 
+		if (in_array($data['company_id'], array(19)) && ($param == 'full' || $param == 'type')) {
+			$c = (!empty($data['props']['package'][0]['type']) ? $data['props']['package'][0]['type'] : $cookie['register_package_type']);
+			$c = trim($c);
+			$r .= '<div class="edost_package_type">';
+			$r .= '<span>'.$control_sign['package']['type_head'].':</span> ';
+			if ($change) {
+				$r .= '<span class="edost_service_button edost_control_button edost_control_button_low" style="display: inline-block;" onclick="edost.register.button(this)">'.($c != '' ? $c : $control_sign['button']['type_change']).'</span>';
+				$r .= '<span style="display: none;"><input class="edost_suggest_list" data-suggest="package_type" data-id="'.$data['id'].'" value="'.$c.'" type="input" maxlength="20"></span>';
+			}
+			else $r .= $c;
+			$r .= '</div>';
+		}
+
 		if ($param == 'full' || $param == 'option') if (!empty($data['option']['service_active'])) {
 			$count_service = count($data['option']['service']);
             $a = ($count_service > 0 ? true : false);
 
-			if ($param == 'full') $r .= '<div id="edost_option_'.$data['id'].'" class="edost_service" style="padding-top: 5px;">';
-
+			if ($param == 'full') $r .= '<div id="edost_option_'.$data['id'].'" class="edost_service">';
+			$r .= '<div class="edost_package_service">';
 			if ($a) $r .= '<span style="color: #888;">'.$control_sign['package']['option_head'].':</span> <span class="edost_service">'.$data['option']['service_formatted'].'</span>';
 			if ($change) {
 				$s = array();
 				foreach (self::$depend as $key) if (!empty($data['depend_'.$key])) $s[] = 'depend_'.$key.'=1';
-				$r .= ($a ? ' (' : '').'<span class="edost_service_button edost_control_button edost_control_button_low" data-param="id='.$data['id'].';order_id='.$data['order_id'].';company='.$data['company_id'].';service='.implode(',', $data['option']['service']).(!empty($s) ? ';'.implode(';', $s) : '').'" onclick="edost_window.set(\'option\', this)">'.($count_service == 0 ? $control_sign['button']['option_change'] : $control_sign['button']['option_change2']).'</span>'.($a ? ')' : '');
+				$r .= ($a ? ' (' : '').'<span class="edost_service_button edost_control_button edost_control_button_low" data-param="id='.$data['id'].';order_id='.$data['order_id'].';company='.$data['company_id'].';tariff='.$data['tariff'].';'.(!empty($data['props']['postamat']) ? 'postamat=Y;' : '').'service='.implode(',', $data['option']['service']).(!empty($s) ? ';'.implode(';', $s) : '').'" onclick="edost.window.set(\'option\', this)">'.($count_service == 0 ? $control_sign['button']['option_change'] : $control_sign['button']['option_change2']).'</span>'.($a ? ')' : '');
 			}
+			$r .= '</div>';
 			if ($param == 'full') $r .= '</div>';
+		}
+
+		if ((!in_array($data['company_id'], array(19)) || $format == 'door') && ($param == 'full' || $param == 'comment')) {
+			$c = (!empty($data['props']['package'][0]['comment']) ? $data['props']['package'][0]['comment'] : '');
+			if ($c == '' && $cookie['register_user_description'] == 'Y') $c = $data['order_user_description'];
+			$c = trim($c);
+			$door = ($format == 'door' ? '_door' : '');
+			$h = '<span style="color: #888;">'.$control_sign['package']['comment_head'.$door].':</span> ';
+			$r .= '<div class="edost_package_comment">';
+			if ($change) {
+				if ($c == '') $r .= '<span class="edost_service_button edost_control_button edost_control_button_low" style="display: inline-block;" onclick="edost.register.button(this)">'.$control_sign['button']['comment'.$door.'_change'].'</span>';
+				$r .= '<div'.($c == '' ? ' style="display: none;"' : '').'><div>'.$h.'</div><textarea data-id="'.$data['id'].'">'.$c.'</textarea></div>';
+			}
+			else if ($c != '') $r .= $h.$c;
+			$r .= '</div>';
 		}
 
 		return $r;
@@ -2418,7 +2506,7 @@ class edost_class {
 			$history = array(
 				'name' => $name,
 				'cache' => new CPHPCache(),
-				'cache_id' => 'sale|20.0.0|edost_delivery|history_'.$name,
+				'cache_id' => CDeliveryEDOST::GetCacheID('history_'.$name),
 				'cache_time' => 86400*15,
 				'data' => array(),
 				'select' => '',
@@ -2495,7 +2583,7 @@ class edost_class {
 		$v = (isset($v[1]) ? intval($v[1]) : 0);
 
 		$cache = new CPHPCache();
-		if ($cache->InitCache(86400, 'sale|20.0.0|edost|cache', '/')) $v = 'Y';
+		if ($cache->InitCache(86400, CDeliveryEDOST::GetCacheID('cache'), '/')) $v = 'Y';
 		else {
 			$v++;
 			if ($v > 3) $v = 'N';
@@ -2544,12 +2632,14 @@ class edost_class {
 		if ($html) {
 			if (!empty($new)) echo 'close';
 			else {
+				$protocol = CDeliveryEDOST::GetProtocol();
+				$img_path = $protocol.'edostimg.ru/img/site';
 				$i = 0;
 				foreach ($r as $k => $v) {
 					if ($i != 0) echo '<div class="edost_delimiter" style="margin: 20px;"></div>';
 					$i++; ?>
 					<div class="edost_option">
-						<div style="text-align: center; padding-bottom: 10px;">
+						<div style="text-align: center; padding: 10px 0 5px 0;">
 							<img class="edost_option" src="<?=$ico_path?>/company/<?=$v['id']?>.gif" border="0">
 							<span class="edost_option"><?=$v['name']?></span>
 						</div>
@@ -2557,11 +2647,12 @@ class edost_class {
 						<div class="edost_field_delimiter" style="margin-top: 10px;"><?=$control_sign['package']['option_head2']?></div>
 <?						foreach ($v['service'] as $s) { ?>
 						<div class="edost_option_service">
-							<div class="edost_option_service_name"><?=$s['name']?></div>
+							<div class="edost_option_service_name"><?=(!empty($s['hint']) ? '<img class="edost_hint_link" data-param="shift=center,20" src="'.$img_path.'/hint.svg" border="0"><div class="edost_hint_data">'.$s['hint'].'</div> ' : '')?><span><?=$s['name']?></span></div>
 							<div class="edost_option_service_value">
-<?								foreach ($control_sign['setting']['service'] as $k2 => $v2) { ?>
+<?								foreach ($control_sign['setting']['service'] as $k2 => $v2) { $a = ($k2 == 2 && !empty($s['off']) ? true : false); ?>
 								<label>
-									<input style="margin: 0px;" name="edost_service_<?=$k?>_<?=$s['id']?>" type="radio" <?=($k2 == $s['value'] ? 'checked=""' : '')?> value="<?=$k2?>">
+									<? /* <?=($a ? 'onclick="edost.window.field(this, \'off\')"' : '')?> */ ?>
+									<input style="margin: 0px;" name="edost_service_<?=$k?>_<?=$s['id']?>" data-id="<?=$s['id']?>" type="radio" <?=($k2 == $s['value'] ? 'checked=""' : '')?> <?=($a ? 'data-off="'.implode(',', $s['off']).'"' : '')?> value="<?=$k2?>">
 									<span class="edost_option_radio_<?=$k2?>"><?=$v2?></span>
 								</label>
 <?								} ?>
@@ -2593,8 +2684,8 @@ class edost_class {
 		$control_sign = GetMessage('EDOST_DELIVERY_CONTROL');
 		$profile = $control_sign['register_profile'];
 		$ico_path = '/bitrix/images/delivery_edost_img';
-		$shop_hide = array('mode', 'account', 'secure', 'contract', 'format', 'vat', 'head_doc_company');
-		$company_hide = array('phone', 'city', 'address', 'head_seller', 'company_seller', 'companytype_seller', 'inn_seller', 'address_seller', 'phone_seller', 'head_call', 'city_call', 'address_call', 'phone_call', 'time_lunch_call', 'time_call', 'comment_call', 'head_doc_shop');
+//		$shop_hide = array('mode', 'account', 'secure', 'contract', 'format', 'vat', 'head_doc_company');
+//		$company_hide = array('phone', 'city', 'address', 'head_seller', 'company_seller', 'companytype_seller', 'inn_seller', 'address_seller', 'phone_seller', 'head_call', 'city_call', 'address_call', 'phone_call', 'time_lunch_call', 'time_call', 'comment_call', 'head_doc_shop');
 		$new_hide = array('delete');
 		$update = array('type', 'mode');
 		$local = false;
@@ -2680,6 +2771,8 @@ class edost_class {
 		if (isset($param['company'])) {
 			$flag = array('flag_call', 'flag_reverse'); // флаги наличия в профилях необходимых данных (для вызова курьера и опции реверса у СДЭК)
 			for ($i = 1; $i <= 2; $i++) {
+				if ($i == 1 && in_array($param['company'], array(23, 30))) continue; // отключение выбора профиля магазина при оформлении
+
 				$type = ($i == 1 ? 'shop' : 'delivery');
 				if (isset($param['profile_'.$type])) $a = $param['profile_'.$type];
 				else {
@@ -2699,21 +2792,25 @@ class edost_class {
 					$s2 = array();
 					foreach ($flag as $flag_key) if (!empty($v[$flag_key])) $s2[] = 'data-'.$flag_key.'="Y"';
 
-					$s .= '<option value="'.$k.'" '.($k == $a ? 'selected' : '').(!empty($s2) ? ' '.implode(' ', $s2) : '').'>'.$name.'</option>';
+					$p = array();
+					$key = array('batch_format'); // параметры, которые используются в js
+					foreach ($key as $v2) if (isset($v[$v2])) $p[] = $v2.'='.$v[$v2];
+
+					$s .= '<option value="'.$k.'" '.($k == $a ? 'selected' : '').(!empty($s2) ? ' '.implode(' ', $s2) : '').(!empty($p) ? ' data-param="'.implode(';', $p).'"' : '').'>'.$name.'</option>';
 				}
 
-				$update = ($main ? "edost.register.active_all_update()" : "edost_window.resize('change')");
+				$update = ($main ? "edost.register.active_all_update()" : "edost.window.resize('change')");
 
 				$data_param = 'type='.$type.';company='.$param['company'].';local=1';
 
 				if ($main) $button = '';
 				else {
-					$button = '<span class="edost_profile_'.$type.'_change" style="display: none;"><span class="edost_control_button edost_control_button_low edost_profile_change" data-param="'.$data_param.';change=1" onclick="edost_window.set(\'profile_setting_change\', this)">'.$control_sign['button']['change'].'</span>&nbsp;|&nbsp;</span>';
-					$button .= '<span class="edost_control_button edost_control_button_low" data-param="'.$data_param.'" onclick="edost_window.set(\'profile_setting_new\', this)">'.$control_sign['button']['profile_new_small'].'</span>';
+					$button = '<span class="edost_profile_'.$type.'_change" style="display: none;"><span class="edost_control_button edost_control_button_low edost_profile_change" data-param="'.$data_param.';change=1" onclick="edost.window.set(\'profile_setting_change\', this)">'.$control_sign['button']['change'].'</span>&nbsp;|&nbsp;</span>';
+					$button .= '<span class="edost_control_button edost_control_button_low" data-param="'.$data_param.'" onclick="edost.window.set(\'profile_setting_new\', this)">'.$control_sign['button']['profile_new_small'].'</span>';
 					$button = '<div style="color: #888;">'.$button.'</div>';
 				}
 
-				if ($s == '') $s = '<span class="edost_link" data-param="'.$data_param.'" onclick="edost_window.set(\'profile_setting_new\', this)">'.$control_sign['button']['profile_new_small'].' '.$control_sign['profile_'.$type].'</span>';
+				if ($s == '') $s = '<span class="edost_link" data-param="'.$data_param.'" onclick="edost.window.set(\'profile_setting_new\', this)">'.$control_sign['button']['profile_new_small'].' '.$control_sign['profile_'.$type].'</span>';
 				else $s = $control_sign['profile_'.$type].' <select '.($main ? 'id' : 'name').'="edost_profile_'.$type.'" style="'.($main ? 'max-width: 280px;' : 'width: 210px;').' font-size: 16px; padding: 3px; margin: 0;" onchange="'.$update.'"><option value="" style="color: #AAA;">'.$control_sign['profile_no'].'</option>'.$s.'</select>'.$button;
 
 				$s = '<div style="'.($main ? 'padding: 8px;' : 'text-align: right;').(!$main && $i == 2 ? 'padding-top: 10px;' : '').'">'.$s.'</div>';
@@ -2737,8 +2834,8 @@ class edost_class {
 
 					$s = '';
 					$s .= '<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>';
-					$s .= '<td style="'.($v['active'] == 0 ? 'opacity: 0.5;' : '').($v['active'] == 2 ? ' font-weight: bold;' : '').'">'.($v['type'] != 'shop' ? '<img class="edost_ico" style="width: 24px; height: 24px; box-sizing: content-box;" src="'.$ico_path.'/company/'.$v['type'].'.gif" border="0">' : '').$name.'</td>';
-					$s .= '<td width="125px; text-align: right;">'.'<div class="edost_office_button edost_office_button_blue" style="color: #FFF;" onclick="edost_window.set(\'profile_setting_change\', \'id='.$k.'\')">'.$control_sign['button']['change'].'</div>'.'</td>';
+					$s .= '<td style="'.($v['active'] == 0 ? 'opacity: 0.5;' : '').($v['active'] == 2 ? ' font-weight: bold;' : '').'">'.($v['type'] != 'shop' ? '<img class="edost_ico edost_ico_profile" src="'.$ico_path.'/company/'.$v['type'].'.gif" border="0">' : '').$name.'</td>';
+					$s .= '<td width="125px; text-align: right;">'.'<div class="edost_office_button edost_office_button_blue" style="color: #FFF;" onclick="edost.window.set(\'profile_setting_change\', \'id='.$k.'\')">'.$control_sign['button']['change'].'</div>'.'</td>';
 					$s .= '</tr></table>';
 					$ar[] = $s;
 				}
@@ -2746,15 +2843,36 @@ class edost_class {
 			}
 			else {
 		        $id = intval($id);
+				$protocol = CDeliveryEDOST::GetProtocol();
+				$img_path = $protocol.'edostimg.ru/img/site';
+
 				echo '<input id="edost_profile_id" name="id" data-count="'.count($r).'" type="hidden" value="'.$id.'">';
-				foreach ($profile as $k => $v) {
-					$c = (in_array($k, $shop_hide) ? 'edost_field_shop_hide' : '').' '.(in_array($k, $company_hide) ? 'edost_field_company_hide' : '').' '.(in_array($k, $new_hide) ? 'edost_field_new_hide' : '').' '.(in_array($k, array('contract')) ? 'edost_field_contract' : '');
+//		echo '<br><b>RegisterProfile:</b> <pre style="font-size: 12px">'.print_r($profile, true).'</pre>';
+				foreach ($profile as $k => $v) if ($id != 0 || $k != 'delete') {
+
+//					echo 'ID: '.$id;
+//					echo ($new ? 'NEW' : 'FALSE');
+//					echo ($delete ? 'DELETE' : '-');
+
+                    $type = 'data-type="'.(!empty($v['type']) ? implode(',',$v['type']) : '').'"';
+//					$c = (in_array($k, $shop_hide) ? 'edost_field_shop_hide' : '').' '.(in_array($k, $company_hide) ? 'edost_field_company_hide' : '').' '.(in_array($k, $new_hide) ? 'edost_field_new_hide' : '').' '.(in_array($k, array('contract')) ? 'edost_field_contract' : '');
+//					$c = (in_array($k, $new_hide) ? 'edost_field_new_hide' : '').' '.(in_array($k, array('contract')) ? 'edost_field_contract' : '');
+					$c = (in_array($k, array('contract')) ? 'edost_field_contract' : '');
 					if (isset($v['delimiter'])) {
-						echo '<div class="edost_field_delimiter '.$c.'">'.$v['delimiter'].'</div>';
+						echo '<div class="edost_field_delimiter '.$c.'" '.$type.'>'.$v['delimiter'];
+						if (!empty($v['hint'])) {
+							if (!is_array($v['hint'])) $v['hint'] = array('' => $v['hint']);
+							foreach ($v['hint'] as $k2 => $v2) echo ' <span class="edost_hint"'.($k2 ? ' data-type="'.$k2.'"' : '').'><img class="edost_hint_link" data-param="inside=Y" src="'.$img_path.'/hint.svg" border="0"><div class="edost_hint_data'.(!empty($v['hint_warning']) ? ' edost_hint_warning' : '').'">'.$v2.'</div></span>';
+						}
+						echo '</div>';
 						continue;
 					} ?>
-					<div class="edost_field <?=$c?>" style="<?=($k == 'delete' ? 'padding-top: 12px; margin-bottom: 0;' : '')?>">
-						<div class="edost_field_name"><?=(!empty($v['name']) ? $v['name'].':' : '')?></div>
+					<div class="edost_field <?=$c?>" style="<?=($k == 'delete' ? 'padding-top: 12px; margin-bottom: 0;' : '')?>" <?=$type?>>
+						<div class="edost_field_name">
+<?							if (!empty($v['name']))
+								if (!is_array($v['name'])) echo $v['name'].':';
+								else foreach ($v['name'] as $k2 => $v2) echo '<span data-type="'.$k2.'">'.$v2.':</span>'; ?>
+						</div>
 						<div class="edost_field_value">
 <?							if (strpos($k, 'city') === 0) {
 								echo '<input class="edost_field_city" type="hidden" name="'.$k.'" value="'.(isset($r[$id][$k]) ? $r[$id][$k] : '').'">';
@@ -2781,8 +2899,11 @@ class edost_class {
 							}
 							else if (!empty($v['values'])) {
 								$s = '';
-								foreach ($v['values'] as $k2 => $v2) $s .= '<option value="'.$k2.'"'.(isset($r[$id][$k]) && $k2 == $r[$id][$k] ? ' selected' : '').'>'.$v2.'</option>';
-								echo '<select name="'.$k.'"'.(in_array($k, $update) ? ' onchange="window.edost_window.resize()"' : '').'>'.$s.'</select>';
+								foreach ($v['values'] as $k2 => $v2) {
+									if (!is_array($v2))	$s .= '<option value="'.$k2.'"'.(isset($r[$id][$k]) && $k2 == $r[$id][$k] ? ' selected' : '').'>'.$v2.'</option>';
+									else foreach ($v2 as $u_key => $u) $s .= '<option data-type="'.$k2.'" value="'.$u_key.'"'.(isset($r[$id][$k]) && $u_key == $r[$id][$k] ? ' selected' : '').'>'.$u.'</option>';
+								}
+								echo '<select name="'.$k.'"'.(in_array($k, $update) ? ' onchange="edost.window.resize()"' : '').($k == 'type' ? ' data-path="'.$ico_path.'/company/"' : '').'>'.$s.'</select>';
 							}
 							else {
 								echo '<input type="text" name="'.$k.'" value="'.(isset($r[$id][$k]) ? str_replace(array('"', "'"), array('&quot;', '&quot;'), $r[$id][$k]) : '').'">';
@@ -2804,7 +2925,7 @@ class edost_class {
 	// загрузка локальных настроек из cookie (для админки)
 	public static function GetCookie() {
 
-		$ar = (isset($_COOKIE['edost_admin']) && $_COOKIE['edost_admin'] != '' ? explode('|', preg_replace("/[^0-9a-z_|-]/i", "", $_COOKIE['edost_admin'])) : array());
+		$ar = (isset($_COOKIE['edost_admin']) && $_COOKIE['edost_admin'] != '' ? explode('|', $GLOBALS['APPLICATION']->ConvertCharset($_COOKIE['edost_admin'], 'utf-8', LANG_CHARSET)) : array());
 
 		$r = array(
 			'filter_days' => '5', // заказы оформленные за последние 'filter_days' дней
@@ -2832,11 +2953,18 @@ class edost_class {
 			'register_print_107' => 'no', // печать бланков описи
 			'register_package_item' => 'N', // режима распределения упаковки: по местам / по списку
 			'register_print_label_format' => 'A4', // размер бумаги для этикеток (СДЭК)
+			'register_tariff_name' => 'N', // выводить название тарифа
+			'register_order_number' => 'N', // выводить number заказа
+			'register_pcs' => 'N', // единицы измерения, отличающиеся от штук, переносить в название товара
+			'register_package_type' => '', // описание (характер) груза по умолчанию
+			'register_user_description' => 'Y', // загружать комментарий из заказа
 		);
 
 		$i = 0;
 		foreach ($r as $k => $v) {
-			$r[$k] = (isset($ar[$i]) && $ar[$i] !== '' ? $ar[$i] : $v);
+			$w = (isset($ar[$i]) && $ar[$i] !== '' ? $ar[$i] : '');
+			if ($w && !in_array($k, array('register_package_type'))) $w = preg_replace("/[^0-9a-z_|-]/i", "", $w);
+			$r[$k] = ($w ? $w : $v);
 			$i++;
 		}
 
@@ -2853,7 +2981,7 @@ class edost_class {
 		if (!self::GetCache()) return false;
 
 		$cache = new CPHPCache();
-		if ($cache->InitCache(86400*5, 'sale|20.0.0|edost|tracking', '/')) return $cache->GetVars();
+		if ($cache->InitCache(86400*5, CDeliveryEDOST::GetCacheID('tracking'), '/')) return $cache->GetVars();
 
 		$config = CDeliveryEDOST::GetEdostConfig($site_id !== false ? $site_id : SITE_ID);
 		$r = edost_class::RequestData('', $config['id'], $config['ps'], 'type=tracking', 'tracking');
@@ -2879,7 +3007,7 @@ class edost_class {
 
 		if (class_exists('edost_function') && method_exists('edost_function', 'BeforeOrderUpdate')) edost_function::BeforeOrderUpdate($order, $data, $param);
 
-        $a = false;
+		$a = false;
 		if (!empty($param['status'])) {
 			$a = true;
 			$order->setField('STATUS_ID', $param['status']);
@@ -2933,7 +3061,7 @@ class edost_class {
 		$get = (isset($param['get']) ? $param['get'] : false); // загрузить данные контроля для указанных отгрузок
 
 		$cache = new CPHPCache();
-		$cache_id = 'sale|20.0.0|edost|control';
+		$cache_id = CDeliveryEDOST::GetCacheID('control');
 		if ($shipment === 'clear_cache_flag') {
 			$_SESSION['EDOST']['control_clear_cache'] = true;
 			return;
@@ -3018,7 +3146,8 @@ class edost_class {
 					if (isset($param['batch']) && !empty($v['batch'])) $v['batch'] = array_merge($v['batch'], $param['batch']);
 
 					if ($register) $v = self::PackRegisterData($v); // данные для оформления доставки
-//					echo '<br><b>data:</b><pre style="font-size: 12px">'.print_r($v, true).'</pre>';
+//					echo '<br><b>data:</b><pre style="font-size: 12px">'.print_r($v, true).'</pre>'; // !!!!!
+//					die();
 				}
 
 				$s = CDeliveryEDOST::GetEdostConfig($v['site_id']);
@@ -3048,6 +3177,7 @@ class edost_class {
 						else if ($mode == 'special') $f = ($f == 2 ? 4 : 3);
 						else if ($mode == 'normal') $f = ($f == 4 ? 2 : 1);
 					}
+//					echo '=='.$mode.'-'.$f;
 /*
 					register:
 					0 - новый заказ
@@ -3069,9 +3199,11 @@ class edost_class {
 				$s = 'add';
 				if (isset($param['batch'])) $s = (isset($param['batch']['call']) ? 'call' : 'profile');
 				$s = 'type=control&mode='.$s.'&data='.edost_class::PackData($shipment, $key);
+				if (!empty($param['no_api'])) $s .= '&no_api=1';
 				if (isset($param['date'])) $s .= '&date='.urlencode($param['date']);
 				$data = edost_class::RequestData($config['host'], $config['id'], $config['ps'], $s, 'control');
 //				echo '<br><b>post|'.$s.'===== mode: '.$mode.' ('.$config['id'].'):</b> <pre style="font-size: 12px">'.print_r($data, true).'</pre>';
+//				die();
 
 				if (isset($data['error'])) {
 					$reload = true;
@@ -3253,7 +3385,7 @@ class edost_class {
 				$v['new'] = ($v['flag'] == 2 || $v['flag'] == 4 ? true : false);
 				$v['special'] = ($v['flag'] == 3 || $v['flag'] == 4 ? true : false);
 				$v['complete'] = (in_array($v['register'], array(4, 5)) ? true : false);
-				if (!empty($v['register']) && !empty($v['company_id']) && $v['register'] == 4 && $v['company_id'] == 5) $v['register'] = 5;
+				if (!empty($v['register']) && !empty($v['company_id']) && $v['register'] == 4 && in_array($v['company_id'], array(5, 30, 19))) $v['register'] = 5;
 				$r['data'][$k] = $v;
 
 				if (empty($v['register'])) {
@@ -3306,7 +3438,7 @@ class edost_class {
 		$city = $location['city'];
 		if (empty($city) && $config['postmap'] == 'Y' && !empty($location['city2'])) $city = $location['city2'];
 
-		$cache_id = 'sale|20.0.0|edost|office|'.$location['id'].'|'.$city.'|'.$company;
+		$cache_id = CDeliveryEDOST::GetCacheID('office|'.$location['id'].'|'.$city.'|'.$company);
 		$cache = new CPHPCache();
 		if ($cache->InitCache(86400, $cache_id, '/')) {
 			$data = $cache->GetVars();
@@ -3325,13 +3457,18 @@ class edost_class {
 			$ar[] = 'company='.urlencode($company);
 
 			// загрузка почтовых отделений
-			if ($config['postmap'] == 'Y') {
+			if ($config['map'] == 'Y' && $config['postmap'] == 'Y') {
 				$ar[] = 'post=1';
 				$ar[] = 'zip='.preg_replace("/[^0-9]/i", "", $order['zip']);
 			}
 
+			// выбор пунктов выдачи из ближайших населенных пунктов
+			if ($config['map'] == 'Y' && $config['office_near'] == 'Y') $ar[] = 'near='.($config['office_unsupported'] == 'Y' ? 2 : 1);
+
 			if (!empty($order['pickpoint_widget'])) $ar[] = 'pickpoint=1'; // получить вместо офисов код города для виджета PickPoint (шаблон Visual)
 			$data = self::RequestData('', $config['id'], $config['ps'], implode('&', $ar), 'office');
+
+			if ($config['office_tel'] != 'Y' && !empty($data['data'])) foreach ($data['data'] as $k => $v) foreach ($v as $p_key => $p) $data['data'][$k][$p_key]['tel'] = '';
 
 			if (class_exists('edost_function') && method_exists('edost_function', 'AfterGetOffice')) edost_function::AfterGetOffice($order, $data);
 
@@ -3348,11 +3485,13 @@ class edost_class {
 			$office = (!empty($data['office'][$k]) ? $data['office'][$k] : false);
 			$office_limit = (!empty($office['limit']) ? $office['limit'] : false);
 			$office_schedule = (!empty($office['schedule']) ? $office['schedule'] : false);
-			$office_tel = (!empty($office['tel']) ? $office['tel'] : false);
+			$office_tel = (!empty($office['tel']) && $config['office_tel'] == 'Y' ? $office['tel'] : false);
+			$office_type2 = (!empty($office['type2']) ? true : false);
 
 			foreach ($v as $p_key => $p) {
 				if (empty($p['schedule']) && $office_schedule !== false) $p['schedule'] = $office_schedule;
 				if (empty($p['tel']) && $office_tel !== false) $p['tel'] = $office_tel;
+				if (!$office_type2) $p['type2'] = $p['type'];
 
 				$limit = (!empty($office_limit[$p['type']]) ? $office_limit[$p['type']] : array());
 				if (empty($p['limit'])) $p['limit'] = $limit;
@@ -3393,12 +3532,68 @@ class edost_class {
 	}
 
 	public static function AddOfficeParam(&$data) {
-		foreach ($data['data'] as $k => $v) foreach ($v as $k2 => $v2) {
-			$v2['address_full'] = $v2['address'].($v2['address2'] != '' ? ', ' : '').$v2['address2'];
-			$v2['cod_disable'] = self::CodDisable($v2['options']);
-			if (empty($v2['code'])) $v2['code'] = $v2['id'];
-			$data['data'][$k][$k2] = $v2;
+		foreach ($data['data'] as $k => $v) {
+			// перенос офисов с 'city' в конец списка
+			$s = array();
+			foreach ($v as $k2 => $v2) if (!empty($v2['city'])) {
+				$s[$k2] = $v2;
+				unset($v[$k2]);
+			}
+			if (!empty($s)) $v += $s;
+
+			foreach ($v as $k2 => $v2) {
+//				$v2['address_full2'] = $v2['address'].($v2['address2'] != '' ? ', ' : '').$v2['address2'];
+				$city = '';
+				if (!empty($v2['city'])) {
+					$s = explode(';', $v2['city']);
+					if (strpos($v2['address'], $s[0].',') === false) $city = $s[0];
+				}
+				$v2['address_full'] = ($city ? $city.', ' : '').$v2['address'].($v2['address2'] != '' ? ', ' : '').$v2['address2'];
+				$v2['cod_disable'] = self::CodDisable($v2['options']);
+				if (empty($v2['code'])) $v2['code'] = $v2['id'];
+				$v[$k2] = $v2;
+			}
+
+			$data['data'][$k] = $v;
 		}
+	}
+
+	// надбавка на неподдерживаемые пункты выдачи
+	public static function AddUnsupported(&$v, $options, $config, $currency = false) {
+		if (!empty($config[0]) && $config[0] === '+') {
+			$k = $config[1];
+			if (!isset($v[$k]) || $v[$k] == -1) return;
+
+			$u = $k.'_discount';
+			$a = (!empty($v[$u]) && ($k == 'price' || $k == 'pricecash') ? true : false);
+			if ($a) $v[$k] = $v[$u][0];
+			$v[$k] = round($v[$k]*(1 + $options[1]/100) + $options[0]);
+			if ($a) $v[$k] = edost_class::SetDiscount($v[$k], $v[$u][0], $v[$u][1]);
+
+			if ($currency) $v[$k.'_formatted'] = self::GetPrice('formatted', $v[$k], '', $currency);
+			return;
+		}
+		if ($options & 512) {
+			$s = array(!empty($config['office_unsupported_fix']) ? intval($config['office_unsupported_fix']) : 0, !empty($config['office_unsupported_percent']) ? intval($config['office_unsupported_percent']) : 0);
+			if ($s[0] || $s[1]) {
+				self::AddUnsupported($v, $s, array('+', !empty($v['priceinfo']) ? 'priceinfo' : 'price'), $currency);
+				self::AddUnsupported($v, $s, array('+', 'pricecash'), $currency);
+				if (isset($v['pricetotal'])) $v = array_merge($v, self::GetPrice('pricetotal', $v['price'] + (!empty($v['priceinfo']) ? $v['priceinfo'] : 0), '', $currency));
+				if (isset($v['pricecod'])) $v = array_merge($v, self::GetPrice('pricecod', $v['pricecash'] + (!empty($v['transfer']) ? $v['transfer'] : 0), '', $currency));
+
+				$key = array('price', 'pricetotal', 'pricecod', 'pricecash');
+				foreach ($key as $p) if (isset($v[$p.'_original']) && isset($v[$p])) {
+					self::AddUnsupported($v, $s, array('+', $p.'_original'), $currency);
+					if ($v[$p.'_original'] - $v[$p] <= 5) {
+						unset($v[$p.'_original']);
+						if (isset($v[$p.'_original_formatted'])) unset($v[$p.'_original_formatted']);
+					}
+				}
+
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static function CodDisable($options) {
@@ -3427,8 +3622,8 @@ class edost_class {
 			$config['PRIORITY'] = '';
 		}
 		if ($config['COMPACT'] == 'off') $config['PRIORITY'] = 'P';
+		if ($config['template_block_type'] == 'bookmark2') $config['template_block_type'] = 'bookmark1'; // отключение старой функции вывода дешевых тарифов через закладки
 		if (!empty($config['CATALOGDELIVERY'])) {
-			if (in_array($config['template_block_type'], array('bookmark2'))) $config['template_block_type'] = 'bookmark1';
 			if (!empty($config['SHOW_ERROR'])) {
 				$config['hide_error'] = 'N';
 				$config['show_zero_tariff'] = 'Y';
@@ -3457,17 +3652,19 @@ class edost_class {
 				$config['template_block_type'] = 'none';
 				$config['template_map_inside'] = 'N';
 			}
-			else if ($config['template_block'] != 'all' && (in_array($config['template_block_type'], array('bookmark1', 'bookmark2')))) $config['template_block'] = 'auto2';
+			else if ($config['template_block'] != 'all' && $config['template_block_type'] == 'bookmark1') $config['template_block'] = 'auto2';
 			if (empty($config['template_map_inside'])) $config['template_map_inside'] = 'N';
 			if ($config['template_map_inside'] == 'Y') {
 				$config['template_block'] = 'all';
 				$config['NO_POST_MAIN'] = 'Y';
 			}
 		}
+		if ($config['map'] != 'Y' && $config['template'] != 'Y') $config['postmap'] = 'N';
 
 		// получение city2 и zip для выбора почтовых отделений на карте
+		$edost_locations = false;
 		if ($config['postmap'] == 'Y' && ($_SERVER['REQUEST_METHOD'] == 'POST' || !empty($order['bitrix']) || !empty($order['ID'])) && CModule::IncludeModule('edost.locations')) { // class_exists('CEdostLocationsModifySaleOrderAjax')
-//			echo '<br><b>arResult:</b> <pre style="font-size: 12px">'.print_r($edost_order, true).'</pre>';
+			$edost_locations = true;
 			$c = $config;
 			if (!empty($order['bitrix'])) $c['ORDER'] = $order['bitrix'];
 			if (!empty($order['ID'])) $c['ORDER_ID'] = $order['ID'];
@@ -3482,7 +3679,7 @@ class edost_class {
 		$office_get = $edost_tariff = array();
 		$edost_enabled = $post_enabled = $edost_error = false;
 		$edost_bitrix_sort = -1;
-		$bookmark = in_array($config['template_block_type'], array('bookmark1', 'bookmark2'));
+		$bookmark = ($config['template_block_type'] == 'bookmark1' ? true : false);
 		$show_error = (!isset($config['SHOW_ERROR']) || $config['SHOW_ERROR'] ? true : false);
 		$no_insurance = (!empty($config['NO_INSURANCE']) && $config['NO_INSURANCE'] == 'Y' ? true : false); // не выводить подпись "со страховкой" + не удалять "со страховкой" из названия тарифа
 		$shipment = $order_clone = false;
@@ -3495,11 +3692,13 @@ class edost_class {
 		$post_small = ($config['postmap'] == 'Y' && !empty($config['POST_SMALL']) && $config['POST_SMALL'] == 'Y' ? true : false);
 		$post_office_full = false; // в пунктах выдачи есть только почтовые отделения
 
+//		$unsupported_fix = (!empty($config['office_unsupported_fix']) ? intval($config['office_unsupported_fix']) : 0);
+//		$unsupported_percent = (!empty($config['office_unsupported_percent']) ? intval($config['office_unsupported_percent']) : 0);
+
 		// сохранение и восстановление выбора для тарифов под закладками
 		if (!empty($active['bookmark'])) {
 			$s = explode('_', $active['bookmark']);
-			if ($config['template_block_type'] == 'bookmark2' && $s[0] != 'show') $active = array('id' => '', 'bookmark' => $s[0]);
-			else if (isset($s[1]) && $s[1] == 's') $active = (isset($_SESSION['EDOST']['delivery_default'][$s[0]]) ? $_SESSION['EDOST']['delivery_default'][$s[0]] : array('id' => '', 'bookmark' => $s[0]));
+			if (isset($s[1]) && $s[1] == 's') $active = (isset($_SESSION['EDOST']['delivery_default'][$s[0]]) ? $_SESSION['EDOST']['delivery_default'][$s[0]] : array('id' => '', 'bookmark' => $s[0]));
 			else $_SESSION['EDOST']['delivery_default'][$s[0]] = $active;
 		}
 
@@ -3563,6 +3762,8 @@ class edost_class {
 						foreach ($ar as $k2 => $v2) if ($k2 == 'office' || $config['COMPACT'] != 'off') if (in_array($tariff['format'], $v2)) { $tariff['format'] = $k2; break; }
 					}
 
+					if (!empty($config['NO_HOUSE']) && $tariff['format'] == 'house') $tariff['format'] = 'door';
+
 					if ($config['postmap'] == 'Y' && $tariff['format'] == 'post') {
 						$post_enabled = true;
 						$tariff['format'] = 'postmap';
@@ -3617,7 +3818,6 @@ class edost_class {
 					$v_save = $v;
 					$s = array();
 					if (!empty($tariff['priceoffice'])) foreach ($tariff['priceoffice'] as $v2) {
-//					if ($config['map'] == 'Y' && !empty($tariff['priceoffice'])) foreach ($tariff['priceoffice'] as $v2) {
 						$o = $tariff;
 						$o['to_office'] = $v2['type'];
 						$key = array('price', 'priceinfo', 'pricecash', 'priceoriginal');
@@ -3646,8 +3846,11 @@ class edost_class {
 
 						// скидки битрикса
 						if ($price_discount !== false) {
+							$v['price_discount'] = array($price_original, $price_discount);
+
 							if ($tariff['pricecash'] > 0 && $config['sale_discount_cod'] != 'off') {
 								$pricecash_discount = edost_class::SetDiscount($tariff['pricecash'], $price_original, $price_discount, $config['sale_discount_cod']);
+								$v['pricecash_discount'] = array($tariff['pricecash'], $pricecash_discount);
 								if ($tariff['pricecash'] - $pricecash_discount > 5) {
 									$v += self::GetPrice('pricecod_original', $tariff['pricecash'] + $tariff['transfer'], $base_currency, $currency);
 									$v += self::GetPrice('pricecash_original', $tariff['pricecash'], $base_currency, $currency);
@@ -3664,6 +3867,7 @@ class edost_class {
 
 						$v += self::GetPrice('price', $tariff['price'], $base_currency, $currency);
 						$v += self::GetPrice('pricetotal', $tariff['price'] + $tariff['priceinfo'], $base_currency, $currency);
+
 						if ($tariff['priceinfo'] > 0) $v += self::GetPrice('priceinfo', $tariff['priceinfo'], $base_currency, $currency);
 						if ($tariff['pricecash'] >= 0) {
 							$v += self::GetPrice('pricecod', $tariff['pricecash'] + $tariff['transfer'], $base_currency, $currency);
@@ -3773,15 +3977,8 @@ class edost_class {
 
 						if (isset($tariff['PERIOD_TYPE'])) $v['day'] = self::GetDay($tariff['PERIOD_FROM'], $tariff['PERIOD_TO'], $tariff['PERIOD_TYPE']);
 						else if (!empty($tariff['TRANSIT'])) {
-							$s = $tariff['TRANSIT'];
-							$s = explode('<a ', $s); // модуль boxberry подписывает ссылку на выбор пунктов выдачи!
-							$s = $s[0];
-							$s = explode('(', $s); // модуль DPD подписывает название тарифа и ссылку на выбор пунктов выдачи!
-							$s = $s[0];
-							$s = str_replace(array('—', $sign['to']), '-', $s); // замена длинного тире и ' до '
-							$s = preg_replace("/[^0-9-]/i", "", $s);
-							$s = explode('-', $s);
-							$v['day'] = self::GetDay($s[0], isset($s[1]) ? $s[1] : 0);
+							$s = self::ParseDay($tariff['TRANSIT'], $sign['to']);
+							$v['day'] = self::GetDay($s[0], $s[1]);
 						}
 					}
 					else {
@@ -3927,16 +4124,18 @@ class edost_class {
 		$office_error = false;
 		if ($config['map'] == 'Y' || $config['template'] != 'Y') {
 			$office = self::GetOffice($edost_order, $office_get);
+//		echo '<br><b>get office:</b> <pre style="font-size: 12px">'.print_r($office, true).'</pre>';
 			if (isset($office['error']) && $office['error'] != 5) $office_error = $office['error'];
 			if (!empty($r['pickpoint_widget']) && !empty($office['pickpointmap'])) $r['pickpointmap'] = $office['pickpointmap'];
 			if (!empty($office['office'])) $office_param = $office['office'];
 			$office = (!empty($office['data']) ? $office['data'] : array());
 
-//			$_SESSION['EDOST']['develop'][] = $shop_main;
-//			$_SESSION['EDOST']['develop'][] = $office[23];
-//			$_SESSION['EDOST']['develop'] = $office_param;
+			// удаление офисов для которых нет тарифов по type2
+			$s = array();
+			foreach ($format as $f_key => $f) if (!empty($f['data'])) foreach ($f['data'] as $k => $v) if (!empty($office_param[ $v['company_id'] ]['type2']) && isset($v['to_office'])) $s[$v['company_id']][$v['to_office']] = true;
+			foreach ($s as $k => $v) if (!empty($office[$k])) foreach ($office[$k] as $o_key => $o) if ($o['type2'] !== '' && !isset($v[$o['type2']])) unset($office[$k][$o_key]);
 
-			if ($post_enabled)	{
+			if ($post_enabled) {
 				$key = false;
 				if ($post_manual || $post_small && !empty($edost_order['location']['city2']) || !isset($office[23]) || count($office[23]) < 2) $key = 'post'; // перенос почтовых тарифов из 'postmap' в 'post' (если почтовых отделений меньше двух или включен ручной выбор)
 				else if (!$post_main && $config['COMPACT'] != 'off') {
@@ -4013,7 +4212,7 @@ class edost_class {
 				if (isset($v['pricecash'])) foreach ($office[$id] as $o_key => $o) if (isset($o['codmax']) && $v['pricecash'] > $o['codmax'] || !empty($o['cod_disable'])) $office_id[$o_key] = array($id, $o_key);
 
 				// эксклюзивный тариф
-				if (!isset($v['pricecash']) && isset($v['to_office'])) foreach ($office[$id] as $o_key => $o) if ($o['type'] == $v['to_office']) $office_id[$o_key] = array($id, $o_key);
+				if (!isset($v['pricecash']) && isset($v['to_office'])) foreach ($office[$id] as $o_key => $o) if ($o['type2'] == $v['to_office']) $office_id[$o_key] = array($id, $o_key);
 			}
 
 			// тарифы с наложкой                                                                                                                                      && !isset($v['error'])
@@ -4063,6 +4262,7 @@ class edost_class {
 //			echo '<br><b>FORMAT name:</b> <pre style="font-size: 12px">'.print_r($format, true).'</pre>';
 //			echo '<br><b>office_id:</b> <pre style="font-size: 12px">'.print_r($office_id, true).'</pre>';
 //			echo '<br><b>tariff_id:</b> <pre style="font-size: 12px">'.print_r($tariff_id, true).'</pre>';
+//			echo '<br><b>tariff_id:</b> <pre style="font-size: 12px">'.print_r($active, true).'</pre>';
 
 			$active_id = (isset($active['id']) ? $active['id'] : '');
 			$active_profile = (isset($active['profile']) ? $active['profile'] : '');
@@ -4072,14 +4272,27 @@ class edost_class {
 			$ar = (isset($_SESSION['EDOST']['office_default']) ? $_SESSION['EDOST']['office_default'] : array());
 			if (isset($active['format']) && !empty($active['office_id'])) {
 				$ar[$active['format']] = $ar['all'] = array('id' => $active['office_id'], 'profile' => $active['profile'], 'cod_tariff' => $active_cod);
-				if ($i_compare == 1 && !$delivery_bonus || $i_compare == 2) if ($config['template_block_type'] != 'bookmark2' || $active_bookmark == 'show') $_SESSION['EDOST']['office_default'] = $ar;
+				if ($i_compare == 1 && !$delivery_bonus || $i_compare == 2) $_SESSION['EDOST']['office_default'] = $ar;
+			}
+			// отключение выбранного офиса, если он находится в соседнем населенном пункте (city != '')
+			if ($edost_locations) {
+				$key = array('postmap', 'office', 'shop');
+				foreach ($key as $k) if (!empty($ar[$k]) && ($k == 'postmap' && empty($config['NO_POST_CITY_UNSET']) || in_array($k, array('office', 'shop'))))
+					foreach ($office as $v) if (!empty($v[ $ar[$k]['id'] ]['city'])) {
+						if (!empty($ar['all']) && $ar['all']['id'] == $ar[$k]['id']) unset($ar['all']);
+						if (!empty($active['office_id']) && $active['office_id'] == $ar[$k]['id']) $active_id = false;
+						unset($ar[$k]);
+						break;
+					}
 			}
 			$active_office = $ar;
+
 			$active = false; // активный тариф
 
 			// проверка на существование выбранных офисов + определение 'type'
 			foreach ($active_office as $k => $v) foreach ($office as $o) if (isset($o[$v['id']])) {
 				$active_office[$k]['type'] = $o[$v['id']]['type'];
+				$active_office[$k]['type2'] = $o[$v['id']]['type2'];
 				break;
 			}
 
@@ -4101,12 +4314,12 @@ class edost_class {
 
 					if ($i == 0 && isset($v['to_office'])) {
 						$n = 0;
-						if (isset($office[$id])) foreach ($office[$id] as $o) if ($o['type'] == $v['to_office']) $n++;
+						if (isset($office[$id])) foreach ($office[$id] as $o) if ($o['type2'] == $v['to_office']) $n++;
 						$f['data'][$k]['office_count'] = $n;
 						$office_count[$id][$v['to_office']] = $n;
 
 						// выделение активного тарифа (эксклюзивного)
-						if ($n > 0 && isset($active_office[$f_key]['type']) && $v['profile'] == $active_office[$f_key]['profile'] && $v['cod_tariff'] == $active_office[$f_key]['cod_tariff'] && $v['to_office'] == $active_office[$f_key]['type']) {
+						if ($n > 0 && isset($active_office[$f_key]['type2']) && $v['profile'] == $active_office[$f_key]['profile'] && $v['cod_tariff'] == $active_office[$f_key]['cod_tariff'] && $v['to_office'] == $active_office[$f_key]['type2']) {
 							if (self::GetBitrixID($v) == $active_id) {
 								$f['data'][$k]['checked'] = true;
 								$active = $v;
@@ -4161,7 +4374,7 @@ class edost_class {
 				$format[$f_key]['data'][$k]['checked'] = true;
 				$active = $v;
 			}
-			if (isset($active_office[$f_key]['type']) && !isset($active_office[$f_key]['tariff_key']) && $v['profile'] == $active_office[$f_key]['profile'] && $v['cod_tariff'] == $active_office[$f_key]['cod_tariff']) $active_office[$f_key]['tariff_key'] = $k;
+			if (isset($active_office[$f_key]['type2']) && !isset($active_office[$f_key]['tariff_key']) && $v['profile'] == $active_office[$f_key]['profile'] && $v['cod_tariff'] == $active_office[$f_key]['cod_tariff']) $active_office[$f_key]['tariff_key'] = $k;
 		}
 //		echo '<br><b>active:</b> <pre style="font-size: 12px">'.print_r($active, true).'</pre>';
 //		echo '<br><b>active_office:</b> <pre style="font-size: 12px">'.print_r($active_office, true).'</pre>';
@@ -4215,31 +4428,32 @@ class edost_class {
 
 				$zip = ($config['postmap'] == 'Y' && !empty($edost_order['location']['zip_full']) && !empty($edost_order['location']['zip']) && ($f_key == 'postmap' || $f_key == 'office' && $post_office_full) ? $edost_order['location']['zip'] : false);
 
-				// выделение единственного офиса (или самого первого, если включено в настройках модуля 'template_autoselect_office' или 'bookmark2')
-				if (!isset($active_office[$f_key]['tariff_key']) && ($f['office_count'] == 1 && ($n == 1 || $config['COMPACT'] != 'off') || $config['template_autoselect_office'] == 'Y' || $zip) || $config['template_block_type'] == 'bookmark2' && $active_bookmark != 'show') {
+				// выделение единственного офиса (или самого первого, если включено в настройках модуля 'template_autoselect_office')
+				if (!isset($active_office[$f_key]['tariff_key']) && ($f['office_count'] == 1 && ($n == 1 || $config['COMPACT'] != 'off') || $config['template_autoselect_office'] == 'Y' || $zip)) {
 					$k = $f['min']['key'];
 					$v = $f['data'][$k];
 					$id = false;
-
 					if ($zip) {
 						if (!empty($office[$v['office_key']][$zip])) $id = $zip;
 					}
 					else if (isset($v['to_office'])) {
-						foreach ($office[$v['office_key']] as $o) if ($o['type'] == $v['to_office']) { $id = $o['id']; break; }
+						foreach ($office[$v['office_key']] as $o) if ($o['type2'] == $v['to_office']) { $id = $o['id']; break; }
 					}
 					else foreach ($office[$v['office_key']] as $o) {
 						$a = true;
-						foreach ($f['data'] as $k2 => $v2) if ($k2 !== $k && $v2['company_id'] == $v['company_id'] && isset($v2['to_office']) && $v2['to_office'] == $o['type']) $a = false;
+						foreach ($f['data'] as $k2 => $v2) if ($k2 !== $k && $v2['company_id'] == $v['company_id'] && isset($v2['to_office']) && $v2['to_office'] == $o['type2']) $a = false;
 						if ($a) { $id = $o['id']; break; }
 					}
-					if (!$zip || $id) $active_office[$f_key] = array('id' => $id, 'profile' => $v['profile'], 'cod_tariff' => $v['cod_tariff'], 'type' => $office[$v['office_key']][$id]['type'], 'tariff_key' => $k);
+					if (!$zip || $id) $active_office[$f_key] = array('id' => $id, 'profile' => $v['profile'], 'cod_tariff' => $v['cod_tariff'], 'type' => $office[$v['office_key']][$id]['type'], 'type2' => $office[$v['office_key']][$id]['type2'], 'tariff_key' => $k);
 				}
 
 				// генерация тарифа без выбранного пункта выдачи
 				$sort = 0;
 				$company_id = false;
+				$no_free = false;
 				foreach ($f['data'] as $k => $v) {
 					if ($sort == 0) $sort = $v['sort'];
+					if (!empty($v['no_free'])) $no_free = true;
 
 					if ($company_id === false) {
 						$company_id = $v['company_id'];
@@ -4275,6 +4489,7 @@ class edost_class {
 					'cod_tariff' => false,
 				);
 				if ($config['template_ico'] == 'C') $v['company_ico'] = (!empty($company_id) ? $company_id : 's1');
+				if ($no_free) $v['no_free'] = true;
 				if ($f['pricecod']['max']['value'] >= 0) {
 					if ($config['COMPACT'] != 'off') {
 						$v['pricecod'] = $f['pricecod']['min']['value'];
@@ -4310,6 +4525,7 @@ class edost_class {
 					$v['office_mode'] = $f_key;
 					$v['office_id'] = $o['id'];
 					$v['office_type'] = $o['type'];
+					$v['office_type2'] = $o['type2'];
 					$v['office_options'] = $o['options'];
 					$v['office_city'] = $o['city'];
 					$v['office_address'] = self::GetOfficeAddress($o, $v, false);
@@ -4317,6 +4533,8 @@ class edost_class {
 					$v['office_detailed'] = edost_class::GetOfficeLink($o);
 
 					if ($o['options'] & 256) $v['warning'] = $sign['full_warning'];
+
+					edost_class::AddUnsupported($v, $o['options'], $config, $currency);
 
 					// отключение наложенного платежа, если превышена максимально допустимая сумма перевода или невозможна оплата при получении для выбранного офиса
 					if (isset($v['pricecash']) && (isset($o['codmax']) && $v['pricecash'] > $o['codmax'] || !empty($o['cod_disable']))) {
@@ -4330,9 +4548,10 @@ class edost_class {
 						$config['template_map_inside'] = 'tariff';
 					}
 
-					if (in_array($config['template_map_inside'], array('Y', 'tariff')) && isset($v['checked']) && empty($v['checked_inside'])) unset($v['checked']);
-
-					if (isset($v['checked'])) $active = $v;
+					if (isset($v['checked']) && (in_array($config['template_map_inside'], array('Y', 'tariff')) && empty($v['checked_inside']) || $edost_locations && !empty($v['office_city']))) unset($v['checked']);
+					if (isset($v['checked'])) {
+						$active = $v;
+					}
 					else if ($checked) {
 						$active_id = '';
 						$active = false;
@@ -4363,7 +4582,7 @@ class edost_class {
 					$v_get['compact_cod'] = true;
 					$v_get['compact_head'] = $sign['compact_head'][$v['format']];
 					$v_get['compact_link'] = $sign['compact_'.$f_key.'_get'];
-					if ($r['bonus']['cod']['office_count'] != 1) {
+					if ($r['bonus']['cod']['office_count'] != 1 && $office_count > 1) {
 						$v_get['compact_link_cod'] = $sign['compact_'.$f_key.'_get'];
 						$v_get['compact_head_cod'] = $v_get['compact_head'];
 					}
@@ -4393,7 +4612,7 @@ class edost_class {
 					$f2['data'][$k]	= $v;
 				}
 			}
-			if ($config['template_map_inside'] == 'Y' && ($config['template_block_type'] != 'bookmark2' || $active_bookmark == 'show')) {
+			if ($config['template_map_inside'] == 'Y' && $active_bookmark == 'show') {
 				if ($tariff_count == 1 && $office_count == 1) {
 					// выделение тарифа, когда нет выбора + отключение встроенной карты
 					foreach ($f2['data'] as $k => $v) $f2['data'][$k]['checked_inside'] = true;
@@ -4443,7 +4662,7 @@ class edost_class {
 		}
 		foreach ($format as $f_key => $f) if (!empty($f['data'])) {
 			$count_format++;
-			$count_tariff += count($f['data']);
+			foreach ($f['data'] as $v) if (empty($v['compact_cod_copy'])) $count_tariff++;
 		}
 		foreach ($format as $f_key => $f) if (!empty($f['data'])) {
 			if ($f_key == 'general') {
@@ -4603,20 +4822,12 @@ class edost_class {
 			}
 		}
 
-		// сброс выбранной закладки, если группа недоступна + включение закладки "Другие..."
-		if ($config['template_block_type'] == 'bookmark2') {
-			$bookmark_show = false;
-			foreach ($format as $f_key => $f) if (!empty($f['data']) && (count($f['data']) > 1 || isset($f['office_count']) && $f['office_count'] > 1 || $f_key == 'general')) { $bookmark_show = true; break; }
-			if ($active_bookmark != '' && $active_bookmark != 'show' && empty($format[$active_bookmark]['data']) || $active_bookmark == 'show' && !$bookmark_show) $active_bookmark = '';
-		}
-
-
 		// включение автовыбора, если доступен только один тариф
 		if ($active === false && $config['autoselect'] != 'Y') {
 			$count_all = 0;
 			foreach ($format as $f_key => $f) if (!empty($f['data'])) {
 				$count = 0;
-				foreach ($f['data'] as $k => $v) if (isset($v['id'])) $count++;
+				foreach ($f['data'] as $k => $v) if (isset($v['id']) && empty($v['compact_cod_copy']) && (!$edost_locations || empty($v['office_city']))) $count++;
 				$count_all += $count;
 				if ($config['template_block_type'] == 'bookmark1' && $f_key == $active_bookmark && $count == 1) $config['autoselect'] = 'Y';
 			}
@@ -4626,15 +4837,17 @@ class edost_class {
 
 		// выбор первой доставки, если ничего не выбрано
 		$key = false;
-		if ($active === false && $config['template_block_type'] == 'bookmark2') {
-			if ($active_bookmark == '' && $config['autoselect'] == 'Y') foreach ($format as $f_key => $f) if (!empty($f['data']) && $f_key != 'general') { $active_bookmark = $f_key; break; }
-			if (!empty($format[$active_bookmark]['data'])) $key = array($active_bookmark, $format[$active_bookmark]['min']['key']);
-		}
 		if ($active === false && $key === false && $config['autoselect'] == 'Y') {
 			$i = false;
-			if ($config['template_block_type'] == 'bookmark1' && !empty($format[$active_bookmark]['data'])) $i = $active_bookmark;
-			else foreach ($format as $f_key => $f) if (!empty($f['data'])) { $i = $f_key; break; }
-			if ($i !== false) foreach ($format[$i]['data'] as $k => $v) if (isset($v['id']) && empty($v['compact_cod_copy']) && ($config['template_map_inside'] != 'tariff' || !isset($v['office_mode']) || !empty($v['checked_inside']))) { $key = array($i, $k); break; }
+			if ($config['template_block_type'] == 'bookmark1' && !empty($format[$active_bookmark]['data'])) {
+				$i = $active_bookmark;
+				foreach ($format[$i]['data'] as $k => $v) if (!$edost_locations || empty($v['office_city'])) if (isset($v['id']) && empty($v['compact_cod_copy']) && ($config['template_map_inside'] != 'tariff' || !isset($v['office_mode']) || !empty($v['checked_inside']))) { $key = array($i, $k); break; }
+			}
+			else foreach ($format as $f_key => $f) if (!empty($f['data'])) {
+				$i = $f_key;
+				foreach ($format[$i]['data'] as $k => $v) if (!$edost_locations || empty($v['office_city'])) if (isset($v['id']) && empty($v['compact_cod_copy']) && ($config['template_map_inside'] != 'tariff' || !isset($v['office_mode']) || !empty($v['checked_inside']))) { $key = array($i, $k); break; }
+				if ($key !== false) break;
+			}
 		}
 		if ($key !== false) {
 			$active = $format[$key[0]]['data'][$key[1]];
@@ -4657,6 +4870,7 @@ class edost_class {
 		$data = array();
 		$day = false;
 		$count_tariff = 0;
+		$count_office = 0;
 		$count_bookmark = 0;
 		$count_bookmark_cod = 0;
 		$supercompact_format = false;
@@ -4671,7 +4885,7 @@ class edost_class {
 		if ($cod_filter) foreach ($format as $f_key => $f) if (!empty($f['data'])) foreach ($f['data'] as $k => $v) if (!empty($v['insurance'])) $format[$f_key]['data'][$k]['insurance'] = 0;
 		foreach ($format as $f_key => $f) if (!empty($f['data'])) {
 			if ($f_key == 'general' && count($data) == 0) $head = '';
-			else if ($count_bookmark > 1 && ($config['template_block_type'] != 'bookmark2' || $f_key != 'general')) $head = (isset($sign['bookmark'][$f_key]) ? $sign['bookmark'][$f_key] : '');
+			else if ($count_bookmark > 1) $head = (isset($sign['bookmark'][$f_key]) ? $sign['bookmark'][$f_key] : '');
 			else $head = (isset($f['head']) ? $f['head'] : $f['name']);
 
 			$insurance = ($config['COMPACT'] == 'off' && !in_array($f_key, array('office', 'postmap', 'general')) && self::FormatInsurance($f) ? $sign['insurance_head'] : ''); // общая надпись "страховка включена во все тарифы"
@@ -4713,7 +4927,11 @@ class edost_class {
 				if ($config['COMPACT'] != 'off' && $f_key != 'general') self::FormatHead($v, $f['name'], $config);
 
 				if (isset($v['id'])) {
-					$count_tariff++;
+					if (empty($v['compact_cod_copy'])) {
+						$count_tariff++;
+						if (!empty($v['office_count'])) $count_office += $v['office_count'];
+					}
+//					echo '======'.$count_tariff;
 					if (!empty($v['checked']) && $active_bookmark == '') $active_bookmark = $f_key;
 					$v['html_id'] = self::GetHtmlID($v);
 					$v['html_value'] = self::GetHtmlValue($v);
@@ -4785,17 +5003,22 @@ class edost_class {
 					if (empty($f['pricehead']['min']['value'])) $data[$f_key]['short']['free'] = $sign['free'];
 					else $data[$f_key]['short']['price_formatted'] = ($f['pricehead']['min']['value'] != $f['pricehead']['max']['value'] ? $sign['from'] : '') . $f['pricehead']['min']['formatted'];
 				}
+				$data[$f_key]['short']['price_range'] = $f['pricehead'];
+				if (empty($f['pricehead']['min']['formatted'])) $data[$f_key]['short']['price_range']['min']['formatted'] = $sign['free'];
 
 //				if (!empty($f['day'])) $data[$f_key]['short']['day'] = self::GetDay(round(($f['day']['min']['value'] + $f['day']['max']['value'])/2));
-				if (!empty($f['day'])) $data[$f_key]['short']['day'] = self::GetDay($f['day']['min']['value'], $f['day']['max']['value']);
+				if (!empty($f['day'])) {
+					$data[$f_key]['short']['day'] = self::GetDay($f['day']['min']['value'], $f['day']['max']['value']);
+					$data[$f_key]['short']['day_range'] = $f['day'];
+				}
 				if (!empty($f['ico'])) $data[$f_key]['short']['ico'] = $f['ico'];
 			}
-			if (in_array($config['template_block_type'], array('bookmark2')) || $config['COMPACT'] != 'off') {
+			if ($config['COMPACT'] != 'off') {
 				if ($f['min']['price'] == 0) $f['min']['free'] = $sign['free'];
 
 				if (in_array($f_key, $office_main)) {
 					$k = $f['min']['key'];
-					$ar = array('office_map', 'office_link', 'office_mode', 'office_type', 'office_options', 'office_city', 'office_address');
+					$ar = array('office_map', 'office_link', 'office_mode', 'office_type', 'office_type2', 'office_options', 'office_city', 'office_address');
 					foreach ($ar as $v) if (isset($f['data'][$k][$v])) $f['min'][$v] = $f['data'][$k][$v];
 				}
 
@@ -4803,10 +5026,9 @@ class edost_class {
 			}
 		}
 
-		if ($config['template_block_type'] == 'bookmark2' && $count_bookmark > 1 && $bookmark_show) $data['show'] = array('head' => $sign['bookmark']['show']); // добавление группы 'show' (показать все тарифы)
-
 		$r['data'] = $data;
 		$r['count'] = $count_tariff;
+		$r['count_office'] = $count_office;
 
 		$r['cod'] = ($count_tariff == 1 || $config['template_cod'] != 'td' ? false : $cod); // есть тарифы с наложенным платежом и включен вывод в отдельной колонке
 		$r['cod_bookmark'] = ($config['template_cod'] != 'off' && $count_bookmark > 1 && $count_bookmark != $count_bookmark_cod ? true : false); // подписывать в закладках "+ возможна оплата при получении"
@@ -4834,6 +5056,7 @@ class edost_class {
 			'name' => (isset($active['name_save']) ? $active['name_save'] : ''),
 		);
 		if (isset($active['office_type'])) $r['active']['office_type'] = $active['office_type'];
+		if (isset($active['office_type2'])) $r['active']['office_type2'] = $active['office_type2'];
 		if (isset($active['office_options'])) $r['active']['office_options'] = $active['office_options'];
 		if (isset($active['office_city'])) $r['active']['office_city'] = $active['office_city'];
 		if (isset($active['office_id'])) $r['active']['office_id'] = $active['office_id'];
@@ -4924,13 +5147,40 @@ class edost_class {
 
 		$rename = GetMessage('EDOST_DELIVERY_RENAME');
 
+		// перенос в общую группу одинаковых офисов из разных office_key (5_0, 5_1, ...)
+		$office_tariff = array();
+		foreach ($param['office'] as $k => $v) {
+			$c = explode('_', $k);
+			if (isset($c[1])) $office_tariff[$c[0]][$k] = $k;
+		}
+		foreach ($office_tariff as $k => $v) if (count($v) <= 1) unset($office_tariff[$k]);
+		else {
+			$u = array();
+			foreach ($v as $f) { $u = $param['office'][$f]; break; }
+			foreach ($u as $o_key => $o) {
+				$a = true;
+				foreach ($v as $f2) {
+					if (!isset($param['office'][$f2][$o_key])) {
+						unset($u[$o_key]);
+						$a = false;
+						break;
+					}
+		            if (!$a) break;
+				}
+				if ($a) foreach ($v as $f2) unset($param['office'][$f2][$o_key]);
+			}
+			$param['office'][$k] = $u;
+		}
+//		echo '<br><b>old_values:</b> <pre style="font-size: 12px">'.print_r($param['office'], true).'</pre>';
+//		echo '<br><b>old_values:</b> <pre style="font-size: 12px">'.print_r($office_tariff, true).'</pre>';
+
 		$point = $p = array();
 		foreach ($param['office'] as $k => $v) {
 			$s = array();
 			foreach ($v as $k2 => $v2)
 				if (isset($p[$k2])) $s[$k2] = array('id' => $v2['id']);
 				else $p[$k2] = $s[$k2] = $v2;
-			$point[] = '{"company_id": "'.$k.'", "data": '.self::GetJson($s, array('id', 'name', 'address', 'schedule', 'gps', 'type', 'metro', 'codmax', 'detailed', 'code', 'options', 'city'), true, true, true).'}';
+			$point[] = '{"company_id": "'.$k.'", "data": '.self::GetJson($s, array('id', 'name', 'address', 'schedule', 'gps', 'type', 'metro', 'codmax', 'detailed', 'code', 'options', 'city', 'type2'), true, true, true).'}';
 		}
 
 		$office_key = CDeliveryEDOST::$office_key;
@@ -4951,23 +5201,32 @@ class edost_class {
 //				$v['price_formatted'] = $v['pricetotal_formatted'];
 				if (isset($v['pricecod'])) $v += self::GetPrice('codplus', $v['pricecod'] - $v['pricetotal'], '', $param['currency']); // на карте выводится только доплата за наложку 'codplus'
 				$v['company'] = self::RenameTariff($v['company'], $rename['company']);
+				if (!empty($v['no_free']) && $v['pricetotal'] == 0) $v['pricetotal_formatted'] = '';
+
+				// копия тарифов для общей группы офисов одной компании (из разных office_key)
+				if (empty($v['to_office']) && !empty($office_tariff[$v['company_id']])) {
+	                $u = $v;
+					$u['office_key'] = $u['company_id'];
+					$tariff[] = $u;
+				}
+
 				$tariff[] = $v;
 			}
 		}
-
+//		echo '<br><b>old_values:</b> <pre style="font-size: 12px">'.print_r($param['format'], true).'</pre>';
 		return '"city": "'.$param['location']['bitrix']['city'].'", '.
 				'"region": "'.($param['location']['region_name'] != $param['location']['bitrix']['city'] ? $param['location']['region_name'].', ' : '').$param['location']['country_name'].'", '.
+				'"unsupported": '.(!empty($param['config']['office_unsupported_fix']) || !empty($param['config']['office_unsupported_percent']) ? 1 : 0).', '.
 				'"point": ['.implode(', ', $point).'], '.
 				'"tariff": '.self::GetJson($tariff, array('profile', 'company', 'name', 'tariff_id', 'pricetotal', 'pricetotal_formatted', 'pricecash', 'codplus', 'codplus_formatted', 'day', 'insurance', 'to_office', 'company_id', 'format', 'cod_tariff', 'ico', 'format_original', 'pricetotal_original_formatted', 'pricecod', 'pricecod_formatted', 'pricecod_original_formatted', 'office_key'));
-
 	}
 
 
 	// загрузка prop2 из профиля покупателя или из 'POST'
 	public static function GetProp2($prop, $param = false) {
-
+//echo 'GetProp2<br>';
 		if (!CModule::IncludeModule('edost.locations')) return false;
-
+//		echo '<br><b>==============param:</b> <pre style="font-size: 12px">'.print_r($param, true).'</pre>';
 		$s = $GLOBALS['APPLICATION']->GetCurPage();
 		$convert_charset = (strpos($s, '/ajax.php') !== false ? true : false);
 
@@ -4975,14 +5234,22 @@ class edost_class {
 		if (isset($param['set_prop2'])) $set_prop2 = ($param['set_prop2'] ? 'Y' : 'N');
 
 		$prop2 = array();
+//echo '=========== set_prop2: '.$set_prop2;
 		if ($_SERVER['REQUEST_METHOD'] != 'POST' || $set_prop2 == 'Y') {
+//echo '<br>GET =============';
 			// разбор старого адреса из профиля покупателя
 			$props = false;
 			if (isset($param['ORDER']))	$props = self::GetProps($param['ORDER'], array('order', 'no_payment'));
 			else if (isset($param['ORDER_ID'])) $props = self::GetProps($param['ORDER_ID'], array('no_payment'));
-			$prop = (!empty($props['prop']) ? $props['prop'] : array());
+			$prop = (!empty($props['prop']) ? $props['prop'] : $prop);
+
 			$prop2 = CLocationsEDOST::SetProp2($prop);
+
+//			echo '<br><b>prop:</b> <pre style="font-size: 12px">'.print_r($prop, true).'</pre>';
+//			echo '<br><b>prop2:</b> <pre style="font-size: 12px">'.print_r($prop2, true).'</pre>';
 		}
+//		echo '<br><b>prop:</b> <pre style="font-size: 12px">'.print_r($prop, true).'</pre>';
+//		echo '<br><b>prop2:</b> <pre style="font-size: 12px">'.print_r($prop2, true).'</pre>';
 		if (empty($prop2) || $set_prop2 == 'N') {
 			// загрузка полей из POST
 			$s = CLocationsEDOST::GetProp2($convert_charset);
@@ -5035,16 +5302,16 @@ class edost_class {
 	// разбор упакованного массива (1,2,... : 3,4,... : ...)
 	public static function ParseArray($array, $id, &$data, $level = 0) {
 
-		if (in_array($id, array('field', 'control'))) $array = $GLOBALS['APPLICATION']->ConvertCharset(substr($array, 0, 10000), 'windows-1251', LANG_CHARSET);
-		else if (in_array($id, array('office', 'limit'))) $array = substr($array, 0, 10000);
-		else $array = preg_replace("/[^0-9.:,;\/-]/i", "", substr($array, 0, 2000));
+		if (in_array($id, array('field', 'control'))) $array = $GLOBALS['APPLICATION']->ConvertCharset(substr($array, 0, 200000), 'windows-1251', LANG_CHARSET);
+		else if (in_array($id, array('office', 'limit'))) $array = substr($array, 0, 200000);
+		else $array = preg_replace("/[^0-9.:,;\/-]/i", "", substr($array, 0, 20000));
 		if ($array == '') return;
 
 		if ($id == 'priceoffice') $key = array('type', 'price', 'priceinfo', 'pricecash', 'priceoriginal');
 		else if ($id == 'priceoriginal') $key = array('price', 'pricecash');
 		else if ($id == 'field') $key = array('name', 'value');
 		else if ($id == 'control') $key = array('id', 'count', 'site');
-		else if ($id == 'office') $key = array('company_id', 'schedule', 'limit', 'tariff', 'tel');
+		else if ($id == 'office') $key = array('company_id', 'schedule', 'limit', 'tariff', 'tel', 'type2');
 		else if ($id == 'limit') $key = array('limit_pack');
 		else if ($id == 'tariff') $key = array('tariff_array');
 		else return;
@@ -5056,7 +5323,7 @@ class edost_class {
 			unset($default['priceoriginal']);
 		}
 		if ($id == 'priceoriginal') unset($default['pricecash']);
-		if ($id == 'office') $default = array('company_id' => 0, 'schedule' => '', 'limit' => array(), 'tariff' => array(), 'tel' => '');
+		if ($id == 'office') $default = array('company_id' => 0, 'schedule' => '', 'limit' => array(), 'tariff' => array(), 'tel' => '', 'type2' => '');
 
 		$r = array();
 		$delimiter = self::$delimiter[$level];
@@ -5091,7 +5358,7 @@ class edost_class {
 
 		if ($type == 'delivery') $key = array('id', 'price', 'priceinfo', 'pricecash', 'priceoffice', 'transfer', 'day', 'insurance', 'company', 'name', 'format', 'company_id', 'priceoriginal');
 		else if ($type == 'document') $key = array('id', 'data', 'data2', 'name', 'size', 'quantity', 'mode', 'cod', 'delivery', 'length', 'space');
-		else if ($type == 'office') $key = array('id', 'code', 'name', 'address', 'address2', 'tel', 'schedule', 'gps', 'type', 'metro', 'options', 'limit', 'city');
+		else if ($type == 'office') $key = array('id', 'code', 'name', 'address', 'address2', 'tel', 'schedule', 'gps', 'type', 'metro', 'options', 'limit', 'city', 'type2');
 		else if ($type == 'location') $key = array('city', 'region', 'country');
 		else if ($type == 'location_street') $key = array('street', 'zip', 'city');
 		else if ($type == 'location_zip') $key = array('zip');
@@ -5181,7 +5448,7 @@ class edost_class {
 
 			if ($type == 'office') {
 				if ($p == 'type') $v = intval($v);
-				else if (in_array($p, array('id', 'gps'))) $v = preg_replace("/[^a-z0-9.,]/i", "", substr($v, 0, 30));
+				else if (in_array($p, array('id', 'gps', 'type2'))) $v = preg_replace("/[^a-z0-9.,]/i", "", substr($v, 0, 30));
 				else if ($p == 'schedule') $v = $GLOBALS['APPLICATION']->ConvertCharset(self::UnPackSchedule(substr($v, 0, 160)), 'windows-1251', LANG_CHARSET);
 				else if ($p == 'limit') $v = self::UnPackLimit(substr($v, 0, 15));
 				else $v = $GLOBALS['APPLICATION']->ConvertCharset(trim(substr($v, 0, 160)), 'windows-1251', LANG_CHARSET);
@@ -5263,32 +5530,37 @@ class edost_class {
 	public static function ParseName($s, $company = '', $description = '', $insurance = '') {
 
 		$r = array('name' => '');
+		$c = ", \n\r\t\v\0";
 
 		$o = $s;
 		if ($insurance != '') $s = str_replace($insurance, '', $s);
 		if ($company != '' && strpos($s, $company) !== false) $company = '';
 		if ($company != '') {
-			$r['company'] = trim($company);
-			$r['name'] = trim($s);
+			$r['company'] = trim($company, $c);
+			$r['name'] = trim($s, $c);
 		}
 		else {
 			$s = explode('(', $s);
-			$r['company'] = trim($s[0]);
+			$r['company'] = trim($s[0], $c);
 			if (isset($s[1])) {
 				$s = explode(')', $s[1]);
-				$r['name'] = trim($s[0]);
+				$r['name'] = trim($s[0], $c);
 			}
 
 			// оригинальное название тарифа
 			$o = explode('(', $o);
 			if (isset($o[1])) {
 				$o = explode(')', $o[1]);
-				$r['name_original'] = trim($o[0]);
+				$r['name_original'] = trim($o[0], $c);
 			}
 		}
 
 		$s = trim($description);
 		if ($s === '<br>' || $s === '<br />') $s = '';
+		if (strpos($s, '[no_free]') !== false) {
+			$r['no_free'] = true;
+			$s = str_replace('[no_free]', '', $s);
+		}
 		$r['description'] = $s;
 
 		return $r;
@@ -5335,6 +5607,19 @@ class edost_class {
 
 	}
 
+	// получение из строки '5-8 дней' диапазона array(5,8)
+	public static function ParseDay($s, $to = '') {
+		$s = explode('<a ', $s); // модуль boxberry подписывает ссылку на выбор пунктов выдачи!
+		$s = $s[0];
+		$s = explode('(', $s); // модуль DPD подписывает название тарифа и ссылку на выбор пунктов выдачи!
+		$s = $s[0];
+		if (!empty($to)) $s = str_replace(array('—', $to), '-', $s); // замена длинного тире и ' до '
+		$s = preg_replace("/[^0-9-]/i", "", $s);
+		$s = explode('-', $s);
+		$s[0] = intval($s[0]);
+		$s[1] = (!empty($s[1]) ? intval($s[1]) : -1);
+		return $s;
+	}
 
 	// получение срока доставки вида '5-8 дней'
 	public static function GetDay($from = '', $to = '', $name = 'D') {
@@ -5347,7 +5632,7 @@ class edost_class {
 		$r = '';
 		$n = 0;
 
-		if ($from > 0) {
+		if ($from > 0 || $to > 0) {
 			$n = $from;
 			$r .= $from;
 		}
@@ -5401,7 +5686,6 @@ class edost_class {
 
 	}
 
-
 	// получение адреса офиса (если передан $tariff, тогда формируется полный адрес с телефонами, расписанием работы и т.д.)
 	public static function GetOfficeAddress($office, $tariff = false, $full = true) {
 
@@ -5416,8 +5700,13 @@ class edost_class {
 		$r = ($r != '' ? ' ('.$r.')' : '');
 
 		if (!$full) {
-			if ($post) $s = $office['code'].', '.(!empty($office['city']) ? $office['city'] : $office['address']);
-			else $s = $office['address'];
+			$c = '';
+			if (!empty($office['city'])) { $c = explode(';', $office['city']); $c = $c[0]; }
+			if ($post) $s = $office['code'].', '.($c != '' ? $c : $office['address']);
+			else {
+				$s = $office['address'];
+				if ($c != '' && strpos($s, $c) === false) $s = $c.', '.$s;
+			}
 			return $s.$r;
 		}
 
@@ -5439,7 +5728,7 @@ class edost_class {
 		$s[] = $head.(!$shop_company_default && $tariff['company_id'] != 23 && $tariff['format'] != 'shop' ? ' '.$tariff['company'] : '').': '.$office['address_full'] . $r;
 		if ($office['tel'] != '') $s[] = $sign['tel'].': '.$office['tel'];
 		if ($office['schedule'] != '') $s[] = $sign['schedule'].': '.$office['schedule'];
-		$s[] = $sign['code'].': '.$c.'/'.$office['id'].'/'.$office['type'].(!empty($office['options']) ? '-'.$office['options'] : '').'/'.$tariff['profile'].(!empty($tariff['cod_tariff']) ? '-Y' : '');
+		$s[] = $sign['code'].': '.$c.'/'.$office['id'].'/'.$office['type'].(isset($office['type2']) && $office['type2'] !== '' ? '_'.$office['type2'] : '').(!empty($office['options']) ? '-'.$office['options'] : '').'/'.$tariff['profile'].(!empty($tariff['cod_tariff']) ? '-Y' : '');
 		$r = implode(', ', $s);
 
 		return $r;
@@ -5477,13 +5766,16 @@ class edost_class {
 		$profile = explode('-', $s[3]);
 
 		$v = explode('-', $s[2]);
-		$type = intval($v[0]);
 		$options = (!empty($v[1]) ? intval($v[1]) : 0);
+		$v = explode('_', $v[0]);
+		$type = intval($v[0]);
+		$type2 = (isset($v[1]) ? $v[1] : '');
 
 		$r = array(
 			'code' => $s[0],
 			'id' => preg_replace("/[^0-9A]/i", "", substr($s[1], 0, 20)),
 			'type' => $type,
+			'type2' => $type2,
 			'options' => $options,
 			'profile' => intval($profile[0]),
 			'cod_tariff' => (!empty($profile[1]) && $profile[1] == 'Y' ? true : false),
@@ -5493,7 +5785,8 @@ class edost_class {
 			'schedule' => $schedule,
 		);
 		if (strpos($head, $sign['post']['name']) === 0) $r['post'] = true;
-
+//			echo '<br><b>format:</b> <pre style="font-size: 12px">'.print_r($r, true).'</pre>';
+//			die();
 		return $r;
 
 	}
@@ -5706,6 +5999,8 @@ class edost_class {
 		if ($shop !== false) {
 			$shop_user = array(
 				'company' => $shop['company'],
+				'inn' => $shop['inn'],
+				'passport' => $shop['passport'],
 				'appointment' => $shop['appointment'],
 				'name' => $shop['name'],
 				'represented' => $shop['represented'],
@@ -5724,7 +6019,7 @@ class edost_class {
 			$bank = array();
 			$bank_key = array('rsch', 'ksch', 'bank', 'bik');
 			foreach ($bank_key as $v2) $bank[] = str_replace('/', ' ', $s[$v2]);
-			$shop_user = array( 'company' => $s['name'], 'name' => $s['inn'], 'name_first' => implode('/', $bank), 'name_middle' => $s['phone']);
+			$shop_user = array('company' => $s['name'], 'name' => $s['inn'], 'name_first' => implode('/', $bank), 'name_middle' => $s['phone']);
 			$shop_address = array('address' => $s['address_full'], 'street' => $s['zip']);
 			$seller_user = array();
 			$seller_address = array();
@@ -5737,7 +6032,7 @@ class edost_class {
 		$s['passport'] = $p['passport'];
 		$user = array($s, $shop_user);
 		$u = array();
-		$ar = array('company', 'account', 'secure', 'contract', 'format', 'vat', 'appointment', 'name', 'represented', 'basis');
+		$ar = array('company', 'account', 'secure', 'token', 'contract', 'format', 'vat', 'appointment', 'name', 'represented', 'basis', 'zip', 'online_balance', 'batch_format');
 		foreach ($ar as $v2) $u[$v2] = (isset($delivery[$v2]) ? $delivery[$v2] : '');
 		$user[2] = $u;
 		if ($shop !== false) {
@@ -5780,6 +6075,41 @@ class edost_class {
 		$v['address_data'] = self::PackDataArray($address, 'address'); // [покупатель, магазин, откуда забирать груз, истинный продавец]
 
 		if (!empty($v['basket'])) {
+			// загрузка маркировочных кодов
+
+			// !!!!!
+			// тестовый маркировочный код
+			// [BARCODE_INFO][1][BARCODE][0][MARKING_CODE] = 010290000042703721lmLGsXQsTZps91802992sOAoOnzm8RoAfWTzzLcyU9P4JXMhwjwGg9Ctqw30TXjBFit8s5GGgH1VK/sSaLcvC+c961T5kkbHPbANCO0ssQ==
+/*
+			foreach ($v['basket'] as $k2 => $v2) {
+				$v['basket'][$k2]['barcode'] = 'barcode';
+				$v['basket'][$k2]['marking_code'] = array('010290000042703721lmLGsXQsTZps91802992sOAoOnzm8RoAfWTzzLcyU9P4JXMhwjwGg9Ctqw30TXjBFit8s5GGgH1VK/sSaLcvC+c961T5kkbHPbANCO0ssQ==', 'marking_code2');
+				break;
+			}
+*/
+			$a = false;
+			foreach ($v['basket'] as $v2) if (!empty($v2['MARKING_CODE_GROUP'])) { $a = true; break; }
+			if ($a) {
+				 $order = \Bitrix\Sale\Order::load($v['order_id']);
+				 if ($order) {
+				 	$shipment = $order->getShipmentCollection()->getItemById($v['id']);
+					if ($shipment) {
+						$shipmentItemCollection = $shipment->getShipmentItemCollection();
+						foreach ($shipmentItemCollection as $item) {
+							$id = $item->getBasketId();
+							if (!isset($v['basket'][$id])) continue;
+//							$v['basket'][$id]['ORDER_DELIVERY_BASKET_ID'] = $item->getId();
+							$itemStoreCollection = $item->getShipmentItemStoreCollection();
+							foreach ($itemStoreCollection as $barcode) {
+								$v['basket']['barcode'] = $barcode->getId();
+								if (!isset($v['basket'][$id]['marking_code'])) $v['basket'][$id]['marking_code'] = array();
+								$v['basket'][$id]['marking_code'][] = $barcode->getMarkingCode();
+							}
+						}
+					}
+				}
+			}
+
 			$ar = array();
 			foreach ($v['basket'] as $v2) {
 				$ar[$v2['ID']] = $v2;
@@ -5844,7 +6174,10 @@ class edost_class {
 		foreach ($data as $v) {
 	        $s = array();
 			foreach ($key as $k2 => $v2) {
-				if (isset(self::$delimiter2[$v2])) $s[] = (!empty($v[$v2]) ? implode(self::$delimiter2[$v2][0], $v[$v2]) : '');
+				if (isset(self::$delimiter2[$v2])) {
+					if (!empty($v[$v2])) foreach ($v[$v2] as $u_key => $u) $v[$v2][$u_key] = self::PackDataFilter($u);
+					$s[] = (!empty($v[$v2]) ? implode(self::$delimiter2[$v2][0], $v[$v2]) : '');
+				}
 				else if (is_array($v2)) $s[] = (isset($v[$k2]) ? self::PackDataArray($v[$k2], $v2, $level + 1) : '');
 				else $s[] = (isset($v[$v2]) ? self::PackDataFilter($v[$v2]) : '');
 			}
@@ -5902,8 +6235,12 @@ class edost_class {
 				if (!isset($v[$i])) break;
 				if (is_array($v2)) $r[$id][$k2] = self::UnPackDataArray($v[$i], $v2, 1);
 				else {
-					$p = str_replace(array('%2', '%3', '%4', '%5', '%6', '%7', '%1'), array(',', ':', '|', '/', '=', ';', '%'), $v[$i]);
-					if (isset(self::$delimiter2[$v2])) $p = (!empty($p) ? explode(self::$delimiter2[$v2][0], $p) : self::$delimiter2[$v2][1]);
+					if (!isset(self::$delimiter2[$v2])) $p = self::UnPackDataFilter($v[$i]);
+					else if (empty($v[$i])) $p = self::$delimiter2[$v2][1];
+					else {
+						$p = explode(self::$delimiter2[$v2][0], $v[$i]);
+						foreach ($p as $w => $u) $p[$w] = self::UnPackDataFilter($u);
+					}
 					$r[$id][$v2] = $p;
 				}
 				$i++;
@@ -6005,6 +6342,51 @@ class edost_class {
 	}
 
 
+	// определение формата доставки по id тарифа
+	public static function GetFormat($v) {
+		$r = '';
+		if (isset($v['tariff']))
+			if (in_array($v['tariff'], CDeliveryEDOST::$post)) $r = 'post';
+			else if (in_array($v['tariff'], CDeliveryEDOST::$office)) $r = 'office';
+			else if (!in_array($v['tariff'], array(1, 2, 61, 68, 69, 70, 71, 72, 73, 74))) $r = 'door';
+		return $r;
+	}
+
+	// иконка и описание тарифа для контроля и оформления
+	public static function TariffHead($v, $ico_path = '/bitrix/images/delivery_edost_img') {
+
+		$control_sign = GetMessage('EDOST_DELIVERY_CONTROL');
+?>
+		<img class="edost_ico edost_ico_company_small" style="padding: 0 3px 0 0;<?=(empty($v['company_id']) ? ' width: 28px;' : '')?>" src="<?=$ico_path.(!empty($v['company_id']) ? '/company/'.$v['company_id'] : '/small/'.$v['tariff'])?>.gif" border="0" title="<?=$v['title']?>">
+<?
+		if (!empty($v['name_short'])) echo $v['name_short'].'<br>';
+
+//		echo '<br><b>arResult[DELIVERY]:</b> <pre style="font-size: 12px">'.print_r($v, true).'</pre>';
+
+		$f = self::GetFormat($v);
+		$s = '';
+		if ($f == 'post') $s = 'style="color: #b600ff; cursor: default;">'.$control_sign['post'];
+		else if ($f == 'office') {
+			if (!isset($v['props']) || !empty($v['props']['office'])) {
+				if (isset($v['props']) && in_array($v['props']['office']['type'], CDeliveryEDOST::$postamat)) $s = $control_sign['postamat'];
+				else $s = $control_sign['office'];
+				$s = 'style="color: #b600ff; cursor: default;">'.$s;
+			}
+		}
+		else if ($f == 'door') $s = 'style="color: #ff008b; cursor: default;">'.$control_sign['door'];
+
+		if ($s != '')
+			if (empty($v['address_short'])) echo '<b '.$s.'</b>';
+			else echo '<b class="edost_hint_link" data-param="click=Y;shift=center,20;style;width=280px" '.$s.'</b><div class="edost_hint_data">'.$v['address_short'].'</div>';
+
+		if (!empty($v['delivery_price_formatted'])) echo ($s != '' ? '&nbsp;&nbsp;' : '').'<span style="color: #555; font-weight: bold;">'.$v['delivery_price_formatted'].'</span>';
+
+		if (!empty($v['cod']))
+			if (!empty($v['cod_formatted'])) echo '<br><span style="color: #b59422; font-weight: bold;"> '.$control_sign['cod'].' '.$v['cod_formatted'].'</span>';
+			else echo ' <b style="color: #b59422;">'.$control_sign['cod'].'</b>';
+
+	}
+
 	// иконки компаний доставки в заголовке для страницы контроля/оформления
 	public static function ControlHead($data, $param) {
 
@@ -6015,6 +6397,7 @@ class edost_class {
 		$company = (isset($param['company']) ? $param['company'] : 0);
 
 		if ($company == 5) $head['register_complete_batch_full'] = $head['register_complete'];
+		if (in_array($company, array(30,19))) $head['register_complete_batch_full'] = $head['register_complete_batch'];
 
 		$ico = array();
 		if ($param['type'] == 'register' && !empty($data)) {
@@ -6071,16 +6454,15 @@ class edost_class {
 				$data[$k2]['set'] = true;
 				$n++;
 			}
-
 			if ($param['type'] == 'register') $ico[$v['company_id']] =
 				'<div class="edost_button_company edost_button_company_'.($company == $v['company_id'] ? 'on' : 'off').'" onclick="edost.admin.set_param(\''.$param['type'].'\', \'company_'.$v['company_id'].'\''.(empty($count[$v['company_id']]['register_new']) ? ', \'total\'' : '').')">'.
-				(!empty($count[$v['company_id']]['register_new']) ? '<div><div class="edost_register_new">'.$count[$v['company_id']]['register_new'].'</div></div>' : '').
+				(!empty($count[$v['company_id']]['register_new']) ? '<div><div class="edost_register_new" style="margin-left: '.(!empty($option[$v['company_id']]['link_shift']) ? $option[$v['company_id']]['link_shift'].'px' : '100px').'">'.$count[$v['company_id']]['register_new'].'</div></div>' : '').
 				'<img class="edost_ico" src="'.$param['path'].'/company/'.$v['company_id'].'.gif" border="0">'.
 				'<span>'.$option[$v['company_id']]['name'].'</span>'.
 				'</div>';
 			else $ico[] =
 				'<div style="display: inline-block;" class="edost_control_link" onclick="edost.admin.set_param(\''.$param['type'].'\', \'company_'.$v['tariff'].'\')">'.
-				'<img class="edost_ico edost_ico_small" style="'.($param['active'] == 'company' && $company == $v['company'] ? 'padding: 0; margin: 2px 5px 2px 0; border: 5px solid #AAA;' : '').'" src="'.$param['path'].'/small/'.$v['tariff'].'.gif" border="0" title="'.$v['company'].'">'.
+				'<img class="edost_ico edost_ico_company_small" style="width: '.(!empty($v['company_id']) ? 32 : 64).'px; height: 32px;'.($param['active'] == 'company' && $company == $v['company'] ? 'padding: 4px; margin: 2px 5px 2px 0; border: 2px solid #e0e0e0; border-radius: 10px;' : 'margin: 0 2px 0 0;').'" src="'.$param['path'].(!empty($v['company_id']) ? '/company/'.$v['company_id'] : '/'.$v['tariff']).'.gif" border="0" title="'.$v['company'].'">'.
 				'<span style="vertical-align: middle; font-weight: bold;">'.($n != 1 ? $n : '').'&nbsp;</span>'.
 				'</div>&nbsp;&nbsp;';
 		}
@@ -6133,6 +6515,10 @@ class edost_class {
 		sort($s); // сортировка габаритов по возрастанию
 
 		if ($quantity == 1) $p = array($s[0], $s[1], $s[2]);
+		else if ($quantity > 1000) {
+			$v = round(pow($s[0]*$s[1]*$s[2]*$quantity, 1/3), 3);
+			$p = array($v, $v, $v);
+		}
 		else {
 			$x1 = $y1 = $z1 = $l = 0;
 			$max1 = floor(sqrt($quantity));
@@ -6263,6 +6649,9 @@ class edost_class {
 	// данные для подключения скриптов и стилей
 	public static function GetScriptData($config, $file = array()) {
 
+		$script = COption::GetOptionString('edost.delivery', 'script', '');
+		if (!empty($script)) $config['template_script'] = $script;
+
 		$protocol = CDeliveryEDOST::GetProtocol();
 		$win = (strtoupper(LANG_CHARSET) != 'UTF-8' ? 'win/' : '');
 		$server = (!isset($config['template_script']) || $config['template_script'] == 'Y' ? true : false);
@@ -6310,6 +6699,39 @@ class edost_class {
 
 		return $r;
 
+	}
+
+
+	// получение местоположения из куки
+	public static function GetLocationIdCode($id) {
+		if (empty($id)) return array('id' => 0, 'code' => '');
+		else return (substr($id, 0, 1) !== '0' ? array('id' => intval($id), 'code' => CSaleLocation::getLocationCODEbyID($id)) : array('id' => CSaleLocation::getLocationIDbyCODE($id), 'code' => $id));
+	}
+	public static function GetLocationCode($id) {
+		if ($id && substr($id, 0, 1) !== '0') $id = CSaleLocation::getLocationCODEbyID(intval($id));
+		return $id;
+	}
+	public static function GetLocationID($id) {
+		if ($id && substr($id, 0, 1) === '0') $id = CSaleLocation::getLocationIDbyCODE($id);
+		return $id;
+	}
+	public static function LocationCookie($param = '') {
+		$c = (isset($_COOKIE['edost_location']) ? substr($_COOKIE['edost_location'], 0, 250) : '');
+		if ($param  == 'string') return $c;
+		if ($param  == 'change') return ($c && !empty($_SESSION['EDOST']['location_cookie']) && $c != $_SESSION['EDOST']['location_cookie'] ? true : false);
+		$r = false;
+		if ($c) {
+			$s = explode('|', $c); // id|zip|city2
+			if (isset($s[2])) {
+				$id = $s[0];
+				$zip = preg_replace("/[^0-9.]/i", "", $s[1]);
+				$r = array('city2' => $GLOBALS['APPLICATION']->ConvertCharset($s[2], 'utf-8', LANG_CHARSET));
+				if (substr($zip, -1) == '.') $zip = substr($zip, 0, -1); else if ($zip != '') $r['zip_full'] = true;
+				$r['zip'] = $zip;
+				$r += self::GetLocationIdCode($id);
+			}
+		}
+		return $r;
 	}
 
 	// конвертация многомерных массивов в строку ($delimiter - массив разделителей по уровням массива)

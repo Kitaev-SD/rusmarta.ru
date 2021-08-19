@@ -29,26 +29,34 @@ class Delivery extends Market\Api\Model\Order\Delivery
 		return $this->getChildModel('address');
 	}
 
-	/** @return Delivery\Dates|null */
-	public function getDates()
-	{
-		return $this->getChildModel('dates');
-	}
-
 	/** @return Delivery\Outlet|null */
 	public function getOutlet()
 	{
 		return $this->getChildModel('outlet');
 	}
 
+	/** @return Delivery\TrackCollection|null */
+	public function getTracks()
+	{
+		return $this->getChildCollection('tracks');
+	}
+
 	protected function getChildModelReference()
 	{
 		$result = [
 			'address' => Delivery\Address::class,
-			'dates' => Delivery\Dates::class,
 			'outlet' => Delivery\Outlet::class,
 		];
 
 		return $result + parent::getChildModelReference();
+	}
+
+	protected function getChildCollectionReference()
+	{
+		$result = [
+			'tracks' => Delivery\TrackCollection::class,
+		];
+
+		return $result + parent::getChildCollectionReference();
 	}
 }

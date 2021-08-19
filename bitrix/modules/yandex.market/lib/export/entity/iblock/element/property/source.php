@@ -1311,9 +1311,11 @@ class Source extends Market\Export\Entity\Reference\Source
 			{
 				if (!empty($property[$field]) && isset($usedMap[$property['ID']]))
 				{
-					if (!isset($result[$property['ID']]))
+					$propertyId = (int)$property['ID'];
+
+					if (!isset($result[$propertyId]))
 					{
-						$result[$property['ID']] = [];
+						$result[$propertyId] = [];
 					}
 
 					if (is_array($property[$field]))
@@ -1324,12 +1326,12 @@ class Source extends Market\Export\Entity\Reference\Source
 
 							if ($value !== '')
 							{
-								if (!isset($result[$property['ID']][$value]))
+								if (!isset($result[$propertyId][$value]))
 								{
-									$result[$property['ID']][$value] = [];
+									$result[$propertyId][$value] = [];
 								}
 
-								$result[$property['ID']][$value][] = $elementId;
+								$result[$propertyId][$value][] = $elementId;
 							}
 						}
 					}
@@ -1339,12 +1341,12 @@ class Source extends Market\Export\Entity\Reference\Source
 
 						if ($value !== '')
 						{
-							if (!isset($result[$property['ID']][$value]))
+							if (!isset($result[$propertyId][$value]))
 							{
-								$result[$property['ID']][$value] = [];
+								$result[$propertyId][$value] = [];
 							}
 
-							$result[$property['ID']][$value][] = $elementId;
+							$result[$propertyId][$value][] = $elementId;
 						}
 					}
 				}

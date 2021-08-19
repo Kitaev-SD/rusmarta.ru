@@ -39,7 +39,10 @@ if (!empty($arResult['LIST_EXTENSION']))
 
 if ($component->hasErrors())
 {
-	$component->showErrors();
+	foreach ($component->getErrors() as $message)
+	{
+		$adminList->AddUpdateError($message);
+	}
 }
 
 if ($component->hasWarnings())

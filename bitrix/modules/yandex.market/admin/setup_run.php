@@ -97,6 +97,7 @@ if ($requestAction)
 
 				if ($processResult->isFinished())
 				{
+					Market\Environment::stamp();
 					Market\Export\Run\Admin::release($setupId);
 
 					if ($setup->hasFullRefresh())

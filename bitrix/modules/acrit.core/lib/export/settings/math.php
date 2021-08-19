@@ -90,9 +90,15 @@ class SettingsMath extends SettingsBase {
 						try{
 							$strValue = eval($strExpression);
 						}
-						catch(\Error $error){
-							$errorMessage = sprintf('[ID: %s, %s] %s, expression: %s', $obField->getElementId(), $obField->getCode(), $error->getMessage(), $strExpression);
+						catch(\Error $obError){
+							$errorMessage = sprintf('[ID: %s, %s] %s, expression: %s', $obField->getElementId(), $obField->getCode(), $obError->getMessage(), $strExpression);
 							Log::getInstance($obField->getModuleId())->add($errorMessage, $obField->getProfileID());
+							$strValue = '';
+						}
+						catch(\Exception $obError){
+							$errorMessage = sprintf('[ID: %s, %s] %s, expression: %s', $obField->getElementId(), $obField->getCode(), $obError->getMessage(), $strExpression);
+							Log::getInstance($obField->getModuleId())->add($errorMessage, $obField->getProfileID());
+							$strValue = '';
 						}
 					}
 					else {
@@ -122,10 +128,21 @@ class SettingsMath extends SettingsBase {
 		try {
 			$mValue = \RR\Shunt\Parser::parse($mValue, $obContext);
 		}
-		catch(\Exception $e){
+		catch(\Error $obError){
 			$strMessage = static::getMessage('ERROR', array(
 				'#VALUE#' => print_r($mValue, true),
-				'#ERROR#' => $e->getMessage(),
+				'#ERROR#' => $Error->getMessage(),
+			));
+			if(is_object($obField) && Helper::strlen($obField->getModuleId())){
+				$strMessage = sprintf('[ID: %s, %s] %s', $obField->getElementId(), $obField->getCode(), $strMessage);
+				Log::getInstance($obField->getModuleId())->add($strMessage, $obField->getProfileID());
+			}
+			$mValue = '';
+		}
+		catch(\Exception $Error){
+			$strMessage = static::getMessage('ERROR', array(
+				'#VALUE#' => print_r($mValue, true),
+				'#ERROR#' => $Error->getMessage(),
 			));
 			if(is_object($obField) && Helper::strlen($obField->getModuleId())){
 				$strMessage = sprintf('[ID: %s, %s] %s', $obField->getElementId(), $obField->getCode(), $strMessage);

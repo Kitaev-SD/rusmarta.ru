@@ -73,6 +73,9 @@ $MESS['EDOST_DELIVERY_TARIFF'] = array(
 		78 => 'Почта России (ЕКОМ - до пункта выдачи)',
 		79 => 'Почта России (ЕКОМ - до почтового отделения)',
 		80 => 'DPD (online express - до пункта выдачи)',
+		81 => '5post',
+		82 => 'DPD (economy - до пункта выдачи)',
+		83 => 'DPD (economy - курьером до двери)',
 	),
 	'title_insurance' => array( // названия тарифов со страховкой
 		1 => 'Почта России (посылка 1-го класса со страховкой)',
@@ -147,6 +150,9 @@ $MESS['EDOST_DELIVERY_TARIFF'] = array(
 		78 => 'Почта России (ЕКОМ - до пункта выдачи со страховкой)',
 		79 => 'Почта России (ЕКОМ - до почтового отделения со страховкой)',
 		80 => 'DPD (online express - до пункта выдачи со страховкой)',
+		81 => '5post',
+		82 => 'DPD (economy - до пункта выдачи со страховкой)',
+		83 => 'DPD (economy - курьером до двери со страховкой)',
 	),
 	'description' => array( // описание тарифов
 	),
@@ -181,7 +187,7 @@ $MESS['EDOST_DELIVERY_CONFIG'] = array(
 		'template' => array('TITLE' => 'Шаблон', 'VALUES' => array('Y' => 'eDost', 'N3' => 'Битрикс', 'N' => 'Visual', 'N2' => 'Visual (расширенный)', 'off' => 'отключено')),
 		'template_format' => array('TITLE' => 'Объединять тарифы по типу доставки', 'VALUES' => array('off' => 'отключено', 'odt' => 'самовывоз, курьер, почта', 'dot' => 'курьер, самовывоз, почта', 'tod' => 'почта, самовывоз, курьер')),
 		'template_block' => array('TITLE' => 'Выводить тарифы одного типа отдельными блоками', 'VALUES' => array('off' => 'отключено', 'auto1' => 'только когда много тарифов', 'auto2' => 'только когда много тарифов любого типа', 'all' => 'всегда')),
-		'template_block_type' => array('TITLE' => 'Формат отображения', 'VALUES' => array('none' => 'блоки', 'border' => 'блоки с рамкой', 'bookmark1' => 'закладки', 'bookmark2' => 'самые дешевые тарифы')),
+		'template_block_type' => array('TITLE' => 'Формат отображения', 'VALUES' => array('none' => 'блоки', 'border' => 'блоки с рамкой', 'bookmark1' => 'закладки')),
 		'template_cod' => array('TITLE' => 'Наложенный платеж', 'VALUES' => array('off' => 'только в способах оплаты', 'td' => 'дублировать в колонке у тарифа доставки', 'tr' => 'отдельным тарифом доставки')),
 		'template_autoselect_office' => array('TITLE' => 'Автоматически выбирать самый первый пункт выдачи или постамат', 'TYPE' => 'CHECKBOX'),
 		'autoselect' => array('TITLE' => 'Автоматически выбирать самый первый способ доставки', 'TYPE' => 'CHECKBOX'),
@@ -199,9 +205,12 @@ $MESS['EDOST_DELIVERY_CONFIG'] = array(
 		'template_ico' => array('TITLE' => 'Иконки', 'VALUES' => array('C' => 'служб доставки', 'T' => 'тарифов eDost', 'T2' => 'профилей доставки Битрикса')),
 		'template_script' => array('TITLE' => 'Загружать js скрипты и стили с сервера eDost', 'TYPE' => 'CHECKBOX'),
 		'package' => array('TITLE' => 'Степень уплотнения товаров при расчете упаковки', 'VALUES' => array(1 => '1 (без уплотнения)', 2 => '2', 3 => '3', 4 => '4', 5 => '5')),
-
 		'postmap' => array('TITLE' => 'Включить выбор почтовых отделений на карте', 'TYPE' => 'CHECKBOX'),
-//		'post' => array('TITLE' => 'Выбор почтовых отделений', 'VALUES' => array('N' => 'ручной (стандартный ввод индекса и адреса получателя)', 'Y' => 'на карте с вводом адреса получателя', 'O' => 'на карте без ввода адреса получателя (до востребования)')),
+		'office_near' => array('TITLE' => 'Включить выбор пунктов выдачи из ближайших населенных пунктов', 'TYPE' => 'CHECKBOX'),
+		'office_unsupported' => array('TITLE' => 'Включить выбор пунктов выдачи из <b style="color: #E00;">неподдерживаемых</b> населенных пунктов', 'TYPE' => 'CHECKBOX'),
+		'office_unsupported_fix' => array('TITLE' => 'Надбавка на неподдерживаемые', 'TYPE' => 'TEXT'),
+		'office_unsupported_percent' => array('TITLE' => 'Процентная надбавка на неподдерживаемые', 'TYPE' => 'TEXT'),
+		'office_tel' => array('TITLE' => 'Сохранять телефон пункта выдачи', 'TYPE' => 'CHECKBOX'),
 	),
 );
 
@@ -236,7 +245,7 @@ $MESS['EDOST_DELIVERY_ERROR'] = array(
 	9 => 'Превышен лимит расчетов за день',
 	11 => 'У товаров не задан вес',
 	12 => 'Не заданы данные магазина (пароль или идентификатор)',
-	14 => 'Настройки сервера не позволяют отправить запрос на расчет',
+	14 => 'Настройки сервера не позволяют отправить запрос',
 	17 => 'Вес больше 100 000 кг',
 	18 => 'Страховка превышает 10 000 000 рублей',
 	19 => 'Неверный код страны',
@@ -305,6 +314,8 @@ $MESS['EDOST_DELIVERY_SIGN'] = array(
 	'passport_head' => 'Паспортные данные',
 	'bookmark_tariff_head' => 'Тариф доставки',
 
+	'day_work' => ' рабочи',
+
 	'code' => 'код филиала',
 	'code_head' => array(
 		array('Пункт выдачи', 'пункта выдачи'),
@@ -366,16 +377,18 @@ $MESS['EDOST_DELIVERY_SIGN'] = array(
 	'priceinfo_warning' => 'Оплачивать доставку необходимо самостоятельно при получении в офисе ТК. <br> Стоимость доставки ориентировочная и на момент оплаты может измениться!',
 	'priceinfo_warning_compact' => 'Оплачивать доставку необходимо самостоятельно при получении (cтоимость ориентировочная).',
 	'priceinfo_warning_bitrix' => '<span style="color: #F00; font-size: 11px; font-weight: bold;">Оплачивать доставку необходимо самостоятельно при получении.</span> <br> Ориентировочная стоимость: <b>%price_info%</b>',
-
+/*
 	'country_hint' => array(
 		'default' => 'введите название города',
-		0 => 'введите название города / населенного пункта (например, <b>Москва</b> или <b>п. Омский, Омский район</b>)',
+//		0 => 'введите название города / населенного пункта (например, <b>Москва</b> или <b>п. Омский, Омский район</b>)',
+		0 => 'введите название вашего населенного пункта (например, <b>Москва</b> или <b>п. Омский, Омский район</b>)',
 		21 => 'введите название города (например, <b>Минск</b>)',
 		85 => 'введите название города (например, <b>Астана</b>)',
 		14 => 'введите название города (например, <b>Ереван</b>)',
 		108 => 'введите название города (например, <b>Бишкек</b>)',
 		212 => 'введите название города (например, <b>Киев</b>)',
 	),
+*/
 	'shop_company_default' => array(
 		'Курьер',
 		'Курьером до двери',
@@ -525,6 +538,7 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 		'batch_general' => 'акт передачи',
 		'batch_general_103' => 'ф.103',
 		'batch_order' => 'бланки',
+		'batch_label' => 'этикетки',
 		'batch' => 'сдача № <b>%number%</b> от <b>%date%</b>',
 		'batch_name' => 'сдача № %number% от %date%',
 		'html_head' => 'печать бланков',
@@ -545,6 +559,7 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 		'to' => 'на',
 		'old' => 'в сдачу № %number% от %date% (%company%)',
 		'old2' => 'в существующие сдачи на %date%',
+		'old_full' => 'в сдачу № %number% от %date%',
 		'reset' => 'сбросить фильтр по сдаче',
 		'office' => 'зарегистрирована',
 		'no_office' => 'не зарегистрирована',
@@ -580,6 +595,7 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 			'address' => 'адрес доставки',
 			'name' => 'ФИО покупателя',
 			'phone' => 'телефон',
+			'office' => 'выбран тариф до пункта выдачи, но сам пункт выдачи не задан',
 		),
 	),
 
@@ -628,7 +644,9 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 <b>оформление доступно для:</b><br>
 <img class="edost_ico" style="width: 60px; height: 60px; padding-top: 5px;" src="/bitrix/images/delivery_edost_img/company/23.gif" title="Почта России" border="0">
 <img class="edost_ico" style="width: 60px; height: 60px; padding-top: 5px;" src="/bitrix/images/delivery_edost_img/company/5.gif" title="СДЭК" border="0">
-<div style="padding-top: 3px;">для оформления нужен договор со службой доставки<br> и заполненные данные доступа в <a class="edost_link2" style="color: #88F;" href="http://edost.ru/shop_edit.php?p=5" target="_blank">личном кабинете eDost</a></div>
+<img class="edost_ico" style="width: 60px; height: 60px; padding-top: 5px;" src="/bitrix/images/delivery_edost_img/company/30.gif" title="СДЭК" border="0">
+<img class="edost_ico" style="width: 60px; height: 60px; padding-top: 5px;" src="/bitrix/images/delivery_edost_img/company/19.gif" title="ПЭК" border="0">
+<div style="padding-top: 3px;">для оформления нужен договор со службой доставки<br> и заполненные данные доступа (в профиле организации или в <a class="edost_link2" style="color: #88F;" href="http://edost.ru/shop_edit.php?p=5" target="_blank">личном кабинете eDost</a>)</div>
 <br>
 <b>печать бланков без оформления доступна для:</b><br>
 <img class="edost_ico" style="width: 60px; height: 60px; padding-top: 5px;" src="/bitrix/images/delivery_edost_img/company/23.gif" title="Почта России" border="0">
@@ -652,12 +670,20 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 
 	'new_module' => 'Новый модуль',
 
+	'tariff_change' => array(
+		array('курьер онлайн', 'посылка онлайн'),
+		array('онлайн', 'онлайн'),
+	),
+
 	'package' => array(
 		'option_disable' => 'нажмите кнопку "сохранить", тогда все активные опции будут отключены',
 		'head' => 'место',
 		'no_item' => 'нет товаров',
 		'option_head' => 'опции',
 		'option_head2' => 'Опции доставки',
+		'comment_head' => 'комментарий',
+		'comment_head_door' => 'комментарий для курьера',
+		'type_head' => 'описание груза',
 	),
 
 	'select' => array(
@@ -675,6 +701,7 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 			'A4' => 'A4',
 			'A5' => 'A5',
 			'A6' => 'A6',
+			'F' => 'оригинальный',
 		),
 	),
 
@@ -723,6 +750,12 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 		'status' => 'выводить статус заказа',
 		'no_label' => 'печатать ярлыки на обычной бумаге (только для печати без оформления)',
 		'no_batch' => 'не ставить отметку "на сдачу" для новых заказов',
+		'tariff_name' => 'выводить название тарифа доставки',
+		'order_number' => 'вместо ID заказа выводить его номер',
+		'pcs' => 'единицы измерения, отличающиеся от штук, переносить в название товара',
+
+		'package_type' => 'Описание груза по умолчанию (для ТК):',
+		'user_description' => 'загружать комментарий из заказа',
 	),
 
 	'list_head' => array(
@@ -830,6 +863,7 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 		'register_repeat' => 'оформить',
 		'register' => 'оформить',
 		'batch' => 'на сдачу',
+		'batch_checkbox' => 'включить в сдачу',
 		'print' => 'распечатать',
 
 		'profile' => 'профили',
@@ -837,6 +871,9 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 		'change2' => 'редактировать',
 		'option_change' => 'добавить опции',
 		'option_change2' => 'изменить',
+		'comment_change' => 'добавить комментарий',
+		'comment_door_change' => 'добавить комментарий для курьера',
+		'type_change' => 'не задано',
 		'edit' => 'изменить',
 		'package_change' => 'разделить на места',
 		'package_change2' => 'изменить места',
@@ -938,19 +975,19 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 			'id' => 'batch',
 			'name' => 'Акт передачи',
 			'mode' => 'normal',
-			'company_id' => 5,
+			'company_id' => array(5, 30),
 		),
 		'order' => array(
 			'id' => 'order',
 			'name' => 'Квитанция',
 			'mode' => 'normal',
-			'company_id' => 5,
+			'company_id' => array(5),
 		),
 		'package' => array(
 			'id' => 'package',
 			'name' => 'Этикетка',
 			'mode' => 'label',
-			'company_id' => 5,
+			'company_id' => array(5, 19),
 		),
 	),
 
@@ -978,13 +1015,16 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 					'id' => 4,
 					'name' => 'проверка комплектности',
 					'value' => 0,
-					'depend_62' => true,
+					'depend_tariff' => array(61,62),
+//					'depend_62' => true,
 				),
 			),
 		),
 		5 => array(
 			'id' => 5,
 			'name' => 'СДЭК',
+			'link_shift' => 102,
+/*
 			'profile' => array(
 				1 => array(
 					'id' => 1,
@@ -997,38 +1037,167 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 					'value' => 0,
 				),
 			),
+*/
 			'service' => array(
 				30 => array(
 					'id' => 30,
 					'name' => 'примерка на дому',
 					'value' => 1,
+					'depend_postamat' => 'N',
 				),
 				36 => array(
 					'id' => 36,
 					'name' => 'частичная доставка',
 					'value' => 1,
 					'depend_count' => true,
+					'depend_postamat' => 'N',
 				),
 				37 => array(
 					'id' => 37,
 					'name' => 'осмотр вложения',
 					'value' => 1,
+					'depend_postamat' => 'N',
 				),
 				48 => array(
 					'id' => 48,
 					'name' => 'реверс',
 					'value' => 1,
+					'depend_postamat' => 'N',
 				),
 				3 => array(
 					'id' => 3,
 					'name' => 'доставка в выходной день',
 					'value' => 0,
+					'depend_postamat' => 'N',
 				),
 				7 => array(
 					'id' => 7,
 					'name' => 'опасный груз',
 					'value' => 0,
+					'depend_postamat' => 'N',
 				),
+				24 => array(
+					'id' => 24,
+					'name' => 'упаковка 1',
+					'value' => 0,
+					'hint' => 'коробка <b>310 x 215 x 280 мм</b> для грузов до <b>10 кг</b>',
+				),
+
+				1000 => array(
+					'id' => 1000,
+					'name' => 'оплатить доставку при отказе',
+					'value' => 0,
+					'hint' => 'При активации данной опции, доставка переносится в список товаров, а в поле "доставка" указывается "0 руб." + добавляется комментарий "Доставка оплачивается получателем в том числе при отказе от товара".<br>Работает только при наложенном платеже.',
+					'depend_cod' => true,
+					'depend_postamat' => 'N',
+				),
+			),
+		),
+		30 => array(
+			'id' => 30,
+			'name' => 'boxberry',
+			'link_shift' => 125,
+			'service' => array(
+				1 => array(
+					'id' => 1,
+					'name' => 'выдача со вскрытием',
+//					'hint' => 'выдача со вскрытием и проверкой комплектности',
+					'value' => 1,
+					'off' => array(2), // отключить опции с кодами при активации
+				),
+				2 => array(
+					'id' => 2,
+					'name' => 'выдача части вложения',
+					'value' => 1,
+					'depend_count' => true,
+					'off' => array(1), // отключить опции с кодами при активации
+				),
+			),
+		),
+		19 => array(
+			'id' => 19,
+			'name' => 'ПЭК',
+			'link_shift' => 92,
+			'service' => array(
+
+				1 => array(
+					'id' => 1,
+					'name' => 'защитная транспортировочная упаковка',
+//					'hint' => 'выдача со вскрытием и проверкой комплектности',
+					'value' => 1,
+//					'off' => array(2), // отключить опции с кодами при активации
+				),
+				2 => array(
+					'id' => 2,
+					'name' => 'пломбировка',
+					'value' => 1,
+//					'depend_count' => true,
+//					'off' => array(1), // отключить опции с кодами при активации
+				),
+				3 => array(
+					'id' => 3,
+					'name' => 'упаковка стреппинг-лентой',
+					'value' => 1,
+				),
+				4 => array(
+					'id' => 4,
+					'name' => 'хрупкий груз',
+					'value' => 1,
+				),
+				5 => array(
+					'id' => 5,
+					'name' => 'стекло',
+					'value' => 1,
+				),
+				6 => array(
+					'id' => 6,
+					'name' => 'жидкость',
+					'value' => 1,
+				),
+				7 => array(
+					'id' => 7,
+					'name' => 'необходима открытая машина',
+					'value' => 1,
+				),
+				8 => array(
+					'id' => 8,
+					'name' => 'необходима боковая погрузка',
+					'value' => 1,
+				),
+				9 => array(
+					'id' => 9,
+					'name' => 'необходимо специальное оборудование',
+					'value' => 1,
+				),
+				10 => array(
+					'id' => 10,
+					'name' => 'необходима растентовка',
+					'value' => 1,
+				),
+				11 => array(
+					'id' => 11,
+					'name' => 'необходим забор день в день',
+					'value' => 1,
+				),
+
+
+/*
+ 1. Защитная транспортировочная упаковка	(раньше было: Жесткая упаковка)
+ 2. Пломбировка
+ 3. Упаковка стреппинг-лентой
+'isFragile'			=> true,		// true, // Хрупкий груз [Boolean]
+'isGlass'			=> false,		// false, // Стекло [Boolean]
+'isLiquid'			=> true,		// true, // Жидкость [Boolean]
+'isOpenCar'			=> false,		//false, // Необходима открытая машина [Boolean]
+'isSideLoad'		=> true,		//true, // Необходима боковая погрузка [Boolean]
+'isSpecialEquipment'=> false,		//  false, // Необходимо специальное оборудование [Boolean], поле необязательно, если не указано считается равным false
+'isUncovered'		=> false,		// false, // Необходима растентовка [Boolean], поле необязательно, если не указано считается равным false
+'isDayByDay'		=> false,		// false, // Необходим забор день в день [Boolean]
+
+'isOtherType'		=> false,		// false, // Груз другого типа [Boolean]
+'isOtherTypeDescription' => 'null',	//null, // Описание груза другого типа [String], поле обязательно, если "isOtherType":true
+
+*/
 			),
 		),
 	),
@@ -1043,120 +1212,214 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 		),
 		'type' => array(
 			'name' => 'тип профиля',
-			'values' => array('shop' => 'магазин', '5' => 'СДЭК'),
+			'values' => array('shop' => 'магазин', '23' => 'Почта', '5' => 'СДЭК', '30' => 'boxberry', '19' => 'ПЭК'),
 		),
 		'company' => array(
 			'name' => 'наименование юр.лица',
+			'type' => array('shop',5),
+		),
+		'inn' => array(
+			'name' => 'ИНН',
+			'type' => array('shop'),
+		),
+		'passport' => array(
+			'name' => 'паспорт',
+			'hint' => 'серия и номер (1234-123456) - указывать, когда отправитель частное лицо (при этом поле "ИНН" не заполняется)',
+			'type' => array('shop'),
 		),
 
-/*
-		'zip' => array(
-			'name' => 'почтовый индекс',
-		),
-*/
 		'city' => array(
 			'name' => 'город',
+			'type' => array('shop'),
 		),
 		'address' => array(
 			'name' => 'адрес',
+			'type' => array('shop'),
 		),
 		'phone' => array(
 			'name' => 'телефон',
 			'hint' => '+7-912-345-67-89',
+			'type' => array('shop'),
 		),
 
 /*
 		'mode' => array(
 			'name' => 'тип договора',
 			'values' => array('0' => 'интернет-магазин', '1' => 'стандартный'), // 'N' => 'нет'
+			'type' => array(5),
 		),
 */
+
+		'head_param' => array(
+			'delimiter' => 'параметры',
+			'hint' => array(
+				23 => '<b>1. </b> Онлайн баланс необходимо включать, только если он подключен в личном кабинете почты.<br><b>2. </b> Формат сдачи "все типы отправки в одну сдачу" доступен НЕ для всех клиентов и типов отправлений (зависит от договора с почтой).',
+			),
+			'hint_warning' => true,
+			'type' => array('company'),
+		),
+
 		'vat' => array(
 			'name' => 'НДС',
 			'values' => array('' => 'нет', '20' => '20%'),
+			'type' => array(5),
 		),
-/*
-		'account' => array(
-			'name' => 'идентификатор клиента',
-		),
-		'secure' => array(
-			'name' => 'ключ доступа',
-		),
-*/
+
 		'contract' => array(
 			'name' => 'номер и дата договора',
 			'hint' => '№10-20 от 01.01.2019',
+			'type' => array(5),
 		),
 		'format' => array(
 			'name' => 'формат отправки',
 			'values' => array('office' => 'от терминала (склад-...)', 'door' => 'с забором курьером (дверь-...)'),
+			'type' => array(5, 19),
+		),
+
+		'zip' => array(
+			'name' => array(
+				23 => 'почтовый индекс отправки',
+				30 => 'код пункта приема заказов',
+				19 => 'код терминала отправки',
+			),
+			'type' => array(23, 30, 19),
+		),
+		'online_balance' => array(
+			'name' => array(
+				23 => 'онлайн баланс',
+				19 => 'форма оплаты',
+			),
+			'values' => array(
+				23 => array('' => 'выключен', 'Y' => 'включен'),
+				19 => array('bank' => 'банк', 'cash' => 'касса'),
+			),
+			'type' => array(23, 19),
+		),
+		'batch_format' => array(
+			'name' => array(
+				23 => 'формат сдачи',
+				19 => 'оплачивает доставку',
+			),
+			'values' => array(
+				23 => array('full' => 'все типы отправки в одну сдачу', 'normal' => 'отдельная сдача для каждого типа отправки'),
+				19 => array('shop' => 'магазин', 'user' => 'покупатель (при вручении)'),
+			),
+			'type' => array(23, 19),
+		),
+
+		'head_login' => array(
+			'delimiter' => 'данные доступа',
+			'hint' => 'Если данные доступа не заданы, тогда используются данные из личного кабинета eDost (в разделе "Контроль заказов").',
+			'type' => array('company'),
+		),
+		'account' => array(
+			'name' => array(
+				23 => 'имя пользователя (email)',
+				5 => 'учетная запись',
+				30 => 'ключ (API-token)',
+				19 => 'имя пользователя',
+			),
+			'type' => array('company'),
+		),
+		'secure' => array(
+			'name' => array(
+				23 => 'пароль',
+				5 => 'секретный код',
+				19 => 'ключ API',
+			),
+			'type' => array(23, 5, 19),
+		),
+		'token' => array(
+			'name' => array(
+				23 => 'токен авторизации',
+			),
+			'type' => array(23),
 		),
 
 		'head_seller' => array(
 			'delimiter' => 'истинный продавец (для чеков)',
+			'type' => array('shop'),
 		),
 		'company_seller' => array(
 			'name' => 'наименование юр.лица',
+			'type' => array('shop'),
 		),
 		'companytype_seller' => array(
 			'name' => 'организационная форма',
 			'values' => array('ooo' => 'ООО', 'ip' => 'ИП', 'ao' => 'АО', 'zao' => 'ЗАО', 'oao' => 'ОАО', 'pao' => 'ПАО', 'sb' => 'Малый бизнес'),
+			'type' => array('shop'),
 		),
 		'inn_seller' => array(
 			'name' => 'ИНН',
+			'type' => array('shop'),
 		),
 		'address_seller' => array(
 			'name' => 'адрес',
+			'type' => array('shop'),
 		),
 		'phone_seller' => array(
 			'name' => 'телефон',
 			'hint' => '+7-912-345-67-89',
+			'type' => array('shop'),
 		),
 
 		'head_call' => array(
 			'delimiter' => 'откуда курьеру забирать груз',
+			'type' => array('shop'),
 		),
 		'city_call' => array(
 			'name' => 'город',
+			'type' => array('shop'),
 		),
 		'address_call' => array(
 			'name' => 'адрес',
+			'type' => array('shop'),
 		),
 		'phone_call' => array(
 			'name' => 'телефон',
 			'hint' => '+7-912-345-67-89',
+			'type' => array('shop'),
 		),
 		'time_lunch_call' => array(
 			'name' => 'обед',
+			'type' => array('shop'),
 		),
 		'time_call' => array(
 			'name' => 'время ожидания курьера',
+			'type' => array('shop'),
 		),
 		'comment_call' => array(
 			'name' => 'комментарий для курьера',
+			'type' => array('shop'),
 		),
 
 		'head_doc_shop' => array(
 			'delimiter' => 'сотрудник, отвечающий за сдачу/приемку груза',
+			'type' => array('shop'),
 		),
 		'head_doc_company' => array(
 			'delimiter' => 'сотрудник, отвечающий за забор груза',
+			'type' => array(5),
 		),
 		'name' => array(
 			'name' => 'ФИО',
 			'hint' => 'Иванов Иван Иванович',
+			'type' => array('shop',5),
 		),
 		'appointment' => array(
 			'name' => 'должность',
 			'hint' => 'менеджер',
+			'type' => array('shop',5),
 		),
 		'represented' => array(
 			'name' => 'в лице',
 			'hint' => 'менеджера Иванова Ивана Ивановича',
+			'type' => array('shop',5),
 		),
 		'basis' => array(
 			'name' => 'на основании',
 			'hint' => 'Доверенности №10 от 01.01.2019',
+			'type' => array('shop',5),
 		),
 
 		'delete' => array(
@@ -1168,6 +1431,51 @@ $MESS['EDOST_DELIVERY_CONTROL'] = array(
 	'week' => array('воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'),
 );
 
+$MESS['EDOST_DELIVERY_LOCATION_UPDATE'] = array(
+	'0002001012' => array('Белоозерский', 'Beloozerskiy', '0000028025'),
+	'0002001017' => array('рп Софрино, г. Пушкино', 'Sofrino', '0000028025'),
+	'0002001020' => array('рп Монино, г. Щелково', 'Monino', '0000028025'),
+	'0002001048' => array('Курчалой', 'Kurchaloy', '0000028067'),
+	'0002001714' => array('рп Маркова, Иркутский район', 'Markova', '0000028091'),
+	'0002001740' => array('рп Андреевка, г. Солнечногорск', 'Andreevka', '0000028025'),
+	'0002001741' => array('рп Большие Вяземы, г. Одинцово', 'Bolshie Vyzemi', '0000028025'),
+	'0002001742' => array('рп Быково, г. Раменское', 'Bikovo', '0000028025'),
+	'0002001744' => array('рп Запрудня, г. Талдом', 'Zaprudny', '0000028025'),
+	'0002001745' => array('рп Ильинский, г. Раменское', 'Ilinskiy', '0000028025'),
+	'0002001750' => array('рп Некрасовский, г. Дмитров', 'Nekrasovskiy', '0000028025'),
+	'0002001751' => array('рп Обухово, г. Ногинск', 'Obuhovo', '0000028025'),
+	'0002001753' => array('рп Правдинский, г. Пушкино', 'Pravdinskiy', '0000028025'),
+	'0002001754' => array('рп Свердловский, г. Лосино-Петровский', 'Sverdlovskiy', '0000028025'),
+	'0002001756' => array('дп Удельная, г. Раменское', 'Udelnay', '0000028025'),
+	'0002001757' => array('рп Фряново, г. Щелково', 'Frynovo', '0000028025'),
+	'0002001771' => array('рп Полазна, г. Добрянка', 'Polazna', '0000028077'),
+	'0002001192' => array('Приозерск', 'Priozersk', '0000000310'),
+	'0000029755' => array('район Железнодорожный, г. Балашиха', 'Geleznodorogniy', '0000028025'),
+	'0000000338' => array('Туркестанская область', 'Turkestanskay Oblast', '0000000276'),
+	'0002001813' => array('Кудрово', 'Kudrovo', '0000028043'),
+	'0002001814' => array('п. Парголово', 'Pargolovo', '0000028043', '0002001837'),
+	'0002001815' => array('п. Коммунарка, п. Сосенское', 'Kommunarka', '0000028025', '0002001836'),
+	'0002001816' => array('п. Стрельна', 'Strelna', '0000028043', '0002001837'),
+	'0002001817' => array('п. завода Мосрентген, п. Мосрентген', 'zavoda Mosrentgen', '0000028025', '0002001836'),
+	'0002001818' => array('пгт Черноморское, Черноморский район', 'Chernomorskoe', '0000028114'),
+	'0002001834' => array('д. Путилково, г. Красногорск', 'Putilkovo', '0000028025'),
+	'0002001820' => array('п. Бугры, Всеволожский район', 'Bugri', '0000028043'),
+	'0002001821' => array('район Лазаревский, г. Сочи', 'Lazarevskiy', '0000028054'),
+	'0002001822' => array('п. Некрасовка', 'Nekrasovka', '0000028025', '0002001836'),
+	'0002001823' => array('рп Дрожжино, Ленинский район', 'Droggino', '0000028025'),
+	'0002001824' => array('дп Лесной Городок, г. Одинцово', 'Lesnoy Gorodok', '0000028025'),
+	'0002001825' => array('рп Лопатино, Ленинский район', 'Lopatino', '0000028025'),
+	'0002001826' => array('рп Боброво, Ленинский район', 'Bobrovo', '0000028025'),
+	'0002001827' => array('п. ВНИИССОК, г. Одинцово', 'VNIISSOK', '0000028025'),
+	'0002001828' => array('с. Высокая Гора, Высокогорский район', 'Visokay Gora', '0000028070'),
+	'0002001829' => array('с. Засечное, Пензенский район', 'Zasechnoe', '0000028078'),
+	'0002001830' => array('район Львовский, г. Подольск', 'Lvovskiy', '0000028025'),
+	'0002001831' => array('д. Новое Девяткино, Всеволожский район', 'Novoe Devytkino', '0000028043'),
+	'0002001832' => array('пгт Новосемейкино, Красноярский район', 'Novosemeykino', '0000028076'),
+	'0002001833' => array('п. Развилка, Ленинский район', 'Razvilka', '0000028025'),
+	'0002001819' => array('пгт Стройкерамика, Волжский район', 'Stroykeramika', '0000028076'),
+	'0002001835' => array('станица Вешенская, Шолоховский район', 'Veshenskay', '0000028056')
+);
 
 $MESS['SALE_DH_EDOST_INSURANCE'] = 'со страховкой';
 

@@ -33,24 +33,16 @@ class ItemCollection extends Market\Api\Reference\Collection
 
 		foreach ($this->collection as $item)
 		{
-			$offerId = $item->getOfferId();
-			$productId = null;
+			$productId = $item->mapProductId($offerMap);
 
-			if ($offerMap === null)
+			if ($productId === null) { continue; }
+
+			if (!isset($result[$productId]))
 			{
-				$productId = $offerId;
-			}
-			else if (isset($offerMap[$offerId]))
-			{
-				$productId = $offerMap[$offerId];
+				$result[$productId] = [];
 			}
 
-			if ($productId !== null)
-			{
-				if (!isset($result[$productId])) { $result[$productId] = []; }
-
-				$result[$productId][] = $item->getCount();
-			}
+			$result[$productId][] = $item->getCount();
 		}
 
 		return $result;

@@ -22,7 +22,7 @@ Loc::loadMessages(__FILE__);
 
 class GoogleMerchantGeneral extends GoogleMerchant {
 	
-	CONST DATE_UPDATED = '2018-12-17';
+	CONST DATE_UPDATED = '2021-07-05';
 	
 	CONST CATEGORIES_TXT_URL_RUSSIAN = 'http://www.google.com/basepages/producttype/taxonomy-with-ids.ru-RU.txt';
 	CONST CATEGORIES_TXT_URL_ENGLISH = 'http://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt';
@@ -1490,6 +1490,62 @@ class GoogleMerchantGeneral extends GoogleMerchant {
 				),
 			),
 		));
+		if($bAdmin){
+			$arResult[] = new Field(array(
+				'SORT' => 2000,
+				'NAME' => static::getMessage('HEADER_LOCAL_INVENTORY_ADS'),
+				'IS_HEADER' => true,
+			));
+		}
+		$arResult[] = new Field(array(
+			'CODE' => 'STORE_CODE',
+			'DISPLAY_CODE' => 'store_code',
+			'NAME' => static::getMessage('FIELD_STORE_CODE_NAME'),
+			'SORT' => 2010,
+			'DESCRIPTION' => static::getMessage('FIELD_STORE_CODE_DESC'),
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'CONST',
+				),
+			),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'QUANTITY',
+			'DISPLAY_CODE' => 'quantity',
+			'NAME' => static::getMessage('FIELD_QUANTITY_NAME'),
+			'SORT' => 2020,
+			'DESCRIPTION' => static::getMessage('FIELD_QUANTITY_DESC'),
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'VALUE' => 'CATALOG_QUANTITY',
+				),
+			),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'PICKUP_METHOD',
+			'DISPLAY_CODE' => 'pickup_method',
+			'NAME' => static::getMessage('FIELD_PICKUP_METHOD_NAME'),
+			'SORT' => 2030,
+			'DESCRIPTION' => static::getMessage('FIELD_PICKUP_METHOD_DESC'),
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'CONST',
+				),
+			),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'PICKUP_SLA',
+			'DISPLAY_CODE' => 'pickup_SLA',
+			'NAME' => static::getMessage('FIELD_PICKUP_SLA_NAME'),
+			'SORT' => 2040,
+			'DESCRIPTION' => static::getMessage('FIELD_PICKUP_SLA_DESC'),
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'CONST',
+				),
+			),
+		));
 		#
 		return $arResult;
 	}
@@ -1638,6 +1694,16 @@ class GoogleMerchantGeneral extends GoogleMerchant {
 			$arXmlTags['g:tax'] = $this->getXmlTag_Tax($intProfileID, $arFields);
 		if(!Helper::isEmpty($arFields['TAX_CATEGORY']))
 			$arXmlTags['g:tax_category'] = Xml::addTag($arFields['TAX_CATEGORY']);
+		
+		#
+		if(!Helper::isEmpty($arFields['STORE_CODE']))
+			$arXmlTags['g:store_code'] = Xml::addTag($arFields['STORE_CODE']);
+		if(!Helper::isEmpty($arFields['QUANTITY']))
+			$arXmlTags['g:quantity'] = Xml::addTag($arFields['QUANTITY']);
+		if(!Helper::isEmpty($arFields['PICKUP_METHOD']))
+			$arXmlTags['g:pickup_method'] = Xml::addTag($arFields['PICKUP_METHOD']);
+		if(!Helper::isEmpty($arFields['PICKUP_SLA']))
+			$arXmlTags['g:pickup_SLA'] = Xml::addTag($arFields['PICKUP_SLA']);
 		
 		# Build XML
 		$arXml = array(
@@ -2079,24 +2145,6 @@ class GoogleMerchantGeneral extends GoogleMerchant {
 			),
 		);
 	}
-	
-	/**
-	 *	Get XML element section ID (for db field 'SECTION_ID')
-	 */
-	/*
-	protected static function getElement_SectionID($intProfileID, $arElement){
-		$intSectionID = 0;
-		if($arElement['IBLOCK_SECTION_ID']){
-			$intSectionID = $arElement['IBLOCK_SECTION_ID'];
-		}
-		elseif($arElement['PARENT']['IBLOCK_SECTION_ID']){
-			$intSectionID = $arElement['PARENT']['IBLOCK_SECTION_ID'];
-		}
-		return $intSectionID;
-	}
-	*/
-	
-	/* END OF BASE METHODS FOR XML SUBCLASSES */
 
 }
 

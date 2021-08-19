@@ -170,10 +170,13 @@
 
 		getLang: function(key, replaces) {
 			var langKey;
+			var optionKey = 'lang' + key.substr(0, 1).toUpperCase() + key.substr(1).toLowerCase();
 			var result;
 
-			if (key in this.options.lang) {
+			if (this.options.lang != null && key in this.options.lang) {
 				result = this.options.lang[key];
+			} else if (optionKey in this.options) {
+				result = this.options[optionKey];
 			} else {
 				langKey = this.options.langPrefix + key;
 				result = BX.message(langKey) || '';

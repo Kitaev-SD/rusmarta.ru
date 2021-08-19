@@ -40,6 +40,19 @@ abstract class Property
 	}
 
 	/**
+	 * Обновить свойство
+	 *
+	 * @param int $propertyId
+	 * @param array $fields
+	 *
+	 * @return Main\Entity\UpdateResult
+	 */
+	public function update($propertyId, $fields)
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'update');
+	}
+
+	/**
 	 * @param int $propertyId
 	 *
 	 * @return string

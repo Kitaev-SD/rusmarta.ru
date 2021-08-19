@@ -117,3 +117,18 @@ $arIBlockParams = $arParams['IBLOCK_PARAMS'];
 		/>
 	</td>
 </tr>
+
+<tr id="tr_BARCODE_NOT_REQUIRED">
+	<td>
+		<?=Helper::showHint(static::getMessage('BARCODE_NOT_REQUIRED_DESC'));?>
+		<?=static::getMessage('BARCODE_NOT_REQUIRED');?>
+	</td>
+	<td>
+		<input type="hidden" name="iblockparams[<?=$intIBlockID;?>][BARCODE_NOT_REQUIRED]" value="N" />
+			<input type="checkbox" name="iblockparams[<?=$intIBlockID;?>][BARCODE_NOT_REQUIRED]" value="Y" 
+				data-role="ozon_barcode_not_required"
+				<?if($arIBlockParams['BARCODE_NOT_REQUIRED']=='Y'):?>checked="checked"<?endif?>
+				id="checkbox_barcode_not_required"
+			/>
+	</td>
+</tr>

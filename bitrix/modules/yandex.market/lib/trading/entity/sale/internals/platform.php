@@ -10,6 +10,64 @@ if (!Main\Loader::includeModule('sale') || !class_exists(Sale\TradingPlatform\Pl
 
 class Platform extends Sale\TradingPlatform\Platform
 {
+	protected static $instanceCode;
+
+	/**
+	 * @deprecated
+	 * @param string|null $code
+	 *
+	 * @return Sale\TradingPlatform\Platform|null
+	 */
+	public static function getInstance($code = null)
+	{
+		if ($code !== null)
+		{
+			return static::getInstanceCompatible($code);
+		}
+
+		if (static::$instanceCode === null)
+		{
+			static::$instanceCode = static::resolveInstanceCode();
+		}
+
+		return static::$instanceCode !== false
+			? static::getInstanceCompatible(static::$instanceCode)
+			: null;
+	}
+
+	protected static function getInstanceCompatible($code)
+	{
+		return \method_exists(static::class, 'getInstanceByCode')
+			? static::getInstanceByCode($code)
+			: parent::getInstance($code); // old bitrix behavior
+	}
+
+	protected static function resolveInstanceCode()
+	{
+		$result = false;
+
+		$query = Sale\TradingPlatformTable::getList([
+			'select' => [
+				'CODE',
+			],
+			'filter' => [
+				'=CLASS' => '\\' . static::class,
+			],
+			'order' => [
+				'ACTIVE' => 'desc',
+				'ID' => 'asc',
+			],
+			'limit' => 1,
+		]);
+
+		if ($row = $query->fetch())
+		{
+			$result = $row['CODE'];
+		}
+
+		return $result;
+	}
+
 	public function installExtended(array $data = [])
 	{
 		$fields = $this->prepareRecordData($data);

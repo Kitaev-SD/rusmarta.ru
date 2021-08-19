@@ -154,7 +154,7 @@ class tinkoffHandler extends PaySystem\ServiceHandler implements PaySystem\IRefu
 
                 $nameProduct = $this->convertEncodingTinkoff($productData['NAME']);
                 $items[] = [
-                    "Name"          => mb_substr($nameProduct, 0, 64),
+                    "Name"          => mb_substr($nameProduct, 0, 64, 'UTF-8'),
                     "Price"         => round($productData['PRICE'] * 100),
                     "Quantity"      => round($productData['QUANTITY'], 3, PHP_ROUND_HALF_UP),
                     "Amount"        => round($productData['PRICE'] * $productData['QUANTITY'] * 100),
@@ -163,13 +163,13 @@ class tinkoffHandler extends PaySystem\ServiceHandler implements PaySystem\IRefu
                     "Tax"           => $vat,
                 ];
             }
-
             $deliveryPrice = $order->getDeliveryPrice();
             if ($deliveryPrice > 0) {
                 $deliveryVat = $params['DELIVERY_TAXATION'];
                 if (!$deliveryVat) {
                     $errorMessage .= GetMessage("SALE_TINKOFF_TAX_DELIVERY_ERROR");
                 }
+				var_dump("test");
                 $deliverySystemId = reset($order->getDeliverySystemId());
                 $dataDelivery = \Bitrix\Sale\Delivery\Services\Table::getRowById($deliverySystemId);
                 $items[] = [
@@ -260,12 +260,15 @@ class tinkoffHandler extends PaySystem\ServiceHandler implements PaySystem\IRefu
     private function logsTinkoff($paymentData, $request)
     {
         $log = '[' . date('D M d H:i:s Y', time()) . '] ';
+		
         $log .= json_encode($paymentData, JSON_UNESCAPED_UNICODE);
         $log .= "\n";
+
         file_put_contents(dirname(__FILE__) . "/tinkoff.log", $log, FILE_APPEND);
 
         $log = '[' . date('D M d H:i:s Y', time()) . '] ';
         $log .= $request;
+
         $log .= "\n";
         file_put_contents(dirname(__FILE__) . "/tinkoff.log", $log, FILE_APPEND);
     }

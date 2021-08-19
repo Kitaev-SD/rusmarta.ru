@@ -24,6 +24,7 @@ $MESS["ACRIT_CRM_TAB_SYNC_MAN_1D"] = "За последние сутки";
 $MESS["ACRIT_CRM_TAB_SYNC_MAN_ONLY_NEW"] = "Загружать только ещё не загруженные в интернет-магазине заказы";
 $MESS["ACRIT_CRM_TAB_SYNC_MAN_RUN_TITLE"] = "Запустить загрузку данных заказов";
 $MESS["ACRIT_CRM_TAB_SYNC_ADD_TITLE"] = "Фоновая регулярная синхронизация";
-$MESS["ACRIT_CRM_TAB_SYNC_ADD_PERIOD"] = "Период синхронизации (мин):";
+$MESS["ACRIT_CRM_TAB_SYNC_ADD_ACTIVE"] = "Активность фоновой синхронизации";
+$MESS["ACRIT_CRM_TAB_SYNC_ADD_PERIOD"] = "Период синхронизации (мин):"; 
 $MESS["ACRIT_CRM_TAB_SYNC_MAN_COUNT"] = "Загружено в интернет-магазин заказов:";
 ?>

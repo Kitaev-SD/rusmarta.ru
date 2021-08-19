@@ -6,6 +6,7 @@ use Yandex\Market;
 use Yandex\Market\Trading\Service as TradingService;
 use Bitrix\Main;
 
+/** @deprecated */
 class DeliveryOptionReadyDate
 {
 	/** @var TradingService\MarketplaceDbs\Options\DeliveryOption */
@@ -40,32 +41,22 @@ class DeliveryOptionReadyDate
 			$result->add($delay);
 		}
 
-		if (!$this->timetable->isMatch($result))
+		if (!$this->timetable->isMatch($result, TradingService\MarketplaceDbs\Options\ScheduleOption::MATCH_UNTIL_END))
 		{
-			$result = $this->getNextWorkingDay($result);
+			$result = $this->timetable->getNextWorkingDay($result);
 		}
 
 		return $result;
 	}
 
+	/**
+	 * @deprecated
+	 * @param Main\Type\Date $date
+	 *
+	 * @return Main\Type\Date
+	 */
 	protected function getNextWorkingDay(Main\Type\Date $date)
 	{
-		$result = clone $date;
-
-		do
-		{
-			$result->add('P1D');
-
-			$intervals = $this->timetable->getIntervals($result);
-			$isMatch = !empty($intervals);
-
-			if ($isMatch && $result instanceof Main\Type\DateTime)
-			{
-				$result = $this->timetable->applyIntervals($result, $intervals);
-			}
-		}
-		while (!$isMatch);
-
-		return $result;
+		return $this->timetable->getNextWorkingDay($date);
 	}
 }

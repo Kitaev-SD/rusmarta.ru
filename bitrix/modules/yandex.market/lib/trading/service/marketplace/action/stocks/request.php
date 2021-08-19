@@ -12,6 +12,11 @@ class Request extends Market\Trading\Service\Common\Action\HttpRequest
 		return (string)$this->getRequiredField('warehouseId');
 	}
 
+	public function getPartnerWarehouseId()
+	{
+		return (string)$this->getRequiredField('partnerWarehouseId');
+	}
+
 	public function getSkus()
 	{
 		return (array)$this->getRequiredField('skus');

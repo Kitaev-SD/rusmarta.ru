@@ -7,8 +7,8 @@ namespace Acrit\Core\Orders;
 //$imported_count = (int)$_REQUEST['imported_count'];
 //$next_item_new = 0;
 
-$next_item = $_REQUEST['next_item'] ? $_REQUEST['next_item'] : 0;
-$cnt = $_REQUEST['count'] ? $_REQUEST['count'] : 0;
+$next_item = $_REQUEST['next_item'] ? : 0;
+$cnt = $_REQUEST['count'] ? : 0;
 //Helper::Log('(sync) next_item '.$next_item);
 $step_time = 20;
 $start_time = time();
@@ -57,7 +57,9 @@ if (!$cnt || $next_item < $cnt) {
 			$store_order_id = Controller::findOrder($ext_order);
 			if (!$store_order_id) {
 				try {
-					Controller::syncExtToStore($ext_order);
+					if (Controller::syncExtToStore($ext_order)) {
+						$i++;
+					}
 				}
 				catch (\Exception $e) {
 //					\Helper::Log('(sync) can\'t sync of order ' . $order_data['ID']);
@@ -66,13 +68,14 @@ if (!$cnt || $next_item < $cnt) {
 		}
 		else {
 			try {
-				Controller::syncExtToStore($ext_order);
+				if (Controller::syncExtToStore($ext_order)) {
+					$i++;
+				}
 			}
 			catch (\Exception $e) {
 //				\Helper::Log('(sync) can\'t sync of order ' . $order_data['ID']);
 			}
 		}
-		$i++;
 	}
 }
 $next_item   = $i;

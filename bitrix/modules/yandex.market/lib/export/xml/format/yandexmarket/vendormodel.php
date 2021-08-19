@@ -354,12 +354,14 @@ class VendorModel extends Xml\Format\Reference\Base
 					new Xml\Tag\OldPrice(),
 					new Xml\Tag\PurchasePrice(),
 					new Xml\Tag\EnableAutoDiscounts(),
+					new Xml\Tag\Vat(),
 					new Xml\Tag\CurrencyId(['required' => true]),
 					new Xml\Tag\CategoryId(['required' => true]),
 					new Xml\Tag\Picture(['multiple' => true, 'visible' => true]),
 					new Xml\Tag\Base(['name' => 'delivery', 'value_type' => 'boolean']),
 					new Xml\Tag\Base(['name' => 'pickup', 'value_type' => 'boolean']),
 					new Xml\Tag\Base(['name' => 'store', 'value_type' => 'boolean']),
+					new Xml\Tag\CargoTypes(),
 				];
 
 				if ($this->isSupportDeliveryOptions())

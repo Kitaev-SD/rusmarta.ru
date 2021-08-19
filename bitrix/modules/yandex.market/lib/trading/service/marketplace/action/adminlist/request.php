@@ -47,6 +47,21 @@ class Request extends TradingService\Reference\Action\DataRequest
 		]);
 	}
 
+	public function getPage()
+	{
+		return Market\Data\Number::normalize($this->getField('page'));
+	}
+
+	public function getPageSize()
+	{
+		return Market\Data\Number::normalize($this->getField('pageSize'));
+	}
+
+	public function suppressErrors()
+	{
+		return (bool)$this->getField('suppressErrors');
+	}
+
 	public function useCache()
 	{
 		return (bool)$this->getField('useCache');

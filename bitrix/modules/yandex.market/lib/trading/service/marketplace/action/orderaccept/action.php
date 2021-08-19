@@ -10,6 +10,8 @@ use Yandex\Market\Trading\Service as TradingService;
 /** @property TradingService\Marketplace\Provider $provider */
 class Action extends TradingService\Common\Action\OrderAccept\Action
 {
+	use TradingService\Marketplace\Concerns\Action\HasBasketWarehouses;
+
 	/** @var Request */
 	protected $request;
 
@@ -26,6 +28,75 @@ class Action extends TradingService\Common\Action\OrderAccept\Action
 		{
 			$this->order->createShipment($deliveryId);
 		}
+	}
+
+	protected function fillBasketStore()
+	{
+		$options = $this->provider->getOptions();
+
+		if (!$options->useWarehouses()) { return; }
+
+		$items = $this->request->getOrder()->getItems();
+		$basketMap = $this->getBasketItemsMap($items);
+		$itemWarehouseMap = $this->makeBasketWarehouseMap($items);
+		$warehouseIds = array_unique(array_values($itemWarehouseMap));
+		$warehouseStoreMap = $this->mapWarehouseStores($warehouseIds);
+		$basketStoreMap = $this->combineBasketStoreMap($basketMap, $itemWarehouseMap, $warehouseStoreMap);
+
+		foreach ($basketStoreMap as $basketCode => $storeId)
+		{
+			$this->order->setBasketItemStore($basketCode, $storeId);
+		}
+	}
+
+	protected function makeBasketWarehouseMap(TradingService\Marketplace\Model\Order\ItemCollection $items)
+	{
+		$result = [];
+
+		/** @var TradingService\Marketplace\Model\Order\Item $item */
+		foreach ($items as $item)
+		{
+			$result[$item->getInternalId()] = $item->getPartnerWarehouseId();
+		}
+
+		return $result;
+	}
+
+	protected function mapWarehouseStores(array $warehouseIds)
+	{
+		$options = $this->provider->getOptions();
+		$storeEntity = $this->environment->getStore();
+		$warehouseField = $options->getWarehouseStoreField();
+		$result = [];
+
+		foreach ($warehouseIds as $warehouseId)
+		{
+			$storeId = $storeEntity->findStore($warehouseField, $warehouseId);
+
+			if ($storeId === null) { continue; }
+
+			$result[$warehouseId] = $storeId;
+		}
+
+		return $result;
+	}
+
+	protected function combineBasketStoreMap(array $basketMap, array $itemWarehouseMap, array $warehouseStoreMap)
+	{
+		$result = [];
+
+		foreach ($basketMap as $itemId => $basketCode)
+		{
+			if (!isset($itemWarehouseMap[$itemId])) { continue; }
+
+			$warehouseId = $itemWarehouseMap[$itemId];
+
+			if (!isset($warehouseStoreMap[$warehouseId])) { continue; }
+
+			$result[$basketCode] = $warehouseStoreMap[$warehouseId];
+		}
+
+		return $result;
 	}
 
 	protected function fillPaySystem()

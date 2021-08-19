@@ -9,7 +9,7 @@ class DeliveryIntervalsNormalize
 {
 	/** @var array{date: Main\Type\Date, fromTime: string|null, toTime: string|null}[] */
 	protected $intervals;
-	/** @var \Bitrix\Main\Type\DateTime|null */
+	/** @var \Bitrix\Main\Type\Date|null */
 	protected $minDate;
 	/** @var int|null */
 	protected $minDuration;
@@ -45,7 +45,7 @@ class DeliveryIntervalsNormalize
 		$this->maxDaysCount = (int)$count;
 	}
 
-	public function setMinDate(Main\Type\DateTime $dateTime)
+	public function setMinDate(Main\Type\Date $dateTime)
 	{
 		$this->minDate = $dateTime;
 	}
@@ -56,17 +56,9 @@ class DeliveryIntervalsNormalize
 
 		foreach ($this->makeDayGroups() as $dayGroup)
 		{
-			$dayGroup = $this->expire($dayGroup);
-
-			if (empty($dayGroup)) { continue; }
-
 			$dayGroupWithTime = $this->sanitize($dayGroup);
 
-			if (empty($dayGroupWithTime))
-			{
-				$dayGroups[] = $dayGroup;
-			}
-			else
+			if (!empty($dayGroupWithTime))
 			{
 				$dayGroupWithTime = $this->sort($dayGroupWithTime);
 				$dayGroupWithTime = $this->intersect($dayGroupWithTime);
@@ -74,8 +66,14 @@ class DeliveryIntervalsNormalize
 				$dayGroupWithTime = $this->splitByDuration($dayGroupWithTime);
 				$dayGroupWithTime = $this->mergeByMaxTimesCount($dayGroupWithTime);
 
-				$dayGroups[] = $dayGroupWithTime;
+				$dayGroup = $dayGroupWithTime;
 			}
+
+			$dayGroup = $this->expire($dayGroup);
+
+			if (empty($dayGroup)) { continue; }
+
+			$dayGroups[] = $dayGroup;
 
 			if ($this->maxDaysCount !== null && count($dayGroups) >= $this->maxDaysCount) { break; }
 		}
@@ -96,7 +94,7 @@ class DeliveryIntervalsNormalize
 			{
 				$isValid = false;
 			}
-			else if ($dateCompare === 0 && isset($interval['toTime']))
+			else if ($dateCompare === 0 && isset($interval['toTime']) && ($this->minDate instanceof Main\Type\DateTime))
 			{
 				$isValid = ($this->minDate->format('H:i') < $interval['toTime']);
 			}

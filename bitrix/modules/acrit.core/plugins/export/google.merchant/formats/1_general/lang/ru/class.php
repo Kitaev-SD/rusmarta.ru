@@ -38,6 +38,7 @@ $MESS[$strMessPrefix.'HEADER_CAMPAIGNS'] = 'Торговые кампании и другие инструмен
 $MESS[$strMessPrefix.'HEADER_SERVICES'] = 'Целевые сервисы';
 $MESS[$strMessPrefix.'HEADER_DELIVERY'] = 'Доставка';
 $MESS[$strMessPrefix.'HEADER_TAXES'] = 'Налоги';
+$MESS[$strMessPrefix.'HEADER_LOCAL_INVENTORY_ADS'] = 'Данные для фида о местном ассортименте';
 
 // Fields
 $MESS[$strMessPrefix.'FIELD_ID_NAME'] = 'Идентификатор товара';
@@ -1258,6 +1259,15 @@ $MESS[$strMessPrefix.'FIELD_TAX_CATEGORY_NAME'] = 'Категория налогообложения';
 	<li>Категории в данных о товарах должны совпадать с теми, которые указаны в соответствующем разделе Merchant Center.</li>
 </ul>
 ';
+#
+$MESS[$strMessPrefix.'FIELD_STORE_CODE_NAME'] = 'Код магазина';
+	$MESS[$strMessPrefix.'FIELD_STORE_CODE_DESC'] = 'Атрибут store_code указывается с учетом регистра и должен совпадать с информацией в вашем аккаунте сервиса "Google Мой бизнес".';
+$MESS[$strMessPrefix.'FIELD_QUANTITY_NAME'] = 'Количество товара';
+	$MESS[$strMessPrefix.'FIELD_QUANTITY_DESC'] = 'Количество товара для выгрузки.';
+$MESS[$strMessPrefix.'FIELD_PICKUP_METHOD_NAME'] = 'Возможность самовывоза';
+	$MESS[$strMessPrefix.'FIELD_PICKUP_METHOD_DESC'] = 'Возможность самовывоза. Необязательный атрибут. Этот атрибут нужно добавлять в сведения о тех товарах, для которых возможен самовывоз.';
+$MESS[$strMessPrefix.'FIELD_PICKUP_SLA_NAME'] = 'Дата самовывоза';
+	$MESS[$strMessPrefix.'FIELD_PICKUP_SLA_DESC'] = 'Дата самовывоза. Необязательный атрибут. Этот атрибут нужно добавлять в сведения о тех товарах, для которых возможен самовывоз.';
 
 
 

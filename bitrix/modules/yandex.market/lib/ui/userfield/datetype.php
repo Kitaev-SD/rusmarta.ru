@@ -51,9 +51,11 @@ class DateType
 		return static::callParent('getAdminListViewHTML', [$arUserField, $arHtmlControl]);
 	}
 
-	public function getEditFormHtml($userField, $htmlControl)
+	public static function getEditFormHtml($userField, $htmlControl)
 	{
 		$value = Helper\Value::asSingle($userField, $htmlControl);
+
+		$htmlControl['VALIGN'] = 'middle';
 
 		return static::getEditInput($userField, [
 			'NAME' => $htmlControl['NAME'],
@@ -61,7 +63,7 @@ class DateType
 		]);
 	}
 
-	public function getEditFormHtmlMulty($userField, $htmlControl)
+	public static function getEditFormHtmlMulty($userField, $htmlControl)
 	{
 		$values = Helper\Value::asMultiple($userField, $htmlControl);
 		$attributes = Fieldset\Helper::makeChildAttributes($userField);

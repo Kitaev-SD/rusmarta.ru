@@ -116,4 +116,16 @@ abstract class OrderRegistry
 	{
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'searchBroken');
 	}
+
+	/**
+	 * @param string $value
+	 * @param string $field
+	 * @param Platform $platform
+	 *
+	 * @return string[]
+	 */
+	public function suggestExternalIds($value, $field, Platform $platform)
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'suggestExternalIds');
+	}
 }

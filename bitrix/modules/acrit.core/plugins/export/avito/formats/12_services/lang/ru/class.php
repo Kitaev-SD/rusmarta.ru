@@ -81,4 +81,226 @@ $MESS[$strMessPrefix.'FIELD_TITLE_NAME'] = 'Название объявления';
 Примечание: не пишите в название цену и контактную информацию — для этого есть отдельные поля — и не используйте слово «продам».';
 $MESS[$strMessPrefix.'FIELD_PRICE_NAME'] = 'Цена в рублях';
 	$MESS[$strMessPrefix.'FIELD_PRICE_DESC'] = 'Цена в рублях — целое число.';
+
+$MESS[$strMessPrefix.'FIELD_TRANSPORT_TYPE_NAME'] = 'Тип транспорта';
+	$MESS[$strMessPrefix.'FIELD_TRANSPORT_TYPE_DESC'] = 'Тип транспорта. Одно из значений из списка:
+	<ul>
+		<li>Авто</li>
+		<li>Мототехника</li>
+		<li>Водный транспорт</li>
+		<li>Воздушный транспорт</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_PURPOSE_NAME'] = 'Назначение';
+	$MESS[$strMessPrefix.'FIELD_PURPOSE_DESC'] = 'Назначение. Одно из значений из списка
+	<ul>
+		<li>Авто для личного пользования</li>
+		<li>Авто под такси</li>
+		<li>Автоприцеп</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_RENT_TYPE_NAME'] = 'Тип аренды';
+	$MESS[$strMessPrefix.'FIELD_RENT_TYPE_DESC'] = 'Тип аренды. Одно из значений из списка
+	<ul>
+		<li>С водителем</li>
+		<li>Без водителя</li>
+		<li>С водителем и без</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_TRAILER_TYPE_NAME'] = 'Тип прицепа';
+	$MESS[$strMessPrefix.'FIELD_TRAILER_TYPE_DESC'] = 'Тип прицепа. Одно из значений из списка
+	<ul>
+		<li>Для перевозки грузов (универсальный)</li>
+		<li>Для перевозки мототехники</li>
+		<li>Для перевозки водного транспорта</li>
+		<li>Подкат-эвакуатор</li>
+		<li>Автовоз</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_CARRYING_CAPACITY_NAME'] = 'Грузоподъемность, кг';
+	$MESS[$strMessPrefix.'FIELD_CARRYING_CAPACITY_DESC'] = 'Грузоподъемность в кг. Целое число.';
+$MESS[$strMessPrefix.'FIELD_MAXIMUM_PERMITTED_WEIGHT_NAME'] = 'Максимальная разрешенная масса, кг';
+	$MESS[$strMessPrefix.'FIELD_MAXIMUM_PERMITTED_WEIGHT_DESC'] = 'Максимальная разрешенная масса в кг. Целое число.';
+$MESS[$strMessPrefix.'FIELD_PLEDGE_NAME'] = 'Залог';
+	$MESS[$strMessPrefix.'FIELD_PLEDGE_DESC'] = 'Залог: Да / Нет.';
+$MESS[$strMessPrefix.'FIELD_COMMISSION_NAME'] = 'Комиссия';
+	$MESS[$strMessPrefix.'FIELD_COMMISSION_DESC'] = 'Комиссия: Да / Нет.';
+$MESS[$strMessPrefix.'FIELD_BUYOUT_NAME'] = 'Возможность выкупить авто';
+	$MESS[$strMessPrefix.'FIELD_BUYOUT_DESC'] = 'Возможность выкупить авто: Да / Нет.';
+$MESS[$strMessPrefix.'FIELD_DELIVERY_NAME'] = 'Доставка';
+	$MESS[$strMessPrefix.'FIELD_DELIVERY_DESC'] = 'Доставка: Да / Нет.';
+$MESS[$strMessPrefix.'FIELD_RENT_PURPOSE_NAME'] = 'Цель аренды';
+	$MESS[$strMessPrefix.'FIELD_RENT_PURPOSE_DESC'] = 'Цель аренды. Несколько значений из списка
+	<ul>
+		<li>Трансфер</li>
+		<li>Поездка в другой город</li>
+		<li>Поездка по городу</li>
+		<li>Личный водитель</li>
+		<li>Деловая поездка</li>
+		<li>Свадьба, праздник</li>
+		<li>Фотосессия, съёмки</li>
+		<li>Похороны</li>
+		<li>Перевозка маломобильных</li>
+		<li>Перевес госномеров</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_EXTRA_NAME'] = 'Дополнительно';
+	$MESS[$strMessPrefix.'FIELD_EXTRA_DESC'] = 'Дополнительно. Несколько значений в зависимости от цели аренды:
+	<ul>
+		<li>Авто под такси:
+			<ul>
+				<li>Брендирование</li>
+				<li>Детское кресло</li>
+				<li>Желтые номера</li>
+			</ul>
+		</li>
+		<li>Авто для личного пользования:
+			<ul>
+				<li>Детское кресло</li>
+				<li>Холодильник</li>
+				<li>Транспондер</li>
+				<li>Багажник на крышу</li>
+				<li>Крепления для лыж</li>
+				<li>Крепления для велосипеда</li>
+				<li>Украшения для авто</li>
+			</ul>
+		</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_WORK_TYPES_NAME'] = 'Услуги';
+	$MESS[$strMessPrefix.'FIELD_WORK_TYPES_DESC'] = 'Услуги. Несколько значений из списка в зависимости от категории
+	<ul>
+		<li>Электрика:
+			<ul>
+				<li>Прокладка кабеля</li>
+				<li>Сборка электрощита</li>
+				<li>Подключение силового кабеля к щиту</li>
+				<li>Замена автоматов</li>
+				<li>Установка контактора и автоматов защиты</li>
+				<li>Установка электросчётчика</li>
+				<li>Демонтаж электросети</li>
+				<li>Установка генераторов</li>
+				<li>Установка электромонтажного оборудования</li>
+				<li>Установка розеток и выключателей</li>
+				<li>Ремонт розеток и выключателей</li>
+				<li>Установка розетки для электроплиты</li>
+				<li>Установка люстр и потолочных светильников</li>
+				<li>Установка бра</li>
+				<li>Установка точечного светильника</li>
+				<li>Установка светодиодной ленты</li>
+				<li>Замена ламп</li>
+				<li>Ремонт люстр и осветительных приборов</li>
+				<li>Демонтаж бра</li>
+				<li>Демонтаж люстры</li>
+				<li>Установка звонка</li>
+				<li>Подключение телевизионной и телефонной сети</li>
+				<li>Видеонаблюдение, домофон</li>
+				<li>Проектирование, cметы, согласование</li>
+				<li>Электрика под ключ</li>
+				<li>Аварийный вызов электрика</li>
+				<li>Монтаж электрического тёплого пола</li>
+				<li>Другое</li>
+			</ul>
+		</li>
+		<li>Сантехника:
+			<ul>
+				<li>Монтаж сантехнических труб</li>
+				<li>Подвод к водопроводной сети</li>
+				<li>Устранение протечки</li>
+				<li>Устранение засора</li>
+				<li>Монтаж сантехнического люка</li>
+				<li>Врезка в стояк</li>
+				<li>Установка шарового крана</li>
+				<li>Гидроиспытания труб</li>
+				<li>Установка водосчётчика</li>
+				<li>Ремонт водосчётчика</li>
+				<li>Поверка водосчётчика</li>
+				<li>Подвод к канализационной сети</li>
+				<li>Прочистка канализации</li>
+				<li>Откачка канализации</li>
+				<li>Монтаж труб отопления</li>
+				<li>Установка радиатора отопления</li>
+				<li>Ремонт радиатора отопления</li>
+				<li>Монтаж водяного тёплого пола</li>
+				<li>Установка теплосчётчика</li>
+				<li>Поверка теплосчётчика</li>
+				<li>Ремонт теплосчётчика</li>
+				<li>Установка раковины</li>
+				<li>Установка сифона</li>
+				<li>Установка смесителя</li>
+				<li>Установка ванны</li>
+				<li>Установка душевой кабины</li>
+				<li>Установка душа</li>
+				<li>Установка унитаза</li>
+				<li>Установка унитаза с инсталляцией</li>
+				<li>Установка писсуара</li>
+				<li>Установка биде</li>
+				<li>Установка джакузи</li>
+				<li>Монтаж подиума под ванну</li>
+				<li>Монтаж подиума под душевую кабину</li>
+				<li>Монтаж экрана в ванной</li>
+				<li>Ремонт смесителя</li>
+				<li>Устранение засора в туалете</li>
+				<li>Реставрация ванны</li>
+				<li>Демонтаж ванны</li>
+				<li>Демонтаж раковины</li>
+				<li>Демонтаж смесителя</li>
+				<li>Демонтаж унитаза</li>
+				<li>Монтаж полотенцесушителя</li>
+				<li>Подключение посудомоечной машины</li>
+				<li>Подключение стиральной машины</li>
+				<li>Установка измельчителя отходов</li>
+				<li>Установка электрокотла</li>
+				<li>Установка водонагревателя</li>
+				<li>Установка насоса</li>
+				<li>Установка фильтра очистки воды</li>
+				<li>Ремонт электрокотла</li>
+				<li>Ремонт водонагревателя</li>
+				<li>Ремонт насоса</li>
+				<li>Проектирование, cметы, согласование</li>
+				<li>Аварийный вызов сантехника</li>
+				<li>Другое</li>
+			</ul>
+		</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_BODY_REPAIR_NAME'] = 'Кузовной ремонт';
+	$MESS[$strMessPrefix.'FIELD_BODY_REPAIR_DESC'] = 'Кузовной ремонт. Несколько значений из списка
+	<ul>
+		<li>Дефектовка</li>
+		<li>Покраска</li>
+		<li>Рихтовка</li>
+		<li>Сварка</li>
+		<li>Удаление вмятин и царапин без покраски</li>
+	</ul>
+	Для категории «Транспорт, перевозки / Автосервис / Кузовной ремонт»';
+$MESS[$strMessPrefix.'FIELD_WORK_EXPERIENCE_NAME'] = 'Опыт работы, лет';
+	$MESS[$strMessPrefix.'FIELD_WORK_EXPERIENCE_DESC'] = 'Опыт работы в годах';
+$MESS[$strMessPrefix.'FIELD_GUARANTEE_NAME'] = 'Гарантия';
+	$MESS[$strMessPrefix.'FIELD_GUARANTEE_DESC'] = 'Гарантия. Есть / Нет';
+$MESS[$strMessPrefix.'FIELD_MINIMUM_RENTAL_PERIOD_NAME'] = 'Минимальный срок аренды, дней';
+	$MESS[$strMessPrefix.'FIELD_MINIMUM_RENTAL_PERIOD_DESC'] = 'Минимальный срок аренды в днях.';
+$MESS[$strMessPrefix.'FIELD_PLEDGE_AMOUNT_NAME'] = 'Размер залога, рублей';
+	$MESS[$strMessPrefix.'FIELD_PLEDGE_AMOUNT_DESC'] = 'Размер залога в рублях';
+$MESS[$strMessPrefix.'FIELD_COMMISSION_AMOUNT_NAME'] = 'Размер комиссии, %';
+	$MESS[$strMessPrefix.'FIELD_COMMISSION_AMOUNT_DESC'] = 'Размер комиссии в процентах';
+$MESS[$strMessPrefix.'FIELD_HEIGHT_NAME'] = 'Высота, м';
+	$MESS[$strMessPrefix.'FIELD_HEIGHT_DESC'] = 'Высота в метрах';
+$MESS[$strMessPrefix.'FIELD_WIDTH_NAME'] = 'Ширина, м';
+	$MESS[$strMessPrefix.'FIELD_WIDTH_DESC'] = 'Ширина в метрах';
+$MESS[$strMessPrefix.'FIELD_LENGTH_NAME'] = 'Длина, м';
+	$MESS[$strMessPrefix.'FIELD_LENGTH_DESC'] = 'Длина в метрах';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

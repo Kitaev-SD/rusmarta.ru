@@ -59,7 +59,28 @@ class Summary
 		{
 			if (!isset($values[$key])) { continue; }
 
-			$result[$key] = static::getDisplayValue($field, $values[$key], $values);
+			$hasSummaryTemplate = !empty($field['SETTINGS']['SUMMARY']) && is_string($field['SETTINGS']['SUMMARY']);
+			$isMultiple = (isset($field['MULTIPLE']) && $field['MULTIPLE'] !== 'N');
+			$fieldValue = $values[$key];
+
+			if ($hasSummaryTemplate && $isMultiple)
+			{
+				$parts = [];
+
+				if (is_array($fieldValue))
+				{
+					foreach ($fieldValue as $fieldValueItem)
+					{
+						$parts[] = static::getDisplayValue($field, $fieldValueItem, $values);
+					}
+				}
+
+				$result[$key] = implode(', ', $parts);
+			}
+			else
+			{
+				$result[$key] = static::getDisplayValue($field, $fieldValue, $values);
+			}
 		}
 
 		return $result;
@@ -83,6 +104,11 @@ class Summary
 			$templateKeys = SummaryTemplate::getUsedKeys($template);
 			$templateVars = is_array($value) ? $value : [];
 
+			if (isset($field['FIELDS']))
+			{
+				$templateVars = static::getDisplayValues($field['FIELDS'], $templateVars);
+			}
+
 			if (!empty($templateKeys) && in_array('VALUE', $templateKeys, true))
 			{
 				$templateVars['VALUE'] = static::getSystemDisplayValue($field, $value, $values);
@@ -100,6 +126,7 @@ class Summary
 
 	protected static function getSystemDisplayValue($field, $value, $values)
 	{
+		$field = Field::extend($field);
 		$result = Renderer::getViewHtml($field, $value, $values);
 
 		if ($result === '&nbsp;')

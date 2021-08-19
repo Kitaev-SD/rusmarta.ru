@@ -3,12 +3,14 @@
 namespace Yandex\Market\Trading\Entity\Reference;
 
 use Yandex\Market;
+use Yandex\Market\Trading\Entity\Operation as EntityOperation;
 use Bitrix\Main;
 
 abstract class Order
 {
 	protected $internalOrder;
 	protected $environment;
+	protected $calculationMode = EntityOperation\PriceCalculation::DELIVERY | EntityOperation\PriceCalculation::PRODUCT;
 
 	public function __construct(Environment $environment, $internalOrder)
 	{
@@ -139,6 +141,16 @@ abstract class Order
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'setPersonType');
 	}
 
+	public function setCalculationMode($mode = null)
+	{
+		$this->calculationMode = $mode;
+	}
+
+	protected function needCalculate($operation)
+	{
+		return $operation & $this->calculationMode;
+	}
+
 	/**
 	 * Подготовка заказа перед наполнением
 	 */
@@ -258,6 +270,17 @@ abstract class Order
 	}
 
 	/**
+	 * @param string $basketCode
+	 * @param string|int $storeId
+	 *
+	 * @return Main\Result
+	 */
+	public function setBasketItemStore($basketCode, $storeId)
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'setBasketItemStore');
+	}
+
+	/**
 	 * @param int $deliveryId
 	 * @param float|null $price
 	 * @param array|null $data
@@ -267,6 +290,16 @@ abstract class Order
 	public function createShipment($deliveryId, $price = null, array $data = null)
 	{
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'createShipment');
+	}
+
+	/**
+	 * @param int $deliveryId
+	 *
+	 * @return float|null
+	 */
+	public function getShipmentPrice($deliveryId)
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'getShipmentPrice');
 	}
 
 	/**
@@ -317,6 +350,22 @@ abstract class Order
 	 * Актуализация заказа после наполнения
 	 */
 	public function finalize()
+	{
+		// nothing by default
+	}
+
+	/**
+	 * Остановить автоматический пересчет
+	 */
+	public function freeze()
+	{
+		// nothing by default
+	}
+
+	/**
+	 * Выполнить автоматический пересчет
+	 */
+	public function unfreeze()
 	{
 		// nothing by default
 	}

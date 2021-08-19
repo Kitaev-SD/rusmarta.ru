@@ -32,6 +32,8 @@ class TradingPrintForm extends \CBitrixComponent
 		}
 		catch (Main\SystemException $exception)
 		{
+			$this->disableAutoPrint();
+
 			$this->arResult['ERROR'] = $exception->getMessage();
 			$templatePage = 'exception';
 		}
@@ -70,6 +72,13 @@ class TradingPrintForm extends \CBitrixComponent
 		$this->fillContents($contents);
 
 		return 'print';
+	}
+
+	protected function disableAutoPrint()
+	{
+		global $APPLICATION;
+
+		$APPLICATION->SetPageProperty('YAMARKET_PAGE_PRINT', 'N');
 	}
 
 	protected function getRequestedSettings()

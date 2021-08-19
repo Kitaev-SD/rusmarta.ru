@@ -11,6 +11,10 @@ class IntervalOption extends TradingService\Reference\Options\Fieldset
 {
 	use Market\Reference\Concerns\HasMessage;
 
+	const MATCH_UNTIL_END = 'untilEnd';
+	const MATCH_AFTER_START = 'afterStart';
+	const MATCH_FULL = 'full';
+
 	public function isValid()
 	{
 		$from = $this->getFromTime();
@@ -19,18 +23,33 @@ class IntervalOption extends TradingService\Reference\Options\Fieldset
 		return ($from !== null && $to !== null && $from < $to);
 	}
 
-	public function isMatchTime(Main\Type\DateTime $date)
+	public function isMatch(Main\Type\Date $date, $rule = IntervalOption::MATCH_FULL)
+	{
+		if (!($date instanceof Main\Type\DateTime)) { return true; }
+
+		return $this->isMatchTime($date, $rule);
+	}
+
+	public function isMatchTime(Main\Type\DateTime $date, $rule = IntervalOption::MATCH_FULL)
 	{
 		$dateTime = $date->format('H:i');
+
+		return $this->isMatchTimeValue($dateTime, $rule);
+	}
+
+	public function isMatchTimeValue($time, $rule = IntervalOption::MATCH_FULL)
+	{
+		if ($time === null) { return true; }
+
 		$fromTime = $this->getFromTime();
 		$toTime = $this->getToTime();
 		$result = true;
 
-		if ($fromTime !== null && $dateTime < $fromTime)
+		if ($fromTime !== null && $time < $fromTime && $rule !== static::MATCH_UNTIL_END)
 		{
 			$result = false;
 		}
-		else if ($toTime !== null && $dateTime > $toTime)
+		else if ($toTime !== null && $time > $toTime && $rule !== static::MATCH_AFTER_START)
 		{
 			$result = false;
 		}

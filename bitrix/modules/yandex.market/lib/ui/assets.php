@@ -81,6 +81,16 @@ class Assets
 
 	public static function getPluginPath($pluginName, $resourceType = 'js')
 	{
+		return static::makePluginPath($pluginName, $resourceType) . '.' . $resourceType;
+	}
+
+	public static function getPluginDirectory($pluginName, $resourceType = 'js')
+	{
+		return static::makePluginPath($pluginName, $resourceType);
+	}
+
+	protected static function makePluginPath($pluginName, $resourceType = 'js')
+	{
 		$relativeName = str_replace(static::$rootNamespace, '', $pluginName);
 		$relativeName = Market\Data\TextString::toLower($relativeName);
 		$relativePath = preg_replace('#(?<!\\\)\.#', '/', $relativeName);
@@ -92,7 +102,7 @@ class Assets
 			list(, $directoryType, $relativePath) = $matches;
 		}
 
-		return static::getRootDirectoryPath($directoryType) . '/' . $relativePath . '.' . $resourceType;
+		return static::getRootDirectoryPath($directoryType) . '/' . $relativePath;
 	}
 
 	public static function initPlugin($plugin, $selector, $options = null)

@@ -741,6 +741,13 @@ span.b-tag-tooltip--content { /* specifity */
 	line-height: 1.2;
 }
 
+.b-tag-tooltip--content a,
+.b-tag-tooltip--content a:focus,
+.b-tag-tooltip--content a:hover,
+.b-tag-tooltip--content a:active {
+	color: #fff !important;
+}
+
 .b-tag-tooltip--content.b-tag-tooltip--content_right {
 	right: auto;
 	left: 100%;

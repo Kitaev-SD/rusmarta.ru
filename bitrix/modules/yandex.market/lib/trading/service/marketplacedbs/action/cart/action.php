@@ -42,6 +42,11 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		return new Request($request, $server);
 	}
 
+	protected function getPriceCalculationMode()
+	{
+		return TradingEntity\Operation\PriceCalculation::DELIVERY;
+	}
+
 	protected function sanitizeRegionMeaningfulValues($meaningfulValues)
 	{
 		if ($this->request->getCart()->getDelivery()->getAddress() !== null)
@@ -223,6 +228,7 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		$this->extendDeliveryCalculationServiceName($deliveryId, $calculationResult, $deliveryOption);
 		$this->extendDeliveryCalculationDatesFromOption($deliveryId, $calculationResult, $deliveryOption);
 		$this->extendDeliveryCalculationDateDefaults($deliveryId, $calculationResult, $deliveryOption);
+		$this->extendDeliveryCalculationDateReadyShift($deliveryId, $calculationResult, $deliveryOption);
 		$this->extendDeliveryCalculationDateIntervals($deliveryId, $calculationResult, $deliveryOption);
 		$this->extendDeliveryCalculationOutlet($deliveryId, $calculationResult, $deliveryOption);
 	}
@@ -323,6 +329,56 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 		}
 	}
 
+	protected function extendDeliveryCalculationDateReadyShift(
+		$deliveryId,
+		TradingEntity\Reference\Delivery\CalculationResult $calculationResult,
+		TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption = null
+	)
+	{
+		try
+		{
+			$dateFrom = $calculationResult->getDateFrom();
+			$dateTo = $calculationResult->getDateTo();
+
+			if ($dateFrom === null) { return; }
+
+			$readyDate = $deliveryOption !== null && $deliveryOption->increasePeriodOnWeekend()
+				? $this->getDeliveryOptionReadyDate($deliveryOption)
+				: $this->getDeliveryShipmentReadyDate();
+			$now = new Main\Type\DateTime();
+			$diff = Market\Data\Date::diff($now, $readyDate);
+
+			if ($diff <= 0) { return; }
+
+			$delayInterval = sprintf('P%sD', $diff);
+
+			// from
+
+			$dateFrom = clone $dateFrom;
+			$dateFrom->add($delayInterval);
+
+			$calculationResult->setDateFrom($dateFrom);
+
+			// to
+
+			if ($dateTo !== null)
+			{
+				$dateTo = clone $dateTo;
+				$dateTo->add($delayInterval);
+
+				$calculationResult->setDateTo($dateTo);
+			}
+		}
+		catch (Main\SystemException $exception)
+		{
+			$message = static::getLang('TRADING_MARKETPLACE_CART_DELIVERY_SERVICE_READY_SHIFT_FAILED', [
+				'#ERROR#' => $exception->getMessage(),
+			]);
+
+			$calculationResult->addWarning(new Market\Error\Base($message));
+		}
+	}
+
 	protected function extendDeliveryCalculationDateIntervals(
 		$deliveryId,
 		TradingEntity\Reference\Delivery\CalculationResult $calculationResult,
@@ -368,7 +424,19 @@ class Action extends TradingService\Marketplace\Action\Cart\Action
 
 	protected function getDeliveryOptionReadyDate(TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption)
 	{
-		$command = new TradingService\MarketplaceDbs\Command\DeliveryOptionReadyDate($deliveryOption);
+		return $this->getDeliveryShipmentReadyDate($deliveryOption);
+	}
+
+	protected function getDeliveryShipmentReadyDate(TradingService\MarketplaceDbs\Options\DeliveryOption $deliveryOption = null)
+	{
+		$shipmentSchedule = $this->provider->getOptions()->getShipmentSchedule();
+
+		$command = new TradingService\MarketplaceDbs\Command\DeliveryShipmentDate(
+			$shipmentSchedule,
+			$deliveryOption
+		);
+		$command->setCalculateDirection(true);
+		$command->setCalculateOffset(0);
 
 		return $command->execute();
 	}

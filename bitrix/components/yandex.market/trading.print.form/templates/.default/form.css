@@ -52,6 +52,10 @@
 	margin-top: 8px;
 }
 
+.yamarket-shipment-print-form__box.has--warning {
+	font-weight: bold;
+}
+
 .yamarket-shipment-print-orders-header {
 	width: 480px;
 	margin-top: 24px;

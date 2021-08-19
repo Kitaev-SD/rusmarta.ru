@@ -2104,7 +2104,7 @@ class WildberriesV2 extends UniversalPlugin {
 		$intTaskId = $arData['SESSION']['EXPORT']['TASK_ID'];
 		# Prepare stocks
 		$arStocks = [];
-		$arExportItems = $this->getExportDataItems(null, ['ID', 'ELEMENT_ID', 'DATA_MORE', '_SKIP_DATA_FIELD'], true);
+		$arExportItems = $this->getExportDataItems(null, ['ID', 'ELEMENT_ID', 'DATA_MORE', '_SKIP_DATA_FIELD'], true, true);
 		foreach($arExportItems as $arItem){
 			if($arDataMore = unserialize($arItem['DATA_MORE'])){
 				if(is_array($arDataMore['stocks']) && !empty($arDataMore['stocks'])){

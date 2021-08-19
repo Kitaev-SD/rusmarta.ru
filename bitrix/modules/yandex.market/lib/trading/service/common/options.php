@@ -174,6 +174,18 @@ abstract class Options extends TradingService\Reference\Options
 		return $this->getValue('PRODUCT_SKU_FIELD');
 	}
 
+	public function getProductSkuPrefix()
+	{
+		$usePrefix = ((string)$this->getValue('PRODUCT_SKU_ADV_PREFIX') === Market\Reference\Storage\Table::BOOLEAN_Y);
+
+		return $usePrefix ? Market\Export\Xml\Tag\Offer::ADV_PREFIX : '';
+	}
+
+	public function isAllowProductSkuPrefix()
+	{
+		return false;
+	}
+
 	public function getProductStores()
 	{
 		return (array)$this->getValue('PRODUCT_STORE');
@@ -529,6 +541,13 @@ abstract class Options extends TradingService\Reference\Options
 					'INTRO' => static::getLang('TRADING_SERVICE_COMMON_OPTION_PRODUCT_SKU_FIELD_DESCRIPTION'),
 					'SORT' => 1000,
 					'HIDDEN' => !Market\Config::isExpertMode() ? 'Y' : 'N',
+				],
+				'PRODUCT_SKU_ADV_PREFIX' => [
+					'TYPE' => 'boolean',
+					'TAB' => 'STORE',
+					'NAME' => static::getLang('TRADING_SERVICE_COMMON_OPTION_PRODUCT_SKU_ADV_PREFIX'),
+					'SORT' => 1001,
+					'HIDDEN' => !$this->isAllowProductSkuPrefix() ? 'Y' : 'N',
 				],
 			];
 		}

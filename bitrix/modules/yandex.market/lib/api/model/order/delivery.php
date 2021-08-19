@@ -11,12 +11,16 @@ class Delivery extends Market\Api\Model\Cart\Delivery
 		return Market\Data\Number::normalize($this->getField('price'));
 	}
 
-	/**
-	 * @return ShipmentCollection
-	 */
+	/** @return ShipmentCollection */
 	public function getShipments()
 	{
 		return $this->getChildCollection('shipments');
+	}
+
+	/** @return Dates|null */
+	public function getDates()
+	{
+		return $this->getChildModel('dates');
 	}
 
 	public function getServiceName()
@@ -34,5 +38,12 @@ class Delivery extends Market\Api\Model\Cart\Delivery
 		return [
 			'shipments' => ShipmentCollection::class
 		];
+	}
+
+	protected function getChildModelReference()
+	{
+		return array_merge(parent::getChildModelReference(), [
+			'dates' => Dates::class,
+		]);
 	}
 }

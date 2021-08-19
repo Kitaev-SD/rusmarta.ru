@@ -19,20 +19,26 @@ class Timetable
 		$this->holiday = $holiday;
 	}
 
-	public function isMatch(Main\Type\Date $date)
+	public function hasIntersection(Timetable $target)
 	{
-		$intervals = $this->getIntervals($date);
+		return $this->schedule->hasIntersection($target->schedule);
+	}
+
+	public function isMatch(Main\Type\Date $date, $rule = ScheduleOption::MATCH_DAY)
+	{
+		$intervals = $this->getIntervals($date, $rule);
 
 		return !empty($intervals);
 	}
 
 	/**
 	 * @param Main\Type\Date $date
+	 * @param string $rule
 	 *
 	 * @return IntervalOption[]
 	 * @throws Main\SystemException
 	 */
-	public function getIntervals(Main\Type\Date $date)
+	public function getIntervals(Main\Type\Date $date, $rule = ScheduleOption::MATCH_DAY)
 	{
 		$intervals = [];
 
@@ -45,26 +51,25 @@ class Timetable
 		}
 		else if ($isHolidayWorkday && $this->holiday->getIntervals()->hasValid())
 		{
+			$compareTime = ($rule !== ScheduleOption::MATCH_DAY);
+
+			/** @var TradingService\MarketplaceDbs\Options\IntervalOption $interval */
 			foreach ($this->holiday->getIntervals() as $interval)
 			{
+				if ($compareTime && !$interval->isMatch($date, $rule)) { continue; }
+
 				$intervals[] = $interval;
 			}
 		}
 		else if ($this->schedule->hasValid())
 		{
-			$intervals = $this->schedule->getMatchOptions(
-				$date,
-				TradingService\MarketplaceDbs\Options\ScheduleOption::MATCH_DAY
-			);
+			$intervals = $this->schedule->getMatchOptions($date, $rule);
 
 			if (empty($intervals) && $isHolidayWorkday)
 			{
 				$nearestDate = $this->getNearestWorkingDay($date);
 
-				$intervals = $this->schedule->getMatchOptions(
-					$nearestDate,
-					TradingService\MarketplaceDbs\Options\ScheduleOption::MATCH_DAY
-				);
+				$intervals = $this->schedule->getMatchOptions($nearestDate, $rule);
 			}
 		}
 		else
@@ -73,6 +78,28 @@ class Timetable
 		}
 
 		return $intervals;
+	}
+
+	public function getNextWorkingDay(Main\Type\Date $date, $reverse = false)
+	{
+		$result = clone $date;
+		$diff = $reverse ? '-P1D' : 'P1D';
+
+		do
+		{
+			$result->add($diff);
+
+			$intervals = $this->getIntervals($result);
+			$isMatch = !empty($intervals);
+
+			if ($isMatch && $result instanceof Main\Type\DateTime)
+			{
+				$result = $this->applyIntervals($result, $intervals);
+			}
+		}
+		while (!$isMatch);
+
+		return $result;
 	}
 
 	protected function getNearestWorkingDay(Main\Type\Date $date)
@@ -120,13 +147,6 @@ class Timetable
 	 */
 	public function applyIntervals(Main\Type\DateTime $date, array $intervals)
 	{
-		foreach ($intervals as $interval)
-		{
-			if (!$interval->isMatchTime($date)) { continue; }
-
-			return $date;
-		}
-
 		$firstInterval = reset($intervals);
 
 		if ($firstInterval === false)

@@ -95,7 +95,7 @@ class Controller
 			return;
 		}
 		// Run sync
-		OrderSync::runSync($order_id, $ext_order, self::$profile);
+		return OrderSync::runSync($order_id, $ext_order, self::$profile);
 	}
 
 	/**

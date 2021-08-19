@@ -19,6 +19,29 @@ class ScheduleOptions extends IntervalOptions
 		return new ScheduleOption($this->provider);
 	}
 
+	public function hasIntersection(ScheduleOptions $target)
+	{
+		if ($this->count() === 0) { return true; }
+		if ($target->count() === 0) { return true; }
+
+		$result = false;
+
+		foreach ($this->collection as $scheduleOption)
+		{
+			foreach ($target as $targetOption)
+			{
+				if (!$scheduleOption->hasIntersection($targetOption)) { continue; }
+
+				$result = true;
+				break;
+			}
+
+			if ($result) { break; }
+		}
+
+		return $result;
+	}
+
 	public function isMatch(Main\Type\Date $date, $rule = ScheduleOption::MATCH_FULL)
 	{
 		$periods = $this->getMatchOptions($date, $rule);

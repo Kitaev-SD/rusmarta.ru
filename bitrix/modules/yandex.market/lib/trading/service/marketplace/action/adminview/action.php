@@ -93,14 +93,17 @@ class Action extends TradingService\Reference\Action\DataAction
 		if ($useCache && Market\Trading\State\SessionCache::has('order', $primary))
 		{
 			$fields = Market\Trading\State\SessionCache::get('order', $primary);
-			$result = TradingService\Marketplace\Model\Order::initialize($fields);
+			$orderClassName = $this->provider->getModelFactory()->getOrderClassName();
+
+			$result = $orderClassName::initialize($fields);
 		}
 		else
 		{
 			$options = $this->provider->getOptions();
 			$logger = $this->provider->getLogger();
+			$facadeClassName = $this->provider->getModelFactory()->getOrderFacadeClassName();
 
-			$result = TradingService\Marketplace\Model\OrderFacade::load($options, $primary, $logger);
+			$result = $facadeClassName::load($options, $primary, $logger);
 		}
 
 		$this->externalOrder = $result;
@@ -398,18 +401,13 @@ class Action extends TradingService\Reference\Action\DataAction
 
 	protected function getOfferMap(Market\Api\Model\Cart\ItemCollection $items)
 	{
-		$skuMap = $this->provider->getOptions()->getProductSkuMap();
-		$result = null;
+		$offerIds = $items->getOfferIds();
+		$command = new TradingService\Common\Command\OfferMap(
+			$this->provider,
+			$this->environment
+		);
 
-		if (!empty($skuMap))
-		{
-			$product = $this->environment->getProduct();
-			$offerIds = $items->getOfferIds();
-
-			$result = $product->getOfferMap($offerIds, $skuMap);
-		}
-
-		return $result;
+		return $command->make($offerIds);
 	}
 
 	protected function getProductId($offerId, $offerMap)
@@ -617,7 +615,10 @@ class Action extends TradingService\Reference\Action\DataAction
 		$allowEdit = (
 			$this->isOrderProcessing()
 			&& !$this->isOrderShipped()
-			&& $this->hasRights(TradingEntity\Operation\Order::BOX)
+			&& (
+				$this->hasRights(TradingEntity\Operation\Order::BOX)
+				|| $this->hasRights(TradingEntity\Operation\Order::CIS)
+			)
 		);
 
 		$this->response->setField('shipmentEdit', $allowEdit);

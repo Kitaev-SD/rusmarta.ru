@@ -33,6 +33,11 @@ use \Bitrix\Main\Localization\Loc;
 			<?=static::getMessage('DOWNLOAD_EXAMPLE_ATOM');?>
 		</a>
 	</li>
+	<li>
+		<a href="https://support.google.com/merchants/answer/7023001?hl=<?=LANGUAGE_ID;?>" target="_blank">
+			<?=static::getMessage('LOCAL_INVENTORY_ADS');?>
+		</a>
+	</li>
 </ul>
 <br/>
 <h2><?=static::getMessage('SERVICE_REQUIREMENTS');?></h2>

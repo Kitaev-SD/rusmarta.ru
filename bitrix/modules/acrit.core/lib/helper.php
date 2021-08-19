@@ -102,7 +102,11 @@ class Helper {
 	 *	Get document root
 	 */
 	public static function root(){
-		return Loader::getDocumentRoot();
+		$strRoot = Loader::getDocumentRoot();
+		if(static::strlen($strRoot) > 1){
+			$strRoot = rtrim($strRoot, '/\\');
+		}
+		return $strRoot;
 	}
 	
 	/**

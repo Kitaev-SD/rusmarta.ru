@@ -86,6 +86,18 @@ class Table extends Market\Reference\Storage\Table
 		];
 	}
 
+	public static function migrate(Main\DB\Connection $connection)
+	{
+		static::migrateAudit($connection);
+	}
+
+	protected static function migrateAudit(Main\DB\Connection $connection)
+	{
+		$entity = static::getEntity();
+
+		Market\Migration\StorageFacade::updateFieldsLength($connection, $entity, [ 'AUDIT' ]);
+	}
+
 	public static function validateUrl()
 	{
 		return [

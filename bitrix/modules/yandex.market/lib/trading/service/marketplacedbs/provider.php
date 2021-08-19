@@ -9,9 +9,13 @@ use Yandex\Market\Trading\Service as TradingService;
 /** @method Options getOptions() */
 /** @method Status getStatus() */
 class Provider extends TradingService\Marketplace\Provider
+	implements
+		TradingService\Reference\HasCancelReason,
+		TradingService\Reference\HasCancellationAccept
 {
 	protected $delivery;
 	protected $cancelReason;
+	protected $cancellationAccept;
 
 	public function getBehaviorCode()
 	{
@@ -76,6 +80,21 @@ class Provider extends TradingService\Marketplace\Provider
 	protected function createCancelReason()
 	{
 		return new CancelReason($this);
+	}
+
+	public function getCancellationAccept()
+	{
+		if ($this->cancellationAccept === null)
+		{
+			$this->cancellationAccept = $this->createCancellationAccept();
+		}
+
+		return $this->cancellationAccept;
+	}
+
+	protected function createCancellationAccept()
+	{
+		return new CancellationAccept($this);
 	}
 
 	protected function createFeature()

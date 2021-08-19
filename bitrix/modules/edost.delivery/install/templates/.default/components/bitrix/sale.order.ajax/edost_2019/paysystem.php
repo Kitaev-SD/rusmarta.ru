@@ -106,10 +106,36 @@ if ((!empty($arResult['PAY_SYSTEM']) || $arResult['PAY_FROM_ACCOUNT'] == 'Y') &&
 <?	}
 
 
+	if (!empty($logictim_bonus) && $logictim_bonus['LOGICTIM_BONUS_USER_DOSTUP'] == 'Y' && !empty($logictim_bonus['MAX_BONUS'])) {
+		if ($compact == '') $paysystem_i++;
+		$compact_i++;
+		$s = array();
+		if ($logictim_bonus['MIN_BONUS'] > 0) $s[] = $logictim_bonus['MODULE_LANG']['MIN_BONUS_TEXT'];
+		if ($logictim_bonus['MAX_BONUS'] > 0) $s[] = $logictim_bonus['MODULE_LANG']['MAX_BONUS_TEXT'];
+?>
+		<div class="edost edost_window_hide edost_prepay_hide edost_pay_from_bonus edost_format_tariff_main <?=($logictim_bonus['PAY_BONUS'] > 0 ? 'edost_pay_from_bonus_active' : '')?>" style="<?=($compact_i > 1 ? 'margin-top: 10px;' : '')?>">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td class="edost_resize_show edost_pay_from_account_ico">
+					<span class="edost_format_tariff"><?=$logictim_bonus['MODULE_LANG']['HAVE_BONUS_TEXT']?> <?=$logictim_bonus['USER_BONUS']?></span>
+					<div class="edost_format_description edost_description">
+						<?=$logictim_bonus['MODULE_LANG']['CAN_USE_BONUS_TEXT']?>
+						<?=(!empty($s) ? '<div class="edost_light">'.implode(', ', $s).'</div>' : '')?>
+					</div>
+					<div class="edost_format_description edost_description">
+						<span class="edost_format_tariff"><?=$logictim_bonus['MODULE_LANG']['PAY_BONUS_TEXT']?></span>
+						<input type="text" style="width: 80px;" onchange="submitForm();" maxlength="250" size="0" value="<?=$logictim_bonus['PAY_BONUS']?>" name="ORDER_PROP_<?=$logictim_bonus['ORDER_PROP_PAYMENT_BONUS_ID']?>" id="ORDER_PROP_<?=$logictim_bonus['ORDER_PROP_PAYMENT_BONUS_ID']?>">
+					</div>
+				</td>
+			</tr>
+		</table>
+		</div>
+<?	}
+
+
 	if ($arParams['MODULE_VBCHEREPANOV_BONUS'] == 'Y' && !empty($arResult['JS_DATA']['BONUSPAY'])) {
 		if ($compact == '') $paysystem_i++;
 		$compact_i++;
-		$id = 'PAY_CURRENT_ACCOUNT';
 		$bonus = $arResult['JS_DATA']['BONUSPAY'];
 		$pay_bonus = ($arResult['JS_DATA']['PAY_BONUS_ACCOUNT'] == 'Y' ? true : false);
 ?>
@@ -142,7 +168,7 @@ if ((!empty($arResult['PAY_SYSTEM']) || $arResult['PAY_FROM_ACCOUNT'] == 'Y') &&
 				</td>
 			</tr>
 			<tr class="edost_resize_button2">
-				<td colspan="5" class="edost_resize_show edost_button edost_compact_window_hide edost_supercompact_hide" align="right" style="padding-top: 5px;<?=(1==2 && !$checked ? ' opacity: 0.5;' : '')?>">
+				<td colspan="5" class="edost_resize_show edost_button edost_compact_window_hide edost_supercompact_hide" align="right" style="padding-top: 5px;">
 <?					if ($pay_bonus) { ?>
 					<div class="edost_button_big2 edost_change_button" onclick="changePaySystem('bonus')"><span><?=GetMessage('SOA_TEMPL_BONUS_ACCOUNT_N')?></span></div>
 <?					} else { ?>
@@ -161,7 +187,7 @@ if ((!empty($arResult['PAY_SYSTEM']) || $arResult['PAY_FROM_ACCOUNT'] == 'Y') &&
 			$compact_i = 0;
 		}
 
-		foreach($arResult['PAY_SYSTEM'] as $v) {
+		foreach($arResult['PAY_SYSTEM'] as $v) if (empty($v['CODE']) || $v['CODE'] != 'LOGICTIM_PAYMENT_BONUS') {
 			$c = array();
 			if ($compact != '') {
 				if (empty($v['compact'])) $c[] = 'edost_compact_hide';
@@ -307,10 +333,16 @@ if ((!empty($arResult['PAY_SYSTEM']) || $arResult['PAY_FROM_ACCOUNT'] == 'Y') &&
 					<td colspan="5" class="edost_resize_show edost_resize_tariff_show edost_description">
 <?						if (!empty($v['delivery_bonus'])) { ?>
 						<div class="edost_format_description edost_description edost_bonus"><span><?=GetMessage('SOA_TEMPL_BONUS'.(count($v['delivery_bonus']) > 1 ? '2' : '')).':</span> '.implode(', ', $v['delivery_bonus'])?></div>
-<?						} ?>
+<?						}
 
-<?						if (!empty($v['DESCRIPTION'])) { ?>
-						<div class="edost_format_description edost_description"><?=nl2br($v['DESCRIPTION'])?></div>
+						$s = (!empty($v['DESCRIPTION']) ? trim(str_replace(array('<br />', '<br/>'), '<br>', nl2br($v['DESCRIPTION']))) : '');
+						$f = array('<br>', '<div><br></div>');
+						if ($s) do {
+							$a = false;
+							foreach ($f as $u) { $w = strlen($u); if ($u == substr($s, -$w)) { $s = trim(substr($s, 0, -$w)); $a = true; } }
+						} while ($a);
+						if ($s) { ?>
+						<div class="edost_format_description edost_description"><?=$s?></div>
 <?						} ?>
 
 <?						if (!empty($v['PRICE'])) { ?>
@@ -346,7 +378,7 @@ if ((!empty($arResult['PAY_SYSTEM']) || $arResult['PAY_FROM_ACCOUNT'] == 'Y') &&
 
 <?				if (empty($v['edost_cod']) && $compact != '' && !empty($format['prepay_change'])) { ?>
 				<tr class="edost_resize_button2">
-					<td colspan="5" class="edost_resize_show edost_button edost_compact_window_hide edost_supercompact_hide" align="right" style="padding-top: 5px;<?=(1==2 && !$checked ? ' opacity: 0.5;' : '')?>">
+					<td colspan="5" class="edost_resize_show edost_button edost_compact_window_hide edost_supercompact_hide" align="right" style="padding-top: 5px;">
 						<div class="edost_button_big2 edost_change_button" onclick="edost.window.set('paysystem', 'head=<?=GetMessage('SOA_TEMPL_PAYSYSTEM_HEAD_PREPAY')?>;class=edost_window_prepay')">
 							<span><?=GetMessage('SOA_TEMPL_PREPAY_CHANGE_BUTTON')?></span>
 						</div>

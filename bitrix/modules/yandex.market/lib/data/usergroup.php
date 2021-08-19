@@ -9,6 +9,25 @@ class UserGroup
 {
 	use Market\Reference\Concerns\HasOnceStatic;
 
+	protected static $userGroupsCache = [];
+
+	public static function getUserGroups($userId)
+	{
+		$userId = (int)$userId;
+
+		if (!isset(static::$userGroupsCache[$userId]))
+		{
+			static::$userGroupsCache[$userId] = static::loadUserGroups($userId);
+		}
+
+		return static::$userGroupsCache[$userId];
+	}
+
+	protected static function loadUserGroups($userId)
+	{
+		return Main\UserTable::getUserGroupIds($userId);
+	}
+
 	public static function getDefaults()
 	{
 		return static::onceStatic('loadDefaults');

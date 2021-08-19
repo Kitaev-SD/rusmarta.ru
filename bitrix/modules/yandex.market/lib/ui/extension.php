@@ -3,9 +3,81 @@
 namespace Yandex\Market\Ui;
 
 use Bitrix\Main;
+use Yandex\Market\Data\TextString;
 
 class Extension
 {
+	public static function register($extension, $name = null)
+	{
+		if (static::hasRegisteredExtension($extension)) { return true; }
+
+		$relativePath = Assets::getPluginDirectory($extension);
+		$configPath = $relativePath . '/config.php';
+		$configPath = Main\IO\Path::convertRelativeToAbsolute($configPath);
+		$configFile = new Main\IO\File($configPath);
+
+		if (!$configFile->isExists()) { return false; }
+
+		$config = include $configFile->getPath();
+		$config = static::makeConfigPath($config, $relativePath);
+
+		\CJSCore::RegisterExt($name ?: $extension, $config);
+
+		return true;
+	}
+
+	protected static function hasRegisteredExtension($extension)
+	{
+		return (
+			\CJSCore::IsExtRegistered($extension)
+			|| (
+				class_exists(Main\UI\Extension::class)
+				&& Main\UI\Extension::register($extension)
+			)
+		);
+	}
+
+	protected static function makeConfigPath($config, $relativePath)
+	{
+		$chains = [ 'js', 'css' ];
+
+		foreach ($chains as $chain)
+		{
+			if (!isset($config[$chain])) { continue; }
+
+			$newChain = [];
+			$isChanged = false;
+
+			foreach ((array)$config[$chain] as $path)
+			{
+				if (TextString::getPosition($path, '/') !== 0)
+				{
+					$isChanged = true;
+					$path = $relativePath . '/' . $path;
+				}
+
+				$newChain[] = $path;
+			}
+
+			if ($isChanged)
+			{
+				$config[$chain] = $newChain;
+			}
+		}
+
+		return $config;
+	}
+
+	public static function registerCompatible($extension)
+	{
+		if (static::hasRegisteredExtension($extension)) { return $extension; }
+
+		$extension = 'compatible.' . $extension;
+		$name = str_replace('.', '_', $extension);
+
+		return static::register($extension, $name) ? $name : null;
+	}
+
 	public static function load($extension)
 	{
 		\CJSCore::Init([$extension]);

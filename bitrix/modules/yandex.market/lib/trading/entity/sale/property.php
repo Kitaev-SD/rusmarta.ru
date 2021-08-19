@@ -72,6 +72,22 @@ class Property extends Market\Trading\Entity\Reference\Property
 		return $propertyResult;
 	}
 
+	public function update($propertyId, $fields)
+	{
+		$propertyResult = $this->updateProperty($propertyId, $fields);
+
+		if (
+			isset($fields['TYPE'], $fields['VARIANTS'])
+			&& $fields['TYPE'] === 'ENUM'
+			&& $propertyResult->isSuccess()
+		)
+		{
+			$this->syncPropertyEnum($propertyId, $fields['VARIANTS']);
+		}
+
+		return $propertyResult;
+	}
+
 	protected function addProperty($personTypeId, $fields)
 	{
 		$tableFields = Sale\Internals\OrderPropsTable::getEntity()->getScalarFields();
@@ -110,6 +126,75 @@ class Property extends Market\Trading\Entity\Reference\Property
 		return $result;
 	}
 
+	protected function updateProperty($propertyId, $fields)
+	{
+		$tableFields = Sale\Internals\OrderPropsTable::getEntity()->getScalarFields();
+		$propertyFields = array_intersect_key($fields, $tableFields);
+		$propertyFields = array_diff_key($propertyFields, [
+			'TYPE' => true,
+		]);
+
+		if (empty($propertyFields)) { return new Main\Entity\UpdateResult(); }
+
+		return Sale\Internals\OrderPropsTable::update($propertyId, $propertyFields);
+	}
+
+	protected function syncPropertyEnum($propertyId, $variants)
+	{
+		$values = array_column($variants, 'ID');
+		$existRows = $this->getExistsPropertyEnum($propertyId);
+		$exists = array_column($existRows, 'ID');
+		$new = array_diff($values, $exists);
+		$newVariants = $this->intersectPropertyVariants($variants, $new);
+		$delete = array_diff($exists, $values);
+		$deleteVariants = $this->intersectPropertyVariants($existRows, $delete);
+
+		$this->addPropertyEnum($propertyId, $newVariants);
+		$this->deletePropertyEnum($propertyId, $deleteVariants);
+	}
+
+	protected function intersectPropertyVariants($variants, $values)
+	{
+		$result = [];
+
+		foreach ($variants as $variant)
+		{
+			if (in_array($variant['ID'], $values, true))
+			{
+				$result[] = $variant;
+			}
+		}
+
+		return $result;
+	}
+
+	protected function getExistsPropertyEnum($propertyId)
+	{
+		$result = [];
+
+		$query = Sale\Internals\OrderPropsVariantTable::getList([
+			'filter' => [
+				'=ORDER_PROPS_ID' => $propertyId,
+			],
+			'select' => [
+				'ID',
+				'VALUE',
+				'NAME',
+			],
+		]);
+
+		while ($row = $query->fetch())
+		{
+			$result[] = [
+				'ID' => $row['VALUE'],
+				'VALUE' => $row['NAME'],
+				'INTERNAL_ID' => $row['ID'],
+			];
+		}
+
+		return $result;
+	}
+
 	protected function addPropertyEnum($propertyId, $variants)
 	{
 		$result = new Main\Result();
@@ -125,6 +210,29 @@ class Property extends Market\Trading\Entity\Reference\Property
 			if (!$addResult->isSuccess())
 			{
 				$result->addErrors($addResult->getErrors());
+			}
+		}
+
+		return $result;
+	}
+
+	protected function deletePropertyEnum($propertyId, $variants)
+	{
+		$result = new Main\Result();
+
+		foreach ($variants as $variant)
+		{
+			if (!isset($variant['INTERNAL_ID']))
+			{
+				$result->addError(new Main\Error('property enum internalId missing'));
+				continue;
+			}
+
+			$deleteResult = Sale\Internals\OrderPropsVariantTable::delete($variant['INTERNAL_ID']);
+
+			if (!$deleteResult->isSuccess())
+			{
+				$result->addErrors($deleteResult->getErrors());
 			}
 		}
 

@@ -5,15 +5,25 @@ img.edost_ico_small { width: 28px; height: 16px; padding: 2px 5px 2px 0px; }
 img.edost_ico_big { width: 95px; height: 55px; padding: 2px 5px 2px 0px; }
 img.edost_ico_loading { width: 64px; height: 64px; }
 
+.edost *:focus { outline: none; }
+.edost_window *:focus { outline: none; }
+
 img.edost_ico_company_normal { width: 32px; height: 32px; padding: 2px; }
 img.edost_ico_company_small { width: 16px; height: 16px; padding: 2px; }
 img.edost_ico_company_small2 { width: 16px; height: 16px; box-sizing: content-box; padding-right: 4px; }
 img.edost_ico_payment { width: 25px; height: 20px; vertical-align: middle; filter: grayscale(0.4); opacity: 0.6; }
 div.edost_ico_header { text-align: center; }
 img.edost_ico_95 { max-width: 95px; max-height: 50px; }
+img.edost_ico_profile { width: 25px; }
+img.edost_ico_window { width: 25px; float: left; }
 
-img.edost_hint { width: 16px; height: 16px; }
-img.edost_hint2 { width: 20px; height: 20px; vertical-align: middle; }
+div.edost_hint_window { z-index: 10591; position: fixed; overflow: hidden; box-sizing: border-box; color: #000; background: #FFF; }
+div.edost_hint_normal { width: 500px; font-size: 15px; padding: 15px; border-radius: 8px; box-shadow: 0px 0px 30px 0px #8c9bab }
+div.edost_hint_small { width: auto; max-width: 450px; padding: 5px; border: 1px solid #AAA; }
+img.edost_hint_link { width: 16px; height: 16px; vertical-align: middle; }
+.edost_hint_data { display: none; padding: 0 10px 2px 10px; font-size: 15px; color: #0075d8; text-align: left; }
+.edost_hint_warning { color: #c00; }
+div.edost_hint_window div.edost_window_close { display: block; margin: -8px -8px 4px 4px; }
 
 span.edost_color_green, div.edost_color_green { color: #080; }
 span.edost_color_red, div.edost_color_red { color: #F00; }
@@ -22,6 +32,8 @@ span.edost_name { color: #000; font-weight: bold; vertical-align: middle; }
 div.edost_code { opacity: 0.5; }
 .edost_tariff { color: #000; }
 span.edost_day { color: #555; font-weight: normal; }
+.edost_day_work { font-size: 13px; }
+.edost_balloon_price .edost_day_work { display: inline-block; line-height: 13px; vertical-align: middle; text-align: left; }
 span.edost_price { color: #000; font-weight: bold; }
 span.edost_price_free { color: #080; font-weight: bold; }
 span.edost_price_original { text-decoration: line-through; color: #AAA; font-weight: normal; }
@@ -49,7 +61,9 @@ td.edost_office_address img { vertical-align: middle; }
 div.edost_balloon_schedule2 { margin: 10px 0 0 0; color: #888; font-size: 14px; }
 .edost_balloon_warning { color: #F00; font-size: 14px; }
 
-div.edost_ico_price { position: absolute; top: -12px; left: 12px; padding: 1px 4px; border2: 1px solid #FFF; background: #080; color: #FFF; font-size: 12px; font-weight2: bold; white-space: nowrap; opacity: 0.9; }
+div.edost_ico_price { position: absolute; top: -12px; left: 12px; padding: 1px 4px; border2: 1px solid #FFF; background: #080; color: #FFF; font-size: 12px; white-space: nowrap; opacity: 0.9; }
+div.edost_ico_price.edost_unsupported { opacity: 0.7; color: #FFFB; }
+.edost_office_balloon .edost_unsupported .edost_balloon_price { opacity: 0.5; }
 div.edost_ico_zip { background: #888; }
 div.edost_ico_price_big { font-weight: bold; font-size: 12px; }
 div.edost_button { cursor: pointer; clear: both; margin: 15px auto 0 auto; width: 340px; }
@@ -65,25 +79,24 @@ div.edost_button2:hover { background: #E8FFE8; border: 1px solid #080; }
 div.edost_button2_info { cursor: pointer; background: #080; padding: 5px; margin-top: -12px; color: #FFF; }
 div.edost_button2_info2 { padding: 2px; margin: 10px 0 0 0; color: #888; font-size: 11px; }
 
-#edost_office_inside_map { border: 1px solid #AAA; }
+#edost_office_inside_map { border: 1px solid #DDD; }
 #edost_office_window_map { border-left: 1px solid #CCC; }
 div.edost_map_loading { padding: 100px 0 0 0; text-align: center; }
 div.edost_map_loading2 { padding: 0; text-align: center; }
 
-div.edost_main, div.edost_main *, div.edost_office_window, div.edost_office_window *, div.edost_office_info, div.edost_office_info *, div.edost_catalogdelivery_window, div.edost_catalogdelivery_window *, #edost_catalogdelivery_inside, #edost_catalogdelivery_inside * { box-sizing: content-box; }
-div.edost_main, div.edost_office_window, div.edost_office_info, div.edost_catalogdelivery_window, #edost_catalogdelivery_inside { line-height: normal; }
+div.edost_main, div.edost_main *, div.edost_office_window, div.edost_office_window *, div.edost_office_info, div.edost_office_info *, #edost_catalogdelivery_inside, #edost_catalogdelivery_inside * { box-sizing: content-box; }
+div.edost_main, div.edost_office_window, div.edost_office_info { line-height: normal; }
 div.edost_window * { box-sizing: border-box; }
 
 div.edost_window_fon { z-index: 10550; position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; background: #000; opacity: 0.25; }
 div.edost_office_window_fon { z-index: 10560; position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; background: #000; opacity: 0.25; }
-div.edost_catalogdelivery_window_fon { z-index: 10500; position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; background: #000; opacity: 0.25; }
 div.edost_office_balloon_fon { z-index: 10570; position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; background: #000; opacity: 0.25; }
 
 div.edost_window { z-index: 10551; position: fixed; top: 200px; left: 200px; width: 800px; font-size: 14px; color: #000; background: #FFF; padding: 8px; border-radius: 8px; box-shadow: 0px 0px 10px 0px #888; overflow: hidden; box-sizing: border-box; }
 div.edost_office_window { z-index: 10561; position: fixed; top: 200px; left: 200px; width: 800px; font-size: 14px; color: #000; background: #FFF; border: 5px solid #FFF; border-radius: 8px; box-shadow: 0px 0px 10px 0px #888; }
 
 .edost_window div.edost_note_active { display: none; }
-.edost_window div.edost_button_div { height: auto; }
+.edost_window div.edost_button_div { width: 100%; height: auto; max-width: none; }
 .edost_window .edost_button_form { margin: 0 auto; width: 150px; height: 40px; }
 .edost_window .edost_button_form span { display: inline-block; font-size: 20px; padding-top: 9px; line-height: 15px; }
 .edost_window .edost_button_form.edost_button_big2 span { padding-top: 8px; }
@@ -167,6 +180,7 @@ div.edost_button_base { display: inline-block !important; }
 div.edost_button_new { background: #F00; }
 div.edost_button_save, div.edost_button_yes { background: #0A0; }
 div.edost_button_cancel, div.edost_button_close, div.edost_button_no { background: #AAA; }
+div.edost_button_error { background: #F00 !important; opacity: 0.1 !important; cursor: default !important; }
 
 div.edost_button_save_main .edost_button_save, div.edost_button_save_main .edost_button_cancel { display: inline-block; }
 div.edost_button_new_main .edost_button_new, div.edost_button_new_main .edost_button_close { display: inline-block; }
@@ -180,22 +194,19 @@ div.edost_button_date_error .edost_button_date { background: #000 !important; op
 div.edost_call_warning_main .edost_call_warning { display: block !important; }
 
 div.edost_office_info { z-index: 10573; position: fixed; overflow-y: auto; top: 0; left: 0; bottom: 0; right: 0; font-size: 14px; background: #FFF; border: 5px solid #FFF; text-align: center; }
-div.edost_catalogdelivery_window { z-index: 10501; position: fixed; top: 200px; left: 200px; min-width: 500px; font-size: 14px; background: #FFF; border: 5px solid #FFF; border-radius: 8px; box-shadow: 0px 0px 10px 0px #888; }
-div.edost_catalogdelivery_window2 { z-index: 10501; position: fixed; overflow-y: auto; top: 0; left: 0; bottom: 0; right: 0; font-size: 14px; background: #FFF; border: 5px solid #FFF; }
-div.edost_catalogdelivery_window2_border { border-radius: 8px; box-shadow: 0px 0px 10px 0px #888; }
 #edost_catalogdelivery_inside { font-size: 14px; }
 div.edost_catalogdelivery_inside span { vertical-align: middle; }
 
 #edost_window_head { color: #888; font-size: 24px; text-align: center; background: #FFF; }
 td.edost_office_window_head { padding-left: 5px; padding-bottom: 5px; color: #AAA; font-size: 15px; font-weight: bold; background: #FFF; }
-td.edost_catalogdelivery_window_head { padding-left: 5px; padding-bottom: 5px; color: #AAA; font-size: 15px; font-weight: bold; background: #FFF; }
-div.edost_catalogdelivery_window_head { color: #AAA; font-size: 15px; font-weight: bold; background: #FFF; }
 
 div.edost_window_data { overflow: auto; padding: 20px 20px 20px 20px; clear: both; box-sizing: border-box; }
+#edost_window_data_data { overflow: auto; padding: 10px; }
 
 div.edost_payment span, div.edost_payment_green span { display: inline-block; }
 
 #edost_window_name { font-size: inherit; background: inherit; padding: 0 5px; }
+#edost_window_name .button_small { display: inline; margin: 0 4px; vertical-align: middle; font-size: 16px; }
 
 div.edost_window_mobile #edost_window_name { display: inline-block; position: absolute; }
 div.edost_window_mobile #edost_window_button { display: inline-block !important; position: absolute; right: 0; text-align: center; padding: 0 8px 0 0; }
@@ -206,6 +217,10 @@ div.edost_window_landscape #edost_window_button { display: block !important; tex
 
 div.edost_window_mobile #edost_window_head, div.edost_window_landscape #edost_window_head { background: #EDF1F6; }
 div.edost_window_mobile #edost_window_data, div.edost_window_landscape #edost_window_data { padding: 20px !important; }
+div.edost_window_mobile.edost_C2_window #edost_window_data_data { padding: 0; }
+.edost_C2_window.edost_window_delivery_small2 .edost_delivery_div div.edost_format_tariff_main td.edost_resize_tariff_show2 { width: 100%; }
+.edost_C2_window.edost_window_mobile #edost_catalogdelivery_window_city_div { padding: 0 0 10px 0 !important; }
+.edost_C2_window #edost_catalogdelivery_window_city .edost_button_big2 { display: inline-block; width: 110px; padding: 0; margin: 0 0 0 15px; vertical-align: middle; }
 
 div.edost_window_fullscreen { border-width: 0 !important; padding: 0 !important; }
 
@@ -307,6 +322,7 @@ div.edost_office_fullscreen #edost_office_window_head { padding-top: 5px; margin
 div.edost_device_pc.edost_window_normal div.edost_window_close { display: block !important; }
 div.edost_device_pc.edost_office_window div.edost_window_close { display: block !important; }
 div.edost_device_pc.edost_office_balloon div.edost_window_close { display: block !important; }
+div.edost_device_pc .edost_window_form_head, div.edost_device_pc .edost_agreement_text { margin-top: 10px; }
 /*
 div.edost_device_pc div.edost_window_close { display: block !important; }
 */
@@ -345,13 +361,9 @@ div.edost_distance div { padding-right: 5px; }
 #edost_address_metro_head { margin-bottom: 2px; color: #BCCAD2; font-size: 20px; text-align: center; }
 #edost_address_metro div.edost_metro { font-size: 15px; }
 
-
 #edost_window_loading { position: fixed; }
 div.edost_office_address_delimiter { border-width: 1px 0 0 0; border-color: #CCC; border-style: solid; margin: 5px 0; }
 div.edost_office_address_delimiter2 { padding: 8px; }
-div.edost_catalogdelivery_window_close { width: 15px; height: 17px; padding: 1px 2px 0px 0px; float: right; background: url(//edostimg.ru/img/site/close_black.png) no-repeat 0px 2px; }
-div.edost_catalogdelivery_window_close2 { width: 15px; height: 17px; margin: 3px; float: right; background: url(//edostimg.ru/img/site/close_black.png) no-repeat 0px 2px; }
-div.edost_catalogdelivery_window_close:hover { background: url(//edostimg.ru/img/site/close_black_hover.png) no-repeat 0px 2px; }
 
 div.edost_office_window_close:hover { background: url(//edostimg.ru/img/site/close_black_hover.png) no-repeat 0px 2px; }
 
@@ -392,7 +404,11 @@ div.edost div.edost_format { padding: 0; }
 div.edost div.edost_format_border { padding: 8px; border: 1px solid #BBB; }
 div.edost div.edost_format_info { padding: 2px 0 10px 0; font-size: 13px; }
 div.edost div.edost_format_description { font-size: 12px; padding: 4px 0 0 0; }
-div.edost div.edost_format_head { background: #888; padding: 2px 0 2px 8px; color: #FFF; font-size: 18px; font-weight: bold; }
+
+div.edost div.edost_format_head { padding: 0 0 5px 0; color: #adadad; font-size: 30px; }
+.edost_C2_window div.edost div.edost_format_head { padding: 2px 0 2px 10px; color: #ffffff; font-size: 30px; background: #cacaca; }
+.edost_C2_window.edost_window_delivery_small2 div.edost_format_head { padding: 2px !important; text-align: center; font-size: 25px !important; }
+
 div.edost div.edost_format .edost_insurance { font-size: 14px; }
 div.edost td.edost_format_head { vertical-align: middle; text-align: right; }
 div.edost td.edost_format_ico { vertical-align: top; }
@@ -427,51 +443,50 @@ div.edost span.edost_format_company { color: #000; font-size: 12px; font-weight:
 div.edost span.edost_format_company_head { color: #999; font-size: 12px; font-weight: normal; }
 div.edost span.edost_format_company_name { color: #555; font-size: 12px; font-weight: normal; }
 
-div.edost div.edost_office_detailed { display: none; padding-top: 2px; text-align: right; }
+div.edost div.edost_office_detailed { padding-top: 10px; text-align: center; opacity: 0.5; }
 
-div.edost table.edost_bookmark td { cursor: default; padding: 0; margin: 0; height: 100%; vertical-align: top; position: relative; }
-div.edost table.edost_bookmark img { width: 95px; height: 55px; padding: 0; }
-div.edost table.edost_bookmark div { text-align: right; }
-div.edost table.edost_bookmark span.edost_bookmark { display: block; font-size: 15px; font-weight: bold; width: 102px; position: absolute; margin: -10px 0 0 10px; padding: 2px 4px; color: #FFF; }
-div.edost table.edost_bookmark td.edost_active span.edost_bookmark, table.edost_bookmark td.edost_active_off span.edost_bookmark { background: #888; }
-div.edost table.edost_bookmark td.edost_active:hover span.edost_bookmark, table.edost_bookmark td.edost_active_on span.edost_bookmark { background: #F00; }
 
-div.edost table.edost_bookmark td.edost_active_off:hover span.edost_bookmark { background: #F00; }
-div.edost table.edost_bookmark td.edost_active_off span, div.edost table.edost_bookmark td.edost_active_off div.edost_payment { opacity: 0.5; }
-div.edost table.edost_bookmark td.edost_active_off img { opacity: 0.3; }
-div.edost table.edost_bookmark td.edost_active_off:hover img { opacity: 0.8; }
 
-div.edost table.edost_bookmark td.edost_active_fon_on { background: #AAA; }
-div.edost table.edost_bookmark td.edost_active_fon_off { background: none; }
 
-div.edost div.edost_bookmark { cursor: default; vertical-align: top; margin-right: 10px; padding-bottom: 5px; display: inline-block; width: 120px; }
-div.edost div.edost_bookmark img { width: 95px; height: 55px; padding: 0; }
-div.edost div.edost_bookmark div { text-align: right; }
-div.edost div.edost_bookmark span.edost_bookmark { display: block; font-size: 15px; font-weight: bold; width: 102px; position: absolute; margin: -10px 0 0 10px; padding: 2px 4px; color: #FFF; }
-div.edost div.edost_bookmark_active span.edost_bookmark, div.edost_bookmark_active_off span.edost_bookmark { background: #888; }
-div.edost div.edost_bookmark_active:hover span.edost_bookmark, div.edost_bookmark_active_on span.edost_bookmark { background: #F00; }
+#window_edost_delivery_div { padding: 0; margin: 0; }
+.edost_button_red { padding: 3px 15px; cursor: pointer; font-size: 14px; background: #F00; color: #FFF; border-radius: 5px; }
 
-div.edost div.edost_bookmark_active_off:hover span.edost_bookmark { background: #F00; }
-div.edost div.edost_bookmark_active_off span { opacity: 0.5; }
-div.edost div.edost_bookmark_active_off img { opacity: 0.3; }
-div.edost div.edost_bookmark_active_off:hover img { opacity: 0.8; }
 
-div.edost div.edost_bookmark_active_fon_on { background: #AAA; }
-div.edost div.edost_bookmark_active_fon_off { background: none; }
+.edost_bookmark_button { display: inline-block; padding: 10px 10px 5px 10px; margin: 5px; background: #F0F0F0; cursor: default; vertical-align: top; border-radius: 5px; border-bottom: 5px solid #F0F0F0; }
+.edost_bookmark_button .edost_ico_load { display: inline-block; width: 47px; }
+.edost_bookmark_button img { width: 47px; vertical-align: middle; }
+.edost_bookmark_button svg { width: 47px; height: 47px; vertical-align: middle; }
+.edost_bookmark_button .edost_bookmark_head { display: inline-block; padding-left: 5px; font-size: 24px; line-height: 24px; vertical-align: middle; }
 
-div.edost div.edost_bookmark2 div.edost_payment { line-height: 11px; }
-div.edost div.edost_bookmark2 div.edost_bookmark { cursor: default; text-align: center; margin: 4px; padding: 0; display: inline-block; width: 120px; }
-div.edost div.edost_bookmark2 div.edost_bookmark_head { padding: 4px 5px; font-weight: bold; font-size: 14px; color: #FFF; text-align: center; }
-div.edost div.edost_bookmark2 div.edost_active div.edost_bookmark_head, div.edost_bookmark2 div.edost_active_off div.edost_bookmark_head { background: #888; }
-div.edost div.edost_bookmark2 div.edost_active:hover div.edost_bookmark_head, div.edost_bookmark2 div.edost_active_on div.edost_bookmark_head { background: #F00; }
+.edost_bookmark_button.edost_active_on { border-color: #0087ff; }
+.edost_bookmark_button.edost_active_off { background: #F8F8F8; }
+.edost_bookmark_button.edost_active_off img, .edost_bookmark_button.edost_active_off .edost_ico_load { opacity: 0.3; }
+.edost_bookmark_button.edost_active_off:hover { border-color: #0087ff; }
+.edost_bookmark_button.edost_active_off:hover img, .edost_bookmark_button.edost_active_off:hover .edost_ico_load { opacity: 1; }
 
-div.edost div.edost_bookmark2 div.edost_active_off:hover div.edost_bookmark_head { background: #F00; }
-div.edost div.edost_bookmark2 div.edost_active_off span { opacity: 0.5; }
-div.edost div.edost_bookmark2 div.edost_active_off div.edost_payment, div.edost div.edost_bookmark2 div.edost_active_off div.edost_bookmark_head { opacity: 0.5; }
-div.edost div.edost_bookmark2 div.edost_active_off:hover img { opacity: 0.8; }
+.edost_C2_window #edost_window_data.edost_bookmark_normal table.edost_format_head, .edost_C2_window #edost_window_data.edost_bookmark_small table.edost_format_head { display: none; }
+.edost_C2_window.edost_window_mobile #edost_window_data.edost_bookmark_small2 #edost_catalogdelivery_window_city_div { border-bottom: 1px solid #CCC; }
 
-div.edost div.edost_bookmark2 div.edost_active_fon_on { background: #AAA; }
-div.edost div.edost_bookmark2 div.edost_active_fon_off { background: none; }
+div.edost_bookmark_small .edost_bookmark_button { padding: 5px 10px; }
+div.edost_bookmark_small .edost_bookmark_button img, div.edost_bookmark_small .edost_bookmark_button .edost_ico_load { display: none; }
+div.edost_bookmark_small .edost_bookmark_button .edost_bookmark_head { padding: 0; font-size: 18px; }
+div.edost_bookmark_small .edost_bookmark_button .edost_format_price { font-size: 18px; }
+
+div.edost_bookmark_small2 #edost_window_data_head_bookmark { display: none; }
+div.edost_bookmark_small2 div.edost_format_head { padding-top: 25px; text-align: center; }
+div.edost_bookmark_small2 .edost_format_div { display: block !important; }
+
+.edost_C2_window div.edost_bookmark_small2 div.edost_format_head { padding: 5px; margin: 25px 0 5px 0; background: #AAA; color: #FFF; }
+
+div.edost_bookmark_small2 .edost_bookmark_button { padding: 5px 10px; }
+div.edost_bookmark_small2 .edost_bookmark_button img, div.edost_bookmark_small2 .edost_bookmark_button .edost_ico_load { display: none; }
+div.edost_bookmark_small2 .edost_bookmark_button .edost_bookmark_head { padding: 0; font-size: 18px; }
+div.edost_bookmark_small2 .edost_bookmark_button .edost_format_price { font-size: 18px; }
+
+
+
+
+
 
 div.edost_catalogdelivery_button { height: 22px; cursor: default; color: #737373; text-align: center; font-size: 18px; font-weight: bold; padding: 5px 0px; border: 1px solid #DDD; border-radius: 4px; }
 div.edost_catalogdelivery_button_bar { display: inline; float: right; margin-right: 15px; }
@@ -486,27 +501,34 @@ input.edost_catalogdelivery_param { width: 40px; }
 
 #edost_catalogdelivery_window_quantity_div span { vertical-align: middle; }
 
+/*
 div.edost_catalogdelivery_window_normal #edost_catalogdelivery_window_city_head { display: inline; }
-div.edost_catalogdelivery_window_normal #edost_catalogdelivery_window_city { display: inline-block; text-align: left; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+*/
+div.edost_catalogdelivery_window_normal #edost_catalogdelivery_window_city { text-align: center; }
 div.edost_catalogdelivery_window_normal #edost_catalogdelivery_cart_name { display: inline; }
 div.edost_catalogdelivery_window_normal #edost_catalogdelivery_cart_name2 { display: none; }
+/*
 div.edost_catalogdelivery_window_normal #edost_catalogdelivery_window_city_head { width: 120px; }
+*/
 div.edost_catalogdelivery_window_normal #edost_catalogdelivery_window_quantity_head { width: 120px; }
 
+/*
 div.edost_catalogdelivery_window_small #edost_catalogdelivery_window_city_head { display: none; }
+*/
 div.edost_catalogdelivery_window_small #edost_catalogdelivery_window_city { display: block; text-align: center; }
 div.edost_catalogdelivery_window_small #edost_catalogdelivery_cart_name { display: none; }
 div.edost_catalogdelivery_window_small #edost_catalogdelivery_cart_name2 { display: inline; }
 div.edost_catalogdelivery_window_small #edost_catalogdelivery_window_city span.edost_city_link { margin-left: 10px; vertical-align: middle; display: inline; }
-div.edost_catalogdelivery_window_small #edost_catalogdelivery_window_quantity_div { text-align: center; }
+#edost_catalogdelivery_window_quantity_div { text-align: center; }
 div.edost_catalogdelivery_window_small #edost_catalogdelivery_window_quantity_head { width: auto; }
 
 div.edost_catalogdelivery_window_city { width: 610px; padding: 0px 10px 0 0px; }
 
+/*
 #edost_catalogdelivery_window_city_head { vertical-align: top; text-align: right; }
+*/
 #edost_catalogdelivery_window_city { padding: 0px 0 8px 0; }
 
-#edost_catalogdelivery_window_city img.edost_flag { vertical-align: middle; padding-right: 5px; width: 18px; height: 12px; }
 #edost_catalogdelivery_window_city span.edost_city_name { vertical-align: middle; font-weight: bold; font-size: 14px; }
 #edost_catalogdelivery_window_city span.edost_city_name span { color: #888; }
 #edost_catalogdelivery_window_city span.edost_city_link { cursor: pointer; color: #A00; font-size: 14px; font-weight: bold; display: block; }
@@ -609,17 +631,64 @@ div.edost_delivery_normal .edost_resize_day2, div.edost_delivery_normal .edost_r
 div.edost_delivery_small .edost_resize_day, div.edost_delivery_small .edost_resize_description { display: none; }
 div.edost_delivery_small2 .edost_resize_day, div.edost_delivery_small2 .edost_resize_description2 { display: none; }
 
-div.edost_bookmark_cod_normal .edost_resize_bookmark_cod2 { display: none; }
-div.edost_bookmark_cod_small .edost_resize_bookmark_cod { display: none; }
-
 div.edost_delimiter_normal .edost_resize_delimiter2 { display: none; }
 div.edost_delimiter_small .edost_resize_delimiter { display: none; }
+
+div.edost_map_normal .edost_resize_map2 { display: none; }
+div.edost_map_hide .edost_resize_map { display: none; }
+
+
+/* old bookmark */
+div.edost table.edost_bookmark td { cursor: default; padding: 0; margin: 0; height: 100%; vertical-align: top; position: relative; }
+div.edost table.edost_bookmark img { width: 95px; height: 55px; padding: 0; }
+div.edost table.edost_bookmark div { text-align: right; }
+div.edost table.edost_bookmark span.edost_bookmark { display: block; font-size: 15px; font-weight: bold; width: 102px; position: absolute; margin: -10px 0 0 10px; padding: 2px 4px; color: #FFF; }
+div.edost table.edost_bookmark td.edost_active span.edost_bookmark, table.edost_bookmark td.edost_active_off span.edost_bookmark { background: #888; }
+div.edost table.edost_bookmark td.edost_active:hover span.edost_bookmark, table.edost_bookmark td.edost_active_on span.edost_bookmark { background: #F00; }
+
+div.edost table.edost_bookmark td.edost_active_off:hover span.edost_bookmark { background: #F00; }
+div.edost table.edost_bookmark td.edost_active_off span, div.edost table.edost_bookmark td.edost_active_off div.edost_payment { opacity: 0.5; }
+div.edost table.edost_bookmark td.edost_active_off img { opacity: 0.3; }
+div.edost table.edost_bookmark td.edost_active_off:hover img { opacity: 0.8; }
+
+div.edost table.edost_bookmark td.edost_active_fon_on { background: #AAA; }
+div.edost table.edost_bookmark td.edost_active_fon_off { background: none; }
+
+div.edost div.edost_bookmark { cursor: default; vertical-align: top; margin-right: 10px; padding-bottom: 5px; display: inline-block; width: 120px; }
+div.edost div.edost_bookmark img { width: 95px; height: 55px; padding: 0; }
+div.edost div.edost_bookmark div { text-align: right; }
+div.edost div.edost_bookmark span.edost_bookmark { display: block; font-size: 15px; font-weight: bold; width: 102px; position: absolute; margin: -10px 0 0 10px; padding: 2px 4px; color: #FFF; }
+div.edost div.edost_bookmark_active span.edost_bookmark, div.edost_bookmark_active_off span.edost_bookmark { background: #888; }
+div.edost div.edost_bookmark_active:hover span.edost_bookmark, div.edost_bookmark_active_on span.edost_bookmark { background: #F00; }
+
+div.edost div.edost_bookmark_active_off:hover span.edost_bookmark { background: #F00; }
+div.edost div.edost_bookmark_active_off span { opacity: 0.5; }
+div.edost div.edost_bookmark_active_off img { opacity: 0.3; }
+div.edost div.edost_bookmark_active_off:hover img { opacity: 0.8; }
+
+div.edost div.edost_bookmark_active_fon_on { background: #AAA; }
+div.edost div.edost_bookmark_active_fon_off { background: none; }
+
+div.edost div.edost_bookmark2 div.edost_payment { line-height: 11px; }
+div.edost div.edost_bookmark2 div.edost_bookmark { cursor: default; text-align: center; margin: 4px; padding: 0; display: inline-block; width: 120px; }
+div.edost div.edost_bookmark2 div.edost_bookmark_head { padding: 4px 5px; font-weight: bold; font-size: 14px; color: #FFF; text-align: center; }
+div.edost div.edost_bookmark2 div.edost_active div.edost_bookmark_head, div.edost_bookmark2 div.edost_active_off div.edost_bookmark_head { background: #888; }
+div.edost div.edost_bookmark2 div.edost_active:hover div.edost_bookmark_head, div.edost_bookmark2 div.edost_active_on div.edost_bookmark_head { background: #F00; }
+
+div.edost div.edost_bookmark2 div.edost_active_off:hover div.edost_bookmark_head { background: #F00; }
+div.edost div.edost_bookmark2 div.edost_active_off span { opacity: 0.5; }
+div.edost div.edost_bookmark2 div.edost_active_off div.edost_payment, div.edost div.edost_bookmark2 div.edost_active_off div.edost_bookmark_head { opacity: 0.5; }
+div.edost div.edost_bookmark2 div.edost_active_off:hover img { opacity: 0.8; }
+
+div.edost div.edost_bookmark2 div.edost_active_fon_on { background: #AAA; }
+div.edost div.edost_bookmark2 div.edost_active_fon_off { background: none; }
 
 div.edost_bookmark_normal .edost_resize_bookmark2 { display: none; }
 div.edost_bookmark_small .edost_resize_bookmark { display: none; }
 
-div.edost_map_normal .edost_resize_map2 { display: none; }
-div.edost_map_hide .edost_resize_map { display: none; }
+div.edost_bookmark_cod_normal .edost_resize_bookmark_cod2 { display: none; }
+div.edost_bookmark_cod_small .edost_resize_bookmark_cod { display: none; }
+/* old bookmark */
 
 
 input.edost_tel_flag { padding-left: 36px !important; background-size: 30px 21px !important; background-repeat: no-repeat !important; background-position: 3px center !important; }
@@ -636,6 +705,7 @@ img.edost_tel_country { position: absolute; display: block; width: 30px; height:
 
 .edost_loading_16 svg.edost_loading { width: 16px; height: 16px; vertical-align: middle; }
 .edost_loading_20 svg.edost_loading { width: 20px; height: 20px; vertical-align: middle; }
+.edost_loading_64 svg.edost_loading { width: 64px; height: 64px; }
 .edost_loading_128 svg.edost_loading { width: 128px; height: 128px; }
 svg.edost_loading { width: 64px; height: 64px; }
 svg.edost_loading path { fill-opacity: 0.1; fill: #AAA; animation: edost_loading 1.2s linear infinite; }
@@ -669,9 +739,6 @@ div.edost_field_value select { padding: 4px 2px; font-size: 14px; }
 div.edost_field_hint { color: #AAA; font-size: 12px; padding-left: 35%; }
 div.edost_field_delimiter { text-align: center; font-size: 20px; color: #555; background: #F0F0F0; padding: 2px; margin: 25px 0 10px 0; }
 
-div.edost_field_shop div.edost_field_shop_hide { display: none; }
-div.edost_field_company div.edost_field_company_hide { display: none; }
-div.edost_field_new div.edost_field_new_hide { display: none; }
 div.edost_window div.edost_field_contract { display: none; }
 div.edost_window.edost_field_contract div.edost_field_contract { display: block !important; }
 
@@ -701,6 +768,8 @@ div.edost_button_company:hover { border: 1px solid #45a5da; }
 div.edost_button_company_off { opacity: 0.4; }
 div.edost_button_company_off:hover { opacity: 0.8; }
 
+div.edost_button_company.edost_button_company_off { border: 1px solid #DDD; }
+
 div.edost_button_option { display: inline-block; cursor: pointer; padding: 8px 20px; margin: 0 10px; border: 1px solid #AAA; font-size: 18px; color: #555; }
 div.edost_button_option img { width: 40px; height: 40px; vertical-align: middle; }
 div.edost_button_option span { vertical-align: middle; }
@@ -713,14 +782,15 @@ img.edost_option { width: 40px; height: 40px; padding-right: 5px; box-sizing: co
 span.edost_option { font-size: 20px; color: #555; vertical-align: middle; }
 
 div.edost_option_service { padding: 3px 0; }
-div.edost_option_service_name { display: inline-block; width: 220px; text-align: right; vertical-align: middle; padding-right: 10px; }
+div.edost_option_service_name { display: inline-block; width: 230px; text-align: right; vertical-align: middle; padding-right: 10px; }
 div.edost_option_service_value { display: inline-block; }
 div.edost_option_service_value label { vertical-align: middle; padding-right: 15px; }
-div.edost_option_service_value input { vertical-align: middle; }
+div.edost_option_service_value input, div.edost_option_service label span, div.edost_option_service_name span { vertical-align: middle; }
 
 div.edost_option_service_depend_count_hide div.edost_option_service_depend_count { display: none; }
-div.edost_option_service_depend_62_hide div.edost_option_service_depend_62 { display: none; }
+div.edost_option_service_depend_cod_hide div.edost_option_service_depend_cod { display: none; }
 /*
+div.edost_option_service_depend_62_hide div.edost_option_service_depend_62 { display: none; }
 div.edost_depend_62_hide div.edost_depend_62 { display: none; }
 */
 
@@ -732,6 +802,10 @@ div.edost_option_service_value input[type="radio"] + span.edost_option_radio_0, 
 div.edost_option_service input { vertical-align: middle; }
 
 .edost_service { color: #0092ea; }
+.edost_package_type { margin-top: 2px; margin-bottom: 5px; color: #6a87ab; }
+.edost_package_type span.edost_control_button_low { color: #6a87ab; }
+.edost_package_comment, .edost_package_service { margin: 5px 0; }
+.edost_package_comment textarea { width: 300px; border: 1px solid #888; box-shadow: none; }
 
 div.edost_package_help { padding-top: 20px; text-align: center; font-size: 22px; color: #AAA; }
 div.edost_package_help div { display: inline-block; border: 1px solid #AAA; border-radius: 5px; font-size: 18px; padding: 4px; min-width: 20px; }
@@ -772,6 +846,9 @@ span.edost_package_button { background: #AAA; padding: 2px 5px; margin: 0 3px; }
 span.edost_package_button_head { font-size: 11px; margin-left: 3px; color: #888; }
 div.edost_package_button input { margin-left: 3px; height: 18px; width: 25px; }
 
+#edost_package_window_button { text-align: center; }
+#edost_package_window_button div.edost_package_button { margin: 10px; }
+
 span.edost_control_button_light { display: block-inline; border-width: 1px; border-style: solid; padding: 4px 10px; font-size: 18px; font-weight: normal; }
 
 div.edost_package_box { width: 428px; display: inline-block; margin: 8px 8px 8px 8px; padding: 0; border-radius: 5px; vertical-align: top; }
@@ -796,6 +873,9 @@ div.edost_button_big_on span.edost_button_big_off, div.edost_button_big_off span
 .edost_profile_shop_change_main .edost_profile_shop_change { display: inline !important; }
 .edost_profile_delivery_change_main .edost_profile_delivery_change { display: inline !important; }
 
+.edost_confirm_checkbox { display: block !important; padding-top: 15px; font-size: 14px; }
+.edost_confirm_checkbox input, .edost_confirm_checkbox span { vertical-align: middle; }
+
 .edost_confirm #edost_window_data { font-size: 18px; text-align: center; padding-top: 0; }
 .edost_error #edost_window_data { font-size: 18px; text-align: center; padding-top: 0; padding-bottom: 28px; }
 .edost_error #edost_window_head { display: none; }
@@ -804,7 +884,131 @@ div.edost_button_big_on span.edost_button_big_off, div.edost_button_big_off span
 
 #edost_bar_div { height: 60px; text-align: center; }
 #edost_bar { padding-top: 20px; }
-#edost_bar.edost_bar_up { position: fixed; bottom: 0; padding: 20px 0; text-align: center; background: #FFFC; border-top: 1px solid #0004; }
+#edost_bar.edost_bar_up { position: fixed; bottom: 0; padding: 20px 0; text-align: center; background: #FFFD; border-top: 1px solid #0004; }
+.edost_bar_disable .edost_button_save { background: #EEE; }
+.edost_bar_disable .edost_button_save:hover, .edost_bar_error .edost_button_save:hover { opacity: 1; cursor: default; }
+.edost_bar_error .edost_button_save { background: #FCC; }
+.edost_bar_error #edost_bar_info { color: #F00; }
 
 .edost_module_off { background: none !important; }
 .edost_module_off .edost_module_light { opacity: 0.4; }
+
+
+/* location */
+
+.edost_device_phone.edost_window_location .edost_button_get { width: 80px; float: right !important; }
+.edost_device_phone .edost_L2_suggest_value { font-size: 16px !important; }
+.edost_device_phone .edost_L2_suggest_data .edost_L2_suggest_value { padding: 8px 0; }
+.edost_device_phone .edost_L2_suggest_active { border: 0; }
+.edost_device_phone .edost_L2_filter_note { font-size: 18px; line-height: 20px; }
+.edost_device_phone .edost_L2_city_hint { font-size: 16px; }
+
+.edost_L2_select_hide { display: none; }
+.edost_device_phone .edost_L2_phone .edost_L2_select_hide { display: inline; }
+.edost_device_phone .edost_L2_phone .edost_L2_select { width: 100%; margin-left: 0; }
+.edost_device_phone .edost_L2_phone .edost_L2_country_active, .edost_device_phone  .edost_L2_phone .edost_L2_delimiter, .edost_device_phone .edost_L2_phone .edost_L2_select_other { display: none; }
+.edost_device_phone .edost_L2_filter select { width: 250px; }
+.edost_device_phone .edost_L2_filter_or { display: none; }
+
+img.edost_flag { vertical-align: middle; padding-right: 5px; width: 22px; height: 14px; box-sizing: content-box; }
+.edost_L2_filter { text-align: center; }
+.edost_L2_filter select { max-width: 250px; padding: 5px; font-size: 20px; display: inline-block; }
+.edost_L2_filter div { display: inline-block; padding-bottom: 2px; margin: 0 10px; text-align: left; font-size: 16px; }
+.edost_L2_filter span { display: block; opacity: 0.8; }
+.edost_L2_filter_active { background: #c1ebff !important; }
+.edost_L2_filter_active option { background: #FFF !important; }
+.edost_L2_filter_note { padding: 20px 0 15px 0; font-size: 25px; line-height: 28px; color: #AAA; text-align: center; }
+/*
+.edost_window_location.edost_window_normal { overflow: visible; }
+*/
+.edost_location_city_window_data { text-align: center; }
+div.edost_address { font-size: 12px; display: inline-block; padding-right: 4px; max-width: 100%; }
+div.edost_address_delimiter2 { padding-top: 10px; }
+input.edost_input { margin-top: 2px; }
+span.edost_L2_header { cursor: pointer; text-decoration: none; color: #000; opacity: 0.6; }
+span.edost_L2_header:hover { opacity: 1; }
+span.edost_L2_header_point, span.edost_L2_header_city { vertical-align: middle; }
+.edost_L2_suggest_div { display: none; z-index: 10000; background: #FFF; position: absolute; text-align: left; box-shadow: 0px 2px 10px 0 #888; }
+#edost_window .edost_L2_suggest_div { width: 100%; border: 0 !important; background: #FFF; margin: 20px 0 0 0; position: relative; box-shadow: none; }
+.edost_L2_suggest_div .edost_delimiter { margin: 0px 0 !important; }
+.edost_L2_suggest_div .edost_button_big { display: inline-block; margin-left: 20px; padding: 0; }
+.edost_L2_suggest_low { opacity: 0.5; }
+.edost_L2_fed { margin-top: 10px; }
+.edost_L2_fed_main { padding-top: 10px; font-size: 20px; color: #004190; }
+#edost_window .edost_L2_suggest_data div.edost_delimiter { margin: 0; }
+#edost_window .edost_L2_suggest_data .edost_L2_suggest_value { min-height: 50px;  }
+.edost_L2_suggest_data .edost_L2_suggest_value { font-size: 18px; color: #000; padding: 5px 10px; margin: 0px; line-height: 20px; }
+.edost_L2_suggest_data .edost_L2_suggest_value span { opacity: 0.6; font-size: 14px; }
+.edost_L2_suggest_data .edost_button_get { margin: 3px 0 0 20px; }
+.edost_L2_suggest_data .edost_button_get span { color: #FFF; opacity: 1 !important; font-size: 15px !important; }
+.edost_L2_suggest_active { border-left: 4px solid #6d91b3; background: #f0f0f0; }
+#edost_window .edost_L2_suggest_active { background: #FFF; }
+.edost_L2_suggest_hint { padding: 10px; background: #FFD; font-size: 16px; color: #555; }
+#edost_window .edost_L2_suggest_hint { padding: 10px; margin: 40px 40px 20px 40px; background: #FFD; border: 1px solid #fddd3a; border-radius: 8px; font-size: 18px; text-align: center; color: #555; }
+.edost_L2_suggest_warning { color: #A00; padding: 8px; font-size: 16px; }
+#edost_window .edost_L2_suggest_warning { padding: 0; text-align: center; }
+#edost_window .edost_L2_suggest_warning div:nth-child(1) { padding: 0 0 10px 0; font-size: 25px; color: #f99; }
+#edost_window .edost_L2_suggest_warning div:nth-child(2) { font-size: 18px; opacity: 0.7; color: #c55a5a; }
+#edost_window .edost_L2_gps_head { color: #AAA; font-size: 24px; text-align: center; }
+.edost_L2_suggest_bold { font-weight: bold; }
+.edost_L2_suggest_bold span { font-weight: normal; }
+input.edost_L2_city { width: calc(100% - 60px); max-width: 640px; padding: 4px 6px; font-size: 16px; }
+.edost_L2_city_hint { padding: 5px 20px 20px 20px; font-size: 20px; color: #d27575; opacity: 0.8; }
+.edost_L2_country_list { padding-bottom: 6px; }
+.edost_L2_city_name { vertical-align: middle; font-weight: bold; font-size: 14px; }
+.edost_L2_city_name span { color: #888; }
+.edost_L2_city_link { display: block; width: 80px; padding: 1px 6px; margin-top: 4px; color: #888; font-size: 13px; border: 1px solid #CCC; border-radius: 5px; text-align: center; cursor: pointer; }
+.edost_L2_city_link:hover { opacity: 0.8; }
+.edost_L2_warning { color: #F00; font-size: 12px; font-weight: bold; }
+select.edost_L2_select { width: 150px; padding: 4px 2px; margin: 0 0 0 12px; font-size: 16px; }
+option.edost_L2_select_head { color: #F00; }
+option.edost_L2_select_no { color: #888; }
+.edost_L2_delimiter { display: inline-block; cursor: default; padding: 2px 0; margin: 0; border-width: 0 1px 0 0; border-color: #AAA; border-style: solid; }
+.edost_L2_country_active { display: inline-block; cursor: default; font-size: 15px; font-weight: bold; padding: 2px 8px 2px 12px; margin: 0; }
+.edost_L2_country_active span, .edost_L2_country_active img { vertical-align: middle; }
+.edost_L2_country_active_off { color: #AAA; font-weight: normal; }
+.edost_L2_country_active_off span { color: #555; }
+.edost_L2_country_active_off img { opacity: 0.5; }
+.edost_L2_country_active_off:hover img { opacity: 0.9; }
+.edost_L2_country_active_off:hover span { color: #888; }
+.edost_L2_gps { max-width: 250px; padding: 6px 0px; margin: 35px auto 10px auto; background: #F00; color: #FFF; font-size: 16px; line-height: 18px; border-radius: 5px; cursor: pointer; }
+.edost_L2_gps:hover { opacity: 0.9; }
+.edost_L2_gps_hint { text-align: center; font-size: 16px; color: #AAA; }
+.edost_L2_button_new { width: 300px !important; font-size: 16px !important; }
+
+
+
+.edost_C2_tariff, .edost_C2_price { display: inline-block; color: #000; }
+.edost_C2_name { color: #888; }
+.edost_C2_line * { vertical-align: middle; }
+.edost_C2_line { margin: 4px 0; }
+.edost_C2_preview img { padding-right: 5px }
+
+.edost_C2_preview_light { }
+
+.edost_C2_preview_normal { }
+.edost_C2_preview_normal .edost_C2_tariff, .edost_C2_preview_normal .edost_C2_price { font-weight: bold; }
+.edost_C2_preview_normal .edost_C2_free { color: #0A0; }
+
+.edost_C2_preview_modern .edost_C2_tariff, .edost_C2_preview_modern .edost_C2_price { font-weight: bold; }
+.edost_C2_preview_modern .edost_C2_price { margin-left: 5px;  padding: 1px 8px; margin-left: 5px; font-size: 14px; background: #EFEFEF; color: #555; border-radius: 8px; }
+.edost_C2_preview_modern .edost_C2_name { margin: 0 5px; font-size: 14px; color: #555; border-radius: 8px; }
+.edost_C2_preview_modern .edost_C2_free { color: #FFF; background: #5B5; font-weight: normal; }
+/*
+.edost_C2_preview_table { }
+.edost_C2_preview_table .edost_C2_tariff, .edost_C2_preview_table .edost_C2_price { font-weight: bold; }
+.edost_C2_preview_table .edost_C2_price { margin-left: 5px;  padding: 1px 8px; margin-left: 5px; font-size: 14px; background: #EFEFEF; color: #555; border-radius: 8px; }
+.edost_C2_preview_table .edost_C2_name { margin: 0 5px; font-size: 14px; color: #555; border-radius: 8px; }
+.edost_C2_preview_table .edost_C2_free { color: #FFF; background: #5B5; font-weight: normal; }
+*/
+/*
+.edost_C2_preview_table { font-size: 15px; max-width: 400px; }
+.edost_C2_preview_table .edost_C2_line { padding: 5px; margin: 5px; background: #EFEFEF;  border-radius: 8px; }
+.edost_C2_preview_table .edost_C2_tariff, .edost_C2_preview_table .edost_C2_price { font-weight: bold; }
+.edost_C2_preview_table .edost_C2_price { float: right; width: 80px; margin-left: 5px;  padding: 1px 8px; margin-left: 5px; font-size: 14px; background: #EFEFEF; color: #555; border-radius: 8px; font-weight: bold; text-align: center; }
+.edost_C2_preview_table .edost_C2_name { float: right; padding: 1px 8px; margin-left: 5px; font-size: 14px; color: #555; border-radius: 8px; }
+.edost_C2_preview_table .edost_C2_free { color: #FFF; background: #5B5; font-weight: normal; text-align: center; }
+.edost_C2_preview_table .edost_C2_name, .edost_C2_preview_table .edost_C2_price { display: block; }
+*/
+
+#edost_window #edost_catalogdelivery_data td.edost_format_tariff span { line-height: 16px; }

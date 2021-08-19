@@ -6,8 +6,12 @@ use Yandex\Market;
 use Bitrix\Main;
 use Yandex\Market\Trading\Service as TradingService;
 
-/** @method Options getOptions() */
-/** @method Status getStatus()() */
+/**
+ * @method Options getOptions()
+ * @method Status getStatus()
+ * @method ModelFactory getModelFactory()
+ * @method Feature getFeature()
+ */
 class Provider extends TradingService\Common\Provider
 {
 	protected $paySystem;

@@ -9,7 +9,7 @@ use Yandex\Market\Trading\Service as TradingService;
 
 class Action extends TradingService\Reference\Action\DataAction
 {
-	use Market\Reference\Concerns\HasLang;
+	use Market\Reference\Concerns\HasMessage;
 
 	/** @var TradingService\Marketplace\Provider */
 	protected $provider;
@@ -23,11 +23,6 @@ class Action extends TradingService\Reference\Action\DataAction
 	protected $orderMap;
 	/** @var array<string, int>*/
 	protected $offerMap;
-
-	protected static function includeMessages()
-	{
-		Main\Localization\Loc::loadMessages(__FILE__);
-	}
 
 	public function __construct(TradingService\Marketplace\Provider $provider, TradingEntity\Reference\Environment $environment, array $data)
 	{
@@ -69,16 +64,60 @@ class Action extends TradingService\Reference\Action\DataAction
 	protected function loadExternalOrdersByPrimaries()
 	{
 		$collection = new Market\Api\Model\OrderCollection();
+		$pageNumber = $this->request->getPage();
+		$pageSize = $this->request->getPageSize();
+		$usePager = ($pageSize !== null);
+		$primaries = $this->request->getPrimaries();
 
-		foreach ($this->request->getPrimaries() as $primary)
+		if ($usePager)
 		{
-			$order = $this->fetchOrderByPrimary($primary);
+			$pageNumber = max(1, (int)$pageNumber);
+			$pageSize = min(20, max(1, (int)$pageSize));
 
-			$order->setCollection($collection);
-			$collection->addItem($order);
+			$pagePrimaries = array_slice($primaries, ($pageNumber - 1) * $pageSize, $pageSize);
+		}
+		else
+		{
+			$pagePrimaries = $primaries;
+		}
+
+		foreach ($pagePrimaries as $primary)
+		{
+			try
+			{
+				$order = $this->fetchOrderByPrimary($primary);
+
+				$order->setCollection($collection);
+				$collection->addItem($order);
+			}
+			catch (Market\Exceptions\Api\Request $exception)
+			{
+				if (!$this->request->suppressErrors())
+				{
+					throw $exception;
+				}
+			}
+		}
+
+		if ($usePager)
+		{
+			$pager = $this->makeExternalOrderByPrimariesPager($primaries, $pageNumber, $pageSize);
+			$collection->setPager($pager);
 		}
 
 		$this->externalOrders = $collection;
+	}
+
+	protected function makeExternalOrderByPrimariesPager(array $primaries, $current, $size)
+	{
+		$total = count($primaries);
+
+		return new Market\Api\Model\Pager([
+			'currentPage' => $current,
+			'pagesCount' => ceil($total / $size),
+			'pageSize' => $size,
+			'total' => $total,
+		]);
 	}
 
 	protected function fetchOrderByPrimary($primary)
@@ -88,14 +127,17 @@ class Action extends TradingService\Reference\Action\DataAction
 		if ($useCache && Market\Trading\State\SessionCache::has('order', $primary))
 		{
 			$fields = Market\Trading\State\SessionCache::get('order', $primary);
-			$result = TradingService\Marketplace\Model\Order::initialize($fields);
+			$orderClassName = $this->provider->getModelFactory()->getOrderClassName();
+
+			$result = $orderClassName::initialize($fields);
 		}
 		else
 		{
 			$options = $this->provider->getOptions();
 			$logger = $this->provider->getLogger();
+			$facadeClassName = $this->provider->getModelFactory()->getOrderFacadeClassName();
 
-			$result = TradingService\Marketplace\Model\OrderFacade::load($options, $primary, $logger);
+			$result = $facadeClassName::load($options, $primary, $logger);
 		}
 
 		return $result;
@@ -107,13 +149,14 @@ class Action extends TradingService\Reference\Action\DataAction
 		$logger = $this->provider->getLogger();
 		$parameters = $this->request->getParameters();
 		$parameters = $this->convertExternalOrderParameters($parameters);
+		$facadeClassName = $this->provider->getModelFactory()->getOrderFacadeClassName();
 
 		if (!isset($parameters['status']) && $this->request->onlyPrintReady())
 		{
 			$parameters['status'] = TradingService\Marketplace\Status::STATUS_PROCESSING;
 		}
 
-		$this->externalOrders = TradingService\Marketplace\Model\OrderFacade::loadList($options, $parameters, $logger);
+		$this->externalOrders = $facadeClassName::loadList($options, $parameters, $logger);
 	}
 
 	protected function flushCache()
@@ -126,17 +169,20 @@ class Action extends TradingService\Reference\Action\DataAction
 
 	protected function writeCache()
 	{
-		if ($this->request->useCache())
+		if (!$this->request->useCache()) { return; }
+
+		/** @var Market\Api\Model\Order $order */
+		foreach ($this->externalOrders as $order)
 		{
-			/** @var Market\Api\Model\Order $order */
-			foreach ($this->externalOrders as $order)
-			{
-				if ($this->isPrintReady($order))
-				{
-					Market\Trading\State\SessionCache::set('order', $order->getId(), $order->getFields());
-				}
-			}
+			if (!$this->useOrderCache($order)) { continue; }
+
+			Market\Trading\State\SessionCache::set('order', $order->getId(), $order->getFields());
 		}
+	}
+
+	protected function useOrderCache(Market\Api\Model\Order $order)
+	{
+		return $this->isOrderProcessing($order);
 	}
 
 	protected function convertExternalOrderParameters($parameters)
@@ -324,16 +370,24 @@ class Action extends TradingService\Reference\Action\DataAction
 			'EDIT_URL' => null,
 			'DATE_CREATE' => $order->getCreationDate(),
 			'DATE_SHIPMENT' => $this->getOrderShipmentDates($order),
+			'DATE_DELIVERY' => $this->getOrderDeliveryDates($order),
 			'TOTAL' => null,
 			'SUBSIDY' => null,
 			'CURRENCY' => Market\Data\Currency::getCurrency($order->getCurrency()),
 			'STATUS' => $orderStatus,
-			'STATUS_LANG' => $this->getOrderStatusLang($orderStatus, $orderSubStatus),
+			'STATUS_LANG' =>
+				$this->getOrderStatusLang($orderStatus, $orderSubStatus)
+				. ($order->isCancelRequested() ? self::getMessage('CANCEL_REQUESTED_STATUS_SUFFIX') : ''),
 			'SUBSTATUS' => $orderSubStatus,
 			'SUBSTATUS_LANG' => $this->getOrderSubStatusLang($orderStatus, $orderSubStatus),
 			'FAKE' => $order->isFake(),
 			'BASKET' => $this->getBasketFieldData($order, $bitrixOrder),
 			'SHIPMENT' => $this->getShipmentFieldData($order, $bitrixOrder),
+			'BOX_COUNT' => $this->getShipmentBoxCount($order),
+			'PROCESSING' => $this->isOrderProcessing($order),
+			'STATUS_READY' => $bitrixOrder !== null && $this->isStatusReady($order),
+			'STATUS_ALLOW' => $bitrixOrder !== null ? $this->makeAllowedStatuses($order) : [],
+			'CANCEL_ALLOW' => $bitrixOrder !== null && $this->isCancelAllowed($order),
 			'PRINT_READY' => $bitrixOrder !== null && $this->isPrintReady($order),
 			'VIEW_ACCESS' => false,
 		];
@@ -365,6 +419,20 @@ class Action extends TradingService\Reference\Action\DataAction
 		return $order instanceof TradingService\Marketplace\Model\Order
 			? $order->getMeaningfulShipmentDates()
 			: [];
+	}
+
+	protected function getOrderDeliveryDates(Market\Api\Model\Order $order)
+	{
+		if (!$order->hasDelivery()) { return null; }
+
+		$dates = $order->getDelivery()->getDates();
+
+		if ($dates === null) { return null; }
+
+		return [
+			'FROM' => $dates->getFrom(),
+			'TO' => $dates->getTo(),
+		];
 	}
 
 	protected function getOrderStatusLang($status, $subStatus)
@@ -461,6 +529,7 @@ class Action extends TradingService\Reference\Action\DataAction
 				[
 					'ID' => $box->getId(),
 					'FULFILMENT_ID' => $box->getFulfilmentId(),
+					'VIRTUAL' => !$shipment->hasSavedBoxes(),
 				]
 				+ $this->getShipmentBoxDimensions($box);
 		}
@@ -499,6 +568,74 @@ class Action extends TradingService\Reference\Action\DataAction
 		}
 
 		return $result;
+	}
+
+	protected function getShipmentBoxCount(Market\Api\Model\Order $order)
+	{
+		if (!$order->hasDelivery()) { return 0; }
+
+		$result = 0;
+
+		/** @var Market\Api\Model\Order\Shipment $shipment */
+		foreach ($order->getDelivery()->getShipments() as $shipment)
+		{
+			if (!$shipment->hasSavedBoxes()) { continue; }
+
+			$boxes = $shipment->getBoxes();
+
+			if ($boxes === null) { continue; }
+
+			$result += $boxes->count();
+		}
+
+		return $result > 0 ? $result : null;
+	}
+
+	protected function isStatusReady(Market\Api\Model\Order $order)
+	{
+		return $this->isOrderProcessing($order) && $this->hasSavedBoxes($order);
+	}
+
+	protected function makeAllowedStatuses(Market\Api\Model\Order $order)
+	{
+		if (!$this->isOrderProcessing($order)) { return []; }
+
+		$substatus = $order->isCancelRequested() ? TradingService\Marketplace\Status::STATE_SHOP_FAILED : $order->getSubStatus();
+		$substatusOrder = $this->provider->getStatus()->getSubStatusProcessOrder();
+
+		if (!isset($substatusOrder[$substatus]))
+		{
+			$result = array_keys($substatusOrder);
+		}
+		else
+		{
+			$currentOrder = $substatusOrder[$substatus];
+			$result = [];
+
+			foreach ($substatusOrder as $processSubstatus => $processOrder)
+			{
+				if (
+					$processOrder === $currentOrder + 1
+					|| (
+						$processOrder > $currentOrder
+						&& $processSubstatus === TradingService\Marketplace\Status::STATE_SHOP_FAILED
+					)
+				)
+				{
+					$result[] = $processSubstatus;
+				}
+			}
+		}
+
+		return $result;
+	}
+
+	protected function isCancelAllowed(Market\Api\Model\Order $order)
+	{
+		return
+			$this->isOrderProcessing($order)
+			&& $order->getSubStatus() !== TradingService\Marketplace\Status::STATE_SHIPPED
+			&& !$order->isCancelRequested();
 	}
 
 	protected function isPrintReady(Market\Api\Model\Order $order)

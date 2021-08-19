@@ -10,13 +10,13 @@ use Yandex\Market\Trading\Service as TradingService;
 class Action extends TradingService\Reference\Action\DataAction
 {
 	use Market\Reference\Concerns\HasLang;
+	use TradingService\Common\Concerns\Action\HasOrder;
+	use TradingService\Common\Concerns\Action\HasOrderMarker;
 
 	/** @var TradingService\Common\Provider */
 	protected $provider;
 	/** @var Request */
 	protected $request;
-	/** @var TradingEntity\Reference\Order */
-	protected $order;
 
 	protected static function includeMessages()
 	{
@@ -143,100 +143,26 @@ class Action extends TradingService\Reference\Action\DataAction
 		Market\Trading\State\OrderStatus::commit($serviceKey, $orderId);
 	}
 
-	protected function resolveOrderMarker($isStateReached, Main\Result $sendResult)
-	{
-		try
-		{
-			if ($this->isExistOrderMarker() === $isStateReached)
-			{
-				if ($isStateReached)
-				{
-					$order = $this->getOrder();
-
-					$this->unmarkOrder($order);
-					$this->updateOrder($order);
-				}
-				else if (!$this->request->getImmediate())
-				{
-					$order = $this->getOrder();
-
-					$this->markOrder($order, $sendResult);
-					$this->updateOrder($order);
-				}
-			}
-		}
-		catch (Main\SystemException $exception)
-		{
-			$logger = $this->provider->getLogger();
-			$logger->error($exception, [
-				'AUDIT' => $this->getAudit(),
-				'ENTITY_TYPE' => TradingEntity\Registry::ENTITY_TYPE_ORDER,
-				'ENTITY_ID' => $this->request->getOrderNumber(),
-			]);
-		}
-	}
-
-	protected function isExistOrderMarker()
-	{
-		$orderRegistry = $this->environment->getOrderRegistry();
-		$orderId = $this->request->getInternalId();
-		$code = $this->getMarkerCode();
-
-		return $orderRegistry->isExistMarker($orderId, $code);
-	}
-
-	protected function getOrder()
-	{
-		if ($this->order === null)
-		{
-			$this->order = $this->loadOrder();
-		}
-
-		return $this->order;
-	}
-
-	protected function loadOrder()
-	{
-		$orderId = $this->request->getInternalId();
-		$orderRegistry = $this->environment->getOrderRegistry();
-
-		return $orderRegistry->loadOrder($orderId);
-	}
-
-	protected function unmarkOrder(TradingEntity\Reference\Order $order)
-	{
-		$code = $this->getMarkerCode();
-		$removeResult = $order->removeMarker($code);
-
-		Market\Result\Facade::handleException($removeResult);
-	}
-
-	protected function markOrder(TradingEntity\Reference\Order $order, Main\Result $result)
-	{
-		$message = implode(PHP_EOL, $result->getErrorMessages());
-		$code = $this->getMarkerCode();
-
-		$addResult = $order->addMarker($message, $code);
-
-		Market\Result\Facade::handleException($addResult);
-	}
-
 	protected function getMarkerCode()
 	{
 		return $this->provider->getDictionary()->getErrorCode('SEND_STATUS_ERROR');
 	}
 
-	protected function updateOrder(TradingEntity\Reference\Order $order)
-	{
-		$updateResult = $order->update();
-
-		Market\Result\Facade::handleException($updateResult);
-	}
-
 	protected function getStatusOut()
 	{
-		$requestStatus = $this->request->getStatus();
+		$externalStatus = $this->request->getExternalStatus();
 
-		return (string)$this->provider->getOptions()->getStatusOut($requestStatus);
+		if ($externalStatus !== null)
+		{
+			$result = $externalStatus;
+		}
+		else
+		{
+			$requestStatus = $this->request->getStatus();
+
+			$result = (string)$this->provider->getOptions()->getStatusOut($requestStatus);
+		}
+
+		return $result;
 	}
 }

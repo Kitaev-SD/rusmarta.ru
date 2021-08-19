@@ -4,7 +4,8 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 CModule::IncludeModule("acrit.core");
 
 use Acrit\Core\Orders\Controller,
-	Acrit\Core\Orders\Rest;
+	Acrit\Core\Orders\Rest,
+	Acrit\Core\Orders\OrdersInfo;
 
 Controller::setModuleId($strModuleId);
 
@@ -26,6 +27,16 @@ switch ($action) {
 		// Reset connection
 		Rest::saveAuthInfo('');
 		$result['status'] = 'ok';
+		break;
+	// Users search
+	case 'find_users':
+		$result = [];
+		if (strlen($_REQUEST['q']) > 3) {
+			$list = OrdersInfo::getUsers($_REQUEST['q']);
+			foreach ($list as $item) {
+				$result[$item['id']] = $item['name'] . ', ' . $item['code'] . ' [' . $item['id'] . ']';
+			}
+		}
 		break;
 }
 

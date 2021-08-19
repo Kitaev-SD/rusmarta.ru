@@ -25,6 +25,7 @@ class OrderSync {
 	 * Run order synchronization
 	 */
 	public function runSync($order_id, $ext_order, $profile) {
+		$result = false;
 		$order_data = [];
 		// Update order
 		$order = false;
@@ -89,7 +90,12 @@ class OrderSync {
 			if (!$result->isSuccess()) {
 				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order error: ' . print_r($result->getErrorMessages(), true), false, true);
 			}
+			else {
+				$result = true;
+				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order '.$order->getId().' success', false, true);
+			}
 		}
+		return $result;
 	}
 
 	/**

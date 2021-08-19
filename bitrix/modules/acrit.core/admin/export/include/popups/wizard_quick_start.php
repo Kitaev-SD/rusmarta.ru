@@ -99,6 +99,9 @@ if($bSaveWizardQuickStart){
 							if(strlen($strExportFileName)){
 								$arProfile['PARAMS']['EXPORT_FILE_NAME'] = $strExportFileName;
 							}
+							if(method_exists($obPlugin, 'getSupportedFormats')){
+								$arProfile['PARAMS']['EXPORT_FORMAT'] = reset($obPlugin->getSupportedFormats());
+							}
 						}
 						$arProfile['PARAMS'] = serialize($arProfile['PARAMS']);
 						$obResult = Helper::call($strModuleId, 'Profile', 'add', [$arProfile]);

@@ -13,6 +13,11 @@ class Item extends Market\Api\Model\Order\Item
 		return (int)$this->getRequiredField('feedId');
 	}
 
+	public function getPartnerWarehouseId()
+	{
+		return (string)$this->getRequiredField('partnerWarehouseId');
+	}
+
 	/** @return string|null */
 	public function getBundleId()
 	{

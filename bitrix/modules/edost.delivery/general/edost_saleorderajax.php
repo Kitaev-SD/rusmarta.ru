@@ -243,7 +243,6 @@ class CEdostModifySaleOrderAjax {
 		if (strpos($s, '/bitrix/components/bitrix/crm.order.') !== false) $mode = 'crm_ajax'; // CRM ajax    /bitrix/components/bitrix/crm.order.shipment.details/ajax.php
 		$order_paid = (!empty($old_values['PAYED']) ? true : false); // изменение флага "заказ оплачен"
 
-
 		// оформление нового заказа покупателем
 		if ($order->isNew() && strpos($s, '/admin/') === false && $mode == '') {
 			$config = self::GetEdostConfig(SITE_ID);
@@ -280,7 +279,7 @@ class CEdostModifySaleOrderAjax {
 			if ($profile === false || $profile['tariff'] == 0) return;
 
 			$props = edost_class::GetProps($order, array('order', 'no_location'));
-			$tariff = CDeliveryEDOST::GetEdostTariff($profile['profile'], isset($props['office']) ? $props['office'] : false);
+			$tariff = CDeliveryEDOST::GetEdostTariff($profile['profile'], isset($props['office']) ? $props['office'] : false, $config);
 
 			$tariff_original = CDeliveryEDOST::GetEdostTariff($profile['profile']);
 			if (isset($tariff['error'])) return;
@@ -344,7 +343,7 @@ class CEdostModifySaleOrderAjax {
 			$edost_locations = (isset($_REQUEST['edost_location_admin']) && CModule::IncludeModule('edost.locations') ? true : false);
 
 			$address = (!empty($_REQUEST['edost_address']) ? $_REQUEST['edost_address'] : '');
-			$location = (!empty($_REQUEST['edost_shop_LOCATION']) ? CSaleLocation::getLocationCODEbyID(intval($_REQUEST['edost_shop_LOCATION'])) : 0);
+			$location = (!empty($_REQUEST['edost_shop_LOCATION']) ? edost_class::GetLocationCode($_REQUEST['edost_shop_LOCATION']) : 0);
 
 			if (!empty($address) || !empty($edost_locations)) {
 				$delivery_id = 0;
@@ -358,12 +357,11 @@ class CEdostModifySaleOrderAjax {
 
 
 		// редактирование отгрузки
-		$shipment_id = '';
-		if (!empty($_REQUEST['shipment_id'])) $shipment_id = $_REQUEST['shipment_id'];
-		else if (!empty($_REQUEST['PRODUCT_COMPONENT_DATA']['params']['SHIPMENT_ID'])) $shipment_id = $_REQUEST['PRODUCT_COMPONENT_DATA']['params']['SHIPMENT_ID'];
-
-		if (in_array($mode, array('shipment_edit', 'crm_ajax')) && !empty($shipment_id)) {
-			$shipment_id = array(intval($shipment_id));
+		$s = '';
+		if (!empty($_REQUEST['shipment_id'])) $s = $_REQUEST['shipment_id'];
+		else if (!empty($_REQUEST['PRODUCT_COMPONENT_DATA']['params']['SHIPMENT_ID'])) $s = $_REQUEST['PRODUCT_COMPONENT_DATA']['params']['SHIPMENT_ID'];
+		if (in_array($mode, array('shipment_edit', 'crm_ajax')) && !empty($s)) {
+			$shipment_id = array(intval($s));
 			$props = edost_class::GetProps($shipment_id[0], array('shipment'));
 
 			// сохранение платежной системы
@@ -395,7 +393,6 @@ class CEdostModifySaleOrderAjax {
 //		echo '<br><b>shipment_id:</b> <pre style="font-size: 12px">'.print_r($shipment_id, true).'</pre>';
 
 		if ($config['control'] != 'Y') return;
-
 
 		// автоматическая постановка на контроль и обновление данных при изменении параметров + снятие с контроля (если изменился тариф или удалили идентификатор отправления)
 		if (!empty($props_new) && !empty($shipment_id)) {
@@ -536,19 +533,52 @@ class CEdostModifySaleOrderAjax {
 			foreach ($s as $v) if (!empty($arParams[$v])) $config[$v] = $arParams[$v];
 		}
 
-
 		// сохранение и восстановление доставки, оплаты и полей заказа
 		$clear_order_param = false;
 		if (!empty($arParams['COMPACT'])) {
 			$preload_delivery = (!empty($arParams['USE_PRELOAD_DELIVERY']) ? $arParams['USE_PRELOAD_DELIVERY'] : 'Y');
 			$preload_prop = (!empty($arParams['USE_PRELOAD_PROP']) ? $arParams['USE_PRELOAD_PROP'] : 'Y');
 			if (!empty($_GET['preload_disable'])) $preload_delivery = $preload_prop = 'N'; // ручная блокировка автозаполнения
-			$person_type = (!empty($arUserResult['PERSON_TYPE_ID']) ? $arUserResult['PERSON_TYPE_ID'] : 0);
-			$write = ($_SERVER['REQUEST_METHOD'] == 'POST' && !($arUserResult['PERSON_TYPE_OLD'] != '' && $arUserResult['PERSON_TYPE_ID'] != $arUserResult['PERSON_TYPE_OLD']) ? true : false);
+			$user_key = (!empty($arUserResult['PERSON_TYPE_ID']) ? $arUserResult['PERSON_TYPE_ID'] : 0).'_'.(!empty($arUserResult['PROFILE_ID']) ? $arUserResult['PROFILE_ID'] : 0);
+			$person_change = ($arUserResult['PERSON_TYPE_OLD'] != '' && $arUserResult['PERSON_TYPE_ID'] != $arUserResult['PERSON_TYPE_OLD'] ? true : false);
+			$profile_change = (!$person_change && !empty($_REQUEST['PROFILE_ID_OLD']) && $_REQUEST['PROFILE_ID_OLD'] != $arUserResult['PROFILE_ID'] ? true : false);
+			$write = ($_SERVER['REQUEST_METHOD'] == 'POST' && !$person_change ? true : false);
+			$e = (!empty($arResult['edost']) ? $arResult['edost'] : false);
+			$w = array('location' => 'code', 'zip' => 'zip', 'address' => '', 'city' => '');
+
+			if ($arParams['COMPACT'] == 'off' && (empty($arParams['NO_HOUSE']) || $arParams['NO_HOUSE'] == 'Y')) $config['NO_HOUSE'] = true;
+
+			// перезапись сохраненных полей заказа после изменения местоположения на другой странице сайта
+			if ($e && $_SERVER['REQUEST_METHOD'] != 'POST' && edost_class::LocationCookie('change') && !empty($_SESSION['EDOST']['order_param'])) {
+				$c = edost_class::LocationCookie();
+
+				if (!empty($c)) {
+					$s = $_SESSION['EDOST']['order_param'];
+					if (!empty($s['location'])) foreach ($s['location'] as $k => $v) {
+						$v['street'] = '';
+						$v['city2'] = $c['city2'];
+						$v['zip'] = (!empty($c['zip_full']) ? $c['zip'] : '');
+						$v['zip_full'] = (!empty($c['zip_full']) ? 'Y' : '');
+						$s['location'][$k] = $v;
+					}
+					if (!empty($s['ORDER_PROP'])) foreach ($s['ORDER_PROP'] as $k => $v) {
+						foreach ($w as $u_key => $u) if (!empty($s['prop_id'][$k][$u_key])) {
+							if ($u) $u = $c[$u].($u == 'zip' && empty($c['zip_full']) ? '.' : '');
+							if ($u_key == 'city' && isset($c['city2'])) $u = $c['city2'];
+							$v[ $s['prop_id'][$k][$u_key] ] = $u;
+						}
+						$s['ORDER_PROP'][$k] = $v;
+					}
+					$_SESSION['EDOST']['order_param'] = $s;
+				}
+			}
 
 			$key = array();
-			if ($preload_delivery == 'Y') $key = array('DELIVERY_ID', 'PAY_SYSTEM_ID');
-			if ($preload_prop == 'Y') { $key[] = 'ORDER_PROP'; $key[] = 'ORDER_DESCRIPTION'; }
+			if ($profile_change) $arUserResult['edost']['set_prop2'] = $config['set_prop2'] = true; // загрузить prop2 из профиля покупателя
+			else {
+				if ($preload_delivery == 'Y') $key = array('DELIVERY_ID', 'PAY_SYSTEM_ID');
+				if ($preload_prop == 'Y') { $key[] = 'ORDER_PROP'; $key[] = 'ORDER_DESCRIPTION'; }
+			}
 
 			if ($preload_delivery == 'clear' && $_SERVER['REQUEST_METHOD'] != 'POST') {
 				$clear_order_param = true;
@@ -561,7 +591,14 @@ class CEdostModifySaleOrderAjax {
 				if ($write) {
 					foreach ($key as $k) if (!empty($arUserResult[$k]))
 						if (!is_array($arUserResult[$k])) $_SESSION['EDOST']['order_param'][$k] = $arUserResult[$k];
-						else $_SESSION['EDOST']['order_param'][$k][$person_type] = $arUserResult[$k];
+						else {
+							$_SESSION['EDOST']['order_param'][$k][$user_key] = $arUserResult[$k];
+							if ($k == 'ORDER_PROP') {
+								foreach ($w as $u_key => $u) if (!empty($e[$u_key.'_id'])) $_SESSION['EDOST']['order_param']['prop_id'][$user_key][$u_key] = $e[$u_key.'_id'];
+								$s = edost_class::GetRequest('edost_city2', 200);
+								if ($s !== false && isset($e['city_id'])) $_SESSION['EDOST']['order_param'][$k][$user_key][$e['city_id']] = $s;
+							}
+						}
 				}
 				else {
 					foreach ($key as $k)
@@ -569,25 +606,29 @@ class CEdostModifySaleOrderAjax {
 							if (!empty($_SESSION['EDOST']['order_param'][$k])) $arUserResult[$k] = $_SESSION['EDOST']['order_param'][$k];
 						}
 						else {
-							if (!empty($_SESSION['EDOST']['order_param'][$k][$person_type]))
-								foreach ($_SESSION['EDOST']['order_param'][$k][$person_type] as $k2 => $v2) $arUserResult[$k][$k2] = $v2;
+							if (!empty($_SESSION['EDOST']['order_param'][$k][$user_key])) foreach ($_SESSION['EDOST']['order_param'][$k][$user_key] as $k2 => $v2) $arUserResult[$k][$k2] = $v2;
 						}
 				}
 			}
 
-			if ($preload_prop == 'Y' && $locations_installed) {
+			if (!$profile_change && $preload_prop == 'Y' && $locations_installed) {
 				$ar = GetMessage('EDOST_LOCATIONS_ADDRESS');
 				if ($write) {
 					foreach ($ar as $k => $v) {
 						$s = edost_class::GetRequest('edost_'.$k, 200);
-						if ($s !== false) $_SESSION['EDOST']['order_param']['location'][$person_type][$k] = $s;
+						if ($s !== false) $_SESSION['EDOST']['order_param']['location'][$user_key][$k] = $s;
 					}
 				}
 				else {
-					foreach ($ar as $k => $v)
-						if (isset($_SESSION['EDOST']['order_param']['location'][$person_type][$k])) $_REQUEST['edost_'.$k] = $_SESSION['EDOST']['order_param']['location'][$person_type][$k];
-						else if (isset($_REQUEST['edost_'.$k])) unset($_REQUEST['edost_'.$k]);
-					$arUserResult['edost']['set_prop2'] = $config['set_prop2'] = false; // запрет на загрузку prop2 из профиля покупателя
+					$a = false;
+					foreach ($ar as $k => $v) {
+						if (isset($_SESSION['EDOST']['order_param']['location'][$user_key][$k])) $_REQUEST['edost_'.$k] = $_SESSION['EDOST']['order_param']['location'][$user_key][$k];
+						else {
+							if ($person_change) $a = true;
+							if (isset($_REQUEST['edost_'.$k])) unset($_REQUEST['edost_'.$k]);
+						}
+					}
+					$arUserResult['edost']['set_prop2'] = $config['set_prop2'] = $a; // запрет на загрузку prop2 из профиля покупателя
 				}
 			}
 
@@ -609,6 +650,7 @@ class CEdostModifySaleOrderAjax {
 				}
 			}
 		}
+		$_SESSION['EDOST']['location_cookie'] = edost_class::LocationCookie('string');
 
 
 		if (edost_class::GetRequest('edost_post_manual') === 'Y') $config['POST_MANUAL'] = true;
@@ -688,7 +730,7 @@ class CEdostModifySaleOrderAjax {
 		// подключение скрипта выбора пунктов выдачи и стилей
 		if (empty($arResult['edost']['order_recreated']) && empty($arResult['edost']['order_recreated2']) && (!defined('DELIVERY_EDOST_JS_SALE_ORDER_AJAX') || DELIVERY_EDOST_JS_SALE_ORDER_AJAX != 'N')) {
 			$file = array();
-			if ($config['template'] == 'Y' || $config['map'] == 'Y') $file[] = 'main.css';
+			if ($config['template'] == 'Y' || $config['map'] == 'Y' || $locations_installed) $file[] = 'main.css';
 			if ($config['template'] != 'N3' || $config['map'] == 'Y') $file[] = 'office.js';
 			if ($config['map'] == 'Y' && !empty($arResult['edost']['pickpoint_widget'])) $file[] = 'pickpoint';
 			if (!empty($file)) {
@@ -721,15 +763,16 @@ class CEdostModifySaleOrderAjax {
 	                    }
 
 						var p = edost.office.point(id);
-						if (p && p.city && edost.E("edost_country")) {
-							var a = (p.mode == "post" ? true : false);
-							edost.location.set("", true, p.city, edost.V("edost_region"), edost.V("edost_country").split("_")[0], a ? false : true, p.city, a ? p.code : false);
-							return;
+						if (p && edost.E("edost_country")) {
+							if (p.city) {
+								edost.location.set_city(p.city, p.mode, p.code);
+								return;
+							}
+							if (p.mode == "post") edost.location.zip(p.code, true);
 						}
 
 	                    '.($config['template'] == 'N3' ? 'BX.Sale.OrderAjaxComponent.sendRequest();' : 'submitForm();').'
-					}
-					if (window.edost && window.edost.resize) edost.resize.template_ico = "'.(!empty($config['template_ico']) ? $config['template_ico'] : 'C').'";';
+					}';
 				else $s = '
 					function edost_OpenMap(n) {
 						var E = document.getElementById("edost_office_" + n);
@@ -813,6 +856,7 @@ class CEdostModifySaleOrderAjax {
 
 	// вызывается после расчета заказа в sale.order.ajax
 	function OnSaleComponentOrderDeliveriesCalculated(Bitrix\Sale\Order $order, &$arUserResult, Bitrix\Main\HttpRequest $http_request, &$arParams, &$arResult, &$arDeliveryServiceAll, &$arPaySystemServiceAll) {
+//		echo '<br><b>arResult:</b> <pre style="font-size: 12px">'.print_r($arUserResult, true).'</pre>';
 
 		if (empty($arResult['edost']['config'])) return;
 		$config = $arResult['edost']['config'];
@@ -1017,7 +1061,7 @@ class CEdostModifySaleOrderAjax {
 
 			// удаление дублирующего тарифа для кнопки "выбрать доставку с возможностью оплаты при получении"
 			if ($priority == 'B' && !empty($format['data'])) {
-				foreach ($format['data'] as $f_key => $f) if (in_array($f_key, array('office', 'postmap'))) {
+				foreach ($format['data'] as $f_key => $f) if (in_array($f_key, array('shop', 'office', 'postmap'))) {
 					$key_delete = $key = -1;
 					foreach ($f['tariff'] as $k => $v) if (!empty($v['compact_cod'])) if (!empty($v['compact_cod_copy'])) $key_delete = $k; else $key = $k;
 					if ($key_delete != -1 && $key != -1) unset($format['data'][$f_key]['tariff'][$key_delete]);
@@ -1050,15 +1094,16 @@ class CEdostModifySaleOrderAjax {
 
 		$tariff = CDeliveryEDOST::GetEdostProfile($delivery_id);
 		if ($tariff !== false) {
-			$tariff = CDeliveryEDOST::GetEdostTariff($tariff['profile'], $format_active);
+			$tariff = CDeliveryEDOST::GetEdostTariff($tariff['profile'], $format_active, $config);
 			if ($config['template'] != 'Y' && !empty($format_active) && !empty($tariff['company_id']) && !empty($format['office'])) {
 				$o = self::GetOffice(array('tariff' => $tariff, 'office' => $format['office'], 'map' => $config['map'], 'full' => true));
 				if (!empty($o)) {
 					$format_active['office_id'] = $o['id'];
 					$format_active['office_type'] = $o['type'];
+					$format_active['office_type2'] = $o['type2'];
 					$format_active['office_options'] = $o['options'];
 					$format_active['office_city'] = $o['city'];
-					$tariff = CDeliveryEDOST::GetEdostTariff($tariff['profile'], $format_active);
+					$tariff = CDeliveryEDOST::GetEdostTariff($tariff['profile'], $format_active, $config);
 				}
 			}
 
@@ -1193,11 +1238,11 @@ class CEdostModifySaleOrderAjax {
 				if (isset($ar[$id])) {
 					$a = true;
 					if (!empty($v['office_data'])) {
-						$tariff = CDeliveryEDOST::GetEdostTariff($v['profile'], isset($v['office_key']) ? array('office_key' => $v['office_key']) : false);
+						$tariff = CDeliveryEDOST::GetEdostTariff($v['profile'], isset($v['office_key']) ? array('office_key' => $v['office_key']) : false, $config);
 						if (!isset($tariff['error'])) {
 							$office_id = self::GetOffice(array('tariff' => $tariff, 'office_data' => $v['office_data'], 'map' => $config['map']));
 							if (!empty($office_id) && !empty($v['to_office'])) {
-								if ($v['to_office'] == $v['office_data'][$office_id]['type']) $a = false;
+								if ($v['to_office'] == $v['office_data'][$office_id]['type2']) $a = false;
 
 								if (!isset($ar[$id]['priceoffice'])) $ar[$id]['priceoffice'] = array();
 								if (isset($v['pricetotal_formatted'])) $ar[$id]['priceoffice'][$v['to_office']] = $v['pricetotal_formatted'];
@@ -1266,7 +1311,7 @@ class CEdostModifySaleOrderAjax {
 			foreach ($ar as $k => $v) {
 				if (empty($v['profile'])) continue;
 				$profile = $v['profile'];
-				$tariff = CDeliveryEDOST::GetEdostTariff($profile, isset($v['office_key']) ? array('office_key' => $v['office_key']) : false);
+				$tariff = CDeliveryEDOST::GetEdostTariff($profile, isset($v['office_key']) ? array('office_key' => $v['office_key']) : false, $config);
 				if (isset($tariff['error'])) continue;
 
 				// офисы
@@ -1279,13 +1324,14 @@ class CEdostModifySaleOrderAjax {
 
 					if ($office_id != 0) {
 						$o = $v['office_data'][$office_id];
-						$tariff = CDeliveryEDOST::GetEdostTariff($profile, $o);
+						$tariff = CDeliveryEDOST::GetEdostTariff($profile, $o, $config);
 
 						if ($v['CHECKED'] == 'Y') {
 							$arResult['edost']['format']['active']['address'] = edost_class::GetOfficeAddress($o, $tariff);
 							$arResult['edost']['format']['active']['office_id'] = $office_id;
 							if (isset($o['codmax']) && $tariff['pricecash'] > $o['codmax'] || !empty($o['cod_disable'])) $arResult['edost']['format']['active']['cod'] = false;
 							$arResult['edost']['format']['active']['office_type'] = $o['type'];
+							$arResult['edost']['format']['active']['office_type2'] = $o['type2'];
 							$arResult['edost']['format']['active']['office_options'] = $o['options'];
 							$arResult['edost']['format']['active']['office_city'] = $o['city'];
 						}
@@ -1311,9 +1357,6 @@ class CEdostModifySaleOrderAjax {
 							if ($office_number == 1 && (!isset($o['detailed']) || $o['detailed'] !== 'N')) $s .= ' <a class="edost_link edost_address_map_n" style="'.($div ? ' display: block;' : '').'" onclick="window.edost.office.info(0, \''.edost_class::GetOfficeLink($o).'\'); return false;">'.$sign['map'].'</a>';
 						}
 						else {
-//							echo '<br><b>FORMAT name:</b> <pre style="font-size: 12px">'.print_r($ar, true).'</pre>';
-//							die();
-
 							if ($company_id == 26) $office_link = $sign['postamat']['format_get'];
 //							else $office_link = $format_data[$tariff['format']]['get'];
 							else $office_link = $format_data[$v['format']]['get'];
@@ -1335,7 +1378,7 @@ class CEdostModifySaleOrderAjax {
 							$link = edost_class::GetOfficeLink($o);
 							if ($link != '') $value .= '|'.$link;
 							if ($office_number == 1) $s .= '<b>'.$o['address'].'</b>'.'<input type="hidden" id="edost_office_'.$profile.'" value="'.$value.'">';
-							else $s .= '<option '.($o['id'] == $office_id ? 'selected="selected"' : '').' value="'.$value.'">'.($v['format'] == 'postmap' ? $o['code'].', ' : '').$o['address'].(in_array($o['type'], CDeliveryEDOST::$postamat) ? ' ('.$sign['postamat']['name_address'].')' : '').(!empty($v['priceoffice'][$o['type']]) ? ' ('.$v['priceoffice'][$o['type']].')' : '').'</option>';
+							else $s .= '<option '.($o['id'] == $office_id ? 'selected="selected"' : '').' value="'.$value.'">'.($v['format'] == 'postmap' ? $o['code'].', ' : '').$o['address'].(in_array($o['type'], CDeliveryEDOST::$postamat) ? ' ('.$sign['postamat']['name_address'].')' : '').(!empty($v['priceoffice'][$o['type2']]) ? ' ('.$v['priceoffice'][$o['type2']].')' : '').'</option>';
 						}
 						if ($office_number != 1) $s .= '</select>';
 
@@ -1353,7 +1396,7 @@ class CEdostModifySaleOrderAjax {
 
 					if ($config['map'] == 'Y' && !empty($arResult['edost']['format']['map_json']) && ($config['template'] == 'N3' && $v['CHECKED'] == 'Y' || $config['template'] != 'N3' && !$office_data)) {
 						$office_data = true;
-						$s .= '<input id="edost_office_data" autocomplete="off" value=\'{"ico_path": "/bitrix/images/delivery_edost_img", "yandex_api_key": "'.(!empty($arResult['edost']['yandex_api_key']) ? $arResult['edost']['yandex_api_key'] : '').'", '.$arResult['edost']['format']['map_json'].'}\' type="hidden">';
+						$s .= '<input id="edost_office_data" autocomplete="off" value=\'{"ico_path": "/bitrix/images/delivery_edost_img", "yandex_api_key": "'.(!empty($arResult['edost']['yandex_api_key']) ? $arResult['edost']['yandex_api_key'] : '').'"'.(!empty($config['template_ico']) ? ', "template_ico": "'.$config['template_ico'].'"' : '').', '.$arResult['edost']['format']['map_json'].'}\' type="hidden">';
 					}
 					if ($v['CHECKED'] == 'Y' && $config['template'] == 'N3' && $address_id != -1) {
 						$s .= '<input type="hidden" value="" id="edost_office" name="edost_office">';
@@ -1525,11 +1568,20 @@ class CEdostModifySaleOrderAjax {
 		// вывод ошибок
 		if (!empty($error) && ($arUserResult['CONFIRM_ORDER'] == 'Y' || $config['template'] == 'N3')) self::SetError($arResult, $error, $config['template']);
 
+		// отключение "беплатно" для N3
+		if ($config['template'] == 'N3' && !empty($arResult['DELIVERY'])) foreach ($arResult['DELIVERY'] as $k => $v) {
+			$s = $v['DESCRIPTION'];
+			if (strpos($s, '[no_free]') !== false) {
+				if (empty($arResult['DELIVERY'][$k]['PRICE'])) $arResult['DELIVERY'][$k]['PRICE_FORMATED'] = '';
+				$arResult['DELIVERY'][$k]['DESCRIPTION'] = str_replace('[no_free]', '', $s);
+			}
+		}
+
 		// удаление наложенного платежа для тарифов без наложки
 		$tariff = false;
 		$count = count($arResult['PAY_SYSTEM']);
 		if (!empty($format_active['automatic']) && $format_active['automatic'] == 'edost' && $format_active['profile'] !== '') {
-			$tariff = CDeliveryEDOST::GetEdostTariff($format_active['profile'], $format_active);
+			$tariff = CDeliveryEDOST::GetEdostTariff($format_active['profile'], $format_active, $config);
 			if (!isset($tariff['pricecash']) || $tariff['pricecash'] < 0) $tariff = false;
 			if (empty($format_active['cod'])) $tariff = false;
 			if ($cod_tariff && !$cod_tariff_active) $tariff = false;

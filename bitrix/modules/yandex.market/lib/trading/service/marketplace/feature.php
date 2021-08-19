@@ -12,4 +12,9 @@ class Feature extends TradingService\Reference\Feature
 	{
 		return true;
 	}
+
+	public function supportsWarehouses()
+	{
+		return true;
+	}
 }

@@ -78,8 +78,16 @@ class Action extends TradingService\Common\Action\HttpAction
 
 	protected function initializeOrder()
 	{
+		$calculationMode = $this->getPriceCalculationMode();
+
 		$this->fillPersonType();
+		$this->order->setCalculationMode($calculationMode);
 		$this->order->initialize();
+	}
+
+	protected function getPriceCalculationMode()
+	{
+		return TradingEntity\Operation\PriceCalculation::PRODUCT | TradingEntity\Operation\PriceCalculation::DELIVERY;
 	}
 
 	protected function fillOrder()
@@ -274,38 +282,20 @@ class Action extends TradingService\Common\Action\HttpAction
 
 	protected function getOfferMap(Market\Api\Model\Cart\ItemCollection $items)
 	{
-		$skuMap = $this->provider->getOptions()->getProductSkuMap();
-		$result = null;
+		$offerIds = $items->getOfferIds();
+		$command = new TradingService\Common\Command\OfferMap(
+			$this->provider,
+			$this->environment
+		);
 
-		if (!empty($skuMap))
-		{
-			$product = $this->environment->getProduct();
-			$offerIds = $items->getOfferIds();
-
-			$result = $product->getOfferMap($offerIds, $skuMap);
-		}
-
-		return $result;
+		return $command->make($offerIds);
 	}
 
 	protected function getBasketData(Market\Api\Model\Cart\ItemCollection $items, $offerMap = null)
 	{
-		$context = [
-			'USER_ID' => $this->getUserId(),
-			'SITE_ID' => $this->getSiteId(),
-			'CURRENCY' => $this->getCurrency(),
-		];
-
-		if ($offerMap !== null)
-		{
-			$productIds = array_values($offerMap);
-			$quantities = $items->getQuantities($offerMap);
-		}
-		else
-		{
-			$productIds = $items->getOfferIds();
-			$quantities = $items->getQuantities();
-		}
+		$context = $this->makeBasketContext();
+		$productIds = $offerMap !== null ? array_values($offerMap) : $items->getOfferIds();
+		$quantities = $items->getQuantities($offerMap);
 
 		return $this->mergeBasketData([
 			$this->getProductData($productIds, $quantities, $context),
@@ -314,8 +304,19 @@ class Action extends TradingService\Common\Action\HttpAction
 		]);
 	}
 
+	protected function makeBasketContext()
+	{
+		return [
+			'USER_ID' => $this->getUserId(),
+			'SITE_ID' => $this->getSiteId(),
+			'CURRENCY' => $this->getCurrency(),
+		];
+	}
+
 	protected function mergeBasketData($dataList)
 	{
+		if (empty($dataList)) { return []; }
+
 		$result = array_shift($dataList);
 
 		foreach ($dataList as $dataChain)

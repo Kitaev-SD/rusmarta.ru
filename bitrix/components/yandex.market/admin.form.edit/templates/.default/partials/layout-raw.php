@@ -32,6 +32,8 @@ if ($arResult['SUCCESS'])
 	if (defined('BX_PUBLIC_MODE') && BX_PUBLIC_MODE == 1) { die(); }
 }
 
+$arResult['DISABLE_REQUIRED_HIGHLIGHT'] = true;
+
 ?>
 <form class="yamarket-form" method="POST" action="<?= $formActionUri; ?>" enctype="multipart/form-data">
 	<?php

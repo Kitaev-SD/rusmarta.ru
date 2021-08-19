@@ -48,17 +48,22 @@ $obTabControl->EndCustomField('PROFILE[CONNECT_DATA][source_id]');
 
 // Default buyer
 $obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][buyer]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_BUYER'));
-$list = OrdersInfo::getUsers();
+//$list = OrdersInfo::getUsers();
+$ajax_link = '/bitrix/admin/'.str_replace('.', '_', $strModuleId).'_orders_ajax.php';
+$user_sel = false;
+if ($arProfile['CONNECT_DATA']['buyer']) {
+	$user_sel = OrdersInfo::getUser((int)$arProfile['CONNECT_DATA']['buyer']);
+}
 ?>
     <tr id="tr_connect_data_buyer">
         <td>
             <label for="field_connect_data_buyer"><?=$obTabControl->GetCustomLabelHTML()?><label>
         </td>
         <td>
-            <select name="PROFILE[CONNECT_DATA][buyer]">
-	            <?foreach ($list as $item):?>
-                <option value="<?=$item['id'];?>"<?=$arProfile['CONNECT_DATA']['buyer']==$item['id']?' selected':'';?>><?=$item['name'];?>, <?=$item['code'];?> [<?=$item['id'];?>]</option>
-	            <?endforeach;?>
+            <select class="connect-data-user-search" name="PROFILE[CONNECT_DATA][buyer]">
+	            <?if($user_sel):?>
+                <option value="<?=$user_sel['id'];?>"><?=$user_sel['name'];?>, <?=$user_sel['code'];?> [<?=$user_sel['id'];?>]</option>
+	            <?endif;?>
             </select>
         </td>
     </tr>
@@ -86,18 +91,56 @@ $obTabControl->EndCustomField('PROFILE[CONNECT_DATA][pay_type]');
 
 // Default responsible user
 $obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][responsible]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_RESPONSIBLE'));
-$list = OrdersInfo::getUsers();
+//$list = OrdersInfo::getUsers('СОК');
+$user_sel = false;
+if ($arProfile['CONNECT_DATA']['responsible']) {
+	$user_sel = OrdersInfo::getUser((int)$arProfile['CONNECT_DATA']['responsible']);
+}
 ?>
     <tr id="tr_connect_data_responsible">
         <td>
             <label for="field_connect_data_responsible"><?=$obTabControl->GetCustomLabelHTML()?><label>
         </td>
         <td>
-            <select name="PROFILE[CONNECT_DATA][responsible]">
-	            <?foreach ($list as $item):?>
-                <option value="<?=$item['id'];?>"<?=$arProfile['CONNECT_DATA']['responsible']==$item['id']?' selected':'';?>><?=$item['name'];?>, <?=$item['code'];?> [<?=$item['id'];?>]</option>
-	            <?endforeach;?>
+            <select class="connect-data-user-search" name="PROFILE[CONNECT_DATA][responsible]">
+                <?if($user_sel):?>
+                <option value="<?=$user_sel['id'];?>"><?=$user_sel['name'];?>, <?=$user_sel['code'];?> [<?=$user_sel['id'];?>]</option>
+                <?endif;?>
             </select>
+
+            <script>
+                $(document).ready(function() {
+                    $('.connect-data-user-search').select2({
+                        minimumInputLength: 3,
+                        width: '390',
+                        placeholder: '<?=Loc::getMessage('ACRIT_CRM_TAB_BASIC_USER_SEARCH_PLACEHOLDER');?>',
+                        language: 'ru',
+                        ajax: {
+                            url: "<?=$ajax_link;?>",
+                            delay: 250,
+                            dataType: 'json',
+                            data: function (params) {
+                                return {
+                                    action: 'find_users',
+                                    q: params.term,
+                                };
+                            },
+                            processResults: function (data) {
+                                var arr = []
+                                $.each(data, function (index, value) {
+                                    arr.push({
+                                        id: index,
+                                        text: value
+                                    })
+                                })
+                                return {
+                                    results: arr
+                                };
+                            },
+                        }
+                    });
+                });
+            </script>
         </td>
     </tr>
 	<?

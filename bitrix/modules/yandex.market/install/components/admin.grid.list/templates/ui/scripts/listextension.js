@@ -12,13 +12,15 @@
 		defaults: {
 			limitTop: null,
 			disabledRows: null,
-			loadMore: false
+			loadMore: false,
+			reloadEvents: [],
 		},
 
 		initialize: function() {
 			this.applyLimitTop();
 			this.applyDisabledIndexes();
 			this.applyLoadMore();
+			this.applyReloadEvents();
 		},
 
 		applyLimitTop: function() {
@@ -133,8 +135,18 @@
 			return result;
 		},
 
-		getAdminList: function() {
-			return window[this.options.grid];
+		applyReloadEvents: function() {
+			const events = this.options.reloadEvents;
+
+			if (!events || events.length === 0) { return; }
+
+			for (let event of events) {
+				BX.addCustomEvent(event, BX.proxy(this.onReloadEvent, this));
+			}
+		},
+
+		onReloadEvent: function() {
+			this.getGrid().reloadTable();
 		},
 
 		getGrid: function() {

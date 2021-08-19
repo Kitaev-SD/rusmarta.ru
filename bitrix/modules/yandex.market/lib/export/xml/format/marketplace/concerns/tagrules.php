@@ -52,7 +52,7 @@ trait TagRules
 
 	protected function extendOffer(Xml\Tag\Base $offer)
 	{
-		$offer->addChild(new Xml\Tag\Vat(), 'enable_auto_discounts');
+		$this->removeChildTags($offer, ['cargo-types']);
 		$offer->addChild(new Xml\Tag\Base(['name' => 'manufacturer', 'visible' => true]), 'manufacturer_warranty');
 
 		$offer->addChildren([

@@ -36,7 +36,7 @@ class DateTime extends Date
 		}
 		else if (is_scalar($date) && (string)$date !== '')
 		{
-			$timestamp = MakeTimeStamp($date);
+			$timestamp = MakeTimeStamp($date, FORMAT_DATETIME);
 
 			if ($timestamp !== false)
 			{

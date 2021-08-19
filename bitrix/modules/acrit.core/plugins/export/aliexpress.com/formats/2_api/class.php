@@ -504,7 +504,7 @@ class AliexpressComApi extends AliexpressCom {
 				}
 				$this->addToLog('arEncodedItem ' . print_r($arEncodedItem, true), true);
 				$this->addToLog('arProductFields ' . print_r($arProductFields, true), true);
-				$this->addToLog('arProductFields json ' . json_encode($arProductFields), true);
+				$this->addToLog('arProductFields json ' . Json::encode($arProductFields), true);
 
 				$this->addToLog('sku_code ' . print_r($sku_code, true), true);
 				$product_id = self::getAliProductIdBySku($sku_code);
@@ -554,7 +554,7 @@ class AliexpressComApi extends AliexpressCom {
 		$param0->create_date_start = "2010-01-01 00:00:00";
 		$param0->page_size = "1";
 		$param0->current_page = "20";
-		$req->setParam0(json_encode($param0));
+		$req->setParam0(Json::encode($param0));
 		$resp = $c->execute($req, $token);
 		$resp = json_decode(json_encode($resp), true);
 		if ($resp['code']) {
@@ -597,7 +597,7 @@ class AliexpressComApi extends AliexpressCom {
 			'page_size' => $page_size,
 			'current_page' => $page,
 		];
-		$req->setAeopAEProductListQuery(json_encode(array_merge($search_params, $filter)));
+		$req->setAeopAEProductListQuery(Json::encode(array_merge($search_params, $filter)));
 		$resp = $c->execute($req, $token);
 		$resp = json_decode(json_encode($resp), true);
 		if ($resp['result']['aeop_a_e_product_display_d_t_o_list']['item_display_dto'][0]) {
@@ -619,7 +619,7 @@ class AliexpressComApi extends AliexpressCom {
 		$c->appkey = self::APP_KEY;
 		$c->secretKey = self::SECRET_KEY;
 		$req = new \AliexpressSolutionSchemaProductInstancePostRequest;
-		$req->setProductInstanceRequest(json_encode($fields));
+		$req->setProductInstanceRequest(Json::encode($fields));
 		$resp = $c->execute($req, $token);
 		$resp = json_decode(json_encode($resp), true);
 		return $resp;
@@ -636,7 +636,7 @@ class AliexpressComApi extends AliexpressCom {
 		$c->secretKey = self::SECRET_KEY;
 		$req = new \AliexpressSolutionSchemaProductFullUpdateRequest;
 		$fields['aliexpress_product_id'] = $ali_product_id;
-		$req->setSchemaFullUpdateRequest(json_encode($fields));
+		$req->setSchemaFullUpdateRequest(Json::encode($fields));
 		$resp = $c->execute($req, $token);
 		$resp = json_decode(json_encode($resp), true);
 		return $resp;
@@ -750,7 +750,7 @@ class AliexpressComApi extends AliexpressCom {
 		$query_sku_attribute_info_request = new \SkuAttributeInfoQueryRequest;
 		$query_sku_attribute_info_request->aliexpress_category_id = $ali_category_id;
 //		$query_sku_attribute_info_request->category_id="11112222";
-		$req->setQuerySkuAttributeInfoRequest(json_encode($query_sku_attribute_info_request));
+		$req->setQuerySkuAttributeInfoRequest(Json::encode($query_sku_attribute_info_request));
 		$resp = $c->execute($req, $token);
 		$resp = json_decode(json_encode($resp), true);
 		$resp_list = $resp['result']['supporting_sku_attribute_list']['supported_sku_attribute_dto'];

@@ -43,10 +43,4 @@ class Order extends TradingService\Marketplace\Model\Order
 			[ 'DATE_SHIPMENT' => true ]
 		);
 	}
-
-	/** @return Main\Type\Date[] */
-	public function getMeaningfulShipmentDates()
-	{
-		return [];
-	}
 }

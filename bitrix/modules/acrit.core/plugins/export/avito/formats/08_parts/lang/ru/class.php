@@ -62,22 +62,22 @@ $MESS[$strMessPrefix.'FIELD_WHEEL_AXLE_NAME'] = 'Ось мотошины';
 $MESS[$strMessPrefix.'FIELD_RIM_TYPE_NAME'] = 'Тип диска';
 	$MESS[$strMessPrefix.'FIELD_RIM_TYPE_DESC'] = 'Тип диска — одно из значений списка (отдельно для каждой категории):
 <ul>
-<li>Шины, диски и колёса / Диски:
-	<ul>
-	<li>Кованые</li>
-	<li>Литые</li>
-	<li>Штампованные</li>
-	<li>Спицованные</li>
-	<li>Сборные</li>
-	</ul>
-</li>
-<li>Шины, диски и колёса / Колёса:
-<ul>
-	<li>Кованые</li>
-	<li>Литые</li>
-	<li>Штампованные</li>
-</ul>
-</li>
+	<li>Шины, диски и колёса / Диски:
+		<ul>
+			<li>Кованые</li>
+			<li>Литые</li>
+			<li>Штампованные</li>
+			<li>Спицованные</li>
+			<li>Сборные</li>
+		</ul>
+	</li>
+	<li>Шины, диски и колёса / Колёса:
+		<ul>
+			<li>Кованые</li>
+			<li>Литые</li>
+			<li>Штампованные</li>
+		</ul>
+	</li>
 </ul>';
 $MESS[$strMessPrefix.'FIELD_TIRE_SECTION_WIDTH_NAME'] = 'Ширина профиля шины';
 	$MESS[$strMessPrefix.'FIELD_TIRE_SECTION_WIDTH_DESC'] = 'Ширина профиля шины — целое число.';
@@ -91,6 +91,14 @@ $MESS[$strMessPrefix.'FIELD_RIM_BOLTS_DIAMETER_NAME'] = 'Диаметр расположения от
 	$MESS[$strMessPrefix.'FIELD_RIM_BOLTS_DIAMETER_DESC'] = 'Диаметр расположения отверстий под болты — десятичное число.';
 $MESS[$strMessPrefix.'FIELD_RIM_OFFSET_NAME'] = 'Вылет (ET)';
 	$MESS[$strMessPrefix.'FIELD_RIM_OFFSET_DESC'] = 'Вылет (ET) — десятичное число.';
+$MESS[$strMessPrefix.'FIELD_RUNFLAT_NAME'] = 'RunFlat - наличие технологии RunFlat';
+	$MESS[$strMessPrefix.'FIELD_RUNFLAT_DESC'] = 'Наличие технологии RunFlat
+	<ul>
+		<li>Да</li>
+		<li>Нет</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_HOMOLOGATION_NAME'] = 'Омологация';
+	$MESS[$strMessPrefix.'FIELD_HOMOLOGATION_DESC'] = 'Омологация - бренд авто, под который омологирована шина';
 $MESS[$strMessPrefix.'FIELD_BRAND_NAME'] = 'Производитель шин';
 	$MESS[$strMessPrefix.'FIELD_BRAND_DESC'] = 'Производитель шин - строка из списка:
 Aeolus, Aeolus Neo, Altenzo, Amtel, Antares, Aplus, Autogrip, Avatyre, Barum, Bfgoodrich, Bridgestone, Cachland, Compasal, Continental, Contyre, Cordiant, CrossLeader, Delinte, Dmack, DoubleStar, Dunlop, Effiplus, Falken, Firenza, Firestone, Forward, General Tire, Gislaved, Goodyear, GT Radial, Habilead, Hankook, Hifly, Imperial, Jinyu, Joyroad, Kama, Kleber, Kormoran, Kumho, Landsail, Laufenn, LingLong, Marshal, Matador, Maxxis, Michelin, Mickey Thompson, Minerva, Nankang, Nexen, Nitto, Nokian, Nordman, Nortec, Orium, Ovation, Pirelli, Pirelli Formula, Rapid, Roadstone, Rosava, Sailun, Satoya, Sava, Starmaxx, Sunfull, Sunny, Tigar, Toyo, Trayal, Triangle, Tunga, Tyrex, Uniroyal, Viatti, Vredestein, Windforce, Yokohama, Белшина, Волтайр.';

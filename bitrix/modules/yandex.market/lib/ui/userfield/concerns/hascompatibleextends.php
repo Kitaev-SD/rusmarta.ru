@@ -18,6 +18,26 @@ trait HasCompatibleExtends
 		throw new Main\NotImplementedException();
 	}
 
+	protected static function hasParentMethod($name)
+	{
+		$result = false;
+		$classes = [
+			static::getCommonExtends(),
+			static::getCompatibleExtends(),
+		];
+
+		foreach ($classes as $className)
+		{
+			if (method_exists($className, $name))
+			{
+				$result = true;
+				break;
+			}
+		}
+
+		return $result;
+	}
+
 	protected static function callParent($name, array $arguments = [])
 	{
 		$classes = [

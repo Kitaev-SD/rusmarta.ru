@@ -9,6 +9,7 @@ define( "BX_CRONTAB", true );
 define( "BX_NO_ACCELERATOR_RESET", true );
 
 require( $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php" );
+require( $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/acrit.googlemerchant/classes/general/cgooglemerchantagent.php" );
 
 @set_time_limit( 0 );
 @ignore_user_abort( true );

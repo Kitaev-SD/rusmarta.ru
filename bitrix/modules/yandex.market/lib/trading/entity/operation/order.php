@@ -6,4 +6,5 @@ class Order
 {
 	const VIEW = 'view';
 	const BOX = 'box';
+	const CIS = 'cis';
 }

@@ -45,6 +45,7 @@ class Action extends TradingService\Common\Action\HttpAction
 			$this->finalizeStatus();
 		}
 
+		$this->saveData();
 		$this->collectSuccess();
 	}
 
@@ -232,6 +233,20 @@ class Action extends TradingService\Common\Action\HttpAction
 		$orderId = $this->request->getOrder()->getId();
 
 		Market\Trading\State\OrderStatus::releaseValue($serviceKey, $orderId);
+	}
+
+	protected function saveData()
+	{
+		$serviceKey = $this->provider->getUniqueKey();
+		$orderId = $this->request->getOrder()->getId();
+		$data = $this->makeData();
+
+		Market\Trading\State\OrderData::setValues($serviceKey, $orderId, $data);
+	}
+
+	protected function makeData()
+	{
+		return [];
 	}
 
 	protected function collectSuccess()

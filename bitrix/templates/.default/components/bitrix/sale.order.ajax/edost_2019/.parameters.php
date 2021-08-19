@@ -69,6 +69,15 @@ if (!empty($arCurrentValues['COMPACT']) && $arCurrentValues['COMPACT'] != 'off')
 		"PARENT" => "VISUAL"
 	);
 }
+else {
+	$arTemplateParameters["NO_HOUSE"] = array(
+		"NAME" => GetMessage("T_NO_HOUSE"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+		"REFRESH" => "N",
+		"PARENT" => "VISUAL"
+	);
+}
 
 $arTemplateParameters += array(
 	"NO_POST_MAIN" => array(
@@ -138,6 +147,30 @@ if (!empty($arCurrentValues['COLOR']) && $arCurrentValues['COLOR'] == 'manual') 
 	);
 }
 
+$arTemplateParameters["ICO_MANUAL"] = array(
+	"NAME" => GetMessage("T_ICO_MANUAL"),
+	"TYPE" => "CHECKBOX",
+	"DEFAULT" => "N",
+	"REFRESH" => "Y",
+	"PARENT" => "VISUAL"
+);
+if (!empty($arCurrentValues['ICO_MANUAL']) && $arCurrentValues['ICO_MANUAL'] == 'Y') $arTemplateParameters += array(
+	"ICO_PATH" => array(
+		"NAME" => GetMessage("T_ICO_PATH"),
+		"TYPE" => "STRING",
+		"DEFAULT" => "/bitrix/images/delivery_edost_img",
+		"REFRESH" => "N",
+		"PARENT" => "VISUAL"
+	),
+	"ICO_EXTENSION" => array(
+		"NAME" => GetMessage("T_ICO_EXTENSION"),
+		"TYPE" => "STRING",
+		"DEFAULT" => "svg",
+		"REFRESH" => "N",
+		"PARENT" => "VISUAL"
+	),
+);
+
 if (!empty($arCurrentValues['COMPACT']) && in_array($arCurrentValues['COMPACT'], array('Y', 'S'))) {
 	$arTemplateParameters["COMPACT_PREPAY_JOIN"] = array(
 		"NAME" => GetMessage("T_COMPACT_PREPAY_JOIN"),
@@ -161,6 +194,14 @@ $arTemplateParameters += array(
 		"NAME" => GetMessage("T_BORDER_COLOR"),
 		"TYPE" => "CHECKBOX",
 		"DEFAULT" => "Y",
+		"REFRESH" => "N",
+		"PARENT" => "VISUAL"
+	),
+
+	"BORDER_NO" => array(
+		"NAME" => GetMessage("T_BORDER_NO"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "N",
 		"REFRESH" => "N",
 		"PARENT" => "VISUAL"
 	),

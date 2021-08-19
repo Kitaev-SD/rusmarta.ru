@@ -22,8 +22,8 @@ class Manager
 	public static function getTypes()
 	{
 		return [
-			static::TYPE_META,
 			static::TYPE_FILE,
+			static::TYPE_META,
 		];
 	}
 

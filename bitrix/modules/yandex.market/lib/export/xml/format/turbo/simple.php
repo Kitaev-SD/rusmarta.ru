@@ -37,8 +37,6 @@ class Simple extends Xml\Format\YandexMarket\Simple
 	{
 		$result = parent::getOffer();
 
-		$result->addChild(new Xml\Tag\Vat(), 4);
-
 		$this->overrideTags($result->getChildren(), [
 			'description' => [ 'required' => true ],
 		]);
@@ -47,6 +45,7 @@ class Simple extends Xml\Format\YandexMarket\Simple
 			'cpa',
 			'enable_auto_discounts',
 			'count',
+			'cargo-types',
 		]);
 
 		return $result;

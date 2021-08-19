@@ -53,10 +53,12 @@ class Action extends TradingService\Common\Action\Cart\Action
 			$this->fillOrder();
 			$this->finalizeOrder();
 
+			$this->freeze();
 			$checkResult = $this->check();
 
 			if ($checkResult->isSuccess())
 			{
+				$this->unfreeze();
 				$hasWarnings = false;
 
 				if ($checkResult->hasWarnings())
@@ -145,6 +147,7 @@ class Action extends TradingService\Common\Action\Cart\Action
 		$this->fillProperties();
 		$this->fillBasket();
 		$this->fillDelivery();
+		$this->fillBasketStore();
 		$this->fillOutlet();
 		$this->fillPaySystem();
 		$this->fillRelatedProperties();
@@ -184,14 +187,35 @@ class Action extends TradingService\Common\Action\Cart\Action
 
 		$xmlId = $this->provider->getDictionary()->getOrderItemXmlId($item);
 
-		if ($xmlId !== null && !isset($data['XML_ID']))
-		{
-			if ($data === null) { $data = []; }
+		if ($data === null) { $data = []; }
 
-			$data['XML_ID'] = $xmlId;
+		return $data + [
+			'XML_ID' => $xmlId,
+		];
+	}
+
+	protected function getBasketItemsMap(Market\Api\Model\Cart\ItemCollection $items)
+	{
+		$dictionary = $this->provider->getDictionary();
+		$result = [];
+
+		foreach ($items as $item)
+		{
+			$xmlId = $dictionary->getOrderItemXmlId($item);
+			$basketCode = $this->order->getBasketItemCode($xmlId, 'XML_ID');
+
+			if ($basketCode !== null)
+			{
+				$result[$item->getInternalId()] = $basketCode;
+			}
 		}
 
-		return $data;
+		return $result;
+	}
+
+	protected function fillBasketStore()
+	{
+		// nothing by default
 	}
 
 	protected function fillOutlet()
@@ -224,6 +248,16 @@ class Action extends TradingService\Common\Action\Cart\Action
 		{
 			$this->order->setStatus($status);
 		}
+	}
+
+	protected function freeze()
+	{
+		$this->order->freeze();
+	}
+
+	protected function unfreeze()
+	{
+		$this->order->unfreeze();
 	}
 
 	protected function check()

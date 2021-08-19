@@ -76,7 +76,7 @@ class OzonRuV2 extends UniversalPlugin {
 		$arResult['price'] = ['FIELD' => 'CATALOG_PRICE_1__WITH_DISCOUNT', 'REQUIRED' => true];
 		$arResult['old_price'] = ['FIELD' => 'CATALOG_PRICE_1'];
 		$arResult['premium_price'] = [];
-		$arResult['vat'] = ['FIELD' => 'CATALOG_VAT_VALUE_FLOAT'];
+		$arResult['vat'] = ['FIELD' => 'CATALOG_VAT_VALUE_FLOAT', 'REQUIRED' => true];
 		$arResult['stock'] = [];
 		if($this->useStores()){
 			foreach($this->getStores() as $intStoreId => $strStoreName){
@@ -86,7 +86,7 @@ class OzonRuV2 extends UniversalPlugin {
 				$arStockAndPriceAllowedFields[] = 'stock_'.$intStoreId;
 			}
 		}
-		$arResult['barcode'] = ['FIELD' => 'CATALOG_BARCODE'];
+		$arResult['barcode'] = ['FIELD' => 'CATALOG_BARCODE', 'REQUIRED' => $this->isBarcodeRequired($intIBlockId)];
 		$arResult['depth'] = ['FIELD' => 'CATALOG_LENGTH', 'REQUIRED' => true];
 		$arResult['width'] = ['FIELD' => 'CATALOG_WIDTH', 'REQUIRED' => true];
 		$arResult['height'] = ['FIELD' => 'CATALOG_HEIGHT', 'REQUIRED' => true];
@@ -130,6 +130,13 @@ class OzonRuV2 extends UniversalPlugin {
 		}
 		#
 		return $arResult;
+	}
+
+	protected function isBarcodeRequired($intIBlockId){
+		$arCatalog = Helper::getCatalogArray($intIBlockId);
+		$intMainIBlockId = is_array($arCatalog) && $arCatalog['PRODUCT_IBLOCK_ID'] 
+			? $arCatalog['PRODUCT_IBLOCK_ID'] : $intIBlockId;
+		return $this->arProfile['IBLOCKS'][$intMainIBlockId]['PARAMS']['BARCODE_NOT_REQUIRED'] != 'Y';
 	}
 
 	/**
@@ -1483,7 +1490,7 @@ class OzonRuV2 extends UniversalPlugin {
 			}
 		}
 		else{
-			$this->addToLog('Stocks are empty.', true);
+			$this->addToLog('Stocks are empty (V1).', true);
 		}
 	}
 
@@ -1507,7 +1514,7 @@ class OzonRuV2 extends UniversalPlugin {
 			}
 		}
 		else{
-			$this->addToLog('Stocks are empty.', true);
+			$this->addToLog('Stocks are empty (V2).', true);
 		}
 	}
 

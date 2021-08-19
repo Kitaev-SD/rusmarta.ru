@@ -103,6 +103,10 @@ class SummaryLayout extends AbstractLayout
 		$summary = !empty($value)
 			? (string)UserField\Helper\Summary::make($fields, $value, $summaryTemplate)
 			: '';
+		$placeholder = isset($this->userField['SETTINGS']['PLACEHOLDER'])
+			? $this->userField['SETTINGS']['PLACEHOLDER']
+			: static::getLang('USER_FIELD_FIELDSET_SUMMARY_HOLDER');
+		$useCollection = (isset($attributes['class']) && Market\Data\TextString::getPosition($attributes['class'], $this->getFieldsetName('collection__item')) !== false);
 
 		$rootAttributes =
 			$attributes
@@ -114,6 +118,7 @@ class SummaryLayout extends AbstractLayout
 				'data-summary' => $summaryTemplate,
 				'data-modal-width' => isset($this->userField['SETTINGS']['MODAL_WIDTH']) ? $this->userField['SETTINGS']['MODAL_WIDTH'] : null,
 				'data-modal-height' => isset($this->userField['SETTINGS']['MODAL_HEIGHT']) ? $this->userField['SETTINGS']['MODAL_HEIGHT'] : null,
+				'data-lang-placeholder' => $placeholder,
 			])
 			+ $this->collectFieldsSummaryAttributes($fields);
 
@@ -121,9 +126,9 @@ class SummaryLayout extends AbstractLayout
 
 		$result = '<div ' . UserField\Helper\Attributes::stringify($rootAttributes) . '>';
 		$result .= sprintf('<a class="b-link action--heading target--inside %s" href="#">', $this->getFieldsetName('summary__text'));
-		$result .= $summary ?: static::getLang('USER_FIELD_FIELDSET_SUMMARY_HOLDER');
+		$result .= $summary ?: $placeholder;
 		$result .= '</a>';
-		$result .= sprintf('<button class="b-close %s" type="button" title=""></button>', $this->getFieldsetName('collection__item-delete'));
+		$result .= sprintf('<button class="b-close %s" type="button" title=""></button>', $useCollection ? $this->getFieldsetName('collection__item-delete') : $this->getFieldsetName('summary__clear'));
 		$result .= sprintf('<div class="is--hidden %s">', $this->getFieldsetName('summary__edit-modal'));
 		$result .= $this->renderEditForm($fields, $value);
 		$result .= '</div>';

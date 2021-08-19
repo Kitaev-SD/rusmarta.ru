@@ -132,4 +132,15 @@ class Status extends TradingService\Marketplace\Status
 
 		return $result;
 	}
+
+	public function isProcessing($status)
+	{
+		$statusOrder = $this->getStatusOrder($status);
+
+		return (
+			$status !== static::STATUS_CANCELLED
+			&& $statusOrder !== null
+			&& ($statusOrder < $this->getStatusOrder(static::STATUS_DELIVERED))
+		);
+	}
 }

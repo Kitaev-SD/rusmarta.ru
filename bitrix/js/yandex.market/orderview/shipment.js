@@ -54,6 +54,12 @@
 			return result;
 		},
 
+		toggleSizes: function(dir) {
+			const field = this.getChildField('BOX');
+
+			field.toggleSizes(dir);
+		},
+
 	}, {
 		dataName: 'orderViewShipment',
 		pluginName: 'YandexMarket.OrderView.Shipment',

@@ -21,3 +21,15 @@ $MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_TAB_STATUS_NOTE'] = '
 $MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_GROUP_STATUS_IN'] = 'Маркетплейс может передавать вам статусы:';
 $MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_GROUP_STATUS_OUT'] = 'Вы можете передавать маркетплейсу статусы:';
 $MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_OPTION_SELF_TEST'] = 'Самопроверка';
+$MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_OPTION_USE_WAREHOUSES'] = 'Использовать несколько складов';
+$MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_OPTION_USE_WAREHOUSES_HELP'] = 'Для продажи товаров, которые вы храните на разных складах, теперь необязательно заводить несколько разных кабинетов. Достаточно добавить все ваши склады в один кабинет и начать передавать для каждого остатки.';
+$MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_OPTION_WAREHOUSE_STORE_FIELD'] = 'Поле, в котором хранится ID склада';
+$MESS['YANDEX_MARKET_TRADING_SERVICE_MARKETPLACE_OPTION_WAREHOUSE_STORE_FIELD_HELP'] = '
+<p>Как настроить:</p>
+<ul>
+<li>Добавьте склады в личном кабинете на странице Логистика &rarr; Склады;</li>
+<li>Выберите или <a href="/bitrix/admin/userfield_edit.php?lang=#LANG#&ENTITY_ID=CAT_STORE&backurl=#BACKURL#">создайте</a> поле, в котором будете хранить ID&nbsp;склада;</li>
+<li>В разделе <a href="/bitrix/admin/cat_store_list.php?lang=ru">Магазин &rarr; Складской учет &rarr; Склады</a> заполните ID&nbsp;складов, указанные в личном кабинете;</li>
+</ul>
+<p>Можно использовать одно значение ID склада для нескольких складов 1С-Битрикс: информация об остатках будут суммирована.</p>
+';

@@ -19,6 +19,9 @@ class Audit
 	const SEND_STATUS = 'send_status';
 	const SEND_BOXES = 'send_boxes';
 	const SEND_CIS = 'send_cis';
+	const SEND_TRACK = 'send_track';
+	const SEND_CANCELLATION_ACCEPT = 'send_cancellation_accept';
+	const SEND_DELIVERY_DATE = 'send_delivery_date';
 	const PROCEDURE = 'procedure';
 
 	protected static function includeMessages()
@@ -35,6 +38,9 @@ class Audit
 			static::SEND_STATUS,
 			static::SEND_BOXES,
 			static::SEND_CIS,
+			static::SEND_TRACK,
+			static::SEND_CANCELLATION_ACCEPT,
+			static::SEND_DELIVERY_DATE,
 			static::INCOMING_REQUEST,
 			static::INCOMING_RESPONSE,
 			static::OUTGOING_REQUEST,

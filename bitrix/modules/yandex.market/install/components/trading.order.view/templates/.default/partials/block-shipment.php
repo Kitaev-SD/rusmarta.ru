@@ -17,6 +17,7 @@ if ($arResult['SHIPMENT_EDIT'])
 		'OrderView.BoxCollection',
 		'OrderView.Shipment',
 		'OrderView.ShipmentCollection',
+		'OrderView.DimensionsToggle',
 	]);
 
 	Market\Ui\Assets::loadMessages([
@@ -36,9 +37,35 @@ if ($arResult['SHIPMENT_EDIT'])
 
 $baseInputName = 'YAMARKET_ORDER[SHIPMENT]';
 $shipmentIndex = 0;
+$useDimensions = true;
 
 ?>
-<h2 class="yamarket-shipments-title"><?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_SHIPMENTS_TITLE'); ?></h2>
+<div class="yamarket-shipments-header">
+	<h2 class="yamarket-shipments-header__inline yamarket-shipments-title"><?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_SHIPMENTS_TITLE'); ?></h2>
+	<?php
+	if ($arResult['SHIPMENT_EDIT'])
+	{
+		$useDimensions = (CUserOptions::GetOption('yamarket_order_view', 'use_dimensions', 'N', $USER->GetID()) === 'Y');
+
+		?>
+		<input type="hidden" name="YAMARKET_ORDER[USE_DIMENSIONS]" value="N" />
+		<label class="yamarket-shipments-header__inline">
+			<input
+				class="adm-designed-checkbox js-plugin"
+				type="checkbox"
+				name="YAMARKET_ORDER[USE_DIMENSIONS]"
+				value="Y"
+				<?= $useDimensions ? 'checked' : ''; ?>
+				data-plugin="OrderView.DimensionsToggle"
+				data-shipment-element="#YAMARKET_SHIPMENT_COLLECTION"
+			/>
+			<span class="adm-designed-checkbox-label"></span>
+			<?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_SHIPMENTS_DIMENSIONS_TOGGLE'); ?>
+		</label>
+		<?php
+	}
+	?>
+</div>
 <div
 	class="yamarket-shipments-layout js-yamarket-shipment-collection <?= $arResult['SHIPMENT_EDIT'] ? 'js-yamarket-order__field' : ''; ?>"
 	data-plugin="OrderView.ShipmentCollection"

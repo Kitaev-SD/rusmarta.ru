@@ -12,6 +12,11 @@ class DeliveryOption extends TradingService\Reference\Options\Fieldset
 	use Market\Reference\Concerns\HasLang;
 	use Market\Reference\Concerns\HasMessage;
 
+	const SHIPMENT_DATE_BEHAVIOR_ORDER_DAY = 'orderDay';
+	const SHIPMENT_DATE_BEHAVIOR_DELIVERY_DAY = 'deliveryDay';
+	const SHIPMENT_DATE_BEHAVIOR_ORDER_OFFSET = 'orderOffset';
+	const SHIPMENT_DATE_BEHAVIOR_DELIVERY_OFFSET = 'deliveryOffset';
+
 	/** @var TradingService\MarketplaceDbs\Provider */
 	protected $provider;
 
@@ -84,6 +89,47 @@ class DeliveryOption extends TradingService\Reference\Options\Fieldset
 		return $this->getFieldset('HOLIDAY');
 	}
 
+	/** @return string */
+	public function getShipmentDateBehavior()
+	{
+		return $this->getValue('SHIPMENT_DATE_BEHAVIOR', static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_DAY); // default used if settings filled for old version
+	}
+
+	/** @return bool */
+	public function getShipmentDateDirection()
+	{
+		return !in_array($this->getShipmentDateBehavior(), [
+			static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_DAY,
+			static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_OFFSET,
+		], true);
+	}
+
+	/** @return int|null */
+	public function getShipmentDateOffset()
+	{
+		switch ($this->getShipmentDateBehavior())
+		{
+			case static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_DAY:
+			case static::SHIPMENT_DATE_BEHAVIOR_ORDER_DAY:
+				$result = 0;
+			break;
+
+			case static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_OFFSET:
+			case static::SHIPMENT_DATE_BEHAVIOR_ORDER_OFFSET:
+				$value = $this->getValue('SHIPMENT_DATE_OFFSET');
+				$value = Market\Data\Number::normalize($value);
+
+				$result = $value !== null ? (int)abs($value) : null;
+			break;
+
+			default:
+				$result = null;
+			break;
+		}
+
+		return $result;
+	}
+
 	public function getFieldDescription(TradingEntity\Reference\Environment $environment, $siteId)
 	{
 		return parent::getFieldDescription($environment, $siteId) + [
@@ -154,6 +200,46 @@ class DeliveryOption extends TradingService\Reference\Options\Fieldset
 				],
 				'SETTINGS' => [
 					'SERVICE' => $this->provider->getCode(),
+				],
+			],
+			'SHIPMENT_DATE_BEHAVIOR' => [
+				'TYPE' => 'enumeration',
+				'NAME' => self::getMessage('SHIPMENT_DATE_BEHAVIOR'),
+				'HELP_MESSAGE' => self::getMessage('SHIPMENT_DATE_BEHAVIOR_HELP'),
+				'VALUES' => [
+					[
+						'ID' => static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_DAY,
+						'VALUE' => self::getMessage('SHIPMENT_DATE_BEHAVIOR_OPTION_DELIVERY_DAY'),
+					],
+					[
+						'ID' => static::SHIPMENT_DATE_BEHAVIOR_ORDER_DAY,
+						'VALUE' => self::getMessage('SHIPMENT_DATE_BEHAVIOR_OPTION_ORDER_DAY'),
+					],
+					[
+						'ID' => static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_OFFSET,
+						'VALUE' => self::getMessage('SHIPMENT_DATE_BEHAVIOR_OPTION_DELIVERY_OFFSET'),
+					],
+					[
+						'ID' => static::SHIPMENT_DATE_BEHAVIOR_ORDER_OFFSET,
+						'VALUE' => self::getMessage('SHIPMENT_DATE_BEHAVIOR_OPTION_ORDER_OFFSET'),
+					],
+				],
+				'SETTINGS' => [
+					'ALLOW_NO_VALUE' => 'N',
+				],
+			],
+			'SHIPMENT_DATE_OFFSET' => [
+				'TYPE' => 'number',
+				'NAME' => self::getMessage('SHIPMENT_DATE_OFFSET'),
+				'HELP_MESSAGE' => self::getMessage('SHIPMENT_DATE_OFFSET_HELP'),
+				'DEPEND' => [
+					'SHIPMENT_DATE_BEHAVIOR' => [
+						'RULE' => 'ANY',
+						'VALUE' => [
+							static::SHIPMENT_DATE_BEHAVIOR_DELIVERY_OFFSET,
+							static::SHIPMENT_DATE_BEHAVIOR_ORDER_OFFSET,
+						],
+					],
 				],
 			],
 			'SCHEDULE' => $this->getSchedule()->getFieldDescription($environment, $siteId) + [

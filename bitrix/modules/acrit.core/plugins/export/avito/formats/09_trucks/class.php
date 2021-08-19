@@ -16,7 +16,7 @@ Loc::loadMessages(__FILE__);
 
 class AvitoTrucks extends Avito {
 	
-	CONST DATE_UPDATED = '2021-03-05';
+	CONST DATE_UPDATED = '2021-08-05';
 
 	protected static $bSubclass = true;
 	
@@ -278,6 +278,75 @@ class AvitoTrucks extends Avito {
 			'SORT' => 1017,
 			'DESCRIPTION' => static::getMessage('FIELD_ACCIDENT_DESC'),
 		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MAKE_CHASSIS',
+			'DISPLAY_CODE' => 'MakeChassis',
+			'NAME' => static::getMessage('FIELD_MAKE_CHASSIS_NAME'),
+			'SORT' => 1018,
+			'DESCRIPTION' => static::getMessage('FIELD_MAKE_CHASSIS_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MODEL_CHASSIS',
+			'DISPLAY_CODE' => 'ModelChassis',
+			'NAME' => static::getMessage('FIELD_MODEL_CHASSIS_NAME'),
+			'SORT' => 1019,
+			'DESCRIPTION' => static::getMessage('FIELD_MODEL_CHASSIS_DESC'),
+		));
+		$arResult[] = new Field(array(
+				'CODE' => 'AVAILABILITY',
+				'DISPLAY_CODE' => 'Availability',
+				'NAME' => static::getMessage('FIELD_AVAILABILITY_NAME'),
+				'SORT' => 1020,
+				'DESCRIPTION' => static::getMessage('FIELD_AVAILABILITY_DESC'),
+				'DEFAULT_VALUE' => [
+					array(
+						'TYPE' => 'CONST',
+						'CONST' => static::getMessage('FIELD_AVAILABILITY_IN'),
+					),
+				],
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'ENGINE_CAPACITY',
+			'DISPLAY_CODE' => 'EngineCapacity',
+			'NAME' => static::getMessage('FIELD_ENGINE_CAPACITY_NAME'),
+			'SORT' => 1021,
+			'DESCRIPTION' => static::getMessage('FIELD_ENGINE_CAPACITY_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'GROSS_VEHICLE_WEIGHT',
+			'DISPLAY_CODE' => 'GrossVehicleWeight',
+			'NAME' => static::getMessage('FIELD_GROSS_VEHICLE_WEIGHT_NAME'),
+			'SORT' => 1022,
+			'DESCRIPTION' => static::getMessage('FIELD_GROSS_VEHICLE_WEIGHT_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'PERMISSIBLE_GROSS_VEHICLE_WEIGHT',
+			'DISPLAY_CODE' => 'PermissibleGrossVehicleWeight',
+			'NAME' => static::getMessage('FIELD_PERMISSIBLE_GROSS_VEHICLE_WEIGHT_NAME'),
+			'SORT' => 1023,
+			'DESCRIPTION' => static::getMessage('FIELD_PERMISSIBLE_GROSS_VEHICLE_WEIGHT_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'WHEEL_FORMULA',
+			'DISPLAY_CODE' => 'WheelFormula',
+			'NAME' => static::getMessage('FIELD_WHEEL_FORMULA_NAME'),
+			'SORT' => 1024,
+			'DESCRIPTION' => static::getMessage('FIELD_WHEEL_FORMULA_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'POWER',
+			'DISPLAY_CODE' => 'Power',
+			'NAME' => static::getMessage('FIELD_POWER_NAME'),
+			'SORT' => 1025,
+			'DESCRIPTION' => static::getMessage('FIELD_POWER_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'EMISSION_CLASS',
+			'DISPLAY_CODE' => 'EmissionClass',
+			'NAME' => static::getMessage('FIELD_EMISSION_CLASS_NAME'),
+			'SORT' => 1026,
+			'DESCRIPTION' => static::getMessage('FIELD_EMISSION_CLASS_DESC'),
+		));
 		#
 		$this->sortFields($arResult);
 		return $arResult;
@@ -400,6 +469,24 @@ class AvitoTrucks extends Avito {
 			$arXmlTags['Color'] = Xml::addTag($arFields['COLOR']);
 		if(!Helper::isEmpty($arFields['ACCIDENT']))
 			$arXmlTags['Accident'] = Xml::addTag($arFields['ACCIDENT']);
+		if(!Helper::isEmpty($arFields['MAKE_CHASSIS']))
+			$arXmlTags['MakeChassis'] = Xml::addTag($arFields['MAKE_CHASSIS']);
+		if(!Helper::isEmpty($arFields['MODEL_CHASSIS']))
+			$arXmlTags['ModelChassis'] = Xml::addTag($arFields['MODEL_CHASSIS']);
+		if(!Helper::isEmpty($arFields['AVAILABILITY']))
+			$arXmlTags['Availability'] = Xml::addTag($arFields['AVAILABILITY']);
+		if(!Helper::isEmpty($arFields['ENGINE_CAPACITY']))
+			$arXmlTags['EngineCapacity'] = Xml::addTag($arFields['ENGINE_CAPACITY']);
+		if(!Helper::isEmpty($arFields['GROSS_VEHICLE_WEIGHT']))
+			$arXmlTags['GrossVehicleWeight'] = Xml::addTag($arFields['GROSS_VEHICLE_WEIGHT']);
+		if(!Helper::isEmpty($arFields['PERMISSIBLE_GROSS_VEHICLE_WEIGHT']))
+			$arXmlTags['PermissibleGrossVehicleWeight'] = Xml::addTag($arFields['PERMISSIBLE_GROSS_VEHICLE_WEIGHT']);
+		if(!Helper::isEmpty($arFields['WHEEL_FORMULA']))
+			$arXmlTags['WheelFormula'] = Xml::addTag($arFields['WHEEL_FORMULA']);
+		if(!Helper::isEmpty($arFields['POWER']))
+			$arXmlTags['Power'] = Xml::addTag($arFields['POWER']);
+		if(!Helper::isEmpty($arFields['EMISSION_CLASS']))
+			$arXmlTags['EmissionClass'] = Xml::addTag($arFields['EMISSION_CLASS']);
 		# build XML
 		$arXml = array(
 			'Ad' => array(

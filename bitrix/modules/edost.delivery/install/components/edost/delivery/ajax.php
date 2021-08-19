@@ -17,6 +17,7 @@ $flag = (isset($_POST['flag']) ? preg_replace("/[^a-z|_]/i", "", substr($_POST['
 $office_id = (isset($_POST['office_id']) ? preg_replace("/[^0-9A]/i", "", substr($_POST['office_id'], 0, 20)) : false);
 $profile = (isset($_POST['profile']) ? intval($_POST['profile']) : false);
 $option = (isset($_POST['option']) ? preg_replace("/[^0-9Y,]/i", "", substr($_POST['option'], 0, 100)) : false);
+$no_api = (!empty($_POST['no_api']) ? 1 : 0);
 
 $group_right = $GLOBALS['APPLICATION']->GetGroupRight('sale');
 
@@ -27,16 +28,21 @@ if ($mode == 'order_param') {
 	$value = (isset($_POST['value']) ? substr($_POST['value'], 0, 1000) : '');
 	$value = $GLOBALS['APPLICATION']->ConvertCharset($value, 'utf-8', LANG_CHARSET);
 	$person_type = (isset($_POST['person_type']) ? intval($_POST['person_type']) : 0);
+	$profile_id = (isset($_POST['profile_id']) ? intval($_POST['profile_id']) : 0);
+	$user_key = $person_type.'_'.$profile_id;
 	if (!empty($person_type)) {
 		if ($name == 'ORDER_DESCRIPTION') $_SESSION['EDOST']['order_param']['ORDER_DESCRIPTION'] = $value;
 		else {
 			$s = explode('ORDER_PROP_', $name);
 			$id = (!empty($s[1]) ? intval($s[1]) : 0);
-			if ($id != 0) $_SESSION['EDOST']['order_param']['ORDER_PROP'][$person_type][$id] = $value;
+			if ($id != 0) $_SESSION['EDOST']['order_param']['ORDER_PROP'][$user_key][$id] = $value;
 			else {
 				$s = explode('edost_', $name);
 				$id = (!empty($s[1]) ? $s[1] : '');
-				if ($id != '') $_SESSION['EDOST']['order_param']['location'][$person_type][$id] = $value;
+				if ($id != '') {
+					$_SESSION['EDOST']['order_param']['location'][$user_key][$id] = $value;
+					if (isset($_POST['edost_area'])) $_SESSION['EDOST']['order_param']['location'][$user_key]['area'] = ($_POST['edost_area'] == 'Y' ? 'Y' : '');
+				}
 			}
 		}
 	}
@@ -156,6 +162,7 @@ if (in_array($mode, array('package', 'option_setting', 'profile_setting', 'profi
 				// изменение флага контроля
 				$ar = array('flag' => $flag);
 				if ($flag == 'order_date') $ar['date'] = (isset($_POST['date']) ? preg_replace("/[^0-9.]/i", "", substr($_POST['date'], 0, 20)) : '');
+				if ($no_api) $ar['no_api'] = $no_api;
 
 				$ar = edost_class::Control($id, $ar);
 				edost_class::Control('clear_cache_flag');

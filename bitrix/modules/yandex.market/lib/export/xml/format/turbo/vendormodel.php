@@ -37,8 +37,6 @@ class VendorModel extends Xml\Format\YandexMarket\VendorModel
 	{
 		$result = parent::getOffer();
 
-		$result->addChild(new Xml\Tag\Vat(), 4);
-
 		$this->overrideTags($result->getChildren(), [
 			'description' => [ 'required' => true ],
 		]);
@@ -47,6 +45,7 @@ class VendorModel extends Xml\Format\YandexMarket\VendorModel
 			'cpa',
 			'enable_auto_discounts',
 			'count',
+			'cargo-types',
 		]);
 
 		return $result;

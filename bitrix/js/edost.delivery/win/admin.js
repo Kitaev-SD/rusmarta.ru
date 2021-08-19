@@ -3,23 +3,24 @@
 // edost.register
 // edost_SetOffice
 
-if (typeof edost.admin === "undefined") edost.admin = new function() {
-	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C
-	var control_start = true
-	var error_data = {'22': 'cбой на сервере службы доставки', '25': 'сбой подключения к серверу службы доставки', '27': 'не задан почтовый индекс', '28': 'не задан адрес', '29': 'не задан номер заказа',
+if (window.edost && typeof edost.admin === "undefined") edost.admin = new function() {
+	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C, A = edost.A, I = edost.I, P = edost.P, W = edost.W, N = edost.N
+	var control_start = true, wait = false
+	var error_data = {'22': 'cбой на сервере службы доставки', '24': 'изменение невозможно, т.к. данные уже переданы на сервер службы доставки', '25': 'сбой подключения к серверу службы доставки', '27': 'не задан почтовый индекс', '28': 'не задан адрес', '29': 'не задан номер заказа',
 		'30': 'не заданы данные получателя', '31': 'не задан телефон', '32': 'не задан email', '33': 'не заданы данные заказа', '34': 'не задан вес', '35': 'не заданы габариты', '36': 'не заданы данные упаковки',
 		'37': 'не верный формат номера сдачи', '38': 'пропущено поле коментарий', '39': 'даты сдач не совпадают', '40': 'нет данных о сдаче', '41': 'заказ не в сдаче', '42': 'не смогли удалить сдачу',
 		'43': 'не смогли изменить дату сдачи', '44': 'не смогли удалить всю сдачу (только часть)', '45': 'не смогли переместить из сдачи в заказ', '46': 'не смогли создать заказ без ШПИ',
-		'47': 'не верный формат даты сдачи', '48': 'не верный тип тарифа', '49': 'не верный тариф', '51': 'не верный код страны', '52': 'не верный код региона', '55': 'не задан регион доставки',
+		'47': 'неверный формат даты сдачи', '48': 'не верный тип тарифа', '49': 'не верный тариф', '51': 'не верный код страны', '52': 'не верный код региона', '55': 'не задан регион доставки',
 		'56': 'не задан город доставки', '57': 'не задан тариф', '58': 'не задан статус оплаты', '59': 'не задан внутренний идентификатор заказа в магазине', '60': 'не задан флаг',
 		'61': 'не передали все параметры', '64': 'заказ уже передан в службу доставки', '65': 'не смогли получить данные о сдаче', '66': 'не смогли зарегистрировать сдачу в почтовом отделении',
-		'67': 'не смогли удалить заказ', '69': 'не смогли добавить в сдачу', '70': 'не смогли включить в сдачу', '71': 'печать бланков для данного вида отправления на текущем этапе оформления недоступна',
+		'67': 'не смогли удалить заказ', '68': 'дата сдачи просрочена', '69': 'не смогли добавить в сдачу', '70': 'не смогли включить в сдачу', '71': 'печать бланков для данного вида отправления на текущем этапе оформления недоступна',
 		'72': 'невозможно создать бланк (заказ не найден в системе службы доставки)', '73': 'не смогли оформить заказ', '74': 'превышен суточный лимит запросов к API службы доставки', '75': 'внутренняя ошибка',
 		'76': 'населенный пункт не обслуживается', '77': 'не верное значение НДС', '78': 'не задан номер дома', '79': 'не верный тип документа для печати бланков', '80': 'в упаковке содержится не известный товар',
 		'81': 'не смогли удалить заказ, попробуйте выполнить операцию позже', '82': 'данный заказ уже оформлен (для повторного оформления заказ необходимо вручную удалить в личном кабинете службы доставки)',
 		'84': 'на указанную дату и адрес уже существует заявка на вызов курьера', '85': 'не смогли оформить заявку на вызов курьера', '86': 'указанный заказ не оформлен', '87': 'не смогли изменить профили',
 		'88': 'сегодня на указанное время вызов курьера невозможен (необходимо указать более позднее время или перенести вызов на другой день)', '89': 'время ожидания курьера выходит за допустимый диапазон (с 09:00 до 18:00)',
-		'92': 'не смогли определить тариф', '93': 'не верный почтовый индекс'}
+		'92': 'не смогли определить тариф', '93': 'не верный почтовый индекс', '94': 'нельзя изменить, т.к. его уже редактировали в личном кабинете ТК', '95': 'не смогли удалить заказ (отправление уже отправлено)',
+		'96': 'заказ не найден в базе ТК', '97': 'не задан пункт выдачи заказа', '98': 'не смогли создать акт', '99': 'не задан пункт приема заказа'}
 
 	this.param = (window.edost_admin_param ? edost_admin_param : false)
 	this.crm_timer = false
@@ -40,61 +41,66 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 	this.location_warning_timer
 	this.update_shipment = false
 	this.zero_tariff = 0
+	this.no_api_checkbox = '<div class="edost_confirm_checkbox"><label><input name="no_api" type="checkbox"> <span>без запроса по api</span></label> <img class="edost_hint_link" data-param="shift=center,20;click=Y" src="' + edost.protocol + 'edostimg.ru/img/site/hint.svg" border="0"><div class="edost_hint_data">Если стоит галочка, тогда не отправляется запрос по api на сервер службы доставки (т.е. заказ будет удален со страницы "Оформление доставки", и на личный кабинет службы доставки такая команда никак не повлияет).<br><br>Данный механизм можно использовать, если по какой-либо причине сервер службы доставки не дает отменить оформление (например, если заявка уже была удалена вручную в личном кабинете).</div></div>'
 
-
-	this.error = function(c) {
+	this.error = function(c, a) {
 		var s = 'код ' + c;
 		if (error_data[c]) s = error_data[c];
-		return '<div class="edost_warning" style="font-size: 20px;">ошибка</div><div style="font-size: 16px;">' + s + '</div>';
+		if (!a) s = '<div class="edost_warning" style="font-size: 20px;">ошибка</div><div style="font-size: 16px;">' + s + '</div>';
+		return s;
 	}
 
 	// проверка параметров отправления (edost_CheckPackage)
-	this.check_package = function(tariff, weight, size, batch_oversize) {
+	this.check_package = function(p) {
 
-		var size = [size[0] != undefined ? size[0] : 0, size[1] != undefined ? size[1] : 0, size[2] != undefined ? size[2] : 0];
+		var size = [0, 0, 0];
+		if (p.size) size = [p.size[0] != undefined ? p.size[0] : 0, p.size[1] != undefined ? p.size[1] : 0, p.size[2] != undefined ? p.size[2] : 0];
 
 		var r = true;
-		weight = String(weight).replace(/,/g, '.').replace(/[^0-9.]/g, '')*1;
-		for (var i = 0; i < size.length; i++) size[i] = String(size[i]).replace(/,/g, '.').replace(/[^0-9.]/g, '')*1;
-		for (var i2 = 0; i2 <= 1; i2++) for (var i = 0; i < size.length-1; i++) if (size[i] > size[i+1]) {
-			var s = size[i];
-			size[i] = size[i+1];
-			size[i+1] = s;
+		p.weight = edost.number(p.weight);
+		for (var i = 0; i < size.length; i++) size[i] = edost.number(size[i]);
+		edost.sort(size);
+		var volume = size[0]*size[1]*size[2];
+		var sizesum = size[0] + size[1] + size[2];
+		var no_size = (size[0] == 0 || size[1] == 0 || size[2] == 0 ? true : false);
+
+		// почта
+		if (p.tariff == 1) {
+			if (p.weight > 2.5) r = 'weight';
+		}
+		if (p.tariff == 2) {
+			oversize = (p.weight >= 10 || size[0] > 60 || size[1] > 60 || size[2] > 60 || sizesum > 120 ? 1 : 0);
+
+			if (p.weight > 50) r = 'weight';
+			else if (sizesum > 300) r = 'size';
+			else if (p.batch_oversize === 0 && oversize === 1) r = 'oversize_big';
+			else if (p.batch_oversize === 1 && oversize === 0) r = 'oversize_small';
+		}
+		if (p.tariff == 3) {
+			if (p.weight >= 31.5) r = 'weight';
+			else if (size[0] > 150 || size[1] > 150 || size[2] > 150 || size[0] + size[1]*2 + size[2]*2 > 300) r = 'size';
 		}
 
-		if (tariff == 1) {
-			if (weight > 2.5) r = 'weight';
+		// СДЭК
+		if (p.company_id == 5 && !p.size_disable && (p.weight > 0.5 || p.weight != 0 && p.postamat) && no_size) r = 'no_size';
+		if (A(p.tariff, [37, 38])) { // посылка
+			if (p.weight > 30) r = 'weight';
+			if (volume/5000 > 30) r = 'size';
+		}
+		if (A(p.tariff, [75, 76])) { // экономичная посылка
+			if (p.weight > 50) r = 'weight';
+			if (volume/5000 > 50) r = 'size';
 		}
 
-		if (tariff == 2) {
-			oversize = (weight >= 10 || size[0] > 60 || size[1] > 60 || size[2] > 60 || size[0]*1 + size[1]*1 + size[2]*1 > 120 ? 1 : 0);
-
-			if (weight > 50) r = 'weight';
-			else if (size[0]*1 + size[1]*1 + size[2]*1 > 300) r = 'size';
-			else if (batch_oversize === 0 && oversize === 1) r = 'oversize_big';
-			else if (batch_oversize === 1 && oversize === 0) r = 'oversize_small';
-		}
-
-		if (tariff == 3) {
-			if (weight >= 31.5) r = 'weight';
-			else if (size[0] > 150 || size[1] > 150 || size[2] > 150 || size[0]*1 + size[1]*2 + size[2]*2 > 300) r = 'size';
-		}
-
-		// СДЭК - посылка
-		if (tariff == 37 || tariff == 38) {
-			if (weight > 30) r = 'weight';
-		}
-
-		// СДЭК - экономичная посылка
-		if (tariff == 35 || tariff == 76) {
-			if (weight > 50) r = 'weight';
-		}
-
-		if (tariff == 65 || tariff == 76) {
-			if (weight > 55) r = 'weight';
+		// boxberry
+		if (p.company_id == 30 && !p.size_disable && p.weight > 0 && no_size) r = 'no_size';
+		if (A(p.tariff, [36, 43])) {
+			if (p.weight > 31) r = 'weight';
+			if (size[0] > 50 || size[1] > 80 || size[2] > 120 || sizesum > 250) r = 'size';
 		}
 
 		if (r === 'weight') r = ['Превышен максимально допустимый вес!', 'уменьшить вес или разделить заказ на две отправки'];
+		else if (r === 'no_size') r = ['Не указаны габариты!', 'указать габариты'];
 		else if (r === 'size') r = ['Превышены максимально допустимые габариты!', 'уменьшить габариты или разделить заказ на две отправки'];
 		else if (r === 'oversize_big') r = ['Слишком большие габариты для выбранной сдачи!', 'выбрать сдачу с негабаритными отправлениями (или новую)'];
 		else if (r === 'oversize_small') r = ['Слишком маленькие габариты для выбранной сдачи!', 'выбрать сдачу с габаритными отправлениями (или новую)'];
@@ -102,7 +108,6 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		return r;
 
 	}
-
 
 	// формирование списка с тарифами
 	this.tariff_select = function(data, profile_id, set_profile) {
@@ -177,7 +182,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 	this.post = function(url, data, callback) {
 		if (url == 'admin') url = '/bitrix/admin/edost.php';
 		if (url == 'ajax') url = self.param.ajax_file;
-		if (url == 'location') url = self.param.locations_path + '/edost_location.php';
+		if (url == 'location') url = self.param.locations_ajax_file;
 		BX.ajax.post(url, data, callback);
 	}
 
@@ -192,28 +197,31 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		}
 
 		if (self.order_view) {
-			var s = document.querySelectorAll('div[data-id="buyer"] td.adm-detail-content-cell-r div');
-			if (s) for (var i = 0; i < s.length; i++) {
-				var v = s[i].innerHTML;
+			while (v = E('div[data-id="buyer"] td.adm-detail-content-cell-r div', 'all', true)) {
+				var s = H(v);
+				var v2 = E([v.parentNode.parentNode, '.adm-detail-content-cell-l']);
+
+				// скрыть индекс "."
+				if (s == '.' && v2 && H(v2).toLowerCase().indexOf('индекс') >= 0) D(N(v,2), false);
 
 				// подпись "индекс определен приблизительно"
-				if (v.length == 7 && v.replace(/[^0-9.]/g, '').length == 7 && v.replace(/[^0-9]/g, '').length == 6 && v.substr(-1, 1) == '.') {
-					s[i].innerHTML = v + ' <span style="color: #F00;">индекс определен приблизительно</span>';
+				if (s.length == 7 && s.replace(/[^0-9.]/g, '').length == 7 && s.replace(/[^0-9]/g, '').length == 6 && s.substr(-1, 1) == '.') {
+					v.innerHTML = s + ' <span style="color: #F00;">индекс определен приблизительно</span>';
 				}
 
 				// вывод пункта выдачи
-				if (self.param.office && self.param.office.address_full == v) {
+				if (self.param.office && self.param.office.address_full == s) {
 					var c = 'код пункта выдачи:';
-					v = self.param.office.address_formatted;
-					if (v.indexOf(c) > 0) v = v.replace(c, '<b>код филиала:') + '</b>';
-					s[i].innerHTML = v;
+					s = self.param.office.address_formatted;
+					if (s.indexOf(c) > 0) s = s.replace(c, '<b>код филиала:') + '</b>';
+					H(v, s);
 				}
 			}
 		}
 
 		if (!BX.Sale || !self.shipment_edit && !self.order_create) return;
 
-		self.insert_shipment_edit(false);
+		if (!self.order_create || !edost.get('ID')) self.insert_shipment_edit(false);
 
 		// кнопки "сохранить" и "применить"
 		var ar = ['save', 'apply'];
@@ -240,12 +248,15 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			BX('control_changed_div').style.display = 'none';
 		}
 		else if (e != undefined) {
-			if (flag == 'delete' || flag == 'paid') {
+			if (A(flag, ['delete', 'paid'])) {
 				e.style.display = 'none';
 				e = BX.findNextSibling(e);
 				e.style.display = 'inline';
 			}
-			else if (flag == 'delete_register') edost.register.delete('order|' + id);
+			else if (flag == 'delete_register') {
+				edost.register.delete('order|' + id);
+				if (V(['#edost_window_data input[name="no_api"]'])) post += '&no_api=1';
+			}
 			else if (flag == 'order_date') {
 				edost.register.delete('order|' + id);
 				post += '&date=' + encodeURIComponent(e);
@@ -265,6 +276,8 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 
 				var e = BX('edost_batch_' + id);
 				if (e) e.parentNode.remove();
+
+				if (V(['#edost_window_data input[name="no_api"]'])) post += '&no_api=1';
 
 				var ar = document.getElementsByName('edost_batch_' + id);
 				if (ar) for (var i = 0; i < ar.length; i++) edost.register.delete('order|' + ar[i].value);
@@ -321,7 +334,8 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 				self.draw_control(id, 'loading', '', '', index);
 			}
 		}
-
+//alert('mode=control&id=' + id + '&flag=' + flag + post);
+//return;
 		self.post('ajax', 'mode=control&id=' + id + '&flag=' + flag + post, function(r) {
 			if (r != 'OK') alert(r);
 			if (!edost.admin.update_shipment) return;
@@ -370,18 +384,15 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		}
 		else {
 			var e = false;
-			if (!self.shipment_edit && !self.order_create) e = BX('TRACKING_NUMBER_' + index + '_EDIT');
+			if (!self.shipment_edit && !self.order_create) e = E('TRACKING_NUMBER_' + index + '_EDIT');
 			else {
 				e = document.getElementsByName('SHIPMENT[' + index + '][TRACKING_NUMBER]');
 				if (e) e = e[0];
 			}
-
 			if (!e) return;
 
-			e = BX.findParent(e, {'tag': 'tr'});
-			e = BX.findParent(e);
-
-			var E_package = BX('edost_package_' + index + '_tr');
+			e = N(N(e,'TR'));
+			var E_package = E('edost_package_' + index + '_tr');
 			if (!E_package && package) {
 				var s = '';
 				s += '<td class="adm-detail-content-cell-l">Параметры отправления:</td>';
@@ -534,11 +545,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			// поиск на странице контроля и оформления
 			var s = value.split('_');
 			if (s[0] == 'search') post = get = '&search=' + encodeURIComponent(edost_search_value);
-			else if (s[0] == 'history') {
-				var e = BX('edost_history');
-				post = get = '&id=' + e.value;
-			}
-
+			else if (s[0] == 'history') post = get = '&id=' + V('edost_history');
 
 			if (param == 'register')
 				if (s[0] == 'company') {
@@ -548,7 +555,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 				else company = edost.get('company');
 		}
 
-		var e = BX('edost_data_div');
+		var e = E('edost_data_div');
 		if (!e) return;
 
 		var p = BX.pos(e);
@@ -595,7 +602,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 
 		if (param == 'start') {
 			if (edost_search_timer != undefined) window.clearInterval(edost_search_timer);
-			edost_search_value = edost.filter(e.value);
+			edost_search_value = edost.filter(e.value, 'search');
 			edost_search_timer = window.setInterval("edost.admin.search('" + id + "')", 100);
 			return;
 		}
@@ -611,7 +618,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			return;
 		}
 
-		var v = edost.filter(e.value, 'array'); // удаление лишних символов и формирование массива с фразами
+		var v = edost.filter(e.value, 'search', true); // удаление лишних символов и формирование массива с фразами
 		if (value == 'search') for (var i = 0; i < v.length; i++) if (v[i].length < 3) { v.splice(i, 1); i--; } // удаление фраз длиной менее 3 букв
 
 		// проверка на изменение в поисковом запросе
@@ -707,8 +714,8 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		var e = BX('SHIPMENT_ID_1');
 
 		if (self.order_create) {
-			var E_paysystem = BX('PAY_SYSTEM_ID_1');
-			if (E_paysystem && !E_paysystem.onchange) E_paysystem.onchange = new Function('', 'edost.admin.change_delivery(true)');
+//			var E_paysystem = BX('PAY_SYSTEM_ID_1');
+//			if (E_paysystem && !E_paysystem.onchange) E_paysystem.onchange = new Function('', 'edost.admin.change_delivery(true)');
 			if (!e && self.param.edost_locations) self.update_location('address');
 		}
 
@@ -765,14 +772,10 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 
 			// формирование списка с тарифами
 			var select = edost.admin.tariff_select(data, profile_id);
-			E_profile.innerHTML = '<select id="PROFILE_1" class="adm-bus-select" name="SHIPMENT[1][PROFILE]" onchange="edost.admin.change_delivery()">' + select.option + '</select>';
+			H(E_profile, '<select id="PROFILE_1" class="adm-bus-select" name="SHIPMENT[1][PROFILE]" onchange="edost.admin.change_delivery()">' + select.option + '</select>');
 
 			// отключение блока "Расчетная стоимость доставки" (цена с кнопкой "применить")
-			var e = BX('shipment_container_1');
-			if (e) {
-				e = BX.findChild(e, {'tag': 'tr', 'class': 'row_set_new_delivery_price'}, true);
-				if (e) e.style.display = 'none';
-			}
+			D(['#shipment_container_1 tr.row_set_new_delivery_price'], 0);
 
 			var e = BX('BLOCK_PROFILES_1');
 			if (e) {
@@ -780,7 +783,11 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 				var cod = false;
 
 				// выбор способа оплаты
-				if (edost.admin.param.payment_select) {
+				if (self.order_create) {
+					var v = V('PAY_SYSTEM_ID_1');
+					if (v != 0 && A(v, self.param.payment_code)) cod = true;
+				}
+				else if (edost.admin.param.payment_select) {
 					var s = '<td class="adm-detail-content-cell-l fwb">Способ оплаты:</td><td class="adm-detail-content-cell-r">' + edost.admin.param.payment_select + '</td>';
 					e.appendChild( BX.create('tr', {'props': {'id': 'edost_paysystem_tr', 'innerHTML': s}}) );
 					var e2 = E('edost_payment');
@@ -801,14 +808,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			}
 
 			// включение блока выбора местоположений и адреса доставки
-			if (!edost.admin.order_create) {
-				var e = BX('edost_location_admin_city_div');
-				if (e) e.style.display = 'block';
-				var e = BX('edost_location_admin_address_div');
-				if (e) e.style.display = 'block';
-				var e = BX('edost_location_admin_passport_div');
-				if (e) e.style.display = 'block';
-			}
+			if (!self.order_create) W(['city', 'address', 'passport'], function(v) { D('edost_location_admin_' + v + '_div', 1); });
 
 			edost.admin.change_delivery(update);
 			if (edost.admin.param.edost_locations) edost.admin.update_location('address');
@@ -874,7 +874,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			}
 			else if (self.param.edost_locations) {
 				if (E_location_address) E_location_address.style.display = 'block';
-				if (self.delivery_shop) window.self.update_location('address', false, 0);
+				if (self.delivery_shop) self.update_location('address', false, 0);
 			}
 			return;
 		}
@@ -906,28 +906,27 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		if (!e) return;
 
 		var E_element = e.options[e.selectedIndex];
-		var E_address = BX('edost_address');
+		var E_address = E('edost_address');
 		if (!E_element || !E_address) return;
 
 		var cod = false;
 		if (self.order_create) {
-			var e = BX('PAY_SYSTEM_ID_1');
-			if (e && e.value != 0) for (var i = 0; i < self.param.payment_code.length; i++) if (self.param.payment_code[i] == e.value) cod = true;
+			var v = V('PAY_SYSTEM_ID_1');
+			if (v != 0 && A(v, self.param.payment_code)) cod = true;
 		}
 		else {
 			var e = E('edost_payment');
 			if (e && edost.data(e.options[e.selectedIndex], 'edost_cod') == 'Y') cod = true;
 		}
-
-		var company_id = edost.data(E_element, 'edost_company_id');
-		var company_id = edost.data(E_element, 'edost_company_id');
-		var profile = edost.data(E_element, 'edost_profile');
-		var price = edost.data(E_element, 'edost_price');
-		var pricecash = edost.data(E_element, 'edost_pricecash');
-//		var address = edost.data(E_element, 'edost_address');
-		var address = edost.data(E_element, 'edost_office_address_full');
-		var office_id = edost.data(E_element, 'edost_office_id');
-		var office_detailed = edost.data(E_element, 'edost_office_detailed');
+		var company_id = P(E_element, 'edost_company_id');
+		var company_id = P(E_element, 'edost_company_id');
+		var profile = P(E_element, 'edost_profile');
+		var price = P(E_element, 'edost_price');
+		var pricecash = P(E_element, 'edost_pricecash');
+//		var address = P(E_element, 'edost_address');
+		var address = P(E_element, 'edost_office_address_full');
+		var office_id = P(E_element, 'edost_office_id');
+		var office_detailed = P(E_element, 'edost_office_detailed');
 
 		var tariff_id = (profile ? Math.ceil(profile/2) : 0);
 		if (cod) price = (pricecash != undefined ? pricecash : 0);
@@ -1027,12 +1026,11 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			}
 		}
 
-		if (office_window && self.office_open && edost.in_array(profile, edost.office.office_mode)) {
+		if (office_window && self.office_open && A(profile, edost.office.office_mode)) {
 			request = false;
 			edost_office.window(profile, true);
 		}
 		self.office_open = true;
-
 
 		if (self.order_create && request) BX.Sale.Admin.OrderAjaxer.sendRequest(BX.Sale.Admin.OrderEditPage.ajaxRequests.refreshOrderData());
 
@@ -1205,20 +1203,20 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		var city2 = BX('edost_city2');
 
 		self.post('location', 'type=html&mode=city&ajax=Y&edost_delivery=Y&id=' + location + '&edost_city2=' + (city2 ? encodeURIComponent(city2.value) : ''), function(r) {
-			BX('edost_location_city_div').innerHTML = r;
-			BX('edost_location_city_loading').innerHTML = '';
-			BX('edost_location_address_loading').innerHTML = '';
-			var e = BX('edost_location_zip_hint'); if (e) e.innerHTML = '';
+			H('edost_location_city_div', r);
+			D('edost_location_city_div', true);
+			H('edost_location_city_loading', '');
+			H('edost_location_address_loading', '');
+			H('edost_location_zip_hint', '');
 			var e = BX('edost_zip'); if (e) e.blur();
 
 			if (edost.admin.param.crm) {
-				var e = BX('edost_location_admin_city_div');
-				if (e) edost.admin.param.edost_admin_field_city = e.innerHTML;
+				var e = E('edost_location_admin_city_div');
+				if (e) edost.admin.param.edost_admin_field_city = H(e);
 			}
 		});
 
 	}
-
 
 	this.update_location = function(mode, reload, location) {
 
@@ -1238,7 +1236,6 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 
 			return;
 		}
-
 
 		if (self.delivery_shop === 'location_updated') return;
 		if (self.delivery_shop === true && location === 0) self.delivery_shop = 'location_updated';
@@ -1279,7 +1276,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			BX(mode == 'city' ? 'edost_location_admin_city_td' : 'edost_location_address_div').innerHTML = r;
 			if (edost.admin.order_create && mode == 'city' && reload) BX.Sale.Admin.OrderAjaxer.sendRequest(BX.Sale.Admin.OrderEditPage.ajaxRequests.refreshOrderData());
 			if (mode == 'address') {
-				if (edost.admin.location_warning_timer != undefined) window.clearInterval(edost.admin.location_warning_timer);
+				if (edost.admin.location_warning_timer) window.clearInterval(edost.admin.location_warning_timer);
 				edost.admin.location_warning_timer = window.setInterval("edost.admin.update_location_warning()", 500);
 
 				if (edost.admin.order_create) {
@@ -1309,9 +1306,9 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			var e = E('edost_street_warning');
 		}
 
-		if (!e || a && e.style.display == 'block' || !a && e.style.display == 'none') return;
+		if (!e || a && D(e) == 'block' || !a && D(e) == 'none') return;
 
-		e.style.display = (a ? 'block' : 'none');
+		D(e, a);
 
 	}
 
@@ -1429,7 +1426,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 				r.ALLOW_DELIVERY = (c._settings.model._data.ALLOW_DELIVERY == 'Y' ? 'Y' : '');
 				r.TRACKING_NUMBER = c._settings.model._data.TRACKING_NUMBER;
 
-				r.edost_active = (edost.in_array(r.delivery_id, self.param.edost_id) ? true : false);
+				r.edost_active = (A(r.delivery_id, self.param.edost_id) ? true : false);
 				r.shipment_id = BX.Crm.EntityEditor.defaultInstance._settings.model._settings.data.ID;
 
 				if (mode === 'full') {
@@ -1523,7 +1520,10 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 
 	}
 
-	this.insert_crm = function(param, profile_id) {
+
+	this.insert_crm = function(param, profile_id, post) {
+
+		if (wait && !post) return;
 
 		if (param == 'new' || param == 'update') self.delivery_id = false;
 
@@ -1549,7 +1549,6 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			return;
 		}
 
-
 		if (self.delivery_id !== false && self.delivery_id == data.delivery_id && self.CRMEditor == data.c._id) return;
 		self.delivery_id = data.delivery_id;
 		self.CRMEditor = data.c._id;
@@ -1561,7 +1560,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		if (!data.delivery_input || !data.delivery_select) return;
 
 		// замена названия доставки на "eDost"
-		for (var i = 0; i < data.delivery_select.options.length; i++) if (edost.in_array(data.delivery_select.options[i].value, self.param.edost_id)) {
+		for (var i = 0; i < data.delivery_select.options.length; i++) if (A(data.delivery_select.options[i].value, self.param.edost_id)) {
 			data.delivery_select.options[i].innerHTML = 'eDost';
 			data.delivery_select.options[i].id = 'edost_delivery_option';
 			break;
@@ -1582,7 +1581,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 		// получение отформатированных тарифов edost
 		self.post('ajax', 'mode=order_edit&id=' + data.shipment_id, function(r) {
 			var data = edost.admin.get_data_crm('full');
-			if (!data.edost_active) return;
+			if (!data.edost_active) { wait = false; return; }
 
 			var price = data.price;
 
@@ -1645,6 +1644,8 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			edost.admin.set_block_crm(e, 'afterend', 'info', s);
 
 			edost.admin.change_delivery_crm(param == 'update' ? true : false);
+
+			wait = false;
 		});
 
 	}
@@ -1664,7 +1665,8 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			s.initEvent('change', true, true);
 			data.delivery_select.dispatchEvent(s);
 
-			self.insert_crm('update', data.profile_id);
+			wait = true;
+			window.setTimeout(function() { edost.admin.insert_crm('update', data.profile_id, true); }, 2000);
 		}
 
 	}
@@ -1810,7 +1812,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 					// отправка на сервер выбранного пункта выдачи
 					self.post('ajax', 'mode=order_edit&id=' + data.shipment_id + '&office_id=' + office_id + '&profile=' + profile, function(r) {
 						if (reload) edost.admin.reload = true;
-						edost.admin.update_order();
+						window.setTimeout('edost.admin.update_order()', 1000);
 					});
 					return;
 				}
@@ -1837,7 +1839,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 			office_window = false;
 		}
 
-		if (office_window && self.office_open && edost.in_array(profile, edost.office.office_mode)) {
+		if (office_window && self.office_open && A(profile, edost.office.office_mode)) {
 			request = false;
 			edost_office.window(profile, true);
 		}
@@ -1851,7 +1853,7 @@ if (typeof edost.admin === "undefined") edost.admin = new function() {
 
 
 edost.package = new function() {
-	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C
+	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C, A = edost.A, I = edost.I, P = edost.P, W = edost.W, N = edost.N
 	var item, box, item_mode, E_ajax, input_timer, E_input, input_value, input_active, input_position, scroll = [0, 0];
 	var input_function = 'type="input" onfocus="edost.package.input_focus(this)" onblur="edost.package.input_blur()" onkeydown="edost.package.input_keydown(this, event)"';
 	var mouse = {'move': false, 'checkbox': false};
@@ -1864,7 +1866,7 @@ edost.package = new function() {
 	this.open = function(id) {
 		self.id = id;
 
-		var e = BX('edost_package_error_' + self.id.split('_')[1]);
+		var e = E('edost_package_error_' + self.id.split('_')[1]);
 		self.tariff = (e ? edost.data(e, 'tariff') : false);
 
 		var e = E('edost_package_' + id + '_item_data');
@@ -1948,7 +1950,7 @@ edost.package = new function() {
 
 			var e = document.querySelector('#edost_option_' + id + ' .edost_service_button');
 			if (e) {
-				var p = edost.window.get_param(e);
+				var p = edost.param(e);
 				if (p.service && p.service.length != 0) option = p.service.join(',');
 			}
 
@@ -2033,7 +2035,7 @@ edost.package = new function() {
 		if (item_mode) h = Math.round(e.offsetHeight - E_item.getBoundingClientRect().top + e.getBoundingClientRect().top - 20);
 		else h = Math.round(e.offsetHeight - e2.getBoundingClientRect().top + e.getBoundingClientRect().top - 20);
 
-		E(['div.edost_window_close'], {
+		E(['#edost_package_window div.edost_window_close'], {
 			'position': 'absolute',
 			'margin': (fullscreen ? '8px 8px 0 1px' : '4px 4px 0 1px'),
 			'left': window_w - (fullscreen ? 32 : 29) + 'px'
@@ -2365,17 +2367,30 @@ edost.package = new function() {
 	this.check = function(value, value2) {
 		if (!self.tariff) return;
 
+		var param = edost.register.props(self.id);
+
+		// проверка итогого веса и объемного веса всех мест
+		var weight = 0;
 		for (var i = 1; i < box.length; i++) if (box[i] && !box[i].hide && (value === undefined || i == value)) {
 			var v = box[i];
-			var s = edost.admin.check_package(self.tariff, v.weight, v.size);
-			v.error = (s === true ? false : true);
+			var w = v.weight*1, w2 = 0;
+			if (param.company_id == 5) w2 = v.size[0]*v.size[1]*v.size[2]/5000;
+			weight += (w > w2 ? w : w2);
+		}
+		var error = edost.admin.check_package({'tariff': self.tariff, 'weight': weight, 'company_id': param.company_id, 'size_disable': true, 'postamat': param.postamat});
+
+		// проверка и вывод ошибки каждого места
+		for (var i = 1; i < box.length; i++) if (box[i] && !box[i].hide && (value === undefined || i == value)) {
+			var v = box[i];
+			var s = edost.admin.check_package({'tariff': self.tariff, 'weight': v.weight, 'size': v.size, 'company_id': param.company_id, 'postamat': param.postamat});
+			v.error = (s === true && error === true ? false : true);
 			var e = E('edost_package_box_error_' + i);
-			if (e) e.innerHTML = (s === true ? '' : '<div style="padding-top: 5px;">' + s[0] + '</div>');
+			if (e) H(e, s === true && error === true ? '' : '<div style="padding-top: 5px;">' + (s !== true ? s[0] : error[0]) + '</div>');
 		}
 	}
 
 	// обработка ячеек
-	this.input_update = function(value, value2) {
+	this.input_update = function(value) {
 		if (!E_input || E_input.value == input_value) return;
 
 		input_value = E_input.value;
@@ -2398,7 +2413,8 @@ edost.package = new function() {
 			var s = (E_input.getAttribute('data-code').indexOf('_size_') > 0 ? '_error2' : '_error');
 			E_input.className = E_input.className.replace(a ? '_on' : s, a ? s : '_on');
 
-			self.check(code[1]);
+//			self.check(code[1]);
+			self.check();
 			self.update_save();
 
 			return;
@@ -2415,7 +2431,7 @@ edost.package = new function() {
 			self.update_item(E_input);
 		}
 	}
-	this.input_focus = function(value, value2) {
+	this.input_focus = function(value) {
 		E_input = value;
 		input_value = value.value;
 		if (input_timer != undefined) window.clearInterval(input_timer);
@@ -2423,15 +2439,14 @@ edost.package = new function() {
 
 		self.update_box_item(E_input, 'focus');
 	}
-	this.input_blur = function(value, value2) {
+	this.input_blur = function(value) {
 		input_timer = window.clearInterval(input_timer);
 		self.input_update();
 
 		input_active = [-1, -1, -1, -1];
 		self.update_box_item(E_input);
 	}
-	this.input_keydown = function(value, value2) {
-		var event = value2;
+	this.input_keydown = function(value, event) {
 
 		if (event.keyCode == 38 || event.keyCode == 13)
 			if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
@@ -2519,8 +2534,7 @@ edost.package = new function() {
 
 
 	// фокусировка на указанном input
-	this.focus = function(value, value2) {
-		var event = value2;
+	this.focus = function(value, event) {
 		var e = E(value);
 		if (e) {
 			if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
@@ -2565,8 +2579,8 @@ edost.package = new function() {
 			if (active) c.push('edost_package_box_item_active');
 			if (checked) { if (!error) c.push('edost_package_box_item_on'); }
 			else if (!active) c.push('edost_package_box_item_off');
-			E_count.className = (error ? 'edost_package_error' : 'edost_package_on');
-			E_table.className = c.join(' ');
+			C(E_count, error ? 'edost_package_error' : 'edost_package_on');
+			C(E_table, c.join(' '));
 		}
 
 		var e = E('box_' + code[1] + '_save');
@@ -3072,11 +3086,10 @@ edost.package = new function() {
 
 // оформление доставки
 edost.register = new function() {
-	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C
-	var ajax_set = '', E_transfer, transfer_timer = 0, transfer_time_start = 0, transfer_time_end = 0, transfer_position = 0, transfer_set = -1, transfer_history = false;
-	var input_timer, E_input, input_value, input_active;
+	var self = this, E = edost.E, V = edost.V, D = edost.D, H = edost.H, C = edost.C, A = edost.A, I = edost.I, P = edost.P, W = edost.W, N = edost.N
+	var E_input, ajax_set = '', E_transfer, transfer_timer = 0, transfer_time_start = 0, transfer_time_end = 0, transfer_position = 0, transfer_set = -1, transfer_history = false
 
-	this.delete = function(value, value2) {
+	this.delete = function(value) {
 
 		var s = value.split('|');
 		var name = s[0];
@@ -3129,7 +3142,7 @@ edost.register = new function() {
 
 	}
 
-	this.button_active = function(value, value2) {
+	this.button_active = function(value) {
 
 		var s = value;
 		var name = s[0];
@@ -3150,7 +3163,7 @@ edost.register = new function() {
 
 	}
 
-	this.local_button_active = function(value, value2) {
+	this.local_button_active = function(value) {
 		for (var i = 0; i < value.length; i++) {
 			var e = BX('edost_register_button_' + value[i][0] + '_' + value[i][1]);
 			if (!e) continue;
@@ -3160,7 +3173,7 @@ edost.register = new function() {
 		}
 	}
 
-	this.transfer_status = function(value, value2) {
+	this.transfer_status = function(value) {
 		var color = (value[1] != undefined ? value[1] : '888');
 		value = value[0];
 
@@ -3173,7 +3186,7 @@ edost.register = new function() {
 		var e = BX('edost_transfer_status');
 		if (e) e.innerHTML = '<span style="font-size: 16px; color: #' + color + ';">' + s + '</span>';
 	}
-	this.transfer_start = function(value, value2) {
+	this.transfer_start = function(value) {
 		E_transfer = BX('edost_transfer_bar');
 
 		var s = new Date();
@@ -3186,10 +3199,11 @@ edost.register = new function() {
 		if (transfer_timer != undefined) window.clearInterval(transfer_timer);
 		transfer_timer = window.setInterval('edost.register.transfer()', 40);
 	}
-	this.transfer_stop = function(value, value2) {
+	this.transfer_stop = function(s, c) {
 		if (transfer_timer != undefined) window.clearInterval(transfer_timer);
-		if (value != undefined && value != '') {
-			var s = '<b>' + value + '</b> <br> <span style="font-size: 16px; font-weight: normal; display: inline-block; margin-top: 5px;" class="edost_control_button edost_control_button_low" onclick="edost.register.transfer_stop(); edost.admin.set_param(\'register\', \'reload\');">закрыть</span>';
+		if (c) s = 'Ошибка оформления: ' + edost.admin.error(c, true) + '!';
+		if (s != undefined && s != '') {
+			s = '<b>' + s + '</b> <br> <span style="font-size: 16px; font-weight: normal; display: inline-block; margin-top: 5px;" class="edost_control_button edost_control_button_low" onclick="edost.register.transfer_stop(); edost.admin.set_param(\'register\', \'reload\');">закрыть</span>';
 			self.transfer_status([s, 'red']);
 		}
 		else {
@@ -3197,7 +3211,7 @@ edost.register = new function() {
 			D('edost_transfer', false);
 		}
 	}
-	this.transfer = function(value, value2) {
+	this.transfer = function(value) {
 		var s = new Date();
 		var time = (s.getTime() - transfer_time_start)/100;
 
@@ -3225,8 +3239,8 @@ edost.register = new function() {
 		}
 		if (time > 100) {
 			var s = '';
-			if (transfer_set == -1) s = edost.admin.param.control_error.timeout + '!'; // ответ не получен (превышен лимит ожидания)
-			else if (!transfer_history) s = edost.admin.param.control_error.no_data + '!'; // во время обработки данных произошел сбой
+			if (transfer_set == -1) s = 'Ответ не получен (превышен лимит ожидания)!';
+			else if (!transfer_history) s = 'Во время обработки данных произошел сбой!';
 			self.transfer_stop(s);
 
 			transfer_set = -2;
@@ -3238,56 +3252,51 @@ edost.register = new function() {
 		E_transfer.innerHTML = '<div style="background: #0eb3ff; height: 10px; width: ' + time + '%;">&nbsp;</div>';
 	}
 
-	this.help = function(value, value2) {
+	this.help = function(value) {
 		var s = '';
 		for (var k in edost.admin.param.register_button) if (value == 'button_' + k) s = edost.admin.param.register_button[k].help;
 		H('edost_help', s);
 		D('edost_help_default', s == '' ? 'inline' : 'none');
 	}
 
-	this.input_start = function(value, value2) {
-		e = E(value) || document.querySelector('input[name="' + value + '"]');
-		if (!e) return;
-		E_input = e;
-		input_value = e.value;
-	}
-	this.input_update = function(value, value2) {
-		if (E_input && E_input.value != input_value) {
-			var id = E_input.id || E_input.name;
-			input_value = E_input.value;
-			if (id.indexOf('_date') > 0) {
-				var date = new Date();
-				var v = E_input.value.split('.');
-				var a = true;
-				if (v[0] <= 31 && v[1] && v[1] <= 12 && v[2] && !v[3]) {
-					var u = new Date(v[2], v[1]-1, v[0]);
-					var n = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-					if (u && u.valueOf() >= n.valueOf() && v[0] == u.getDate() && v[1] == u.getMonth()+1 && v[2] == u.getFullYear()) a = false;
-				}
-				if (id.indexOf('window_') == 0) {
-					if (E_input.value == edost.window.param.batch_date) a = true;
-					edost.window.resize('error', a);
-				}
-				var s = '_error';
-			}
-			else {
-				var a = (E_input.value == 0 ? true : false);
-				var s = (E_input.getAttribute('data-code').indexOf('_size_') > 0 ? '_error2' : '_error');
-			}
-			E_input.className = E_input.className.replace(a ? '_on' : s, a ? s : '_on');
+	this.input = function(o, error) {
 
-			self.active_all_update();
+		if (error == undefined) {
+			if (o) if (o.tagName) E_input = o; else E_input = (E(o) || E(['input[name="' + o + '"]']));
+			o = E_input;
 		}
-	}
-	this.input_focus = function(value, value2) {
-		E_input = value;
-		input_value = value.value;
-		if (input_timer != undefined) window.clearInterval(input_timer);
-		input_timer = window.setInterval('edost.register.input_update()', 200);
-	}
-	this.input_blur = function(value, value2) {
-		input_timer = window.clearInterval(input_timer);
-		self.input_update();
+		if (!o) return;
+
+		var c = 0;
+		var id = o.id || o.name
+		if (id.indexOf('_date') > 0) {
+			var date = new Date();
+			var v = o.value.split('.');
+			var a = true;
+			if (v[0] <= 31 && v[1] && v[1] <= 12 && v[2] && !v[3]) {
+				var u = new Date(v[2], v[1]-1, v[0]);
+				var n = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+				if (u && u.valueOf() >= n.valueOf() && v[0] == u.getDate() && v[1] == u.getMonth()+1 && v[2] == u.getFullYear()) a = false;
+			}
+			if (id.indexOf('window_') == 0) {
+				if (o.value == edost.window.param.batch_date) a = true;
+				edost.window.resize('error', a);
+			}
+			if (a) c = 1;
+		}
+		else {
+			var code = P(o, 'code');
+			v = edost.number(o.value);
+			var p = edost.param(E('edost_props_' + code.split('_')[0]));
+			var size = (code.indexOf('_size_') > 0 ? true : false);
+			var a = (v == 0 ? true : false);
+			if (a) c = (size && !error ? 2 : 1);
+		}
+		if (a && error) c = 1;
+		C(o, ['edost_package_on', 'edost_package_error', 'edost_package_error2'], c);
+
+		if (error == undefined) self.active_all_update();
+
 	}
 
 	this.active_change = function(value, value2) {
@@ -3298,7 +3307,7 @@ edost.register = new function() {
 		return !a;
 	}
 
-	this.check_batch_date = function(value, value2) {
+	this.check_batch_date = function(value) {
 		var e = BX('edost_batch_div');
 		if (e) {
 			var e = BX('edost_batch');
@@ -3310,12 +3319,15 @@ edost.register = new function() {
 		return true;
 	}
 
-	this.active_all_update = function(value, value2) {
+	this.props = function(v) {
+		if (v.indexOf('_') > 0) v = v.split('_')[1];
+		return edost.param(E('edost_props_' + v));
+	}
+	this.active_all_update = function(value) {
 		// глобальное обновление
 
 		// размер главной формы
-		var e = BX('edost_main_div');
-		if (e) e.className = 'edost_main_div_size' + (edost.cookie(['admin', 'register_item']) == 'Y' ? '2' : '');
+		C('edost_main_div', 'edost_main_div_size' + (edost.cookie(['admin', 'register_item']) == 'Y' ? '2' : ''));
 
 		// обновление глобальной галочки выделения
 		if (value) {
@@ -3324,6 +3336,20 @@ edost.register = new function() {
 			for (var i = 0; i < ar.length; i++) if (ar[i].type != 'hidden' && ar[i].checked) { a = true; break; }
 			BX(value.id + '_active').checked = a;
 		}
+
+		// установка подсказок
+		W('.edost_suggest_list', function(v) {
+			if (P(v, 'init')) return;
+			P(v, 'init', 'Y');
+			C(v, 'edost_input');
+			v.autocorrect = 'off';
+			v.spellcheck = false;
+			v.autocomplete = 'off';
+			v.oninput = new Function('edost.location.suggest(this, \'\')');
+			v.onfocus = new Function('edost.location.suggest(this, \'start\')');
+			v.onblur = new Function('edost.location.suggest(this, \'hide\')');
+			v.onkeydown = new Function('event', 'edost.location.keydown(this, event)');
+		});
 
 		// ссылки на печать
 		if (1 == 2) {
@@ -3398,26 +3424,30 @@ edost.register = new function() {
 		var batch_div = false;
 		var batch_count = 0;
 		var batch_date = self.check_batch_date();
+		var a = E('edost_batch_active'); var batch_active = (!a || V(a));
 		var order_count = 0;
+		var profile_delivery_param = edost.param(E(['#edost_profile_delivery option:checked']));
 
 		// проверка на флаги заполненности профилей и требования опций
-		var call = false;
+		var call = false, profile = false;
 		var flag_error = false;
-		var E_call = BX('edost_call');
+		var E_call = E('edost_call');
 		if (E_call) {
 			call = (E_call.checked ? 'Y' : 'N');
-			var E_shop = BX('edost_profile_shop');
-               if (E_shop) var E_option = E_shop.options[E_shop.selectedIndex];
+			var E_shop = E('edost_profile_shop');
+			if (E_shop) var E_option = E_shop.options[E_shop.selectedIndex];
 
 			var s = (E_shop && E_shop.value ? ['change', E_shop.value, 'заполнить'] : ['new', 0, 'создать новый профиль']);
 			var profile_button = '(<span class="edost_link" onclick="edost.window.set(\'profile_setting_' + s[0] + '\', \'type=shop;local=1;id=' + s[1] + '\')">' + s[2] + '</span>)';
 
 			// вызов курьера
-			if (call == 'Y' && (!E_shop || !E_option.getAttribute('data-flag_call'))) warning.push('для услуги "вызов курьера", заполнить в профиле магазина поля откуда курьеру забирать груз (город, адрес, телефон, время ожидания курьера) и указать ФИО сотрудника, отвечающего за сдачу/приемку груза ' + profile_button);
+			if (call == 'Y' && (!E_shop || !P(E_option, 'flag_call'))) warning.push('для услуги "вызов курьера", заполнить в профиле магазина поля откуда курьеру забирать груз (город, адрес, телефон, время ожидания курьера) и указать ФИО сотрудника, отвечающего за сдачу/приемку груза ' + profile_button);
 		}
 
+		var register_button_active = (batch_date && (batch_active || call) || !batch_active && !call);
+
 		// заказы готовые к оформлению
-		var e = BX('edost_shipment_register_new');
+		var e = E('edost_shipment_register_new');
 		if (e) {
 			// определение типа выбранной сдачи (негабарит)
 			var oversize = false;
@@ -3433,7 +3463,7 @@ edost.register = new function() {
 			self.button_active(['button_print_no_register', doc.count != 0 ? 1 : 0]);
 
 			// оформить
-			var zero_weight = 0;
+			var zero_weight = 0, zero_size = 0;
 			var warning_main = {};
 			var control_count = [];
 			var ar = e.querySelectorAll('.edost_register_active')
@@ -3442,38 +3472,46 @@ edost.register = new function() {
 				var warning_local = {"string": []};
 				var register_active = false;
 				var register_active2 = false;
-				var batch_active = false;
+				batch_count = ar.length;
 				var control_active = true;
 				if (ar[i].className.indexOf('_on') > 0) {
 					order_count++;
-					var E_main = ar[i].parentNode.parentNode.parentNode;
-
-					var ar2 = E_main.getElementsByClassName('edost_batch_active');
-					for (var i2 = 0; i2 < ar2.length; i2++) if (ar2[i2].className.indexOf('_on') > 0) { batch_count++; batch_active = true; }
+					var E_main = N(ar[i],3);
+					var param = self.props(id);
 
 					var weight = 0;
-					var ar2 = E_main.getElementsByClassName('edost_package_weight');
-					for (var i2 = 0; i2 < ar2.length; i2++) if (ar2[i2].className.indexOf('_on') > 0) { weight = ar2[i2].value; register_active = true; } else zero_weight++;
+					W([E_main, '.edost_package_weight'], function(v) {
+						if (C(v).indexOf('_on') > 0) { weight = edost.number(V(v)); register_active = true; } else zero_weight++;
+					});
 
-					var size = [];
-					var ar2 = E_main.getElementsByClassName('edost_package_size');
-					for (var i2 = 0; i2 < ar2.length; i2++) size.push(ar2[i2].value);
+//					var ar2 = E_main.getElementsByClassName('edost_package_weight');
+//					for (var i2 = 0; i2 < ar2.length; i2++) if (ar2[i2].className.indexOf('_on') > 0) { weight = ar2[i2].value; register_active = true; } else zero_weight++;
 
-					s = E_main.querySelector('.edost_service_button');
+					var size = [], zero_size_local = false;
+					W([E_main, '.edost_package_size'], function(v) {
+						size.push(edost.number(V(v)));
+						if (param.company_id == 5 && (weight > 0.5 || param.postamat) && C(v).indexOf('_on') < 0) { zero_size++; zero_size_local = true; }
+						if (param.company_id == 30 && C(v).indexOf('_on') < 0) { zero_size++; zero_size_local = true; }
+					});
+					if (A(param.company_id, [5, 30])) W([E_main, '.edost_package_size'], function(v) { self.input(v, zero_size_local); });
+//					var ar2 = E_main.getElementsByClassName('edost_package_size');
+//					for (var i2 = 0; i2 < ar2.length; i2++) size.push(ar2[i2].value);
+
+					s = E([E_main, '.edost_service_button']);
 					if (s) {
-						var p = edost.window.get_param(s);
+						var p = edost.param(s);
 
 						var E_props = BX('edost_props_' + id);
-						var props = edost.window.get_param(E_props);
+						var props = edost.param(E_props);
 
 						// реверс (СДЭК)
-						if (E_call && p.company == 5 && edost.in_array(48, p.service) && (!E_shop || !E_option.getAttribute('data-flag_reverse'))) warning_local.reverse = true;
+						if (E_call && p.company == 5 && A(48, p.service) && (!E_shop || !E_option.getAttribute('data-flag_reverse'))) warning_local.reverse = true;
 
 						// SMS (Почта)
-						if (props.phone == '' && p.company == 23 && edost.in_array(1, p.service)) warning_local.sms = true;
+						if (props.phone == '' && p.company == 23 && A(1, p.service)) warning_local.sms = true;
 					}
 
-					var e2 = BX('edost_package_error_' + id);
+					var e2 = E('edost_package_error_' + id);
 					if (e2) {
 						if (e2.getAttribute('data-box')*1 > 1) {
 							var s = e2.getAttribute('data-error');
@@ -3485,12 +3523,14 @@ edost.register = new function() {
 						}
 						else {
 							var s = true;
-							var tariff = e2.getAttribute('data-tariff');
-							if (tariff != undefined) s = edost.admin.check_package(tariff, weight, size, oversize);
+							var tariff = P(e2, 'tariff');
+							if (tariff) s = edost.admin.check_package({'tariff': tariff, 'weight': weight, 'size': size, 'batch_oversize': oversize});
 							if (s === true) register_active2 = true; else warning_add = s[1];
-							e2.innerHTML = (s === true ? '' : '<div style="padding-top: 5px;">' + s[0] + '</div>');
+							H(e2, s === true ? '' : '<div style="padding-top: 5px;">' + s[0] + '</div>');
 						}
 					}
+
+					if (zero_size_local) register_active = false;
 
 					var c = ar[i].getAttribute('data-control').split('_');
 					var k = -1;
@@ -3508,7 +3548,7 @@ edost.register = new function() {
 
 				H('edost_register_warning_' + id, warning_local.string.join('<br>'));
 
-				self.local_button_active([[id, 'register', control_active && register_active && register_active2 && (call && batch_date || !call && (!batch_active || batch_date)) && warning_local.string.length == 0]]);
+				self.local_button_active([[id, 'register', control_active && register_active && register_active2 && register_button_active && warning_local.string.length == 0]]);
 			}
 
 			var control_active = true;
@@ -3519,43 +3559,40 @@ edost.register = new function() {
 			}
 
 			if (zero_weight > 0) warning.push('заполнить ячейки с весом отправлений');
+			if (zero_size > 0) warning.push('заполнить ячейки с габаритами отправлений');
 			if (warning_main.package_pack) warning.push('завершить распределение товаров по местам');
 			if (warning_main.package_weight) warning.push('задать вес у мест отправлений');
 			if (warning_add != '') warning.push(warning_add);
 			if (warning_main.reverse) warning.push('для услуги "реверс", заполнить в профиле магазина наименование юр.лица, адрес, телефон и указать ФИО сотрудника, отвечающего за сдачу/приемку груза ' + profile_button);
 			if (warning_main.sms) warning.push('для услуги "SMS уведомление получателя", указать телефон покупателя');
 
-			self.button_active(['button_register', order_count == 0 || !control_active || call && !batch_date || warning.length > 0 ? 0 : 1]);
+			self.button_active(['button_register', order_count == 0 || !control_active || !register_button_active || warning.length > 0 ? 0 : 1]);
 			self.button_active(['button_register_print', order_count == 0 ? 0 : 1]);
 		}
 
 		// на сдачу
-		var e = BX('edost_shipment_register_complete');
+		var e = E('edost_shipment_register_complete');
 		if (e) {
 			var button_batch_active = false;
-			var ar = e.getElementsByClassName('edost_batch_active');
-			for (var i = 0; i < ar.length; i++) {
-				var c = ar[i].getAttribute('data-code');
-				id = c.split('_')[0];
-
-				var batch_active = false;
-				if (ar[i].className.indexOf('_on') > 0) {
-					order_count++;
-					batch_count++;
-					button_batch_active = batch_active = true;
-				}
+			W([e, '.edost_shipment'], function(v) {
+				var id = P(v, 'id');
+				if (v.checked) { batch_count++; button_batch_active = true; }
 
 				var print_active = false;
-				var ar2 = ar[i].parentNode.parentNode.parentNode.getElementsByClassName('edost_doc');
-				for (var i2 = 0; i2 < ar2.length; i2++) if (ar2[i2].className.indexOf('_on') > 0) { print_active = true; break }
+				W([N(v,3), '.edost_doc'], function(v) {
+					if (C(v).indexOf('_on') > 0) { print_active = true; return false; }
+				});
 
-				self.local_button_active([[id, 'print', print_active], [id, 'batch', batch_active && batch_date]]);
-			}
+//				var s = E([N(v, 3), '.edost_doc']);
+//				for (var i = 0; i < s.length; i++) if (C(s[i]).indexOf('_on') > 0) { print_active = true; break }
+
+				self.local_button_active([[id, 'print', print_active], [id, 'batch', v.checked && batch_date]]);
+			});
 			self.button_active(['button_batch', button_batch_active && batch_date ? 1 : 0]);
 		}
 
 		// регистрация в отделении
-		var e = BX('edost_shipment_register_complete_batch');
+		var e = E('edost_shipment_register_complete_batch');
 		if (e) {
 			var button_office_active = false;
 			var ar = e.getElementsByClassName('edost_batch_office');
@@ -3572,31 +3609,24 @@ edost.register = new function() {
 			self.button_active(['button_register_repeat', a ? 1 : 0]);
 		}
 
-		if (!batch_date && (batch_count != 0 || call)) warning.push('ввести корректную дату сдачи');
+		if (!batch_date && batch_active && (batch_count != 0 || call)) warning.push('ввести корректную дату сдачи');
 
-		var e = BX('edost_warning');
+		var e = E('edost_warning');
 		if (e) {
-			e.style.display = (warning.length > 0 ? 'block' : 'none');
+			D(e, warning.length > 0);
 			if (warning.length > 0) {
-				for (var i = 0; i < warning.length; i++) warning[i] = '<span style="color: #555;">' + (warning.length > 1 ? '<b>' + (i+1) + '.</b> ' : '') + warning[i] + '</span>';
-				e.innerHTML = '<b>для оформления доставки требуется:</b><div style="height: 5px;"></div>' + warning.join('<div style="height: 5px;"></div>');
+				W(warning, function(v,i) { warning[i] = '<span style="color: #555;">' + (warning.length > 1 ? '<b>' + (i+1) + '.</b> ' : '') + v + '</span>' });
+				H(e, '<b>для оформления доставки требуется:</b><div style="height: 5px;"></div>' + warning.join('<div style="height: 5px;"></div>'));
 			}
 		}
 
-		// сдачи почты
-		if (!call) {
-			var e = BX('edost_batch_div');
-			if (e) {
-				var ar = document.getElementsByClassName('edost_batch_active');
-				for (var i = 0; i < ar.length; i++) if (ar[i].className.indexOf('_on') > 0) { batch_div = true; break; }
-				e.style.display = (batch_div ? 'block' : 'none');
-
-				var batch_E = BX('edost_batch');
-				if (batch_E) {
-					var e = BX('edost_batch_reset_div');
-					e.style.display = (!batch_div && batch_E.value != 'new' ? 'block' : 'none');
-				}
-			}
+		// блок с данными сдачи
+		var e = E('edost_batch_div');
+		var e2 = E('edost_batch_active');
+		if (e && e2) {
+			D(e, V(e2));
+			var batch_E = E('edost_batch');
+			if (batch_E) D('edost_batch_reset_div', profile_delivery_param.batch_format != 'full' && !batch_div && V(batch_E) != 'new');
 		}
 
 		for (var u = 0; u < 2; u++) {
@@ -3620,7 +3650,7 @@ edost.register = new function() {
 	}
 
 	// включение заказов в новую или существующую сдачу
-	this.batch_update = function(value, value2) {
+	this.batch_update = function(value) {
 
 		var batch_E = BX('edost_batch');
 		if (!batch_E) return;
@@ -3628,37 +3658,42 @@ edost.register = new function() {
 		if (!e) return;
 
 		var v = e.value;
-		var o = edost.data(e, 'order');
+		var o = P(e, 'order');
+		var profile_delivery_param = edost.param(E(['#edost_profile_delivery option:checked']));
 		if (o != undefined) o = o.split(',');
 
-		var e2 = BX('edost_batch_date_span');
-		if (e2) e2.style.display = (v == 'new' ? 'inline' : 'none');
+		D('edost_batch_date_span', v == 'new' ? 'inline' : false);
 
 		var order = [];
 		var order_active = [];
-		var ar = document.getElementsByClassName('edost_batch_active');
-		for (var i = 0; i < ar.length; i++) if (ar[i].className.indexOf('_on') > 0 || ar[i].className.indexOf('_off') > 0) {
-			var c = ar[i].getAttribute('data-code').split('_')[0];
-			order.push(c);
-			if (ar[i].className.indexOf('_on') > 0) order_active.push(c);
-		}
+		W('#edost_shipment_register_new .edost_shipment, #edost_shipment_register_complete .edost_shipment', function(v) {
+			var id = P(v, 'id');
+			order.push(id);
+			if (v.checked) order_active.push(id);
+		});
 
 		for (var i = 0; i < batch_E.options.length; i++) {
-			var s = batch_E.options[i].getAttribute('data-order');
-			if (s == undefined) continue;
-			s = s.split(',');
 			var a = false;
-			for (var i2 = 0; i2 < s.length; i2++) {
-				for (var i3 = 0; i3 < order_active.length; i3++) if (order_active[i3] == s[i2]) { a = true; break; }
-				if (a) break;
+			var u = batch_E.options[i];
+			var s = P(u, 'order');
+			var s2 = P(u, 'batch_format');
+			if (V(u) == 'new') a = true;
+			else if (profile_delivery_param.batch_format == 'full') {
+				if (s2 == 'full') a = true;
 			}
-			batch_E.options[i].style.display = (a ? 'block' : 'none');
+			else if (s && s2 != 'full') {
+				s = s.split(',');
+				for (var i2 = 0; i2 < s.length; i2++) {
+					for (var i3 = 0; i3 < order_active.length; i3++) if (order_active[i3] == s[i2]) { a = true; break; }
+					if (a) break;
+				}
+			}
+			D(u, a);
 		}
 
 		for (var i = 0; i < order.length; i++) {
 			var e2 = BX('edost_shipment_' + order[i]);
-			var e3 = BX('edost_batch_disabled_' + order[i]);
-			var a = (v == 'new' ? true : false);
+			var a = (v == 'new' || profile_delivery_param.batch_format == 'full' ? true : false);
 			if (!a) for (var i2 = 0; i2 < o.length; i2++) if (o[i2] == order[i]) { a = true; break; }
 			if (!a && e2.checked) {
 				e2.checked = false;
@@ -3668,11 +3703,12 @@ edost.register = new function() {
 				e2.checked = true;
 				self.active_main('edost_shipment_' + order[i]);
 			}
-			e3.style.display = (!a ? 'block' : 'none');
+			D('edost_batch_disabled_' + order[i], !a);
 		}
+
 	}
 
-	this.active_all = function(value, value2) {
+	this.active_all = function(value) {
 		var e = BX(value);
 		var a2 = (e.checked ? true : false);
 		var id = e.id.substr(0, e.id.length - 7);
@@ -3688,7 +3724,7 @@ edost.register = new function() {
 		if (e) self.active_all_update(e);
 	}
 
-	this.active_batch_all = function(value, value2) {
+	this.active_batch_all = function(value) {
 		var e = BX(value);
 		var a2 = (e.checked ? true : false);
 
@@ -3724,7 +3760,7 @@ edost.register = new function() {
 	}
 
 	// включение/выключение команд (печать бланков, отгрузка, оформление доставки)
-	this.active = function(value, value2) {
+	this.active = function(value) {
 
 		var active = self.active_change(value);
 
@@ -3764,7 +3800,7 @@ edost.register = new function() {
 		self.active_all_update(e);
 	}
 
-	this.get_doc = function(value, value2) {
+	this.get_doc = function(value) {
 
 		var r = {'normal': [], 'label': [], 'count': 0, 'full': false};
 		ar = [];
@@ -3795,8 +3831,8 @@ edost.register = new function() {
 			ar = e.getElementsByClassName('edost_doc');
 		}
 		for (var i = 0; i < ar.length; i++) if (ar[i].className.indexOf('_on') > 0) {
-			var c = ar[i].getAttribute('data-code').split('_');
-			var m = ar[i].getAttribute('data-mode');
+			var c = P(ar[i], 'code').split('_');
+			var m = P(ar[i], 'mode');
 			if (c[2] == 'order' || c[2] == 'package') r.full = true;
 			var id = c[0] + '_' + c[2];
 			if (m == 'normal') r.normal.push(id); else r.label.push(id);
@@ -3805,12 +3841,12 @@ edost.register = new function() {
 		return r;
 	}
 
-	this.search = function(value, value2) {
+	this.search = function(value) {
 		edost_search_value = value;
 		edost.admin.set_param('register', 'search_shipment');
 	}
 
-	this.get_print_link = function(value, value2) {
+	this.get_print_link = function(value) {
 		var link = '<a class="edost_print_link" href="/bitrix/admin/edost.php?type=print&mode=%mode%&doc=%doc%" target="_blank">%name%<sup style="font-size: 12px;">%count%</sup></a>';
 		var s = [];
 		if (value[0].normal == undefined) s.push(link.replace(/%doc%/g, value[0].join('|')).replace(/%mode%/g, 'normal').replace(/%name%/g, value[1]).replace(/%count%/g, value[0].length > 1 ? ' ' + value[0].length + '' : ''));
@@ -3822,10 +3858,11 @@ edost.register = new function() {
 		else return s[0];
 	}
 
-	this.print = function(value, value2) {
-		var id = (value[0] != undefined ? value[0] : false);
-		var type = (value[1] != undefined ? value[1] : '');
-		var name = (value[2] != undefined ? value[2] : '');
+	this.print = function(p) {
+
+		var id = (p[0] != undefined ? p[0] : false);
+		var type = (p[1] != undefined ? p[1] : '');
+		var name = (p[2] != undefined ? p[2] : '');
 		var full = false;
 
 		var s = [[], []];
@@ -3834,12 +3871,8 @@ edost.register = new function() {
 		if (type == 'batch_order') full = true;
 
 		if (type == 'link') {
-			var e = id.parentNode.parentNode;
-			if (!e) return;
-
-			var ar = e.getElementsByTagName('A');
-			if (ar) for (var i = 0; i < ar.length; i++) ar[i].click();
-
+			var e = N(id,2);
+			if (e) W([e, 'a'], function(v) { v.click() });
 			return;
 		}
 
@@ -3849,13 +3882,14 @@ edost.register = new function() {
 			s[1] = c.label;
 			full = c.full;
 		}
-		else if (type == 'batch' || type == 'batch_order') {
-			var ar = document.getElementsByName('edost_batch_' + id);
-			if (ar) for (var i = 0; i < ar.length; i++) {
-				var c = self.get_doc(ar[i].value);
+		else if (A(type, ['batch', 'batch_order'])) {
+			var p = edost.param(E('edost_props_' + id));
+			if (p.company_id == 30) s[1] = [id + '_package']; // boxberry (этикетки печатаются только на всю партию)
+			else W('[name="edost_batch_' + id + '"]', function(v) {
+				var c = self.get_doc(V(v));
 				if (c.normal.length > 0) s[0] = (s[0].length == 0 ? c.normal : s[0].concat(c.normal));
 				if (c.label.length > 0) s[1] = (s[1].length == 0 ? c.label : s[1].concat(c.label));
-			}
+			});
 		}
 
 		if (s[0].length == 0 && s[1].length == 0) alert('не выбрано ни одного бланка для печати');
@@ -3863,33 +3897,49 @@ edost.register = new function() {
 			window.open('/bitrix/admin/edost.php?type=print&mode=' + (i == 0 ? 'normal' : 'label') + '&doc=' + s[i].join('|'), '_blank');
 			if (id !== 'print_no_register' && !full) break; // отключение печати по типам !!!
 		}
+
 	}
 
-	this.button = function(value, value2) {
+	this.button = function(v, p) {
 
-		var s = value.split('|');
-		var value = s[0];
+		if (typeof v === 'object') {
+			var c = C(N(v));
+			if (c == 'edost_package_type') {
+				D(v, 0);
+				var e = N(v,'R');
+				D(e, 'inline-block');
+				E([e, 'input']).focus();
+			}
+			if (c == 'edost_package_comment') {
+				D(v, 0);
+				var e = N(v,'R');
+				D(e, 1);
+				E([e, 'textarea']).focus();
+			}
+			return;
+		}
+
+		var s = v.split('|');
+		var v = s[0];
 		var id = (s[1] ? s[1] : false);
 		var set = '', post = '';
 
-		if (value != undefined) {
-			var s = value.split('button_');
+		if (v != undefined) {
+			var s = v.split('button_');
 			post += '&button=' + (s[1] != undefined ? s[1] : s[0]);
 		}
 
-		if (value == 'button_register' || value == 'button_batch') {
-			var ar = ['batch', 'batch_date', 'call', 'profile_shop', 'profile_delivery'];
-			for (var i = 0; i < ar.length; i++) {
-				var e = BX('edost_' + ar[i]);
-				if (e) {
-					post += '&' + ar[i] + '=';
-					if (e.type == 'checkbox') post += (e.checked ? 'Y' : 'N');
-					else post += e.value;
-				}
-			}
+		if (A(v, ['button_register', 'button_batch'])) {
+			W(['batch', 'batch_date', 'batch_active', 'call', 'profile_shop', 'profile_delivery'], function(v) {
+				var e = E('edost_' + v);
+				if (!e) return;
+				var s = V(e);
+				if (e.type == 'checkbox') s = (s ? 'Y' : 'N');;
+				post += '&' + v + '=' + s;
+			});
 		}
 
-		if (value == 'update') {
+		if (v == 'update') {
 			set = ajax_set;
 			post += '&count=' + (transfer_position - 1);
 		}
@@ -3900,29 +3950,29 @@ edost.register = new function() {
 				var e = BX('edost_shipment_' + id);
 				if (e) e = e.parentNode.parentNode;
 			}
-			else if (value == 'button_register_repeat') var e = BX('edost_shipment_warning_red');
-			else if (value == 'button_batch') var e = BX('edost_shipment_register_complete');
-			else if (value == 'button_office') var e = BX('edost_shipment_register_complete_batch');
+			else if (v == 'button_register_repeat') var e = BX('edost_shipment_warning_red');
+			else if (v == 'button_batch') var e = BX('edost_shipment_register_complete');
+			else if (v == 'button_office') var e = BX('edost_shipment_register_complete_batch');
 			else e = BX('edost_shipment_register_new');
 
-			if (value == 'button_date') {
+			if (v == 'button_date') {
 				s.push(id + '_date');
-				post += '&date=' + encodeURIComponent(value2);
+				post += '&date=' + encodeURIComponent(p);
 			}
-			else if (value == 'button_office') {
+			else if (v == 'button_office') {
 				if (id !== false) s.push(id + '_office');
 				else {
 					var ar = e.getElementsByClassName('edost_batch_office');
 					for (var i = 0; i < ar.length; i++) if (ar[i].checked) s.push(ar[i].id.split('edost_batch_')[1] + '_office');
 				}
 			}
-			else if (value == 'button_print_no_register') {
+			else if (v == 'button_print_no_register') {
 				var doc = self.get_doc('print_no_register');
 				for (var i = 0; i < doc.normal.length; i++) s.push(doc.normal[i].replace('_', '_doc_'));
 				for (var i = 0; i < doc.label.length; i++) s.push(doc.label[i].replace('_', '_doc_'));
 			}
 			else {
-				if (value == 'button_register_repeat') {
+				if (v == 'button_register_repeat') {
 					var ar = e.getElementsByClassName('edost_register_repeat');
 					for (var i = 0; i < ar.length; i++) {
 						var c = ar[i].getAttribute('data-code');
@@ -3943,7 +3993,11 @@ edost.register = new function() {
 					var c = ar[i].getAttribute('data-code');
 					s.push(c + '_' + ar[i].value.replace(/,/g, '.').replace(/[^0-9.]/g, ''));
 				}
+
+				W('.edost_package_comment textarea', function(v) { post += '&package_comment[' + P(v, 'id') + ']=' + encodeURIComponent(edost.trim(V(v).replace(/\n|\r/g, ' '), true)); });
+				W('.edost_package_type input', function(v) { post += '&package_type[' + P(v, 'id') + ']=' + encodeURIComponent(V(v)); });
 			}
+
 			ajax_set = set = s.join('|');
 		}
 //		alert(set + ' | ' + post);
@@ -3954,15 +4008,14 @@ edost.register = new function() {
 		post += '&time=' + encodeURIComponent(ar.slice(0, 3).join('.') + ' ' + ar.slice(3, 5).join(':'));
 
 		var status = '';
-		if (value == 'button_register' || value == 'button_register_repeat' || value == 'button_batch' || value == 'button_office' || value == 'button_date') {
+		if (A(v, ['button_register', 'button_register_repeat', 'button_batch', 'button_office', 'button_date'])) {
 			status = 'transfer_end';
 			self.transfer_start();
 
-			var e = BX('edost_batch_div');
-			if (e) e.style.display = 'none';
+			D('edost_batch_div', false);
 		}
 
-		if (value == 'button_print_no_register') self.button_active(['button_print_no_register', 0]);
+		if (v == 'button_print_no_register') self.button_active(['button_print_no_register', 0]);
 
 		edost.admin.post('admin', 'type=register&ajax=Y&set=' + set + post, function(res) {
 			if (transfer_set == -2) return;
@@ -3977,17 +4030,17 @@ edost.register = new function() {
 			}
 
 			if (res.error) {
-				self.transfer_stop(res.error);
+				self.transfer_stop('', res.error);
 				return;
 			}
 
-			if (value == 'button_print_no_register') {
+			if (v == 'button_print_no_register') {
 				self.button_active(['button_print_no_register', 1]);
 				self.print(['print_no_register']);
 			}
 
 			if (status == 'transfer_end') self.transfer_status(['transfer_end']);
-			if (value == 'update' && (res.register_full != undefined || transfer_position >= 3)) self.transfer_status(['receive']);
+			if (v == 'update' && (res.register_full != undefined || transfer_position >= 3)) self.transfer_status(['receive']);
 
 			if (res.register_full != undefined) {
 				var s = new Date();
@@ -3999,6 +4052,87 @@ edost.register = new function() {
 	}
 
 }
+
+
+// настройки для окон
+var s = {
+		"option_setting": {
+			"loading": true,
+			"save": 1
+		},
+		"profile_setting": {
+			"head": "Профили организаций",
+			"loading": true,
+			"save": 2
+		},
+		"profile_setting_new": {
+			"head": "Новый профиль",
+			"head_color": "#F00",
+			"loading": true,
+			"save": 1
+		},
+		"profile_setting_change": {
+			"head": "Редактирование профиля",
+			"head_color": "#0088D2",
+			"loading": true,
+			"save": 1
+		},
+		"option": {
+			"head": "Опции доставки",
+			"width": 340,
+			"save": 1,
+			"small_height": true
+		},
+		"register_delete": {
+			"head": "Исключение заказа из сдачи",
+			"width": 400,
+			"small_height": true
+		},
+		"register_delete2": {
+			"confirm": "Отменить оформление заказа?" + edost.admin.no_api_checkbox,
+			"save": 4,
+			"small_height": true
+		},
+		"order_batch_delete": {
+			"confirm": "Исключить заказ из сдачи?",
+			"save": 4,
+			"small_height": true
+		},
+		"batch_date": {
+			"head": "Изменение даты сдачи",
+			"width": 320,
+			"small_height": true
+		},
+		"profile": {
+			"head": "Профили сдачи",
+			"width": 470,
+			"loading": true,
+			"save": 1,
+			"small_height": true
+		},
+		"call": {
+			"confirm": "Вызвать курьера?",
+			"loading": true,
+			"save": 4,
+			"small_height": true
+		},
+		"batch_delete": {
+			"confirm": "Удалить сдачу и отменить оформление всех входящих в нее заказов?" + edost.admin.no_api_checkbox,
+			"save": 4,
+			"small_height": true
+		},
+		"call_profile": {
+			"confirm": '<div style="font-size: 15px;">Для вызова курьера необходимо заполнить в профиле магазина поля откуда курьеру забирать груз (город, адрес, телефон, время ожидания курьера) и указать ФИО сотрудника, отвечающего за сдачу/приемку груза.</div>' +
+					   '<div class="edost_button_base edost_button_date" style="background: #08C; font-size: 14px; padding: 4px 8px 5px 8px; line-height: 14px; margin-top: 20px;" onclick="edost.window.set(\'profile\', \'old\')">перейти к профилям сдачи</div>',
+			"small_height": true
+		},
+		"package_detail": {
+			"no_padding": true,
+			"head": "Места",
+			"width": 460
+		},
+}
+for (var k in s) edost.window.config_data[k] = s[k];
 
 
 // вывод блока после загрузки всех скриптов
@@ -4023,16 +4157,16 @@ function edost_SetOffice(profile, id, cod, mode) {
 	if (!e) return;
 
 	var E_element = e.options[e.selectedIndex];
-	e.value = E_element.value = v[1];
+	if (edost.P(E_element, 'edost_profile') == 'all') edost.W([e, 'option'], function(v) { if (edost.P(v, 'edost_office_mode') == mode) { E_element = v; return false; } });
 
-	edost.E(E_element, {data: {'edost_profile': v[0], 'edost_office_address_full': 'new', 'edost_office_id': id}});
+	e.value = E_element.value = v[1];
+	edost.E(E_element, {'data': {'edost_profile': v[0], 'edost_office_address_full': 'new', 'edost_office_id': id}});
 
 	var p = edost.admin.point = edost.office.point(id);
 	if (p && p.city && edost.E('edost_country')) {
 		edost.admin.post('ajax', 'mode=order_edit&id=' + (edost.admin.param.crm ? edost.admin.get_data_crm('full').shipment_id : edost.value('SHIPMENT_ID_1')) + '&office_id=' + id + '&profile=' + v[0], function(r) {
 			var p = edost.admin.point;
-			var a = (p.mode == 'post' ? true : false);
-			edost.location.set('', true, p.city, edost.value('edost_region'), edost.value('edost_country').split('_')[0], a ? false : true, p.city, a ? p.code : false);
+			edost.location.set_city(p.city, p.mode, p.code);
 		});
 		return;
 	}

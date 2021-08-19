@@ -36,6 +36,7 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 	{
 		$this->checkAccess();
 		$submitResults = $this->submit();
+		$this->savePreferences();
 		$this->flushOrderCache();
 
 		return $this->collectResponse($submitResults);
@@ -184,6 +185,25 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 		return $orderRegistry->loadOrder($internalId);
 	}
 
+	protected function savePreferences()
+	{
+		$this->saveUseDimensionsFlag();
+	}
+
+	protected function saveUseDimensionsFlag()
+	{
+		global $USER;
+
+		$userId = ($USER instanceof \CUser ? (int)$USER->GetID() : 0);
+		$stored = (\CUserOptions::GetOption('yamarket_order_view', 'use_dimensions', 'N', $userId) === 'Y');
+		$requested = $this->getRequestOrder()->useDimensions();
+
+		if ($stored !== $requested)
+		{
+			\CUserOptions::SetOption('yamarket_order_view', 'use_dimensions', $requested ? 'Y' : 'N', false, $userId);
+		}
+	}
+
 	protected function submit()
 	{
 		return [
@@ -243,11 +263,12 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 	protected function submitShipments()
 	{
 		$submitResults = [];
+		$requestOrder = $this->getRequestOrder();
 
 		/** @var ShipmentRequest\Shipment $shipment */
-		foreach ($this->getRequestOrder()->getShipments() as $shipment)
+		foreach ($requestOrder->getShipments() as $shipment)
 		{
-			$submitResults[] = $this->submitBoxes($shipment);
+			$submitResults[] = $this->submitBoxes($shipment, $requestOrder->useDimensions());
 		}
 
 		return !empty($submitResults)
@@ -255,7 +276,7 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 			: new Market\Result\Base();
 	}
 
-	protected function submitBoxes(ShipmentRequest\Shipment $shipment)
+	protected function submitBoxes(ShipmentRequest\Shipment $shipment, $useDimensions = true)
 	{
 		$path = 'send/boxes';
 
@@ -267,7 +288,7 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 				'orderId' => $order->getId(),
 				'orderNum' => $order->getAccountNumber(),
 				'shipmentId' => $shipment->getId(),
-				'boxes' => $this->makeBoxes($shipment),
+				'boxes' => $this->makeBoxes($shipment, $useDimensions),
 			]);
 		}
 		catch (Market\Exceptions\Api\ObjectPropertyException $exception)
@@ -278,7 +299,7 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 		return $result;
 	}
 
-	protected function makeBoxes(ShipmentRequest\Shipment $requestShipment)
+	protected function makeBoxes(ShipmentRequest\Shipment $requestShipment, $useDimensions = true)
 	{
 		$result = [];
 
@@ -287,11 +308,17 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 		{
 			$outgoingBox = [
 				'fulfilmentId' => $box->getFulfilmentId(),
-				'weight' => $box->getSize('WEIGHT'),
-				'width' => $box->getSize('WIDTH'),
-				'height' => $box->getSize('HEIGHT'),
-				'depth' => $box->getSize('DEPTH'),
 			];
+
+			if ($useDimensions)
+			{
+				$outgoingBox += [
+					'weight' => $box->getSize('WEIGHT'),
+					'width' => $box->getSize('WIDTH'),
+					'height' => $box->getSize('HEIGHT'),
+					'depth' => $box->getSize('DEPTH'),
+				];
+			}
 
 			$result[] = $outgoingBox;
 		}

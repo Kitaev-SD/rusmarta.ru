@@ -2,7 +2,6 @@
 
 namespace Yandex\Market\Ui\UserField\View;
 
-use Bitrix\Main;
 use Yandex\Market;
 
 class Number
@@ -12,6 +11,7 @@ class Number
 		$defaultAttributes = [
 			'type' => 'text',
 			'size' => 2,
+			'inputmode' => 'numeric',
 		];
 
 		if ((string)$value !== '')

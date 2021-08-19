@@ -67,6 +67,35 @@ class FieldsetType
 		return $result;
 	}
 
+	public static function GetAdminListViewHTML($userField, $htmlControl)
+	{
+		$value = Helper\ComplexValue::asSingle($userField, $htmlControl);
+
+		return static::renderSummary($userField, $value);
+	}
+
+	public static function GetAdminListViewHTMLMulty($userField, $htmlControl)
+	{
+		$parts = [];
+
+		foreach (Helper\ComplexValue::asMultiple($userField, $htmlControl) as $value)
+		{
+			$parts[] = static::renderSummary($userField, $value);
+		}
+
+		return implode(', ', $parts);
+	}
+
+	protected static function renderSummary($userField, $value)
+	{
+		$fields = static::getFields($userField);
+		$summaryTemplate = isset($userField['SETTINGS']['SUMMARY']) ? $userField['SETTINGS']['SUMMARY'] : null;
+
+		return !empty($value)
+			? (string)Helper\Summary::make($fields, $value, $summaryTemplate)
+			: '';
+	}
+
 	public static function GetEditFormHtml($userField, $htmlControl)
 	{
 		$values = Helper\ComplexValue::asSingle($userField, $htmlControl);

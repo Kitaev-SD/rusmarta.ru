@@ -2,9 +2,10 @@
 
 namespace Yandex\Market\Export\Entity\Iblock\Section;
 
-use Yandex\Market;
 use Bitrix\Main;
 use Bitrix\Iblock;
+use Yandex\Market;
+use Yandex\Market\Export\Entity\Fetcher;
 
 Main\Localization\Loc::loadMessages(__FILE__);
 
@@ -12,7 +13,7 @@ class Source extends Market\Export\Entity\Reference\Source
 	implements Market\Export\Entity\Reference\HasSectionValues
 {
 	protected $cacheSectionValues = [];
-	protected $cacheSectionValuesSetupId = null;
+	protected $cacheSectionValuesSetupId;
 
 	public function getLangPrefix()
 	{
@@ -133,7 +134,8 @@ class Source extends Market\Export\Entity\Reference\Source
 			$nextSections = $newSectionIds;
 			$nextSectionExportMap = [];
 			$sectionList = [];
-			$userFields = $this->getUserFields($iblockId);
+			$userFieldFetcher = $this->getUserFieldFetcher($iblockId);
+			$querySelect = $this->makeIblockSectionSelect($selectFields);
 
 			while (!empty($nextSections))
 			{
@@ -149,7 +151,7 @@ class Source extends Market\Export\Entity\Reference\Source
 					false,
 					array_merge(
 						[ 'IBLOCK_ID', 'ID', 'IBLOCK_SECTION_ID' ],
-						$selectFields
+						$querySelect
 					)
 				);
 
@@ -164,13 +166,12 @@ class Source extends Market\Export\Entity\Reference\Source
 					foreach ($selectFields as $fieldName)
 					{
 						$isFoundValue = false;
-						$fieldValue = null;
+						$fieldValue = $this->getSectionRawValue($section, $fieldName, $userFieldFetcher);
 						$searchParentId = null;
 
-						if (isset($section[$fieldName]) && !Market\Utils\Value::isEmpty($section[$fieldName]))
+						if (!Market\Utils\Value::isEmpty($fieldValue))
 						{
 							$isFoundValue = true;
-							$fieldValue = $section[$fieldName];
 						}
 						else if (Market\Data\TextString::getPosition($fieldName, 'SEO_') === 0)
 						{
@@ -195,12 +196,12 @@ class Source extends Market\Export\Entity\Reference\Source
 							while ($searchParentId > 0 && isset($sectionList[$searchParentId]))
 							{
 								$parentSection = $sectionList[$searchParentId];
+								$parentValue = $this->getSectionRawValue($parentSection, $fieldName, $userFieldFetcher);
 
-								if (isset($parentSection[$fieldName]) && $parentSection[$fieldName] !== '')
+								if (!Market\Utils\Value::isEmpty($parentValue))
 								{
 									$isFoundValue = true;
-									$fieldValue = $parentSection[$fieldName];
-
+									$fieldValue = $parentValue;
 									break;
 								}
 
@@ -213,16 +214,13 @@ class Source extends Market\Export\Entity\Reference\Source
 							$hasAllFields = false;
 							$lastParentId = $searchParentId;
 						}
-						else if ($fieldValue !== null)
+						else if ($userFieldFetcher->hasField($fieldName))
 						{
-							if (isset($userFields[$fieldName]))
-							{
-								$fieldValue = $this->convertUserFieldValue($userFields[$fieldName], $fieldValue);
-							}
-							else
-							{
-								$fieldValue = $this->convertFieldValue($fieldName, $fieldValue);
-							}
+							$userFieldFetcher->requestValue($fieldName, $fieldValue, $exportIdList);
+						}
+						else
+						{
+							$fieldValue = $this->convertFieldValue($fieldName, $fieldValue);
 
 							foreach ($exportIdList as $exportId)
 							{
@@ -255,6 +253,8 @@ class Source extends Market\Export\Entity\Reference\Source
 				}
 			}
 
+			$result = $userFieldFetcher->extendResult($result);
+
 			if ($setupId !== null)
 			{
 				$this->setCacheSectionValues($setupId, $newSectionIds, $result);
@@ -262,6 +262,45 @@ class Source extends Market\Export\Entity\Reference\Source
 		}
 
 		return $result;
+	}
+
+	protected function makeIblockSectionSelect($select)
+	{
+		$result = [];
+
+		foreach ($select as $name)
+		{
+			list($name) = $this->splitName($name);
+
+			$result[] = $name;
+		}
+
+		return $result;
+	}
+
+	protected function getSectionRawValue($section, $name, Fetcher\UserField $userFieldFetcher)
+	{
+		list($name) = $this->splitName($name);
+
+		if ($userFieldFetcher->hasField($name))
+		{
+			$result = $userFieldFetcher->sanitizeValue($name, $section[$name]);
+		}
+		else if (isset($section[$name]))
+		{
+			$result = $section[$name];
+		}
+		else
+		{
+			$result = null;
+		}
+
+		return $result;
+	}
+
+	protected function splitName($name)
+	{
+		return explode('.', $name, 2);
 	}
 
 	protected function getCacheSectionValues($setupId)
@@ -363,16 +402,11 @@ class Source extends Market\Export\Entity\Reference\Source
 
 		if (!empty($context['IBLOCK_ID']))
 		{
-			$userFields = $this->getUserFields($context['IBLOCK_ID']);
-
-			foreach ($userFields as $userField)
+			foreach ($this->getUserFieldFetcher($context['IBLOCK_ID'])->getFields() as $field)
 			{
-				$result[] = [
-					'ID' => $userField['FIELD_NAME'],
-					'VALUE' => $userField['EDIT_FORM_LABEL'] ?: $userField['LIST_COLUMN_LABEL'] ?: $userField['FIELD_NAME'],
-					'TYPE' => Market\Export\Entity\Data::convertUserTypeToDataType($userField['USER_TYPE_ID']),
+				$result[] = $field + [
 					'FILTERABLE' => false,
-					'SELECTABLE' => true
+					'SELECTABLE' => true,
 				];
 			}
 		}
@@ -424,10 +458,16 @@ class Source extends Market\Export\Entity\Reference\Source
         return $result;
     }
 
+	/** @deprecated  */
 	protected function getUserFields($iblockId)
 	{
 		global $USER_FIELD_MANAGER;
 
 		return $USER_FIELD_MANAGER->GetUserFields('IBLOCK_' . $iblockId . '_SECTION', 0, LANGUAGE_ID); // cached inside bitrix core
+	}
+
+	protected function getUserFieldFetcher($iblockId)
+	{
+		return new Fetcher\UserField('IBLOCK_' . $iblockId . '_SECTION');
 	}
 }

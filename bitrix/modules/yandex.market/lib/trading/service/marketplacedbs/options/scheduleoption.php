@@ -13,7 +13,6 @@ class ScheduleOption extends IntervalOption
 	use Market\Reference\Concerns\HasMessage;
 
 	const MATCH_DAY = 'day';
-	const MATCH_FULL = 'full';
 
 	const WEEKDAY_FIRST = 1;
 	const WEEKDAY_LAST = 7;
@@ -21,13 +20,32 @@ class ScheduleOption extends IntervalOption
 	/** @var TradingService\MarketplaceDbs\Provider $provider */
 	protected $provider;
 
+	public function hasIntersection(ScheduleOption $target)
+	{
+		$fromTime = $this->getFromTime();
+		$toTime = $this->getToTime();
+		$result = false;
+
+		for ($weekday = $this->getFromWeekday(); $this->isMatchWeekdayValue($weekday); $weekday = ($weekday % static::WEEKDAY_LAST) + 1)
+		{
+			if (!$target->isMatchWeekdayValue($weekday)) { continue; }
+			if (!$target->isMatchTimeValue($fromTime, static::MATCH_UNTIL_END)) { continue; }
+			if (!$target->isMatchTimeValue($toTime, static::MATCH_AFTER_START)) { continue; }
+
+			$result = true;
+			break;
+		}
+
+		return $result;
+	}
+
 	public function isMatch(Main\Type\Date $date, $rule = ScheduleOption::MATCH_FULL)
 	{
 		if (!$this->isMatchDay($date)) { return false; }
 
-		if ($rule === static::MATCH_FULL && $date instanceof Main\Type\DateTime)
+		if ($rule !== static::MATCH_DAY)
 		{
-			$result = $this->isMatchTime($date);
+			$result = parent::isMatch($date, $rule);
 		}
 		else
 		{
@@ -40,16 +58,22 @@ class ScheduleOption extends IntervalOption
 	public function isMatchDay(Main\Type\Date $date)
 	{
 		$dateWeekday = (int)$date->format('N');
+
+		return $this->isMatchWeekdayValue($dateWeekday);
+	}
+
+	public function isMatchWeekdayValue($weekday)
+	{
 		$from = $this->getFromWeekday();
 		$to = $this->getToWeekday();
 
 		if ($from <= $to)
 		{
-			$result = ($dateWeekday >= $from && $dateWeekday <= $to);
+			$result = ($weekday >= $from && $weekday <= $to);
 		}
 		else
 		{
-			$result = ($dateWeekday >= $from || $dateWeekday <= $to);
+			$result = ($weekday >= $from || $weekday <= $to);
 		}
 
 		return $result;
@@ -88,6 +112,15 @@ class ScheduleOption extends IntervalOption
 		$value = $this->getValue('TO_WEEKDAY');
 
 		return Market\Data\WeekDay::sanitize($value);
+	}
+
+	public function getFieldDescription(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		return parent::getFieldDescription($environment, $siteId) + [
+			'SETTINGS' => [
+				'SUMMARY' => '#FROM_WEEKDAY#-#TO_WEEKDAY# (#FROM_TIME#-#TO_TIME#)',
+			],
+		];
 	}
 
 	public function getFields(TradingEntity\Reference\Environment $environment, $siteId)

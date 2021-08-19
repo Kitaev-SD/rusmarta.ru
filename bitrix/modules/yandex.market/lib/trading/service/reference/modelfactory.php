@@ -13,17 +13,19 @@ class ModelFactory
 		$this->provider = $provider;
 	}
 
-	/**
-	 * @return Market\Api\Model\Cart
-	 */
+	/** @return Market\Api\Model\Cart */
 	public function getCartClassName()
 	{
 		return Market\Api\Model\Cart::class;
 	}
 
-	/**
-	 * @return Market\Api\Model\Order
-	 */
+	/** @return Market\Api\Model\OrderFacade */
+	public function getOrderFacadeClassName()
+	{
+		return Market\Api\Model\OrderFacade::class;
+	}
+
+	/** @return Market\Api\Model\Order */
 	public function getOrderClassName()
 	{
 		return Market\Api\Model\Order::class;

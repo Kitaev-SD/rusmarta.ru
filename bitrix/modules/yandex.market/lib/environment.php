@@ -11,6 +11,108 @@ class Environment
 {
 	const PHP_MIN_VERSION = '5.4.0';
 
+	protected static $dateDefaultTimezoneOriginal;
+	protected static $phpIniOriginal = [];
+	protected static $globalVariablesOriginal = [];
+
+	/**
+	 * Сохранить состояние окружения
+	 */
+	public static function stamp()
+	{
+		static::stampTimezone();
+	}
+
+	protected static function stampTimezone()
+	{
+		Market\Config::setOption('environment_timezone', date_default_timezone_get());
+	}
+
+	protected static function getTimezone()
+	{
+		return (string)Market\Config::getOption('environment_timezone');
+	}
+
+	/**
+	 * Восстановление переменных окружения
+	 */
+	public static function restore()
+	{
+		static::restoreDefaultTimezone();
+		static::restoreMissingIniTimezone();
+		static::restoreValidGlobalUser();
+	}
+
+	/**
+	 * Сброс переменных окружения
+	 */
+	public static function reset()
+	{
+		static::resetDefaultTimezone();
+		static::resetOriginalIni();
+		static::resetGlobalVariables();
+	}
+
+	protected static function restoreDefaultTimezone()
+	{
+		$storedTimezone = static::getTimezone();
+
+		if ($storedTimezone === '' || $storedTimezone === date_default_timezone_get()) { return; }
+
+		// default
+
+		static::$dateDefaultTimezoneOriginal = date_default_timezone_get();
+		date_default_timezone_set($storedTimezone);
+	}
+
+	protected static function resetDefaultTimezone()
+	{
+		if (static::$dateDefaultTimezoneOriginal === null) { return; }
+
+		date_default_timezone_set(static::$dateDefaultTimezoneOriginal);
+		static::$dateDefaultTimezoneOriginal = null;
+	}
+
+	protected static function restoreMissingIniTimezone()
+	{
+		$storedTimezone = static::getTimezone();
+		$iniTimezone = ini_get('date.timezone');
+
+		if ($iniTimezone || $storedTimezone === '') { return; }
+
+		ini_set('date.timezone', $storedTimezone);
+		static::$phpIniOriginal['date.timezone'] = $iniTimezone;
+	}
+
+	protected static function restoreValidGlobalUser()
+	{
+		if (!empty($GLOBALS['USER']) && !($GLOBALS['USER'] instanceof \CUser))
+		{
+			static::$globalVariablesOriginal['USER'] = $GLOBALS['USER'];
+			unset($GLOBALS['USER']);
+		}
+	}
+
+	protected static function resetOriginalIni()
+	{
+		foreach (static::$phpIniOriginal as $key => $value)
+		{
+			ini_set($key, $value);
+		}
+
+		static::$phpIniOriginal = [];
+	}
+
+	protected static function resetGlobalVariables()
+	{
+		foreach (static::$globalVariablesOriginal as $key => $value)
+		{
+			$GLOBALS[$key] = $value;
+		}
+
+		static::$globalVariablesOriginal = [];
+	}
+
 	/**
 	 * Результат проверки окружения
 	 *

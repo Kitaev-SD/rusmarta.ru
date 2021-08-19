@@ -9,6 +9,7 @@ $MESS[$strMessPrefix.'USEFUL_LINKS'] = 'Полезные ссылки:';
 	$MESS[$strMessPrefix.'SUPPORTED_FORMATS'] = 'Поддерживаемые форматы файлов';
 	$MESS[$strMessPrefix.'DOWNLOAD_EXAMPLE_RSS'] = 'Скачать пример (RSS 2.0)';
 	$MESS[$strMessPrefix.'DOWNLOAD_EXAMPLE_ATOM'] = 'Скачать пример (Atom 1.0)';
+	$MESS[$strMessPrefix.'LOCAL_INVENTORY_ADS'] = 'Как создать фид данных о местном ассортименте';
 
 //
 $MESS[$strMessPrefix.'SERVICE_REQUIREMENTS'] = 'Правила сервиса';

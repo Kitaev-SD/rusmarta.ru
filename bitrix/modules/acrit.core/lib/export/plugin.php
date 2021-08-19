@@ -317,7 +317,7 @@ abstract class Plugin {
 		unset($obReflectionClass);
 		$strResult = pathinfo($strFileName,PATHINFO_DIRNAME);
 		if($strRelative) {
-			$strResult = substr($strResult,strlen($_SERVER['DOCUMENT_ROOT']));
+			$strResult = substr($strResult,strlen(Helper::root()));
 		}
 		return $strResult;
 	}
@@ -533,7 +533,7 @@ abstract class Plugin {
 		if(strlen($strFile) && preg_match('#^(http|https)://.*?$#i', $strFile)){
 			print $this->getExtFileOpenLink($strFile, Helper::getMessage('ACRIT_EXP_URL_OPEN_TITLE'), $strTitle);
 		}
-		elseif(strlen($strFile) && is_file($_SERVER['DOCUMENT_ROOT'].$strFile)) {
+		elseif(strlen($strFile) && is_file(Helper::root().$strFile)) {
 			print $this->getSingleFileOpenLink($strFile);
 		}
 		elseif(strlen($strFile) && mb_substr($strFile, 0, 1) == '/'){
@@ -600,7 +600,7 @@ abstract class Plugin {
 		$strSuffix = is_string($strSuffix) ? '.'.$strSuffix : '';
 		$strExt = $bTmpExtension ? '.tmp' : '';
 		$strFilename = $strTmpDir.'/'.pathinfo($this->arParams['EXPORT_FILE_NAME'], PATHINFO_BASENAME).$strSuffix.$strExt;
-		$strFilename = substr($strFilename, strlen($_SERVER['DOCUMENT_ROOT']));
+		$strFilename = substr($strFilename, strlen(Helper::root()));
 		return $strFilename;
 	}
 	

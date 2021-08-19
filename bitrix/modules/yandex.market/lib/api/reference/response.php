@@ -104,6 +104,6 @@ class Response extends Model
 			]);
 		}
 
-		return new Main\Error($message);
+		return new Main\Error($message, $code);
 	}
 }

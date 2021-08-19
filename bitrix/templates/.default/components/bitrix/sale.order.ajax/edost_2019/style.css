@@ -44,7 +44,7 @@ div.edost_person_type input, div.edost_person_type label { display: inline-block
 div.edost_pay_from_account_delimiter { height: 10px; }
 td.edost_pay_from_account_ico .edost_format_tariff { vertical-align: middle; }
 
-div.edost_window_form_head { font-size: 20px; color: #888; text-align: center; }
+div.edost_window_form_head { padding: 0 0 10px 0; font-size: 20px; color: #888; text-align: center; line-height: normal; }
 div.edost_agreement_checkbox { padding: 5px 0; text-align: center; max-width: 700px; margin: 0 auto; font-size: 14px; }
 div.edost_agreement_checkbox input, div.edost_agreement_checkbox label, div.edost_agreement_checkbox label a { margin: 0; display: inline; }
 div.edost_agreement_checkbox input { vertical-align: middle; }
@@ -109,7 +109,6 @@ div.edost td.edost_ico_normal { vertical-align: middle !important; }
 .edost_window_delivery_small2 .edost_delivery_div div.edost_format_tariff_main td.edost_resize_tariff_show2 { display: inline-block; width: 49%; text-align: center; padding: 10px 0 0 0; }
 
 .edost_window_delivery_small2 .edost_delivery_div div.edost_button_get { display: inline-block; float: none; }
-
 .edost_window_delivery_small2 .edost_delivery_div span.edost_format_tariff { font-size: 20px !important; line-height: 18px; }
 .edost_window_delivery_small2 .edost_delivery_div span.edost_bracket { display: none !important; }
 .edost_window_delivery_small2 .edost_delivery_div span.edost_codplus { display: block !important; }
@@ -118,15 +117,12 @@ div.edost td.edost_ico_normal { vertical-align: middle !important; }
 
 div.edost_window_landscape .edost_agreement_text { margin-bottom: 10px; }
 div.edost_window_form #edost_window_data { padding-top: 0 !important; margin-top: 0 !important; }
-
 div.edost_window_landscape div.edost_prop_div { padding-top: 0; }
-
-div.edost_device_pc .edost_window_form_head { padding: 10px 0 10px 0; }
-div.edost_device_tablet .edost_window_form_head { padding: 10px 0 10px 0; }
-div.edost_device_tablet_small .edost_window_form_head { padding: 10px 0 10px 0; }
-div.edost_device_phone .edost_window_form_head { padding: 10px 0 10px 0; font-size: 18px; line-height: 18px; }
-
-span.edost_city_name span { font-weight: normal; }
+div.edost_device_phone .edost_window_form_head { font-size: 18px; line-height: 18px; }
+/*
+.edost_device_pc.edost_window_normal #edost_window_data_div { padding-top: 10px; }
+*/
+span.edost_city_name span, span.edost_L2_city_name span { font-weight: normal; }
 .edost_location_button_hide .edost_button_big2, .edost_location_button_hide .edost_button_big_active { display: none; }
 
 #edost_location_div .edost_resize_button { float: right; margin-left: 10px; }
@@ -299,6 +295,8 @@ div.edost_fast .edost_button_big2 { width: 140px !important; margin-right: 0; }
 .edost_compact_delivery_small2 div.edost_fast td, .edost_full_delivery_small2 div.edost_fast td { display: block; text-align: center !important; width: 100%; }
 .edost_compact_delivery_small2 div.edost_fast .edost_button_big2, .edost_full_delivery_small2 div.edost_fast .edost_button_big2 { width: 180px !important; margin-top: 10px; display: inline-block; }
 
+div.edost_div *:focus { outline: none; }
+
 /* шаблон "светлый" */
 .edost_template_light div.edost_main { overflow: hidden; margin: 0px 0 20px 0; padding: 0px; }
 .edost_template_light div.edost_main h4 { font-size: 18px; color: #555; padding: 6px 0 7px 0; border: 0; }
@@ -340,7 +338,7 @@ div.edost_order_cart_props span { color: #000; }
 table.edost_order_cart td { vertical-align2: top; text-align: right; }
 table.edost_order_cart td.edost_order_cart_name { text-align: left; }
 
-.edost_template_total_full #order_total_inside, .edost_template_total_full .edost_order_inside { display: none; }
+.edost_template_total_full #order_total_inside { display: none; }
 .edost_template_total_small #order_total2_inside, .edost_template_total_small #order_save_button2, .edost_template_total_small .edost_cart_delimiter_end, .edost_template_total_small #order_sum_title, .edost_template_total_small #order_cart_button_inside { display: none; }
 .edost_template_total_off #order_save_button2, .edost_template_total_off #order_cart_title { display: none; }
 .edost_template_total_full #order_total_cart { display: block; }
@@ -375,7 +373,7 @@ div.edost_order_total_red { background: #F98989; }
 div.edost_fast_total { font-size: 13px; color: #AAA; line-height: 13px; padding-top: 8px; text-align: center; }
 
 
-div.edost_order_total_bonus, span.edost_order_total_bonus { background: #FFD02E; }
+div.edost_order_total_bonus, span.edost_order_total_bonus { background: #FFD02E; color: #000; }
 div.edost_pay_from_bonus { border: 5px solid #EEE; padding: 8px; }
 div.edost_pay_from_bonus_active { border: 5px solid #FFD02E !important; }
 div.edost_button_big_bonus { border-width: 0 !important; padding: 10px !important; background: #FFD02E; }
@@ -425,7 +423,7 @@ div.edost_no_location_warning { font-size: 20px; color: #F00; text-align: center
 
 #edost_location_city_div { min-height: 26px; }
 .edost_compact_delivery_small2 #edost_location_city_div { text-align: center; }
-#edost_location_city_div span.edost_city_link { display: none; }
+#edost_location_city_div span.edost_city_link, #edost_location_city_div span.edost_L2_city_link { display: none; }
 #edost_location_city_loading div.edost_loading, #edost_location_city_div div.edost_loading { display: none !important; }
 div.edost_template_location_hide #edost_location_city_div { display: none !important; }
 

@@ -12,4 +12,9 @@ class Item extends Market\Api\Model\Cart\Item
 	{
 		return (int)$this->getRequiredField('feedId');
 	}
+
+	public function getPartnerWarehouseId()
+	{
+		return (string)$this->getRequiredField('partnerWarehouseId');
+	}
 }

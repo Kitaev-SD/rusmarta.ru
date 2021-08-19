@@ -11,6 +11,8 @@ class Action extends TradingService\Marketplace\Action\SendStatus\Action
 {
 	/** @var TradingService\MarketplaceDbs\Provider */
 	protected $provider;
+	/** @var Request */
+	protected $request;
 
 	public function __construct(TradingService\MarketplaceDbs\Provider $provider, TradingEntity\Reference\Environment $environment, array $data)
 	{
@@ -70,10 +72,16 @@ class Action extends TradingService\Marketplace\Action\SendStatus\Action
 	protected function getCancelReason()
 	{
 		return
-			$this->getCancelReasonFromStatusOption()
+			$this->getCancelReasonFromRequest()
+			?: $this->getCancelReasonFromStatusOption()
 			?: $this->getCancelReasonFromProperty()
 			?: $this->getCancelReasonFromOrder()
 			?: $this->getCancelReasonDefault();
+	}
+
+	protected function getCancelReasonFromRequest()
+	{
+		return $this->request->getCancelReason();
 	}
 
 	protected function getCancelReasonFromStatusOption()
@@ -82,7 +90,7 @@ class Action extends TradingService\Marketplace\Action\SendStatus\Action
 		$orderStatuses = $this->getOrder()->getStatuses();
 		$result = null;
 
-		if (!in_array($requestStatus, $orderStatuses, true))
+		if ($requestStatus !== null && !in_array($requestStatus, $orderStatuses, true))
 		{
 			$orderStatuses[] = $requestStatus;
 		}

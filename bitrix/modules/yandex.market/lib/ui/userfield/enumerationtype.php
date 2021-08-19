@@ -111,7 +111,9 @@ class EnumerationType
 				$htmlControl['NAME'] = preg_replace('/\[\]$/', '', $htmlControl['NAME']);
 			}
 
-			$result = static::callParent('GetEditFormHTMLMulty', [$userField, $htmlControl]);
+			$result = static::hasParentMethod('renderEditForm')
+				? static::callParent('renderEditForm', [$userField, $htmlControl])
+				: static::callParent('GetEditFormHTMLMulty', [$userField, $htmlControl]);
 			$result = Helper\Attributes::insert($result, $attributes);
 		}
 		else

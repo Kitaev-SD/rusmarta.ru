@@ -30,37 +30,13 @@ class BoxLabel extends TradingService\Reference\Document\AbstractDocument
 
 	public function getSettings()
 	{
-		$result = [];
-
-		if (Market\Config::isExpertMode())
-		{
-			$result['SIZE'] = [
-				'TYPE' => 'enumeration',
-				'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_DOCUMENT_BOX_LABEL_SIZE'),
-				'VALUES' => [
-					[
-						'ID' => 'small',
-						'VALUE' => static::getLang('TRADING_SERVICE_MARKETPLACE_DOCUMENT_BOX_LABEL_SIZE_SMALL'),
-					],
-					[
-						'ID' => 'big',
-						'VALUE' => static::getLang('TRADING_SERVICE_MARKETPLACE_DOCUMENT_BOX_LABEL_SIZE_BIG'),
-					],
-				],
-				'PERSISTENT' => 'Y',
-				'SETTINGS' => [
-					'ALLOW_NO_VALUE' => 'N',
-				]
-			];
-
-			$result['HTML'] = [
+		return [
+			'BUNDLE' => [
 				'TYPE' => 'boolean',
-				'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_DOCUMENT_BOX_LABEL_HTML'),
+				'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_DOCUMENT_BOX_LABEL_BUNDLE'),
 				'PERSISTENT' => 'Y',
-			];
-		}
-
-		return $result;
+			],
+		];
 	}
 
 	public function loadItems($entitySelect)
@@ -107,19 +83,29 @@ class BoxLabel extends TradingService\Reference\Document\AbstractDocument
 
 	public function render(array $items, array $settings = [])
 	{
-		if ($this->useRenderFile($settings))
+		if ($this->useBundle($settings))
 		{
 			$this->disableAutoPrint();
-			$result = $this->renderFileWindow($items, $settings);
+			$result = $this->renderDocument($items, $settings, 'pdfbundle');
 		}
 		else
 		{
-			$result = $this->renderDocument($items, $settings);
+			$this->disableAutoPrint();
+			$result = $this->renderFileWindow($items, $settings);
 		}
 
 		return $result;
 	}
 
+	protected function useBundle(array $settings)
+	{
+		return (
+			isset($settings['BUNDLE'])
+			&& (string)$settings['BUNDLE'] === Market\Ui\UserField\BooleanType::VALUE_Y
+		);
+	}
+
+	/** @deprecated */
 	protected function useRenderFile(array $settings)
 	{
 		return (
@@ -220,7 +206,7 @@ class BoxLabel extends TradingService\Reference\Document\AbstractDocument
 		]);
 	}
 
-	protected function renderDocument(array $items, array $settings = [])
+	protected function renderDocument(array $items, array $settings = [], $template = 'boxlabel')
 	{
 		$options = $this->provider->getOptions();
 
@@ -230,9 +216,10 @@ class BoxLabel extends TradingService\Reference\Document\AbstractDocument
 			'COMPANY_LEGAL_NAME' => $options->getCompanyLegalName(),
 			'COMPANY_LOGO' => $options->getCompanyLogo(),
 			'COMPANY_NAME' => $options->getCompanyName(),
+			'SETUP_ID' => $this->provider->getOptions()->getSetupId(),
 		];
 		$parameters += $settings;
 
-		return $this->renderComponent('boxlabel', $parameters);
+		return $this->renderComponent($template, $parameters);
 	}
 }

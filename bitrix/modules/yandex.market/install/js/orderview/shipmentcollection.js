@@ -41,6 +41,10 @@
 			});
 		},
 
+		toggleSizes: function(dir) {
+			this.callItemList('toggleSizes', [dir]);
+		},
+
 		getOrder: function() {
 			return this.getParentField();
 		},

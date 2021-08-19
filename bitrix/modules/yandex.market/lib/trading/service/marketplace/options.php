@@ -50,6 +50,16 @@ class Options extends TradingService\Common\Options
 		return (string)$this->getValue('SUBSIDY_PAY_SYSTEM_ID');
 	}
 
+	public function useWarehouses()
+	{
+		return (string)$this->getValue('USE_WAREHOUSES') === Market\Reference\Storage\Table::BOOLEAN_Y;
+	}
+
+	public function getWarehouseStoreField()
+	{
+		return $this->getRequiredValue('WAREHOUSE_STORE_FIELD');
+	}
+
 	public function getProductStores()
 	{
 		return (array)$this->getRequiredValue('PRODUCT_STORE');
@@ -254,10 +264,89 @@ class Options extends TradingService\Common\Options
 	protected function getProductSkuMapFields(TradingEntity\Reference\Environment $environment, $siteId)
 	{
 		$result = parent::getProductSkuMapFields($environment, $siteId);
-
-		return $this->applyFieldsOverrides($result, [
-			'HIDDEN' => 'N',
+		$overridable = array_diff_key($result, [
+			'PRODUCT_SKU_ADV_PREFIX' => true,
 		]);
+
+		return
+			$this->applyFieldsOverrides($overridable, [ 'HIDDEN' => 'N' ])
+			+ $result;
+	}
+
+	protected function getProductStoreFields(TradingEntity\Reference\Environment $environment, $siteId)
+	{
+		global $APPLICATION;
+
+		try
+		{
+			$store = $environment->getStore();
+			$supportsWarehouses = $this->provider->getFeature()->supportsWarehouses();
+
+			$warehouseFields = [
+				'USE_WAREHOUSES' => [
+					'TYPE' => 'boolean',
+					'TAB' => 'STORE',
+					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_USE_WAREHOUSES'),
+					'HELP_MESSAGE' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_USE_WAREHOUSES_HELP'),
+					'SORT' => 1100,
+					'HIDDEN' => $supportsWarehouses ? 'N' : 'Y',
+				],
+				'WAREHOUSE_STORE_FIELD' => [
+					'TYPE' => 'enumeration',
+					'TAB' => 'STORE',
+					'MANDATORY' => 'Y',
+					'NAME' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_WAREHOUSE_STORE_FIELD'),
+					'HELP_MESSAGE' => static::getLang('TRADING_SERVICE_MARKETPLACE_OPTION_WAREHOUSE_STORE_FIELD_HELP', [
+						'#LANG#' => LANGUAGE_ID,
+						'#BACKURL#' => rawurlencode($APPLICATION->GetCurPageParam('')),
+					]),
+					'SORT' => 1105,
+					'VALUES' => $store->getFieldEnum($siteId),
+					'HIDDEN' => $supportsWarehouses ? 'N' : 'Y',
+					'SETTINGS' => [
+						'DEFAULT_VALUE' => $store->getWarehouseDefaultField(),
+						'STYLE' => 'max-width: 220px;',
+					],
+					'DEPEND' => [
+						'USE_WAREHOUSES' => [
+							'RULE' => 'EMPTY',
+							'VALUE' => false,
+						],
+					],
+				],
+			];
+			$commonFields = parent::getProductStoreFields($environment, $siteId);
+
+			if ($supportsWarehouses)
+			{
+				foreach ($commonFields as &$commonField)
+				{
+					if (isset($commonField['INTRO']))
+					{
+						$warehouseFields['USE_WAREHOUSES']['INTRO'] = $commonField['INTRO'];
+						unset($commonField['INTRO']);
+					}
+
+					$commonField['SORT'] += 5;
+					$commonField['DEPEND'] = [
+						'USE_WAREHOUSES' => [
+							'RULE' => 'EMPTY',
+							'VALUE' => true,
+						],
+					];
+				}
+				unset($commonField);
+			}
+
+			$result = $warehouseFields + $commonFields;
+		}
+		catch (Market\Exceptions\NotImplemented $exception)
+		{
+			$result = [];
+		}
+
+		return $result;
+
 	}
 
 	protected function getProductPriceFields(TradingEntity\Reference\Environment $environment, $siteId)

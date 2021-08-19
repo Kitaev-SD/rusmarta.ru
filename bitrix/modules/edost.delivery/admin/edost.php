@@ -12,11 +12,12 @@ if (!class_exists('edost_class')) require_once($_SERVER['DOCUMENT_ROOT'].getLoca
 $admin_sign = GetMessage('EDOST_ADMIN');
 $protocol = CDeliveryEDOST::GetProtocol();
 $setting_cookie = edost_class::GetCookie();
+$img_path = $protocol.'edostimg.ru/img/site';
 //echo '<br><b>setting_cookie:</b><pre style="font-size: 12px">'.print_r($setting_cookie, true).'</pre>';
 
 // данные из POST и GET
 $type = (!empty($_REQUEST['type']) ? preg_replace("/[^a-z|_]/i", "", substr($_REQUEST['type'], 0, 30)) : '');
-if (!in_array($type, array('control', 'register', 'setting', 'paysystem', 'print'))) $type = 'setting';
+if (!in_array($type, array('control', 'register', 'setting', 'paysystem', 'print', 'location_update'))) $type = 'setting';
 $ajax = (isset($_POST['ajax']) && $_POST['ajax'] == 'Y' ? true : false);
 
 // изменять настройки можно только при '[W] полный доступ'
@@ -26,6 +27,20 @@ if (in_array($type, array('setting', 'paysystem')) && $right != 'W') {
 }
 
 $history = edost_class::History();
+
+
+// обновление местоположений
+if ($type == 'location_update') {
+	$GLOBALS['APPLICATION']->IncludeComponent('edost:delivery', '', array(
+		'MODE' => 'setting',
+		'ADMIN' => 'Y',
+		'PARAM' => array(
+			'location_update' => true,
+		),
+	), null, array('HIDE_ICONS' => 'Y'));
+
+	die();
+}
 
 
 // сохранение настроек модуля и привязок к оплате
@@ -73,6 +88,7 @@ if ($type == 'register' && isset($_REQUEST['set']) && isset($_REQUEST['time']) &
 			'button' => (isset($_REQUEST['button']) ? $_REQUEST['button'] : false),
 			'count' => (isset($_REQUEST['count']) ? $_REQUEST['count'] : 0),
 			'batch' => (isset($_REQUEST['batch']) ? $_REQUEST['batch'] : false),
+			'batch_active' => (isset($_REQUEST['batch_active']) ? $_REQUEST['batch_active'] : false),
 			'batch_date' => (isset($_REQUEST['batch_date']) ? $_REQUEST['batch_date'] : false),
 
 			'call' => (isset($_REQUEST['call']) ? $_REQUEST['call'] : false),
@@ -117,8 +133,10 @@ if (!$ajax) { ?>
 	span.error { padding-top: 5px; color: #F00; font-weight: bold; font-size: 14px; }
 	span.note { color: #888; vertical-align: middle; }
 
-	div.checkbox input[type="checkbox"]:checked + label { color: #000; }
-	div.checkbox input[type="checkbox"] + label { color: #888; }
+	img.edost_hint_link { opacity: 0.4; }
+
+	div.checkbox input[type="checkbox"]:checked + label { opacity: 1; }
+	div.checkbox input[type="checkbox"] + label { opacity: 0.5; }
 	div.checkbox input[type="checkbox"]:checked + label.blue { color: #00F; }
 	div.checkbox input[type="checkbox"] + label.blue { color: #88F; }
 	div.checkbox input[type="checkbox"]:checked + label.green { color: #080; }
@@ -179,7 +197,12 @@ if (!$ajax) { ?>
 		var post = [];
 		var reload = false;
 
-		if (mode == 'module_active') {
+		if (mode == 'location_update') {
+			post.push('type=location_update');
+			edost.H('edost_location_update', '<div style="margin-bottom: 20px; font-size: 20px; text-align: center; color: #AAA;"><?=$admin_sign['location_update']['loading']?></div>' + edost.loading);
+			edost.scroll('edost_location_update');
+		}
+		else if (mode == 'module_active') {
 			var E = document.getElementById('module_active_' + param);
 			if (E) {
 				var E2 = document.getElementById('module_active_' + param + '_main');
@@ -189,7 +212,7 @@ if (!$ajax) { ?>
 		else if (mode == 'site') {
 			var a = param.getAttribute('data-site');
 			var E = param.parentNode.parentNode;
-		       var s = E.querySelectorAll('input');
+			var s = E.querySelectorAll('input');
 			if (s) for (var i = 0; i < s.length; i++) {
 				var a2 = s[i].getAttribute('data-site');
 				if (a === a2) continue;
@@ -207,6 +230,15 @@ if (!$ajax) { ?>
 				var E = BX('module_' + param + '_' + ar[i2] + '_div');
 				if (E) E.style.display = display;
 			}
+
+			// выбор пунктов выдачи на карте
+			var map = (BX('module_' + param + '_map').checked ? true : false);
+			var near = (BX('module_' + param + '_office_near').checked ? true : false);
+			var unsupported = (BX('module_' + param + '_office_unsupported').checked ? true : false);
+			BX('module_' + param + '_postmap_div').style.display = (map ? '' : 'none');
+			BX('module_' + param + '_office_near_div').style.display = (map ? '' : 'none');
+			BX('module_' + param + '_office_unsupported_div').style.display = (map && near ? '' : 'none');
+			BX('module_' + param + '_office_unsupported_fix_div').style.display = (map && near && unsupported ? '' : 'none');
 
 			// настройки шаблона eDost
 			var E = BX('module_' + param + '_template');
@@ -245,14 +277,14 @@ if (!$ajax) { ?>
 				if (s) for (var i = 0; i < s.length; i++) s[i].click();
 			}
 
-			edost_resize.bar('timer');
+			edost.resize.bar('timer');
 		}
 		else if (mode == 'paysystem_tariff_active') {
 			var a = param.getAttribute('data-active');
 			var s = document.querySelectorAll('#' + param.getAttribute('data-id') + '_list input');
 			if (s) for (var i = 0; i < s.length; i++) s[i].checked = (a == 'Y' ? true : false);
 
-			edost_resize.bar('timer');
+			edost.resize.bar('timer');
 		}
 		else if (mode == 'paysystem_tariff_active_company') {
 			var s = document.querySelectorAll('#edost_data_div .' + param.id + ' input');
@@ -263,7 +295,7 @@ if (!$ajax) { ?>
 			var s = document.querySelectorAll('#edost_data_div .' + param.getAttribute('data-id'));
 			if (s) for (var i = 0; i < s.length; i++) s[i].style.display = 'block';
 
-			edost_resize.bar('timer');
+			edost.resize.bar('timer');
 		}
 		else if (mode == 'paysystem_list_show') {
 			param.style.display = 'none';
@@ -271,13 +303,13 @@ if (!$ajax) { ?>
 			BX(id + '_string').style.display = 'none';
 			BX(id + '_list').style.display = 'block';
 
-			edost_resize.bar('timer');
+			edost.resize.bar('timer');
 		}
 		else if (mode == 'check_Y' || mode == 'check_N') {
 			edost_UpdateActive('all', false, mode == 'check_Y' ? 'Y' : 'N');
 		}
 		else if (mode == 'get') {
-			edost_resize.bar('loading');
+			edost.resize.bar('loading');
 			post.push((param === 'paysystem' ? 'type' : 'module') + '=' + param);
 
 			var s = '?lang=' + window.location.search.split('lang=')[1].split('&')[0];
@@ -290,13 +322,13 @@ if (!$ajax) { ?>
 			return;
 		}
 		else if (mode == 'new') {
-			edost_resize.bar('loading');
+			edost.resize.bar('loading');
 			post.push('module=new');
 		}
 		else if (mode == 'save') {
 			if (BX('paysystem_error') || BX('module_error') || BX('edost_config_old')) reload = true;
 
-			edost_resize.bar('save');
+			edost.resize.bar('save');
 			var v = '';
 			var s = document.querySelectorAll('#edost_data_div input[type="radio"]:checked, #edost_data_div input[type="text"], #edost_data_div input[type="checkbox"], #edost_data_div input[type="hidden"], #edost_data_div select');
 			if (s) for (var i = 0; i < s.length; i++) {
@@ -316,7 +348,9 @@ if (!$ajax) { ?>
 		if (post.length == 0) return;
 
 		BX.ajax.post('edost.php', 'ajax=Y&' + post.join('&'), function(r) {
-			if (mode == 'save') edost_resize.bar('start');
+			if (mode == 'location_update') edost.H('edost_location_update', r != '' ? r : '<div style="margin: 20px; font-size: 20px; text-align: center; color: #5A5;"><?=$admin_sign['location_update']['ok']?></div>');
+
+			if (mode == 'save') edost.resize.bar('start');
 
 			var json = false;
 			if (r.indexOf('{') == 0) json = (window.JSON && window.JSON.parse ? JSON.parse(r) : eval('(' + r + ')'));
@@ -450,10 +484,14 @@ if (!$ajax) require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epil
 
 // вывод подсказки
 function draw_hint($name, $data, $warning = false, $x = 6, $y = 3) {
-	global $protocol;
-?>
+	global $protocol, $img_path;
+/*
 	<img id="<?=$name?>_hint" style="position: absolute; margin: <?=$y?>px 0 0 <?=$x?>px;" src="<?=$protocol?>edostimg.ru/img/hint/<?=($warning ? 'attention.gif' : 'hint.gif')?>">
 	<script type="text/javascript"> new top.BX.CHint({parent: top.BX('<?=$name?>_hint'), show_timeout: 10, hide_timeout: 100, dx: 2, preventHide: true, min_width: 400, hint: '<?=$data?>'}); </script>
+*/
+?>
+
+	<img class="edost_hint_link" data-param="shift=center,20;click=Y" src="<?=$img_path?>/hint<?=($warning ? '2' : '')?>.svg" border="0"><div class="edost_hint_data"><?=$data?></div>
 <?
 }
 

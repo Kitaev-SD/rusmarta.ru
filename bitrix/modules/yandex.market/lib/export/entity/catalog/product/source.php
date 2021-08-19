@@ -3,6 +3,7 @@
 namespace Yandex\Market\Export\Entity\Catalog\Product;
 
 use Yandex\Market;
+use Yandex\Market\Export\Entity\Fetcher;
 use Bitrix\Main;
 use Bitrix\Catalog;
 
@@ -22,6 +23,7 @@ class Source extends Market\Export\Entity\Reference\Source
 		{
 			$select = $this->extendQuerySelect($select);
 			$splitFields = $this->getSplitFields();
+			$systemFields = $this->getSystemFieldsMap();
 			$externalFields = $this->getExternalFields();
 
 			foreach ($select as $fieldName)
@@ -33,7 +35,7 @@ class Source extends Market\Export\Entity\Reference\Source
 						$result['CATALOG'][] = $this->getFieldFullName($partFieldName);
 					}
 				}
-				else if (!in_array($fieldName, $externalFields, true))
+				else if (!isset($systemFields[$fieldName]) && !in_array($fieldName, $externalFields, true))
 				{
 					$result['CATALOG'][] = $this->getFieldFullName($fieldName);
 				}
@@ -80,10 +82,13 @@ class Source extends Market\Export\Entity\Reference\Source
 			$useInternalLoading = Market\Export\Entity\Catalog\Provider::useCatalogShortFields();
 			$externalSelect = array_intersect($select, $this->getExternalFields($useInternalLoading));
 			$externalSelectMap = array_flip($externalSelect);
+			$systemSelectMap = array_intersect(array_flip($this->getSystemFieldsMap()), $select);
+			$systemSelect = array_flip($systemSelectMap);
 			$internalSelect = $useInternalLoading ? $this->extendQuerySelect($select) : [];
+			$internalSelect = array_merge($internalSelect, $systemSelect);
 			$internalSelect = array_diff($internalSelect, $externalSelect);
 			$internalSelect = $this->extendInternalSelect($internalSelect, $externalSelect);
-			$internalSelectMap = array_flip($internalSelect);
+			$internalSelectMap = array_flip($internalSelect) + $systemSelect;
 
 			$internalData = $this->loadInternalData($elementList, $internalSelect);
 			$externalData = $this->loadExternalData($elementList, $externalSelect, $internalData);
@@ -187,6 +192,22 @@ class Source extends Market\Export\Entity\Reference\Source
 				]);
 
 				$result = array_merge($result, $storeControlFields);
+			}
+
+			$systemFieldsMap = $this->getSystemFieldsMap();
+			$systemFieldsMap = array_flip($systemFieldsMap);
+
+			foreach ($this->getUserFieldFetcher()->getFields() as $field)
+			{
+				if (isset($systemFieldsMap[$field['ID']]))
+				{
+					$field['ID'] = $systemFieldsMap[$field['ID']];
+				}
+
+				$result[] = $field + [
+					'FILTERABLE' => false,
+					'SELECTABLE' => true,
+				];
 			}
 		}
 
@@ -298,12 +319,18 @@ class Source extends Market\Export\Entity\Reference\Source
 		}
 		else
 		{
-			$elementKey = $this->getFieldFullName($fieldName);
-
-			if (isset($element[$elementKey]))
+			if (isset($element[$fieldName]))
 			{
-				$originalValue = $element[$elementKey];
+				$originalValue = $element[$fieldName];
+			}
+			else
+			{
+				$elementKey = $this->getFieldFullName($fieldName);
+				$originalValue = (isset($element[$elementKey]) ? $element[$elementKey] : null);
+			}
 
+			if ($originalValue !== null)
+			{
 				switch ($fieldName)
 				{
 					case 'PURCHASING_PRICE':
@@ -348,6 +375,8 @@ class Source extends Market\Export\Entity\Reference\Source
 		if (empty($select)) { return $result; }
 
 		list($internalSelect, $referenceMap, $runtime) = $this->convertSelectToInternalFields($select, $entity);
+		$systemFieldsMap = $this->getSystemFieldsMap();
+		$needSystem = (count(array_intersect_key($systemFieldsMap, $select)) > 0);
 		$internalSelect[] = 'ID';
 
 		$query = Catalog\ProductTable::getList([
@@ -358,6 +387,11 @@ class Source extends Market\Export\Entity\Reference\Source
 
 		while ($row = $query->fetch())
 		{
+			if ($needSystem)
+			{
+				Catalog\Product\SystemField::convertRow($row);
+			}
+
 			foreach ($referenceMap as $selectName => $fieldName)
 			{
 				$row[$fieldName] = isset($row[$selectName]) ? $row[$selectName] : null;
@@ -377,7 +411,7 @@ class Source extends Market\Export\Entity\Reference\Source
 		$referenceFields = $this->getReferenceFields();
 		$splitFields = $this->getSplitFields();
 
-		foreach ($select as $field)
+		foreach ($select as $key => $field)
 		{
 			if (isset($splitFields[$field]))
 			{
@@ -404,7 +438,14 @@ class Source extends Market\Export\Entity\Reference\Source
 			}
 			else if ($entity->hasField($field))
 			{
-				$querySelect[] = $field;
+				if (is_numeric($key))
+				{
+					$querySelect[] = $field;
+				}
+				else
+				{
+					$querySelect[$key] = $field;
+				}
 			}
 		}
 
@@ -634,6 +675,13 @@ class Source extends Market\Export\Entity\Reference\Source
 		return $result;
 	}
 
+	protected function getSystemFieldsMap()
+	{
+		return method_exists(Catalog\Product\SystemField::class, 'getFieldList')
+			? Catalog\Product\SystemField::getFieldList()
+			: [];
+	}
+
 	protected function getExternalFields($useInternalLoading = false)
 	{
 		$result = [
@@ -697,5 +745,14 @@ class Source extends Market\Export\Entity\Reference\Source
 		}
 
 		return $result;
+	}
+
+	protected function getUserFieldFetcher()
+	{
+		$type = defined(Catalog\ProductTable::class . '::USER_FIELD_ENTITY_ID')
+			? Catalog\ProductTable::USER_FIELD_ENTITY_ID
+			: 'PRODUCT';
+
+		return new Fetcher\UserField($type);
 	}
 }

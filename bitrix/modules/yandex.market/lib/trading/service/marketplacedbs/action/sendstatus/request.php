@@ -8,5 +8,8 @@ use Yandex\Market\Trading\Service as TradingService;
 
 class Request extends TradingService\Marketplace\Action\SendStatus\Request
 {
-
+	public function getCancelReason()
+	{
+		return $this->getField('cancelReason');
+	}
 }

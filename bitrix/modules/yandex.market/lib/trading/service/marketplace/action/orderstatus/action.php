@@ -53,4 +53,23 @@ class Action extends TradingService\Common\Action\OrderStatus\Action
 
 		return $result;
 	}
+
+	protected function makeData()
+	{
+		return $this->makeDeliveryData();
+	}
+
+	protected function makeDeliveryData()
+	{
+		$order = $this->request->getOrder();
+
+		if (!$order->hasDelivery()) { return []; }
+
+		$delivery = $order->getDelivery();
+		$shipment = $delivery->getShipments()->current();
+
+		return [
+			'SHIPMENT_ID' => $shipment !== false ? $shipment->getId() : null,
+		];
+	}
 }

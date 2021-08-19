@@ -958,8 +958,26 @@ class Offer extends Base
 
 	protected function initializeQueryContext(&$iblockContext, &$sourceSelect)
 	{
+		$originalSelect = $sourceSelect;
+
+		// initial
+
 		foreach ($sourceSelect as $sourceType => $sourceFields)
 		{
+			$source = $this->getSource($sourceType);
+
+			$source->initializeQueryContext($sourceFields, $iblockContext, $sourceSelect);
+		}
+
+		// extended select
+
+		foreach ($sourceSelect as $sourceType => $sourceFields)
+		{
+			$originalFields = isset($originalSelect[$sourceType]) ? (array)$originalSelect[$sourceType] : [];
+			$diffFields = array_diff($sourceFields, $originalFields);
+
+			if (empty($diffFields)) { continue; }
+
 			$source = $this->getSource($sourceType);
 
 			$source->initializeQueryContext($sourceFields, $iblockContext, $sourceSelect);

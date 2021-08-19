@@ -142,6 +142,11 @@ class Store extends Market\Trading\Entity\Reference\Store
 		return $result;
 	}
 
+	public function getWarehouseDefaultField()
+	{
+		return 'ID';
+	}
+
 	public function getOutletDefaultField()
 	{
 		return 'ID';
@@ -181,25 +186,24 @@ class Store extends Market\Trading\Entity\Reference\Store
 		return $result;
 	}
 
-	public function findStore($field, $value)
+	public function findStores($field, $value)
 	{
-		$result = null;
+		$result = [];
 
 		if ($field === 'ID')
 		{
-			$result = (int)$value;
+			$result[] = (int)$value;
 		}
 		else
 		{
 			$query = Catalog\StoreTable::getList([
 				'filter' => [ '=' . $field => $value ],
 				'select' => [ 'ID' ],
-				'limit' => 1,
 			]);
 
-			if ($row = $query->fetch())
+			while ($row = $query->fetch())
 			{
-				$result = (int)$row['ID'];
+				$result[] = (int)$row['ID'];
 			}
 		}
 
@@ -209,16 +213,18 @@ class Store extends Market\Trading\Entity\Reference\Store
 	public function getBasketData($productIds, $quantities = null, array $context = [])
 	{
 		$useTrace = !empty($context['TRACE']);
-		$stores = !empty($context['STORES']) ? (array)$context['STORES'] : null;
+		$stores = isset($context['STORES']) ? (array)$context['STORES'] : [];
 
-		if ($stores !== null && $useTrace)
+		if (!$useTrace)
 		{
-			$amounts = $this->getAmounts($stores, $productIds);
-			$result = $this->makeBasketData($amounts);
+			$result = [];
 		}
 		else
 		{
-			$result = [];
+			$amounts = $this->getAmounts($stores, $productIds);
+			$amounts = $this->fillMissingAmounts($amounts, $productIds);
+
+			$result = $this->makeBasketData($amounts);
 		}
 
 		return $result;
@@ -469,5 +475,24 @@ class Store extends Market\Trading\Entity\Reference\Store
 		}
 
 		return $result;
+	}
+
+	protected function fillMissingAmounts(array $amounts, $productIds)
+	{
+		$existsIds = array_column($amounts, 'ID', 'ID');
+		$timestamp = new Main\Type\DateTime();
+
+		foreach ($productIds as $productId)
+		{
+			if (isset($existsIds[$productId])) { continue; }
+
+			$amounts[] = [
+				'ID' => $productId,
+				'TIMESTAMP_X' => $timestamp,
+				'QUANTITY' => 0,
+			];
+		}
+
+		return $amounts;
 	}
 }

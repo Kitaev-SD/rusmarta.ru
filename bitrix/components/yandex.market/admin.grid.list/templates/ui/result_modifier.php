@@ -14,3 +14,4 @@ $arResult['LIST_EXTENSION'] = [];
 include __DIR__ . '/modifier/pager-limit.php';
 include __DIR__ . '/modifier/read-only.php';
 include __DIR__ . '/modifier/load-more.php';
+include __DIR__ . '/modifier/reload-events.php';

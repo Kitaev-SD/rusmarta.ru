@@ -49,6 +49,16 @@ abstract class Store
 	}
 
 	/**
+	 * Поле по умолчанию для сопоставления складов
+	 *
+	 * @return string
+	 */
+	public function getWarehouseDefaultField()
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'getWarehouseDefaultField');
+	}
+
+	/**
 	 * Поле по умолчанию для сопоставления пунктов выдачи
 	 *
 	 * @return string
@@ -72,16 +82,31 @@ abstract class Store
 	}
 
 	/**
+	 * Идентификаторы складов по коду
+	 *
+	 * @param string $field
+	 * @param string $value
+	 *
+	 * @return int[]|string[]
+	 */
+	public function findStores($field, $value)
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'findStores');
+	}
+
+	/**
 	 * Идентификатор склада по коду
 	 *
 	 * @param string $field
 	 * @param string $value
 	 *
-	 * @return int|string
+	 * @return int|string|null
 	 */
 	public function findStore($field, $value)
 	{
-		throw new Market\Exceptions\NotImplementedMethod(static::class, 'findStore');
+		$stores = $this->findStores($field, $value);
+
+		return !empty($stores) ? reset($stores) : null;
 	}
 
 	/**

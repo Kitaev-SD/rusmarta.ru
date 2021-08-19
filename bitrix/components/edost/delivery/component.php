@@ -2,8 +2,7 @@
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 //$develop = true; // режим разработки !!!!!
-
-if (!isset($arParams['MODE']) || !in_array($arParams['MODE'], array('sale.personal.order.detail', 'sale.personal.order.list', 'user_order', 'order_edit', 'order_edit2', 'detail', 'script', 'list', 'register', 'print', 'setting', 'order_param_js'))) return;
+if (!isset($arParams['MODE']) || !in_array($arParams['MODE'], array('sale.personal.order.detail', 'sale.personal.order.list', 'user_order', 'order_edit', 'order_edit2', 'detail', 'script', 'script_run', 'list', 'register', 'print', 'setting', 'order_param_js'))) return;
 
 $mode = $arParams['MODE'];
 $param = (isset($arParams['~PARAM']) && is_array($arParams['~PARAM']) ? $arParams['~PARAM'] : array());
@@ -15,18 +14,16 @@ $admin_mode = (!empty($arParams['ADMIN_MODE']) ? $arParams['ADMIN_MODE'] : '');
 $crm = (isset($arParams['CRM']) && $arParams['CRM'] == 'Y' ? true : false);
 $history = (!empty($param['history']) ? $param['history'] : false);
 
-//$ajax_file = $componentPath.'/edost_delivery.php';
 $ajax_file = $componentPath.'/ajax.php';
-
+$locations_ajax_file = str_replace('delivery', 'locations', $componentPath);
 
 // запись параметров заказа в сессию
 if ($mode == 'order_param_js') { ?>
-	function submitProp(E) {
-		if (!E || !E.name) return;
+	function submitProp(e) {
+		if (!e || !e.name) return;
 		var person_type = 0;
-		var s = document.querySelectorAll('input[name="PERSON_TYPE"]');
-		if (s) for (var i = 0; i < s.length; i++) if (s[i].type != 'radio' || s[i].checked) person_type = s[i].value;
-		if (person_type != 0) BX.ajax.post('<?=$ajax_file?>', 'mode=order_param&name=' + encodeURIComponent(E.name) + '&value=' + encodeURIComponent(E.value) + '&person_type=' + person_type, function(r) {});
+		edost.W('input[name="PERSON_TYPE"]', function(v) { if (v.type != 'radio' || v.checked) person_type = v.value; });
+		if (person_type != 0) BX.ajax.post('<?=$ajax_file?>', 'mode=order_param&name=' + encodeURIComponent(e.name) + '&value=' + encodeURIComponent(e.value) + '&person_type=' + person_type + '&profile_id=' + edost.V('ID_PROFILE_ID') + (e.name == 'edost_street' ? '&edost_area=' + edost.V('edost_area') : ''), function(r) {});
 	}
 <?	return;
 }
@@ -71,18 +68,34 @@ $delimiter_button = '&nbsp;&nbsp;|&nbsp;&nbsp;';
 
 $arResult = array(
 	'component_path' => $componentPath,
-	'component_path_locations' => str_replace('delivery', 'locations', $componentPath),
 	'loading' => (!empty($param['loading']) ? $param['loading'] : 'loading_small.gif'),
 );
+
 if ($admin) {
 	if (!$crm) $arResult['loading'] = 'loading_small_admin.gif';
 	$edost_locations = (CModule::IncludeModule('edost.locations') && property_exists('CLocationsEDOST', 'admin') && CLocationsEDOST::$admin == 1 ? true : false);
+	$edost_locations_250 = ($edost_locations && property_exists('CLocationsEDOST', 'version') && intval(str_replace('.', '', CLocationsEDOST::$version)) >= 250	? true : false);
+	$locations_ajax_file .= ($edost_locations_250 ? '/ajax.php' : '/edost_location.php');
 	if (defined('LOCATIONS_EDOST_ADMIN') && LOCATIONS_EDOST_ADMIN == 'N') $edost_locations = false;
+	$crm_path = '';
 	$crm_active = (version_compare(SM_VERSION, '20.0.0') >= 0 && \Bitrix\Sale\Update\CrmEntityCreatorStepper::isNeedStub() ? true : false);
+	if ($crm_active) {
+		$s = '';
+		$id = \Bitrix\Main\Config\Option::get('sale', "~CRM_WIZARD_SITE_ID", null);
+		if ($id) {
+			$site = \Bitrix\Main\SiteTable::getList(array('select' => array('SERVER_NAME'), 'filter' => array('LID' => $id)))->fetch();
+			if ($site && !empty($site['SERVER_NAME'])) $s = $site['SERVER_NAME'];
+		}
+		else {
+			$site = \Bitrix\Main\SiteTable::getList(array('select' => array('SERVER_NAME'), 'filter' => array('=DEF' => 'Y')))->fetch();
+			if ($site && !empty($site['SERVER_NAME'])) $s = $site['SERVER_NAME'];
+			else if (\Bitrix\Main\Config\Option::get('main', 'server_name')) $s = \Bitrix\Main\Config\Option::get('main', 'server_name');
+		}
+		if ($s != '') $crm_path = $protocol.$s;
+	}
 }
 
-$loading_small = '<img style="vertical-align: middle;" src="'.$ico_path.'/'.$arResult['loading'].'" width="20" height="20" border="0">';
-$loading_small2 = '<img style="vertical-align: middle; padding-bottom: 10px" src="'.$ico_path.'/'.$arResult['loading'].'" width="20" height="20" border="0">';
+$loading_small2 = '<img style="vertical-align: middle; padding-bottom: 10px;" src="'.$ico_path.'/'.$arResult['loading'].'" width="20" height="20" border="0">';
 
 
 // загрузка свойств заказа
@@ -149,8 +162,8 @@ if ($mode == 'order_edit2') {
 
 
 // стили и js
-if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.personal.order.detail', 'sale.personal.order.list', 'setting')) && empty($param['set']) && !isset($param['save'])) {
-	if (!$admin) $GLOBALS['APPLICATION']->SetAdditionalCSS($script['css']);
+if (in_array($mode, array('script', 'script_run', 'order_edit', 'list', 'register', 'sale.personal.order.detail', 'sale.personal.order.list', 'setting')) && empty($param['set']) && !isset($param['save']) && !isset($param['location_update'])) {
+	if (!$admin && $mode != 'script_run') $GLOBALS['APPLICATION']->SetAdditionalCSS($script['css']);
 
 	$order_create = false;
 	$prop_remove = $prop_location = array();
@@ -173,7 +186,8 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 		if ($edost_locations) {
 			if ($shipment_id == 0) $order_create = true;
 
-			$props = (!$order_create ? edost_class::GetProps($shipment_id, array('shipment', 'shipment_all', 'no_payment')) : false);
+			if ($order_create && !empty($_REQUEST['ID'])) $props = edost_class::GetProps(intval($_REQUEST['ID']), array('no_payment'));
+			else $props = (!$order_create ? edost_class::GetProps($shipment_id, array('shipment', 'shipment_all', 'no_payment')) : false);
 //			echo '<br><b>props2:</b> <pre style="font-size: 12px">'.print_r($props, true).'</pre>';
 
 			$id = (!empty($props['location_code']) ? CSaleLocation::getLocationIDbyCODE($props['location_code']) : 0);
@@ -265,8 +279,56 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 	}
 ?>
 
-<?	if ($admin) { ?>
-<?		if (!$crm) { ?>
+<?	if ($admin || $mode == 'script_run') { ?>
+<script type="text/javascript">
+	var edost_loading_backup;
+	function edost_run(f, p, o) {
+		var id = 'edost_main_js', start = false;
+		var E_loading = (o ? document.getElementById(o) : false);
+		if (!E_loading) o = '';
+		var e = document.getElementById(id);
+		if (!e) {
+			start = true;
+			var e = document.createElement('SCRIPT');
+			e.id = id;
+			e.type = 'text/javascript';
+			<? if ($script['server']) echo "e.charset = 'utf-8'; e.setAttribute('data-version', '".$script['version']."');";
+			else echo "e.setAttribute('data-path', '".$script['path']."');"; ?>
+			e.setAttribute('data-file', 'main.css,office.js<?=($admin ? ',admin.js' : '')?><?=($edost_locations && !$edost_locations_250 && $mode == 'order_edit' ? ',location.js' : '').($mode == 'register' ? ',location_city' : '')?>');
+			e.src = '<?=$script['path'].$script['file']?>';
+			document.head.appendChild(e);
+		}
+
+		if (f == 'js') return;
+		var a = true, v = window, u = f.split('.'), n = u.length - 1;
+		for (var i = 0; i <= n; i++) if (!v[ u[i] ] || (i == n && v.temp)) a = false; else v = v[ u[i] ];
+		var s = [];
+		if (p != undefined) for (var i = 0; i < p.length; i++) {
+			var w = p[i];
+			if (w == undefined) w = 'undefined';
+			else if (typeof w != 'boolean') w = "'" + p[i].replace(/'/g, '\\\'') + "'";
+			s.push(w);
+		}
+		s = s.join(',');
+
+//		if (a) console.log("admin RUN ======== " + f + "(" + s + ")"); // !!!!!
+//		else console.log("admin repeat ======== edost_run('" + f + "'" + (p != undefined ? ", [" + s + "]" : '') + ", '" + o + "')"); // !!!!!
+
+		if (a) {
+			if (o && edost_loading_backup) { E_loading.innerHTML = edost_loading_backup; edost_loading_backup = false; }
+			window.setTimeout(f + "(" + s + ")", 1);
+		}
+		else {
+			if (o)
+				if (start) { edost_loading_backup = E_loading.innerHTML; E_loading.innerHTML = '...'; }
+				else if (E_loading.innerHTML.length < 8) E_loading.innerHTML += '.';
+			window.setTimeout("edost_run('" + f + "'" + (p != undefined ? ", [" + s + "]" : '') + ", '" + o + "')", 200);
+		}
+	}
+</script>
+<?	}
+	if ($admin) {
+		if (!$crm) { ?>
 <input id="edost_post_manual" name="edost_post_manual" value="" type="hidden">
 <?		} ?>
 <style>
@@ -277,14 +339,14 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 </style>
 
 <script type="text/javascript">
+	edost_run('js');
+
 	var edost_admin_param = {
 		"ajax_file": "<?=$ajax_file?>",
 		"payment_select": '<?=str_replace("'", '', $payment_select)?>',
 		"edost_locations": "<?=$edost_locations?>",
 		"edost_id": [<?=implode(',', $edost_id)?>],
 //		"edost_tariff_id": <?=\Bitrix\Main\Web\Json::encode(CDeliveryEDOST::$automatic)?>,
-//		"loading_small": '<?=$loading_small?>',
-//		"loading_small2": '<?=$loading_small2?>',
 		"payment_code": [<?=implode(',', $payment_cod)?>],
 		"passport_required": [<?=implode(',', CDeliveryEDOST::$passport_required)?>],
 		"sign_transfer": '<?=$sign['transfer']?>',
@@ -293,46 +355,16 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 		"ico_path": "<?=$ico_path?>",
 		"edost_path": "<?=$edost_path?>",
 		"img_path": "<?=$img_path?>",
-		"locations_path": "<?=$arResult['component_path_locations']?>",
+		"locations_ajax_file": "<?=$locations_ajax_file?>",
 		"language_id": "<?=LANGUAGE_ID?>",
 		"cookie": <?=edost_class::GetJson($cookie, false, false, false)?>,
 		"delimiter": '<?=$delimiter?>',
 		"register_status": <?=edost_class::GetJson($control_sign['register_status'], false, false, false)?>,
-		"control_error": <?=edost_class::GetJson($control_sign['error'], false, false, false)?>,
 		"register_button": <?=\Bitrix\Main\Web\Json::encode($control_sign['button']['register_data'])?>,
 		"prop_location": [<?=implode(',', $prop_location)?>],
 		"prop_remove": [<?=implode(',', $prop_remove)?>],
 		"office": <?=\Bitrix\Main\Web\Json::encode($office)?>,
 		"crm": "<?=$crm?>",
-	}
-
-	var E = document.getElementById('edost_main_js');
-	if (!E) {
-		var E = document.createElement('SCRIPT');
-		E.id = 'edost_main_js';
-		E.type = 'text/javascript';
-<?		if ($script['server']) echo "E.charset = 'utf-8'; E.setAttribute('data-version', '".$script['version']."');";
-		else echo "E.setAttribute('data-path', '".$script['path']."');"; ?>
-		E.setAttribute('data-file', 'main.css,office.js,admin.js<?=($edost_locations && $mode == 'order_edit' ? ',location.js' : '').($mode == 'register' ? ',location_city' : '')?>');
-		E.src = '<?=$script['path'].$script['file']?>';
-		document.head.appendChild(E);
-	}
-
-	function edost_RunScript(name, param) {
-		var a = true;
-		var f = window;
-		var u = name.split('.');
-		var n = u.length - 1;
-		for (var i = 0; i <= n; i++) if (!f[ u[i] ] || (i == n && f.temp)) a = false; else f = f[ u[i] ];
-		var s = [];
-		if (param != undefined) for (var i = 0; i < param.length; i++) s.push("'" + param[i].replace(/'/g, '\\\'') + "'");
-		s = s.join(',');
-
-//		if (a) console.log("admin RUN ======== " + name + "(" + s + ")");
-//		else console.log("admin repeat ======== edost_RunScript('" + name + "'" + (param != undefined ? ", [" + s + "]" : '') + ")");
-
-		if (a) window.setTimeout(name + "(" + s + ")", 1);
-		else window.setTimeout("edost_RunScript('" + name + "'" + (param != undefined ? ", [" + s + "]" : '') + ")", 500);
 	}
 
 <?	if ($mode == 'order_edit') { ?>
@@ -391,7 +423,8 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 				// просмотр заказа
 				var s = BX.Sale.Admin.OrderAjaxer.sendRequest.toString();
 				if (s.indexOf("/* edost */") == -1) {
-					s = insert_string(s, " edost_RunScript('edost.admin.insert_control', ['update']);    /* edost */ ", ['BX.Sale.Admin.OrderAjaxer.refreshOrderData.callback', ';']);
+					s = insert_string(s, " var edost_request_action = (arguments[0] ? arguments[0].action : '');    /* edost */ ", ['{']);
+					s = insert_string(s, " if (edost_request_action != 'saveStatus' && edost_request_action != 'updateShipmentStatus') edost_run('edost.admin.insert_control', ['update']);    /* edost */ ", ['BX.Sale.Admin.OrderAjaxer.refreshOrderData.callback', ';']);
 					BX.Sale.Admin.OrderAjaxer.sendRequest = eval("(" + s + ")");
 				}
 <?			} else { ?>
@@ -417,23 +450,30 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 				if (s.indexOf("/* edost */") == -1) {
 					s = insert_string(s, ' /* edost */ if (BX("PROFILE_"+this.index)) ', ['if'], false, true);
 					BX.Sale.Admin.OrderShipment.prototype.updateDeliveryLogotip = eval("(" + s + ")");
-
 				}
 				var s = BX.Sale.Admin.OrderEditPage.registerFieldsUpdaters.toString();
 				if (s.indexOf("/* edost */") == -1) {
 					s = insert_string(s, ' if (%value% == "DELIVERY_ERROR") continue;     /* edost */ ', ['for', '{'], ['var ', 'VALUE', ' in ']);
 					BX.Sale.Admin.OrderEditPage.registerFieldsUpdaters = eval("(" + s + ")");
 				}
+				if (BX.Sale.Admin.OrderPayment) {
+					var s = BX.Sale.Admin.OrderPayment.prototype.initReloadImg.toString();
+					if (s.indexOf("/* edost */") == -1) {
+						s = insert_string(s, ' edost.admin.change_delivery(true);    /* edost */ ', ['BX.proxy(function', '{']);
+						BX.Sale.Admin.OrderPayment.prototype.initReloadImg = eval("(" + s + ")");
+					}
+				}
 <?			}
 		} ?>
 
-		edost_RunScript('edost.admin.admin_start');
+		edost_run('edost.admin.admin_start');
 
 	});
 <?	} ?>
 </script>
 <?	} ?>
 
+<?	if ($mode != 'script_run') { ?>
 <script type="text/javascript">
 	function edost_ShowDetail(id, mode) {
 
@@ -468,7 +508,7 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 
 		if (E2.innerHTML != '') return;
 
-		E2.innerHTML = '<?=$loading_small2?>';
+		E2.innerHTML = (window.edost ? edost.loading20 : '<?=$loading_small2?>');
 		BX.ajax.post('<?=$ajax_file?>', 'mode=detail&id=' + id, function(r) { E2.innerHTML = r; });
 
 	}
@@ -515,8 +555,8 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 
 	}
 
-<?	// прокрутка вверх при переходе по €корю
-	if ($mode == 'sale.personal.order.detail') { $anchor_up = (!empty($param['anchor_up']) ? intval($param['anchor_up']) : 20); ?>
+<?		// прокрутка вверх при переходе по €корю
+		if ($mode == 'sale.personal.order.detail') { $anchor_up = (!empty($param['anchor_up']) ? intval($param['anchor_up']) : 20); ?>
 	BX.ready(function() {
 		var s = window.location.hash;
 		if (s.indexOf('#shipment_') === 0) {
@@ -528,8 +568,9 @@ if (in_array($mode, array('script', 'order_edit', 'list', 'register', 'sale.pers
 			if (Math.abs(p.top - p2.scrollTop) < <?=$anchor_up?>) window.scrollBy(0, -<?=$anchor_up?>);
 		}
 	});
-<?	} ?>
+<?		} ?>
 </script>
+<?	} ?>
 
 <?
 }
@@ -566,6 +607,78 @@ if ($mode == 'setting') {
 		die();
 	}
 
+	// проверка базы местоположений битрикса на обновление
+	$location_update = array();
+	$location_type_id = 0;
+	$update = GetMessage('EDOST_DELIVERY_LOCATION_UPDATE');
+	if (empty($param['save']) && !empty($update)) {
+		$code_2019 = '0002001812'; // проверка на местоположени€ eDost 2019
+
+		$u = $update;
+		foreach ($update as $k => $v) {
+			$u[$v[2]] = '';
+			if (!empty($v[3])) $u[$v[3]] = '';
+		}
+		if (!isset($u[$code_2019])) $u[$code_2019] = '';
+
+		$shop = array();
+		$s = \Bitrix\Sale\Location\LocationTable::getList(array(
+			'select' => array('ID', 'CODE', 'LNAME' => 'NAME.NAME', 'TYPE_ID', 'TYPE.CODE'),
+			'filter' => array('NAME.LANGUAGE_ID' => 'ru', '=CODE' => array_keys($u)),
+		));
+		$s->addReplacedAliases(array('LNAME' => 'NAME', 'SALE_LOCATION_LOCATION_TYPE_CODE' => 'TYPE_CODE'));
+		while ($v = $s->fetch()) $shop[$v['CODE']] = $v;
+		if (!empty($shop[$code_2019])) foreach ($update as $k => $v) {
+			$parent_id = 0;
+			if (!empty($v[3]) && isset($shop[$v[3]])) $parent_id = $v[3];
+			else if (isset($shop[$v[2]])) $parent_id = $v[2];
+			else continue;
+
+			$id = (isset($shop[$k]) ? $shop[$k]['ID'] : 0);
+			if ($id != 0 && $v[0] == $shop[$k]['NAME']) continue;
+
+			$location_update[$id == 0 ? 'new' : 'change'][] = array(
+				'ID' => $id,
+	            'CODE' => $k,
+				'NAME_RU' => $v[0],
+			    'SHORT_NAME_RU' => '',
+				'NAME_EN' => $v[1],
+			    'SHORT_NAME_EN' => '',
+			    'TYPE_ID' => ($id != 0 ? $shop[$k]['TYPE_ID'] : $shop[$code_2019]['TYPE_ID']),
+				'NAME_OLD' => ($id != 0 ? $shop[$k]['NAME'] : ''),
+				'PARENT_ID' => $parent_id,
+			);
+		}
+	}
+
+	// обновление местоположений
+	if (!empty($param['location_update'])) {
+		if (empty($location_update)) die();
+
+		global $DB;
+		$s = array('change', 'new');
+		$i = 0;
+		foreach ($s as $key) if (!empty($location_update[$key])) foreach ($location_update[$key] as $v) {
+			if ($v['ID'] == 0) unset($v['ID']);
+			$v['PARENT_ID'] = CSaleLocation::getLocationIDbyCODE($v['PARENT_ID']);
+			unset($v['NAME_OLD']);
+
+			try {
+				$DB->StartTransaction();
+				if (!empty($v['ID'])) $u = \Bitrix\Sale\Location\Admin\LocationHelper::update($v['ID'], $v);
+				else $u = \Bitrix\Sale\Location\Admin\LocationHelper::add($v);
+				if(!$u['success']) throw new \Bitrix\Main\SystemException(implode('<br>', $u['errors']));
+				$DB->Commit();
+			} catch (\Bitrix\Main\SystemException $e) {
+				$code = $e->getCode();
+				$message = $e->getMessage().(!empty($code) ? ' ('.$code.')' : '');
+				echo '<br>'.\Bitrix\Main\Localization\Loc::getMessage('SALE_LOCATION_E_CANNOT_'.(!empty($v['ID']) ? 'UPDATE' : 'SAVE').'_ITEM').(strlen($message) ? ':'.$message : '');
+				$DB->Rollback();
+			}
+		}
+
+		die();
+	}
 
 	// способы оплаты магазина
 	$paysystem = array();
@@ -885,7 +998,6 @@ if ($mode == 'setting') {
 			$new[$m_key] = $m;
 		}
 
-		$update = array();
 		$profile_new = array();
 		foreach ($new as $n_key => $n) {
 			if (!isset($module[$n_key])) continue;
@@ -1129,7 +1241,7 @@ if ($mode == 'register' || $mode == 'print') {
 	$company = (!empty($param['company']) ? $param['company'] : '');
 
 	$history_batch = false; // вывод всех заказов вход€щих в сдачу
-	$print_batch = false; // печать акта передачи
+	$print_batch = false; // печать акта передачи по данным из настроек (—ƒЁ )
 	$print_package = false; // печать этикеток
 	$history_mode = '';
 	$doc_data = $control_sign['doc'];
@@ -1169,15 +1281,12 @@ if ($mode == 'register' || $mode == 'print') {
 		foreach ($s as $v) {
 			$v = explode('_', $v);
 			if (!empty($v[0]) && !empty($v[1])) $print_doc[$v[0]][] = $v[1];
-			if ($v[1] == 'batch') $print_batch = $v[0];
+			if ($v[1] == 'batch' && !empty($control['data'][$v[0]]['batch_code']) && in_array($control['data'][$v[0]]['company_id'], array(5,19))) $print_batch = $control['data'][$v[0]];
 			if ($v[1] == 'package') $print_package = $v[0];
 		}
 
 		// подключение всех заказов вход€щих в сдачу (дл€ печати акта передачи)
-		if ($print_batch !== false && !empty($control['data'][$print_batch]['batch_code'])) {
-			$v2 = $control['data'][$print_batch];
-			foreach ($control['data'] as $k => $v) if ($k != $v2['id'] && !empty($v['batch_code']) && $v['batch_code'] == $v2['batch_code']) $print_doc[$k] = array('batch');
-		}
+		if ($print_batch !== false) foreach ($control['data'] as $k => $v) if ($k != $print_batch['id'] && !empty($v['batch_code']) && $v['batch_code'] == $print_batch['batch_code']) $print_doc[$k] = array('batch');
 
 		$shipment_id = array_keys($print_doc);
 
@@ -1278,7 +1387,7 @@ if ($mode == 'register' || $mode == 'print') {
 	$batch_add = array(); // сдачи в которые можно включить новые заказы
 	foreach ($control['data'] as $k => $v) if (!empty($v['batch_code']) && !empty($v['complete'])) {
 		$k2 = $v['batch_code'];
-		$ar = $v['batch'] + array('tariff' => $v['tariff'], 'register' => $v['register'], 'order' => array(), 'order_add' => array(), 'oversize' => (($v['batch']['type'] & 32) >> 5));
+		$ar = $v['batch'] + array('tariff' => $v['tariff'], 'company_id' => $v['company_id'], 'register' => $v['register'], 'order' => array(), 'order_add' => array(), 'oversize' => (($v['batch']['type'] & 32) >> 5));
 		if (empty($batch[$k2])) $batch[$k2] = $ar;
 		$batch[$k2]['order'][] = $k;
 		if (edost_class::time($v['batch']['date']) >= $date) {
@@ -1292,6 +1401,7 @@ if ($mode == 'register' || $mode == 'print') {
 	if ($shipment_id !== false) $company = false;
 
 	// список с количеством заказов на оформлении и иконками компаний
+	edost_class::AddRegisterData($data);
 	$control_head = edost_class::ControlHead($data, array('type' => 'register', 'control' => !empty($control['data']) ? $control['data'] : array(), 'active' => $param['control'], 'company' => $company, 'path' => $ico_path));
 	$company = $control_head['company'];
 
@@ -1303,6 +1413,7 @@ if ($mode == 'register' || $mode == 'print') {
 		foreach ($data as $k => $v)
 			if (!isset($register_tariff[$v['tariff']])) unset($data[$k]);
 			else if ($company == '') $company = $v['company_id'];
+		edost_class::AddRegisterData($data);
 	}
 //	echo '<br><b>data:</b><pre style="font-size: 12px">'.print_r($data, true).'</pre>';
 
@@ -1321,9 +1432,13 @@ if ($mode == 'register' || $mode == 'print') {
 			unset($data[$k]);
 	}
 
-	edost_class::AddRegisterData($data);
+//	edost_class::AddRegisterData($data);
 //	echo '<br><b>data:</b><pre style="font-size: 12px">'.print_r($data, true).'</pre>';
 //	echo '<br><b>data:</b><pre style="font-size: 12px">'.print_r($control, true).'</pre>';
+
+	$hide = array();
+	foreach ($sign['hide'] as $v) $hide[] = '- '.$v;
+	$hide = array_merge($hide, $sign['hide']);
 
 	$props_field = array('name', 'phone', 'location_name', 'zip', 'address_formatted');
 	foreach ($data as $k => $v) {
@@ -1344,7 +1459,11 @@ if ($mode == 'register' || $mode == 'print') {
 
 		if (!in_array($v['tariff'], CDeliveryEDOST::$register_no_required)) $v['register_required'] = true;
 
-		// проверка на возможность включени€ в сдачу
+//		echo '<br><b>data ('.$order_id.'):</b> <pre style="font-size: 12px">'.print_r($v, true).'</pre>';
+		if ($cookie['register_tariff_name'] == 'Y') $v['name_short'] = str_replace($control_sign['tariff_change'][0], $control_sign['tariff_change'][1], trim(str_replace($hide, '', $v['name'])));
+		$v['address_short'] = str_replace(array('(<a ', '/a>)'), array('<a ', '/a>'), $v['props']['address_formatted']);
+
+		// проверка на возможность включени€ в сдачу (только дл€ почты)
 		if (empty($v['batch_code'])) {
 			if ($v['cod']) $type = 5;
 			else if ($v['insurance']) $type = 4;
@@ -1386,23 +1505,25 @@ if ($mode == 'register' || $mode == 'print') {
 		$v['order_price_formatted'] = implode('<br>', $ar);
 
 		$v['checkbox'] = array('register' => 'register');
-		if (in_array($v['company_id'], array(23))) $v['checkbox']['batch'] = 'batch';
+		if ($v['register'] != 0 && (in_array($v['company_id'], array(23)) || in_array($v['company_id'], array(30)) && empty($v['batch_code']))) $v['checkbox']['batch'] = 'batch';
 
 		if (!empty($print_doc[$k])) $v['doc'] = $print_doc[$k];
 
 		$s = array();
 		foreach ($props_field as $v2) $s[] = $v2.'='.(isset($v['props'][$v2]) ? str_replace(array('"', ';', '='), '', $v['props'][$v2]) : '');
+		$s[] = 'company_id='.$v['company_id'];
+		if (!empty($v['props']['postamat'])) $s[] = 'postamat=Y';
 		$v['props_param'] = implode(';', $s);
 
 		// список с товарами (дл€ таблицы)
 		if ($cookie['register_item'] == 'Y') {
-			$string_length = 22;
+			$string_length = 20;
 			$hint = false;
 			$basket = $basket_hint = array();
 			$i = 0;
+
 			foreach ($v['basket'] as $k2 => $v2) {
 				$i++;
-
 				$s1 = $s2 = '';
 				if (!empty($v2['set'])) foreach ($v2['set'] as $v3) {
 					$ar = edost_class::limit_string($v3['NAME'], $string_length, true);
@@ -1412,7 +1533,8 @@ if ($mode == 'register' || $mode == 'print') {
 				}
 
 				$ar = edost_class::limit_string($v2['NAME'], $string_length, true);
-				$s = '<span style="color: #058;">'.$i.'</span>. %name%'.($v2['QUANTITY'] > 1 ? ' (<b>'.intval($v2['QUANTITY']).$control_sign['quantity'].'</b>)' : '').' - <span style="color: #058;">'.$v2['price_total_formatted'].'</span>';
+				$s = '<span style="color: #058;">'.$i.'</span>. %name%'.($v2['QUANTITY'] > 1 ? ' (<b>'.$v2['QUANTITY'].' '.$v2['MEASURE_NAME'].'</b>)' : '');
+				if (!empty($v2['price_total'])) $s .= ' - <span style="color: #058;">'.$v2['price_total_formatted'].'</span>';
 				$basket_hint[$i] = str_replace('%name%', $ar[0], $s) . $s1;
 				$basket[$i] = str_replace('%name%', $ar[1], $s) . $s2;
 				if ($basket_hint[$i] != $basket[$i]) $hint = true;
@@ -1423,7 +1545,9 @@ if ($mode == 'register' || $mode == 'print') {
 			if ($hint || $n > $max) $v['basket_hint'] = implode('<br>', $basket_hint);
 			$s = ($n > $max ? '<br>... '.$control_sign['total2'].' '.edost_class::draw_string('item2', $n) : '');
 			if ($n > $max) array_splice($basket, $max-1);
-			$v['basket_formatted'] = implode('<br>', $basket).$s;
+			$s = '<div'.(!empty($v['basket_hint']) ? ' class="edost_hint_link" data-param="class=edost_hint_small;shift=-6;style;background=#f1f7f7;fontSize=11px"' : '').'>'.implode('<br>', $basket).$s.'</div>';
+			if (!empty($v['basket_hint'])) $s .= '<div class="edost_hint_data">'.$v['basket_hint'].'</div>';
+			$v['basket_formatted'] = $s;
 		}
 
 		$data[$k] = $v;
@@ -1446,8 +1570,18 @@ if ($mode == 'register' || $mode == 'print') {
 	foreach ($ar as $k => $v) if (empty($v['auto'])) unset($ar[$k]);
 	if (!empty($ar)) $batch_add = array_merge($ar, $batch_add);
 
+	foreach ($batch_add as $k => $v) $batch_add[$k]['id'] = $k;
+
+	// добавление сдач без проверки по типу
+	if (in_array($company, array(23))) foreach ($batch as $k => $v) if ($v['company_id'] == $company) {
+		$v['id'] = $k;
+		$v['batch_format'] = 'full';
+		$batch_add[] = $v;
+	}
+
 //	echo '<br><b>control:</b><pre style="font-size: 12px">'.print_r($control, true).'</pre>';
 //	echo '<br><b>data:</b><pre style="font-size: 12px">'.print_r($data, true).'</pre>';
+//	echo '<br><b>batch_data:</b><pre style="font-size: 12px; text-align: left;">'.print_r($batch, true).'</pre>';
 //	echo '<br><b>batch_data:</b><pre style="font-size: 12px; text-align: left;">'.print_r($batch_add, true).'</pre>';
 }
 
@@ -1493,6 +1627,8 @@ if ($mode == 'register' && isset($param['set']) && !isset($param['history_id']))
 			if (isset($p['weight'])) $v['props']['package'][0]['weight'] = $p['weight'];
 			if (isset($p['size'])) $v['props']['package'][0]['size'] = $p['size'];
 		}
+		if (isset($_POST['package_comment'][$k])) $v['props']['package'][0]['comment'] = substr($GLOBALS['APPLICATION']->ConvertCharset($_POST['package_comment'][$k], 'utf-8', LANG_CHARSET), 0, 255);
+		if (isset($_POST['package_type'][$k])) $v['props']['package'][0]['type'] = substr($GLOBALS['APPLICATION']->ConvertCharset($_POST['package_type'][$k], 'utf-8', LANG_CHARSET), 0, 255);
 
 		// установка статуса заказа при печате без оформлени€
 		if ($param['button'] == 'print_no_register') {
@@ -1500,22 +1636,27 @@ if ($mode == 'register' && isset($param['set']) && !isset($param['history_id']))
 			continue;
 		}
 
-		// оформление доставки
-		if ($param['button'] != 'register_repeat' && !empty($set['batch']))
-			if (empty($param['batch'])) $v['batch'] = array('date' => $param['batch_date'], 'number' => '');
-			else if ($param['batch'] === 'new') $v['batch'] = array('date' => $param['batch_date'], 'number' => '');
-			else {
-				$s = explode('_', $param['batch']);
-				$v['batch'] = array('date' => $s[0], 'number' => !empty($s[1]) ? $s[1] : '');
+		// оформление доставки (формирование сдачи)
+		if ($param['button'] != 'register_repeat') {
+			$u = array();
+			if (empty($param['batch_active']) || $param['batch_active'] == 'Y') {
+				if (!empty($param['batch_date'])) $u['date'] = $param['batch_date'];
+				if (!empty($param['call'])) $u['call'] = ($param['call'] == 'Y' ? '1' : '0');
+				if (!empty($set['batch']) && !empty($param['batch']) && $param['batch'] != 'all') { // включение в старую сдачу (почта)
+//					if (empty($param['batch']) || $param['batch'] === 'new') $u['date'] = $param['batch_date'];
+//					else {
+						$s = explode('_', $param['batch']);
+						$u['date'] = $s[0];
+						$u['number'] = (!empty($s[1]) ? $s[1] : '');
+//					}
+				}
 			}
-		if ($param['button'] != 'register_repeat' && !empty($param['call'])) {
-			$v['batch'] = array(
-				'date' => $param['batch_date'],
-				'number' => '',
-				'call' => ($param['call'] == 'Y' ? '1' : '0'),
-				'profile_shop' => intval($param['profile_shop']),
-				'profile_delivery' => intval($param['profile_delivery']),
-			);
+			if (!empty($param['profile_shop'])) $u['profile_shop'] = intval($param['profile_shop']);
+			if (!empty($param['profile_delivery'])) $u['profile_delivery'] = intval($param['profile_delivery']);
+			if (!empty($u)) {
+				if (!isset($u['number'])) $u['number'] = '';
+				$v['batch'] = $u;
+			}
 		}
 
 		$a = (!empty($set['register']) && (empty($control['data'][$k]) || $control['data'][$k]['status_warning'] == 2) ? true : false); // оформление новой доставки или исправление ошибки
@@ -1541,7 +1682,10 @@ if ($mode == 'register' && isset($param['set']) && !isset($param['history_id']))
 		$s = edost_class::Control($register, $ar);
 
 		$e = GetMessage('EDOST_DELIVERY_ERROR');
-		if (isset($s['add_error'])) $error[] = $control_sign['error']['register_head'].(isset($e[$s['add_error']]) ? $e[$s['add_error']] : $control_sign['error']['code'].' '.$s['add_error']).'!';
+		if (isset($s['add_error'])) {
+//			$error[] = $control_sign['error']['register_head'].(isset($e[$s['add_error']]) ? $e[$s['add_error']] : $control_sign['error']['code'].' '.$s['add_error']).'!';
+			$error[] = $s['add_error'];
+		}
 	}
 
 	// результат в json
@@ -1735,6 +1879,29 @@ if ($mode == 'setting') {
 	} else {
 		// настройки модулей
 
+		// обновление местоположений
+		if (!empty($location_update)) {
+			echo '<div id="edost_location_update_warning" style="margin: '.($module_list ? 15 : 0).'px 0 '.($module_list ? 15 : 20).'px 0; color: #F00; font-size: 20px; text-align: center;">'.$admin_sign['location_update']['warning'].
+			'<span class="edost_button_detailed" style="margin-left: 10px; vertical-align: middle;" onclick="edost.D(\'edost_location_update_warning\', 0); edost.D(\'edost_location_update\', 1);">'.$admin_sign['location_update']['open'].'</span>'.
+			'</div>';
+
+			echo '<div id="edost_location_update" style="display: none; padding: 20px; margin: 0 0 '.($module_list ? 15 : 20).'px 0; border: 1px solid #EEE; border-radius: 4px;">';
+			echo '<div style="margin-bottom: 15px; font-size: 25px; text-align: center; color: #F00;">'.$admin_sign['location_update']['head'].'</div>';
+			echo '<div>';
+			$s = array('change', 'new');
+			foreach ($s as $key) {
+				echo '<div style="display: inline-block; width: 45%; margin: 0 5px; vertical-align: top;">';
+				if (!empty($location_update[$key])) {
+					echo '<div style="font-size: 20px;">'.$admin_sign['location_update'][$key].'</div>';
+					foreach ($location_update[$key] as $v) echo '<br>'.$v['NAME_RU'].(!empty($v['NAME_OLD']) ? ' <span style="opacity: 0.6;">('.$admin_sign['location_update']['old'].' '.$v['NAME_OLD'].')</span>' : '');
+				}
+				echo '</div>';
+			}
+			echo '</div>';
+			echo '<div style="margin-top: 20px; text-align: center;"><a class="edost_office_button edost_office_button_blue" style="padding: 10px;" onclick="edost_SetData(\'location_update\'); return false;">'.$admin_sign['location_update']['button'].'</a></div>';
+			echo '</div>';
+		}
+
 		// неприв€занные профили
 		if (!empty($no_paysystem) && !$module_error) { ?>
 		<div id="paysystem_error" style="margin-bottom: 15px; padding: 0 10px 10px 10px; text-align: center;">
@@ -1818,6 +1985,7 @@ if ($mode == 'setting') {
 <?						}
 
 						foreach ($m['CONFIG']['CONFIG'] as $k => $v) {
+							if ($k == 'office_unsupported_percent') continue;
 							$c = (isset($admin_sign['module_config'][$k]) ? $admin_sign['module_config'][$k] : false);
 							$id = 'module_'.$m_key.'_'.$k;
 							$name = 'module['.$m_key.'][config]['.$k.']';
@@ -1831,7 +1999,7 @@ if ($mode == 'setting') {
 							$class = array();
 							if (in_array($k, array('id', 'ps', 'host'))) $class[] = 'edost_setting_param_head';
 							if ($k == 'template') $class[] = 'orange'; ?>
-						<div id="<?=$id?>_div" class="checkbox edost_setting_param" style="margin-top: <?=$top?>px;">
+						<div id="<?=$id?>_div" class="checkbox edost_setting_param edost_setting_param_<?=$k?>" style="margin-top: <?=$top?>px; <?=($k == 'office_unsupported_fix' ? 'margin-left: 18px;' : '')?>">
 <?							if ($v['TYPE'] == 'Y/N') { ?>
 							<input id="<?=$id?>" name="<?=$name?>" <?=(!empty($c['update']) ? 'onclick="edost_SetData(\'module_update\', \''.$m_key.'\')"' : '')?> style="margin: 0px;" type="checkbox"<?=($v['VALUE'] == 'Y' ? ' checked=""' : '')?>>
 							<label for="<?=$id?>" <?=($k == 'control' || $k == 'template' ? 'class="orange"' : '')?>><b><?=$v['NAME']?></b></label>
@@ -1839,9 +2007,17 @@ if ($mode == 'setting') {
 							<b <?=(!empty($class) ? 'class="'.implode(' ', $class).'"' : '')?> <?=(!empty($style) ? 'style="'.implode(' ', $style).'"' : '')?>><?=$v['NAME']?></b><?=($v['TYPE'] == 'STRING' ? ':' : '')?>
 <?							} ?>
 
-<?							if ($v['TYPE'] == 'STRING') { $length = (!empty($c['length']) ? $c['length'] : 40); ?>
-							<input class="normal" id="<?=$id?>" data-start="<?=$v['VALUE']?>" name="<?=$name?>" value="<?=$v['VALUE']?>" type="text" style="padding: 0px 4px; width: <?=$length*7?>px;" maxlength="<?=$length?>">
-<?							} ?>
+<?							if ($v['TYPE'] == 'STRING') {
+								$length = (!empty($c['length']) ? $c['length'] : 40);
+								$s = 'type="text" style="padding: 0px 4px; width: '.($length*7).'px;" maxlength="'.$length.'"';
+								$u = '<input class="normal" id="'.$id.'" data-start="'.$v['VALUE'].'" name="'.$name.'" value="'.$v['VALUE'].'" '.$s.'>';
+								if ($k == 'office_unsupported_fix') {
+									$v2 = $m['CONFIG']['CONFIG']['office_unsupported_percent']['VALUE'];
+									$u2 = '<input class="normal" id="'.str_replace('fix', 'percent', $id).'" data-start="'.$v2.'" name="'.str_replace('fix', 'percent', $name).'" value="'.$v2.'" '.$s.'>';
+									echo str_replace(array('%fix%', '%percent%'), array($u, $u2), $c['mask']);
+								}
+								else echo $u;
+							} ?>
 
 <?							if ($v['TYPE'] == 'ENUM') { $ar = $v['OPTIONS']; ?>
 							<select id="<?=$id?>" name="<?=$name?>" <?=(!empty($c['update']) ? 'onclick="edost_SetData(\'module_update\', \''.$m_key.'\')"' : '')?> style="vertical-align: baseline; max-width: 300px;">
@@ -1967,9 +2143,10 @@ if ($mode == 'setting') {
 	<div id="setting_save_error" style="color: #800;"></div>
 
 <script type="text/javascript">
-	edost_RunScript('edost.resize.bar', ['timer']);
+	edost_run('edost.resize.bar', ['timer']);
+	edost_run('edost.hint', ['start']);
 <? if ($module_key_start !== false) { ?>
-	edost_SetData('module_update', '<?=$module_key_start?>');
+	edost_run('edost_SetData', ['module_update', '<?=$module_key_start?>']);
 <? } ?>
 </script>
 
@@ -1999,6 +2176,7 @@ if ($mode == 'register') {
 		}
 		else if ($param['control'] == 'status_20') {
 			if (!empty($v['batch_20'])) $key = 'batch_20';
+			else if ($v['register'] == 5 && empty($v['batch_code'])) $key = 'register_complete';
 			else if ($v['register'] == 5) $key = 'register_complete_batch_full';
 			else if ($v['register'] == 4) $key = (empty($v['batch_code']) ? 'register_complete' : 'register_complete_batch');
 		}
@@ -2009,7 +2187,7 @@ if ($mode == 'register') {
 			if (in_array($v['register'], array(6, 7, 8))) $key = 'register_delete';
 		}
 		else if ($param['control'] == 'register_complete') {
-			if ($v['register'] == 4 && empty($v['batch_code'])) $key = 'register_complete';
+			if (in_array($v['register'], array(4, 5)) && empty($v['batch_code'])) $key = 'register_complete';
 		}
 		else if ($param['control'] == 'register_complete_batch') {
 			if (empty($v['batch_20']) && $v['register'] == 4 && !empty($v['batch_code'])) $key = 'register_complete_batch';
@@ -2041,9 +2219,15 @@ if ($mode == 'register') {
 
 		if (!in_array($key, array('batch_20', 'register_delete', 'warning_pink', 'register_total', 'register_transfer', 'control', 'field_error'))) $list_active[$key] = $v['active'] = true;
 
+//		echo '<br><b>list:</b><pre style="font-size: 12px">'.print_r($v['doc'], true).'</pre>';
 		// удаление бланков описи (107) у оформленных заказов
-		if (!($v['register'] == 0 && empty($v['register_required'])))
-			foreach ($v['doc'] as $k2 => $v2) if ($v2 == '107') unset($v['doc'][$k2]);
+//		if (!($v['register'] == 0 && empty($v['register_required'])))
+//			foreach ($v['doc'] as $k2 => $v2) if ($v2 == '107') unset($v['doc'][$k2]);
+
+		// удаление бланков дл€ печати без оформлени€ у оформленных заказов
+		if ($v['register'] != 0) foreach ($v['doc'] as $k2 => $v2)
+			if (in_array($v2, array('7p', 'e1v'))) $v['doc'][$k2] = 'package';
+			else if (!in_array($v2, array('order', 'package'))) unset($v['doc'][$k2]);
 
 		$list[$key][$k] = $v;
 	}
@@ -2133,7 +2317,10 @@ if ($mode == 'register') {
 			echo '<div style="padding-top: 5px;">'.str_replace('%data%', $s, $control_sign['setting'][$v]).'</div>';
 		}
 
-		$ar = array('batch_date_skip_weekend', 'item', 'status', 'no_label', 'no_batch');
+		$ar = array('package_type');
+		foreach ($ar as $k => $v) echo $control_sign['setting'][$v].' <span style="display: inline-block;"><input class="edost_suggest_list" data-suggest="package_type" onchange="edost.admin.set_param(\'register_'.$v.'\', this.value)" value="'.$cookie['register_'.$v].'" type="input" maxlength="20"></span>';
+
+		$ar = array('batch_date_skip_weekend', 'item', 'status', 'no_label', 'no_batch', 'order_number', 'tariff_name', 'pcs', 'user_description');
 		foreach ($ar as $v) { ?>
 		<div class="checkbox" style="padding-top: 5px; font-size: 13px;">
 			<input id="register_<?=$v?>" style="margin: 0;" type="checkbox"<?=($cookie['register_'.$v] == 'Y' ? ' checked=""' : '')?> onclick="edost.admin.set_param('register_<?=$v?>', this.checked)">
@@ -2142,7 +2329,7 @@ if ($mode == 'register') {
 <?		} ?>
 
 		<div class="edost_button_option_main" style="margin-top: 10px;" onclick="edost_window.set('profile_setting')"><?=$control_sign['setting']['profile']?></div>
-		<div class="edost_button_option_main" style="margin-top: 10px;" onclick="edost_window.set('option_setting', 'head=<?=$control_sign['setting']['option']?>')"><?=$control_sign['setting']['option']?></div>
+		<div class="edost_button_option_main" style="margin-top: 10px;" onclick="edost_window.set('option_setting', 'head=<?=$control_sign['setting']['option']?>;width=620')"><?=$control_sign['setting']['option']?></div>
 
 <?		/* отдельна€ кнопка настроек дл€ каждой компании
 		<div style="padding: 3px 5px; margin: 10px 0 4px 0; color: #555; font-size: 20px; text-align: center;"><?=$control_sign['setting']['option']?></div>
@@ -2162,14 +2349,16 @@ if ($mode == 'register') {
 			<div id="edost_option_<?=$k?>_div">
 <?				$a = false;
 				foreach ($v['service'] as $s) if ($s['value'] != 0) {
+//					echo '<br><b>props:</b> <pre style="font-size: 12px">'.print_r($s, true).'</pre>';
 					$a = true;
 					$c = array();
 					foreach (edost_class::$depend as $key) if (!empty($s['depend_'.$key])) $c[] = 'edost_option_service_depend_'.$key; ?>
-				<div class="edost_option_service <?=implode(' ', $c)?>">
+				<div class="edost_option_service <?=implode(' ', $c)?>" <?=(!empty($s['link']) ? 'style="padding-left: 17px;"' : '')?>>
 					<label>
-						<input data-id="<?=$s['id']?>" style="margin: 0px;" type="checkbox" value="<?=$k2?>">
+						<input data-id="<?=$s['id']?>" <?=(!empty($s['off']) ? 'data-off="'.implode(',', $s['off']).'"' : '')?> <?=(!empty($s['depend_tariff']) ? 'data-tariff="'.implode(',', $s['depend_tariff']).'"' : '')?> <?=(!empty($s['depend_postamat']) ? 'data-postamat="'.$s['depend_postamat'].'"' : '')?> style="margin: 0px;" type="checkbox" <?=(!empty($s['off']) ? 'onclick="edost.window.field(this, \'off\')"' : '')?>>
 						<span><?=$s['name']?></span>
 					</label>
+					<?=(!empty($s['hint']) ? ' <img class="edost_hint_link" data-param="shift=center,20" src="'.$img_path.'/hint.svg" border="0"><div class="edost_hint_data">'.$s['hint'].'</div>' : '')?>
 				</div>
 <?				}
 				if (!$a) { ?>
@@ -2183,8 +2372,8 @@ if ($mode == 'register') {
 		<div id="edost_batch_date_div" style="display: none;">
 			<div class="adm-workarea" style="padding: 0; text-align: center;">
 				<div class="adm-input-wrap adm-calendar-inp adm-calendar-first" style="display: inline-block; margin: 0 0 10px 0;">
-					<input type="text" class="adm-input adm-calendar-from edost_package_on" style="width: 140px; font-size: 16px;" name="edost_register_date" size="15" value="<?=$batch_date[0]?>" data-date="<?=$batch_date[1]?>" style="font-size: 16px;" onfocus="edost.register.input_focus(this)" onblur="edost.register.input_blur()">
-					<span class="adm-calendar-icon" onclick="BX.calendar({node:this, field: 'edost_register_date', bTime: false, bHideTime: false, callback: function() { edost.register.input_start('edost_register_date'); }, callback_after: function() { edost.register.input_update(); }});"></span>
+					<input type="text" class="adm-input adm-calendar-from edost_package_on" style="width: 140px; font-size: 16px;" name="edost_register_date" size="15" value="<?=$batch_date[0]?>" data-date="<?=$batch_date[1]?>" style="font-size: 16px;" oninput="edost.register.input(this)">
+					<span class="adm-calendar-icon" onclick="BX.calendar({node:this, field: 'edost_register_date', bTime: false, bHideTime: false, callback: function() { edost.register.input('edost_register_date'); }, callback_after: function() { edost.register.input(); }});"></span>
 				</div>
 				<div class="edost_button_base edost_button_date" style="background: #08C; font-size: 14px; padding: 4px 8px 5px 8px; line-height: 14px;" onclick="edost_window.submit('date')"><?=$control_sign['button']['batch_date2']?></div>
 				<div class="edost_call_warning edost_warning" style="display: none; padding-top: 8px;"><?=$control_sign['call']['batch_date_warning']?></div>
@@ -2196,11 +2385,12 @@ if ($mode == 'register') {
 			<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
 				<td width="50%" align="left" valign="center">
 					<div class="edost_button_base" style="background: #F00; font-size: 14px; padding: 4px 8px 5px 8px; line-height: 14px;" onclick="edost_window.submit('delete')"><?=$control_sign['button']['delete_register']?></div>
+					%no_api_checkbox%
 				</td>
 				<td class="adm-workarea" align="right" valign="center" style="padding: 0;">
 					<div class="adm-input-wrap adm-calendar-inp adm-calendar-first" style="display: inline-block; margin: 0 0 10px 0;">
-						<input type="text" class="adm-input adm-calendar-from edost_package_on" style="width: 140px; font-size: 16px;" name="edost_register_date" size="15" value="<?=$batch_date[0]?>" data-date="<?=$batch_date[1]?>" style="font-size: 16px;" onfocus="edost.register.input_focus(this)" onblur="edost.register.input_blur()">
-						<span class="adm-calendar-icon" onclick="BX.calendar({node:this, field: 'edost_register_date', bTime: false, bHideTime: false, callback: function() { edost.register.input_start('edost_register_date'); }, callback_after: function() { edost.register.input_update(); }});"></span>
+						<input type="text" class="adm-input adm-calendar-from edost_package_on" style="width: 140px; font-size: 16px;" name="edost_register_date" size="15" value="<?=$batch_date[0]?>" data-date="<?=$batch_date[1]?>" style="font-size: 16px;" oninput="edost.register.input(this)"">
+						<span class="adm-calendar-icon" onclick="BX.calendar({node:this, field: 'edost_register_date', bTime: false, bHideTime: false, callback: function() { edost.register.input('edost_register_date'); }, callback_after: function() { edost.register.input(); }});"></span>
 					</div>
 					<div class="edost_button_base edost_button_date" style="background: #08C; font-size: 14px; padding: 4px 8px 5px 8px; line-height: 14px;" onclick="edost_window.submit('date')"><?=$control_sign['button']['batch_date2']?></div>
 				</td>
@@ -2254,13 +2444,19 @@ if ($mode == 'register') {
 		if ($i != 0) echo '<div style="height: 30px;"></div>';
 		$i++;
 
+		$head_key = $f_key;
+		if ($f_key == 'register_complete_batch_full') {
+			if (in_array($company, array(5))) $head_key = 'register_complete';
+			if (in_array($company, array(30,19))) $head_key = 'register_complete_batch';
+		}
+
 		if (isset($h[0])) echo $h[0];
 		else echo '<div style="padding: 4px; color: #FFF; background: #'.$h['background'].'; text-align: center; font-size: 15px; font-weight: bold;">'.
 				(!empty($list_active[$f_key]) ? '
 				<div style="position: absolute; margin: 1px 0 0 2px;">
 					<input class="adm-checkbox adm-designed-checkbox" id="edost_shipment_'.$f_key.'_active" type="checkbox" checked="" onclick="edost.register.active_all(this)">
 					<label'.(in_array($f_key, array('register_complete_batch_full')) ? ' style="display: none;"' : '').' class="adm-designed-checkbox-label adm-checkbox" for="edost_shipment_'.$f_key.'_active"></label>
-				</div>' : '').$control_sign['list_head'][$f_key == 'register_complete_batch_full' && $company == 5 ? 'register_complete' : $f_key].($filter != '' ? '<span style="display: inline-block; margin: 0 0 2px 10px; padding: 0px 4px; background: #FFF; color: #000; border-radius: 5px; font-size: 12px; opacity: 0.5; font-weight: normal; ">'.$control_sign[$filter].'</span>' : '').
+				</div>' : '').$control_sign['list_head'][$head_key].($filter != '' ? '<span style="display: inline-block; margin: 0 0 2px 10px; padding: 0px 4px; background: #FFF; color: #000; border-radius: 5px; font-size: 12px; opacity: 0.5; font-weight: normal; ">'.$control_sign[$filter].'</span>' : '').
 			'</div>';
 ?>
 		<div class="edost" id="edost_shipment_<?=$f_key?>" style="border: 1px solid #e3e8ea; padding: 10px; background: #eef5f5;">
@@ -2269,6 +2465,12 @@ if ($mode == 'register') {
 		$batch_code = $batch_id = '';
 		foreach ($f as $k => $v) {
 			$print_no_register = ($v['register'] == 0 && empty($v['register_required']) ? true : false);
+			$package_active = (!empty($v['package_active']) ? true : false);
+			$show_doc = (!empty($v['doc']) && ($print_no_register || $v['register'] != 0) ? true : false);
+
+			if (!$show_doc && empty($v['checkbox']['batch'])) $padding_top = 0;
+			else $padding_top = (!$package_active || isset($v['status_warning']) && $v['status_warning'] == 2 ? '15' : '5');
+
 			$batch_active = (in_array($f_key, array('batch_20', 'register_complete_batch', 'register_complete_batch_full', 'company')) && !empty($v['batch_code']) ? true : false);
 			if ($batch_active && $v['batch_code'] != $batch_code) { $batch_id = $k; ?>
                 <div style="margin: <?=($batch_code != '' ? '40' : '0')?>px 0 10px 0; padding: 2px 10px; background: #FFF; border-width: 1px 0 1px 0; border-style: solid; border-color: #CCC;">
@@ -2319,13 +2521,13 @@ if ($mode == 'register') {
 <? /*											<span class="edost_control_button edost_control_button_print" onclick="edost.register.print([<?=$v['id']?>, 'batch'])"><?=$control_sign['button']['print']?></span> */ ?>
 												<span class="edost_control_button edost_control_button_print" onclick="edost.register.print([<?=$v['id']?>, 'batch_general'<?=($v['company_id'] == 23 ? ", '103'" : '')?>])"><?=$control_sign['print']['batch_general'.($v['company_id'] == 23 ? '_103' : '')]?></span><?=($v['company_id'] != 23 ? ', ' : '')?>
 <?												if ($v['company_id'] != 23) { ?>
-												<span class="edost_control_button edost_control_button_print" onclick="edost.register.print([<?=$v['id']?>, 'batch_order'])"><?=$control_sign['print']['batch_order']?></span>
+												<span class="edost_control_button edost_control_button_print" onclick="edost.register.print([<?=$v['id']?>, 'batch_order'])"><?=$control_sign['print'][(in_array($v['company_id'], array(30,19)) ? 'batch_label' : 'batch_order')]?></span>
 <?												} ?>
 											</div>
 											<?=$delimiter_button?>
 										</div>
 
-<?										if ($v['company_id'] == 5) { ?>
+<?										if (in_array($v['company_id'], array(5))) { ?>
 											<? /* вызвать курьера */ ?>
 <?											if (empty($v['batch']['call'])) { ?>
 											<div id="edost_call_button_<?=$k?>" style="display: inline-block;">
@@ -2333,7 +2535,8 @@ if ($mode == 'register') {
 												<?=$delimiter_button?>
 											</div>
 <?											} ?>
-
+<?										} ?>
+<?										if (in_array($v['company_id'], array(5,30,19))) { ?>
 											<? /* профили */ ?>
 											<div style="display: inline-block;"><span class="edost_control_button edost_control_button_low2" data-param="id=<?=$v['id']?>" onclick="edost_window.set('profile', this)"><?=$control_sign['button']['profile']?></span></div>
 											<?=$delimiter_button?>
@@ -2357,7 +2560,7 @@ if ($mode == 'register') {
 			<table width="100%" style="min-height: 80px;" border="0" bordercolor="#888" cellpadding="4" cellspacing="0"><tr>
 				<td width="25">
 <?					if (!empty($v['active'])) { ?>
-					<input class="adm-checkbox adm-designed-checkbox edost_shipment" id="edost_shipment_<?=$k?>" data-code="<?=$v['order_code']?>" type="checkbox" checked="" onclick="edost.register.active_main(this.id)">
+					<input class="adm-checkbox adm-designed-checkbox edost_shipment" id="edost_shipment_<?=$k?>" data-id="<?=$v['id']?>" data-code="<?=$v['order_code']?>" type="checkbox" checked="" onclick="edost.register.active_main(this.id)">
 					<label<?=(in_array($f_key, array('register_complete_batch', 'register_complete_batch_full')) ? ' style="display: none;"' : '')?> class="adm-designed-checkbox-label adm-checkbox" for="edost_shipment_<?=$k?>"></label>
 <?					} ?>
 
@@ -2370,34 +2573,38 @@ if ($mode == 'register') {
 
 					<div style="font-size: 11px; opacity: 0.6;"><?=$v['order_date_formatted']?></div>
 
-					<a href="<?=($crm_active ? '/shop/orders/details/'.$v['order_id'].'/' : '/bitrix/admin/sale_order_view.php?ID='.$v['order_id'].'&lang='.LANGUAGE_ID.'&edost_link=shipment_'.$k.'#delivery')?>"><b><span style="font-size: 10px;"><?=$control_sign['order_prefix']?></span><?=$v['order_id']?></b></a>
-					<br><a href="<?=($crm_active ? '/shop/orders/shipment/details/'.$v['id'].'/' : '/bitrix/admin/sale_order_shipment_edit.php?order_id='.$v['order_id'].'&shipment_id='.$v['id'].'&lang='.LANGUAGE_ID)?>"><?=$v['id']?></a>
+					<a href="<?=($crm_active ? $crm_path.'/shop/orders/details/'.$v['order_id'].'/' : '/bitrix/admin/sale_order_view.php?ID='.$v['order_id'].'&lang='.LANGUAGE_ID.'&edost_link=shipment_'.$k.'#delivery')?>"><b><span style="font-size: 10px;"><?=$control_sign['order_prefix']?></span><?=($cookie['register_order_number'] == 'Y' ? $v['order_number'] : $v['order_id'])?></b></a>
+					<br><a href="<?=($crm_active ? $crm_path.'/shop/orders/shipment/details/'.$v['id'].'/' : '/bitrix/admin/sale_order_shipment_edit.php?order_id='.$v['order_id'].'&shipment_id='.$v['id'].'&lang='.LANGUAGE_ID)?>"><?=$v['id']?></a>
 				</td>
 				<td width="440" align="left" style="font-size: 13px;">
+<?					if ($show_doc && $v['register'] != 0) { ?>
 					<div style="height: 55px; border-right: 1px solid #DDD; position: absolute; margin: 0 0 0 <?=$doc_width?>px;"></div>
-					<div style="display: inline-block; width: <?=$doc_width?>px;">
-<?						if (empty($v['doc'])) echo '<div style="color: #AAA; text-align: center; position: absolute; margin: -40px 0 0 5px; width: 55px;">'.$control_sign['no_doc'].'</div>';
-						else {
+<?					} ?>
+					<div style="display: <?=($show_doc ? 'inline-block' : 'none')?>; width: <?=$doc_width?>px;">
+<?						//if (!empty($v['doc'])) { //echo '<div style="color: #AAA; text-align: center; position: absolute; margin: -40px 0 0 5px; width: 55px;">'.$control_sign['no_doc'].'</div>';
+//						else {
 							// кнопка печати
 							if ($f_key == 'register_complete' && in_array($v['tariff'], array(3)) || in_array($f_key, array('register_complete_batch', 'register_complete_batch_full'))) {
 								echo '<div id="edost_register_button_'.$k.'_print" style="position: absolute; margin: 44px 0 0 '.((count($v['doc']) - 1)*35 - 10).'px;"><span class="edost_control_button edost_control_button_low" onclick="edost.register.print(['.$v['id'].'])">'.$control_sign['button']['print'].'</span></div>';
 							}
 
-							foreach ($v['doc'] as $v2) {
+							foreach ($v['doc'] as $v2) {;
 								$a = ($history_mode != 'print_no_register' || in_array($v2, $register_set[$v['id']]['doc']) ? true : false);
-								$a2 = (in_array($f_key, array('register_complete_batch', 'register_complete_batch_full') && !in_array($v['company_id'], array(5))) ? true : false);
+//								$a2 = (in_array($f_key, array('register_complete_batch', 'register_complete_batch_full') && !in_array($v['company_id'], array(5))) ? true : false);
+								$a2 = ($v['register'] != 0 && count($v['doc']) == 1 ? true : false);
 
-								if (empty($v['field_error']) && ($v['register_required'] || $f_key != 'register_complete') && (!empty($v['complete']) || $print_no_register)) echo '<img class="edost_doc'.($print_no_register ? ' edost_doc_print_no_register' : '').' edost_register'.($a2 ? '2' : '').' edost_register_'.($a ? 'on' : 'off').'" style="margin-right: 8px;'.($a2 ? ' box-shadow: none;' : '').'" data-code="'.$k.'_doc_'.$v2.'" data-mode="'.($cookie['register_no_label'] == 'Y' ? 'normal' : $doc_data[$v2]['mode']).'"'.(!$a2 ? ' onclick="edost.register.active(this)"' : '').'src="'.$doc_path.'/'.$v2.'_s.gif">';
-								else echo '<img class="edost_register_disabled3" style="margin-right: 8px;" src="'.$doc_path.'/'.$v2.'_s.gif">';
+								if (empty($v['field_error']) && ($v['register_required'] || $f_key != 'register_complete') && (!empty($v['complete']) || $print_no_register)) echo '<img class="edost_doc'.($print_no_register ? ' edost_doc_print_no_register' : '').' edost_register'.($a2 ? '2' : '').' edost_register_'.($a ? 'on' : 'off').'" style="margin-right: 8px;'.($a2 ? ' box-shadow: none;' : '').'" data-code="'.$k.'_doc_'.$v2.'" data-mode="'.($v['company_id'] == 23 && $cookie['register_no_label'] == 'Y' ? 'normal' : $doc_data[$v2]['mode']).'"'.(!$a2 ? ' onclick="edost.register.active(this)"' : '').'src="'.$doc_path.'/'.$v2.'_s.gif">';
+//								else echo '<img class="edost_register_disabled3" style="margin-right: 8px;" src="'.$doc_path.'/'.$v2.'_s.gif">';
 							}
-						} ?>
+//						}
+?>
 					</div>
 <?
 					foreach ($v['checkbox'] as $k2 => $v2) { ?>
-					<div style="padding: 5px 8px 0 20px; display: inline-block;">
-<? 					if (!empty($v[$k2.'_required'])) echo '<input id="'.$k2.'_required_'.$k.'" type="hidden" value="1">';
+					<div style="padding: 5px 8px 0 <?=(!$show_doc && !empty($v['checkbox']['batch']) ? '0' : '20')?>px; display: <?=($v2 == 'register' && $v['register'] == 0 ? 'none' : 'inline-block')?>;">
+<? 						if (!empty($v[$k2.'_required'])) echo '<input id="'.$k2.'_required_'.$k.'" type="hidden" value="1">';
 						if ($v[$k2.'_active']) {
-							if ($k2 == 'register' && $v['register'] == 2 && $v['status_warning'] == 2) $code = 'wait';
+							if ($k2 == 'register' && in_array($v['register'], array(2, 4)) && $v['status_warning'] == 2) $code = 'wait';
 							else if ($k2 == 'register' && in_array($v['register'], array(6, 8)) || $k2 == 'batch' && $v['register'] == 7 || $v['register'] == 8) $code = 'delete';
 							else if ($k2 == 'batch' && $v['register'] == 9) $code = 'date';
 							else if ($k2 == 'batch' && $v['register'] == 10) $code = 'office';
@@ -2408,35 +2615,35 @@ if ($mode == 'register') {
 							$class = array();
 							if ($v['register'] == 2 && $v['status_warning'] != 2) $class[] = 'edost_register_active_disabled';
 
-							$s = 'class="edost_register_disabled'.($v['register'] == 2 ? '' : '2').($code == 'wait' ? ' edost_register_repeat' : '').'"';
-							if ($code == 'wait') $s .= ' data-code="'.$k.'_'.$k2.'"';
-							echo '<img'.(!empty($class) ? ' class="'.implode(' ', $class).'"' : '').' id="edost_'.$k2.'_img_'.$v['id'].'"'.' style="position: absolute; z-index: 2; margin: 5px 0 0 -10px;" src="'.$img_path.'/control_'.$v2.'_'.$code.'.png">';
+							$s = 'class="edost_hide edost_register_disabled'.($v['register'] == 2 ? '' : '2').($code == 'wait' ? ' edost_register_repeat' : '').'"';
+							if ($code == 'wait') $s .= ' data-code="'.$k.'_'.$k2.'"';                                                        //style="position: absolute; z-index: 2; margin: 5px 0 0 -10px;"
+							echo '<img'.(!empty($class) ? ' class="'.implode(' ', $class).'"' : '').' id="edost_'.$k2.'_img_'.$v['id'].'"'.' src="'.$img_path.'/control_'.$v2.'_'.$code.'.png">';
 
 							// кнопки отмены
-							if (in_array($code, array('active', 'active2')) && !empty($v['register']) && $v['register'] != 6 || $code == 'wait') {
+							if (in_array($code, array('active', 'active2')) && !empty($v['register']) && $v['register'] != 6 || in_array($code, array('wait', 'delete'))) {
 								if ($k2 == 'register')
-									if ($v['company_id'] == 5) echo '<div id="edost_register_delete_'.$k.'" style="position: absolute; margin: 44px 0 0 -5px;"><span class="edost_control_button edost_control_button_low" data-param="id='.$v['id'].';batch_date='.(!empty($v['batch']['date']) ? $v['batch']['date'] : '').'" onclick="edost_window.set(\'register_delete\', this)">'.$control_sign['button']['order_batch_delete_small'].'</span></div>';
+									if ($v['company_id'] == 5) echo '<div id="edost_register_delete_'.$k.'" style="margin: -10px 0 0 5px;"><span class="edost_control_button edost_control_button_low" data-param="id='.$v['id'].';batch_date='.(!empty($v['batch']['date']) ? $v['batch']['date'] : '').'" onclick="edost_window.set(\'register_delete\', this)">'.$control_sign['button']['order_batch_delete_small'].'</span></div>';
 //									else echo '<div id="edost_register_delete_'.$k.'" style="position: absolute; margin: 44px 0 0 0;"><span class="edost_control_button edost_control_button_low" onclick="edost.admin.control(\''.$v['id'].'\', \'delete_register\', this)">'.$control_sign['button']['delete_register_small'].'</span></div>';
-									else echo '<div id="edost_register_delete_'.$k.'" style="position: absolute; margin: 44px 0 0 0;"><span class="edost_control_button edost_control_button_low" data-param="id='.$v['id'].'" onclick="edost_window.set(\'register_delete2\', this)">'.$control_sign['button']['delete_register_small'].'</span></div>';
+									else echo '<div id="edost_register_delete_'.$k.'" style="margin: -10px 0 0 10px;"><span class="edost_control_button edost_control_button_low" data-param="id='.$v['id'].'" onclick="edost_window.set(\'register_delete2\', this)">'.$control_sign['button']['delete_register_small'].'</span></div>';
 //								if ($k2 == 'batch' && $batch_active) echo '<div id="edost_batch_delete_'.$k.'" style="position: absolute; margin: 44px 0 0 -5px;"><span class="edost_control_button edost_control_button_low" onclick="edost.admin.control(\''.$v['id'].'\', \'order_batch_delete\', this)">'.$control_sign['button']['order_batch_delete_small'].'</span></div>';
-								if ($k2 == 'batch' && $batch_active) echo '<div id="edost_batch_delete_'.$k.'" style="position: absolute; margin: 44px 0 0 -5px;"><span class="edost_control_button edost_control_button_low" data-param="id='.$v['id'].'" onclick="edost_window.set(\'order_batch_delete\', this)">'.$control_sign['button']['order_batch_delete_small'].'</span></div>';
+								if ($k2 == 'batch' && $batch_active) echo '<div id="edost_batch_delete_'.$k.'" style="margin: -10px 0 0 5px;"><span class="edost_control_button edost_control_button_low" data-param="id='.$v['id'].'" onclick="edost_window.set(\'order_batch_delete\', this)">'.$control_sign['button']['order_batch_delete_small'].'</span></div>';
 							}
 						}
 						else {
 							if ($k2 == 'batch') echo '<img id="edost_'.$k2.'_disabled_'.$v['id'].'"'.' style="display: none; position: absolute; z-index: 3; margin: 5px 0 0 -10px; opacity: 0.8;" src="'.$img_path.'/control_'.$v2.'_disabled.png">';
-							if (($v['register'] == 0 || !empty($v['complete'])) && empty($v['field_error'])) $s = 'class="edost_'.$k2.'_active edost_register edost_register_'.($v[$k2.'_on'] ? 'on' : 'off').'" data-code="'.$k.'_'.$k2.'"'.($k2 == 'register' ? ' data-control="'.$v['shop_id'].'_'.$v['control_count'].'"' : '').' onclick="edost.register.active(this)"';
-							else $s = 'class="edost_register_disabled3"';
+							if (($v['register'] == 0 || !empty($v['complete'])) && empty($v['field_error'])) $s = 'class="edost_hide edost_'.$k2.'_active edost_register edost_register_'.($v[$k2.'_on'] ? 'on' : 'off').'" data-code="'.$k.'_'.$k2.'"'.($k2 == 'register' ? ' data-control="'.$v['shop_id'].'_'.$v['control_count'].'"' : '').' onclick="edost.register.active(this)"';
+							else $s = 'class="edost_hide edost_register_disabled3"';
 						}
 						echo '<img '.$s.' src="'.$img_path.'/control_'.$v2.($v[$k2.'_active'] ? '_complete' : '').'.png">'; ?>
 					</div>
 <?					} ?>
 
-<?					$a = (!empty($v['package_active']) ? true : false);
-					if ($a || !empty($v['option']['service_formatted'])) { ?>
-					<div style="padding-right: 10px; padding-top: <?=(!$a || isset($v[status_warning]) && $v[status_warning] == 2 ? '20' : '5')?>px;">
-						<?=edost_class::GetPackageString($v, $a ? 'full' : 'option', $a)?>
-					</div>
-<?					} ?>
+<?					$s = '';
+//					if (!$package_active) $s .= edost_class::GetPackageString($v, 'type', $package_active);
+					if ($package_active || !empty($v['option']['service_formatted'])) $s .= edost_class::GetPackageString($v, $package_active ? 'full' : 'option', $package_active);
+					if (!$package_active) $s .= edost_class::GetPackageString($v, 'comment', $package_active);
+					if ($s != '') echo '<div style="padding-right: 10px; padding-top: '.$padding_top.'px;">'.$s.'</div>';
+?>
 
 <?					if (in_array($f_key, array('register_transfer', 'register_delete', 'warning_pink', 'control')) && !empty($v['batch_code'])) { ?>
 					<div style="padding-top: 12px;">
@@ -2449,14 +2656,14 @@ if ($mode == 'register') {
 						if (!$v['allow_delivery']) $s = $control_sign['error']['no_allow_delivery'];
 						else if (!empty($v['status_string'])) $s = $v['status_string'];
 						else if (!empty($v['status']) && !empty($control_sign['status'][$v['status']])) $s = $control_sign['status'][$v['status']];
-						if ($s != '') echo '<div style="padding-top: 12px; color: #'.($v['status'] == 22 || $v['control_active'] ? '888' : 'F00').'; font-weight: bold;">'.$s.($v['control_active'] ? '' : '!').'</div>';
+						if ($s != '') echo '<div style="padding-top: 12px; color: #'.($v['status'] == 22 || $v['control_active'] ? '888' : 'F00').'; font-weight: bold;">'.$s.($v['control_active'] || substr($s, -1) == '.' ? '' : '!').'</div>';
 
 						if ($v['status'] == 25) echo '<span style="color: #A00; font-weight: bold;">'.$control_sign['api_error'].'</span>';
 					} ?>
 
 <?					if (!empty($v['field_error'])) {
 						$s = array();
-						foreach ($v['field_error'] as $k2 => $v2) $s[] = $control_sign['error']['no_field'].' <b>'.$control_sign['error']['field'][$k2].'</b>';
+						foreach ($v['field_error'] as $k2 => $v2) $s[] = (!in_array($k2, array('office')) ? $control_sign['error']['no_field'].' ' : '').'<b>'.$control_sign['error']['field'][$k2].'</b>';
 						echo '<div style="padding-top: 12px; color: #F00;">'.implode('<br>', $s).'</div>';
 					}
 					echo '<input id="edost_props_'.$k.'" type="hidden" data-param="'.$v['props_param'].'">';
@@ -2469,17 +2676,13 @@ if ($mode == 'register') {
 						<?=$v['basket_formatted']?>
 						<br><div style="padding-top: 5px; font-size: 13px;"><span style="color: #888;"><?=$control_sign['basket_total']?>: </span><span style="color: #058;"><b><?=$v['basket_price_formatted']?></b></span></div>
 					</div>
-<?					if (!empty($v['basket_hint'])) { ?>
-					<script type="text/javascript">
-						new top.BX.CHint({parent: top.BX('edost_shipment_item_<?=$k?>'), show_timeout: 10, hide_timeout: 100, dx: 2, preventHide: true, min_width: 350, hint: '<?=$v['basket_hint']?>'});
-					</script>
-<?					} ?>
 				</td>
 <?				} ?>
 
 				<td align="left" valign="top" style="font-size: 13px; padding-top: 7px;">
 					<div style="float: right; text-align: right;">
 						<?=(empty($v['package_active']) && !empty($v['package_formatted']) ? '<div style="color: #01627B;">&nbsp;&nbsp;'.$v['package_formatted'].'</div>' : '')?>
+						<?=(empty($v['package_active']) && !empty($v['props']['package'][0]['type']) ? '<div style="color: #6a87ab;">&nbsp;&nbsp;'.$v['props']['package'][0]['type'].'</div>' : '')?>
 						&nbsp;&nbsp;<b><?=$v['order_price_formatted']?></b>
 					</div>
 
@@ -2489,28 +2692,14 @@ if ($mode == 'register') {
 
 					<?=$v['props']['name'].(!empty($v['props']['name']) && !empty($v['props']['company']) ? '<br>' : '').$v['props']['company'].($develop ? ' ('.$v['register'].')' : '')?><br>
 					<span style="color: #888;"><?=$v['props']['location_name']?></span><br>
-					<img class="edost_ico edost_ico_small" style="padding: 0 5px 0 0;" src="<?=$ico_path?>/small/<?=$v['tariff']?>.gif" border="0" title="<?=$v['title']?>">
-<?
-					$s = '';
-					if (in_array($v['tariff'], CDeliveryEDOST::$post)) $s = $control_sign['post'];
-					else if (!empty($v['props']['office'])) {
-						if (in_array($v['props']['office']['type'], CDeliveryEDOST::$postamat)) $s = $control_sign['postamat'];
-						else $s = $control_sign['office'];
-						$s = '<b style="color: #b600ff;">'.$s.'</b>';
-					}
-					else if (!in_array($v['tariff'], array(1, 2, 61, 68, 69, 70, 71, 72, 73, 74))) $s = '<b style="color: #ff008b;">'.$control_sign['door'].'</b>';
-                    echo $s;
 
-					if ($v['delivery_price_formatted'] > 0) echo ($s != '' ? '&nbsp;&nbsp;' : '').'<span style="color: #555; font-weight: bold;">'.$v['delivery_price_formatted'].'</span>';
-
-					if (!empty($v['cod'])) echo '<br><span style="color: #b59422; font-weight: bold;"> '.$control_sign['cod'].' '.$v['cod_formatted'].'</span>';
-?>
+<?					edost_class::TariffHead($v); ?>
 				</td>
 			</tr></table>
 <?
 			// локальные кнопки заказа
 			$s = '';
-			if ($v['register'] == 2 && $v['status_warning'] == 2) $s = 'register_repeat';
+			if (in_array($v['register'], array(2, 4)) && $v['status_warning'] == 2) $s = 'register_repeat';
 			else if ($f_key == 'register_new') $s = 'register';
 			else if ($f_key == 'register_complete') $s = 'batch';
 			if ($s != '') {
@@ -2528,15 +2717,21 @@ if ($mode == 'register') {
 ?>
 <?		if ($f_key == $button_key) { ?>
 		<div id="register_button">
-<?			if (!empty($button['register']) || !empty($button['batch'])) { ?>
+<?			if (!empty($button['register']) || !empty($button['batch'])) {
+			if (in_array($company, array(23, 30))) { ?>
+			<div class="checkbox" style="padding-top: 15px; font-size: 16px; text-align: center; <?=($f_key == 'register_complete' ? 'display: none;' : '')?>">
+				<input id="edost_batch_active" style="margin: 0;" type="checkbox" onclick="edost.register.active_all_update()" <?=($cookie['register_no_batch'] != 'Y' || $f_key == 'register_complete' ? 'checked' : '')?>>
+				<label for="edost_batch_active"><?=$control_sign['button']['batch_checkbox']?></label>
+			</div>
+<?			} ?>
 			<div id="edost_batch_reset_div" style="display: none; text-align: center; padding: 20px 0 0 0; font-size: 16px;">
 				<span class="edost_control_button edost_control_button_low" onclick="var E = BX('edost_batch'); if (E) { E.value = 'new'; E.onchange(); }"><?=$control_sign['batch_select']['reset']?></span>
 			</div>
 			<div id="edost_batch_div" style="text-align: center; padding: 20px 0 0 0; font-size: 16px;">
 <?
 				$date = '<div class="adm-input-wrap adm-calendar-inp adm-calendar-first" style="display: inline-block; margin: -4px 0 0 5px;">
-					<input type="text" class="adm-input adm-calendar-from edost_package_on" id="edost_batch_date" size="15" value="'.($history['batch_date'] ? $history['batch_date'] : $batch_date[0]).'" style="font-size: 16px;" onfocus="edost.register.input_focus(this)" onblur="edost.register.input_blur()">
-					<span class="adm-calendar-icon" onclick="BX.calendar({node:this, field:\'edost_batch_date\', bTime: false, bHideTime: false, callback: function() { edost.register.input_start(\'edost_batch_date\') }, callback_after: function() { edost.register.input_update() }});"></span>
+					<input type="text" class="adm-input adm-calendar-from edost_package_on" id="edost_batch_date" size="15" value="'.($history['batch_date'] ? $history['batch_date'] : $batch_date[0]).'" style="font-size: 16px;" oninput="edost.register.input(this)"">
+					<span class="adm-calendar-icon" onclick="BX.calendar({node:this, field:\'edost_batch_date\', bTime: false, bHideTime: false, callback: function() { edost.register.input(\'edost_batch_date\') }, callback_after: function() { edost.register.input() }});"></span>
 				</div>';
 
 				// включить в сдачу
@@ -2544,10 +2739,13 @@ if ($mode == 'register') {
 				if (in_array($company, array(23))) {
 					if (!empty($batch_add)) {
 						$s .= '<option value="new" selected>'.$control_sign['batch_select']['new'].'</option>';
-						foreach ($batch_add as $k2 => $v2) {
+						foreach ($batch_add as $v2) {
+							$k2 = $v2['id'];
 							if (!empty($v2['auto'])) $name = str_replace('%date%', $v2['date'], $control_sign['batch_select']['old2']);
-							else $name = str_replace(array('%number%', '%date%', '%company%'), array($v2['number'], $v2['date'], $v2['company'].(!empty($control_sign['batch_type'][$v2['type']]) ? ' '.$control_sign['batch_type'][$v2['type']] : '').(count($v2['order']) > 1 ? ', '.edost_class::draw_string('order', count($v2['order'])) : '').($v2['oversize'] ? ', '.$control_sign['batch_select']['oversize'] : '').($v2['register'] == 5 ? ', '.$control_sign['batch_select']['office'] : '')), $control_sign['batch_select']['old']);
-							$s .= '<option value="'.$k2.'" data-order="'.implode(',', $v2['order_add']).'" data-oversize="'.($v2['oversize'] ? '1' : '0').'">'.$name.'</option>';
+							else if (!empty($v2['batch_format']) && $v2['batch_format'] == 'full') $name = str_replace(array('%number%', '%date%'), array($v2['number'], $v2['date']), $control_sign['batch_select']['old_full']);
+							else $name = str_replace(array('%number%', '%date%', '%company%'), array($v2['number'], $v2['date'], (!empty($control_sign['batch_type'][$v2['type']]) ? $control_sign['batch_type'][$v2['type']].', ' : '').edost_class::draw_string('order', count($v2['order'])).($v2['oversize'] ? ', '.$control_sign['batch_select']['oversize'] : '').($v2['register'] == 5 ? ', '.$control_sign['batch_select']['office'] : '')), $control_sign['batch_select']['old']);
+//							else $name = str_replace(array('%number%', '%date%', '%company%'), array($v2['number'], $v2['date'], $v2['company'].(!empty($control_sign['batch_type'][$v2['type']]) ? ' '.$control_sign['batch_type'][$v2['type']] : '').(count($v2['order']) > 1 ? ', '.edost_class::draw_string('order', count($v2['order'])) : '').($v2['oversize'] ? ', '.$control_sign['batch_select']['oversize'] : '').($v2['register'] == 5 ? ', '.$control_sign['batch_select']['office'] : '')), $control_sign['batch_select']['old']);
+							$s .= '<option value="'.$k2.'" data-order="'.implode(',', $v2['order_add']).'" data-oversize="'.($v2['oversize'] ? '1' : '0').'" data-batch_format="'.(!empty($v2['batch_format']) ? $v2['batch_format'] : '').'">'.$name.'</option>';
 						}
 						$s = '<select id="edost_batch" style="max-width: 300px; font-size: 16px; padding: 1px; margin: -3px 5px 0 5px;" onchange="edost.register.batch_update(\'set\')">'.$s.'</select>';
 					}
@@ -2563,14 +2761,15 @@ if ($mode == 'register') {
 
 				// вызвать курьера
 				if (in_array($company, array(5))) { ?>
-					<div class="checkbox" style="padding-top: 15px; font-size: 16px;">
-						<input id="edost_call" style="margin: 0;" type="checkbox" onclick="edost.register.active_all_update()">
-						<label for="edost_call"><?=$control_sign['call']['head']?></label>
-					</div>
-					<div id="edost_call_div" style="padding-top: 15px;">
-<?						edost_class::GetRegisterProfile(array('company' => $company, 'main' => true)); ?>
-					</div>
+				<div class="checkbox" style="padding-top: 15px; font-size: 16px;">
+					<input id="edost_call" style="margin: 0;" type="checkbox" onclick="edost.register.active_all_update()">
+					<label for="edost_call"><?=$control_sign['call']['head']?></label>
+				</div>
 <?				} ?>
+<? /* edost_call_div */ ?>
+			</div>
+			<div id="edost_profile" style="padding-top: 15px; text-align: center; font-size: 16px;">
+<?					edost_class::GetRegisterProfile(array('company' => $company, 'main' => true)); ?>
 			</div>
 <?			} ?>
 
@@ -2615,7 +2814,7 @@ if ($mode == 'register') {
 </div>
 
 <script type="text/javascript">
-	BX.ready(function() { edost_RunScript('edost.register.active_all_update') });
+	BX.ready(function() { edost_run('edost.register.active_all_update'); edost_run('edost.hint', ['start']); });
 </script>
 <?
 }
@@ -2635,12 +2834,19 @@ if ($mode == 'print') {
 
 		$ar = array();
 		$name = 'print';
+		$print_data = false;
 		$print_no_register = true;
 		foreach ($data as $k => $v) {
+			if ($v['company_id'] == 19 && in_array('package', $v['doc'])) $print_data = true; // этикетки ѕЁ 
+
 			$ar[$v['site_id']][] = $v;
 			if (!empty($control['data'][$k])) {
 				$print_no_register = false;
-				$name = (!empty($v['batch_code']) ? $v['batch_code'].'_' : '').(in_array('103', $v['doc']) ? 'f103' : 'order_N'.$v['order_id']);
+				$s = array();
+				if (!empty($v['batch_code'])) $s[] = $v['batch_code'];
+				$s[] = (in_array('103', $v['doc']) ? 'f103' : 'order_N'.$v['order_id']);
+				$s[] = $param['mode'];
+				$name = implode('_', $s);
 			}
 		}
 
@@ -2656,9 +2862,8 @@ if ($mode == 'print') {
 			}
 
 //			$print_param .= '&paper_size='.urlencode($cookie['register_print_label_format']);
-
 			$post = 'type=print&mode='.$param['mode'].'&doc='.edost_class::PackData($doc, array('id', 'ps', 'doc')).'&param='.$print_param.'&data=';
-			if ($print_no_register || !empty($develop) || $print_batch !== false) $post .= edost_class::PackData($data, edost_class::$control_key);
+			if ($print_data || $print_no_register || !empty($develop) || $print_batch !== false) $post .= edost_class::PackData($data, edost_class::$control_key);
 
 			if (!empty($develop)) require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/edost.delivery/admin/doc.php');
 			$print = edost_class::RequestData('', '', '', $post, 'print');
@@ -2796,9 +3001,9 @@ if ($mode == 'list') {
 				$v = $data[$k];
 				if (empty($status[$v['order_status']])) continue;
 				if ($v['status'] != 5) $color = ''; else $color = (!empty($v['complete_paid']) ? 'purple' : 'green');
-				$changed .= '<a style="vertical-align: middle;" href="'.($crm_active ? '/shop/orders/details/'.$v['order_id'].'/' : '/bitrix/admin/sale_order_view.php?ID='.$v['order_id'].'&lang='.LANGUAGE_ID.'&edost_link=shipment_'.$k.'#delivery').'"><b><span style="font-size: 10px;">'.$control_sign['order_prefix'].'</span>'.$v['order_id'].'</b></a> - '.
+				$changed .= '<a style="vertical-align: middle;" href="'.($crm_active ? $crm_path.'/shop/orders/details/'.$v['order_id'].'/' : '/bitrix/admin/sale_order_view.php?ID='.$v['order_id'].'&lang='.LANGUAGE_ID.'&edost_link=shipment_'.$k.'#delivery').'"><b><span style="font-size: 10px;">'.$control_sign['order_prefix'].'</span>'.($cookie['register_order_number'] == 'Y' ? $v['order_number'] : $v['order_id']).'</b></a> - '.
 					'<div style="display: inline-block; padding: 0;" class="edost_control_link" onclick="edost.admin.set_param(\'control\', \'shipment_'.$k.'\')">'.
-						'<img class="edost_ico edost_ico_small" src="'.$ico_path.'/small/'.$v['tariff'].'.gif" border="0" title="'.$v['title'].'">'.
+						'<img class="edost_ico edost_ico_company_small" src="'.$ico_path.'/company/'.$v['company_id'].'.gif" border="0" title="'.$v['title'].'">'.
 					'</div>'.
 					'<span style="vertical-align: middle;"'.($color != '' ? ' class="edost_control_color_'.$color.'"' : '').'>'.$status[$v['order_status']].'</span><br>';
 			}
@@ -3010,7 +3215,7 @@ if ($mode == 'list') {
 ?>
 			<table width="100%" border="0" bordercolor="#888" cellpadding="4" cellspacing="0"><tr>
 				<td width="60" style="font-size: 15px; text-align: center;" align="center">
-					<a href="<?=($crm_active ? '/shop/orders/details/'.$v['order_id'].'/' : '/bitrix/admin/sale_order_view.php?ID='.$v['order_id'].'&lang='.LANGUAGE_ID.'&edost_link=shipment_'.$k.'#delivery')?>"><b><span style="font-size: 10px;"><?=$control_sign['order_prefix']?></span><?=$v['order_id']?></b></a>
+					<a href="<?=($crm_active ? $crm_path.'/shop/orders/details/'.$v['order_id'].'/' : '/bitrix/admin/sale_order_view.php?ID='.$v['order_id'].'&lang='.LANGUAGE_ID.'&edost_link=shipment_'.$k.'#delivery')?>"><b><span style="font-size: 10px;"><?=$control_sign['order_prefix']?></span><?=($cookie['register_order_number'] == 'Y' ? $v['order_number'] : $v['order_id'])?></b></a>
 				</td>
 				<td width="25">
 					<input id="edost_shipment_<?=$k?>_value" type="hidden" value="<?=($v['new'] ? '1' : '0')?>">
@@ -3048,10 +3253,8 @@ if ($mode == 'list') {
 					<?=(in_array($param['control'], array('search', 'complete_paid', 'complete_paid2')) || in_array($v['status'], array(13, 14)) ? '<div style="float: right; font-weight: bold;">'.$v['tracking_code'].'</div>' : '')?>
 					<?=$props['name']?><br>
 					<span style="color: #888;"><?=$props['location_name']?></span><br>
-					<img class="edost_ico edost_ico_small" src="<?=$ico_path?>/small/<?=$v['tariff']?>.gif" border="0" title="<?=$v['title']?>">
 <?
-					if (!empty($props['office'])) echo '<b>'.$control_sign['office'].'</b> ';
-					if (!empty($v['cod'])) echo '<span style="color: #b59422; font-weight: bold;">'.$control_sign['cod'].'</span>';
+					edost_class::TariffHead($v);
 
 					if (!empty($v['cod']) && empty($v['cod_paid']) && $cookie['control_paid'] == 'Y') echo '<div class="'.($v['status'] == 5 ? 'edost_control_color_purple' : '').'" style="float: right; font-weight: bold; position: relative; top: 6px;">'.$v['payment'][$v['cod']]['sum_formatted'].'</div>';
 
@@ -3254,7 +3457,9 @@ if ($mode == 'sale.personal.order.detail' || $mode == 'sale.personal.order.list'
 			// форматирование адреса
 			foreach ($result['ORDER_PROPS'] as $k => $v) if ($v['CODE'] == 'ADDRESS') {
 				$s = $props['address_formatted'];
-				if (!$office) $s .= ($s != '' ? '<br>' : '' ).$props['location_name'];
+				$s2 = '<span style="color: #888;">'.$props['location_name'].'</span>';
+				if ($office) $s = str_replace('</a>)', '</a>)<br><div style="display: inline-block; margin: 5px 0 0 15px;">'.$s2, $s).'</div>';
+				else $s .= ($s != '' ? '<br>' : '' ).$s2;
 				$result['ORDER_PROPS'][$k]['VALUE'] = $s;
 			}
 

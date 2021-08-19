@@ -244,6 +244,7 @@ class TradingOrderView extends \CBitrixComponent
 		$this->fillBasketItemsIndex();
 		$this->fillBoxNumber($orderExternalId);
 		$this->convertBoxDimensions();
+		$this->resolveBasketCisColumn();
 		$this->resolveShipmentEdit();
 		$this->fillPrintDocuments();
 		$this->fillBoxPacks();
@@ -354,9 +355,30 @@ class TradingOrderView extends \CBitrixComponent
 		return $result;
 	}
 
+	protected function resolveBasketCisColumn()
+	{
+		if (!isset($this->arResult['BASKET']['COLUMNS']['CIS'])) { return; }
+
+		$isMarkingGroupUsed = false;
+
+		foreach ($this->arResult['BASKET']['ITEMS'] as $item)
+		{
+			if (!empty($item['MARKING_GROUP']))
+			{
+				$isMarkingGroupUsed = true;
+				break;
+			}
+		}
+
+		if (!$isMarkingGroupUsed)
+		{
+			unset($this->arResult['BASKET']['COLUMNS']['CIS']);
+		}
+	}
+
 	protected function resolveShipmentEdit()
 	{
-		if (empty($this->arResult['SHIPMENT']))
+		if (empty($this->arResult['SHIPMENT']) && !isset($this->arResult['BASKET']['COLUMNS']['CIS']))
 		{
 			$this->arResult['SHIPMENT_EDIT'] = false;
 		}

@@ -293,7 +293,7 @@ abstract class Request
 		}
 		catch (\Exception $exception)
 		{
-			$result = null;
+			$result = [];
 		}
 
 		return $result;

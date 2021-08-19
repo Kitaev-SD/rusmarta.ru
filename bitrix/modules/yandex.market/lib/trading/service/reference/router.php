@@ -17,6 +17,29 @@ abstract class Router
 	}
 
 	/**
+	 * Поддерживается ли действие при обработке запросов
+	 *
+	 * @param string $path
+	 *
+	 * @return bool
+	 */
+	public function hasHttpAction($path)
+	{
+		try
+		{
+			$className = $this->getActionClassName($path);
+
+			$result = is_subclass_of($className, Action\HttpAction::class);
+		}
+		catch (Market\Exceptions\Trading\NotImplementedAction $exception)
+		{
+			$result = false;
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Действие для обработки запросов
 	 *
 	 * @param string $path
@@ -48,6 +71,29 @@ abstract class Router
 	}
 
 	/**
+	 * Поддерживается ли действие при обработке данных
+	 *
+	 * @param string $path
+	 *
+	 * @return bool
+	 */
+	public function hasDataAction($path)
+	{
+		try
+		{
+			$className = $this->getActionClassName($path);
+
+			$result = is_subclass_of($className, Action\DataAction::class);
+		}
+		catch (Market\Exceptions\Trading\NotImplementedAction $exception)
+		{
+			$result = false;
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Действие для обработки данных
 	 *
 	 * @param string $path
@@ -58,7 +104,7 @@ abstract class Router
 	 * @throws Main\SystemException
 	 * @throws Market\Exceptions\Trading\NotImplementedAction
 	 */
-	public function getDataAction($path, TradingEntity\Reference\Environment $environment, $data)
+	public function getDataAction($path, TradingEntity\Reference\Environment $environment, $data = [])
 	{
 		$className = $this->getActionClassName($path);
 

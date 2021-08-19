@@ -17,6 +17,251 @@ class GridList extends Market\Component\Base\GridList
 		Main\Localization\Loc::loadMessages(__FILE__);
 	}
 
+	public function processAjaxAction($action, $data)
+	{
+		if (Market\Data\TextString::getPosition($action, 'status:') === 0)
+		{
+			$status = Market\Data\TextString::getSubstring(
+				$action,
+				Market\Data\TextString::getLength('status:')
+			);
+
+			$this->processOrderAction($data, 'sendStatus', [
+				'externalStatus' => $status,
+			]);
+		}
+		else if ($action === 'status')
+		{
+			$status = $this->getAjaxActionStatus();
+
+			$this->processOrderAction($data, 'sendStatus', [
+				'externalStatus' => $status,
+			]);
+		}
+		else if (Market\Data\TextString::getPosition($action, 'cancel:') === 0)
+		{
+			$reason = Market\Data\TextString::getSubstring(
+				$action,
+				Market\Data\TextString::getLength('cancel:')
+			);
+
+			$this->processOrderAction($data, 'sendStatus', [
+				'externalStatus' => $this->getCancelStatus(),
+				'cancelReason' => $reason,
+			]);
+		}
+		else if ($action === 'boxes')
+		{
+			$count = $this->getAjaxActionBoxesCount();
+
+			$this->processOrderAction($data, 'sendBoxes', $count);
+		}
+		else
+		{
+			parent::processAjaxAction($action, $data);
+		}
+	}
+
+	protected function getAjaxActionStatus()
+	{
+		if (!isset($_REQUEST['status']))
+		{
+			throw new Main\ArgumentException('status is missing');
+		}
+
+		return (string)$_REQUEST['status'];
+	}
+
+	protected function getCancelStatus()
+	{
+		$value = (string)$this->getComponentParam('CANCEL_STATUS');
+
+		if ($value === '')
+		{
+			throw new Main\ArgumentException('cancel status is undefined');
+		}
+
+		return $value;
+	}
+
+	protected function getAjaxActionBoxesCount()
+	{
+		if (!isset($_REQUEST['boxes']))
+		{
+			throw new Main\ArgumentException('boxes count is missing');
+		}
+
+		return (string)$_REQUEST['boxes'];
+	}
+
+	protected function processOrderAction($actionData, $method, $payload)
+	{
+		$errorMessages = [];
+		$hasSuccess = false;
+
+		foreach ($this->getActionSelectedIds($actionData) as $externalId)
+		{
+			$sendResult = $this->{$method}($externalId, $payload);
+
+			if ($sendResult->isSuccess())
+			{
+				$hasSuccess = true;
+			}
+			else
+			{
+				$errorMessages[] = implode('<br />', $sendResult->getErrorMessages());
+			}
+		}
+
+		if ($hasSuccess)
+		{
+			Market\Trading\State\SessionCache::releaseByType('order');
+		}
+
+		if (!empty($errorMessages))
+		{
+			throw new Main\SystemException(implode('<br />', $errorMessages));
+		}
+	}
+
+	protected function getActionSelectedIds($data)
+	{
+		if (!empty($data['IS_ALL']))
+		{
+			throw new Main\NotSupportedException();
+		}
+
+		return (array)$data['ID'];
+	}
+
+	protected function sendStatus($externalId, array $data)
+	{
+		$result = new Main\Result();
+
+		try
+		{
+			$setup = $this->getSetup();
+			$orderId = $this->getOrderNumber($externalId, false);
+			$orderAccountNumber = $this->getOrderNumber($externalId);
+
+			$procedure = new Market\Trading\Procedure\Runner(
+				Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER,
+				$orderAccountNumber
+			);
+
+			$procedure->run($setup, 'send/status', $data + [
+				'internalId' => $orderId,
+				'orderId' => $externalId,
+				'orderNum' => $orderAccountNumber,
+				'immediate' => true,
+			]);
+		}
+		catch (Main\SystemException $exception)
+		{
+			$exceptionMessage = $exception->getMessage();
+			$message = static::getLang('COMPONENT_TRADING_ORDER_LIST_ORDER_ACTION_FAILED', [
+				'#ORDER_ID#' => $externalId,
+				'#MESSAGE#' => $exceptionMessage,
+			], $exceptionMessage);
+
+			$result->addError(new Main\Error($message));
+		}
+
+		return $result;
+	}
+
+	protected function sendBoxes($externalId, $count)
+	{
+		$result = new Main\Result();
+
+		try
+		{
+			$setup = $this->getSetup();
+			$accountNumber = $this->getOrderNumber($externalId);
+			$shipmentId = $this->getOrderShipmentId($externalId, $accountNumber);
+
+			$procedure = new Market\Trading\Procedure\Runner(
+				Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER,
+				$accountNumber
+			);
+
+			$procedure->run($setup, 'send/boxes', [
+				'orderId' => $externalId,
+				'orderNum' => $accountNumber,
+				'shipmentId' => $shipmentId,
+				'boxes' => $this->makeBoxes($externalId, $count),
+			]);
+		}
+		catch (Main\SystemException $exception)
+		{
+			$exceptionMessage = $exception->getMessage();
+			$message = static::getLang('COMPONENT_TRADING_ORDER_LIST_ORDER_ACTION_FAILED', [
+				'#ORDER_ID#' => $externalId,
+				'#MESSAGE#' => $exceptionMessage,
+			], $exceptionMessage);
+
+			$result->addError(new Main\Error($message));
+		}
+
+		return $result;
+	}
+
+	protected function getOrderNumber($externalId, $useAccountNumber = null)
+	{
+		$setup = $this->getSetup();
+		$platform = $setup->getPlatform();
+		$orderRegistry = $setup->getEnvironment()->getOrderRegistry();
+
+		return $orderRegistry->search($externalId, $platform, $useAccountNumber);
+	}
+
+	protected function getOrderShipmentId($externalId, $accountNumber)
+	{
+		return
+			$this->getOrderShipmentIdFromData($externalId)
+			?: $this->getOrderShipmentIdFromAction($externalId, $accountNumber);
+	}
+
+	protected function getOrderShipmentIdFromData($externalId)
+	{
+		$uniqueKey = $this->getSetup()->getService()->getUniqueKey();
+
+		return Market\Trading\State\OrderData::getValue($uniqueKey, $externalId, 'SHIPMENT_ID');
+	}
+
+	protected function getOrderShipmentIdFromAction($externalId, $accountNumber)
+	{
+		$setup = $this->getSetup();
+		$procedure = new Market\Trading\Procedure\Runner(
+			Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER,
+			$accountNumber
+		);
+
+		$response = $procedure->run($setup, 'admin/view', [
+			'id' => $externalId,
+			'useCache' => true,
+		]);
+
+		$shipments = $response->getField('shipments');
+		$shipment = is_array($shipments) ? reset($shipments) : false;
+
+		return isset($shipment['ID']) ? $shipment['ID'] : null;
+	}
+
+	protected function makeBoxes($externalId, $count)
+	{
+		$result = [];
+
+		for ($index = 1; $index <= $count; ++$index)
+		{
+			$result[] = [
+				'fulfilmentId' => $externalId . '-' . $index,
+			];
+		}
+
+		return $result;
+	}
+
 	public function getFields(array $select = [])
 	{
 		$result = $this->getOrderFields();
@@ -34,7 +279,10 @@ class GridList extends Market\Component\Base\GridList
 	{
 		if ($this->orderFields === null)
 		{
-			$this->orderFields = $this->loadOrderFields();
+			$fields = $this->loadOrderFields();
+			$fields = $this->filterSupportsFields($fields);
+
+			$this->orderFields = $fields;
 		}
 
 		return $this->orderFields;
@@ -48,7 +296,6 @@ class GridList extends Market\Component\Base\GridList
 				'NAME' => static::getLang('COMPONENT_TRADING_ORDER_LIST_FIELD_ID', [
 					'#SERVICE_NAME#' => $this->getSetup()->getService()->getInfo()->getTitle('DATIVE'),
 				]),
-				'FILTERABLE' => false,
 				'SORTABLE' => false,
 				'SETTINGS' => [
 					'URL_FIELD' => 'SERVICE_URL',
@@ -56,7 +303,6 @@ class GridList extends Market\Component\Base\GridList
 			],
 			'ORDER_ID' => [
 				'TYPE' => 'primary',
-				'FILTERABLE' => false,
 				'SORTABLE' => false,
 				'SETTINGS' => [
 					'URL_FIELD' => 'EDIT_URL',
@@ -64,7 +310,6 @@ class GridList extends Market\Component\Base\GridList
 			],
 			'ACCOUNT_NUMBER' => [
 				'TYPE' => 'primary',
-				'FILTERABLE' => false,
 				'SORTABLE' => false,
 				'SETTINGS' => [
 					'URL_FIELD' => 'EDIT_URL',
@@ -79,11 +324,26 @@ class GridList extends Market\Component\Base\GridList
 				'MULTIPLE' => 'Y',
 				'SORTABLE' => false,
 			],
+			'DATE_DELIVERY' => [
+				'TYPE' => 'dateTimePeriod',
+				'SORTABLE' => false,
+			],
 			'BASKET' => [
 				'TYPE' => 'tradingOrderItem',
 				'MULTIPLE' => 'Y',
 				'FILTERABLE' => false,
 				'SORTABLE' => false,
+			],
+			'BOX_COUNT' => [
+				'TYPE' => 'number',
+				'FILTERABLE' => false,
+				'SORTABLE' => false,
+				'SETTINGS' => [
+					'UNIT' => static::getLang('COMPONENT_TRADING_ORDER_LIST_FIELD_BOX_COUNT_UNIT'),
+				],
+				'SUPPORTS' => [
+					Market\Trading\Service\Manager::SERVICE_MARKETPLACE . ':' . Market\Trading\Service\Manager::BEHAVIOR_DEFAULT,
+				],
 			],
 			'TOTAL' => [
 				'TYPE' => 'price',
@@ -110,7 +370,38 @@ class GridList extends Market\Component\Base\GridList
 				'TYPE' => 'boolean',
 				'SORTABLE' => false,
 			],
+			'WAIT_CANCELLATION_APPROVE' => [
+				'TYPE' => 'boolean',
+				'SORTABLE' => false,
+				'SELECTABLE' => false,
+				'SUPPORTS' => [
+					Market\Trading\Service\Manager::SERVICE_MARKETPLACE . ':' . Market\Trading\Service\Manager::BEHAVIOR_DBS,
+				],
+			],
 		]);
+	}
+
+	protected function filterSupportsFields(array $fields)
+	{
+		$setup = $this->getSetup();
+		$match = [
+			$setup->getServiceCode(),
+			$setup->getServiceCode() . ':' . $setup->getBehaviorCode(),
+		];
+
+		foreach ($fields as $key => $field)
+		{
+			if (!isset($field['SUPPORTS'])) { continue; }
+
+			$intersect = array_intersect((array)$field['SUPPORTS'], $match);
+
+			if (empty($intersect))
+			{
+				unset($fields[$key]);
+			}
+		}
+
+		return $fields;
 	}
 
 	protected function getStatusEnum()
@@ -196,7 +487,7 @@ class GridList extends Market\Component\Base\GridList
 	{
 		foreach ($items as &$item)
 		{
-			if (empty($item['PRINT_READY']))
+			if (empty($item['ORDER_ID']))
 			{
 				$item['DISABLED'] = true;
 			}
@@ -245,11 +536,43 @@ class GridList extends Market\Component\Base\GridList
 					case 'FAKE':
 						$result['fake'] = ((string)$value === '1');
 					break;
+
+					case 'ID':
+						$ids = $this->searchExternalIds($value, 'EXTERNAL_ORDER_ID') ?: (array)$value;
+
+						$result['id'] = isset($result['id']) ? array_intersect($result['id'], $ids) : $ids;
+					break;
+
+					case 'ORDER_ID':
+						$ids = $this->searchExternalIds($value, 'ORDER_ID');
+
+						$result['id'] = isset($result['id']) ? array_intersect($result['id'], $ids) : $ids;
+					break;
+
+					case 'ACCOUNT_NUMBER':
+						$ids =
+							$this->searchExternalIds($value, 'ACCOUNT_NUMBER')
+							?: $this->searchExternalIds($value, 'ORDER_ID');
+
+						$result['id'] = isset($result['id']) ? array_intersect($result['id'], $ids) : $ids;
+					break;
+
+					case 'WAIT_CANCELLATION_APPROVE':
+						$result['onlyWaitingForCancellationApprove'] = ((string)$value === '1');
+					break;
 				}
 			}
 		}
 
 		return $result;
+	}
+
+	protected function searchExternalIds($value, $field)
+	{
+		$orderRegistry = $this->getSetup()->getEnvironment()->getOrderRegistry();
+		$platform = $this->getSetup()->getPlatform();
+
+		return $orderRegistry->suggestExternalIds($value, $field, $platform);
 	}
 
 	protected function getDefaultFetchParameters()
@@ -259,6 +582,7 @@ class GridList extends Market\Component\Base\GridList
 		return [
 			'flushCache' => !$isLoadMoreAction,
 			'useCache' => true,
+			'suppressErrors' => true,
 		];
 	}
 
@@ -286,27 +610,73 @@ class GridList extends Market\Component\Base\GridList
 
 	public function filterActions($item, $actions)
 	{
-		if (!isset($item['EDIT_URL']))
+		foreach ($actions as $actionIndex => &$action)
 		{
-			foreach ($actions as $actionIndex => $action)
+			if (empty($item['ORDER_ID']))
 			{
-				if ($action['TYPE'] === 'EDIT')
-				{
-					unset($actions[$actionIndex]);
-				}
+				$isValid = false;
 			}
-		}
+			else if ($action['TYPE'] === 'EDIT')
+			{
+				$isValid = isset($item['EDIT_URL']);
+			}
+			else if ($action['TYPE'] === 'PRINT')
+			{
+				$isValid = !empty($item['PRINT_READY']);
+			}
+			else if ($action['TYPE'] === 'CANCEL')
+			{
+				$isValid = !empty($item['CANCEL_ALLOW']);
+			}
+			else if ($action['TYPE'] === 'STATUS')
+			{
+				if (empty($item['STATUS_READY']) || empty($item['STATUS_ALLOW']))
+				{
+					$isValid = false;
+				}
+				else
+				{
+					$allowMap = array_flip($item['STATUS_ALLOW']);
 
-		if (empty($item['PRINT_READY']))
-		{
-			foreach ($actions as $actionIndex => $action)
-			{
-				if (Market\Data\TextString::getPosition($action['TYPE'], 'PRINT_') === 0)
-				{
-					unset($actions[$actionIndex]);
+					foreach ($action['MENU'] as $statusIndex => $statusAction)
+					{
+						$status = Market\Data\TextString::getSubstring(
+							$statusAction['TYPE'],
+							Market\Data\TextString::getLength('STATUS_')
+						);
+
+						if (!isset($allowMap[$status]))
+						{
+							unset($action['MENU'][$statusIndex]);
+						}
+					}
+
+					if (!empty($action['MENU']))
+					{
+						$isValid = true;
+						$action['MENU'] = array_values($action['MENU']);
+					}
+					else
+					{
+						$isValid = false;
+					}
 				}
 			}
+			else if (isset($action['FILTER']) && is_array($action['FILTER']))
+			{
+				$isValid = (count(array_diff_assoc($action['FILTER'], $item)) === 0);
+			}
+			else
+			{
+				$isValid = true;
+			}
+
+			if (!$isValid)
+			{
+				unset($actions[$actionIndex]);
+			}
 		}
+		unset($action);
 
 		return $actions;
 	}

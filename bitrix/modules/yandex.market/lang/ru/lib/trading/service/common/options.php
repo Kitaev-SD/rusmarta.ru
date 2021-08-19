@@ -51,6 +51,7 @@ $MESS['YANDEX_MARKET_TRADING_SERVICE_COMMON_TAB_STORE'] = 'Данные о&nbsp;ценах';
 $MESS['YANDEX_MARKET_TRADING_SERVICE_COMMON_OPTION_PRODUCT_SKU_FIELD'] = 'Откуда брать ваши SKU';
 $MESS['YANDEX_MARKET_TRADING_SERVICE_COMMON_OPTION_PRODUCT_SKU_FIELD_DESCRIPTION'] = 'Для каждого из&nbsp;каталогов выберите поля, в&nbsp;которых хранятся ваши SKU. Они будут использоваться для обмена информацией о&nbsp;заказах и&nbsp;остатках.';
 $MESS['YANDEX_MARKET_TRADING_SERVICE_COMMON_OPTION_PRODUCT_STORE_TRACE'] = 'Ограничивать по фактическому наличию';
+$MESS['YANDEX_MARKET_TRADING_SERVICE_COMMON_OPTION_PRODUCT_SKU_ADV_PREFIX'] = 'Использовать префикс ADV';
 $MESS['YANDEX_MARKET_TRADING_SERVICE_COMMON_OPTION_PRODUCT_STORE'] = 'Откуда брать данные об остатках';
 $MESS['YANDEX_MARKET_TRADING_SERVICE_COMMON_OPTION_PRODUCT_STORE_DESCRIPTION'] = '
 Теперь выберите поля, из&nbsp;которых маркетплейс будет получать данные об&nbsp;остатках ваших товаров:

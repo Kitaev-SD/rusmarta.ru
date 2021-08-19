@@ -52,3 +52,8 @@
 .adm-info-message ol:last-child {
 	margin-bottom: 0;
 }
+
+.adm-workarea textarea[readonly],
+.adm-workarea input[readonly] {
+	opacity: 1 !important;
+}

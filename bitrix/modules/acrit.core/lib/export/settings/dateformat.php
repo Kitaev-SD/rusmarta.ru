@@ -197,9 +197,9 @@ class DateFormat extends SettingsBase {
 				elseif($strDateIntervalValue < 0){
 					$obDateTime->sub(new \DateInterval($strInterval));
 				}
-			} catch(\Exception $e) {
+			} catch(\Exception $obError) {
 				$strLogMessage = static::getMessage('CHANGE_LOG_MESSAGE', array(
-					'#MESSAGE#' => $e->getMessage(),
+					'#MESSAGE#' => $obError->getMessage(),
 					'#FIELD#' => (is_object($obField) ? $obField->getCode() : (Helper::strlen($arParams['field_code']) ? $arParams['field_code'] : '?')),
 					'#VALUE#' => $strValue,
 				));
