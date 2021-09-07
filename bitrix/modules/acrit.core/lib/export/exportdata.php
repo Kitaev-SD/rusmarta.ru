@@ -134,9 +134,16 @@ abstract class ExportDataTable extends Entity\DataManager {
 		$strSql = "
 		DELETE 
 		FROM `{$strTableName}`
+		WHERE `PROFILE_ID`='{$intProfileID}'{$strIBlock} AND (`IS_ERROR`='Y' OR `OFFERS_ERRORS` > 0)
+		";
+		/*
+		$strSql = "
+		DELETE 
+		FROM `{$strTableName}`
 		WHERE `PROFILE_ID`='{$intProfileID}'{$strIBlock} 
 			AND (`TYPE`='{$strDummy}' OR `IS_ERROR`='Y' OR `OFFERS_ERRORS` > 0)
 		";
+		*/
 		return \Bitrix\Main\Application::getConnection()->query($strSql);
 	}
 	

@@ -275,6 +275,14 @@ class OrderSync {
 				}
 			}
 		}
+		// Default values
+		$buyer_fields['EMAIL'] = $buyer_fields['EMAIL'] ? : $profile['CONTACTS']['email_def'];
+		$email = $buyer_fields['EMAIL'];
+		if (!empty($buyer_fields) && $email) {
+			if ( ! $buyer_fields['LOGIN']) {
+				$buyer_fields['LOGIN'] = $email;
+			}
+		}
 		return $buyer_fields;
 	}
 

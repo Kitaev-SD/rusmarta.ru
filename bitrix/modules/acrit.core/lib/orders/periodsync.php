@@ -19,10 +19,11 @@ class PeriodSync
 		Settings::setModuleId($value);
 	}
 
+	// Create agent
 	public static function set($profile_id) {
 		$result = true;
 		$profile = Helper::call(self::$MODULE_ID, 'OrdersProfiles', 'getProfiles', [$profile_id]);
-		// Create agent
+		// If use 1 agent
 		if ($profile['SYNC']['add']['period']) {
 			$sync_schedule = $profile['SYNC']['add']['period'];
 			$agent_period = $sync_schedule * 60;
@@ -33,6 +34,7 @@ class PeriodSync
 				self::remove($profile_id);
 			}
 		}
+		// If use more agents
 		elseif (is_array($profile['SYNC']['add']) && !empty($profile['SYNC']['add'])) {
 			foreach ($profile['SYNC']['add'] as $variant => $item) {
 				$agent_period = $profile['SYNC']['add'][$variant]['period'];
@@ -52,9 +54,9 @@ class PeriodSync
 		return $result;
 	}
 
+	// Remove agent
 	public static function remove($profile_id, $variant=0) {
 		$result = true;
-		// Remove agent
 		if (!$variant) {
 			\CAgent::RemoveAgent("\\Acrit\\Core\\Orders\\PeriodSync::run('" . self::$MODULE_ID . "', $profile_id);", self::$MODULE_ID);
 		}

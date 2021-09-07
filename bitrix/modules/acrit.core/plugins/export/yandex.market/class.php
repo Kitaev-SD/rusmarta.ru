@@ -573,6 +573,14 @@ class YandexMarket extends Plugin {
 			'IS_PRICE' => true,
 		));
 		$arResult[] = new Field(array(
+			'CODE' => 'PURCHASE_PRICE',
+			'DISPLAY_CODE' => 'purchase_price',
+			'NAME' => static::getMessage('FIELD_PURCHASE_PRICE_NAME'),
+			'SORT' => 1101,
+			'DESCRIPTION' => static::getMessage('FIELD_PURCHASE_PRICE_DESC'),
+			'IS_PRICE' => true,
+		));
+		$arResult[] = new Field(array(
 			'CODE' => 'CURRENCY_ID',
 			'DISPLAY_CODE' => 'currencyId',
 			'NAME' => static::getMessage('FIELD_CURRENCY_ID_NAME'),
@@ -1473,6 +1481,16 @@ class YandexMarket extends Plugin {
 	 */
 	public function processElement($arProfile, $intIBlockID, $arElement, $arFields){
 		// basically [in this class] do nothing, all business logic are in each format
+	}
+	
+	/**
+	 *	Handler 'onBeforeProcessElement'
+	 */
+	protected function onBeforeProcessElement(&$arProfile, &$intIBlockID, &$arElement, &$arFields){
+		if(strlen($arFields['PURCHASE_PRICE']) && is_numeric($arFields['PURCHASE_PRICE'])){
+			$arFields['PURCHASE_PRICE'] = floatVal($arFields['PURCHASE_PRICE']);
+		}
+		return parent::onBeforeProcessElement($arProfile, $intIBlockID, $arElement, $arFields);
 	}
 	
 	/**

@@ -47,6 +47,11 @@
 		</a>
 	</li>
 	<li>
+		<a href="https://yandex.ru/dev/market/partner-marketplace-cd/doc/dg/reference/post-stocks.html" target="_blank">
+			Запрос информации об остатках
+		</a>
+	</li>
+	<li>
 		<a href="https://yandex.ru/support/marketplace/catalog/faq.html" target="_blank">
 			Вопросы и ответы
 		</a>

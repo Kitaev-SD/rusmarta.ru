@@ -210,6 +210,8 @@ class YandexMarketEventTickets extends YandexMarket {
 			$arXmlTags['price'] = Xml::addTag($arFields['PRICE']);
 		if(!Helper::isEmpty($arFields['OLD_PRICE']) && $arFields['OLD_PRICE'] != $arFields['PRICE'])
 			$arXmlTags['oldprice'] = Xml::addTag($arFields['OLD_PRICE']);
+		if(!Helper::isEmpty($arFields['PURCHASE_PRICE']))
+			$arXmlTags['purchase_price'] = Xml::addTag($arFields['PURCHASE_PRICE']);
 		if(!Helper::isEmpty($arFields['CURRENCY_ID']))
 			$arXmlTags['currencyId'] = Xml::addTag($arFields['CURRENCY_ID']);
 		if(!Helper::isEmpty($arFields['COUNT']))

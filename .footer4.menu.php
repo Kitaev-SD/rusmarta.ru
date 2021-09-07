@@ -8,13 +8,6 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"История компании", 
-		"/about/history/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Сертификаты", 
 		"/about/certificates/", 
 		Array(), 

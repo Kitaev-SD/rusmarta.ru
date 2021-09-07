@@ -22,7 +22,7 @@ use
 
 class OzonRuV2 extends UniversalPlugin {
 	
-	const DATE_UPDATED = '2021-03-05';
+	const DATE_UPDATED = '2021-08-24';
 	const CACHE_VALID_TIME = 7*24*60*60; // Too many values => we would not update often
 	const AJAX_STEP_TIME = 5; // 5 seconds to every ajax step
 	const ATTRIBUTE_ID = 'attribute_%s_%s';
@@ -518,7 +518,8 @@ class OzonRuV2 extends UniversalPlugin {
 		$obApi = new OzonRuHelpers\Api($strClientId, $strApiKey, $this->intProfileId, $this->strModuleId);
 		$arQueryResult = $obApi->execute('/v2/product/info', $arJsonRequest, ['METHOD' => 'POST', 'SKIP_ERRORS' => true]);
 		unset($obApi);
-		if($arQueryResult['error']['code'] == 'NOT_FOUND_ERROR'){
+		$intOzonCodeError = 5; // 'Product not found'
+		if($arQueryResult['code'] == $intOzonCodeError){
 			$arJsonResult['Success'] = true;
 			$arJsonResult['Message'] = static::getMessage('MESSAGE_CHECK_ACCESS_SUCCESS');
 		}
@@ -528,7 +529,7 @@ class OzonRuV2 extends UniversalPlugin {
 	}
 	
 	/**
-	 *	Update category attritbutes and dictionaries
+	 *	Update category attributes and dictionaries
 	 */
 	protected function ajaxUpdateCategories($arParams, &$arJsonResult){
 		$arSession = &$_SESSION['ACRIT_EXP_OZON_CAT_ATTR_UPDATE'];
@@ -981,6 +982,8 @@ class OzonRuV2 extends UniversalPlugin {
 			$arProductInfo = $this->getOzonProductInfo($arFields['offer_id']);
 			if($arProductInfo['stocks']){
 				$arDataMore['STOCK_RESERVED'] = $arProductInfo['stocks']['reserved'];
+				$arDataMore['STOCK_RESULT'] = $arDataMore['STOCK'] - $arDataMore['STOCK_RESERVED'];
+				$arDataMore['STOCK_RESULT'] = max(0, $arDataMore['STOCK_RESULT']);
 			}
 		}
 		# Detect category id
@@ -1018,6 +1021,8 @@ class OzonRuV2 extends UniversalPlugin {
 			}
 			$arItem['category_id'] = intVal($intProductCategoryId);
 		}
+		# Handler
+		$this->handler('onOzonPrepareJson', [&$intProductCategoryId, &$arItem, &$arElement, &$arFields, &$arElementSections]);
 		# Prepare images
 		if(!$this->isStockAndPrice() && is_array($arItem['images'])){
 			$arItem['images'] = array_values($arItem['images']);
@@ -1434,6 +1439,9 @@ class OzonRuV2 extends UniversalPlugin {
 					foreach($arDataMore as $arStock){
 						if(Helper::strlen($arStock['OFFER_ID'])){
 							if(Helper::strlen($arStock['STOCK'])){
+								if($arStock['STOCK_RESULT']){
+									$arStock['STOCK'] = $arStock['STOCK_RESULT'];
+								}
 								$arStocks[] = [
 									'offer_id' => strVal($arStock['OFFER_ID']),
 									'stock' => intVal($arStock['STOCK']),
@@ -1478,6 +1486,7 @@ class OzonRuV2 extends UniversalPlugin {
 			$arPost = [
 				'stocks' => $arStocks,
 			];
+			$this->addToLog('Stocks (V1): '.print_r($arPost, true), true);
 			$this->obStocksDate = new \Bitrix\Main\Type\Datetime();
 			$arResponse = $this->API->execute('/v1/products/stocks', $arPost, ['METHOD' => 'POST']);
 			if(is_array($arResponse['result']) && !empty($arResponse['result'])){
@@ -1502,6 +1511,7 @@ class OzonRuV2 extends UniversalPlugin {
 			$arPost = [
 				'stocks' => $arStocks,
 			];
+			$this->addToLog('Stocks (V2): '.print_r($arPost, true), true);
 			$this->obStocksDate = new \Bitrix\Main\Type\Datetime();
 			$arResponse = $this->API->execute('/v2/products/stocks', $arPost, ['METHOD' => 'POST']);
 			if(is_array($arResponse['result']) && !empty($arResponse['result'])){

@@ -5,7 +5,7 @@ $APPLICATION->SetTitle("О Компании");?><div style="text-align: left; padding-lef
 </div>
  <img width="1024" alt="topbg2.jpg" src="/upload/medialibrary/4cb/4cb11cbea367bbdc03c0b08df5ef6450.jpg" height="69" title="topbg2.jpg" align="middle"><br>
  <br>
- &nbsp; Здравствуйте, уважаемые покупатели и партнеры. Мы рады приветствовать в нашем&nbsp;<a href="http://www.rusmarta.ru/">интернет-магазине систем безопасности</a>&nbsp;и тех, кто только собирается что-то приобрести, и тех, кто уже несколько лет с нами. Запустив проект в 2009-м году, основатели компании «Rusmarta» делают все возможное, чтобы покупка продукции нашего интернет-магазина доставляла вам приятные впечатления и осуществлялась с максимальным для вас комфортом.
+ &nbsp; Здравствуйте, уважаемые покупатели и партнеры. Мы рады приветствовать в нашем&nbsp; интернет-магазине систем безопасности&nbsp;и тех, кто только собирается что-то приобрести, и тех, кто уже несколько лет с нами. Запустив проект в 2009-м году, основатели компании «Rusmarta» делают все возможное, чтобы покупка продукции нашего интернет-магазина доставляла вам приятные впечатления и осуществлялась с максимальным для вас комфортом.
 <div>
 	 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>
 	 Интернет-магазин Rusmarta&nbsp;– один&nbsp;из лидеров рынка систем безопасности&nbsp;в России. Все товары в нашем магазине поступают&nbsp;к нам на склад с завода-изготовителя, либо первого импортера в РФ. <b>Это является гарантией качества и честной цены.<br>
@@ -45,4 +45,6 @@ $APPLICATION->SetTitle("О Компании");?><div style="text-align: left; padding-lef
  <br>
 	 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img width="431" alt="1013709.jpg" src="/upload/medialibrary/4bb/4bb7a21c62b956ec8a0cf54f8a0db01b.jpg" height="242" title="1013709.jpg">&nbsp;<img width="431" alt="1013711.jpg" src="/upload/medialibrary/680/68075fe324006aa2b38351f143a6e1a2.jpg" height="242" title="1013711.jpg"><br>
  <br>
-	 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img width="431" alt="1013712.jpg" src="/upload/medialibrary/e97/e972e8068deace2f33317a5fe47827ad.jpg" height="242" title="1013712.jpg">&nbsp;<img width="431" alt="1013713.jpg" src="
+	 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img width="431" alt="1013712.jpg" src="/upload/medialibrary/e97/e972e8068deace2f33317a5fe47827ad.jpg" height="242" title="1013712.jpg">&nbsp;
+</div>
+ <br>

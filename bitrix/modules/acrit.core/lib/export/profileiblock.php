@@ -714,17 +714,59 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_WEIGHT'),
 						'TYPE' => 'N',
 					),
+					'WEIGHT_KG' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_WEIGHT_KG'),
+						'TYPE' => 'N',
+						'READONLY' => true,
+						'FILTRABLE' => false,
+					),
 					'WIDTH' => array(
 						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_WIDTH'),
 						'TYPE' => 'N',
+					),
+					'WIDTH_CM' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_WIDTH_CM'),
+						'TYPE' => 'N',
+						'READONLY' => true,
+						'FILTRABLE' => false,
+					),
+					'WIDTH_M' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_WIDTH_M'),
+						'TYPE' => 'N',
+						'READONLY' => true,
+						'FILTRABLE' => false,
 					),
 					'LENGTH' => array(
 						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_LENGTH'),
 						'TYPE' => 'N',
 					),
+					'LENGTH_M' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_LENGTH_M'),
+						'TYPE' => 'N',
+						'READONLY' => true,
+						'FILTRABLE' => false,
+					),
+					'LENGTH_CM' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_LENGTH_CM'),
+						'TYPE' => 'N',
+						'READONLY' => true,
+						'FILTRABLE' => false,
+					),
 					'HEIGHT' => array(
 						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_HEIGHT'),
 						'TYPE' => 'N',
+					),
+					'HEIGHT_CM' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_HEIGHT_CM'),
+						'TYPE' => 'N',
+						'READONLY' => true,
+						'FILTRABLE' => false,
+					),
+					'HEIGHT_M' => array(
+						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_HEIGHT_M'),
+						'TYPE' => 'N',
+						'READONLY' => true,
+						'FILTRABLE' => false,
 					),
 					'VAT_ID' => array(
 						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_ID'),

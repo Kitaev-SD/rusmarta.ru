@@ -1,12 +1,5 @@
 <?$aMenuLinks = Array(
 	Array(
-		"История компании", 
-		"history/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Сертификаты и лицензии", 
 		"certificates/", 
 		Array(), 

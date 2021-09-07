@@ -139,6 +139,8 @@ class YandexMarketMedicine extends YandexMarket {
 		# Not in example
 		if(!Helper::isEmpty($arFields['OLD_PRICE']) && $arFields['OLD_PRICE'] != $arFields['PRICE'])
 			$arXmlTags['oldprice'] = Xml::addTag($arFields['OLD_PRICE']);
+		if(!Helper::isEmpty($arFields['PURCHASE_PRICE']))
+			$arXmlTags['purchase_price'] = Xml::addTag($arFields['PURCHASE_PRICE']);
 		if(!Helper::isEmpty($arFields['WEIGHT']))
 			$arXmlTags['weight'] = Xml::addTag($arFields['WEIGHT']);
 		if(!Helper::isEmpty($arFields['DIMENSIONS']))

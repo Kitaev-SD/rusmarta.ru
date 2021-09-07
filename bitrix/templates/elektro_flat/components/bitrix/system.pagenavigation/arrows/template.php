@@ -8,7 +8,158 @@ if(!$arResult["NavShowAlways"]) {
 	if($arResult["NavRecordCount"] == 0 || ($arResult["NavPageCount"] == 1 && $arResult["NavShowAll"] == false))
 		return;
 }?>
+<style type="text/css">
+	.ajax_load_btn {
+	    text-align: center;
+	    margin: 15px 0px 0px;
+	    border: 1px solid #dee0ee;
+	    cursor: pointer;
+	    float: left;
+	    width: calc(100% - 20px);
+	    //border-right: none;
+	    //border-left: none;
+	}
+	.ajax_loading_btn {
+	    text-align: center;
+	    margin: 15px 0px 0px;
+	    float: left;
+	    width: calc(100% - 20px);
+	    display: none;
+	}
+	.ajax_load_btn:hover {
+	    border-color: #346699;
+	}
+	.more_text_ajax {
+	    font-size: 13px;
+	    line-height: 20px;
+	    font-weight: 400;
+	    cursor: pointer;
+	    display: inline-block;
+	    position: relative;
+	    padding: 15px 0px 15px 34px;
+	    color: #333;
 
+	}
+	.more_text_ajax:after {
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 19px;
+	    height: 19px;
+	    left: 5px;
+	    margin-top: -10px;
+	    top: 50%;
+	    background: #ddd url(<?= SITE_TEMPLATE_PATH;?>/images/Show_more.svg) center no-repeat;
+	    -webkit-transition: background 0.7s ease-in-out;
+	    -moz-transition: background 0.7s ease-in-out;
+	    -o-transition: background 0.7s ease-in-out;
+	    transition: background 0.7s ease-in-out;
+	    background-color: #346699;
+	    -webkit-box-sizing: border-box;
+    	-moz-box-sizing: border-box;
+	    box-sizing: border-box;
+
+	}
+	.ajax_loading_btn .more_text_ajax:after {
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 19px;
+	    height: 19px;
+	    left: 5px;
+	    margin-top: -10px;
+	    top: 50%;
+	    background: #ddd url(<?= SITE_TEMPLATE_PATH;?>/images/Show_more.svg) center no-repeat;
+	    -webkit-transition: background 0.7s ease-in-out;
+	    -moz-transition: background 0.7s ease-in-out;
+	    -o-transition: background 0.7s ease-in-out;
+	    transition: background 0.7s ease-in-out;
+	    background-color: #346699;
+	    -webkit-box-sizing: border-box;
+    	-moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	}
+	.ajax_loading_btn.__loading .more_text_ajax:after {
+		-webkit-animation: spinner .5s ease-out 10000;
+	    animation: spinner .5s ease 10000;
+	    -webkit-transform-style: preserve-3d;
+	    -moz-transform-style: preserve-3d;
+	    -ms-transform-style: preserve-3d;
+	    transform-style: preserve-3d;
+	}
+	.ajax_load_btn:hover .more_text_ajax{
+		color: #346699;
+	}
+	.ajax_load_btn:hover .more_text_ajax:after {
+	    -webkit-animation: spinner .5s ease-out 1;
+	    animation: spinner .5s ease 1;
+	    -webkit-transform-style: preserve-3d;
+	    -moz-transform-style: preserve-3d;
+	    -ms-transform-style: preserve-3d;
+	    transform-style: preserve-3d;
+	}
+	/* WebKit Opera */
+	@-webkit-keyframes spinner{
+		from{
+			-webkit-transform:rotate(0deg);
+		}
+		to{
+			-webkit-transform:rotate(360deg);
+		}
+	}
+	/* Other */
+	@keyframes spinner{
+		from{
+			-moz-transform:rotate(0deg);
+			-ms-transform:rotate(0deg);
+			transform:rotate(0deg);
+		}
+		to{
+			-moz-transform:rotate(360deg);
+			-ms-transform:rotate(360deg);
+			transform:rotate(360deg);
+		}
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('body').on('click', '.ajax_load_btn', function(){
+			var next_page = $('#navigation_1_next_page').attr('href');
+			var pagination = $('.pagination');
+			$.ajax({
+				url: next_page,
+				beforeSend: function(){
+	                $(".pagination").remove();
+	                $(".ajax_load_btn").remove();
+	                $(".ajax_loading_btn").addClass('__loading').show();
+	            },
+				success: function(data) {
+					items = $(data).find('.catalog-item-card');
+					items.each(function(i,e){
+						$(this).find('[data-lazy-src]').each(function(){
+							$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('data-lazy-src');
+						})
+					});
+					pagination = $(data).find('.pagination');
+					ajax_load_btn = $(data).find('.ajax_load_btn');
+					$(".ajax_loading_btn").removeClass('__loading').hide();
+					$('.ajax_loading_btn').before(items);
+					if (pagination.find('#navigation_1_next_page').length >0){
+						$('#catalog').append(ajax_load_btn);
+					}
+					$('#catalog').append(pagination);
+					history.pushState(null, null, window.location.origin+next_page);
+				}
+			})
+		})
+	})
+</script>
+<div class="ajax_loading_btn">
+	<span class="more_text_ajax"></span>
+</div>
+<div class="ajax_load_btn">
+	<span class="more_text_ajax">Показать еще</span>
+</div>
 <div class="pagination">	
 	<?$strNavQueryString = ($arResult["NavQueryString"] != "" ? $arResult["NavQueryString"]."&amp;" : "");
 	$strNavQueryStringFull = ($arResult["NavQueryString"] != "" ? "?".$arResult["NavQueryString"] : "");

@@ -35,7 +35,7 @@ abstract class Plugin {
 	protected static $strStaticModuleId = null;
 	protected static $bSubclass = false;
 
-	# Ð”Ð°Ñ‚Ð° Ð°ÐºÑ‚ÑƒÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¸Ð½Ñ‚ÐµÐ³Ñ€Ð°Ñ†Ð¸Ð¸ Ð¿Ð»Ð°Ð³Ð¸Ð½Ð° Ñ Ð¾Ð½Ð»Ð°Ð¹Ð½-ÑÐµÑ€Ð²Ð¸ÑÐ¾Ð¼
+	# Äàòà àêòóàëèçàöèè èíòåãðàöèè ïëàãèíà ñ îíëàéí-ñåðâèñîì
 	CONST DATE_UPDATED = NULL;
 
 	protected $strModuleId = null;
@@ -102,10 +102,24 @@ abstract class Plugin {
 	}
 
 	/**
-	 *	Is it possible to get the total number of items?
+	 * Is it possible to get the total number of items?
 	 */
 	public function isCountable(){
 		return $this->isCountable;
+	}
+
+	/**
+	 * Can it work with the goods
+	 */
+	public function hasProducts(){
+		return true;
+	}
+
+	/**
+	 * Get comment for the tab
+	 */
+	public function getTabComment($tab){
+		return '';
 	}
 
 	/**

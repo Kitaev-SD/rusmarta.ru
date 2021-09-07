@@ -1045,7 +1045,7 @@ class WildberriesV2 extends UniversalPlugin {
 						$strKey = 'value';
 						if($arAttribute['IS_NUMBER'] == 'Y'){
 							$strKey = 'count';
-							$strValue = intVal($strValue);
+							$strValue = floatVal($strValue);
 						}
 						$arValueItem = [
 							$strKey => $strValue,
@@ -1775,6 +1775,12 @@ class WildberriesV2 extends UniversalPlugin {
 	public function getProcessEntities(&$bProcessElement, &$bProcessOffers, $arProfile, $intIBlockID, $arElement){
 		$this->bOriginalProcessElement = $bProcessElement;
 		$this->bOriginalProcessOffers = $bProcessOffers;
+		if($arCatalog = Helper::getCatalogArray($intIBlockID)){ # If iblock has no offers, set element=true, offer=false
+			if(!$arCatalog['OFFERS_IBLOCK_ID']){
+				$this->bOriginalProcessElement = true;
+				$this->bOriginalProcessOffers = false;
+			}
+		}
 		if(!$this->isOffersNewMode()){
 			$bProcessElement = true;
 		}

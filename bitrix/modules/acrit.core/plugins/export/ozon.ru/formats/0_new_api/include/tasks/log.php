@@ -35,10 +35,12 @@ while($arTask = $resTasks->fetch()){
 $obNav = new \Bitrix\Main\UI\AdminPageNavigation('acrit-exp-nav-tasks');
 $arQuery = [
 	'filter' => $arTasksFilter,
+	'select' => ['CNT'],
+	'runtime' => array(
+		new \Bitrix\Main\Entity\ExpressionField('CNT', 'COUNT(*)'),
+	)
 ];
-$resTasks = Task::getList($arQuery);
-$obNav->setRecordCount($resTasks->getSelectedRowsCount());
-unset($resTasks);
+$obNav->setRecordCount(Task::getList($arQuery)->fetch()['CNT']);
 $obNav->setCurrentPage($arNavParams['page']);
 $obNav->setPageSize($arNavParams['size']);
 ?>

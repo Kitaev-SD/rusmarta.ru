@@ -596,6 +596,15 @@ abstract class ValueBase {
 				}
 				$mResult = $strVatValue;
 			}
+			# Weight, length, width, height
+			elseif(preg_match('#^CATALOG_(WEIGHT|LENGTH|WIDTH|HEIGHT)_(CM|M|KG)$#', $strFieldValue, $arMatch)){
+				$arDivider = [
+					'CM' => 100,
+					'M' => 1000,
+					'KG' => 1000,
+				];
+				$mResult = floatVal($arFields['CATALOG_'.$arMatch[1]]) / $arDivider[$arMatch[2]];
+			}
 			# Is catalog field?
 			elseif(preg_match('#^CATALOG_(.*?)$#', $strFieldValue, $arMatch)){
 				switch($arMatch[1]){

@@ -16,14 +16,14 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"GSM Розетки", 
-		"/market/gsm_rozetka/", 
+		"/market/umnyj-dom/kontrollery-upravleniya-pitaniem/rozetki/gsm-rozetki/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"GSM Сигнализации", 
-		"/market/gsm_signalizacii1/", 
+		"/market/signalizatsii/okhrannye-signalizatsii/gsm_signalizacii1/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -37,14 +37,14 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"GPS Трекеры Маяки", 
-		"/market/gps-trekkery1/", 
+		"/market/gps-trekery/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Видеодомофоны", 
-		"/market/videodomofony1/", 
+		"/market/videodomofony/", 
 		Array(), 
 		Array(), 
 		"" 

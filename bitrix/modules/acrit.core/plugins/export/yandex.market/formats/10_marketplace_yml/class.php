@@ -441,6 +441,7 @@ class YandexMarketplaceYml extends UniversalPlugin {
 				}
 			}
 		}
+		$arResult = ['skus' => $arResult];
 		print Json::output($arResult);
 		die();
 	}

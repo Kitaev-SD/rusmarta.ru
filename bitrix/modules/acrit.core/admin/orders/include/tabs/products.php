@@ -8,14 +8,31 @@ Loc::loadMessages(__FILE__);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$obTabControl->AddSection('HEADING_PRODUCTS_TBLCMPR', Loc::getMessage('ACRIT_CRM_TAB_PRODUCTS_HEADING'));
-
-
-// Default payment type
-$obTabControl->BeginCustomField('PROFILE[PRODUCTS][search_fields]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_SEARCH_FIELD'));
-$iblock_list = Products::getIblockList(true);
-$ext_search_field = $obPlugin->getIdField();
+if ($obPlugin->getTabComment('products')) {
+    $obTabControl->BeginCustomField('PROFILE[PRODUCTS][tab_message]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_TAB_MESSAGE'));
 ?>
+    <tr>
+        <td colspan="2">
+            <div id="acrit-module-update-notifier">
+                <div class="acrit-exp-note-compact">
+                    <div class="adm-info-message-wrap">
+                        <div class="adm-info-message"><?=$obPlugin->getTabComment('products');?></div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+<?
+    $obTabControl->EndCustomField('PROFILE[PRODUCTS][tab_message]');
+}
+
+if ($obPlugin->hasProducts()) {
+    $obTabControl->AddSection('HEADING_PRODUCTS_TBLCMPR', Loc::getMessage('ACRIT_CRM_TAB_PRODUCTS_HEADING'));
+    $obTabControl->BeginCustomField('PROFILE[PRODUCTS][search_fields]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_SEARCH_FIELD'));
+    $iblock_list = Products::getIblockList(true);
+    $ext_search_field = $obPlugin->getIdField();
+?>
+<?if($ext_search_field):?>
     <tr>
         <td colspan="2">
             <div id="acrit-module-update-notifier">
@@ -27,6 +44,20 @@ $ext_search_field = $obPlugin->getIdField();
             </div>
         </td>
     </tr>
+<?endif;?>
+    <?if($ext_search_field):?>
+    <tr>
+        <td colspan="2">
+            <div id="acrit-module-update-notifier">
+                <div class="acrit-exp-note-compact">
+                    <div class="adm-info-message-wrap">
+                        <div class="adm-info-message"><?=Loc::getMessage('ACRIT_CRM_TAB_BASIC_SEARCH_EXT_ID', ['#ID#' => $ext_search_field['id'], '#NAME#' => $ext_search_field['name']]);?></div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <?endif;?>
     <tr id="tr_products_search_fields">
         <td>
             <label for="field_products_search_fields">
@@ -67,9 +98,9 @@ $ext_search_field = $obPlugin->getIdField();
             </table>
         </td>
     </tr>
-	<?
-$obTabControl->EndCustomField('PROFILE[PRODUCTS][search_fields]');
-
+<?
+    $obTabControl->EndCustomField('PROFILE[PRODUCTS][search_fields]');
+}
 
 /*// Block for compare table of products
 $obTabControl->BeginCustomField('PROFILE[PRODUCTS][table_compare]', Loc::getMessage('ACRIT_CRM_PRODUCTS_TBLCMPR'));
