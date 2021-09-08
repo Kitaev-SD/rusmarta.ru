@@ -48,3 +48,4 @@ $APPLICATION->SetTitle("О Компании");?><div style="text-align: left; padding-lef
 	 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img width="431" alt="1013712.jpg" src="/upload/medialibrary/e97/e972e8068deace2f33317a5fe47827ad.jpg" height="242" title="1013712.jpg">&nbsp;
 </div>
  <br>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
