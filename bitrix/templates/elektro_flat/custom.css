@@ -35,6 +35,9 @@ li .last a.last2{
     margin: 0px!important;
     padding: 0px 0px 0px 0px!important;
 }
+.left-slider .last {
+	width: auto !important;
+}
 .last ul{
    line-height:20px;
 }
