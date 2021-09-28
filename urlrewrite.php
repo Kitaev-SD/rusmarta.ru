@@ -112,6 +112,14 @@ $arUrlRewrite=array (
     'PATH' => '/vendors/index.php',
     'SORT' => 100,
   ),
+  51 => 
+  array (
+    'CONDITION' => '#^/support/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/support/index.php',
+    'SORT' => 100,
+  ),
   49 => 
   array (
     'CONDITION' => '#^/market/#',

@@ -10,7 +10,7 @@ if(count($arResult["ITEMS"]) < 1)
 	<a class="reviews-block__all-reviews top" href="<?=str_replace('#SITE_DIR#', SITE_DIR, $arResult['LIST_PAGE_URL']);?>"><?=GetMessage("ALL_REVIEWS")?></a>
 	<div class="reviews-block__items"> 
 		<?foreach($arResult["ITEMS"] as $arItem):?>
-			<a class="reviews-block__item" href="<?=$arItem["DETAIL_PAGE_URL"]?>">
+			<a class="reviews-block__item" href="<?='/support/'.$arItem["CODE"]?>">
 				<span class="reviews-block__item-block">
 					<span class="data-lazy-background reviews-block__item-image"<?=($arItem["PREVIEW_PICTURE"]["SRC"] ? " data-lazy-background=\"background-image:url('".$arItem["PREVIEW_PICTURE"]["SRC"]."');\"" : "");?>></span>
 				</span>
