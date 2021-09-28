@@ -53,7 +53,19 @@ $containerName = "container-".$id;?>
 	</div>
 	<div class="clr"></div>
 </div>
-
+<script>
+	function add2cart_gtag_ci(id, price){
+		console.log('add_to_cart', id, price);
+	    gtag('event', 'add_to_cart', {
+	        'send_to': 'AW-977520268',
+	        'value': price,
+	        'items': [{
+	            'id': id,
+	            'google_business_vertical': 'retail'
+	        }]
+	    });
+	}
+</script>
 <?$signer = new \Bitrix\Main\Security\Sign\Signer;
 $signedTemplate = $signer->sign($templateName, "catalog.section");
 $signedParams = $signer->sign(base64_encode(serialize($arResult["ORIGINAL_PARAMETERS"])), "catalog.section");?>

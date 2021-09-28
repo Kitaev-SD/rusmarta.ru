@@ -90,7 +90,7 @@ use \Bitrix\Main\Localization\Loc;?>
 							</span>
 						<?}
 					}?>
-					<span class="catalog-item-price">
+					<span class="catalog-item-price" 111>
 						<?=($arElement["TOTAL_OFFERS"]["FROM"] == "Y" ? "<span class='from'>".Loc::getMessage("CT_BCS_BIGDATA_ELEMENT_FROM")."</span> " : "").number_format($arElement["TOTAL_OFFERS"]["MIN_PRICE"]["RATIO_PRICE"], $arCurFormat["DECIMALS"], $arCurFormat["DEC_POINT"], $arCurFormat["THOUSANDS_SEP"]);?>
 						<span class="unit">
 							<?=$currency?>
@@ -132,7 +132,7 @@ use \Bitrix\Main\Localization\Loc;?>
 							</span>
 						<?}
 					}?>
-					<span class="catalog-item-price">
+					<span class="catalog-item-price" 222>
 						<?if(count($arElement["ITEM_QUANTITY_RANGES"]) > 1 && $inMinPrice) {?>
 							<span class="from"><?=Loc::getMessage("CT_BCS_BIGDATA_ELEMENT_FROM")?></span>
 						<?}
@@ -321,7 +321,7 @@ use \Bitrix\Main\Localization\Loc;?>
 					<a href="javascript:void(0)" class="minus" id="quantity_minus_<?=$itemIds['ID']?>"><span>-</span></a>
 					<input type="text" id="quantity_<?=$itemIds['ID']?>" name="quantity" class="quantity" value="<?=$arElement['TOTAL_OFFERS']['MIN_PRICE']['MIN_QUANTITY']?>"/>
 					<a href="javascript:void(0)" class="plus" id="quantity_plus_<?=$itemIds['ID']?>"><span>+</span></a>
-					<button type="button" id="<?=$itemIds['PROPS_BTN']?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=($arSetting["NAME_BUTTON_TO_CART"] ? $arSetting["NAME_BUTTON_TO_CART"] : Loc::getMessage("CT_BCS_BIGDATA_ELEMENT_ADD_TO_CART"))?></span></button>
+					<button type="button" id="<?=$itemIds['PROPS_BTN']?>" class="btn_buy" name="add2basket" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');  add2cart_gtag_ci(<?=$arElement['ID']?>,<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>);"><i class="fa fa-shopping-cart"></i><span><?=($arSetting["NAME_BUTTON_TO_CART"] ? $arSetting["NAME_BUTTON_TO_CART"] : Loc::getMessage("CT_BCS_BIGDATA_ELEMENT_ADD_TO_CART"))?></span></button>
 				</form>
 			</div>
 		<?//ITEM_AVAILABILITY_BUY//
@@ -383,7 +383,7 @@ use \Bitrix\Main\Localization\Loc;?>
 									<input type="hidden" name="PROPS" value="<?=$props?>" />
 								<?}
 							}?>
-							<button type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $itemIds['PROPS_BTN'] : $itemIds['BTN_BUY']);?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=($arSetting["NAME_BUTTON_TO_CART"] ? $arSetting["NAME_BUTTON_TO_CART"] : Loc::getMessage("CT_BCS_BIGDATA_ELEMENT_ADD_TO_CART"))?></span></button>
+							<button type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $itemIds['PROPS_BTN'] : $itemIds['BTN_BUY']);?>" class="btn_buy" name="add2basket" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');  add2cart_gtag_ci(<?=$arElement['ID']?>,<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>);"><i class="fa fa-shopping-cart"></i><span><?=($arSetting["NAME_BUTTON_TO_CART"] ? $arSetting["NAME_BUTTON_TO_CART"] : Loc::getMessage("CT_BCS_BIGDATA_ELEMENT_ADD_TO_CART"))?></span></button>
 						</form>
 					<?}
 				} elseif(!$arElement["CAN_BUY"]) {

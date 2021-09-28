@@ -313,7 +313,7 @@ $inProductQnt = in_array("PRODUCT_QUANTITY", $arSetting["GENERAL_SETTINGS"]["VAL
 										<input type="text" id="quantity_<?=$arItemIDs['ID']?>" name="quantity" class="quantity" value="<?=$arElement['TOTAL_OFFERS']['MIN_PRICE']['MIN_QUANTITY']?>"/>
 										<a href="javascript:void(0)" class="plus" id="quantity_plus_<?=$arItemIDs['ID']?>"><span>+</span></a>
 									</div>
-									<button type="button" id="<?=$arItemIDs['PROPS_BTN']?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i></button>
+									<button type="button" id="<?=$arItemIDs['PROPS_BTN']?>" class="btn_buy" name="add2basket" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');  add2cart_gtag_sp(<?=$arElement['ID']?>,<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>);"><i class="fa fa-shopping-cart"></i></button>
 								</form>
 							</div>
 						<?//ITEM_BUY//
@@ -347,7 +347,7 @@ $inProductQnt = in_array("PRODUCT_QUANTITY", $arSetting["GENERAL_SETTINGS"]["VAL
 													<input type="hidden" name="PROPS" value="<?=$props?>" />
 												<?}
 											}?>
-											<button type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $arItemIDs['PROPS_BTN'] : $arItemIDs['BTN_BUY']);?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i></button>
+											<button type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $arItemIDs['PROPS_BTN'] : $arItemIDs['BTN_BUY']);?>" class="btn_buy" name="add2basket" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');  add2cart_gtag_sp(<?=$arElement['ID']?>,<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>);"><i class="fa fa-shopping-cart"></i></button>
 										</form>
 									</div>
 								<?}
@@ -486,4 +486,17 @@ $inProductQnt = in_array("PRODUCT_QUANTITY", $arSetting["GENERAL_SETTINGS"]["VAL
 			var <?=$strObName?> = new JCCatalogSectionPrice(<?=CUtil::PhpToJSObject($arJSParams, false, true);?>);
 		<?}?>
 	});
+</script>
+<script>
+	function add2cart_gtag_sp(id, price){
+		console.log('add_to_cart', id, price);
+	    gtag('event', 'add_to_cart', {
+	        'send_to': 'AW-977520268',
+	        'value': price,
+	        'items': [{
+	            'id': id,
+	            'google_business_vertical': 'retail'
+	        }]
+	    });
+	}
 </script>

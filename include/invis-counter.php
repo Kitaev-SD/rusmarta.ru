@@ -107,16 +107,7 @@
           ga('create', 'UA-59688382-1', 'auto');
           ga('send', 'pageview');
 
-          // <!-- Global site tag (gtag.js) - Google Analytics -->
-
-          window.dataLayer = window.dataLayer || [];
-
-          function gtag() {
-          dataLayer.push(arguments);
-          }
-          gtag('js', new Date());
-
-          gtag('config', 'UA-59688382-1');
+          
 
           (function(w, d, s, h, id) {
             w.roistatProjectId = id; w.roistatHost = h;
@@ -139,6 +130,19 @@
       }, 100);
     }
   });
+// <!-- Global site tag (gtag.js) - Google Analytics -->
+
+          
+</script>
+<script type="text/javascript" data-skip-moving="true">
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+    dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-59688382-1');
 </script>
 
 <!-- /Yandex.Metrika counter (noscript) -->

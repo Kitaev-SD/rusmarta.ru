@@ -514,7 +514,7 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 									<a href="javascript:void(0)" class="minus" id="quantity_minus_<?=$arItemIDs['ID']?>"><span>-</span></a>
 									<input type="text" id="quantity_<?=$arItemIDs['ID']?>" name="quantity" class="quantity" value="<?=$arElement['TOTAL_OFFERS']['MIN_PRICE']['MIN_QUANTITY']?>"/>
 									<a href="javascript:void(0)" class="plus" id="quantity_plus_<?=$arItemIDs['ID']?>"><span>+</span></a>
-									<button type="button" id="<?=$arItemIDs['PROPS_BTN']?>" class="btn_buy" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click') return true;"  name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
+									<button type="button" id="<?=$arItemIDs['PROPS_BTN']?>" class="btn_buy" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click'); add2cart_gtag_bs(<?=$arItemIDs['ID']?>,<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>); return true;"  name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
 								</form>
 							</div>
 						<?//ITEM_AVAILABILITY_BUY//
@@ -565,7 +565,7 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 													<input type="hidden" name="PROPS" value="<?=$props?>" />
 												<?}
 											}?>
-											<button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');"  type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $arItemIDs['PROPS_BTN'] : $arItemIDs['BTN_BUY']);?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
+											<button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click'); add2cart_gtag_bs(<?=$arItemIDs['ID']?>,<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>);"  type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $arItemIDs['PROPS_BTN'] : $arItemIDs['BTN_BUY']);?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
 										<script>
                                             $('.btn_buy').click(function () {
                                                 fbq('track', 'AddToCart'); 
@@ -717,4 +717,17 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 			var <?=$strObName?> = new JCCatalogSectionTable(<?=CUtil::PhpToJSObject($arJSParams, false, true);?>);
 		<?}?>
 	});
+</script>
+<script>
+	function add2cart_gtag_bs(id, price){
+		console.log('add_to_cart', id, price);
+	    gtag('event', 'add_to_cart', {
+	        'send_to': 'AW-977520268',
+	        'value': price,
+	        'items': [{
+	            'id': id,
+	            'google_business_vertical': 'retail'
+	        }]
+	    });
+	}
 </script>

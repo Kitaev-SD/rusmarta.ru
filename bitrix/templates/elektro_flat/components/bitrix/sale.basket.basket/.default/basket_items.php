@@ -230,3 +230,16 @@ use Bitrix\Sale\DiscountCouponsManager;?>
 		ShowNote(GetMessage("SALE_NO_ACTIVE_PRD"), "infotext");
 	endif;?>
 </div>
+<?
+$basketItems =[];
+foreach($arResult["ITEMS"]["AnDelCanBuy"] as $arBasketItems) {
+	$basketItems[]= ["id"=>$arBasketItems['ID'],"google_business_vertical"=>"retail"];
+}
+?>
+<script>
+	gtag('event', 'add_to_cart', {
+	'send_to': 'AW-977520268',
+	'value': <?=$arResult["allSum"]?>,
+	'items': <?=json_encode($basketItems)?>
+	});
+</script>

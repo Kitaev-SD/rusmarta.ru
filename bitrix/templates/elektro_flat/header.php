@@ -100,13 +100,16 @@ Loc::loadMessages(__FILE__); ?>
 	<? if (CModule::IncludeModule("altop.elektroinstrument")) {
 		CElektroinstrument::getBackground(SITE_ID);
 	} ?>
-	<link rel="preconnect" href="https://antisovetnic.ru">
-	<link rel="preload" href="https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc" as="script">
-	<script type="text/javascript" async src="https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc"></script>
+	<?/*<link rel="preconnect" href="https://antisovetnic.ru">
+	<link rel="preload" href="https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc" as="script">*/?>
+	<script type="text/javascript" async data-skip-moving="true" src="https://antisovetnic.ru/anti/325bc5775da0a7522d345f14ca5ce6cc"></script>
 	<link rel="preconnect" href="https://cdn.carrotquest.io">
 	<link rel="preload" href="/upload/uf/c8d/fon_AHD_03.png" as="image">
 	<link rel="preload" href="/bitrix/js/ui/fonts/opensans/opensans-regular.woff" as="font" type="font/woff" crossorigin="anonymous">
 	<link rel="preload" href="/bitrix/templates/elektro_flat/css/awesome_bootstrap/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+	<script type="text/javascript">
+		BX.Event.EventEmitter.defaultMaxListeners = 0;
+	</script>
 </head>
 
 <body <?= $APPLICATION->ShowProperty("bgClass") ?><?= $APPLICATION->ShowProperty("backgroundColor") ?><?= $APPLICATION->ShowProperty("backgroundImage") ?>>

@@ -25,6 +25,22 @@
             ]
         });
     </script>
+    <script>
+        gtag('event', 'purchase', {
+            'send_to': 'AW-977520268',
+            'value': <?=$arResult["ORDER"]['PRICE']?>,
+            'items': [
+                <?
+                $basItems=CSaleBasket::GetList(array(),array('ORDER_ID'=>$arResult["ORDER"]['ID']));
+                while($basItem=$basItems->Fetch()){?>
+                {
+                    'id': '<?=$basItem['PRODUCT_ID']?>',
+                    'google_business_vertical': 'retail'
+                },
+                <?}?>
+            ]
+        });
+    </script>
 <?//}
 unset($_SESSION['GA_ON']); // ������� ����� ���������� ������� ����������, ����� �� ���� ������
 ?>

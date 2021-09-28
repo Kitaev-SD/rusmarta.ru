@@ -268,6 +268,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 //CATALOG_DETAIL//?>
 <script>
     gtag('event', 'view_item', {
+        'send_to': 'AW-977520268',
         'ecomm_pagetype': 'product',
         'ecomm_prodid': '<?=$arResult['ID']?>', // ������������� ������
         'ecomm_totalvalue': '<?=$arResult['PRICES']['BASE']['DISCOUNT_VALUE_VAT']?>', // ��������� ������
@@ -1092,7 +1093,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                                             <?if(!empty($arResult["SELECT_PROPS"])) {?>
                                                                 <input type="hidden" name="SELECT_PROPS" id="select_props_<?=$arItemIDs['ID'].'_'.$arOffer['ID']?>" value="" />
                                                             <?}?>
-                                                            <button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');" type="button" class="btn_buy detail" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage('CATALOG_ELEMENT_ADD_TO_CART')?></span></button>
+                                                            <button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click'); add2cart_gtag_el();" type="button" class="btn_buy detail" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage('CATALOG_ELEMENT_ADD_TO_CART')?></span></button>
                                                         </form>
                                                         <?//OFFERS_BUY_ONE_CLICK//
                                                         if($inBtnBoc) {?>
@@ -1131,7 +1132,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                                     });
                                                 });
                                             </script>
-                                            <button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');" class="btn_buy detail" name="choose_offer"><?=GetMessage('CATALOG_ELEMENT_CHOOSE_OFFER')?></button>
+                                            <button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click'); add2cart_gtag_el();" class="btn_buy detail" name="choose_offer"><?=GetMessage('CATALOG_ELEMENT_CHOOSE_OFFER')?></button>
                                         </div>
                                     <?}
                                     } else {
@@ -1185,7 +1186,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                                         if(!empty($arResult["SELECT_PROPS"])) {?>
                                                             <input type="hidden" name="SELECT_PROPS" id="select_props_<?=$arItemIDs['ID']?>" value="" />
                                                         <?}?>
-                                                        <button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');" type="button" id="<?=$arItemIDs['BTN_BUY']?>" class="btn_buy detail" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage('CATALOG_ELEMENT_ADD_TO_CART')?></span></button>
+                                                        <button onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click'); add2cart_gtag_el();" type="button" id="<?=$arItemIDs['BTN_BUY']?>" class="btn_buy detail" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage('CATALOG_ELEMENT_ADD_TO_CART')?></span></button>
                                                     </form>
                                                     <?//DETAIL_BUY_ONE_CLICK//
                                                     if($inBtnBoc) {?>
@@ -1952,4 +1953,25 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                 });
                 /*end vp*/
 
+            </script>
+            <script>
+                gtag('event', 'view_item', {
+                    'send_to': 'AW-977520268',
+                    'value': <?=$arResult["MIN_PRICE"]["PRICE"]?>,
+                    'items': [{
+                        'id': '<?=$arResult["ID"]?>',
+                        'google_business_vertical': 'retail'
+                    }]
+                });
+                function add2cart_gtag_el(){
+                    console.log('add2cart_gtag_el');
+                    gtag('event', 'add_to_cart', {
+                        'send_to': 'AW-977520268',
+                        'value': <?=$arResult["MIN_PRICE"]["PRICE"]?>,
+                        'items': [{
+                            'id': '<?=$arResult["ID"]?>',
+                            'google_business_vertical': 'retail'
+                        }]
+                    });
+                }
             </script>

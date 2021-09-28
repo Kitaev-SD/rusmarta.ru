@@ -14035,3 +14035,7 @@ table.compare-grid .delay .catalog-item-delayed i:nth-child(2){
 display: inline-block;
     margin-left: 15px;
 }
+@media (max-width: 768px) {
+	#telephone-html a {text-decoration: none;color: #fff}
+	#telephone-html span span{color: #fff !important;opacity: 1 !important;}
+}

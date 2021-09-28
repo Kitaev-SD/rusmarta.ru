@@ -459,7 +459,7 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 									<a href="javascript:void(0)" class="minus" id="quantity_minus_<?=$arItemIDs['ID']?>"><span>-</span></a>
 									<input type="text" id="quantity_<?=$arItemIDs['ID']?>" name="quantity" class="quantity" value="<?=$arElement['TOTAL_OFFERS']['MIN_PRICE']['MIN_QUANTITY']?>"/>
 									<a href="javascript:void(0)" class="plus" id="quantity_plus_<?=$arItemIDs['ID']?>"><span>+</span></a>
-									<button type="button" id="<?=$arItemIDs['PROPS_BTN']?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
+									<button type="button" id="<?=$arItemIDs['PROPS_BTN']?>" class="btn_buy" name="add2basket" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');  add2cart_gtag_sc(<?=$arElement['ID']?>);"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
 								</form>
 							</div>
 						<?//ITEM_AVAILABILITY_BUY//
@@ -510,7 +510,7 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 													<input type="hidden" name="PROPS" value="<?=$props?>" />
 												<?}
 											}?>
-											<button type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $arItemIDs['PROPS_BTN'] : $arItemIDs['BTN_BUY']);?>" class="btn_buy" name="add2basket"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
+											<button type="button" id="<?=(isset($arElement['SELECT_PROPS']) && !empty($arElement['SELECT_PROPS']) ? $arItemIDs['PROPS_BTN'] : $arItemIDs['BTN_BUY']);?>" class="btn_buy" name="add2basket" onclick="ym(22745254,'reachGoal','addcart'); ga('send', 'event', 'addcart', 'click');  add2cart_gtag_sc(<?=$arElement['ID']?>);"><i class="fa fa-shopping-cart"></i><span><?=GetMessage("CATALOG_ELEMENT_ADD_TO_CART")?></span></button>
 										</form>
 									<?}
 								} elseif(!$arElement["CAN_BUY"]) {
@@ -652,4 +652,17 @@ $signedParams = $signer->sign(base64_encode(serialize($arResult["ORIGINAL_PARAME
 			var <?=$strObName?> = new JCCatalogCollectionProducts(<?=CUtil::PhpToJSObject($arJSParams, false, true);?>);
 		<?}?>
 	});
+</script>
+<script>
+	function add2cart_gtag_sc(id){
+		console.log('add_to_cart', id);
+	    gtag('event', 'add_to_cart', {
+	        'send_to': 'AW-977520268',
+	        'value': 'replace with value',
+	        'items': [{
+	            'id': id,
+	            'google_business_vertical': 'retail'
+	        }]
+	    });
+	}
 </script>
