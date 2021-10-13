@@ -58,20 +58,13 @@ class Wildberries extends Plugin {
 	}
 
 	/**
-	 * No work with the goods
-	 */
-	public function hasProducts(){
-		return false;
-	}
-
-	/**
 	 * Get comment for the tab
 	 */
 	public function getTabComment($tab){
 	    $comment = '';
 	    switch ($tab) {
-            case 'products': $comment = Loc::getMessage(self::getLangCode('PRODUCTS_MESSAGE'));
-                break;
+//            case 'products': $comment = Loc::getMessage(self::getLangCode('PRODUCTS_MESSAGE'));
+//                break;
         }
 		return $comment;
 	}
@@ -80,7 +73,10 @@ class Wildberries extends Plugin {
 	 * Get id of products in marketplace
 	 */
 	public static function getIdField() {
-		return false;
+		return [
+			'id' => 'BARCODE',
+			'name' => Loc::getMessage('ACRIT_ORDERS_PLUGIN_WILDBERRIES_PRODUCTS_ID_FIELD_NAME'),
+		];
 	}
 
 	/**
@@ -152,7 +148,7 @@ class Wildberries extends Plugin {
 	 * @return array
 	 */
 	public function getFields() {
-		$list = [];
+		$list = parent::getFields();
 		$list[] = [
 			'id' => 'orderId',
 			'name' => Loc::getMessage(self::getLangCode('FIELDS_ORDERID')),
@@ -301,13 +297,6 @@ class Wildberries extends Plugin {
 	 */
 	public function showSettings($arProfile){
 		ob_start();
-//		$orders = $this->getOrdersIDsList(strtotime('05.08.2021 00:00:00'));
-//      $order = $this->getOrder(61842773);
-		Settings::setModuleId($this->strModuleId);
-		Controller::setModuleId($this->strModuleId);
-		Controller::setProfile($arProfile['ID']);
-//		Controller::syncExtToStore($order);
-		Controller::syncByPeriod(3600 * 24);
 		?>
         <table class="acrit-exp-plugin-settings" style="width:100%;">
             <tbody>
@@ -442,10 +431,10 @@ class Wildberries extends Plugin {
 		$orders_list = $api->getOrdersList($req_filter, 1000);
 		self::$arOrders = [];
 		foreach ($orders_list as $item) {
-			$list[] = $item['orderId'];
-			// Запоминаем заказы для getOrder (т.к. в API нет ф-ции получения отдельного заказа)
-            // Расход ОП - до 15 Мб на 1000 заказов
-			self::$arOrders[$item['orderId']] = $item;
+			$list[] = $item['id'];
+			// Remember orders for function getOrder (because The API does not have a function of receiving a separate order)
+            // RAM consumption - less than 15 Mb on 1000 orders
+			self::$arOrders[$item['id']] = $item;
 		}
 		return $list;
 	}
@@ -586,26 +575,23 @@ class Wildberries extends Plugin {
 					'VALUE' => [$mp_order['orderUID']],
 				],
 			];
-//			// Products
-//			$order['PRODUCTS'] = [];
-//			$products_list = [];
-//			if (is_array($mp_order['purchases']) && !empty($mp_order['purchases'])) {
-//				$products_list = $mp_order['purchases'];
-//			}
-//			foreach ($products_list as $item) {
-//				$order['PRODUCTS'][] = [
-//					'PRODUCT_NAME'     => $item['item_name'],
-//					'PRODUCT_CODE'     => $item['item']['article'],
-//					'PRICE'            => $item['price_with_discount'],
-//					'CURRENCY'         => 'UAH',
-//					'QUANTITY'         => $item['quantity'],
-//					'DISCOUNT_TYPE_ID' => 1,
-//					'DISCOUNT_SUM'     => 0,
-//					'MEASURE_CODE'     => 0,
-//					'TAX_RATE'         => 0,
-//					'TAX_INCLUDED'     => 'Y',
-//				];
-//			}
+			// Products
+			$order['PRODUCTS'] = [];
+			$products_list = $mp_order['products'];
+			foreach ($products_list as $item) {
+				$order['PRODUCTS'][] = [
+					'PRODUCT_NAME'     => $item['name'],
+					'PRODUCT_CODE'     => $item['barcode'],
+					'PRICE'            => $item['price'],
+					'CURRENCY'         => 'RUB',
+					'QUANTITY'         => $item['quantity'],
+					'DISCOUNT_TYPE_ID' => 1,
+					'DISCOUNT_SUM'     => 0,
+					'MEASURE_CODE'     => 0,
+					'TAX_RATE'         => 0,
+					'TAX_INCLUDED'     => 'Y',
+				];
+			}
 		}
 		return $order;
 	}

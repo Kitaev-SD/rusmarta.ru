@@ -5,6 +5,7 @@ use Bitrix\Main\Localization\Loc;
 use Yandex\Market;
 
 define('BX_SESSION_ID_CHANGE', false);
+define('NOT_CHECK_PERMISSIONS', true); // allow from crm
 
 require $_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_admin_before.php';
 

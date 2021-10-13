@@ -367,3 +367,11 @@ endif;?>
 ?>
 </div>
 <? } ?>
+<?
+$request   = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+$queryList = $request->getQueryList()->toArray();
+$get_pagen_1 = preg_grep("/PAGEN_.*/i", array_keys($queryList));
+if (!empty($get_pagen_1)) {
+    $APPLICATION->SetPageProperty("robots", 'noindex, nofollow', true);
+}
+?>

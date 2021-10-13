@@ -2,6 +2,7 @@
 
 /** @global CMain $APPLICATION */
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Config\Option;
 
 $accessLevel = (string)$APPLICATION->GetGroupRight('yandex.market');
 
@@ -100,6 +101,14 @@ if ($accessLevel > 'D')
 					'rights' => 'PT',
 				],
 				[
+					'text' => Loc::getMessage('YANDEX_MARKET_MENU_SHIPMENT_LIST'),
+					'title' => Loc::getMessage('YANDEX_MARKET_MENU_SHIPMENT_LIST'),
+					'url' => 'yamarket_trading_shipment_list.php?lang='.LANGUAGE_ID . '&service=marketplace',
+					'more_url' => [],
+					'rights' => 'PT',
+					'hidden' => (Option::get('yandex.market', 'menu_logistic', 'N') !== 'Y'),
+				],
+				[
 					'text' => Loc::getMessage('YANDEX_MARKET_MENU_SETTINGS'),
 					'title' => Loc::getMessage('YANDEX_MARKET_MENU_SETTINGS'),
 					'url' => 'yamarket_trading_list.php?lang='.LANGUAGE_ID . '&service=marketplace',
@@ -185,6 +194,16 @@ if ($accessLevel > 'D')
 	{
 		foreach ($yaRootLevel['items'] as $yaItemKey => $yaItem)
 		{
+			// hidden
+
+			if (!empty($yaItem['hidden']))
+			{
+				unset($yaRootLevel['items'][$yaItemKey]);
+				continue;
+			}
+
+			// access
+
 			$yaItemRights = isset($yaItem['rights']) ? $yaItem['rights'] : 'R';
 
 			if ($accessLevel[0] < $yaItemRights[0])

@@ -9,6 +9,7 @@ class Manager
 {
 	use Market\Reference\Concerns\HasLang;
 
+	const ENVIRONMENT_SALE_CRM = 'saleCrm';
 	const ENVIRONMENT_SALE = 'sale';
 
 	protected static $userEnvironments;
@@ -137,6 +138,7 @@ class Manager
 	protected static function getSystemEnvironments()
 	{
 		return [
+			static::ENVIRONMENT_SALE_CRM,
 			static::ENVIRONMENT_SALE,
 		];
 	}

@@ -25,6 +25,7 @@
 				BX.onCustomEvent(BX(contents), 'onYaMarketContentUpdate', [
 					{ target: contents }
 				]);
+				BX.adminPanel && BX.adminPanel.modifyFormElements(contents);
 			};
 
 			BX.addCustomEvent('onAjaxSuccessFinish', callback);
@@ -39,11 +40,21 @@
 		var contentElement = this.PARTS.CONTENT_DATA;
 		var contentHeight = contentElement.scrollHeight || contentElement.clientHeight;
 		var contentWidth = contentElement.scrollWidth || contentElement.clientWidth;
+		var windowWidth = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) * 0.9;
+		var windowHeight = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.7;
+
+		if (contentWidth > windowWidth) {
+			contentWidth = windowWidth;
+		}
 
 		if (this.PARAMS.min_width > 0 && contentWidth < this.PARAMS.min_width) {
 			contentWidth = this.PARAMS.min_width;
 		} else if (this.PARAMS.max_width > 0 && contentWidth > this.PARAMS.max_width) {
 			contentWidth = this.PARAMS.max_width;
+		}
+
+		if (contentHeight > windowHeight) {
+			contentHeight = windowHeight;
 		}
 
 		if (this.PARAMS.min_height > 0 && contentHeight < this.PARAMS.min_height) {

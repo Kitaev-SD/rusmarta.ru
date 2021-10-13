@@ -32,19 +32,6 @@ if ($obPlugin->hasProducts()) {
     $iblock_list = Products::getIblockList(true);
     $ext_search_field = $obPlugin->getIdField();
 ?>
-<?if($ext_search_field):?>
-    <tr>
-        <td colspan="2">
-            <div id="acrit-module-update-notifier">
-                <div class="acrit-exp-note-compact">
-                    <div class="adm-info-message-wrap">
-                        <div class="adm-info-message"><?=Loc::getMessage('ACRIT_CRM_TAB_BASIC_SEARCH_EXT_ID', ['#ID#' => $ext_search_field['id'], '#NAME#' => $ext_search_field['name']]);?></div>
-                    </div>
-                </div>
-            </div>
-        </td>
-    </tr>
-<?endif;?>
     <?if($ext_search_field):?>
     <tr>
         <td colspan="2">

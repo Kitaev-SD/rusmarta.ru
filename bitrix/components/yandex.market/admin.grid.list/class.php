@@ -41,6 +41,7 @@ class AdminGridList extends \CBitrixComponent
         $params['PRIMARY'] = !empty($params['PRIMARY']) ? (array)$params['PRIMARY'] : [ 'ID' ];
 		$params['ALLOW_SAVE'] = isset($params['ALLOW_SAVE']) ? (bool)$params['ALLOW_SAVE'] : true;
 		$params['PAGER_LIMIT'] = isset($params['PAGER_LIMIT']) ? (int)$params['PAGER_LIMIT'] : null;
+		$params['PAGER_FIXED'] = isset($params['PAGER_FIXED']) ? (int)$params['PAGER_FIXED'] : null;
 
         $params['PROVIDER_TYPE'] = trim($params['PROVIDER_TYPE']);
 
@@ -57,7 +58,7 @@ class AdminGridList extends \CBitrixComponent
 
         $this->initResult();
 
-        if (!$this->checkParams() || !$this->loadModules())
+        if (!$this->checkParams() || !$this->loadModules() || !$this->loadAdminLib())
         {
             $this->showErrors();
             return;
@@ -318,6 +319,20 @@ class AdminGridList extends \CBitrixComponent
         return $result;
     }
 
+    protected function loadAdminLib()
+    {
+	    global $adminSidePanelHelper;
+
+	    require_once Main\IO\Path::convertRelativeToAbsolute(BX_ROOT . '/modules/main/interface/admin_lib.php');
+
+	    if (!is_object($adminSidePanelHelper) && class_exists(\CAdminSidePanelHelper::class))
+	    {
+		    $adminSidePanelHelper = new \CAdminSidePanelHelper();
+	    }
+
+	    return true;
+    }
+
     public function setRedirectUrl($url)
 	{
 		$this->arResult['REDIRECT'] = $url;
@@ -530,7 +545,8 @@ class AdminGridList extends \CBitrixComponent
     protected function initPager($queryParams)
     {
         $result = [];
-        $navSize = null;
+
+        // size
 
         if ($this->isSubList())
         {
@@ -547,7 +563,7 @@ class AdminGridList extends \CBitrixComponent
         }
         else if ($this->useUiView())
         {
-	        $navSize = \CAdminUiResult::GetNavSize($this->arParams['GRID_ID']);
+            $navSize = \CAdminUiResult::GetNavSize($this->arParams['GRID_ID']);
         }
         else
         {
@@ -559,9 +575,28 @@ class AdminGridList extends \CBitrixComponent
 	        $navSize = $this->arParams['PAGER_LIMIT'];
         }
 
-        $navParams = \CDBResult::GetNavParams($navSize);
+	    if ($this->arParams['PAGER_FIXED'] !== null)
+	    {
+		    $navSize = $this->arParams['PAGER_FIXED'];
+	    }
 
-		if (!$navParams['SHOW_ALL'])
+	    // nav params
+
+	    if ($this->isBitrix24())
+	    {
+		    $navParams = [
+			    'PAGEN' => $this->getBitrix24NavigationPage($navSize),
+			    'SIZEN' => $navSize,
+		    ];
+	    }
+	    else
+	    {
+		    $navParams = \CDBResult::GetNavParams($navSize);
+	    }
+
+	    // query parameters
+
+	    if (!$navParams['SHOW_ALL'])
 		{
 			$page = (int)$navParams['PAGEN'];
 			$pageSize = (int)$navParams['SIZEN'];
@@ -601,6 +636,43 @@ class AdminGridList extends \CBitrixComponent
                 break;
             }
         }
+    }
+
+    protected function getBitrix24NavigationPage($pageSize)
+    {
+	    $result = 1;
+
+	    if ($this->request->get('apply_filter') !== 'Y')
+	    {
+		    $result = (int)$this->request->get('page');
+	    }
+
+	    if ($result > 0)
+	    {
+		    if (!isset($_SESSION['YAMARKET_PAGINATION_DATA']))
+		    {
+			    $_SESSION['YAMARKET_PAGINATION_DATA'] = [];
+		    }
+
+		    $_SESSION['YAMARKET_PAGINATION_DATA'][$this->arParams['GRID_ID']] = ['PAGEN' => $result, 'SIZEN' => $pageSize];
+	    }
+	    else
+	    {
+		    $sessionData = isset($_SESSION['YAMARKET_PAGINATION_DATA'][$this->arParams['GRID_ID']])
+		        ? $_SESSION['YAMARKET_PAGINATION_DATA'][$this->arParams['GRID_ID']]
+		        : null;
+
+		    if (
+			    isset($sessionData['PAGEN'], $sessionData['SIZEN'])
+			    && (int)$sessionData['SIZEN'] === (int)$pageSize
+			    && $this->request->get('clear_nav') !== 'Y'
+		    )
+		    {
+				$result = (int)$sessionData['PAGEN'];
+		    }
+	    }
+
+	    return max(1, $result);
     }
 
     protected function initSort()
@@ -648,18 +720,26 @@ class AdminGridList extends \CBitrixComponent
 
     protected function loadAll($queryParams)
     {
-	    $queryParams = array_diff_key($queryParams, [
-	    	'limit' => true,
-		    'offset' => true,
-	    ]);
+	    try
+	    {
+		    $queryParams = array_diff_key($queryParams, [
+		        'limit' => true,
+			    'offset' => true,
+		    ]);
 
-    	if (isset($this->arParams['PAGER_LIMIT']))
-	    {
-		    $this->loadAllByPage($queryParams, $this->arParams['PAGER_LIMIT']);
+	        if (isset($this->arParams['PAGER_LIMIT']))
+		    {
+			    $this->loadAllByPage($queryParams, $this->arParams['PAGER_LIMIT']);
+		    }
+	        else
+		    {
+		        $this->loadItems($queryParams);
+		    }
 	    }
-    	else
+	    catch (Main\SystemException $exception)
 	    {
-	    	$this->loadItems($queryParams);
+		    $this->addError($exception->getMessage());
+		    $this->arResult['EXCEPTION_MIGRATION'] = Market\Migration\Controller::canRestore($exception);
 	    }
     }
 
@@ -701,7 +781,15 @@ class AdminGridList extends \CBitrixComponent
 
     protected function loadItems($queryParams)
     {
-	    $this->arResult['ITEMS'] = $this->queryItems($queryParams);
+	    try
+	    {
+		    $this->arResult['ITEMS'] = $this->queryItems($queryParams);
+	    }
+	    catch (Main\SystemException $exception)
+	    {
+	    	$this->addError($exception->getMessage());
+		    $this->arResult['EXCEPTION_MIGRATION'] = Market\Migration\Controller::canRestore($exception);
+	    }
     }
 
     protected function queryItems($queryParams)
@@ -964,7 +1052,13 @@ class AdminGridList extends \CBitrixComponent
 
 	            if ($defaultAction !== false)
 	            {
-	            	if (isset($defaultAction['URL']))
+	            	if (
+						isset($defaultAction['URL'])
+						&& (
+							empty($defaultAction['ACTION'])
+							|| preg_match('/BX.adminPanel.Redirect/', $defaultAction['ACTION'])
+						)
+		            )
 		            {
 			            $link = $defaultAction['URL'];
 			            $item['ROW_URL'] = $defaultAction['URL'];
@@ -992,7 +1086,7 @@ class AdminGridList extends \CBitrixComponent
                     $viewRow->AddActions($actions);
                 }
 
-				if (!empty($item['DISABLED']))
+				if (!empty($item['DISABLED']) || empty($actions))
 				{
 					$viewRow->bReadOnly = true;
 				}
@@ -1242,7 +1336,6 @@ class AdminGridList extends \CBitrixComponent
     protected function buildNavString($queryParams)
     {
         $listView = $this->getViewList();
-        $iterator = null;
 
         if ($this->isSubList())
         {
@@ -1283,6 +1376,8 @@ class AdminGridList extends \CBitrixComponent
 		{
 			$listView->NavText($iterator->GetNavPrint($this->arParams['NAV_TITLE']));
         }
+
+		$this->arResult['NAV_OBJECT'] = $iterator;
     }
 
     protected function buildGroupActions()
@@ -1399,10 +1494,21 @@ class AdminGridList extends \CBitrixComponent
 
     protected function resolveTemplateName()
     {
-    	if ((string)$this->getTemplateName() === '' && $this->useUiView())
+    	if ((string)$this->getTemplateName() !== '' || !$this->useUiView()) { return; }
+
+    	if ($this->isBitrix24())
 	    {
-	    	$this->setTemplateName('ui');
+		    $this->setTemplateName('bitrix24');
 	    }
+    	else
+	    {
+		    $this->setTemplateName('ui');
+	    }
+    }
+
+    protected function isBitrix24()
+    {
+    	return Market\Utils\BitrixTemplate::isBitrix24();
     }
 
     protected function useUiView()

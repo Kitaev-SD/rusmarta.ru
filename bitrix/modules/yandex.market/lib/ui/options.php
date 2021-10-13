@@ -61,6 +61,7 @@ class Options extends Market\Ui\Reference\Page
 			+ $this->getTradingLogOptions()
 			+ $this->getTradingTaxSystemOptions()
 			+ $this->getTradingServerOptions()
+			+ $this->getTradingListenOptions()
 		;
 	}
 
@@ -380,6 +381,18 @@ class Options extends Market\Ui\Reference\Page
 				'TYPE' => 'boolean',
 				'TAB' => 'TRADING',
 				'NAME' => Market\Config::getLang('UI_OPTION_TRADING_DDOS_GUARD'),
+			],
+		];
+	}
+
+	protected function getTradingListenOptions()
+	{
+		return [
+			'trading_silent_basket' => [
+				'TYPE' => 'boolean',
+				'TAB' => 'TRADING',
+				'GROUP' => Market\Config::getLang('UI_OPTION_GROUP_TRADING_LISTEN'),
+				'NAME' => Market\Config::getLang('UI_OPTION_TRADING_SILENT_BASKET'),
 			],
 		];
 	}

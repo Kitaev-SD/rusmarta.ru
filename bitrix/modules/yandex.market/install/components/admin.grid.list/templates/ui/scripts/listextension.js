@@ -7,11 +7,27 @@
 		this.initialize();
 	};
 
+	BX.merge(AdminList.ListExtension, {
+
+		bindEvents: {},
+
+		isBind: function(gridId, event) {
+			return this.bindEvents[gridId] && this.bindEvents[gridId][event];
+		},
+
+		markBind: function(gridId, event) {
+			this.bindEvents[gridId] || (this.bindEvents[gridId] = {});
+			this.bindEvents[gridId][event] = true;
+		},
+
+	});
+
 	BX.merge(AdminList.ListExtension.prototype, {
 
 		defaults: {
 			limitTop: null,
 			disabledRows: null,
+			disablePageSize: null,
 			loadMore: false,
 			reloadEvents: [],
 		},
@@ -20,6 +36,7 @@
 			this.applyLimitTop();
 			this.applyDisabledIndexes();
 			this.applyLoadMore();
+			this.applyDisablePageSize();
 			this.applyReloadEvents();
 		},
 
@@ -108,6 +125,18 @@
 			}
 		},
 
+		applyDisablePageSize: function() {
+			if (!this.options.disablePageSize) { return; }
+
+			var grid = this.getGrid();
+			var pageSizeId = grid.getContainerId() + '_' + grid.settings.get('pageSizeId');
+			var pageSize = BX(pageSizeId);
+
+			if (!pageSize) { return; }
+
+			pageSize.parentElement.style.display = 'none';
+		},
+
 		applyLoadMore: function() {
 			if (!this.options.loadMore) { return; }
 
@@ -141,7 +170,10 @@
 			if (!events || events.length === 0) { return; }
 
 			for (let event of events) {
+				if (AdminList.ListExtension.isBind(this.options.grid, event)) { continue; }
+
 				BX.addCustomEvent(event, BX.proxy(this.onReloadEvent, this));
+				AdminList.ListExtension.markBind(this.options.grid, event)
 			}
 		},
 

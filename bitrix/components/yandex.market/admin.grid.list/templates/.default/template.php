@@ -25,6 +25,11 @@ if ($arResult['REDIRECT'] !== null)
 if ($component->hasErrors())
 {
 	$component->showErrors();
+
+	if ($arResult['EXCEPTION_MIGRATION'])
+	{
+		include __DIR__ . '/partials/migration-form.php';
+	}
 }
 
 if ($component->hasWarnings())

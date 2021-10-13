@@ -15,5 +15,5 @@ $MESS['ACRIT_CORE_ASK_FORM_ERROR_EMPTY'] = 'Напишите, пожалуйста, Ваш вопрос';
 $MESS['ACRIT_CORE_ASK_FORM_ERROR_WRONG_EMAIL'] = 'Указан некорректный email';
 $MESS['ACRIT_CORE_ASK_CONTACTS_TITLE'] = 'Обратная связь';
 $MESS['ACRIT_CORE_ASK_CONTACTS_TEXT'] = '<a href="https://www.acrit-studio.ru/services/" target="_blank">Разработка, продвижение</a>, а также <a href="https://www.acrit-studio.ru/technical-support/" target="_blank">техническая поддержка</a>:<br/>
-<a href="https://www.acrit-studio.ru/market/" target="_blank">Узнайте как увеличить прибыль с сайта</a> +7-495-008-84-52; <a href="https://www.acrit-studio.ru/" target="_blank">www.acrit-studio.ru</a>; <a href="mailto:design@acrit-studio.ru">design@acrit-studio.ru</a><br/>
+<a href="https://www.acrit-studio.ru/market/" target="_blank">Узнайте как увеличить прибыль с сайта</a> +7-495-008-84-52; <a href="https://www.acrit-studio.ru/" target="_blank">www.acrit-studio.ru</a>; <a href="mailto:design@acrit.ru">design@acrit.ru</a><br/>
 <a href="https://www.acrit-studio.ru/technical-support/" target="_blank">Заказ доработок и техподдержка сайтов через службу Технической поддержки</a>';

@@ -288,22 +288,90 @@ class UserField
 
 		if (empty($values)) { return []; }
 
-		$field = $inner !== null ? $inner : 'NAME';
-
 		$result = [];
-		$iblockId = $context['SETTINGS']['IBLOCK_ID'];
+		$field = $inner !== null ? $inner : 'NAME';
+		$fieldProperty = $this->splitInnerProperty($field);
+		$fieldSelect = [];
+		$propertySelect = [];
+
+		if ($fieldProperty !== null)
+		{
+			$propertySelect[] = $fieldProperty;
+		}
+		else
+		{
+			$fieldSelect[] = $field;
+		}
 
 		$query = \CIBlockElement::GetList(
 			[],
-			[ 'IBLOCK_ID' => $iblockId, '=ID' => $values ],
+			[ '=ID' => $values ],
 			false,
 			false,
-			[ 'IBLOCK_ID', 'ID', $field ]
+			array_merge([ 'IBLOCK_ID', 'ID' ], $fieldSelect)
 		);
+
+		$rowsByIblock = [];
 
 		while ($row = $query->Fetch())
 		{
-			$result[$row['ID']] = $row[$field];
+			$iblockId = (int)$row['IBLOCK_ID'];
+
+			if (!isset($rowsByIblock[$iblockId]))
+			{
+				$rowsByIblock[$iblockId] = [];
+			}
+
+			$rowsByIblock[$iblockId][$row['ID']] = $row;
+		}
+
+		foreach ($rowsByIblock as $iblockId => $rows)
+		{
+			$innerContext = Market\Export\Entity\Iblock\Provider::getContext($iblockId);
+
+			if (!empty($fieldSelect))
+			{
+				$fieldSource = Market\Export\Entity\Manager::getSource(
+					Market\Export\Entity\Manager::TYPE_IBLOCK_ELEMENT_FIELD
+				);
+
+				$innerValues = $fieldSource->getElementListValues($rows, [], $fieldSelect, $innerContext, []);
+				$result += $this->extendInnerValue($innerValues, $field);
+			}
+
+			if (!empty($propertySelect))
+			{
+				$propertySource = Market\Export\Entity\Manager::getSource(
+					Market\Export\Entity\Manager::TYPE_IBLOCK_ELEMENT_PROPERTY
+				);
+
+				$innerValues = $propertySource->getElementListValues($rows, [], $propertySelect, $innerContext, []);
+				$result += $this->extendInnerValue($innerValues, $fieldProperty);
+			}
+		}
+
+		return $result;
+	}
+
+	protected function splitInnerProperty($field, $name = 'PROPERTY_')
+	{
+		$position = Market\Data\TextString::getPosition($field, $name);
+
+		if ($position === false) { return null; }
+
+		return Market\Data\TextString::getSubstring(
+			$field,
+			$position + Market\Data\TextString::getLength($name)
+		);
+	}
+
+	protected function extendInnerValue($innerValues, $field)
+	{
+		$result = [];
+
+		foreach ($innerValues as $id => $item)
+		{
+			$result[$id] = isset($item[$field]) ? $item[$field] : null;
 		}
 
 		return $result;

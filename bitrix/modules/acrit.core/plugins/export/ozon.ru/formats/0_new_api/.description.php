@@ -120,7 +120,7 @@
 		</a>
 	</li>
 	<li>
-		<a href="https://partner.market.yandex.ru/supplier/" target="_blank">
+		<a href="https://docs.ozon.ru/api/seller/#operation/ProductAPI_ImportProductsV2" target="_blank">
 			Документация
 		</a>
 	</li>

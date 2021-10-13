@@ -1,11 +1,11 @@
 <?
 /**
- * Acrit Core: AliExpress crm integration plugin
+ * Acrit Core: Orders integration plugin for Ozon.ru
  */
 
 namespace Acrit\Core\Orders\Plugins;
 
-require_once __DIR__ . '/lib/ozonorders.php';
+require_once __DIR__ . '/lib/api/orders.php';
 
 use Acrit\Core\Orders\PeriodSync;
 use \Bitrix\Main\Localization\Loc,
@@ -16,7 +16,7 @@ use \Bitrix\Main\Localization\Loc,
 	\Acrit\Core\HttpRequest,
 	\Acrit\Core\Json,
 	\Acrit\Core\Log,
-	\Acrit\Core\Orders\Plugins\OzonRuHelpers\OzonOrders;
+	\Acrit\Core\Orders\Plugins\OzonRuHelpers\Orders;
 
 Loc::loadMessages(__FILE__);
 
@@ -119,7 +119,7 @@ class OzonRu extends Plugin {
 	 * @return array
 	 */
 	public function getFields() {
-		$list = [];
+		$list = parent::getFields();
 		$list[] = [
 			'id' => 'order_id',
 			'name' => Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_FIELDS_ORDER_ID'),
@@ -202,19 +202,19 @@ class OzonRu extends Plugin {
 	/**
 	 *	Show plugin default settings
 	 */
-	public function showSettings(){
+	public function showSettings($arProfile){
 		ob_start();
-//		$client_id = $this->arProfile['CONNECT_CRED']['client_id'];
-//		$api_key = $this->arProfile['CONNECT_CRED']['api_key'];
-//		$ozon = new OzonOrders($client_id, $api_key, $this->arProfile['ID'], $this->strModuleId);
-//		$res = $ozon->checkConnection($msg);
-//		$res = $ozon->getPostingsList([]);
+//		$client_id = $arProfile['CONNECT_CRED']['client_id'];
+//		$api_key = $arProfile['CONNECT_CRED']['api_key'];
+//		$api = new Orders($client_id, $api_key, $arProfile['ID'], $this->strModuleId);
+//		$res = $api->checkConnection($msg);
+//		$res = $api->getPostingsList([]);
 //		echo '<pre>'; print_r($res); echo '</pre>';
 //		$order_data = $this->getOrder('61206578-0004-3');
 //      echo '<pre>'; print_r($order_data); echo '</pre>';
 //		Settings::setModuleId($this->strModuleId);
 //		Controller::setModuleId($this->strModuleId);
-//		Controller::setProfile($this->arProfile['ID']);
+//		Controller::setProfile($arProfile['ID']);
 //		Controller::syncExtToStore($order_data);
 		?>
 		<table class="acrit-exp-plugin-settings" style="width:100%;">
@@ -227,7 +227,7 @@ class OzonRu extends Plugin {
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
                     <input type="text" name="PROFILE[CONNECT_CRED][client_id]" size="50" maxlength="255" data-role="connect-cred-client_id"
-                           value="<?=htmlspecialcharsbx($this->arProfile['CONNECT_CRED']['client_id']);?>" />
+                           value="<?=htmlspecialcharsbx($arProfile['CONNECT_CRED']['client_id']);?>" />
 				</td>
 			</tr>
             <tr>
@@ -237,7 +237,7 @@ class OzonRu extends Plugin {
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
                     <input type="text" name="PROFILE[CONNECT_CRED][api_key]" size="50" maxlength="255" data-role="connect-cred-api_key"
-                           value="<?=htmlspecialcharsbx($this->arProfile['CONNECT_CRED']['api_key']);?>" />
+                           value="<?=htmlspecialcharsbx($arProfile['CONNECT_CRED']['api_key']);?>" />
                     <p><a class="adm-btn" data-role="connection-check"><?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_OZON_SETTINGS_CHECK_CONN');?></a></p>
                     <p id="check_msg"></p>
 				</td>
@@ -309,8 +309,8 @@ class OzonRu extends Plugin {
 			case 'connection_check':
 			    $client_id = $arParams['POST']['client_id'];
 			    $api_key = $arParams['POST']['api_key'];
-				$ozon = new OzonOrders($client_id, $api_key, $this->arProfile['ID'], $this->strModuleId);
-				$res = $ozon->checkConnection($message);
+				$api = new Orders($client_id, $api_key, $this->arProfile['ID'], $this->strModuleId);
+				$res = $api->checkConnection($message);
 				$arJsonResult['check'] = $res ? 'success' : 'fail';
 				$arJsonResult['message'] = $message;
 				$arJsonResult['result'] = 'ok';
@@ -322,7 +322,7 @@ class OzonRu extends Plugin {
 	 * Get orders count
 	 */
 
-	public function getOrdersCount($filter) {
+	public function getOrdersCount($create_from_ts) {
 	    $count = 0;
 	    return $count;
 	}
@@ -331,20 +331,20 @@ class OzonRu extends Plugin {
 	 * Get orders count
 	 */
 
-	public function getOrdersIDsList($filter) {
+	public function getOrdersIDsList($create_from_ts=false, $change_from_ts=false) {
 	    $list = [];
 		// Get the list
         $req_filter = [];
-        if ($filter['create_date_from'] || $filter['change_date_from']) {
-	        $filter_date = $filter['change_date_from'] ? $filter['change_date_from'] : $filter['create_date_from'];
+		if ($create_from_ts || $change_from_ts) {
+			$filter_date = $change_from_ts ? : $create_from_ts;
 	        $req_filter = [
 		        'since' => date("Y-m-d\TH:i:s.000\Z", $filter_date),
 	        ];
         }
 		$client_id = $this->arProfile['CONNECT_CRED']['client_id'];
 		$api_key = $this->arProfile['CONNECT_CRED']['api_key'];
-		$ozon = new OzonOrders($client_id, $api_key, $this->arProfile['ID'], $this->strModuleId);
-		$orders_list = $ozon->getPostingsList($req_filter, 1000);
+		$api = new Orders($client_id, $api_key, $this->arProfile['ID'], $this->strModuleId);
+		$orders_list = $api->getPostingsList($req_filter, 1000);
 		foreach ($orders_list as $item) {
 			$list[] = $item['posting_number'];
 		}
@@ -359,8 +359,8 @@ class OzonRu extends Plugin {
 		// Ozon posting data
 		$client_id = $this->arProfile['CONNECT_CRED']['client_id'];
 		$api_key = $this->arProfile['CONNECT_CRED']['api_key'];
-		$ozon = new OzonOrders($client_id, $api_key, $this->arProfile['ID'], $this->strModuleId);
-		$mp_order = $ozon->getPosting($posting_id);
+		$api = new Orders($client_id, $api_key, $this->arProfile['ID'], $this->strModuleId);
+		$mp_order = $api->getPosting($posting_id);
 		if ($mp_order['posting_number']) {
 			// Main fields
 			$order = [

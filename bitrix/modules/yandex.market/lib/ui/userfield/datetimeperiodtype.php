@@ -5,17 +5,8 @@ namespace Yandex\Market\Ui\UserField;
 use Yandex\Market;
 use Bitrix\Main;
 
-class DateTimePeriodType
+class DateTimePeriodType extends DateTimeType
 {
-	public static function getUserTypeDescription()
-	{
-		return [
-			'CLASS_NAME' => static::class,
-			'USER_TYPE_ID' => 'dateTimePeriod',
-			'BASE_TYPE' => 'string',
-		];
-	}
-
 	public static function GetAdminListViewHTML($userField, $htmlControl)
 	{
 		$value = Helper\ComplexValue::asSingle($userField, $htmlControl);

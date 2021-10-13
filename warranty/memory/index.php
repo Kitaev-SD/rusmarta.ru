@@ -101,3 +101,4 @@ $APPLICATION->SetTitle("Гарантия");?><p>
  <b><br>
  </b>
 </p>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

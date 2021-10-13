@@ -243,4 +243,20 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
     $arFields["FULL_ADDRESS"] = $full_address;
     $arFields["PAY_SYSTEM_NAME"] =  $pay_system_name;
 }
+//«акрываем все страницы с get-запросами и фильтром, кроме страниц с единственным get-запросом PAGEN_1
+AddEventHandler('main', 'OnEpilog', 'onPagenMeta');
+function onPagenMeta()
+{
+    global $APPLICATION;
+    if (preg_match('/\/market\/.*/',$APPLICATION->GetCurPage())){
+        $request   = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+        $queryList = $request->getQueryList()->toArray();
+        $get_pagen_1 = preg_grep("/PAGEN_1/i", array_keys($queryList));
+        $count = count($queryList);
+        $filter = preg_match('/\/filter\/.*\/apply\/.*/',$APPLICATION->GetCurPage());
+        if ($count>1 || ($count == 1 && empty($get_pagen_1)) || $filter) {
+            $APPLICATION->SetPageProperty("robots", 'noindex, nofollow', true);
+        }
+    }
+}
 ?>

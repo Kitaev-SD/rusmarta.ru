@@ -74,7 +74,7 @@ class Api {
 			'Content-Type' => 'application/json',
 		];
 		if(is_array($arJson)){
-			$arParams['CONTENT'] = Json::encode($arJson, JSON_UNESCAPED_SLASHES);
+			$arParams['CONTENT'] = !empty($arJson) ? Json::encode($arJson, JSON_UNESCAPED_SLASHES) : '{}';
 		}
 		elseif(is_string($arJson)){
 			$arParams['CONTENT'] = $arJson;
@@ -88,16 +88,22 @@ class Api {
 			]]);
 		}
 		if(strlen($strJson)){
-			$arJson = Json::decode($strJson);
-			if(is_array($arJson['error']) && !empty($arJson['error']) && !$bSkipErrors){
-				$strMessage = 'ERROR_GENERAL'.($this->isDebugMode() ? '_DEBUG' : '');
-				$strError = sprintf('%s [%s]', $arJson['error']['message'], $arJson['error']['code']);
-				$strMessage = sprintf(static::getMessage($strMessage,  [
-					'#COMMAND#' => $strCommand,
-					'#JSON#' => $arParams['CONTENT'],
-					'#ERROR#' => $strError,
-				]));
-				$this->addToLog($strMessage);
+			try{
+				$arJson = Json::decode($strJson);
+				if(is_array($arJson['error']) && !empty($arJson['error']) && !$bSkipErrors){
+					$strMessage = 'ERROR_GENERAL'.($this->isDebugMode() ? '_DEBUG' : '');
+					$strError = sprintf('%s [%s]', $arJson['error']['message'], $arJson['error']['code']);
+					$strMessage = sprintf(static::getMessage($strMessage,  [
+						'#COMMAND#' => $strCommand,
+						'#JSON#' => $arParams['CONTENT'],
+						'#ERROR#' => $strError,
+					]));
+					$this->addToLog($strMessage);
+				}
+			}
+			catch(\Exception $obError){
+				$arJson = [];
+				$this->addToLog('Error decode JSON before send: '.$obError->getMessage().', value: '.print_r($strJson, true));
 			}
 			return $arJson;
 		}

@@ -16,6 +16,7 @@
 		createForm: function(url, item) {
 			return new Ui.ModalForm(this.$el, {
 				title: item.DIALOG_TITLE || item.TITLE,
+				saveTitle: this.getLang('ACTIVITY_SUBMIT'),
 				url: url,
 			});
 		},

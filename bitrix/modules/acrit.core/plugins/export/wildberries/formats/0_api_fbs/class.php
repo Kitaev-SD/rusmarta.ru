@@ -461,7 +461,8 @@ class WildberriesV2 extends UniversalPlugin {
 
 	/**
 	 * Do refresh cookie token
-	 */
+	 	*/
+/*
 	protected function getToken($strRefreshToken=null){
 		if(is_null($this->strTokenTmp)){
 			$bCheckMode = !is_null($strRefreshToken);
@@ -480,6 +481,7 @@ class WildberriesV2 extends UniversalPlugin {
 		}
 		return $this->strTokenTmp;
 	}
+	*/
 
 	/**
 	 * Get auth token from profile settings
@@ -646,7 +648,8 @@ class WildberriesV2 extends UniversalPlugin {
 		if(!Helper::isUtf()){
 			$strCategoryNameUrl = Helper::convertEncoding($strCategoryNameUrl, 'CP1251', 'UTF-8');
 		}
-		$strUrl = '/ns/characteristics-configurator-api/content-configurator/api/v1/config/get/object/translated';
+		$strUrl = '/api/v1/config/get/object/translated';
+		#$strUrl = '/ns/characteristics-configurator-api/content-configurator/api/v1/config/get/object/translated';
 		$strUrl .= '?'.http_build_query([
 			'name' => $strCategoryNameUrl,
 			'lang' => 'ru',
@@ -654,7 +657,10 @@ class WildberriesV2 extends UniversalPlugin {
 		$arQueryResult = $this->API->execute($strUrl, null, [
 			'METHOD' => 'GET',
 			'SKIP_ERRORS' => true,
-			'HOST' => 'https://content-suppliers.wildberries.ru'
+			'HEADER' => [
+				'Authorization' => $this->getAuthToken(),
+			],
+			#'HOST' => 'https://suppliers-api.wildberries.ru'
 		]);
 		if($arQueryResult['data']){
 			$arSources = [

@@ -1,0 +1,97 @@
+<?
+/**
+ * Acrit Core: Yandex marketplace
+ */
+
+namespace Acrit\Core\Export\Plugins\YandexMarketplaceHelpers;
+
+use
+	\Acrit\Core\Helper,
+	\Bitrix\Main\Entity;
+
+Helper::loadMessages(__FILE__);
+
+class StockHistoryTable extends Entity\DataManager {
+	
+	/**
+	 * Returns DB table name for entity.
+	 *
+	 * @return string
+	 */
+	public static function getTableName(){
+		return 'acrit_yandex_marketplace_stocks_history';
+	}
+	
+	/**
+	 * Returns entity map definition.
+	 *
+	 * @return array
+	 */
+	public static function getMap() {
+		\Acrit\Core\Export\Exporter::getLangPrefix(realpath(__DIR__.'/../../../class.php'), $strLang, $strHead, 
+			$strName, $strHint);
+		return array(
+			'ID' => new Entity\IntegerField('ID', array(
+				'primary' => true,
+				'autocomplete' => true,
+				'title' => Helper::getMessage($strLang.'ID'),
+			)),
+			'MODULE_ID' => new Entity\StringField('MODULE_ID', array(
+				'title' => Helper::getMessage($strLang.'MODULE_ID'),
+			)),
+			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
+				'title' => Helper::getMessage($strLang.'PROFILE_ID'),
+			)),
+			'WAREHOUSE_ID' => new Entity\StringField('WAREHOUSE_ID', array(
+				'title' => Helper::getMessage($strLang.'WAREHOUSE_ID'),
+			)),
+			'SKUS_INPUT' => new Entity\StringField('SKUS_INPUT', array(
+				'title' => Helper::getMessage($strLang.'SKUS_INPUT'),
+			)),
+			'SKUS_OUTPUT' => new Entity\StringField('SKUS_OUTPUT', array(
+				'title' => Helper::getMessage($strLang.'SKUS_OUTPUT'),
+			)),
+			'IP' => new Entity\StringField('IP', array(
+				'title' => Helper::getMessage($strLang.'IP'),
+			)),
+			'HTTP_USER_AGENT' => new Entity\StringField('HTTP_USER_AGENT', array(
+				'title' => Helper::getMessage($strLang.'HTTP_USER_AGENT'),
+			)),
+			'TIMESTAMP_X' => new Entity\DatetimeField('TIMESTAMP_X', array(
+				'title' => Helper::getMessage($strLang.'TIMESTAMP_X'),
+			)),
+		);
+	}
+	
+	/**
+	 * Delete by filter
+	 *
+	 * @return array
+	 */
+	public static function deleteByFilter($arFilter=null) {
+		$strTable = static::getTableName();
+		$strSql = "DELETE FROM `{$strTable}` WHERE 1=1";
+		if(is_array($arFilter)){
+			foreach($arFilter as $strField => $strValue){
+				$strEqual = '=';
+				if(preg_match('#^(.*?)([A-z0-9_]+)(.*?)$#', $strField, $arMatch)){
+					$strField = $arMatch[2];
+					if($arMatch[1] == '!'){
+						$strEqual = '!=';
+					}
+				}
+				$strField = \Bitrix\Main\Application::getConnection()->getSqlHelper()->forSql($strField);
+				$strValue = \Bitrix\Main\Application::getConnection()->getSqlHelper()->forSql($strValue);
+				if(is_numeric($strField)){
+					$strSql .= " AND ({$strValue})";
+				}
+				else{
+					$strSql .= " AND (`{$strField}`{$strEqual}'{$strValue}')";
+				}
+			}
+			$strSql .= ';';
+		}
+		return \Bitrix\Main\Application::getConnection()->query($strSql);
+	}
+
+}

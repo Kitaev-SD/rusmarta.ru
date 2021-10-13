@@ -159,7 +159,7 @@ if ($v['pricecash'] != -1) $result['data'][$k]['pricecash'] = 300;}
 
 		/*Москва - 350*/
 
-if ($order['location']['id']=='91'){
+if ($order['location']['id']=='84'){
 foreach ($result['data'] as $k => $v) if ($v['format'] == 'office') { $result['data'][$k]['price'] = 350;
 if ($v['pricecash'] != -1) $result['data'][$k]['pricecash'] = 350;}
 }
@@ -215,7 +215,7 @@ if ($v['pricecash'] != -1) $result['data'][$k]['pricecash'] = 350;}
 
 		/*Санкт-Петербург - 150*/
 
-if ($order['location']['id']=='92'){
+if ($order['location']['id']=='85'){
 foreach ($result['data'] as $k => $v) if ($v['format'] == 'office') { $result['data'][$k]['price'] = 150;
 if ($v['pricecash'] != -1) $result['data'][$k]['pricecash'] = 150;}
 }

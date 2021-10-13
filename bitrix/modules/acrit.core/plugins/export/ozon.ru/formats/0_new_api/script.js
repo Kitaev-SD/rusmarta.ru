@@ -226,9 +226,39 @@ if (!window.ozonNewApiInitialized) {
 		newItem.find('input[type="text"]').val('');
 	});
 
+	// Add stores (auto)
+	$(document).delegate('input[data-role="acrit_exp_ozon_store_add_auto"]', 'click', function(e){
+		acritExpAjax(['plugin_ajax_action', 'load_stores'], {}, function(JsonResult, textStatus, jqXHR){
+			if(typeof JsonResult.Stores == 'object' && Object.keys(JsonResult.Stores).length){
+				// Remove exist data
+				$('input[data-role="acrit_exp_ozon_store_delete"]:visible').trigger('click', {force:true});
+				$('div[data-role="acrit_exp_ozon_store"] input[type="text"]').val('');
+				// Add new
+				var first = true;
+				for(var id in JsonResult.Stores){
+					if(!first){
+						$('input[data-role="acrit_exp_ozon_store_add"]').trigger('click');
+					}
+					$('div[data-role="acrit_exp_ozon_store"]').last().each(function(){
+						$('input[data-role="acrit_exp_ozon_store_id"]', this).val(id);
+						$('input[data-role="acrit_exp_ozon_store_name"]', this).val(JsonResult.Stores[id]);
+					});
+					first = false;
+				}
+			}
+			else if(typeof JsonResult.Message == 'string' && JsonResult.Message.length){
+				alert(JsonResult.Message);
+			}
+			acritExpHandleAjaxError(jqXHR, false);
+		}, function(jqXHR){
+			acritExpHandleAjaxError(jqXHR, true);
+		}, false);
+	});
+
 	// Delete store
-	$(document).delegate('input[data-role="acrit_exp_ozon_store_delete"]', 'click', function(e){
-		if(confirm($(this).attr('data-confirm'))){
+	$(document).delegate('input[data-role="acrit_exp_ozon_store_delete"]', 'click', function(e, data){
+		data = typeof data == 'object' ? data : {};
+		if(data.force || confirm($(this).attr('data-confirm'))){
 			$(this).closest('[data-role="acrit_exp_ozon_store"]').remove();
 		}
 	});

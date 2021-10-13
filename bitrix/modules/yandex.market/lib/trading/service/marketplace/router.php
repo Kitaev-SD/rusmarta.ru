@@ -18,10 +18,12 @@ class Router extends Market\Trading\Service\Reference\Router
 			'order/status' => Action\OrderStatus\Action::class,
 			'admin/list' => Action\AdminList\Action::class,
 			'admin/view' => Action\AdminView\Action::class,
+			'admin/shipments' => Action\AdminShipments\Action::class,
 			'stocks' => Action\Stocks\Action::class,
 			'send/status' => Action\SendStatus\Action::class,
 			'send/boxes' => Action\SendBoxes\Action::class,
 			'send/cis' => Action\SendCis\Action::class,
+			'send/shipment/confirm' => Action\SendShipmentConfirm\Action::class,
 		];
 	}
 }

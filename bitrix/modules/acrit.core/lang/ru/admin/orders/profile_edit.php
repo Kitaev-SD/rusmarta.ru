@@ -80,7 +80,7 @@ $MESS['ACRIT_EXP_POPUP_EXECUTE_ERROR'] = 'Произошла ошибка. Подробности в консол
 $MESS['ACRIT_EXP_POPUP_CRON_ERROR'] = 'Ошибка установки задания планировщика.';
 
 // Popup: Iblocks preview
-$MESS['ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_TITLE'] = 'Просмотр инфоблоков';
+$MESS['ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_TITLE'] = 'Предпросмотр выгрузки';
 
 // IBlock save result
 $MESS['ACRIT_EXP_IBLOCK_SETTINGS_SAVE_PROGRESS'] = '&nbsp; <span style="color:orange">Настройки сохраняются..</span>';

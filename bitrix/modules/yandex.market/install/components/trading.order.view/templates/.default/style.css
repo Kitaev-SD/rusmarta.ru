@@ -59,7 +59,90 @@
 	transition-timing-function: ease-out;
 }
 
+/* title */
+
+.yamarket-section-title {
+	margin-top: 40px;
+}
+
+/* label */
+
+.yamarket-label {
+	display: inline-block;
+	padding: 6px 8px;
+	border-radius: 2px;
+
+	margin-bottom: 20px;
+
+	font-size: 10px;
+	line-height: 1;
+	letter-spacing: 1px;
+
+	text-transform: uppercase;
+}
+
+.yamarket-label.type--danger {
+	background-color: #FFDADA;
+	color: #C30000;
+}
+
+/* properties */
+
+.yamarket-properties-title {
+	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+.yamarket-properties-title.pos--top {
+	margin-top: 0;
+}
+
+.yamarket-property {
+	display: table;
+	margin-top: 10px;
+	line-height: 1.375;
+}
+
+.yamarket-property__title {
+	display: table-cell;
+	vertical-align: top;
+	padding-right: 10px;
+	width: 255px;
+
+	position: relative;
+}
+
+.yamarket-property__title:after {
+	content:
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";
+	display: inline-block;
+	overflow: hidden;
+	height: 1.375em;
+	border-left: 2px solid transparent;
+	position: absolute;
+	text-align: right;
+	white-space: normal;
+	letter-spacing: -.0625em;
+	opacity: .2;
+}
+
+.yamarket-property__value {
+	display: table-cell;
+	vertical-align: bottom;
+	padding-left: 15px;
+}
+
 /* basket */
+
+.yamarket-basket-wrapper {
+	max-width: 1500px;
+}
+
+.yamarket-basket-table {
+	width: 100%;
+}
 
 .yamarket-basket-table thead td {
 	padding-left: 10px !important;
@@ -77,6 +160,13 @@
 
 .yamarket-basket-table tbody td.for--name {
 	min-width: 250px;
+}
+
+.adm-workarea input.yamarket-basket-item__count {
+	vertical-align: top;
+	max-width: 50px;
+	margin-top: -4px;
+	margin-bottom: -4px;
 }
 
 .yamarket-basket-table tfoot td {
@@ -181,7 +271,7 @@ a.yamarket-cis-summary[data-status="READY"] {
 
 .yamarket-shipments-header {
 	display: block;
-	margin: 30px 0 15px -15px;
+	margin: 40px 0 15px -15px;
 }
 
 .yamarket-shipments-header__inline {
@@ -365,7 +455,7 @@ a.yamarket-cis-summary[data-status="READY"] {
 
 .yamarket-shipment-submit {
 	display: block;
-	margin-top: 24px;
+	margin-top: 40px;
 	margin-left: -10px;
 }
 

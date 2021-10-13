@@ -282,6 +282,43 @@ abstract class Plugin {
 	}
 
 	/**
+	 *	Get external store fields list
+	 */
+	public function getFields() {
+		$list = [];
+		$list[] = [
+			'id' => 'products_list',
+			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_FIELDS_PRODUCTS_LIST'),
+			'direction' => self::SYNC_STOC,
+		];
+		return $list;
+	}
+
+	/**
+	 * Additional modifies for order array
+	 */
+	public function formatOrder($order) {
+		// Format products list for order property
+		$rows = [];
+		if (is_array($order['PRODUCTS'])) {
+			foreach ($order['PRODUCTS'] as $product) {
+				$row = '';
+				$row .= $product['PRODUCT_NAME'] . "\n";
+				$row .= Loc::getMessage('ACRIT_CRM_PLUGIN_FORMATORDER_PRODUCTS_CODE') . $product['PRODUCT_CODE'] . "\n";
+				$row .= Loc::getMessage('ACRIT_CRM_PLUGIN_FORMATORDER_PRODUCTS_QUANTITY') . $product['QUANTITY'] . "\n";
+				$row .= Loc::getMessage('ACRIT_CRM_PLUGIN_FORMATORDER_PRODUCTS_PRICE') . $product['PRICE'] . ' ' . $product['CURRENCY'];
+				$rows[] = $row;
+			}
+		}
+		$text = implode("\n\n", $rows);
+		$order['FIELDS']['products_list'] = [
+			'TYPE'  => 'STRING',
+			'VALUE' => $text,
+		];
+		return $order;
+	}
+
+	/**
 	 *	Set profile param ($arProfile['PARAMS']) and save it
 	 */
 	public function setProfileParam($arParams){

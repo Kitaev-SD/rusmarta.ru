@@ -6,7 +6,7 @@ $MESS['ACRIT_EXP_STRUCTURE_IBLOCK_SELECT_MULTIPLE_NOTICE'] = '<b>Внимание!</b> В
 	<ul>
 		<li>Для перехода к настройкам каждого из них выберите его в списке (см. выше).</li>
 		<li>Инфоблоки настраиваются поочередно.</li>
-		<li>Настроенные инфоблоки легко найти: их названия начинаются со звездочки (или смотрите <a href="javascript:void(0)" data-role="iblock-multiple-notice-link" style="color:inherit;">просмотр инфоблоков</a>).</li>
+		<li>Настроенные инфоблоки легко найти: их названия начинаются со звездочки (или смотрите <a href="javascript:void(0)" data-role="iblock-multiple-notice-link" style="color:inherit;">предпросмотр выгрузки</a>).</li>
 		<li>Красный крестик удаляет настройки текущего инфоблока (настройки других инфоблоков не трогаются).</li>
 		<li>Данное уведомление можно скрыть в <a href="/bitrix/admin/settings.php?lang=#LANGUAGE_ID#&mid=#MODULE_ID#" target="_blank" style="color:inherit;">настройках модуля</a>.</li>
 	</ul>

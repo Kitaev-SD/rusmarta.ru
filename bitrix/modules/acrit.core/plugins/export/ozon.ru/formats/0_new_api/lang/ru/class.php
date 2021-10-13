@@ -17,6 +17,8 @@ $MESS[$strLang.'EXPORT_STOCKS_CHECKBOX'] = 'Выгружать остатки по складам';
 	Для каждого склада необходимо указать ID склада (в системе Ozon) и произвольное название для удобства работы.<br/><br/>
 	После указания складов и сохранения/применения настроек профиля в списке полей появляются новые поля - в каждом из них должно быть значение остатка на соответствующем складе.';
 	$MESS[$strLang.'EXPORT_STOCKS_ADD'] = 'Добавить';
+	$MESS[$strLang.'EXPORT_STOCKS_ADD_AUTO'] = 'Добавить все склады автоматически';
+	$MESS[$strLang.'EXPORT_STOCKS_ADD_AUTO_EMPTY'] = 'В личном кабинете Озон склады отсутствуют.';
 	$MESS[$strLang.'EXPORT_STOCKS_DELETE'] = 'Удалить';
 	$MESS[$strLang.'EXPORT_STOCKS_DELETE_CONFIRM'] = 'Действительно удалить выбранный склад?';
 	$MESS[$strLang.'STOCK_ID'] = 'ID склада';
@@ -50,6 +52,8 @@ $MESS[$strName.'name'] = 'Название товара';
 	$MESS[$strHint.'name'] = 'Название товара. До 500 символов.';
 $MESS[$strName.'images'] = 'Изображения';
 	$MESS[$strHint.'images'] = 'Изображения. Не больше 10.';
+$MESS[$strName.'primary_image'] = 'Главное изображение товара';
+	$MESS[$strHint.'primary_image'] = 'Используйте для загрузки главного изображения товара. Если не передать значение primary_image, главным будет первое изображение в массиве images.';
 $MESS[$strName.'image_group_id'] = 'Идентификатор пакетной загрузки изображений';
 	$MESS[$strHint.'image_group_id'] = 'Идентификатор для последующей пакетной загрузки изображений.';
 $MESS[$strName.'pdf_list'] = 'PDF-файлы';

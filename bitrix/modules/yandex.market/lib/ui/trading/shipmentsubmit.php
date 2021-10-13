@@ -207,9 +207,77 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 	protected function submit()
 	{
 		return [
-			$this->submitCis(),
+			$this->isItemsChanged() ? $this->submitItems() : $this->submitCis(),
 			$this->submitShipments(),
 		];
+	}
+
+	protected function isItemsChanged()
+	{
+		$result = false;
+
+		/** @var ShipmentRequest\BasketItem $basketItem */
+		foreach ($this->getRequestOrder()->getBasket() as $basketItem)
+		{
+			$initialCount = $basketItem->getInitialCount();
+
+			if (
+				$basketItem->needDelete()
+				|| (
+					$initialCount !== null
+					&& (int)$initialCount !== (int)$basketItem->getCount()
+				)
+			)
+			{
+				$result = true;
+				break;
+			}
+		}
+
+		return $result;
+	}
+
+	protected function submitItems()
+	{
+		$path = 'send/items';
+
+		try
+		{
+			$items = $this->makeItems();
+
+			$result = $this->callProcedure($path, $this->getProcedureTradingData() + [
+				'items' => $items,
+				'reason' => $this->getRequestOrder()->getBasketConfirm()->getReason(),
+			]);
+		}
+		catch (Market\Exceptions\Api\ObjectPropertyException $exception)
+		{
+			$result = $this->makeObjectPropertyEmptyResult($path, $exception);
+		}
+
+		return $result;
+	}
+
+	protected function makeItems()
+	{
+		$result = [];
+
+		/** @var ShipmentRequest\BasketItem $basketItem */
+		foreach ($this->getRequestOrder()->getBasket() as $basketItem)
+		{
+			if ($basketItem->needDelete()) { continue; }
+
+			$result[] = [
+				'id' => $basketItem->getId(),
+				'count' => $basketItem->getCount(),
+				'instances' => array_map(
+					static function($cis) { return [ 'cis' => $cis ]; },
+					$basketItem->getCis()
+				),
+			];
+		}
+
+		return $result;
 	}
 
 	protected function submitCis()
@@ -218,14 +286,11 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 
 		try
 		{
-			$order = $this->getRequestOrder();
 			$items = $this->makeCisItems();
 
 			if (empty($items)) { return new Market\Result\Base(); }
 
-			$result = $this->callProcedure($path, [
-				'orderId' => $order->getId(),
-				'orderNum' => $order->getAccountNumber(),
+			$result = $this->callProcedure($path, $this->getProcedureTradingData() + [
 				'items' => $items,
 			]);
 		}
@@ -282,11 +347,7 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 
 		try
 		{
-			$order = $this->getRequestOrder();
-
-			$result = $this->callProcedure($path, [
-				'orderId' => $order->getId(),
-				'orderNum' => $order->getAccountNumber(),
+			$result = $this->callProcedure($path, $this->getProcedureTradingData() + [
 				'shipmentId' => $shipment->getId(),
 				'boxes' => $this->makeBoxes($shipment, $useDimensions),
 			]);
@@ -324,6 +385,19 @@ class ShipmentSubmit extends Market\Ui\Reference\Page
 		}
 
 		return $result;
+	}
+
+	protected function getProcedureTradingData()
+	{
+		$order = $this->getRequestOrder();
+
+		return [
+			'internalId' => $order->getInternalId(),
+			'orderId' => $order->getId(),
+			'orderNum' => $order->getAccountNumber(),
+			'immediate' => true,
+			'autoSubmit' => false,
+		];
 	}
 
 	protected function callProcedure($path, $data)

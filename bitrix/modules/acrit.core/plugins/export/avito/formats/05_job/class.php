@@ -111,6 +111,20 @@ class AvitoJob extends Avito {
 			'SORT' => 1030,
 			'DESCRIPTION' => static::getMessage('FIELD_SALARY_DESC'),
 		));
+		$arResult[] = new Field(array(
+			'CODE' => 'SALARY_RANGE_FROM',
+			'DISPLAY_CODE' => 'SalaryRange -> From',
+			'NAME' => static::getMessage('FIELD_SALARY_RANGE_FROM_NAME'),
+			'SORT' => 1040,
+			'DESCRIPTION' => static::getMessage('FIELD_SALARY_RANGE_FROM_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'SALARY_RANGE_TO',
+			'DISPLAY_CODE' => 'SalaryRange -> To',
+			'NAME' => static::getMessage('FIELD_SALARY_RANGE_TO_NAME'),
+			'SORT' => 1050,
+			'DESCRIPTION' => static::getMessage('FIELD_SALARY_RANGE_TO_DESC'),
+		));
 		#
 		$this->sortFields($arResult);
 		return $arResult;
@@ -140,6 +154,8 @@ class AvitoJob extends Avito {
 		#
 		if(!Helper::isEmpty($arFields['ALLOW_EMAIL']))
 			$arXmlTags['AllowEmail'] = Xml::addTag($arFields['ALLOW_EMAIL']);
+		if(!Helper::isEmpty($arFields['EMAIL']))
+			$arXmlTags['Email'] = Xml::addTag($arFields['EMAIL']);
 		if(!Helper::isEmpty($arFields['MANAGER_NAME']))
 			$arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
 		if(!Helper::isEmpty($arFields['CONTACT_PHONE']))
@@ -179,6 +195,9 @@ class AvitoJob extends Avito {
 			$arXmlTags['Experience'] = Xml::addTag($arFields['EXPERIENCE']);
 		if(!Helper::isEmpty($arFields['SALARY']))
 			$arXmlTags['Salary'] = Xml::addTag($arFields['SALARY']);
+		if(!Helper::isEmpty($arFields['SALARY_RANGE_FROM']) || !Helper::isEmpty($arFields['SALARY_RANGE_TO'])){
+			$arXmlTags['SalaryRange'] = $this->getXmlTag_FromTo($arFields['SALARY_RANGE_FROM'], $arFields['SALARY_RANGE_TO']);
+		}
 		# build XML
 		$arXml = array(
 			'Ad' => array(

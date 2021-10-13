@@ -8,8 +8,9 @@ use Yandex\Market\Ui\UserField\Helper;
 /** @var int $boxNumber */
 /** @var array $box */
 /** @var bool $useDimensions */
+/** @var bool $allowBoxEdit */
 
-$disabledProperties = $arResult['SHIPMENT_EDIT'] ? [ 'WEIGHT' => true, 'SIZE' => true ] : [];
+$disabledProperties = $allowBoxEdit ? [ 'WEIGHT' => true, 'SIZE' => true ] : [];
 
 ?>
 <table
@@ -47,7 +48,7 @@ $disabledProperties = $arResult['SHIPMENT_EDIT'] ? [ 'WEIGHT' => true, 'SIZE' =>
 					?>
 				</div>
 				<?php
-				if ($arResult['SHIPMENT_EDIT'])
+				if ($allowBoxEdit)
 				{
 					foreach (['FULFILMENT_ID'] as $fieldName)
 					{
@@ -83,7 +84,7 @@ $disabledProperties = $arResult['SHIPMENT_EDIT'] ? [ 'WEIGHT' => true, 'SIZE' =>
 		</tr>
 	</thead>
 	<?php
-	if ($arResult['SHIPMENT_EDIT'])
+	if ($allowBoxEdit)
 	{
 		$boxPackSelected = false;
 

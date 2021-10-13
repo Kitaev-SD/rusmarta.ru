@@ -14,10 +14,13 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 	protected static $statusEventQueue = [];
 	protected static $eventOrderList = [];
 	protected static $eventOrderState = [];
+	protected static $orderInfoCache = [];
 	protected static $tradingSetupCache = [];
 	protected static $watches = [];
 	protected static $internalChanges = [];
 	protected static $handledSaleOrderBeforeSaved = false;
+	protected static $delayedActions = [];
+	protected static $basketDeletedProducts = [];
 
 	public static function onBeforeSaleOrderSetField(Main\Event $event)
 	{
@@ -121,6 +124,193 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 		return $result;
 	}
 
+	public static function onSaleBasketItemEntityDeleted(Main\Event $event)
+	{
+		$basketItem = $event->getParameter('ENTITY');
+		$oldValues = $event->getParameter('VALUES');
+		$quantity = isset($oldValues['QUANTITY']) ? $oldValues['QUANTITY'] : null;
+
+		static::storeDeletedBasketItem($basketItem, $quantity);
+	}
+
+	protected static function signNewBasketItems(Sale\OrderBase $order)
+	{
+		$orderInternalId = $order->getInternalId();
+		$basket = $order->getBasket();
+
+		if ($basket === null || !isset(static::$basketDeletedProducts[$orderInternalId])) { return; }
+
+		$deleted = static::$basketDeletedProducts[$orderInternalId];
+		$signed = [];
+
+		foreach ($deleted as $deletedData)
+		{
+			$matchPriority = null;
+			$matchItem = null;
+
+			/** @var Sale\BasketItemBase $basketItem */
+			foreach ($basket as $basketItem)
+			{
+				$basketCode = $basketItem->getBasketCode();
+
+				if (isset($signed[$basketCode]) || $basketItem->getId() > 0) { continue; }
+
+				$comparePriority = static::compareBasketItemWithDeleted($basketItem, $deletedData);
+
+				if ($comparePriority !== null && $comparePriority > $matchPriority)
+				{
+					$matchPriority = $comparePriority;
+					$matchItem = $basketItem;
+				}
+			}
+
+			if ($matchItem !== null && $matchItem->getField('XML_ID') !== $deletedData['XML_ID'])
+			{
+				$signXmlId = static::makeBasketItemXmlIdSign($deletedData['XML_ID'], $basket);
+				$signed[$matchItem->getBasketCode()] = true;
+
+				$matchItem->setField('XML_ID', $signXmlId);
+			}
+		}
+
+		unset(static::$basketDeletedProducts[$orderInternalId]);
+	}
+
+	protected static function makeBasketItemXmlIdSign($xmlId, Sale\BasketBase $basket)
+	{
+		$xmlId = preg_replace('/_R\d+$/', '', $xmlId);
+
+		do
+		{
+			$result = $xmlId . '_R' . mt_rand(0, 100);
+			$hasMatch = false;
+
+			/** @var Sale\BasketItemBase $basketItem */
+			foreach ($basket as $basketItem)
+			{
+				if ($basketItem->getField('XML_ID') === $result)
+				{
+					$hasMatch = true;
+					break;
+				}
+			}
+		}
+		while ($hasMatch);
+
+		return $result;
+	}
+
+	protected static function compareBasketItemWithDeleted(Sale\BasketItemBase $basketItem, array $deletedData)
+	{
+		$result = null;
+		list($parentField, $parentSign) = static::getBasketItemParentSign($basketItem);
+		$currentData = [
+			'PRODUCT_ID' => $basketItem->getProductId(),
+			'BASKET_CODE' => $basketItem->getBasketCode(),
+			'PARENT_FIELD' => $parentField,
+			'PARENT_SIGN' => $parentSign,
+			'PRICE' => (int)$basketItem->getPrice(),
+			'QUANTITY' => (int)$basketItem->getQuantity(),
+		];
+		$methods = [
+			[ 'BASKET_CODE' ],
+			[ 'PRODUCT_ID', 'QUANTITY' ],
+			[ 'PRODUCT_ID' ],
+			[ 'PARENT_FIELD', 'PARENT_SIGN', 'QUANTITY' ],
+			[ 'PARENT_FIELD', 'PARENT_SIGN' ],
+			[ 'PRICE', 'QUANTITY' ],
+		];
+		$priority = count($methods);
+
+		foreach ($methods as $fields)
+		{
+			$compare = array_intersect_key($currentData, array_flip($fields));
+			$isMatch = true;
+
+			foreach ($compare as $field => $value)
+			{
+				if (
+					$value === null
+					|| !isset($deletedData[$field])
+					|| (string)$value !== (string)$deletedData[$field]
+				)
+				{
+					$isMatch = false;
+					break;
+				}
+			}
+
+			if ($isMatch)
+			{
+				$result = $priority;
+				break;
+			}
+
+			--$priority;
+		}
+
+		return $result;
+	}
+
+	protected static function storeDeletedBasketItem(Sale\BasketItemBase $basketItem, $quantity = null)
+	{
+		/** @var Sale\BasketBase $basket */
+		$basket = $basketItem->getCollection();
+		$xmlId = (string)$basketItem->getField('XML_ID');
+
+		if ($basket === null || $xmlId === '') { return; }
+		if (Market\Data\TextString::getPosition($xmlId, Market\Trading\Service\Reference\Dictionary::PREFIX_BASE) !== 0) { return; }
+
+		$order = $basket->getOrder();
+
+		if ($order === null) { return; }
+
+		list($parentField, $parentSign) = static::getBasketItemParentSign($basketItem);
+		$orderInternalId = $order->getInternalId();
+
+		if (!isset(static::$basketDeletedProducts[$orderInternalId]))
+		{
+			static::$basketDeletedProducts[$orderInternalId] = [];
+		}
+
+		static::$basketDeletedProducts[$orderInternalId][] = [
+			'XML_ID' => $xmlId,
+			'BASKET_CODE' => $basketItem->getBasketCode(),
+			'PARENT_FIELD' => $parentField,
+			'PARENT_SIGN' => $parentSign,
+			'PRODUCT_ID' => $basketItem->getProductId(),
+			'PRICE' => (int)$basketItem->getPrice(),
+			'QUANTITY' => $quantity !== null ? (int)$quantity : null,
+		];
+	}
+
+	protected static function getBasketItemParentSign(Sale\BasketItemBase $basketItem)
+	{
+		$productXmlId = trim($basketItem->getField('PRODUCT_XML_ID'));
+		$productId = $basketItem->getField('PRODUCT_ID');
+		$productXmlHashPosition = Market\Data\TextString::getPosition($productXmlId, '#');
+		$field = null;
+		$value = null;
+
+		if ($productXmlHashPosition > 0)
+		{
+			$field = 'XML_ID';
+			$value = Market\Data\TextString::getSubstring($productXmlId, 0, $productXmlHashPosition);
+		}
+		else if (Main\Loader::includeModule('catalog'))
+		{
+			$skuInfo = \CCatalogSku::GetProductInfo($productId);
+
+			if ($skuInfo !== false && isset($skuInfo['ID']))
+			{
+				$field = 'ID';
+				$value = (int)$skuInfo['ID'];
+			}
+		}
+
+		return [$field, $value];
+	}
+
 	public static function onSaleStatusOrderChange(Main\Event $event)
 	{
 		$order = $event->getParameter('ENTITY');
@@ -210,22 +400,49 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 
 	public static function onSaleOrderBeforeSaved(Main\Event $event)
 	{
-		if (!static::isAdminRequest()) { return null; }
-
+		/** @var Sale\OrderBase $order */
 		$order = $event->getParameter('ENTITY');
+		$tradingInfo = static::getTradingInfo($order);
 
-		return static::processSaleOrderChangeEvent($order, static::STATE_PROCESSING);
+		if ($tradingInfo === null) { return null; }
+
+		static::signNewBasketItems($order);
+
+		$actions = static::makeOrderActions($order, $tradingInfo);
+
+		static::releaseWatches($tradingInfo->getInternalId());
+		static::releaseInternalChanges($tradingInfo->getInternalId());
+
+		if (!static::isAdminRequest())
+		{
+			static::$delayedActions[$order->getId()] = $actions;
+			return null;
+		}
+
+		return static::processSaleOrderEventActions($order, $tradingInfo, $actions, static::STATE_PROCESSING);
 	}
 
 	public static function onSaleOrderSaved(Main\Event $event)
 	{
 		if (static::isAdminRequest()) { return null; }
 
+		/** @var Sale\OrderBase $order */
 		$order = $event->getParameter('ENTITY');
+		$orderId = $order->getId();
 
-		static::processSaleOrderChangeEvent($order, static::STATE_SAVING);
+		if (!isset(static::$delayedActions[$orderId])) { return null; }
+
+		$tradingInfo = static::getTradingInfo($order);
+		$actions = static::$delayedActions[$orderId];
+
+		if ($tradingInfo === null) { return null; }
+
+		static::processSaleOrderEventActions($order, $tradingInfo, $actions, static::STATE_SAVING);
+
+		unset(static::$delayedActions[$orderId]);
 	}
 
+	/** @deprecated */
 	protected static function processSaleOrderChangeEvent(Sale\OrderBase $internalOrder, $state)
 	{
 		$result = new Main\EventResult(Main\EventResult::SUCCESS);
@@ -234,6 +451,17 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 		if ($tradingInfo === null) { return $result; }
 
 		$actions = static::makeOrderActions($internalOrder, $tradingInfo);
+		$result = static::processSaleOrderEventActions($internalOrder, $tradingInfo, $actions, $state);
+
+		static::releaseWatches($tradingInfo->getInternalId());
+		static::releaseInternalChanges($tradingInfo->getInternalId());
+
+		return $result;
+	}
+
+	protected static function processSaleOrderEventActions(Sale\OrderBase $internalOrder, Listener\TradingInfo $tradingInfo, array $actions, $state)
+	{
+		$result = new Main\EventResult(Main\EventResult::SUCCESS);
 
 		foreach ($actions as $action)
 		{
@@ -250,9 +478,6 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 				break;
 			}
 		}
-
-		static::releaseWatches($tradingInfo->getInternalId());
-		static::releaseInternalChanges($tradingInfo->getInternalId());
 
 		return $result;
 	}
@@ -277,14 +502,13 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 
 		foreach ($usedFields as $usedField)
 		{
-			list($type, $name) = explode('.', $usedField);
+			list($type, $name) = explode('.', $usedField, 2);
 
 			if ($type === 'ORDER')
 			{
-				if (in_array($name, $order->getFields()->getChangedKeys(), true))
-				{
-					$result[$usedField] = $order->getField($name);
-				}
+				if (!static::isSaleEntityHasChange($order, $name)) { continue; }
+
+				$result[$usedField] = $order->getField($name);
 			}
 			else if (!($order instanceof Sale\Order))
 			{
@@ -304,27 +528,170 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 
 				if ($property === null) { continue; }
 
-				if (in_array($name, $property->getFields()->getChangedKeys(), true))
-				{
-					$result[$usedField] = $property->getField($name);
-				}
+				if (!static::isSaleEntityHasChange($property, $name)) { continue; }
+
+				$result[$usedField] = $property->getField($name);
 			}
 			else if ($type === 'SHIPMENT')
 			{
-				/** @var Sale\Shipment $shipment */
-				foreach ($order->getShipmentCollection() as $shipment)
-				{
-					if ($shipment->isSystem()) { continue; }
+				list($hasChanges, $value) = static::collectShipmentValues($order, $name);
 
-					if (in_array($name, $shipment->getFields()->getChangedKeys(), true))
-					{
-						$result[$usedField] = $shipment->getField($name);
-					}
-				}
+				if (!$hasChanges) { continue; }
+
+				$result[$usedField] = $value;
+			}
+			else if ($type === 'BASKET')
+			{
+				list($hasChanges, $value) = static::collectBasketValues($order, $name);
+
+				if (!$hasChanges) { continue; }
+
+				$result[$usedField] = $value;
 			}
 		}
 
 		return $result;
+	}
+
+	protected static function collectShipmentValues(Sale\Order $order, $field)
+	{
+		list($type, $name) = explode('.', $field, 2);
+		$hasChanges = false;
+		$values = null;
+
+		/** @var Sale\Shipment $shipment */
+		foreach ($order->getShipmentCollection() as $shipment)
+		{
+			if ($shipment->isSystem()) { continue; }
+
+			if ($type === 'ITEM')
+			{
+				list($hasItemChanges, $itemValues) = static::collectShipmentItemValues($shipment, $name);
+
+				$hasChanges = ($hasChanges || $hasItemChanges);
+
+				$values = $values !== null
+					? array_merge($values, $itemValues)
+					: $itemValues;
+			}
+			else
+			{
+				$hasChanges = static::isSaleEntityHasChange($shipment, $type);
+				$values = $shipment->getField($type);
+			}
+		}
+
+		return [$hasChanges, $values];
+	}
+
+	protected static function collectShipmentItemValues(Sale\Shipment $shipment, $field)
+	{
+		list($type, $name) = explode('.', $field, 2);
+		$hasChanges = false;
+		$values = [];
+
+		/** @var Sale\ShipmentItem $shipmentItem */
+		foreach ($shipment->getShipmentItemCollection() as $shipmentItem)
+		{
+			$basketItem = $shipmentItem->getBasketItem();
+
+			if ($basketItem === null) { continue; }
+
+			if ($type === 'STORE')
+			{
+				list($hasStoreChanges, $storeValues) = static::collectShipmentItemStoreValues($shipmentItem, $name);
+
+				$hasChanges = ($hasChanges || $hasStoreChanges);
+
+				foreach ($storeValues as $storeValue)
+				{
+					$values[] = [
+						'PRODUCT_ID' => $basketItem->getProductId(),
+						'XML_ID' => $basketItem->getField('XML_ID'),
+						'VALUE' => $storeValue,
+					];
+				}
+			}
+		}
+
+		return [$hasChanges, $values];
+	}
+
+	protected static function collectShipmentItemStoreValues(Sale\ShipmentItem $shipmentItem, $field)
+	{
+		$hasChanges = false;
+		$values = [];
+
+		/** @var Sale\ShipmentItemStore $itemStore */
+		foreach ($shipmentItem->getShipmentItemStoreCollection() as $itemStore)
+		{
+			$hasChanges = ($hasChanges || static::isSaleEntityHasChange($itemStore, $field));
+			$values[] = $itemStore->getField($field);
+		}
+
+		return [$hasChanges, $values];
+	}
+
+	protected static function collectBasketValues(Sale\Order $order, $field)
+	{
+		$basket = $order->getBasket();
+
+		if ($basket === null) { return [ false, null ]; }
+
+		$hasChanges = (Compatible\EntityCollection::isAnyItemDeleted($basket) && static::getInternalChange($order->getId(), 'BASKET.DELETE') === null);
+		$values = [];
+
+		/** @var Sale\BasketItem $basketItem */
+		foreach ($order->getBasket() as $basketItem)
+		{
+			$value = $basketItem->getField($field);
+
+			if (!$hasChanges)
+			{
+				$hasSelfChanges = static::isSaleEntityHasChange($basketItem, $field);
+
+				if ($field === 'QUANTITY' && $hasSelfChanges)
+				{
+					$originalValues = $basketItem->getFields()->getOriginalValues();
+
+					$hasSelfChanges = (int)$value !== (int)$originalValues[$field];
+				}
+
+				if ($hasSelfChanges)
+				{
+					$internalField = sprintf('BASKET.%s.%s', $basketItem->getBasketCode(), $field);
+					$internalChange = static::getInternalChange($order->getId(), $internalField);
+
+					if ($internalChange === null)
+					{
+						// nothing
+					}
+					else if ($field === 'QUANTITY')
+					{
+						$hasSelfChanges = (int)$value !== (int)$internalChange;
+					}
+					else
+					{
+						$hasSelfChanges = (string)$value !== (string)$internalChange;
+					}
+				}
+
+				$hasChanges = $hasSelfChanges;
+			}
+
+			$values[] = [
+				'PRODUCT_ID' => $basketItem->getProductId(),
+				'XML_ID' => $basketItem->getField('XML_ID'),
+				'VALUE' => $value,
+			];
+		}
+
+		return [$hasChanges, $values];
+	}
+
+	protected static function isSaleEntityHasChange(Sale\Internals\Entity $entity, $field)
+	{
+		return in_array($field, $entity->getFields()->getChangedKeys(), true);
 	}
 
 	protected static function collectChangesActions($fieldActions, $changes)
@@ -360,12 +727,12 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 			$result = $action['PAYLOAD_MAP'][$action['VALUE']];
 		}
 
-		if ($result === null) { return null; }
-
 		if (is_callable($result))
 		{
 			$result = $result($action);
 		}
+
+		if ($result === null) { return null; }
 
 		return (array)$result;
 	}
@@ -457,7 +824,9 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 			$procedure->run(
 				$tradingInfo->getSetup(),
 				$action->getPath(),
-				$action->getPayload() + $tradingInfo->getProcedurePayload($isImmediate)
+				$action->getPayload() + $tradingInfo->getProcedurePayload($isImmediate) + [
+					'autoSubmit' => true,
+				]
 			);
 		}
 		catch (Market\Exceptions\Trading\NotImplementedAction $exception)
@@ -471,6 +840,16 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 				$procedure->clearRepeat();
 				$procedure->createRepeat();
 
+				$procedure->logException($exception);
+			}
+
+			$result->addError(new Main\Error($exception->getMessage()));
+		}
+		catch (Market\Exceptions\Trading\Validation $exception)
+		{
+			if (!$isImmediate)
+			{
+				$procedure->clearRepeat();
 				$procedure->logException($exception);
 			}
 
@@ -493,17 +872,10 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 	 */
 	protected static function getTradingInfo(Sale\OrderBase $order)
 	{
-		if ($order->isNew()) { return null; }
+		$orderInfo = static::getOrderInfo($order);
 
-		$platformRow = OrderRegistry::searchPlatform($order->getId());
+		if ($orderInfo === null) { return null; }
 
-		if ($platformRow === null) { return null; }
-
-		$orderInfo = $platformRow + [
-			'INTERNAL_ORDER_ID' => $order->getId(),
-			'ACCOUNT_NUMBER' => OrderRegistry::getOrderAccountNumber($order),
-			'SITE_ID' => $order->getSiteId(),
-		];
 		$setup = static::getTradingSetup($orderInfo);
 
 		if ($setup === null) { return null; }
@@ -512,6 +884,37 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 			$setup,
 			$orderInfo
 		);
+	}
+
+	protected static function getOrderInfo(Sale\OrderBase $order)
+	{
+		if ($order->isNew()) { return null; }
+
+		$orderId = $order->getId();
+		$result = null;
+
+		if (isset(static::$orderInfoCache[$orderId]))
+		{
+			$result = static::$orderInfoCache[$orderId];
+		}
+		else if (!array_key_exists($orderId, static::$orderInfoCache))
+		{
+			$platformRow = OrderRegistry::searchPlatform($order->getId());
+			$result = null;
+
+			if ($platformRow !== null)
+			{
+				$result = $platformRow + [
+					'INTERNAL_ORDER_ID' => $order->getId(),
+					'ACCOUNT_NUMBER' => OrderRegistry::getOrderAccountNumber($order),
+					'SITE_ID' => $order->getSiteId(),
+				];
+			}
+
+			static::$orderInfoCache[$orderId] = $result;
+		}
+
+		return $result;
 	}
 
 	protected static function getTradingSetup(array $orderInfo)
@@ -583,7 +986,7 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 		{
 			$result = false;
 		}
-		else if (Market\Data\TextString::getPosition($requestedPage, BX_ROOT . '/admin/sale_order') !== 0) // not is order admin page
+		else if (!static::isAdminPage($requestedPage)) // not is order admin page
 		{
 			$result = false;
 		}
@@ -597,6 +1000,11 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 		}
 
 		return $result;
+	}
+
+	protected static function isAdminPage($path)
+	{
+		return (Market\Data\TextString::getPosition($path, BX_ROOT . '/admin/sale_order') === 0);
 	}
 
 	protected static function isShipmentSiblingsFilled(Sale\Shipment $shipment, $name, $value)
@@ -777,6 +1185,11 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 		return isset(static::$internalChanges[$orderId]) ? static::$internalChanges[$orderId] : [];
 	}
 
+	protected static function getInternalChange($orderId, $field)
+	{
+		return isset(static::$internalChanges[$orderId][$field]) ? static::$internalChanges[$orderId][$field] : null;
+	}
+
 	protected static function releaseInternalChanges($orderId)
 	{
 		if (isset(static::$internalChanges[$orderId]))
@@ -861,6 +1274,10 @@ class Listener extends Market\Trading\Entity\Reference\Listener
 			[
 				'module' => 'sale',
 				'event' => 'OnShipmentDeducted'
+			],
+			[
+				'module' => 'sale',
+				'event' => 'OnSaleBasketItemEntityDeleted',
 			],
 		];
 	}

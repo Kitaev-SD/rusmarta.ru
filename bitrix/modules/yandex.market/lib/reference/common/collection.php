@@ -127,6 +127,18 @@ abstract class Collection implements \ArrayAccess, \Countable, \IteratorAggregat
 		return $key !== false ? $key : null;
 	}
 
+	public function toArray()
+	{
+		$result = [];
+
+		foreach ($this->collection as $item)
+		{
+			$result[] = $item->getFields();
+		}
+
+		return $result;
+	}
+
 	/*
 	 * Array iterator
 	 * */

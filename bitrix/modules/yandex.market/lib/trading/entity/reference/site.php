@@ -30,4 +30,14 @@ abstract class Site
     {
 	    throw new Market\Exceptions\NotImplementedMethod(static::class, 'getTitle');
     }
+
+	/**
+	 * @param string $siteId
+	 *
+	 * @return string
+	 */
+	public function getLanguage($siteId)
+    {
+	    throw new Market\Exceptions\NotImplementedMethod(static::class, 'getLanguage');
+    }
 }

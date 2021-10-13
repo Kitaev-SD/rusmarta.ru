@@ -3,7 +3,8 @@ namespace Acrit\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Acrit\Core\Helper,
-	\Acrit\Core\Json;
+	\Acrit\Core\Json,
+	\Acrit\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -15,13 +16,30 @@ Loc::loadMessages(__FILE__);
 class Bitrix24Rest {
 
 	// Execute REST-query
-	static function executeMethod($method, $strModuleId, $params, $intProfileID, $only_res=true) {
+	static function executeMethod($method, $strModuleId, $params, $intProfileID, $only_res=true, $err_repeate=true) {
 		$result = false;
 		$arAuthData = self::getAuthData($strModuleId, $intProfileID);
 		if ($arAuthData) {
 			self::controlLimits();
+			Log::getInstance($strModuleId)->add('request ' . $method, $intProfileID, true);
 			$rest_url = 'https://' . $arAuthData['PORTAL'] . '/rest/' . $arAuthData['USER_ID'] . '/' . $arAuthData['WEBHOOK'] . '/' . $method . '/';
 			$arResp = self::executeHTTPRequest($rest_url, $params);
+			// Error processing
+			if ($arResp['error'] || $arResp['error_description']) {
+				Log::getInstance($strModuleId)->add('request error ' . print_r($arResp, true), $intProfileID);
+				if ( ! in_array($arResp['error'], ['ERROR_METHOD_NOT_FOUND'])) {
+					if ($err_repeate) {
+						$i = 0;
+						while (($arResp['error'] || $arResp['error_description']) && $i < 2) {
+							sleep(1);
+							// Execute again
+							$arResp = self::executeHTTPRequest($rest_url, $params);
+							Log::getInstance($strModuleId)->add('request repeat result ' . print_r($arResp, true), $intProfileID, true);
+							$i ++;
+						}
+					}
+				}
+			}
 			if ($only_res) {
 				$result = $arResp['result'];
 			}

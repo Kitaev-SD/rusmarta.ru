@@ -10,7 +10,28 @@ use Yandex\Market\Trading\Service as TradingService;
 
 class EditForm extends Market\Component\Plain\EditForm
 {
+	protected $entity;
+
 	public function load($primary, array $select = [], $isCopy = false)
+	{
+		$entity = $this->loadEntity($primary);
+
+		return $this->getActivity()->getEntityValues($entity);
+	}
+
+	protected function loadEntity($primary)
+	{
+		$sourceType = $this->getActivity()->getSourceType();
+
+		if ($sourceType === Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER)
+		{
+			return $this->loadOrder($primary);
+		}
+
+		return $this->loadEntityByFacade($sourceType, $primary);
+	}
+
+	protected function loadOrder($primary)
 	{
 		$service = $this->getSetup()->wakeupService();
 		$options = $service->getOptions();
@@ -29,7 +50,23 @@ class EditForm extends Market\Component\Plain\EditForm
 			$order = $orderFacade::load($options, $primary);
 		}
 
-		return $this->getActivity()->getValues($order);
+		return $order;
+	}
+
+	protected function loadEntityByFacade($entityType, $primary)
+	{
+		$service = $this->getSetup()->wakeupService();
+		$options = $service->getOptions();
+		$facade = $service->getModelFactory()->getEntityFacadeClassName($entityType);
+
+		return $facade::load($options, $primary);
+	}
+
+	public function getFields(array $select = [], $item = null)
+	{
+		$result = parent::getFields($select, $item);
+
+		return $this->getActivity()->extendFields($result, $item);
 	}
 
 	public function add($fields)
@@ -40,10 +77,12 @@ class EditForm extends Market\Component\Plain\EditForm
 	public function update($primary, $fields)
 	{
 		$result = new Main\Entity\UpdateResult();
-		$tradingInfo = $this->getTradingInfo($primary);
+		$activity = $this->getActivity();
+		$entityType = $activity->getSourceType();
+		$tradingInfo = $this->getTradingInfo($entityType, $primary);
 
 		$procedure = new Market\Trading\Procedure\Runner(
-			Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER,
+			$entityType,
 			$tradingInfo['ACCOUNT_NUMBER']
 		);
 
@@ -52,7 +91,7 @@ class EditForm extends Market\Component\Plain\EditForm
 			$procedure->run(
 				$this->getSetup(),
 				$this->getActionPath(),
-				$this->getActivity()->getPayload($fields) + $this->getTradingPayload($tradingInfo)
+				$this->getActivity()->getPayload($fields) + $this->getTradingPayload($entityType, $tradingInfo)
 			);
 		}
 		catch (Market\Exceptions\Trading\NotImplementedAction $exception)
@@ -73,7 +112,24 @@ class EditForm extends Market\Component\Plain\EditForm
 		return $result;
 	}
 
-	protected function getTradingInfo($primary)
+	protected function getTradingInfo($entityType, $primary)
+	{
+		if ($entityType === Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER)
+		{
+			$result = $this->getOrderTradingInfo($primary);
+		}
+		else
+		{
+			$result = [
+				'ID' => $primary,
+				'ACCOUNT_NUMBER' => $primary,
+			];
+		}
+
+		return $result;
+	}
+
+	protected function getOrderTradingInfo($primary)
 	{
 		$platform = $this->getSetup()->getPlatform();
 		$orderRegistry = $this->getSetup()->getEnvironment()->getOrderRegistry();
@@ -85,13 +141,39 @@ class EditForm extends Market\Component\Plain\EditForm
 		];
 	}
 
-	protected function getTradingPayload(array $tradingInfo)
+	protected function getTradingPayload($entityType, array $tradingInfo)
+	{
+		if ($entityType === Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER)
+		{
+			$result = $this->getOrderTradingPayload($tradingInfo);
+		}
+		else if ($entityType === Market\Trading\Entity\Registry::ENTITY_TYPE_LOGISTIC_SHIPMENT)
+		{
+			$result = $this->getShipmentTradingPayload($tradingInfo);
+		}
+		else
+		{
+			$result = [];
+		}
+
+		return $result + [
+			'immediate' => true,
+		];
+	}
+
+	protected function getOrderTradingPayload(array $tradingInfo)
 	{
 		return [
 			'internalId' => $tradingInfo['INTERNAL_ORDER_ID'],
 			'orderId' => $tradingInfo['EXTERNAL_ORDER_ID'],
 			'orderNum' => $tradingInfo['ACCOUNT_NUMBER'],
-			'immediate' => true,
+		];
+	}
+
+	protected function getShipmentTradingPayload(array $tradingInfo)
+	{
+		return [
+			'shipmentId' => $tradingInfo['ID'],
 		];
 	}
 

@@ -81,7 +81,7 @@ class HttpRequest {
 				curl_setopt($Curl, CURLOPT_POST, true);
 			} else {
 				curl_setopt($Curl, CURLOPT_CUSTOMREQUEST, $arParams['METHOD']);
-				if ($Params['METHOD']=='HEAD') {
+				if ($arParams['METHOD']=='HEAD') {
 					curl_setopt($Curl, CURLOPT_NOBODY, true);
 				}
 			}

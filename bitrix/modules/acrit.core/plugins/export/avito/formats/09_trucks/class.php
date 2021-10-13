@@ -163,188 +163,223 @@ class AvitoTrucks extends Avito {
 			'CODE' => 'TYPE_OF_TRAILER',
 			'DISPLAY_CODE' => 'TypeOfTrailer',
 			'NAME' => static::getMessage('FIELD_TYPE_OF_TRAILER_NAME'),
-			'SORT' => 1001,
+			'SORT' => 1010,
 			'DESCRIPTION' => static::getMessage('FIELD_TYPE_OF_TRAILER_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'TRAILER_VIN',
 			'DISPLAY_CODE' => 'TrailerVIN',
 			'NAME' => static::getMessage('FIELD_TRAILER_VIN_NAME'),
-			'SORT' => 1002,
+			'SORT' => 1020,
 			'DESCRIPTION' => static::getMessage('FIELD_TRAILER_VIN_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'TYPE_OF_VEHICLE_SEMI_TRAILER_COUPLING',
+			'DISPLAY_CODE' => 'TypeOfVehicleSemiTrailerCoupling',
+			'NAME' => static::getMessage('FIELD_TYPE_OF_VEHICLE_SEMI_TRAILER_COUPLING_NAME'),
+			'SORT' => 1030,
+			'DESCRIPTION' => static::getMessage('FIELD_TYPE_OF_VEHICLE_SEMI_TRAILER_COUPLING_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MAKE_SEMI_TRAILER_COUPLING',
+			'DISPLAY_CODE' => 'MakeSemiTrailerCoupling',
+			'NAME' => static::getMessage('FIELD_MAKE_SEMI_TRAILER_COUPLING_NAME'),
+			'SORT' => 1040,
+			'DESCRIPTION' => static::getMessage('FIELD_MAKE_SEMI_TRAILER_COUPLING_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MODEL_SEMI_TRAILER_COUPLING',
+			'DISPLAY_CODE' => 'ModelSemiTrailerCoupling',
+			'NAME' => static::getMessage('FIELD_MODEL_SEMI_TRAILER_COUPLING_NAME'),
+			'SORT' => 1050,
+			'DESCRIPTION' => static::getMessage('FIELD_MODEL_SEMI_TRAILER_COUPLING_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'TYPE_SEMI_TRAILER_COUPLING',
+			'DISPLAY_CODE' => 'TypeSemiTrailerCoupling',
+			'NAME' => static::getMessage('FIELD_TYPE_SEMI_TRAILER_COUPLING_NAME'),
+			'SORT' => 1060,
+			'DESCRIPTION' => static::getMessage('FIELD_TYPE_SEMI_TRAILER_COUPLING_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'YEAR_SEMI_TRAILER_COUPLING',
+			'DISPLAY_CODE' => 'YearSemiTrailerCoupling',
+			'NAME' => static::getMessage('FIELD_YEAR_SEMI_TRAILER_COUPLING_NAME'),
+			'SORT' => 1070,
+			'DESCRIPTION' => static::getMessage('FIELD_YEAR_SEMI_TRAILER_COUPLING_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'MAKE_KMU',
 			'DISPLAY_CODE' => 'MakeKmu',
 			'NAME' => static::getMessage('FIELD_MAKE_KMU_NAME'),
-			'SORT' => 1003,
+			'SORT' => 1080,
 			'DESCRIPTION' => static::getMessage('FIELD_MAKE_KMU_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'MODEL_KMU',
 			'DISPLAY_CODE' => 'ModelKmu',
 			'NAME' => static::getMessage('FIELD_MODEL_KMU_NAME'),
-			'SORT' => 1004,
+			'SORT' => 1090,
 			'DESCRIPTION' => static::getMessage('FIELD_MODEL_KMU_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'BRAND',
 			'DISPLAY_CODE' => 'Brand',
 			'NAME' => static::getMessage('FIELD_BRAND_NAME'),
-			'SORT' => 1005,
+			'SORT' => 1100,
 			'DESCRIPTION' => static::getMessage('FIELD_BRAND_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'BODY',
 			'DISPLAY_CODE' => 'Body',
 			'NAME' => static::getMessage('FIELD_BODY_NAME'),
-			'SORT' => 1006,
+			'SORT' => 1110,
 			'DESCRIPTION' => static::getMessage('FIELD_BODY_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'DOORS_COUNT',
 			'DISPLAY_CODE' => 'DoorsCount',
 			'NAME' => static::getMessage('FIELD_DOORS_COUNT_NAME'),
-			'SORT' => 1007,
+			'SORT' => 1120,
 			'DESCRIPTION' => static::getMessage('FIELD_DOORS_COUNT_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'GENERATION',
 			'DISPLAY_CODE' => 'Generation',
 			'NAME' => static::getMessage('FIELD_GENERATION_NAME'),
-			'SORT' => 1008,
+			'SORT' => 1130,
 			'DESCRIPTION' => static::getMessage('FIELD_GENERATION_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'ENGINE_TYPE',
 			'DISPLAY_CODE' => 'EngineType',
 			'NAME' => static::getMessage('FIELD_ENGINE_TYPE_NAME'),
-			'SORT' => 1009,
+			'SORT' => 1140,
 			'DESCRIPTION' => static::getMessage('FIELD_ENGINE_TYPE_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'DRIVE_TYPE',
 			'DISPLAY_CODE' => 'DriveType',
 			'NAME' => static::getMessage('FIELD_DRIVE_TYPE_NAME'),
-			'SORT' => 1010,
+			'SORT' => 1150,
 			'DESCRIPTION' => static::getMessage('FIELD_DRIVE_TYPE_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'TRANSMISSION',
 			'DISPLAY_CODE' => 'Transmission',
 			'NAME' => static::getMessage('FIELD_TRANSMISSION_NAME'),
-			'SORT' => 1011,
+			'SORT' => 1160,
 			'DESCRIPTION' => static::getMessage('FIELD_TRANSMISSION_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'MODIFICATION',
 			'DISPLAY_CODE' => 'Modification',
 			'NAME' => static::getMessage('FIELD_MODIFICATION_NAME'),
-			'SORT' => 1012,
+			'SORT' => 1170,
 			'DESCRIPTION' => static::getMessage('FIELD_MODIFICATION_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'TRIM',
 			'DISPLAY_CODE' => 'Trim',
 			'NAME' => static::getMessage('FIELD_TRIM_NAME'),
-			'SORT' => 1013,
+			'SORT' => 1180,
 			'DESCRIPTION' => static::getMessage('FIELD_TRIM_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'WHEEL_TYPE',
 			'DISPLAY_CODE' => 'WheelType',
 			'NAME' => static::getMessage('FIELD_WHEEL_TYPE_NAME'),
-			'SORT' => 1014,
+			'SORT' => 1190,
 			'DESCRIPTION' => static::getMessage('FIELD_WHEEL_TYPE_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'OWNERS_BY_DOCUMENTS',
 			'DISPLAY_CODE' => 'OwnersByDocuments',
 			'NAME' => static::getMessage('FIELD_OWNERS_BY_DOCUMENTS_NAME'),
-			'SORT' => 1015,
+			'SORT' => 1200,
 			'DESCRIPTION' => static::getMessage('FIELD_OWNERS_BY_DOCUMENTS_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'COLOR',
 			'DISPLAY_CODE' => 'Color',
 			'NAME' => static::getMessage('FIELD_COLOR_NAME'),
-			'SORT' => 1016,
+			'SORT' => 1210,
 			'DESCRIPTION' => static::getMessage('FIELD_COLOR_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'ACCIDENT',
 			'DISPLAY_CODE' => 'Accident',
 			'NAME' => static::getMessage('FIELD_ACCIDENT_NAME'),
-			'SORT' => 1017,
+			'SORT' => 1220,
 			'DESCRIPTION' => static::getMessage('FIELD_ACCIDENT_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'MAKE_CHASSIS',
 			'DISPLAY_CODE' => 'MakeChassis',
 			'NAME' => static::getMessage('FIELD_MAKE_CHASSIS_NAME'),
-			'SORT' => 1018,
+			'SORT' => 1230,
 			'DESCRIPTION' => static::getMessage('FIELD_MAKE_CHASSIS_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'MODEL_CHASSIS',
 			'DISPLAY_CODE' => 'ModelChassis',
 			'NAME' => static::getMessage('FIELD_MODEL_CHASSIS_NAME'),
-			'SORT' => 1019,
+			'SORT' => 1240,
 			'DESCRIPTION' => static::getMessage('FIELD_MODEL_CHASSIS_DESC'),
 		));
 		$arResult[] = new Field(array(
-				'CODE' => 'AVAILABILITY',
-				'DISPLAY_CODE' => 'Availability',
-				'NAME' => static::getMessage('FIELD_AVAILABILITY_NAME'),
-				'SORT' => 1020,
-				'DESCRIPTION' => static::getMessage('FIELD_AVAILABILITY_DESC'),
-				'DEFAULT_VALUE' => [
-					array(
-						'TYPE' => 'CONST',
-						'CONST' => static::getMessage('FIELD_AVAILABILITY_IN'),
-					),
-				],
+			'CODE' => 'AVAILABILITY',
+			'DISPLAY_CODE' => 'Availability',
+			'NAME' => static::getMessage('FIELD_AVAILABILITY_NAME'),
+			'SORT' => 1250,
+			'DESCRIPTION' => static::getMessage('FIELD_AVAILABILITY_DESC'),
+			'DEFAULT_VALUE' => [
+				array(
+					'TYPE' => 'CONST',
+					'CONST' => static::getMessage('FIELD_AVAILABILITY_IN'),
+				),
+			],
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'ENGINE_CAPACITY',
 			'DISPLAY_CODE' => 'EngineCapacity',
 			'NAME' => static::getMessage('FIELD_ENGINE_CAPACITY_NAME'),
-			'SORT' => 1021,
+			'SORT' => 1260,
 			'DESCRIPTION' => static::getMessage('FIELD_ENGINE_CAPACITY_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'GROSS_VEHICLE_WEIGHT',
 			'DISPLAY_CODE' => 'GrossVehicleWeight',
 			'NAME' => static::getMessage('FIELD_GROSS_VEHICLE_WEIGHT_NAME'),
-			'SORT' => 1022,
+			'SORT' => 1270,
 			'DESCRIPTION' => static::getMessage('FIELD_GROSS_VEHICLE_WEIGHT_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'PERMISSIBLE_GROSS_VEHICLE_WEIGHT',
 			'DISPLAY_CODE' => 'PermissibleGrossVehicleWeight',
 			'NAME' => static::getMessage('FIELD_PERMISSIBLE_GROSS_VEHICLE_WEIGHT_NAME'),
-			'SORT' => 1023,
+			'SORT' => 1280,
 			'DESCRIPTION' => static::getMessage('FIELD_PERMISSIBLE_GROSS_VEHICLE_WEIGHT_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'WHEEL_FORMULA',
 			'DISPLAY_CODE' => 'WheelFormula',
 			'NAME' => static::getMessage('FIELD_WHEEL_FORMULA_NAME'),
-			'SORT' => 1024,
+			'SORT' => 1290,
 			'DESCRIPTION' => static::getMessage('FIELD_WHEEL_FORMULA_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'POWER',
 			'DISPLAY_CODE' => 'Power',
 			'NAME' => static::getMessage('FIELD_POWER_NAME'),
-			'SORT' => 1025,
+			'SORT' => 1300,
 			'DESCRIPTION' => static::getMessage('FIELD_POWER_DESC'),
 		));
 		$arResult[] = new Field(array(
 			'CODE' => 'EMISSION_CLASS',
 			'DISPLAY_CODE' => 'EmissionClass',
 			'NAME' => static::getMessage('FIELD_EMISSION_CLASS_NAME'),
-			'SORT' => 1026,
+			'SORT' => 1310,
 			'DESCRIPTION' => static::getMessage('FIELD_EMISSION_CLASS_DESC'),
 		));
 		#
@@ -376,6 +411,8 @@ class AvitoTrucks extends Avito {
 		#
 		if(!Helper::isEmpty($arFields['ALLOW_EMAIL']))
 			$arXmlTags['AllowEmail'] = Xml::addTag($arFields['ALLOW_EMAIL']);
+		if(!Helper::isEmpty($arFields['EMAIL']))
+			$arXmlTags['Email'] = Xml::addTag($arFields['EMAIL']);
 		if(!Helper::isEmpty($arFields['MANAGER_NAME']))
 			$arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
 		if(!Helper::isEmpty($arFields['CONTACT_PHONE']))
@@ -437,6 +474,16 @@ class AvitoTrucks extends Avito {
 			$arXmlTags['TypeOfTrailer'] = Xml::addTag($arFields['TYPE_OF_TRAILER']);
 		if(!Helper::isEmpty($arFields['TRAILER_VIN']))
 			$arXmlTags['TrailerVIN'] = Xml::addTag($arFields['TRAILER_VIN']);
+		if(!Helper::isEmpty($arFields['TYPE_OF_VEHICLE_SEMI_TRAILER_COUPLING']))
+			$arXmlTags['TypeOfVehicleSemiTrailerCoupling'] = Xml::addTag($arFields['TYPE_OF_VEHICLE_SEMI_TRAILER_COUPLING']);
+		if(!Helper::isEmpty($arFields['MAKE_SEMI_TRAILER_COUPLING']))
+			$arXmlTags['MakeSemiTrailerCoupling'] = Xml::addTag($arFields['MAKE_SEMI_TRAILER_COUPLING']);
+		if(!Helper::isEmpty($arFields['MODEL_SEMI_TRAILER_COUPLING']))
+			$arXmlTags['ModelSemiTrailerCoupling'] = Xml::addTag($arFields['MODEL_SEMI_TRAILER_COUPLING']);
+		if(!Helper::isEmpty($arFields['TYPE_SEMI_TRAILER_COUPLING']))
+			$arXmlTags['TypeSemiTrailerCoupling'] = Xml::addTag($arFields['TYPE_SEMI_TRAILER_COUPLING']);
+		if(!Helper::isEmpty($arFields['YEAR_SEMI_TRAILER_COUPLING']))
+			$arXmlTags['YearSemiTrailerCoupling'] = Xml::addTag($arFields['YEAR_SEMI_TRAILER_COUPLING']);
 		if(!Helper::isEmpty($arFields['GOODS_TYPE']))
 			$arXmlTags['GoodsType'] = Xml::addTag($arFields['GOODS_TYPE']);
 		if(!Helper::isEmpty($arFields['MAKE_KMU']))

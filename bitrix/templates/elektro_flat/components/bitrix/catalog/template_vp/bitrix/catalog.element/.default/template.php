@@ -277,8 +277,12 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 </script>
 
 
-<div id="<?=$arItemIDs['ID']?>" class="catalog-detail-element" itemscope itemtype="http://schema.org/Product">
-    <meta content="<?=$arResult['NAME']?>" itemprop="name" />
+<div id="<?=$arItemIDs['ID']?>" class="catalog-detail-element" <?/*itemscope itemtype="http://schema.org/Product"*/?>>
+    <?GLOBAL $jsonLd;?>
+    <?$jsonLd = [];?>
+    <?/*<meta content="<?=$arResult['NAME']?>" itemprop="name" />*/?>
+    <?$jsonLd['name']=$arResult['NAME'];?>
+    <?$jsonLd['brand']=$arResult['PROPERTIES']["MANUFACTURER"]["NAME"];?>
     <div class="catalog-detail">
         <div class="column first">
             <div class="catalog-detail-pictures">
@@ -290,7 +294,8 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                     $isOfferDetailImg = is_array($arOffer["DETAIL_IMG"]);
                     $offerName = isset($arOffer["NAME"]) && !empty($arOffer["NAME"]) ? $arOffer["NAME"] : $arResult["NAME"];?>
                     <div id="detail_picture_<?=$arItemIDs['ID'].'_'.$arOffer['ID']?>" class="detail_picture<?=($key == $arResult['OFFERS_SELECTED'] ? '' : ' hidden');?>">
-                        <meta content="<?=($isOfferDetailImg ? $arOffer['DETAIL_PICTURE']['SRC'] : $isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>" itemprop="image" />
+                        <?/*<meta content="<?=($isOfferDetailImg ? $arOffer['DETAIL_PICTURE']['SRC'] : $isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>" itemprop="image" />*/?>
+                        <?$jsonLd['image']=($isOfferDetailImg ? $arOffer['DETAIL_PICTURE']['SRC'] : $isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>
                         <?if($isOfferDetailImg || $isDetailImg) {?>
                         <a <?=($key == $arResult['OFFERS_SELECTED'] ? 'rel="lightbox" ' : '');?>class="catalog-detail-images fancybox" id="catalog-detail-images-<?=$arItemIDs['ID'].'-'.$arOffer['ID']?>" href="<?=($isOfferDetailImg ? $arOffer['DETAIL_PICTURE']['SRC'] : $arResult['DETAIL_PICTURE']['SRC']);?>">
                             <?} else {?>
@@ -326,7 +331,8 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                             //DETAIL_PICTURE//
                             } else {?>
                             <div class="detail_picture">
-                                <meta content="<?=($isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>" itemprop="image" />
+                                <?/*<meta content="<?=($isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>" itemprop="image" />*/?>
+                                <?$jsonLd['image']=($isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>
                                 <?if($isDetailImg) {?>
                                 <a rel="lightbox" class="catalog-detail-images fancybox" href="<?=$arResult['DETAIL_PICTURE']['SRC']?>">
                                     <img class="data-lazy-src" data-lazy-src="<?=$arResult['DETAIL_IMG']['SRC']?>" width="<?=$arResult['DETAIL_IMG']['WIDTH']?>" height="<?=$arResult['DETAIL_IMG']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
@@ -418,9 +424,9 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                             </div>
                             <?//DETAIL_RATING//?>
                             <div class="rating"
-                                <?if($arResult["PROPERTIES"]["vote_count"]["VALUE"]):?>
+                                <?/*if($arResult["PROPERTIES"]["vote_count"]["VALUE"]):?>
                                     itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"
-                                <?endif;?>
+                                <?endif;*/?>
                             >
                                 <?$frame = $this->createFrame("vote")->begin("");?>
                                 <?$APPLICATION->IncludeComponent("bitrix:iblock.vote", "ajax",
@@ -443,8 +449,10 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                 );?>
                                 <?$frame->end();
                                 if($arResult["PROPERTIES"]["vote_count"]["VALUE"]) {?>
-                                    <meta content="<?=round($arResult['PROPERTIES']['vote_sum']['VALUE']/$arResult['PROPERTIES']['vote_count']['VALUE'], 2);?>" itemprop="ratingValue" />
-                                    <meta content="<?=$arResult['PROPERTIES']['vote_count']['VALUE']?>" itemprop="ratingCount" />
+                                    <?/*<meta content="<?=round($arResult['PROPERTIES']['vote_sum']['VALUE']/$arResult['PROPERTIES']['vote_count']['VALUE'], 2);?>" itemprop="ratingValue" />*/?>
+                                    <?$jsonLd['ratingValue']=round($arResult['PROPERTIES']['vote_sum']['VALUE']/$arResult['PROPERTIES']['vote_count']['VALUE'], 2);?>
+                                    <?/*<meta content="<?=$arResult['PROPERTIES']['vote_count']['VALUE']?>" itemprop="ratingCount" />*/?>
+                                    <?$jsonLd['ratingCount']=$arResult['PROPERTIES']['vote_count']['VALUE'];?>
                                 <?} /*else {?>
 							<meta content="0" itemprop="ratingValue" />
 							<meta content="0" itemprop="ratingCount"  />
@@ -453,7 +461,8 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                         </div>
                         <?//DETAIL_PREVIEW_TEXT//
                         if(!empty($arResult["PREVIEW_TEXT"])) {?>
-                            <div class="catalog-detail-preview-text" itemprop="description">
+                            <div class="catalog-detail-preview-text" <?/*itemprop="description"*/?>>
+                                <?$jsonLd['description']=$arResult["PREVIEW_TEXT"];?>
                                 <?=$arResult["PREVIEW_TEXT"]?>
                             </div>
                         <?}
@@ -666,7 +675,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                             );?>
                         <?}?>
                         <div class="column three">
-                            <div class="price_buy_detail" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <div class="price_buy_detail" <?/*itemprop="offers" itemscope itemtype="http://schema.org/Offer"*/?>>
                                 <?//OFFERS_DETAIL_PRICE//?>
                                 <div class="catalog-detail-price" id="<?=$arItemIDs['PRICE'];?>">
                                     <?//OFFERS_PRICE//
@@ -702,8 +711,10 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 													</span>
                                                         <?}
                                                     }?>
-                                                    <meta id="Origin" itemprop="price" content="<?=$arOffer['MIN_PRICE']['RATIO_PRICE']?>" />
+                                                    <?/*<meta id="Origin" itemprop="price" content="<?=$arOffer['MIN_PRICE']['RATIO_PRICE']?>" />
+                                                    <?$jsonLd['price']=$arOffer['MIN_PRICE']['RATIO_PRICE'];?>
                                                     <meta itemprop="priceCurrency" content="<?=$arOffer['MIN_PRICE']['CURRENCY']?>" />
+                                                    <?$jsonLd['priceCurrency']=$arOffer['MIN_PRICE']['CURRENCY'];*/?>
                                                     <?//OFFERS_PRICE_RANGES//
                                                     if($arParams["USE_PRICE_COUNT"] && count($arOffer["ITEM_QUANTITY_RANGES"]) > 1) {?>
                                                         <div class="catalog-detail-price-ranges">
@@ -774,9 +785,10 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                                         </div>
                                                     <?}
                                                     //OFFERS_AVAILABILITY//?>
-                                                    <div class="available">
+                                                    <div class="available" 1111>
                                                         <?if($arOffer["CAN_BUY"]) {?>
-                                                            <meta content="InStock" itemprop="availability" />
+                                                            <?/*<meta content="InStock" itemprop="availability" />*/?>
+                                                            <?$jsonLd['availability']="InStock";?>
                                                             <div class="avl">
                                                                 <i class="fa fa-check-circle"></i>
                                                                 <span>
@@ -786,7 +798,8 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 														</span>
                                                             </div>
                                                         <?} elseif(!$arOffer["CAN_BUY"]) {?>
-                                                            <meta content="OutOfStock" itemprop="availability" />
+                                                            <?/*<meta content="OutOfStock" itemprop="availability" />*/?>
+                                                            <?$jsonLd['availability']="OutOfStock";?>
                                                             <div class="not_avl">
                                                                 <i class="fa fa-times-circle"></i>
                                                                 <span><?=GetMessage("CATALOG_ELEMENT_NOT_AVAILABLE")?></span>
@@ -824,12 +837,15 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 												</span>
                                                     <?}
                                                 }?>
-                                                <meta id="Origin" itemprop="price" content="<?=$arResult['TOTAL_OFFERS']['MIN_PRICE']['RATIO_PRICE']?>" />
-                                                <meta itemprop="priceCurrency" content="<?=$arResult['TOTAL_OFFERS']['MIN_PRICE']['CURRENCY']?>" />
+                                                <?/*<meta id="Origin" itemprop="price" content="<?=$arResult['TOTAL_OFFERS']['MIN_PRICE']['RATIO_PRICE']?>" />*/?>
+                                                <?$jsonLd['price']=$arResult['TOTAL_OFFERS']['MIN_PRICE']['RATIO_PRICE'];?>
+                                                <?/*<meta itemprop="priceCurrency" content="<?=$arResult['TOTAL_OFFERS']['MIN_PRICE']['CURRENCY']?>" />*/?>
+                                                <?$jsonLd['priceCurrency']=$arResult['TOTAL_OFFERS']['MIN_PRICE']['CURRENCY'];?>
                                                 <?//OFFERS_LIST_AVAILABILITY//?>
-                                                <div class="available">
+                                                <div class="available" 222>
                                                     <?if($arResult["TOTAL_OFFERS"]["QUANTITY"] > 0 || !$arResult["CHECK_QUANTITY"]) {?>
-                                                        <meta content="InStock" itemprop="availability" />
+                                                        <?/*<meta content="InStock" itemprop="availability" />*/?>
+                                                        <?$jsonLd['availability']="InStock";?>
                                                         <div class="avl">
                                                             <i class="fa fa-check-circle"></i>
                                                             <span>
@@ -839,7 +855,8 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 													</span>
                                                         </div>
                                                     <?} else {?>
-                                                        <meta content="OutOfStock" itemprop="availability" />
+                                                        <?/*<meta content="OutOfStock" itemprop="availability" />*/?>
+                                                        <?$jsonLd['availability']="OutOfStock";?>
                                                         <div class="not_avl">
                                                             <i class="fa fa-times-circle"></i>
                                                             <span><?=GetMessage("CATALOG_ELEMENT_NOT_AVAILABLE")?></span>
@@ -900,8 +917,10 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 										</span>
                                             <?}
                                         }?>
-                                        <meta id="Origin" itemprop="price" value="<?=$arResult['MIN_PRICE']['RATIO_PRICE']?>" content="<?=$arResult['MIN_PRICE']['RATIO_PRICE']?>" />
-                                        <meta itemprop="priceCurrency" content="<?=$arResult['MIN_PRICE']['CURRENCY']?>" />
+                                        <?/*<meta id="Origin" itemprop="price" value="<?=$arResult['MIN_PRICE']['RATIO_PRICE']?>" content="<?=$arResult['MIN_PRICE']['RATIO_PRICE']?>" />
+                                        <meta itemprop="priceCurrency" content="<?=$arResult['MIN_PRICE']['CURRENCY']?>" />*/?>
+                                        <?$jsonLd['price']=$arResult['MIN_PRICE']['RATIO_PRICE']?>" content="<?=$arResult['MIN_PRICE']['RATIO_PRICE'];?>
+                                        <?$jsonLd['priceCurrency']=$arResult['MIN_PRICE']['CURRENCY'];?>
                                         <?//DETAIL_PRICE_RANGES//
                                         if($arParams["USE_PRICE_COUNT"] && count($arResult["ITEM_QUANTITY_RANGES"]) > 1) {?>
                                             <div class="catalog-detail-price-ranges">
@@ -972,9 +991,10 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                             </div>
                                         <?}
                                         //DETAIL_AVAILABILITY//?>
-                                        <div class="available">
+                                        <div class="available" 333>
                                             <?if($arResult["CAN_BUY"]) {?>
-                                                <meta content="InStock" itemprop="availability" />
+                                                <?/*<meta content="InStock" itemprop="availability" />*/?>
+                                                <?$jsonLd['availability']="InStock";?>
                                                 <div class="avl">
                                                     <i class="fa fa-check-circle"></i>
                                                     <span>
@@ -984,7 +1004,8 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
 											</span>
                                                 </div>
                                             <?} elseif(!$arResult["CAN_BUY"]) {?>
-                                                <meta content="OutOfStock" itemprop="availability" />
+                                                <?/*<meta content="OutOfStock" itemprop="availability" />*/?>
+                                                <?$jsonLd['availability']="OutOfStock";?>
                                                 <div class="not_avl">
                                                     <i class="fa fa-times-circle"></i>
                                                     <span><?=GetMessage("CATALOG_ELEMENT_NOT_AVAILABLE")?></span>
@@ -1514,7 +1535,7 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                                     //OFFERS_LIST_AVAILABILITY_BUY//?>
                                     <div class="buy_more<?=(!$inBtnBoc) ? " no-one-click" : ""?>">
                                         <?//OFFERS_LIST_AVAILABILITY//?>
-                                        <div class="available">
+                                        <div class="available" 444>
                                             <?if($arOffer["CAN_BUY"]) {?>
                                                 <div class="avl">
                                                     <i class="fa fa-check-circle"></i>

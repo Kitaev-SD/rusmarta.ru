@@ -31,7 +31,38 @@ if(isset($templateData["JS_OBJ"])) {?>
 		}));
 	</script>
 <?}
-
+GLOBAL $jsonLd;
+echo "<pre style='display:none' 444444444444>";var_dump($jsonLd); var_dump($arResult);echo "</pre>";?>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Product",
+		"aggregateRating": {
+			"@type": "AggregateRating",
+			"bestRating": "5",
+			"ratingCount": "<?=$jsonLd['ratingCount'];?>",
+			"ratingValue": "<?=$jsonLd['ratingValue'];?>"
+		},
+		"brand": {
+			"@type": "Brand",
+			"name": "<?=$jsonLd['brand'];?>"
+		},
+		"category": "<?=$arResult["SECTION"]["NAME"];?>",
+		"image": "https://rusmarta.ru<?=$jsonLd['image'];?>",
+		"name": "<?=$jsonLd['name'];?>",
+		"description": "<?=$arResult["IPROPERTY_VALUES"]["ELEMENT_META_DESCRIPTION"];?>",
+		"offers": [
+			{
+				"@type": "Offer",
+				"url": "https://rusmarta.ru<?=$_SERVER['REQUEST_URI'];?>",
+				"price": "<?=$jsonLd['price'];?>",
+				"priceCurrency": "<?=$jsonLd['priceCurrency'];?>",
+				"availability": "<?=$jsonLd['availability'];?>"
+			}
+		]
+	}
+</script>
+<?
 //META_PROPERTY//
 Asset::getInstance()->addString("<meta property='og:title' content='".$arResult['NAME']."' />", true);
 Asset::getInstance()->addString("<meta property='og:description' content='".strip_tags($arResult['PREVIEW_TEXT'])."' />", true);

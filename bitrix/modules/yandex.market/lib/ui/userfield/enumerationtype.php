@@ -184,25 +184,28 @@ class EnumerationType
 
 		if (!empty($arHtmlControl['VALUE']))
 		{
-			$query = call_user_func([ $arUserField['USER_TYPE']['CLASS_NAME'], 'getlist' ], $arUserField);
+			$value = $arHtmlControl['VALUE'];
+			$query = call_user_func([ $arUserField['USER_TYPE']['CLASS_NAME'], 'getList' ], $arUserField);
+			$enum = $query ? Helper\Enum::toArray($query) : [];
+			$enumMap = array_column($enum, 'VALUE', 'ID');
 
-			if ($query)
+			if (isset($enumMap[$value]))
 			{
-				while ($option = $query->Fetch())
-				{
-					if ($option['ID'] == $arHtmlControl['VALUE'])
-					{
-						$isFoundResult = true;
-						$result = Market\Utils::htmlEscape($option['VALUE']);
-						break;
-					}
-				}
+				$result = $enumMap[$value];
+			}
+			else if (
+				isset($arUserField['SETTINGS']['DESCRIPTION_FIELD'])
+				&& !empty($arUserField['ROW'][$arUserField['SETTINGS']['DESCRIPTION_FIELD']])
+			)
+			{
+				$result = $arUserField['ROW'][$arUserField['SETTINGS']['DESCRIPTION_FIELD']];
+			}
+			else
+			{
+				$result = sprintf('[%s]', $value);
 			}
 
-			if (!$isFoundResult)
-			{
-				$result = '[' . Market\Utils::htmlEscape($arHtmlControl['VALUE']) . ']';
-			}
+			$result = Market\Utils::htmlEscape($result);
 		}
 
 		return $result;
@@ -210,29 +213,29 @@ class EnumerationType
 
 	public static function GetAdminListViewHTMLMulty($arUserField, $arHtmlControl)
 	{
-		$result = '';
+		$result = '&nbsp;';
 
 		if (!empty($arHtmlControl['VALUE']))
 		{
-			$query = call_user_func([ $arUserField['USER_TYPE']['CLASS_NAME'], 'getlist' ], $arUserField);
-			$valueList = (array)$arHtmlControl['VALUE'];
-			$valueMap = array_flip($valueList);
+			$query = call_user_func([ $arUserField['USER_TYPE']['CLASS_NAME'], 'getList' ], $arUserField);
+			$enum = $query ? Helper\Enum::toArray($query) : [];
+			$enumMap = array_column($enum, 'VALUE', 'ID');
+			$displayValues = [];
 
-			if ($query)
+			foreach ((array)$arHtmlControl['VALUE'] as $value)
 			{
-				while ($option = $query->Fetch())
+				if (isset($enumMap[$value]))
 				{
-					if (isset($valueMap[$option['ID']]))
-					{
-						$result .= ($result !== '' ? ' / ' : '') . Market\Utils::htmlEscape($option['VALUE']);
-					}
+					$displayValues[] = $enumMap[$value];
+				}
+				else
+				{
+					$displayValues[] = sprintf('[%s]', $value);
 				}
 			}
-		}
 
-		if ($result === '')
-		{
-			$result = '&nbsp;';
+			$result = implode(' / ', $displayValues);
+			$result = Market\Utils::htmlEscape($result);
 		}
 
 		return $result;

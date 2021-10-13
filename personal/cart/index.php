@@ -9,6 +9,7 @@ $APPLICATION->SetTitle("Моя корзина");?><p style="text-align: left;">
 		"1CB_REQUIRED_FIELDS" => array(
 			0 => "NAME",
 			1 => "PHONE",
+			2 => "MESSAGE",
 		),
 		"1CB_USE_FILE_FIELD" => "N",
 		"ACTION_VARIABLE" => "action",

@@ -124,7 +124,7 @@ class Date
 	{
 		if ($timestamp instanceof Main\Type\Date || $timestamp instanceof \DateTime)
 		{
-			$dateTime = $timestamp;
+			$dateTime = clone $timestamp;
 		}
 		else
 		{

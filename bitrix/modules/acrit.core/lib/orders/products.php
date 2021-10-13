@@ -7,6 +7,7 @@ use Bitrix\Main,
 	Bitrix\Main\Entity,
 	Bitrix\Main\Localization\Loc,
 	Bitrix\Main\SiteTable,
+	Acrit\Core\Log,
 	Acrit\Core\Helper;
 
 Loc::loadMessages(__FILE__);
@@ -96,7 +97,7 @@ class Products {
 	 */
 
 	public static function findIblockProduct($find_code, array $profile) {
-		$product_id = false;
+		$product = false;
 		$iblock_list = self::getIblockList(true);
 		$comp_table = $profile['PRODUCTS']['search_fields'];
 		foreach ($iblock_list as $iblock) {
@@ -105,18 +106,18 @@ class Products {
 					'IBLOCK_ID' => $iblock['id'],
 					$comp_table[$iblock['id']] => $find_code,
 				];
-				$res = \CIBlockElement::GetList(['SORT' => 'ASC'], $filter, false, ['nTopCount' => 5], [
-					'ID',
-					'IBLOCK_ID'
-				]);
+				Log::getInstance(Settings::getModuleId())->add('(findIblockProduct) search filter ' . print_r($filter, true), false, true);
+				$res = \CIBlockElement::GetList(['SORT' => 'ASC'], $filter, false, ['nTopCount' => 1], ['ID']);
 				while ($ob = $res->GetNextElement()) {
 					$fields = $ob->GetFields();
-					$product_id = $fields['ID'];
+					Log::getInstance(Settings::getModuleId())->add('(findIblockProduct) found variant ' . print_r($fields, true), false, true);
+//					$fields['PROPERTIES'] = $ob->GetProperties();
+					$product = $fields;
 					break 2;
 				}
 			}
 		}
-		return $product_id;
+		return $product;
 	}
 
 }

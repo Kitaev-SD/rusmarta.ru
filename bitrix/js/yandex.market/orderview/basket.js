@@ -11,7 +11,7 @@
 		},
 
 		validate: function() {
-			this.callItemList(function(basketItem) {
+			this.callItemList((basketItem) => {
 				try {
 					basketItem.validate()
 				} catch (e) {
@@ -21,6 +21,44 @@
 					throw new Error(message);
 				}
 			});
+		},
+
+		commit: function() {
+			const order = this.getParentField();
+			let hasChanges = false;
+
+			this.callItemList((basketItem) => {
+				let count = basketItem.getCount();
+
+				if (count <= 0 || basketItem.needDelete()) {
+					hasChanges = true;
+					this.deleteItem(basketItem.$el);
+				} else if (count !== basketItem.getInitialCount()) {
+					hasChanges = true;
+					basketItem.setInitialCount(count);
+				}
+			});
+
+			if (hasChanges && order) {
+				order.refresh();
+			}
+		},
+
+		getCountChanges: function() {
+			const result = [];
+
+			this.callItemList((basketItem) => {
+				let diff = basketItem.getCountDiff();
+
+				if (diff <= 0) { return; }
+
+				result.push({
+					name: basketItem.getTitle(),
+					diff: diff,
+				});
+			});
+
+			return result;
 		},
 
 		getItemPlugin: function() {

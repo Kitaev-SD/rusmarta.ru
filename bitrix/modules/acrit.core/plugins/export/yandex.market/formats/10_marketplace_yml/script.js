@@ -26,6 +26,16 @@ if (!window.YandexMarketplaceInitialized) {
 	$(document).delegate('input[data-role="acrit_exp_yandex_marketplace_external_request"]', 'change', function(e){
 		$('div[data-role="acrit_exp_yandex_marketplace_external_request_wrapper"]').toggle($(this).prop('checked'));
 	});
+
+	// Stocks log: reload
+	$(document).delegate('input[data-role="acrit_exp_yandex_marketplace_stocks_reload"]', 'click', function(e, params) {
+		acritExpAjax(['plugin_ajax_action', 'refresh_stocks_log'], params, function(JsonResult, textStatus, jqXHR){
+			$('#tr_LOG_CUSTOM > td').html(JsonResult.HTML);
+			acritExpHandleAjaxError(jqXHR, false);
+		}, function(jqXHR){
+			acritExpHandleAjaxError(jqXHR, true);
+		}, false);
+	});
 	
 	// Trigger events
 	function acritExpYandexMarketplaceTriggers(){

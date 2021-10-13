@@ -72,16 +72,18 @@
 
 		activate: function() {
 			if (this.el.disabled) { return; }
+			if (!this.validate()) { return; }
 
-			if (this.validate()) {
-				this.el.disabled = true;
+			$.when(this.confirm())
+				.then(() => {
+					this.el.disabled = true;
 
-				this.clear();
-				this.query().then(
-					$.proxy(this.activateEnd, this),
-					$.proxy(this.activateStop, this)
-				);
-			}
+					this.clear();
+					this.query().then(
+						$.proxy(this.activateEnd, this),
+						$.proxy(this.activateStop, this)
+					);
+				});
 		},
 
 		activateStop: function(xhr, reason) {
@@ -112,6 +114,10 @@
 				}
 			}
 
+			if (status === 'ok') {
+				this.commit();
+			}
+
 			this.handleShipmentChange(true);
 			this.handleBoxCollectionChange(true);
 
@@ -130,6 +136,14 @@
 			}
 
 			return result;
+		},
+
+		confirm: function() {
+			return this.getOrder().confirm();
+		},
+
+		commit: function() {
+			this.getOrder().commit();
 		},
 
 		query: function() {

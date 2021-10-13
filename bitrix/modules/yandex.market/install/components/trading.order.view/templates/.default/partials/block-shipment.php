@@ -4,10 +4,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) { die(); }
 use Bitrix\Main;
 use Bitrix\Main\Localization\Loc;
 use Yandex\Market;
+use Yandex\Market\Trading\Entity as TradingEntity;
 
 $hasFewShipments = (count($arResult['SHIPMENT']) > 1);
+$allowBoxEdit = isset($arResult['ORDER_ACTIONS'][TradingEntity\Operation\Order::BOX]);
 
-if ($arResult['SHIPMENT_EDIT'])
+if ($allowBoxEdit)
 {
 	Market\Ui\Assets::loadPlugins([
 		'Ui.ModalForm',
@@ -21,9 +23,6 @@ if ($arResult['SHIPMENT_EDIT'])
 	]);
 
 	Market\Ui\Assets::loadMessages([
-		'T_TRADING_ORDER_VIEW_SHIPMENT_SUBMIT_FAIL',
-		'T_TRADING_ORDER_VIEW_SHIPMENT_SUBMIT_DATA_INVALID',
-		'T_TRADING_ORDER_VIEW_SHIPMENT_SUBMIT_VALIDATION_CONFIRM',
 		'T_TRADING_ORDER_VIEW_BOX_SIZE_DENSITY_LESS_MINIMAL',
 		'T_TRADING_ORDER_VIEW_BOX_SIZE_DENSITY_MORE_MAXIMUM',
 		'T_TRADING_ORDER_VIEW_BOX_SIZE_INPUT_NOT_FOUND',
@@ -43,7 +42,7 @@ $useDimensions = true;
 <div class="yamarket-shipments-header">
 	<h2 class="yamarket-shipments-header__inline yamarket-shipments-title"><?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_SHIPMENTS_TITLE'); ?></h2>
 	<?php
-	if ($arResult['SHIPMENT_EDIT'])
+	if ($allowBoxEdit)
 	{
 		$useDimensions = (CUserOptions::GetOption('yamarket_order_view', 'use_dimensions', 'N', $USER->GetID()) === 'Y');
 
@@ -67,7 +66,7 @@ $useDimensions = true;
 	?>
 </div>
 <div
-	class="yamarket-shipments-layout js-yamarket-shipment-collection <?= $arResult['SHIPMENT_EDIT'] ? 'js-yamarket-order__field' : ''; ?>"
+	class="yamarket-shipments-layout js-yamarket-shipment-collection <?= $allowBoxEdit ? 'js-yamarket-order__field' : ''; ?>"
 	data-plugin="OrderView.ShipmentCollection"
 	data-name="SHIPMENT"
 	id="YAMARKET_SHIPMENT_COLLECTION"
@@ -75,7 +74,7 @@ $useDimensions = true;
 	<?php
 	$dismissCookieName = 'YAMARKET_ORDER_VIEW_SHIPMENT_HELP_HIDE';
 
-	if ($arResult['SHIPMENT_EDIT'] && $APPLICATION->get_cookie($dismissCookieName) !== 'Y')
+	if ($allowBoxEdit && $APPLICATION->get_cookie($dismissCookieName) !== 'Y')
 	{
 		Market\Ui\Assets::loadPlugin('Ui.Dismiss');
 		$dismissCookieNameWithPrefix = Main\Config\Option::get('main', 'cookie_name', 'BITRIX_SM') . '_' . $dismissCookieName;
@@ -103,7 +102,7 @@ $useDimensions = true;
 			$isBoxesEmpty = empty($shipment['BOX']);
 			$boxesIterator = $isBoxesEmpty ? [] : (array)$shipment['BOX'];
 
-			if ($isBoxesEmpty && $arResult['SHIPMENT_EDIT'])
+			if ($isBoxesEmpty && $allowBoxEdit)
 			{
 				$boxesIterator[] = [
 					'PLACEHOLDER' => true,
@@ -113,7 +112,7 @@ $useDimensions = true;
 			?>
 			<div class="js-yamarket-shipment" data-plugin="OrderView.Shipment" data-id="<?= $shipment['ID']; ?>">
 				<?php
-				if ($arResult['SHIPMENT_EDIT'])
+				if ($allowBoxEdit)
 				{
 					?>
 					<input
@@ -144,7 +143,7 @@ $useDimensions = true;
 						++$boxIndex;
 					}
 
-					if ($arResult['SHIPMENT_EDIT'])
+					if ($allowBoxEdit)
 					{
 						?>
 						<a href="#" class="yamarket-boxes-add js-yamarket-box__add">

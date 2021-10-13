@@ -170,7 +170,7 @@ Loc::loadMessages(__FILE__); ?>
 					</div>
 					<div class="modal_no_cookie modal_no_cookie_first">
 						<div class="modal_no_cookie_close">&times;</div>
-						Предупреждение Для совершения покупок пожалуйста, <a href="https://yandex.ru/support/common/browsers-settings/browsers-cookies.html" target="_blank">разрешите принимать cookie</a> в своем браузере
+						ГЏГ°ГҐГ¤ГіГЇГ°ГҐГ¦Г¤ГҐГ­ГЁГҐ Г„Г«Гї Г±Г®ГўГҐГ°ГёГҐГ­ГЁГї ГЇГ®ГЄГіГЇГ®ГЄ ГЇГ®Г¦Г Г«ГіГ©Г±ГІГ , <a href="https://yandex.ru/support/common/browsers-settings/browsers-cookies.html" target="_blank">Г°Г Г§Г°ГҐГёГЁГІГҐ ГЇГ°ГЁГ­ГЁГ¬Г ГІГј cookie</a> Гў Г±ГўГ®ГҐГ¬ ГЎГ°Г ГіГ§ГҐГ°ГҐ
 					</div>
 				</header>
 				<? if ($arSetting["CATALOG_LOCATION"]["VALUE"] == "LEFT") : ?>

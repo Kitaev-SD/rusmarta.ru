@@ -21,11 +21,14 @@ class Router extends Market\Trading\Service\Marketplace\Router
 			'send/cancellation/accept' => Action\SendCancellationAccept\Action::class,
 			'send/delivery/date' => Action\SendDeliveryDate\Action::class,
 			'send/track' => Action\SendTrack\Action::class,
+			'send/items' => Action\SendItems\Action::class,
 		];
 		$result += array_diff_key(
 			parent::getSystemMap(),
 			[
+				'admin/shipments' => true,
 				'send/boxes' => true,
+				'send/shipment/confirm' => true,
 			]
 		);
 

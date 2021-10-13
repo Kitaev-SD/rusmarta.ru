@@ -150,7 +150,7 @@ class AliExpress extends Plugin {
 	 * @return array
 	 */
 	public function getFields() {
-		$list = [];
+		$list = parent::getFields();
 		$list[] = [
 			'id' => 'buyer_first_name',
 			'name' => Loc::getMessage('ACRIT_ORDERS_PLUGIN_ALI_FIELDS_FIRST_NAME'),
@@ -237,13 +237,13 @@ class AliExpress extends Plugin {
 	/**
 	 *	Show plugin default settings
 	 */
-	public function showSettings(){
+	public function showSettings($arProfile){
 		ob_start();
 //		$order = $this->getOrder(8018196774972936);
 //		echo '<pre>'; print_r($order); echo '</pre>';
 //		Settings::setModuleId($this->strModuleId);
 //		Controller::setModuleId($this->strModuleId);
-//		Controller::setProfile($this->arProfile['ID']);
+//		Controller::setProfile($arProfile['ID']);
 //		Controller::syncOrderToDeal($order);
 //		Controller::syncStoreToCRM(60);
 		?>
@@ -265,7 +265,7 @@ class AliExpress extends Plugin {
                     </div>
                     <p><a href="<?=$this->getTokenLink();?>" target="_blank"><?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_ALI_SETTINGS_GET_TOKEN');?></a></p>
                     <input type="text" name="PROFILE[CONNECT_CRED][token]" size="50" maxlength="255" data-role="connect-cred-token"
-                           value="<?=htmlspecialcharsbx($this->arProfile['CONNECT_CRED']['token']);?>" />
+                           value="<?=htmlspecialcharsbx($arProfile['CONNECT_CRED']['token']);?>" />
                     <a class="adm-btn" data-role="connection-check"><?=Loc::getMessage('ACRIT_ORDERS_PLUGIN_ALI_SETTINGS_CHECK_TOKEN');?></a>
                     <p id="check_msg"></p>
 				</td>
@@ -411,13 +411,13 @@ class AliExpress extends Plugin {
 	 * Get orders count
 	 */
 
-	public function getOrdersCount($filter) {
+	public function getOrdersCount($create_from_ts) {
 	    $count = 0;
 		$token = $this->arProfile['CONNECT_CRED']['token'];
 		// Get the list
         $start_date = '2010-01-01 00:00:00';
-        if ($filter['create_date_from']) {
-	        $start_date = date('Y-m-d H:i:s', $filter['create_date_from']);
+        if ($create_from_ts) {
+	        $start_date = date('Y-m-d H:i:s', $create_from_ts);
         }
         $c = new \TopClient;
         $c->appkey = self::APP_KEY;
@@ -442,9 +442,16 @@ class AliExpress extends Plugin {
 	 * Get orders count
 	 */
 
-	public function getOrdersIDsList($filter) {
+	public function getOrdersIDsList($create_from_ts=false, $change_from_ts=false) {
 	    $list = [];
 		// Get the list
+		$filter = [];
+		if ($create_from_ts) {
+			$filter['create_date_from'] = $create_from_ts;
+		}
+		if ($change_from_ts) {
+			$filter['change_date_from'] = $change_from_ts;
+		}
 		$orders_list = self::getAliOrdersList($filter);
 		foreach ($orders_list as $item) {
 			$list[] = $item['order_id'];
@@ -461,6 +468,11 @@ class AliExpress extends Plugin {
 	    $order = false;
 	    $ali_order = self::getAliOrder($order_id);
 	    if ($ali_order['id']) {
+		    // Check encoding
+		    if (!Helper::isUtf()) {
+			    $ali_order['buyer_info'] = Helper::convertEncoding($ali_order['buyer_info']);
+			    $ali_order['receipt_address'] = Helper::convertEncoding($ali_order['receipt_address']);
+		    }
 	        // Main fields
 		    $order = [
 			    'ID'          => $ali_order['id'],
@@ -541,20 +553,21 @@ class AliExpress extends Plugin {
             // Products
 		    $order['PRODUCTS'] = [];
 		    $products_list = [];
-		    if (is_array($ali_order['child_order_list']) && !empty($ali_order['child_order_list'])) {
-			    if (count($ali_order['child_order_list']) == 1) {
-				    $products_list[] = $ali_order['child_order_list']['global_aeop_tp_child_order_dto'];
+		    if (is_array($ali_order['child_order_list']['global_aeop_tp_child_order_dto']) && !empty($ali_order['child_order_list']['global_aeop_tp_child_order_dto'])) {
+			    if (isset($ali_order['child_order_list']['global_aeop_tp_child_order_dto'][0])) {
+				    $products_list = $ali_order['child_order_list']['global_aeop_tp_child_order_dto'];
 			    }
 			    else {
-				    foreach ($ali_order['child_order_list'] as $item) {
-					    $products_list[] = $item;
-				    }
+				    $products_list[] = $ali_order['child_order_list']['global_aeop_tp_child_order_dto'];
 			    }
 		    }
 		    foreach ($products_list as $item) {
+			    if (!Helper::isUtf()) {
+				    $item['product_name'] = Helper::convertEncoding($item['product_name']);
+			    }
                 $order['PRODUCTS'][] = [
 	                'PRODUCT_NAME'     => $item['product_name'],
-					'PRODUCT_CODE'     => $item['product_name'],
+					'PRODUCT_CODE'     => $item['sku_code'],
 					'PRICE'            => $item['product_price']['amount'],
 	                'CURRENCY'         => 'RUB',
 	                'QUANTITY'         => $item['product_count'],

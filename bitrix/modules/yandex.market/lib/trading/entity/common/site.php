@@ -16,4 +16,9 @@ class Site extends Market\Trading\Entity\Reference\Site
 	{
 		return Market\Data\Site::getTitle($siteId);
 	}
+
+	public function getLanguage($siteId)
+	{
+		return Market\Data\Site::getLanguage($siteId);
+	}
 }

@@ -21,6 +21,11 @@ class SendRequest extends TradingService\Reference\Action\DataRequest
 		return (string)$this->getRequiredField('orderNum');
 	}
 
+	public function isAutoSubmit()
+	{
+		return (bool)$this->getField('autoSubmit');
+	}
+
 	public function getImmediate()
 	{
 		return (bool)$this->getField('immediate');

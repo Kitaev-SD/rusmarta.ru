@@ -10,6 +10,8 @@ class OrderAdmin extends Market\Ui\Reference\Page
 	use Market\Reference\Concerns\HasLang;
 	use Market\Ui\Trading\Concerns\HasHandleMigration;
 
+	protected $serviceCode;
+
 	protected static function includeMessages()
 	{
 		Main\Localization\Loc::loadMessages(__FILE__);
@@ -83,7 +85,22 @@ class OrderAdmin extends Market\Ui\Reference\Page
 		echo '</ul>';
 	}
 
+	public function setServiceCode($serviceCode)
+	{
+		$this->serviceCode = $serviceCode;
+	}
+
 	protected function getServiceCode()
+	{
+		if ($this->serviceCode === null)
+		{
+			$this->serviceCode = $this->resolveServiceCode();
+		}
+
+		return $this->serviceCode;
+	}
+
+	protected function resolveServiceCode()
 	{
 		$result = (string)$this->request->get('service');
 

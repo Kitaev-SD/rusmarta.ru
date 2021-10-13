@@ -12,6 +12,36 @@ class Shipment extends Market\Api\Reference\Model
 		return Market\Data\Date::convertFromService($this->getField('shipmentDate'));
 	}
 
+	public function getWidth()
+	{
+		return Market\Data\Number::normalize($this->getField('width'));
+	}
+
+	public function getHeight()
+	{
+		return Market\Data\Number::normalize($this->getField('height'));
+	}
+
+	public function getDepth()
+	{
+		return Market\Data\Number::normalize($this->getField('depth'));
+	}
+
+	public function getSizeUnit()
+	{
+		return Market\Data\Size::UNIT_CENTIMETER;
+	}
+
+	public function getWeight()
+	{
+		return Market\Data\Number::normalize($this->getField('weight'));
+	}
+
+	public function getWeightUnit()
+	{
+		return Market\Data\Weight::UNIT_GRAM;
+	}
+
 	public function hasSavedBoxes()
 	{
 		return parent::hasField('boxes');

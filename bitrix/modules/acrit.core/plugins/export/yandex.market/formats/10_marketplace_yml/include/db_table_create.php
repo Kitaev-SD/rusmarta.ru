@@ -29,6 +29,18 @@ $arTables = [
 		'KEY `acrit_yandex_mp_stocks_2` (`SKU`)',
 		'KEY `acrit_yandex_mp_stocks_3` (`SKU`, `WAREHOUSE_ID`)',
 	],
+	'acrit_yandex_marketplace_stocks_history' => [
+		'ID' => 'int(11) NOT NULL auto_increment',
+		'MODULE_ID' => 'VARCHAR(50) DEFAULT \'acrit.exportproplus\'',
+		'PROFILE_ID' => 'int(11) NOT NULL',
+		'WAREHOUSE_ID' => 'VARCHAR(50)',
+		'SKUS_INPUT' => 'text',
+		'SKUS_OUTPUT' => 'longtext',
+		'IP' => 'VARCHAR(15)',
+		'HTTP_USER_AGENT' => 'VARCHAR(255)',
+		'TIMESTAMP_X' => 'DATETIME NOT NULL',
+		'PRIMARY KEY (ID)',
+	],
 ];
 foreach($arTables as $strTableName => $arFields){
 	$strSql = sprintf("SHOW TABLES LIKE '%s';", $strTableName);

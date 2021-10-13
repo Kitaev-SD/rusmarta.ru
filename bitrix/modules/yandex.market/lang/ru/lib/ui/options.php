@@ -51,3 +51,5 @@ $MESS['YANDEX_MARKET_UI_OPTION_TRADING_LOG_TRACING'] = 'Трассировка ошибок Журна
 $MESS['YANDEX_MARKET_UI_OPTION_TRADING_USE_TAX_SYSTEM'] = 'Учитывать систему налогообложения магазина';
 $MESS['YANDEX_MARKET_UI_OPTION_TRADING_DDOS_GUARD'] = 'Поддержка веб-сервера ddos-guard';
 $MESS['YANDEX_MARKET_UI_OPTION_TRADING_EXPERIMENT_DBS'] = 'Обработка заказов из маркетплейса по модели DBS';
+$MESS['YANDEX_MARKET_UI_OPTION_GROUP_TRADING_LISTEN'] = 'Отслеживание изменения заказов';
+$MESS['YANDEX_MARKET_UI_OPTION_TRADING_SILENT_BASKET'] = 'Не передавать изменение состава заказа';

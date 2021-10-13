@@ -5,16 +5,24 @@ namespace Yandex\Market\Trading\Service\MarketplaceDbs\Action\OrderCancellationN
 use Yandex\Market;
 use Bitrix\Main;
 use Yandex\Market\Trading\Service as TradingService;
+use Yandex\Market\Trading\Entity as TradingEntity;
 
 /**
  * @property Request $request
  */
 class Action extends TradingService\Common\Action\HttpAction
+	implements TradingService\Reference\Action\HasNotification
 {
 	use Market\Reference\Concerns\HasMessage;
 
+	/** @var TradingEntity\Reference\Order */
 	protected $order;
 	protected $changes;
+
+	public function getNotification()
+	{
+		return new Notification($this->provider, $this->environment);
+	}
 
 	protected function createRequest(Main\HttpRequest $request, Main\Server $server)
 	{
@@ -23,6 +31,12 @@ class Action extends TradingService\Common\Action\HttpAction
 
 	public function process()
 	{
+		if (!$this->isDataChanged())
+		{
+			$this->collectSuccess();
+			return;
+		}
+
 		$this->loadOrder();
 		$this->fillOrder();
 
@@ -31,6 +45,7 @@ class Action extends TradingService\Common\Action\HttpAction
 			$this->updateOrder();
 		}
 
+		$this->notify();
 		$this->saveData();
 		$this->collectSuccess();
 	}
@@ -80,6 +95,24 @@ class Action extends TradingService\Common\Action\HttpAction
 		$updateResult = $this->order->update();
 
 		Market\Result\Facade::handleException($updateResult);
+	}
+
+	protected function notify()
+	{
+		$this->getNotification()->send([
+			'PROVIDER' => $this->provider,
+			'ORDER' => $this->order,
+			'EXTERNAL_ID' => $this->request->getOrder()->getId(),
+		]);
+	}
+
+	protected function isDataChanged()
+	{
+		$uniqueKey = $this->provider->getUniqueKey();
+		$orderId = $this->request->getOrder()->getId();
+		$stored = Market\Trading\State\OrderData::getValue($uniqueKey, $orderId, 'CANCELLATION_ACCEPT');
+
+		return ($stored !== Market\Data\Trading\CancellationAccept::WAIT);
 	}
 
 	protected function saveData()

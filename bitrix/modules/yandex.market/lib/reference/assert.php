@@ -52,6 +52,18 @@ class Assert
 		}
 	}
 
+	public static function methodExists($classOrObject, $method)
+	{
+		if (!method_exists($classOrObject, $method))
+		{
+			throw new Main\InvalidOperationException(sprintf(
+				'Class %s method %s is missing',
+				is_object($classOrObject) ? get_class($classOrObject) : $classOrObject,
+				$method
+			));
+		}
+	}
+
 	public static function positiveInteger($value, $argument)
 	{
 		if (!is_int($value))

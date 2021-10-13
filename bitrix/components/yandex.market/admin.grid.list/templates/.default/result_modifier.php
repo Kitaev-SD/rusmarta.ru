@@ -11,4 +11,5 @@ if (!isset($component)) { $component = $this->__component; }
 
 include __DIR__ . '/modifier/load-more.php';
 include __DIR__ . '/modifier/pager-limit.php';
+include __DIR__ . '/modifier/pager-fixed.php';
 include __DIR__ . '/modifier/persistent-actions.php';

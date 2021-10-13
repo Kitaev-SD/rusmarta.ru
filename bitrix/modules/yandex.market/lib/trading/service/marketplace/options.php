@@ -76,6 +76,59 @@ class Options extends TradingService\Common\Options
 		return $this->getFieldset('SELF_TEST');
 	}
 
+	public function getEnvironmentFieldActions()
+	{
+		return array_filter([
+			$this->getEnvironmentCisActions(),
+		]);
+	}
+
+	protected function getEnvironmentCisActions()
+	{
+		return [
+			'FIELD' => 'SHIPMENT.ITEM.STORE.MARKING_CODE',
+			'PATH' => 'send/cis',
+			'PAYLOAD' => static function(array $action) {
+				$itemsMap = [];
+				$newIndex = 0;
+				$result = [
+					'items' => [],
+				];
+
+				foreach ($action['VALUE'] as $storeItem)
+				{
+					$markingCode = trim($storeItem['VALUE']);
+
+					if ($markingCode === '') { continue; }
+
+					$itemKey = $storeItem['XML_ID'] . ':' . $storeItem['PRODUCT_ID'];
+					$cis = Market\Data\Trading\Cis::fromMarkingCode($markingCode);
+
+					if (isset($itemsMap[$itemKey]))
+					{
+						$itemIndex = $itemsMap[$itemKey];
+						$result['items'][$itemIndex]['instances'][] = [ 'cis' => $cis ];
+					}
+					else
+					{
+						$itemsMap[$itemKey] = $newIndex;
+						$result['items'][$newIndex] = [
+							'productId' => $storeItem['PRODUCT_ID'],
+							'xmlId' => $storeItem['XML_ID'],
+							'instances' => [
+								[ 'cis' => $cis ],
+							],
+						];
+
+						++$newIndex;
+					}
+				}
+
+				return !empty($result['items']) ? $result : null;
+			}
+		];
+	}
+
 	public function getTabs()
 	{
 		return [

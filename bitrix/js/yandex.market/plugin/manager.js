@@ -16,22 +16,21 @@
 		},
 
 		bind: function() {
-			this.handleDocumentReady(true);
+			this.handleDocumentReady();
 			this.handleAjaxSuccessFinish(true);
 			this.handleContentUpdate(true);
 			this.handlePluginClick(true);
 		},
 
 		unbind: function() {
-			this.handleDocumentReady(false);
 			this.handleAjaxSuccessFinish(false);
 			this.handleContentUpdate(false);
 			this.handlePluginClick(false);
 		},
 
-		handleDocumentReady: function(dir) {
-			if (!dir || document.readyState !== 'complete') {
-				$(document)[dir ? 'on' : 'off']('ready', $.proxy(this.onDocumentReady, this));
+		handleDocumentReady: function() {
+			if (document.readyState !== 'complete') {
+				$(document).ready($.proxy(this.onDocumentReady, this));
 			}
 		},
 
@@ -51,13 +50,11 @@
 
 		onDocumentReady: function() {
 			this.initializeContext(document, false);
-			this.handleDocumentReady(false);
 			this.handleAjaxSuccessFinish(false);
 		},
 
 		onAjaxSuccessFinish: function() {
 			this.initializeContext(document);
-			this.handleDocumentReady(false);
 			this.handleAjaxSuccessFinish(false);
 		},
 

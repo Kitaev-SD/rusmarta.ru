@@ -61,5 +61,9 @@ $MESS[$strMessPrefix.'FIELD_EXPERIENCE_NAME'] = 'ќпыт работы';
 ѕримечание: не пишите в название зарплату и контактную информацию Ч дл€ этого есть отдельные пол€.';
 $MESS[$strMessPrefix.'FIELD_SALARY_NAME'] = '«арплата, рублей в мес€ц';
 	$MESS[$strMessPrefix.'FIELD_SALARY_DESC'] = '«арплата, рублей в мес€ц Ч целое число.';
+$MESS[$strMessPrefix.'FIELD_SALARY_RANGE_FROM_NAME'] = 'ƒиапазон заработной платы (мин)';
+	$MESS[$strMessPrefix.'FIELD_SALARY_RANGE_FROM_DESC'] = 'ƒиапазон заработной платы Ч минимальное значение (целое число)';
+$MESS[$strMessPrefix.'FIELD_SALARY_RANGE_TO_NAME'] = 'ƒиапазон заработной платы (макс)';
+	$MESS[$strMessPrefix.'FIELD_SALARY_RANGE_TO_DESC'] = 'ƒиапазон заработной платы Ч макксимальное значение (целое число)';
 
 ?>

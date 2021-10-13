@@ -18,6 +18,11 @@ abstract class AbstractDocument
 
 	abstract public function getTitle($version = '');
 
+	public function getSourceType()
+	{
+		return TradingEntity\Registry::ENTITY_TYPE_ORDER;
+	}
+
 	abstract public function getEntityType();
 
 	abstract public function render(array $items, array $settings = []);

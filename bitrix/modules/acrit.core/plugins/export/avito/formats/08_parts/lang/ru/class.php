@@ -99,6 +99,37 @@ $MESS[$strMessPrefix.'FIELD_RUNFLAT_NAME'] = 'RunFlat - наличие технологии RunFl
 	</ul>';
 $MESS[$strMessPrefix.'FIELD_HOMOLOGATION_NAME'] = 'Омологация';
 	$MESS[$strMessPrefix.'FIELD_HOMOLOGATION_DESC'] = 'Омологация - бренд авто, под который омологирована шина';
+$MESS[$strMessPrefix.'FIELD_MODEL_NAME'] = 'Название модели шины';
+	$MESS[$strMessPrefix.'FIELD_MODEL_DESC'] = 'Название модели шины';
+$MESS[$strMessPrefix.'FIELD_SPEED_INDEX_NAME'] = 'Индекс скорости шины';
+	$MESS[$strMessPrefix.'FIELD_SPEED_INDEX_DESC'] = 'Индекс скорости шины - одно из значенией списка:
+	<ul>
+		<li>B</li>
+		<li>C</li>
+		<li>D</li>
+		<li>E</li>
+		<li>F</li>
+		<li>G</li>
+		<li>J</li>
+		<li>K</li>
+		<li>L</li>
+		<li>M</li>
+		<li>N</li>
+		<li>P</li>
+		<li>Q</li>
+		<li>R</li>
+		<li>S</li>
+		<li>T</li>
+		<li>U</li>
+		<li>H</li>
+		<li>VR</li>
+		<li>V</li>
+		<li>Z, ZR</li>
+		<li>W</li>
+		<li>Y</li>
+	</ul>';
+$MESS[$strMessPrefix.'FIELD_LOAD_INDEX_NAME'] = 'Индекс нагрузки шины';
+	$MESS[$strMessPrefix.'FIELD_LOAD_INDEX_DESC'] = 'Индекс нагрузки шины. Может принимать значения от 19 до 204 включительно.';
 $MESS[$strMessPrefix.'FIELD_BRAND_NAME'] = 'Производитель шин';
 	$MESS[$strMessPrefix.'FIELD_BRAND_DESC'] = 'Производитель шин - строка из списка:
 Aeolus, Aeolus Neo, Altenzo, Amtel, Antares, Aplus, Autogrip, Avatyre, Barum, Bfgoodrich, Bridgestone, Cachland, Compasal, Continental, Contyre, Cordiant, CrossLeader, Delinte, Dmack, DoubleStar, Dunlop, Effiplus, Falken, Firenza, Firestone, Forward, General Tire, Gislaved, Goodyear, GT Radial, Habilead, Hankook, Hifly, Imperial, Jinyu, Joyroad, Kama, Kleber, Kormoran, Kumho, Landsail, Laufenn, LingLong, Marshal, Matador, Maxxis, Michelin, Mickey Thompson, Minerva, Nankang, Nexen, Nitto, Nokian, Nordman, Nortec, Orium, Ovation, Pirelli, Pirelli Formula, Rapid, Roadstone, Rosava, Sailun, Satoya, Sava, Starmaxx, Sunfull, Sunny, Tigar, Toyo, Trayal, Triangle, Tunga, Tyrex, Uniroyal, Viatti, Vredestein, Windforce, Yokohama, Белшина, Волтайр.';

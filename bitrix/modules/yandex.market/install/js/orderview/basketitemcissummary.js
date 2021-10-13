@@ -21,6 +21,11 @@
 			langPrefix: 'YANDEX_MARKET_T_TRADING_ORDER_VIEW_BASKET_ITEM_CIS_'
 		},
 
+		initVars: function() {
+			this.callParent('initVars', constructor);
+			this._basketCount = null;
+		},
+
 		initialize: function() {
 			this.callParent('initialize', constructor);
 			this.bind();
@@ -85,7 +90,7 @@
 
 		getCisStatus: function(valueList) {
 			const filled = this.getFilledCount(valueList);
-			const total = this.options.count;
+			const total = this.getBasketCount();
 			const isRequired = this.options.required;
 			let result;
 
@@ -112,6 +117,14 @@
 			}
 
 			return result;
+		},
+
+		getBasketCount: function() {
+			return (this._basketCount != null ? this._basketCount : this.options.count);
+		},
+
+		setBasketCount: function(count) {
+			this._basketCount = count;
 		},
 
 		copy: function() {

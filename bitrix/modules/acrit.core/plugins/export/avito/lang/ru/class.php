@@ -91,6 +91,8 @@ $MESS[$strMessPrefix.'FIELD_ALLOW_EMAIL_DESC'] = 'Возможность написать сообщение
 </ul>
 Примечание: значение по умолчанию — «Да».';
 $MESS[$strMessPrefix.'FIELD_ALLOW_EMAIL_DEFAULT'] = 'Да';
+$MESS[$strMessPrefix.'FIELD_EMAIL_NAME'] = 'Автораспределение по почте';
+$MESS[$strMessPrefix.'FIELD_EMAIL_DESC'] = 'Используется для автораспределения почты сотрудников (для уведомления).';
 $MESS[$strMessPrefix.'FIELD_MANAGER_NAME_NAME'] = 'Имя менеджера, контактного лица';
 $MESS[$strMessPrefix.'FIELD_MANAGER_NAME_DESC'] = 'Имя менеджера, контактного лица компании по данному объявлению — строка не более 40 символов.';
 $MESS[$strMessPrefix.'FIELD_CONTACT_PHONE_NAME'] = 'Контактный телефон';

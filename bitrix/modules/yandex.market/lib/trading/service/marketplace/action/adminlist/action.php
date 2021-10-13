@@ -134,10 +134,9 @@ class Action extends TradingService\Reference\Action\DataAction
 		else
 		{
 			$options = $this->provider->getOptions();
-			$logger = $this->provider->getLogger();
 			$facadeClassName = $this->provider->getModelFactory()->getOrderFacadeClassName();
 
-			$result = $facadeClassName::load($options, $primary, $logger);
+			$result = $facadeClassName::load($options, $primary);
 		}
 
 		return $result;
@@ -146,7 +145,6 @@ class Action extends TradingService\Reference\Action\DataAction
 	protected function loadExternalOrdersByList()
 	{
 		$options = $this->provider->getOptions();
-		$logger = $this->provider->getLogger();
 		$parameters = $this->request->getParameters();
 		$parameters = $this->convertExternalOrderParameters($parameters);
 		$facadeClassName = $this->provider->getModelFactory()->getOrderFacadeClassName();
@@ -156,7 +154,7 @@ class Action extends TradingService\Reference\Action\DataAction
 			$parameters['status'] = TradingService\Marketplace\Status::STATUS_PROCESSING;
 		}
 
-		$this->externalOrders = $facadeClassName::loadList($options, $parameters, $logger);
+		$this->externalOrders = $facadeClassName::loadList($options, $parameters);
 	}
 
 	protected function flushCache()
@@ -481,7 +479,10 @@ class Action extends TradingService\Reference\Action\DataAction
 
 			if ($bitrixOrder !== null && $productId !== null)
 			{
-				$basketCode = $bitrixOrder->getBasketItemCode($productId);
+				$xmlId = $this->provider->getDictionary()->getOrderItemXmlId($item);
+				$basketCode =
+					$bitrixOrder->getBasketItemCode($xmlId, 'XML_ID')
+					?: $bitrixOrder->getBasketItemCode($productId);
 
 				if ($basketCode !== null)
 				{
@@ -508,6 +509,10 @@ class Action extends TradingService\Reference\Action\DataAction
 			{
 				$shipment = [
 					'ID' => $shipment->getId(),
+					'WEIGHT' => [
+						'VALUE' => $shipment->getWeight(),
+						'UNIT' => $shipment->getWeightUnit(),
+					],
 					'BOX' => $this->getShipmentBoxesData($shipment),
 				];
 

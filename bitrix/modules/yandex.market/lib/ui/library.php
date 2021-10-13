@@ -7,7 +7,7 @@ use Bitrix\Main;
 class Library
 {
 	protected static $variantsMap = [
-		'jquery' => [ 'jquery2', 'jquery' ],
+		'jquery' => [ 'jquery2', 'jquery', 'jquery3' ],
 	];
 	protected static $varNameMap = [
 		'jquery' => 'jQuery',

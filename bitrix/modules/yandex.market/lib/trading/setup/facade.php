@@ -43,6 +43,17 @@ class Facade
 		return static::hasSetupByFilter($filter, $except);
 	}
 
+	public static function hasActiveSetupUsingServiceBehavior($serviceCode, $behaviorCode, $except = null)
+	{
+		$filter = [
+			'=ACTIVE' => Table::BOOLEAN_Y,
+			'=TRADING_SERVICE' => $serviceCode,
+			'=TRADING_BEHAVIOR' => $behaviorCode,
+		];
+
+		return static::hasSetupByFilter($filter, $except);
+	}
+
 	public static function hasActiveSetupUsingExternalPlatform($externalId, $except = null)
 	{
 		$filter = [

@@ -143,6 +143,11 @@ class Status extends TradingService\Common\Status
 		);
 	}
 
+	public function isOrderDelivered($status)
+	{
+		return $status === static::STATUS_DELIVERED;
+	}
+
 	public function isLeftProcessing($status)
 	{
 		return $this->getStatusOrder($status) > $this->getStatusOrder(static::STATUS_PROCESSING);

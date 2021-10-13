@@ -2,6 +2,7 @@
 
 namespace Yandex\Market\Trading\Service\Reference;
 
+use Bitrix\Main;
 use Yandex\Market;
 
 class ModelFactory
@@ -29,5 +30,15 @@ class ModelFactory
 	public function getOrderClassName()
 	{
 		return Market\Api\Model\Order::class;
+	}
+
+	public function getEntityFacadeClassName($entityType)
+	{
+		if ($entityType === Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER)
+		{
+			return $this->getOrderFacadeClassName();
+		}
+
+		throw new Main\NotSupportedException(sprintf('unsupported entity type %s', $entityType));
 	}
 }

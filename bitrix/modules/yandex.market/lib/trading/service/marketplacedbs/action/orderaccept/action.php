@@ -104,6 +104,11 @@ class Action extends TradingService\Marketplace\Action\OrderAccept\Action
 		{
 			$deliveryId = $deliveryRequest->getShopDeliveryId();
 			$price = $deliveryRequest->getPrice();
+
+			if ($this->provider->getOptions()->includeLiftPrice())
+			{
+				$price += $deliveryRequest->getLiftPrice();
+			}
 		}
 		else
 		{

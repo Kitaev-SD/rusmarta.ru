@@ -44,14 +44,14 @@ abstract class Router
 	 *
 	 * @param string $path
 	 * @param TradingEntity\Reference\Environment $environment
-	 * @param Main\HttpRequest $request
-	 * @param Main\Server $server
+	 * @param Main\HttpRequest|null $request
+	 * @param Main\Server|null $server
 	 *
 	 * @return mixed
 	 * @throws Main\SystemException
 	 * @throws Market\Exceptions\Trading\NotImplementedAction
 	 */
-	public function getHttpAction($path, TradingEntity\Reference\Environment $environment, Main\HttpRequest $request, Main\Server $server)
+	public function getHttpAction($path, TradingEntity\Reference\Environment $environment, Main\HttpRequest $request = null, Main\Server $server = null)
 	{
 		$className = $this->getActionClassName($path);
 
@@ -65,6 +65,16 @@ abstract class Router
 			{
 				throw new Main\SystemException($className . ' must extends ' . Action\HttpAction::class . ' for path ' . $path);
 			}
+		}
+
+		if ($server === null)
+		{
+			$server = Main\Context::getCurrent()->getServer();
+		}
+
+		if ($request === null)
+		{
+			$request = new Main\HttpRequest($server, [], [], [], []);
 		}
 
 		return new $className($this->provider, $environment, $request, $server);
@@ -158,6 +168,32 @@ abstract class Router
 		$map = $this->getMap();
 
 		return isset($map[$path]);
+	}
+
+	/**
+	 * Объект действия для получения информации и работы с внутренними объектами
+	 *
+	 * @param string $path
+	 * @param TradingEntity\Reference\Environment $environment
+	 *
+	 * @return Action\AbstractAction
+	 */
+	public function getActionSample($path, TradingEntity\Reference\Environment $environment)
+	{
+		if ($this->hasDataAction($path))
+		{
+			$result = $this->getDataAction($path, $environment);
+		}
+		else if ($this->hasHttpAction($path))
+		{
+			$result = $this->getHttpAction($path, $environment);
+		}
+		else
+		{
+			throw new Main\ArgumentException(sprintf('action for %s not found', $path));
+		}
+
+		return $result;
 	}
 
 	/**

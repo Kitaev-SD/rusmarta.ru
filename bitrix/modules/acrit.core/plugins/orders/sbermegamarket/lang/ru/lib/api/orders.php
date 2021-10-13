@@ -1,0 +1,4 @@
+<?
+$MESS['ACRIT_CRM_PLUGIN_WB_CHECK_ERROR'] = 'Ошибка: ';
+$MESS['ACRIT_CRM_PLUGIN_WB_CHECK_SUCCESS'] = 'Успешно';
+?>

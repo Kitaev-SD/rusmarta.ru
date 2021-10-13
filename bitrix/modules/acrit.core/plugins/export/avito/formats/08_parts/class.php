@@ -197,6 +197,27 @@ class AvitoParts extends Avito {
           'DESCRIPTION' => static::getMessage('FIELD_HOMOLOGATION_DESC'),
       ));
       $arResult[] = new Field(array(
+          'CODE' => 'MODEL',
+          'DISPLAY_CODE' => 'Model',
+          'NAME' => static::getMessage('FIELD_MODEL_NAME'),
+          'SORT' => 1123,
+          'DESCRIPTION' => static::getMessage('FIELD_MODEL_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'SPEED_INDEX',
+          'DISPLAY_CODE' => 'SpeedIndex',
+          'NAME' => static::getMessage('FIELD_SPEED_INDEX_NAME'),
+          'SORT' => 1123,
+          'DESCRIPTION' => static::getMessage('FIELD_SPEED_INDEX_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'LOAD_INDEX',
+          'DISPLAY_CODE' => 'LoadIndex',
+          'NAME' => static::getMessage('FIELD_LOAD_INDEX_NAME'),
+          'SORT' => 1124,
+          'DESCRIPTION' => static::getMessage('FIELD_LOAD_INDEX_DESC'),
+      ));
+      $arResult[] = new Field(array(
           'CODE' => 'BRAND',
           'DISPLAY_CODE' => 'Brand',
           'NAME' => static::getMessage('FIELD_BRAND_NAME'),
@@ -245,6 +266,8 @@ class AvitoParts extends Avito {
       #
       if (!Helper::isEmpty($arFields['ALLOW_EMAIL']))
          $arXmlTags['AllowEmail'] = Xml::addTag($arFields['ALLOW_EMAIL']);
+			if(!Helper::isEmpty($arFields['EMAIL']))
+				$arXmlTags['Email'] = Xml::addTag($arFields['EMAIL']);
       if (!Helper::isEmpty($arFields['MANAGER_NAME']))
          $arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
       if (!Helper::isEmpty($arFields['CONTACT_PHONE']))
@@ -313,6 +336,12 @@ class AvitoParts extends Avito {
          $arXmlTags['RunFlat'] = Xml::addTag($arFields['RUNFLAT']);
       if (!Helper::isEmpty($arFields['HOMOLOGATION']))
          $arXmlTags['Homologation'] = Xml::addTag($arFields['HOMOLOGATION']);
+      if (!Helper::isEmpty($arFields['MODEL']))
+         $arXmlTags['Model'] = Xml::addTag($arFields['MODEL']);
+      if (!Helper::isEmpty($arFields['SPEED_INDEX']))
+         $arXmlTags['SpeedIndex'] = Xml::addTag($arFields['SPEED_INDEX']);
+      if (!Helper::isEmpty($arFields['LOAD_INDEX']))
+         $arXmlTags['LoadIndex'] = Xml::addTag($arFields['LOAD_INDEX']);
       if (!Helper::isEmpty($arFields['BRAND']))
          $arXmlTags['Brand'] = Xml::addTag($arFields['BRAND']);
       if (!Helper::isEmpty($arFields['AVAILABILITY']))

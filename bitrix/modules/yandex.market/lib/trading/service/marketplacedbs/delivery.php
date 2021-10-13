@@ -5,61 +5,47 @@ namespace Yandex\Market\Trading\Service\MarketplaceDbs;
 use Yandex\Market;
 use Bitrix\Main;
 
-class Delivery
+class Delivery extends Market\Trading\Service\Marketplace\Delivery
 {
-	use Market\Reference\Concerns\HasLang;
-
-	const PARTNER_TYPE_SHOP = 'SHOP';
-
-	const TYPE_DELIVERY = 'DELIVERY';
-	const TYPE_PICKUP = 'PICKUP';
-	const TYPE_POST = 'POST';
-
-	protected $provider;
+	const LIFT_NOT_NEEDED = 'NOT_NEEDED';
+	const LIFT_MANUAL = 'MANUAL';
+	const LIFT_ELEVATOR  = 'ELEVATOR';
+	const LIFT_CARGO_ELEVATOR  = 'CARGO_ELEVATOR';
+	const LIFT_FREE  = 'FREE';
 
 	protected static function includeMessages()
 	{
 		Main\Localization\Loc::loadMessages(__FILE__);
+		parent::includeMessages();
 	}
 
-	public function __construct(Provider $provider)
-	{
-		$this->provider = $provider;
-	}
-
-	public function isShopDelivery($partnerType)
-	{
-		return $partnerType === static::PARTNER_TYPE_SHOP;
-	}
-
-	public function getTypes()
+	public function getLiftTypes()
 	{
 		return [
-			static::TYPE_DELIVERY,
-			static::TYPE_PICKUP,
-			static::TYPE_POST,
+			static::LIFT_NOT_NEEDED,
+			static::LIFT_MANUAL,
+			static::LIFT_ELEVATOR,
+			static::LIFT_CARGO_ELEVATOR,
+			static::LIFT_FREE,
 		];
 	}
 
-	public function getDefaultType()
+	public function getLiftTitle($type, $version = '')
 	{
-		return static::TYPE_DELIVERY;
+		$suffix = ($version !== '' ? '_' . Market\Data\TextString::toUpper($version) : '');
+
+		return static::getLang('TRADING_SERVICE_MARKETPLACE_DELIVERY_LIFT_' . Market\Data\TextString::toUpper($type) . $suffix, null, (string)$type);
 	}
 
-	public function getTypeTitle($type)
-	{
-		return static::getLang('TRADING_SERVICE_MARKETPLACE_DELIVERY_TYPE_' . strtoupper($type));
-	}
-
-	public function getTypeEnum()
+	public function getLiftEnum()
 	{
 		$result = [];
 
-		foreach ($this->getTypes() as $type)
+		foreach ($this->getLiftTypes() as $type)
 		{
 			$result[] = [
 				'ID' => $type,
-				'VALUE' => $this->getTypeTitle($type),
+				'VALUE' => $this->getLiftTitle($type),
 			];
 		}
 

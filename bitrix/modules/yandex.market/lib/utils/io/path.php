@@ -7,9 +7,10 @@ use Yandex\Market;
 
 class Path
 {
-	public static function absoluteToRelative($absolute)
+	public static function absoluteToRelative($absolute, $root = null)
 	{
-		$root = Main\Application::getDocumentRoot();
+		if ($root === null) { $root = Main\Application::getDocumentRoot(); }
+
 		$root = Main\IO\Path::normalize($root);
 		$absolute = Main\IO\Path::normalize($absolute);
 

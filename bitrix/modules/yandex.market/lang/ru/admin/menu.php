@@ -8,6 +8,7 @@ $MESS['YANDEX_MARKET_MENU_SETUP'] = 'Прайс-листы';
 $MESS['YANDEX_MARKET_MENU_PROMO'] = 'Акции (бета-версия)';
 $MESS['YANDEX_MARKET_MENU_ORDER_ADMIN'] = 'Заказы';
 $MESS['YANDEX_MARKET_MENU_ORDER_LIST'] = 'Документы';
+$MESS['YANDEX_MARKET_MENU_SHIPMENT_LIST'] = 'Отгрузки';
 $MESS['YANDEX_MARKET_MENU_SETTINGS'] = 'Настройки';
 $MESS['YANDEX_MARKET_MENU_EVENT'] = 'Журнал событий';
 $MESS['YANDEX_MARKET_MENU_LOG'] = 'Журнал ошибок';

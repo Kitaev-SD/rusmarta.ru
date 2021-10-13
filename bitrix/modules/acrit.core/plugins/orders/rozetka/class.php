@@ -309,7 +309,7 @@ class Rozetka extends Plugin {
 	 * @return array
 	 */
 	public function getFields() {
-		$list = [];
+		$list = parent::getFields();
 		$list[] = [
 			'id' => 'id',
 			'name' => Loc::getMessage(self::getLangCode('FIELDS_ID')),

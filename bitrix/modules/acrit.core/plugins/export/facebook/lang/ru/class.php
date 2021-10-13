@@ -3,7 +3,7 @@
 $strMessPrefix = 'ACRIT_EXP_FACEBOOK_';
 
 // General
-$MESS[$strMessPrefix . 'NAME'] = 'Facebook ';
+$MESS[$strMessPrefix . 'NAME'] = 'Facebook è Instagram';
 
 // Default settings
 // Headers

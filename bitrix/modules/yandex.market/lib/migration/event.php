@@ -86,6 +86,9 @@ class Event
 			$installer = $service->getInstaller();
 
 			$installer->install($environment, $setup->getSiteId());
+			$installer->postInstall($environment, $setup->getSiteId(), [
+				'SETUP_ID' => $setup->getId(),
+			]);
 		}
 		catch (Main\SystemException $exception)
 		{

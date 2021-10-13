@@ -133,6 +133,7 @@ class Model extends Market\Reference\Storage\Model
 		$this->installService();
 		$this->installPlatform();
 		$this->installInternalRecord();
+		$this->postInstallService();
 	}
 
 	public function uninstall()
@@ -182,6 +183,16 @@ class Model extends Market\Reference\Storage\Model
 		$this->getService()->getInstaller()->install($environment, $siteId);
 	}
 
+	protected function postInstallService()
+	{
+		$environment = $this->getEnvironment();
+		$siteId = $this->getSiteId();
+
+		$this->getService()->getInstaller()->postInstall($environment, $siteId, [
+			'SETUP_ID' => $this->getId(),
+		]);
+	}
+
 	protected function uninstallService()
 	{
 		$environment = $this->getEnvironment();
@@ -189,7 +200,9 @@ class Model extends Market\Reference\Storage\Model
 		$context = [
 			'SITE_USED' => Facade::hasActiveSetup($siteId, $this->getId()),
 			'SERVICE_USED' => Facade::hasActiveSetupUsingServiceCode($this->getServiceCode(), $this->getId()),
+			'BEHAVIOR_USED' => Facade::hasActiveSetupUsingServiceBehavior($this->getServiceCode(), $this->getBehaviorCode(), $this->getId()),
 			'PLATFORM_USED' => Facade::hasActiveSetupUsingExternalPlatform($this->getExternalId(), $this->getId()),
+			'SETUP_ID' => $this->getId(),
 		];
 
 		$this->getService()->getInstaller()->uninstall($environment, $siteId, $context);

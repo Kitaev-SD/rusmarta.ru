@@ -73,6 +73,7 @@ class Controller
 	 */
 
 	public static function syncExtToStore($ext_order) {
+		Log::getInstance(self::$MODULE_ID)->add('(syncExtToStore) external order ' . print_r($ext_order, true), false, true);
 		$incl_res = \Bitrix\Main\Loader::includeSharewareModule(self::$MODULE_ID);
 		if ($incl_res == \Bitrix\Main\Loader::MODULE_NOT_FOUND || $incl_res == \Bitrix\Main\Loader::MODULE_DEMO_EXPIRED) {
 			return;

@@ -26,4 +26,16 @@ abstract class Status
 	 * @return string[]
 	 */
 	abstract public function getVariants();
+
+	public function getStatusOrder($status)
+	{
+		$order = $this->getProcessOrder();
+
+		return isset($order[$status]) ? $order[$status] : null;
+	}
+
+	public function getProcessOrder()
+	{
+		return [];
+	}
 }

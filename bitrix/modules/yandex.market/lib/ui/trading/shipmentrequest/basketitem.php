@@ -21,4 +21,22 @@ class BasketItem extends Market\Api\Reference\Model
 
 		return array_filter($values, static function($value) { return $value !== ''; });
 	}
+
+	/** @return float|null */
+	public function getCount()
+	{
+		return Market\Data\Number::normalize($this->getField('COUNT'));
+	}
+
+	/** @return float|null */
+	public function getInitialCount()
+	{
+		return Market\Data\Number::normalize($this->getField('INITIAL_COUNT'));
+	}
+
+	/** @return bool */
+	public function needDelete()
+	{
+		return $this->getField('DELETE') === 'Y';
+	}
 }

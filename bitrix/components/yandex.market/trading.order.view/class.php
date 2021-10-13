@@ -4,6 +4,7 @@ namespace Yandex\Market\Components;
 
 use Bitrix\Main;
 use Yandex\Market;
+use Yandex\Market\Trading\Entity as TradingEntity;
 
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
@@ -33,10 +34,11 @@ class TradingOrderView extends \CBitrixComponent
 
 			$orderExternalId = $this->getOrderExternalId();
 			$orderNum = $this->getOrderNum($orderExternalId);
+			$orderInternalId = $this->getOrderNum($orderExternalId, false);
 			$response = $this->runAction($orderExternalId, $orderNum);
 
 			$this->buildResult($response);
-			$this->extendResult($orderExternalId, $orderNum);
+			$this->extendResult($orderExternalId, $orderNum, $orderInternalId);
 		}
 		catch (Main\SystemException $exception)
 		{
@@ -157,11 +159,11 @@ class TradingOrderView extends \CBitrixComponent
 		return (int)$this->getParameter('EXTERNAL_ID');
 	}
 
-	protected function getOrderNum($externalId)
+	protected function getOrderNum($externalId, $useAccountNumber = null)
 	{
 		$platform = $this->getSetup()->getPlatform();
 		$registry = $this->getSetup()->getEnvironment()->getOrderRegistry();
-		$result = $registry->search($externalId, $platform);
+		$result = $registry->search($externalId, $platform, $useAccountNumber);
 
 		if ($result === null)
 		{
@@ -225,36 +227,42 @@ class TradingOrderView extends \CBitrixComponent
 	protected function buildResult(Market\Trading\Service\Reference\Action\Response $response)
 	{
 		$this->arResult = [
+			'ORDER' => $response->getField('order'),
 			'PROPERTIES' => $response->getField('properties'),
 			'BASKET' => [
 				'COLUMNS' => $response->getField('basket.columns'),
 				'ITEMS' => $response->getField('basket.items'),
 				'SUMMARY' => $response->getField('basket.summary'),
 			],
+			'DELIVERY' => $response->getField('delivery'),
+			'BUYER' => $response->getField('buyer'),
 			'SHIPMENT' => $response->getField('shipments'),
-			'SHIPMENT_EDIT' => (bool)$response->getField('shipmentEdit'),
+			'ORDER_ACTIONS' => (array)$response->getField('orderActions'),
 			'PRINT_READY' => (bool)$response->getField('printReady'),
 		];
 	}
 
-	protected function extendResult($orderExternalId, $orderNum)
+	protected function extendResult($orderExternalId, $orderNum, $orderInternalId)
 	{
-		$this->fillCommonData($orderExternalId, $orderNum);
+		$this->fillCommonData($orderExternalId, $orderNum, $orderInternalId);
 		$this->fillBoxDimensions();
 		$this->fillBasketItemsIndex();
 		$this->fillBoxNumber($orderExternalId);
 		$this->convertBoxDimensions();
 		$this->resolveBasketCisColumn();
-		$this->resolveShipmentEdit();
+		$this->filterOrderActions();
+		$this->fillItemsChangeReason();
 		$this->fillPrintDocuments();
 		$this->fillBoxPacks();
 		$this->resolveBoxSelectedPack();
+		$this->extendActivities();
 	}
 
-	protected function fillCommonData($orderExternalId, $orderNum)
+	protected function fillCommonData($orderExternalId, $orderNum, $orderInternalId)
 	{
 		$this->arResult['SETUP_ID'] = $this->getSetup()->getId();
 		$this->arResult['SERVICE_NAME'] = $this->getSetup()->getService()->getInfo()->getTitle('SHORT');
+		$this->arResult['ORDER_INTERNAL_ID'] = $orderInternalId;
 		$this->arResult['ORDER_EXTERNAL_ID'] = $orderExternalId;
 		$this->arResult['ORDER_ACCOUNT_NUMBER'] = $orderNum;
 	}
@@ -376,6 +384,26 @@ class TradingOrderView extends \CBitrixComponent
 		}
 	}
 
+	protected function filterOrderActions()
+	{
+		if (empty($this->arResult['ORDER_ACTIONS'])) { return; }
+
+		$this->arResult['ORDER_ACTIONS'] = array_intersect_key(
+			$this->arResult['ORDER_ACTIONS'],
+			$this->getReadyActions()
+		);
+	}
+
+	protected function getReadyActions()
+	{
+		return array_filter([
+			TradingEntity\Operation\Order::ITEM => !empty($this->arResult['BASKET']['ITEMS']),
+			TradingEntity\Operation\Order::BOX => !empty($this->arResult['SHIPMENT']),
+			TradingEntity\Operation\Order::CIS => isset($this->arResult['BASKET']['COLUMNS']['CIS']),
+		]);
+	}
+
+	/** @deprecated  */
 	protected function resolveShipmentEdit()
 	{
 		if (empty($this->arResult['SHIPMENT']) && !isset($this->arResult['BASKET']['COLUMNS']['CIS']))
@@ -384,16 +412,38 @@ class TradingOrderView extends \CBitrixComponent
 		}
 	}
 
+	protected function fillItemsChangeReason()
+	{
+		if (!isset($this->arResult['ORDER_ACTIONS'][TradingEntity\Operation\Order::ITEM])) { return; }
+
+		$service = $this->getSetup()->getService();
+
+		if (!($service instanceof Market\Trading\Service\Reference\HasItemsChangeReason)) { return; }
+
+		$reasonService = $service->getItemsChangeReason();
+		$enum = [];
+
+		foreach ($reasonService->getVariants() as $variant)
+		{
+			$enum[] = [
+				'ID' => $variant,
+				'VALUE' => $reasonService->getTitle($variant),
+			];
+		}
+
+		$this->arResult['ITEMS_CHANGE_REASON'] = $enum;
+	}
+
 	protected function fillPrintDocuments()
 	{
-		if (!$this->arResult['SHIPMENT_EDIT'] && !$this->arResult['PRINT_READY']) { return; }
-
 		$printer = $this->getSetup()->getService()->getPrinter();
 		$documents = [];
 
 		foreach ($printer->getTypes() as $type)
 		{
 			$document = $printer->getDocument($type);
+
+			if ($document->getSourceType() !== Market\Trading\Entity\Registry::ENTITY_TYPE_ORDER) { continue; }
 
 			$documents[] = [
 				'TYPE' => $type,
@@ -449,5 +499,95 @@ class TradingOrderView extends \CBitrixComponent
 			unset($box);
 		}
 		unset($shipment);
+	}
+
+	protected function extendActivities()
+	{
+		$resultKeys = [
+			'PROPERTIES',
+			'DELIVERY',
+			'BUYER',
+		];
+
+		foreach ($resultKeys as $resultKey)
+		{
+			if (!isset($this->arResult[$resultKey])) { continue; }
+
+			foreach ($this->arResult[$resultKey] as &$property)
+			{
+				if (!isset($property['ACTIVITY'])) { continue; }
+
+				$activity = $this->getActivity($property['ACTIVITY']);
+				$activityAction = $this->makeActivityAction($property['ACTIVITY'], $activity);
+
+				if (!$this->matchActivityFilter($activityAction['FILTER'])) { continue; }
+
+				$property['ACTIVITY_ACTION'] = $activityAction;
+			}
+			unset($property);
+		}
+	}
+
+	protected function makeActivityAction($path, Market\Trading\Service\Reference\Action\AbstractActivity $activity, $chain = '')
+	{
+		$result = [
+			'TEXT' => $activity->getTitle(),
+			'FILTER' => $activity->getFilter(),
+		];
+
+		if ($activity instanceof Market\Trading\Service\Reference\Action\ComplexActivity)
+		{
+			$result['MENU'] = [];
+
+			foreach ($activity->getActivities() as $key => $child)
+			{
+				$childChain = ($chain !== '' ? $chain . '.' . $key : $key);
+
+				$result['MENU'][] = $this->makeActivityAction($path, $child, $childChain);
+			}
+		}
+		else if ($activity instanceof Market\Trading\Service\Reference\Action\CommandActivity)
+		{
+			$type = $path . ($chain !== '' ? '|' . $chain : '');
+
+			$result['METHOD'] = sprintf(
+				'BX.YandexMarket.OrderView.activity.executeCommand("%s")',
+				$type
+
+			);
+			$result += $activity->getParameters(); // confirm and etc
+		}
+		else if ($activity instanceof Market\Trading\Service\Reference\Action\FormActivity)
+		{
+			$type = $path . ($chain !== '' ? '|' . $chain : '');
+
+			$result['METHOD'] = sprintf(
+				'BX.YandexMarket.OrderView.activity.openDialog("%s", %s)',
+				$type,
+				Main\Web\Json::encode([
+					'TITLE' => $result['TEXT'],
+				])
+			);
+		}
+
+		return $result;
+	}
+
+	protected function getActivity($path)
+	{
+		/** @var Market\Trading\Service\Reference\Action\HasActivity $action */
+		$router = $this->getSetup()->wakeupService()->getRouter();
+		$action = $router->getDataAction($path, $this->getSetup()->getEnvironment());
+
+		Market\Reference\Assert::typeOf($action, Market\Trading\Service\Reference\Action\HasActivity::class, 'action');
+
+		return $action->getActivity();
+	}
+
+	protected function matchActivityFilter($filter)
+	{
+		if (!is_array($filter)) { return true; }
+
+		return (count(array_diff_assoc($filter, $this->arResult['ORDER'])) === 0);
 	}
 }

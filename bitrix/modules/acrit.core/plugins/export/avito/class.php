@@ -290,6 +290,19 @@ class Avito extends Plugin {
 					),
 			));
 			$arResult[] = new Field(array(
+					'CODE' => 'EMAIL',
+					'DISPLAY_CODE' => 'Email',
+					'NAME' => static::getMessage('FIELD_EMAIL_NAME'),
+					'SORT' => 205,
+					'DESCRIPTION' => static::getMessage('FIELD_EMAIL_DESC'),
+					'DEFAULT_VALUE' => array(
+							array(
+									'TYPE' => 'CONST',
+									'CONST' => '',
+							),
+					),
+			));
+			$arResult[] = new Field(array(
 					'CODE' => 'MANAGER_NAME',
 					'DISPLAY_CODE' => 'ManagerName',
 					'NAME' => static::getMessage('FIELD_MANAGER_NAME_NAME'),
@@ -866,6 +879,21 @@ class Avito extends Plugin {
 			}
 			return $arResult;
 		}, array());
+	}
+
+	/**
+		* 	Get XML tag group: From + To (see Job -> SalaryRange)
+		*/
+	protected function getXmlTag_FromTo($strFrom, $strTo) {
+		$arResult = [];
+		if(Helper::strlen($strFrom)){
+			$arResult['From'] = Xml::addTag($strFrom);
+		}
+		if(Helper::strlen($strTo)){
+			$arResult['To'] = Xml::addTag($strTo);
+		}
+		$arResult = [['#' => $arResult]];
+		return $arResult;
 	}
 
 	/* END OF BASE METHODS FOR XML SUBCLASSES */

@@ -148,6 +148,8 @@ class AvitoThings extends Avito {
       #
       if (!Helper::isEmpty($arFields['ALLOW_EMAIL']))
          $arXmlTags['AllowEmail'] = Xml::addTag($arFields['ALLOW_EMAIL']);
+			if(!Helper::isEmpty($arFields['EMAIL']))
+				$arXmlTags['Email'] = Xml::addTag($arFields['EMAIL']);
       if (!Helper::isEmpty($arFields['MANAGER_NAME']))
          $arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
       if (!Helper::isEmpty($arFields['CONTACT_PHONE']))

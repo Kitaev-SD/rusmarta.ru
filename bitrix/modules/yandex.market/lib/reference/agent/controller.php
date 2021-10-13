@@ -12,6 +12,9 @@ class Controller
 	const UPDATE_RULE_STRICT = 'strict';
 	const UPDATE_RULE_FUTURE = 'future';
 
+	const SEARCH_RULE_STRICT = 'strict';
+	const SEARCH_RULE_SOFT = 'soft';
+
 	/**
 	 * ƒобавл€ем агент
 	 *
@@ -24,7 +27,8 @@ class Controller
 	public static function register($className, $agentParams)
 	{
 		$agentDescription = static::getAgentDescription($className, $agentParams);
-		$registeredAgent = static::getRegisteredAgent($agentDescription);
+		$searchRule = isset($agentParams['search']) ? $agentParams['search'] : static::SEARCH_RULE_STRICT;
+		$registeredAgent = static::getRegisteredAgent($agentDescription, $searchRule);
 
 		static::saveAgent($agentDescription, $registeredAgent);
 	}
@@ -41,7 +45,8 @@ class Controller
 	public static function unregister($className, $agentParams)
 	{
 		$agentDescription = static::getAgentDescription($className, $agentParams);
-		$registeredAgent = static::getRegisteredAgent($agentDescription);
+		$searchRule = isset($agentParams['search']) ? $agentParams['search'] : static::SEARCH_RULE_STRICT;
+		$registeredAgent = static::getRegisteredAgent($agentDescription, $searchRule);
 
 		if ($registeredAgent)
 		{
@@ -193,16 +198,30 @@ class Controller
 	 * ѕолучаем зарегистрированный агент дл€ метода класса
 	 *
 	 * @param $agentDescription array
+	 * @param $searchRule string
 	 *
 	 * @return array|null зарегистрированный агент
 	 * */
-	public static function getRegisteredAgent($agentDescription)
+	public static function getRegisteredAgent($agentDescription, $searchRule = self::SEARCH_RULE_STRICT)
 	{
 		$result = null;
 		$variants = array_unique([
 			$agentDescription['name'],
 			str_replace(PHP_EOL, '', $agentDescription['name']), // new line removed after edit agent in admin form
 		]);
+
+		if ($searchRule === static::SEARCH_RULE_SOFT)
+		{
+			foreach ($variants as &$variant)
+			{
+				$variant = preg_replace_callback('/::callAgent\((["\']\w+?["\'])(?:(, array\s*\(.*)(\)\s*))?\)/s', static function ($matches) {
+					return isset($matches[2], $matches[3])
+						? '::callAgent(' . $matches[1] . $matches[2] . '%' . $matches[3] . ')'
+						: '::callAgent(' . $matches[1] . '%)';
+				}, $variant);
+			}
+			unset($variant);
+		}
 
 		foreach ($variants as $variant)
 		{

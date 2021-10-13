@@ -3,14 +3,24 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) { die(); }
 
 use Bitrix\Main\Localization\Loc;
 use Yandex\Market;
+
+$hasActions = !empty($arResult['ORDER_ACTIONS']);
+
 ?>
 <div class="yamarket-shipment-submit">
 	<?php
-	if ($arResult['SHIPMENT_EDIT'])
+	if ($hasActions)
 	{
+		Market\Ui\Assets::loadMessages([
+			'T_TRADING_ORDER_VIEW_SHIPMENT_SUBMIT_FAIL',
+			'T_TRADING_ORDER_VIEW_SHIPMENT_SUBMIT_DATA_INVALID',
+			'T_TRADING_ORDER_VIEW_SHIPMENT_SUBMIT_VALIDATION_CONFIRM',
+		]);
+
 		Market\Ui\Assets::loadPlugin('OrderView.ShipmentSubmit');
 
 		$inputs = [
+			'INTERNAL_ID' => $arResult['ORDER_INTERNAL_ID'],
 			'ID' => $arResult['ORDER_EXTERNAL_ID'],
 			'SETUP_ID' => $arResult['SETUP_ID'],
 			'ACCOUNT_NUMBER' => $arResult['ORDER_ACCOUNT_NUMBER'],
@@ -34,6 +44,7 @@ use Yandex\Market;
 			type="button"
 			value="<?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_SHIPMENT_SUBMIT'); ?>"
 			data-plugin="OrderView.ShipmentSubmit"
+			data-url="<?= Market\Ui\Admin\Path::getModuleUrl('trading_shipment_submit') ?>"
 		/>
 		<?php
 	}
@@ -68,7 +79,7 @@ use Yandex\Market;
 		<?php
 	}
 
-	if ($arResult['SHIPMENT_EDIT'])
+	if ($hasActions)
 	{
 		?>
 		<div class="yamarket-shipment-submit__result js-yamarket-shipment-submit__message"></div>

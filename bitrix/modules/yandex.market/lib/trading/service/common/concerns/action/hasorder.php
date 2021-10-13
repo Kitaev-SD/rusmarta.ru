@@ -16,6 +16,8 @@ trait HasOrder
 {
 	/** @var TradingEntity\Reference\Order */
 	protected $order;
+	/** @var Market\Api\Model\Order */
+	protected $externalOrder;
 
 	protected function getOrder()
 	{
@@ -40,5 +42,37 @@ trait HasOrder
 		$updateResult = $order->update();
 
 		Market\Result\Facade::handleException($updateResult);
+	}
+
+	protected function getExternalOrder()
+	{
+		if ($this->externalOrder === null)
+		{
+			$this->externalOrder = $this->loadExternalOrder();
+		}
+
+		return $this->externalOrder;
+	}
+
+	protected function loadExternalOrder()
+	{
+		$primary = $this->request->getOrderId();
+
+		if (Market\Trading\State\SessionCache::has('order', $primary))
+		{
+			$fields = Market\Trading\State\SessionCache::get('order', $primary);
+			$orderClassName = $this->provider->getModelFactory()->getOrderClassName();
+
+			$result = $orderClassName::initialize($fields);
+		}
+		else
+		{
+			$options = $this->provider->getOptions();
+			$facadeClassName = $this->provider->getModelFactory()->getOrderFacadeClassName();
+
+			$result = $facadeClassName::load($options, $primary);
+		}
+
+		return $result;
 	}
 }

@@ -43,15 +43,15 @@ $APPLICATION->SetTitle("Реквизиты");?><!-- <h3></h3>
 </p>
  <br>
 -->
-<h3>ИП Коренева Ирина Николаевна&nbsp;</h3>
-<p>
- <b><br>
-	 ИНН:</b>&nbsp;071500516311<br>
- <b>ОГРНИП</b>:&nbsp;319203600037682<br>
- <b>Расчетный счет</b>:&nbsp;40802810700001292246<br>
- <b>Наименование банка</b>:&nbsp;АО «Тинькофф Банк»<br>
- <b>БИК</b>: 044525974<br>
- <b>Кор. счет</b>:&nbsp;30101810145250000974&nbsp;&nbsp;
-</p>
- <img width="373" alt="1 ИНН.jpg" src="/upload/medialibrary/e81/1-INN.jpg" height="512" title="1 ИНН.jpg">&nbsp;&nbsp;<img width="375" alt="2 Уведомление о постановке на учёт.jpg" src="/upload/medialibrary/f04/2-Uvedomlenie-o-postanovke-na-uchyet.jpg" height="512" title="2 Уведомление о постановке на учёт.jpg">&nbsp;&nbsp;<br>
-<img width="373" alt="2 УСН Доходы.jpg" src="/upload/medialibrary/ba5/2-USN-Dokhody.jpg" height="512" title="2 УСН Доходы.jpg">&nbsp;&nbsp;<img width="512" alt="3 Лист записи ЕГРИП_1.jpg" src="/upload/medialibrary/0de/3-List-zapisi-EGRIP_1.jpg" height="373" title="3 Лист записи ЕГРИП_1.jpg"><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<h3><br>
+</h3>
+ &nbsp;&nbsp;&nbsp;&nbsp;<br>
+ <b>&nbsp;&nbsp;Банковские реквизиты ИП Коренев Константин Александрович:</b><br>
+ <br>
+ <b>ИНН:</b> 780400213109<br>
+ <b>ОГРНИП:</b> 317203600044989<br>
+ <b>ОКТМО:</b> 96631000<br>
+ <b>Расчетный&nbsp;счет:</b> 40802810500001698503<br>
+ <b>Наименование&nbsp;банка:</b> АО "ТИНЬКОФФ БАНК"<br>
+ <b>БИК:</b> 044525974<br>
+ <b>Кор.счет:</b> 30101810145250000974<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

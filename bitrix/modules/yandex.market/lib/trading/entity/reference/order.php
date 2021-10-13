@@ -70,6 +70,14 @@ abstract class Order
 	}
 
 	/**
+	 * @return Main\Type\DateTime
+	 */
+	public function getCreationDate()
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'getCreationDate');
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getCurrency()
@@ -218,6 +226,14 @@ abstract class Order
 	}
 
 	/**
+	 * @return string[]
+	 */
+	public function getExistsBasketItemCodes()
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'getExistsBasketItemCodes');
+	}
+
+	/**
 	 * @param $value
 	 * @param $field
 	 *
@@ -278,6 +294,16 @@ abstract class Order
 	public function setBasketItemStore($basketCode, $storeId)
 	{
 		throw new Market\Exceptions\NotImplementedMethod(static::class, 'setBasketItemStore');
+	}
+
+	/**
+	 * @param string $basketCode
+	 *
+	 * @return Main\Result
+	 */
+	public function deleteBasketItem($basketCode)
+	{
+		throw new Market\Exceptions\NotImplementedMethod(static::class, 'deleteBasketItem');
 	}
 
 	/**

@@ -43,6 +43,11 @@ if ($component->hasErrors())
 	{
 		$adminList->AddUpdateError($message);
 	}
+
+	if ($arResult['EXCEPTION_MIGRATION'])
+	{
+		include __DIR__ . '/migration-form.php';
+	}
 }
 
 if ($component->hasWarnings())

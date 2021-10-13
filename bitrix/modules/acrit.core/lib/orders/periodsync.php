@@ -75,11 +75,17 @@ class PeriodSync
 		if ($sync_active) {
 			Controller::setModuleId($module_id);
 			Controller::setProfile($profile_id);
-			$sync_interval = self::getSyncInterval($profile);
+			$sync_interval = self::getSyncInterval($profile, $variant);
 			Settings::set('last_update_ts', time());
 			Controller::syncByPeriod($sync_interval);
 		}
-		return "\\Acrit\\Core\\Orders\\PeriodSync::run('$module_id', $profile_id);";
+		if (!$variant) {
+			$agent_name = "\\Acrit\\Core\\Orders\\PeriodSync::run('$module_id', $profile_id);";
+		}
+		else {
+			$agent_name = "\\Acrit\\Core\\Orders\\PeriodSync::run('$module_id', $profile_id, $variant);";
+		}
+		return $agent_name;
 	}
 
 	public static function getSyncInterval($profile, $variant=0) {

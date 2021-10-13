@@ -137,9 +137,9 @@ class OrderViewTabSet extends Market\Ui\Reference\Page
 		<?
 	}
 
-	public function getContentsUrl()
+	public function getContentsUrl(array $query = [])
 	{
-		return Market\Ui\Admin\Path::getModuleUrl('trading_order_view', [
+		return Market\Ui\Admin\Path::getModuleUrl('trading_order_view', $query + [
 			'lang' => LANGUAGE_ID,
 			'view' => 'tab',
 			'id' => $this->externalId,

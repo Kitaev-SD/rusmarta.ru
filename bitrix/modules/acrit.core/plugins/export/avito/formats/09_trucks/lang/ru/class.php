@@ -92,7 +92,17 @@ $MESS[$strMessPrefix.'FIELD_TYPE_OF_VEHICLE_NAME'] = 'Тип техники';
 $MESS[$strMessPrefix.'FIELD_TYPE_OF_TRAILER_NAME'] = 'Тип прицепа';
 	$MESS[$strMessPrefix.'FIELD_TYPE_OF_TRAILER_DESC'] = 'Тип прицепа, текстовое значение из <a href="https://autoload.avito.ru/format/trailer_catalog.xml" target="_blank">Справочника</a> (TypeOfTrailer).';
 $MESS[$strMessPrefix.'FIELD_TRAILER_VIN_NAME'] = 'VIN-номер';
-	$MESS[$strMessPrefix.'FIELD_TRAILER_VIN_DESC'] = 'VIN-номер (vehicle identification number) — строка из 17 символов.';
+	$MESS[$strMessPrefix.'FIELD_TRAILER_VIN_DESC'] = 'VIN-номер (vehicle identification number) — строка из 17 символов. Используется для тягачей.';
+$MESS[$strMessPrefix.'FIELD_TYPE_OF_VEHICLE_SEMI_TRAILER_COUPLING_NAME'] = 'Тип техники сцепки';
+	$MESS[$strMessPrefix.'FIELD_TYPE_OF_VEHICLE_SEMI_TRAILER_COUPLING_DESC'] = 'VIN-номер (Тип техники сцепки, текстовое значение из <a href="https://autoload.avito.ru/format/trailer_catalog.xml" target="_blank">Справочника</a> (TypeOfVehicle)) — строка из 17 символов. Используется для тягачей.';
+$MESS[$strMessPrefix.'FIELD_MAKE_SEMI_TRAILER_COUPLING_NAME'] = 'Марка сцепки';
+	$MESS[$strMessPrefix.'FIELD_MAKE_SEMI_TRAILER_COUPLING_DESC'] = 'Марка сцепки, текстовое значение из <a href="https://autoload.avito.ru/format/trailer_catalog.xml" target="_blank">Справочника</a> (Make). Используется для тягачей. Обязателен если заполнен тип техники сцепки.';
+$MESS[$strMessPrefix.'FIELD_MODEL_SEMI_TRAILER_COUPLING_NAME'] = 'Марка сцепки';
+	$MESS[$strMessPrefix.'FIELD_MODEL_SEMI_TRAILER_COUPLING_DESC'] = 'Модель сцепки, текстовое значение из <a href="https://autoload.avito.ru/format/trailer_catalog.xml" target="_blank">Справочника</a> (Model). Используется для тягачей. Обязателен если заполнена марка сцепки.';
+$MESS[$strMessPrefix.'FIELD_TYPE_SEMI_TRAILER_COUPLING_NAME'] = 'Тип сцепки';
+	$MESS[$strMessPrefix.'FIELD_TYPE_SEMI_TRAILER_COUPLING_DESC'] = 'Тип сцепки, текстовое значение из <a href="https://autoload.avito.ru/format/trailer_catalog.xml" target="_blank">Справочника</a> (TypeOfTrailer). Используется для тягачей. Обязателен если заполнена модель сцепки.';
+$MESS[$strMessPrefix.'FIELD_YEAR_SEMI_TRAILER_COUPLING_NAME'] = 'Год выпуска сцепки';
+	$MESS[$strMessPrefix.'FIELD_YEAR_SEMI_TRAILER_COUPLING_DESC'] = 'Год выпуска сцепки — целое число в диапазоне от 1905 до '.date('Y');
 $MESS[$strMessPrefix.'FIELD_GOODS_TYPE_NAME'] = 'Вид техники';
 	$MESS[$strMessPrefix.'FIELD_GOODS_TYPE_DESC'] = 'Вид техники — одно из значений списка:<br/>
 <ul>

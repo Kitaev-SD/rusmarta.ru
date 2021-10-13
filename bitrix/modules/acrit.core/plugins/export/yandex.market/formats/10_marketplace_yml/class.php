@@ -11,7 +11,8 @@ use
 	\Acrit\Core\Json,
 	\Acrit\Core\Export\Exporter,
 	\Acrit\Core\Export\UniversalPlugin,
-	\Acrit\Core\Export\Plugins\YandexMarketplaceHelpers\StockTable as Stock;
+	\Acrit\Core\Export\Plugins\YandexMarketplaceHelpers\StockTable as Stock,
+	\Acrit\Core\Export\Plugins\YandexMarketplaceHelpers\StockHistoryTable as StockHistory;
 
 class YandexMarketplaceYml extends UniversalPlugin {
 	
@@ -69,6 +70,7 @@ class YandexMarketplaceYml extends UniversalPlugin {
 			$arResult['vat'] = ['FIELD' => 'CATALOG_VAT_VALUE_YANDEX'];
 		}
 		$arResult['currencyId'] = ['FIELD' => 'CATALOG_PRICE_1__CURRENCY', 'IS_CURRENCY' => true, 'REQUIRED' => true];
+		$arResult['count'] = ['FIELD' => ''];
 		$arResult['manufacturer'] = ['FIELD' => ['PROPERTY_MANUFACTURER', 'PROPERTY_BRAND'], 'REQUIRED' => true];
 		$arResult['country_of_origin'] = ['FIELD' => 'PROPERTY_COUNTRY', 'REQUIRED' => true];
 		$arResult['barcode'] = ['FIELD' => 'CATALOG_BARCODE'];
@@ -154,6 +156,7 @@ class YandexMarketplaceYml extends UniversalPlugin {
 	 */
 	public function includeClasses(){
 		require_once __DIR__.'/include/classes/stock.php';
+		require_once __DIR__.'/include/classes/stockhistory.php';
 		require_once __DIR__.'/include/db_table_create.php';
 	}
 
@@ -439,6 +442,16 @@ class YandexMarketplaceYml extends UniversalPlugin {
 						];
 					}
 				}
+				StockHistory::add([
+					'MODULE_ID' => $this->strModuleId,
+					'PROFILE_ID' => $this->intProfileId,
+					'WAREHOUSE_ID' => $arJson['warehouseId'],
+					'SKUS_INPUT' => Json::encode($arJson['skus']),
+					'SKUS_OUTPUT' => Json::encode($arResult),
+					'IP' => $_SERVER['REMOTE_ADDR'],
+					'HTTP_USER_AGENT' => $_SERVER['HTTP_USER_AGENT'],
+					'TIMESTAMP_X' => new \Bitrix\Main\Type\Datetime,
+				]);
 			}
 		}
 		$arResult = ['skus' => $arResult];
@@ -472,6 +485,72 @@ class YandexMarketplaceYml extends UniversalPlugin {
 			return $strCategories;
 		}
 		return false;
+	}
+
+	/**
+	 * Debug: show sku stocks
+	 */
+	protected function showStocks($arItemId, $bPrint=true){
+		if(!is_array($arItemId)){
+			if(($arItemId = intVal($arItemId)) > 0){
+				$arItemId = [$arItemId];
+			}
+		}
+		$arQuery = [
+			'order' => ['ID' => 'ASC'],
+			'filter' => [
+				'=MODULE_ID' => $this->strModuleId,
+				'PROFILE_ID' => $this->intProfileId,
+				'=SKU' => $arItemId,
+			],
+			'select' => ['ID', 'SKU', 'WAREHOUSE_ID', 'TYPE', 'COUNT', 'UPDATED_AT'],
+		];
+		$arStocks = [];
+		$resStocks = Stock::getList($arQuery);
+		while($arStock = $resStocks->fetch()){
+			$arStocks[$arStock['SKU']] = [
+				'sku' => $arStock['SKU'],
+				'warehouseId' => intVal($intWarehouseId),
+				'items' => [
+					[
+						'type' => $arStock['TYPE'],
+						'count' => intVal($arStock['COUNT']),
+						'updatedAt' => $arStock['UPDATED_AT'],
+					]
+				],
+			];
+		}
+		if($bPrint){
+			print_r($arStocks);
+		}
+		return $arStocks;
+	}
+	
+	/**
+	 *	Show custom data at tab 'Log'
+	 */
+	public function getLogContent(&$strLogCustomTitle, $arGet){
+		ob_start();
+		require __DIR__.'/include/log_stocks.php';
+		return ob_get_clean();
+	}
+	
+	/**
+	 *	Handle custom ajax
+	 */
+	public function ajaxAction($strAction, $arParams, &$arJsonResult) {
+		switch($strAction){
+			case 'refresh_stocks_log':
+				$this->refreshStocksLog($arParams, $arJsonResult);
+				break;
+		}
+	}
+
+	/**
+	 * Button 'refresh stocks' (tab 'log') clicked
+	 */
+	protected function refreshStocksLog($arParams, &$arJsonResult){
+		$arJsonResult['HTML'] = $this->getLogContent($strLogCustomTitle, $arParams['GET']);
 	}
 
 }

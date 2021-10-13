@@ -61,11 +61,14 @@ class Activity extends TradingService\Reference\Action\FormActivity
 		return $result;
 	}
 
-	public function getValues(Api\Model\Order $order)
+	public function getEntityValues($entity)
 	{
-		if (!$order->hasDelivery()) { return []; }
+		/** @var Api\Model\Order $entity */
+		Market\Reference\Assert::typeOf($entity, Api\Model\Order::class, 'entity');
 
-		$dates = $order->getDelivery()->getDates();
+		if (!$entity->hasDelivery()) { return []; }
+
+		$dates = $entity->getDelivery()->getDates();
 
 		if ($dates === null) { return []; }
 

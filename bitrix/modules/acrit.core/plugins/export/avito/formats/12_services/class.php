@@ -55,6 +55,10 @@ class AvitoServices extends Avito {
 	public function getFields($intProfileID, $intIBlockID, $bAdmin=false){
 		$arResult = parent::getFields($intProfileID, $intIBlockID, $bAdmin);
 		#
+		$arParamsCarMultiple = array(
+			'MULTIPLE' => 'multiple',
+		);
+		#
 		$arResult[] = new Field(array(
 			'CODE' => 'STREET',
 			'DISPLAY_CODE' => 'Street',
@@ -258,6 +262,336 @@ class AvitoServices extends Avito {
 			'SORT' => 1159,
 			'DESCRIPTION' => static::getMessage('FIELD_LENGTH_DESC'),
 		));
+		$arResult[] = new Field(array(
+			'CODE' => 'SELF_SERVICE',
+			'DISPLAY_CODE' => 'SelfService',
+			'NAME' => static::getMessage('FIELD_SELF_SERVICE_NAME'),
+			'SORT' => 1160,
+			'DESCRIPTION' => static::getMessage('FIELD_SELF_SERVICE_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'DIAGNOSTICS',
+			'DISPLAY_CODE' => 'Diagnostics',
+			'NAME' => static::getMessage('FIELD_DIAGNOSTICS_NAME'),
+			'SORT' => 1161,
+			'DESCRIPTION' => static::getMessage('FIELD_DIAGNOSTICS_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'WHEEL_SERVICE',
+			'DISPLAY_CODE' => 'WheelService',
+			'NAME' => static::getMessage('FIELD_WHEEL_SERVICE_NAME'),
+			'SORT' => 1162,
+			'DESCRIPTION' => static::getMessage('FIELD_WHEEL_SERVICE_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'ADDITIONAL_EQUIPMENT',
+			'DISPLAY_CODE' => 'AdditionalEquipment',
+			'NAME' => static::getMessage('FIELD_ADDITIONAL_EQUIPMENT_NAME'),
+			'SORT' => 1163,
+			'DESCRIPTION' => static::getMessage('FIELD_ADDITIONAL_EQUIPMENT_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'TUNING',
+			'DISPLAY_CODE' => 'Tuning',
+			'NAME' => static::getMessage('FIELD_TUNING_NAME'),
+			'SORT' => 1164,
+			'DESCRIPTION' => static::getMessage('FIELD_TUNING_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MAINTENANCE',
+			'DISPLAY_CODE' => 'Maintenance',
+			'NAME' => static::getMessage('FIELD_MAINTENANCE_NAME'),
+			'SORT' => 1165,
+			'DESCRIPTION' => static::getMessage('FIELD_MAINTENANCE_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'TRANSMISSION_REPAIR',
+			'DISPLAY_CODE' => 'TransmissionRepair',
+			'NAME' => static::getMessage('FIELD_TRANSMISSION_REPAIR_NAME'),
+			'SORT' => 1166,
+			'DESCRIPTION' => static::getMessage('FIELD_TRANSMISSION_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'BRAKE_REPAIR',
+			'DISPLAY_CODE' => 'BrakeRepair',
+			'NAME' => static::getMessage('FIELD_BRAKE_REPAIR_NAME'),
+			'SORT' => 1167,
+			'DESCRIPTION' => static::getMessage('FIELD_BRAKE_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'STEERING_REPAIR',
+			'DISPLAY_CODE' => 'SteeringRepair',
+			'NAME' => static::getMessage('FIELD_STEERING_REPAIR_NAME'),
+			'SORT' => 1168,
+			'DESCRIPTION' => static::getMessage('FIELD_STEERING_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'SUSPENSION_REPAIR',
+			'DISPLAY_CODE' => 'SuspensionRepair',
+			'NAME' => static::getMessage('FIELD_SUSPENSION_REPAIR_NAME'),
+			'SORT' => 1169,
+			'DESCRIPTION' => static::getMessage('FIELD_SUSPENSION_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'CONDITIONER_REPAIR',
+			'DISPLAY_CODE' => 'ConditionerRepair',
+			'NAME' => static::getMessage('FIELD_CONDITIONER_REPAIR_NAME'),
+			'SORT' => 1170,
+			'DESCRIPTION' => static::getMessage('FIELD_CONDITIONER_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'LOCK_REPAIR',
+			'DISPLAY_CODE' => 'LockRepair',
+			'NAME' => static::getMessage('FIELD_LOCK_REPAIR_NAME'),
+			'SORT' => 1171,
+			'DESCRIPTION' => static::getMessage('FIELD_LOCK_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'ENGINE_REPAIR',
+			'DISPLAY_CODE' => 'EngineRepair',
+			'NAME' => static::getMessage('FIELD_ENGINE_REPAIR_NAME'),
+			'SORT' => 1172,
+			'DESCRIPTION' => static::getMessage('FIELD_ENGINE_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'EXHAUST_REPAIR',
+			'DISPLAY_CODE' => 'ExhaustRepair',
+			'NAME' => static::getMessage('FIELD_EXHAUST_REPAIR_NAME'),
+			'SORT' => 1173,
+			'DESCRIPTION' => static::getMessage('FIELD_EXHAUST_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'BUYING_HELP',
+			'DISPLAY_CODE' => 'BuyingHelp',
+			'NAME' => static::getMessage('FIELD_BUYING_HELP_NAME'),
+			'SORT' => 1174,
+			'DESCRIPTION' => static::getMessage('FIELD_BUYING_HELP_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'ROADSIDE_HELP',
+			'DISPLAY_CODE' => 'RoadsideHelp',
+			'NAME' => static::getMessage('FIELD_ROADSIDE_HELP_NAME'),
+			'SORT' => 1175,
+			'DESCRIPTION' => static::getMessage('FIELD_ROADSIDE_HELP_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'PAINTING',
+			'DISPLAY_CODE' => 'Painting',
+			'NAME' => static::getMessage('FIELD_PAINTING_NAME'),
+			'SORT' => 1176,
+			'DESCRIPTION' => static::getMessage('FIELD_PAINTING_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'RE_EQUIPMENT',
+			'DISPLAY_CODE' => 'ReEquipment',
+			'NAME' => static::getMessage('FIELD_RE_EQUIPMENT_NAME'),
+			'SORT' => 1177,
+			'DESCRIPTION' => static::getMessage('FIELD_RE_EQUIPMENT_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'WINDOW_TINTING',
+			'DISPLAY_CODE' => 'WindowTinting',
+			'NAME' => static::getMessage('FIELD_WINDOW_TINTING_NAME'),
+			'SORT' => 1178,
+			'DESCRIPTION' => static::getMessage('FIELD_WINDOW_TINTING_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'ELECTRICAL_REPAIR',
+			'DISPLAY_CODE' => 'ElectricalRepair',
+			'NAME' => static::getMessage('FIELD_ELECTRICAL_REPAIR_NAME'),
+			'SORT' => 1179,
+			'DESCRIPTION' => static::getMessage('FIELD_ELECTRICAL_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'GLASS_REPAIR',
+			'DISPLAY_CODE' => 'GlassRepair',
+			'NAME' => static::getMessage('FIELD_GLASS_REPAIR_NAME'),
+			'SORT' => 1180,
+			'DESCRIPTION' => static::getMessage('FIELD_GLASS_REPAIR_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'WASH_AND_CARE',
+			'DISPLAY_CODE' => 'WashAndCare',
+			'NAME' => static::getMessage('FIELD_WASH_AND_CARE_NAME'),
+			'SORT' => 1181,
+			'DESCRIPTION' => static::getMessage('FIELD_WASH_AND_CARE_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
 		#
 		$this->sortFields($arResult);
 		return $arResult;
@@ -287,6 +621,8 @@ class AvitoServices extends Avito {
 		#
 		if(!Helper::isEmpty($arFields['ALLOW_EMAIL']))
 			$arXmlTags['AllowEmail'] = Xml::addTag($arFields['ALLOW_EMAIL']);
+		if(!Helper::isEmpty($arFields['EMAIL']))
+			$arXmlTags['Email'] = Xml::addTag($arFields['EMAIL']);
 		if(!Helper::isEmpty($arFields['MANAGER_NAME']))
 			$arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
 		if(!Helper::isEmpty($arFields['CONTACT_PHONE']))
@@ -348,13 +684,13 @@ class AvitoServices extends Avito {
 		if(!Helper::isEmpty($arFields['DELIVERY']))
 			$arXmlTags['Delivery'] = Xml::addTag($arFields['DELIVERY']);
 		if(!Helper::isEmpty($arFields['RENT_PURPOSE']))
-			$arXmlTags['RentPurpose'] = Xml::addTagWithSubtags($arFields['RENT_PURPOSE'], 'option');
+			$arXmlTags['RentPurpose'] = Xml::addTagWithSubtags($arFields['RENT_PURPOSE'], 'Option');
 		if(!Helper::isEmpty($arFields['EXTRA']))
-			$arXmlTags['Extra'] = Xml::addTagWithSubtags($arFields['EXTRA'], 'option');
+			$arXmlTags['Extra'] = Xml::addTagWithSubtags($arFields['EXTRA'], 'Option');
 		if(!Helper::isEmpty($arFields['WORK_TYPES']))
-			$arXmlTags['WorkTypes'] = Xml::addTagWithSubtags($arFields['WORK_TYPES'], 'option');
+			$arXmlTags['WorkTypes'] = Xml::addTagWithSubtags($arFields['WORK_TYPES'], 'Option');
 		if(!Helper::isEmpty($arFields['BODY_REPAIR']))
-			$arXmlTags['BodyRepair'] = Xml::addTagWithSubtags($arFields['BODY_REPAIR'], 'option');
+			$arXmlTags['BodyRepair'] = Xml::addTagWithSubtags($arFields['BODY_REPAIR'], 'Option');
 		if(!Helper::isEmpty($arFields['WORK_EXPERIENCE']))
 			$arXmlTags['WorkExperience'] = Xml::addTag($arFields['WORK_EXPERIENCE']);
 		if(!Helper::isEmpty($arFields['GUARANTEE']))
@@ -371,6 +707,52 @@ class AvitoServices extends Avito {
 			$arXmlTags['Width'] = Xml::addTag($arFields['WIDTH']);
 		if(!Helper::isEmpty($arFields['LENGTH']))
 			$arXmlTags['Length'] = Xml::addTag($arFields['LENGTH']);
+		if(!Helper::isEmpty($arFields['SELF_SERVICE']))
+			$arXmlTags['SelfService'] = Xml::addTagWithSubtags($arFields['SELF_SERVICE'], 'Option');
+		if(!Helper::isEmpty($arFields['DIAGNOSTICS']))
+			$arXmlTags['Diagnostics'] = Xml::addTagWithSubtags($arFields['DIAGNOSTICS'], 'Option');
+		if(!Helper::isEmpty($arFields['WHEEL_SERVICE']))
+			$arXmlTags['WheelService'] = Xml::addTagWithSubtags($arFields['WHEEL_SERVICE'], 'Option');
+		if(!Helper::isEmpty($arFields['ADDITIONAL_EQUIPMENT']))
+			$arXmlTags['AdditionalEquipment'] = Xml::addTagWithSubtags($arFields['ADDITIONAL_EQUIPMENT'], 'Option');
+		if(!Helper::isEmpty($arFields['TUNING']))
+			$arXmlTags['Tuning'] = Xml::addTagWithSubtags($arFields['TUNING'], 'Option');
+		if(!Helper::isEmpty($arFields['MAINTENANCE']))
+			$arXmlTags['Maintenance'] = Xml::addTagWithSubtags($arFields['MAINTENANCE'], 'Option');
+		if(!Helper::isEmpty($arFields['TRANSMISSION_REPAIR']))
+			$arXmlTags['TransmissionRepair'] = Xml::addTagWithSubtags($arFields['TRANSMISSION_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['BRAKE_REPAIR']))
+			$arXmlTags['BrakeRepair'] = Xml::addTagWithSubtags($arFields['BRAKE_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['STEERING_REPAIR']))
+			$arXmlTags['SteeringRepair'] = Xml::addTagWithSubtags($arFields['STEERING_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['SUSPENSION_REPAIR']))
+			$arXmlTags['SuspensionRepair'] = Xml::addTagWithSubtags($arFields['SUSPENSION_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['CONDITIONER_REPAIR']))
+			$arXmlTags['ConditionerRepair'] = Xml::addTagWithSubtags($arFields['CONDITIONER_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['LOCK_REPAIR']))
+			$arXmlTags['LockRepair'] = Xml::addTagWithSubtags($arFields['LOCK_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['ENGINE_REPAIR']))
+			$arXmlTags['EngineRepair'] = Xml::addTagWithSubtags($arFields['ENGINE_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['EXHAUST_REPAIR']))
+			$arXmlTags['ExhaustRepair'] = Xml::addTagWithSubtags($arFields['EXHAUST_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['BUYING_HELP']))
+			$arXmlTags['BuyingHelp'] = Xml::addTagWithSubtags($arFields['BUYING_HELP'], 'Option');
+		if(!Helper::isEmpty($arFields['ROADSIDE_HELP']))
+			$arXmlTags['RoadsideHelp'] = Xml::addTagWithSubtags($arFields['ROADSIDE_HELP'], 'Option');
+		if(!Helper::isEmpty($arFields['PAINTING']))
+			$arXmlTags['Painting'] = Xml::addTagWithSubtags($arFields['PAINTING'], 'Option');
+		if(!Helper::isEmpty($arFields['RE_EQUIPMENT']))
+			$arXmlTags['ReEquipment'] = Xml::addTagWithSubtags($arFields['RE_EQUIPMENT'], 'Option');
+		if(!Helper::isEmpty($arFields['WINDOW_TINTING']))
+			$arXmlTags['WindowTinting'] = Xml::addTagWithSubtags($arFields['WINDOW_TINTING'], 'Option');
+		if(!Helper::isEmpty($arFields['ELECTRICAL_REPAIR']))
+			$arXmlTags['ElectricalRepair'] = Xml::addTagWithSubtags($arFields['ELECTRICAL_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['GLASS_REPAIR']))
+			$arXmlTags['GlassRepair'] = Xml::addTagWithSubtags($arFields['GLASS_REPAIR'], 'Option');
+		if(!Helper::isEmpty($arFields['WASH_AND_CARE']))
+			$arXmlTags['WashAndCare'] = Xml::addTagWithSubtags($arFields['WASH_AND_CARE'], 'Option');
+
+
 		# build XML
 		$arXml = array(
 			'Ad' => array(

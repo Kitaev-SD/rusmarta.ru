@@ -4,6 +4,8 @@ use Bitrix\Main;
 use Bitrix\Main\Localization\Loc;
 use Yandex\Market;
 
+define('NOT_CHECK_PERMISSIONS', true); // allow from crm
+
 // prolog
 
 require $_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_admin_before.php';
@@ -50,8 +52,9 @@ try
 	}
 
 	$request = Main\Context::getCurrent()->getRequest();
+	$template = (string)$request->get('template');
 
-	$APPLICATION->IncludeComponent('yandex.market:trading.order.view', '', [
+	$APPLICATION->IncludeComponent('yandex.market:trading.order.view', $template, [
 		'EXTERNAL_ID' => $request->get('id'),
 		'SETUP_ID' => $request->get('setup'),
 		'SITE_ID' => $request->get('site'),

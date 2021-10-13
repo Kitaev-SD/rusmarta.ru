@@ -14,6 +14,7 @@ use Yandex\Market\Trading\Service as TradingService;
  */
 class Provider extends TradingService\Common\Provider
 {
+	protected $delivery;
 	protected $paySystem;
 	protected $promo;
 
@@ -55,6 +56,21 @@ class Provider extends TradingService\Common\Provider
 	protected function createModelFactory()
 	{
 		return new ModelFactory($this);
+	}
+
+	public function getDelivery()
+	{
+		if ($this->delivery === null)
+		{
+			$this->delivery = $this->createDelivery();
+		}
+
+		return $this->delivery;
+	}
+
+	protected function createDelivery()
+	{
+		return new Delivery($this);
 	}
 
 	public function getPaySystem()

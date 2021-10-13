@@ -26,12 +26,14 @@ class OzonRuV2 extends UniversalPlugin {
 	const CACHE_VALID_TIME = 7*24*60*60; // Too many values => we would not update often
 	const AJAX_STEP_TIME = 5; // 5 seconds to every ajax step
 	const ATTRIBUTE_ID = 'attribute_%s_%s';
+	const STOCKS_V2_COUNT_PER_REQUEST = 100;
 
 	const ATTR_ID_IMAGE = 4194;
 	const ATTR_ID_IMAGES = 4195;
 	const ATTR_ID_YOUTUBE_COMPLEX_ID = 4018;
 	const ATTR_ID_YOUTUBE_CODE = 4074;
 	const ATTR_ID_YOUTUBE_TITLE = 4068;
+	const ATTR_ID_JSON_RICH_CONTENT = 11254;
 	
 	const GROUPED_CODE = 'GROUPED';
 
@@ -71,6 +73,7 @@ class OzonRuV2 extends UniversalPlugin {
 		$arResult['offer_id'] = ['FIELD' => 'ID', 'REQUIRED' => true];
 		$arResult['name'] = ['FIELD' => 'NAME', 'REQUIRED' => true];
 		$arResult['images'] = ['FIELD' => ['DETAIL_PICTURE', 'PROPERTY_MORE_PHOTO', 'PROPERTY_PHOTOS'], 'MULTIPLE' => true, 'REQUIRED' => true];
+		$arResult['primary_image'] = [];
 		$arResult['image_group_id'] = ['CONST' => ''];
 		$arResult['pdf_list'] = ['FIELD' => 'PROPERTY_PDF', 'MULTIPLE' => true,];
 		$arResult['price'] = ['FIELD' => 'CATALOG_PRICE_1__WITH_DISCOUNT', 'REQUIRED' => true];
@@ -187,6 +190,20 @@ class OzonRuV2 extends UniversalPlugin {
 			$arStocks[''] = '';
 		}
 		return $arStocks;
+	}
+
+	/**
+	 * Get stores from Ozon
+	 */
+	protected function getOzonStores(){
+		$arResult = [];
+		$arResponse = $this->API->execute('/v1/warehouse/list', [], ['METHOD' => 'POST']);
+		if(is_array($arResponse['result'])){
+			foreach($arResponse['result'] as $arStore){
+				$arResult[$arStore['warehouse_id']] = $arStore['name'].($arStore['is_rfbs'] ? ' (rFBS)' : '');
+			}
+		}
+		return $arResult;
 	}
 	
 	/**
@@ -311,6 +328,11 @@ class OzonRuV2 extends UniversalPlugin {
 			$arField['FIELD'] = ['PROPERTY_YOUTUBE', 'PROPERTY_VIDEO'];
 			$arField['FIELD_PARAMS'] = ['MULTIPLE' => 'multiple'];
 			$arField['PARAMS'] = ['MULTIPLE' => 'multiple'];
+		}
+		elseif($arAttribute['ATTRIBUTE_ID'] == static::ATTR_ID_JSON_RICH_CONTENT){ // RichContent
+			$arField['FIELD'] = [''];
+			$arField['FIELD_PARAMS'] = ['HTMLSPECIALCHARS' => 'skip'];
+			$arField['PARAMS'] = ['HTMLSPECIALCHARS' => 'skip'];
 		}
 		elseif($arAttribute['NAME'] == static::getMessage('GUESS_BRAND')){
 			$arField['FIELD'] = ['PROPERTY_BRAND', 'PROPERTY_BRAND_REF'];
@@ -481,6 +503,9 @@ class OzonRuV2 extends UniversalPlugin {
 			case 'check_access':
 				$this->checkAccess($arParams, $arJsonResult);
 				break;
+			case 'load_stores':
+				$this->loadStores($arParams, $arJsonResult);
+				break;
 			case 'category_attributes_update':
 				$this->ajaxUpdateCategories($arParams, $arJsonResult);
 				break;
@@ -525,6 +550,17 @@ class OzonRuV2 extends UniversalPlugin {
 		}
 		else{
 			$arJsonResult['Message'] = static::getMessage('MESSAGE_CHECK_ACCESS_DENIED');
+		}
+	}
+	
+	/**
+	 *	Load stores via AJAX
+	 */
+	protected function loadStores($arParams, &$arJsonResult){
+		$arJsonResult['Success'] = true;
+		$arJsonResult['Stores'] = $this->getOzonStores();
+		if(empty($arJsonResult['Stores'])){
+			$arJsonResult['Message'] = static::getMessage('EXPORT_STOCKS_ADD_AUTO_EMPTY');
 		}
 	}
 	
@@ -748,9 +784,82 @@ class OzonRuV2 extends UniversalPlugin {
 	}
 	
 	/**
+	 *	Update attributes for categories
+	 */
+	protected function updateCategoryAttrubutes($arCategoryId, $strSessionId){
+		$strCommand = '/v3/category/attribute';
+		if(!is_array($arCategoryId)){
+			$arCategoryId = [$arCategoryId];
+		}
+		else{
+			$arCategoryId = array_values($arCategoryId);
+		}
+		$arJsonRequest = [
+			'attribute_type' => 'ALL',
+			'category_id' => $arCategoryId,
+			'language' => 'DEFAULT',
+		];
+		$arJsonResponse = $this->API->execute($strCommand, $arJsonRequest, ['METHOD' => 'POST']);
+		if(is_array($arJsonResponse['result']) && !empty($arJsonResponse['result'])){
+			$arResult = [];
+			foreach($arJsonResponse['result'] as $arCategory){
+				foreach($arCategory['attributes'] as $arItem){
+					$arFields = [
+						'CATEGORY_ID' => $arCategory['category_id'],
+						'ATTRIBUTE_ID' => $arItem['id'],
+						'DICTIONARY_ID' => $arItem['dictionary_id'],
+						'NAME' => $arItem['name'],
+						'DESCRIPTION' => $arItem['description'],
+						'TYPE' => $arItem['type'],
+						'IS_COLLECTION' => $arItem['is_collection'] == 1 ? 'Y' : 'N',
+						'IS_REQUIRED' => $arItem['is_required'] == 1 ? 'Y' : 'N',
+						'GROUP_ID' => $arItem['group_id'],
+						'GROUP_NAME' => $arItem['group_name'],
+						'SESSION_ID' => $strSessionId,
+						'TIMESTAMP_X' => new \Bitrix\Main\Type\Datetime(),
+					];
+					$arFilter = [
+						'CATEGORY_ID' => $arFields['CATEGORY_ID'],
+						'ATTRIBUTE_ID' => $arFields['ATTRIBUTE_ID'],
+					];
+					$arSelect = [
+						'ID',
+						'LAST_VALUES_COUNT',
+						'LAST_VALUES_DATETIME',
+					];
+					$resDBItem = Attribute::getList(['filter' => $arFilter, 'select' => $arSelect]);
+					if($arDbItem = $resDBItem->fetch()){
+						Attribute::update($arDbItem['ID'], $arFields);
+						$arFields['LAST_VALUES_COUNT'] = $arDbItem['LAST_VALUES_COUNT'];
+						if(is_object($arDbItem['LAST_VALUES_DATETIME'])){
+							$bActual = microtime(true) - $arDbItem['LAST_VALUES_DATETIME']->getTimestamp() < static::CACHE_VALID_TIME;
+							if($bActual){
+								unset($arFields);
+							}
+						}
+					}
+					else{
+						Attribute::add($arFields);
+					}
+					if($arFields){
+						$arResult[$arItem['id']] = $arFields;
+					}
+				}
+			}
+			Attribute::deleteByFilter([
+				'CATEGORY_ID' => $arCategoryId,
+				'!SESSION_ID' => $strSessionId,
+			]);
+			unset($arJsonResponse['result']);
+			return $arResult;
+		}
+		return false;
+	}
+	
+	/**
 	 *	Update attributes for single category
 	 */
-	protected function updateCategoryAttrubutes($intCategoryId, $strSessionId){
+/* 	protected function updateCategoryAttrubutes($intCategoryId, $strSessionId){
 		$strCommand = '/v2/category/attribute';
 		$arJsonRequest = [
 			'category_id' => $intCategoryId,
@@ -808,7 +917,7 @@ class OzonRuV2 extends UniversalPlugin {
 			return $arResult;
 		}
 		return false;
-	}
+	} */
 	
 	/**
 	 *	Update dictionary
@@ -1027,6 +1136,9 @@ class OzonRuV2 extends UniversalPlugin {
 		if(!$this->isStockAndPrice() && is_array($arItem['images'])){
 			$arItem['images'] = array_values($arItem['images']);
 		}
+		if(!Helper::strlen($arItem['primary_image'])){
+			unset($arItem['primary_image']);
+		}
 		# Prepare PDF
 		if(!$this->isStockAndPrice()){
 			$strSiteUrl = Helper::siteUrl($this->arProfile['DOMAIN'], $this->arProfile['IS_HTTPS'] == 'Y');
@@ -1188,6 +1300,18 @@ class OzonRuV2 extends UniversalPlugin {
 								}
 							}
 							else{
+								if($arAttribute['ATTRIBUTE_ID'] == static::ATTR_ID_JSON_RICH_CONTENT){
+									try{
+										$strValue = Json::decode($strValue);
+									}
+									catch(\Exception $obJsonError){
+										$strJsonError = sprintf('JSON Rich Content error: %s', $obJsonError->getMessage());
+										$this->addToLog($strJsonError);
+										if(defined('ACRIT_CORE_EXPORT_PREVIEW')){
+											print Helper::showError($strJsonError);
+										}
+									}
+								}
 								$arValues[] = [
 									'value' => $strValue,
 								];
@@ -1508,19 +1632,22 @@ class OzonRuV2 extends UniversalPlugin {
 	 */
 	protected function sendStocksV2($intTaskId, array $arStocks){
 		if(!empty($arStocks)){
-			$arPost = [
-				'stocks' => $arStocks,
-			];
-			$this->addToLog('Stocks (V2): '.print_r($arPost, true), true);
-			$this->obStocksDate = new \Bitrix\Main\Type\Datetime();
-			$arResponse = $this->API->execute('/v2/products/stocks', $arPost, ['METHOD' => 'POST']);
-			if(is_array($arResponse['result']) && !empty($arResponse['result'])){
-				foreach($arResponse['result'] as $arStock){
-					$this->processStockResult($intTaskId, $arStocks, $arStock);
+			$arStocksChunks = array_chunk($arStocks, static::STOCKS_V2_COUNT_PER_REQUEST);
+			foreach($arStocksChunks as $atStocksChunk){
+				$arPost = [
+					'stocks' => $atStocksChunk,
+				];
+				$this->addToLog('Stocks (V2): '.print_r($arPost, true), true);
+				$this->obStocksDate = new \Bitrix\Main\Type\Datetime();
+				$arResponse = $this->API->execute('/v2/products/stocks', $arPost, ['METHOD' => 'POST']);
+				if(is_array($arResponse['result']) && !empty($arResponse['result'])){
+					foreach($arResponse['result'] as $arStock){
+						$this->processStockResult($intTaskId, $atStocksChunk, $arStock);
+					}
 				}
-			}
-			else{
-				$this->addToLog('Error send stocks (v2): '.print_r($arResponse, true));
+				else{
+					$this->addToLog('Error send stocks (v2): '.print_r($arResponse, true));
+				}
 			}
 		}
 		else{

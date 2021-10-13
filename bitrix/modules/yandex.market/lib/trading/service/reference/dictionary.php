@@ -7,6 +7,8 @@ use Bitrix\Main;
 
 class Dictionary
 {
+	const PREFIX_BASE = 'YAMARKET_';
+
 	protected $provider;
 	protected $commonPrefix;
 
@@ -55,6 +57,28 @@ class Dictionary
 		return $prefix . $order->getId() . '_' . $index;
 	}
 
+	public function parseOrderItemXmlId($xmlId)
+	{
+		$prefix = $this->getCommonPrefix();
+
+		if (Market\Data\TextString::getPosition($xmlId, $prefix) !== 0) { return null; }
+
+		$prefixLength = Market\Data\TextString::getLength($prefix);
+		$left = Market\Data\TextString::getSubstring($xmlId, $prefixLength);
+		$left = preg_replace('/_R\d+$/', '', $left);
+
+		if (preg_match('/_(\d{1,3})$/', $left, $matches))
+		{
+			$result = [ 'INDEX' => $matches[1] ];
+		}
+		else
+		{
+			$result = [ 'ID' => $left ];
+		}
+
+		return $result;
+	}
+
 	protected function getCommonPrefix()
 	{
 		if ($this->commonPrefix === null)
@@ -63,7 +87,7 @@ class Dictionary
 			$serviceCode = Market\Data\TextString::toUpper($serviceCode);
 			$serviceCode = str_replace(':', '_', $serviceCode);
 
-			$this->commonPrefix = 'YAMARKET_' . $serviceCode . '_';
+			$this->commonPrefix = static::PREFIX_BASE . $serviceCode . '_';
 		}
 
 		return $this->commonPrefix;

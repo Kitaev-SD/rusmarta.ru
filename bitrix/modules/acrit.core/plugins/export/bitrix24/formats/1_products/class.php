@@ -319,38 +319,38 @@ class Bitrix24Products extends Bitrix24 {
 //				Log::getInstance($this->strModuleId)->add('$arItemData: ' . print_r($arItemData, true), $intProfileID);
 				if ($arItemData['XML_ID']) {
 					// Try to find item
-					$arParams = [
+					$arFilter = [
 						'order'  => ['SORT' => 'ASC'],
 						'filter' => [
 							'XML_ID' => $arItemData['XML_ID'],
 						],
 					];
-					$arRemoteList = BitrixRest::executeMethod('crm.product.list', $this->strModuleId, $arParams, $intProfileID);
+					$arRemoteList = BitrixRest::executeMethod('crm.product.list', $this->strModuleId, $arFilter, $intProfileID);
+					if (empty($arRemoteList)) {
+						$this->addToLog('products not found by filter' . print_r($arFilter, true), true);
+					}
 					$intRemoteItemID = $arRemoteList[0]['ID'];
 					if ($intRemoteItemID) {
 						$arRemoteItem = BitrixRest::executeMethod('crm.product.get', $this->strModuleId, ['id' => $intRemoteItemID], $intProfileID);
-//						Log::getInstance($this->strModuleId)->add('$arRemoteItem: ' . print_r($arRemoteItem, true), $intProfileID);
 						$arFields = $this->stepExport_prepareFields($arItemData, $arFieldsInfo, $arRemoteItem);
 						if ($arFields['SECTION_ID']) {
 							$arFields['SECTION_ID'] = $this->stepExport_findRemoteSection($intProfileID, $arFields['SECTION_ID'], $arRemoteItem);
 						}
-//						Log::getInstance($this->strModuleId)->add('$arFields: ' . print_r($arFields, true), $intProfileID);
+						$this->addToLog('product update fields ' . print_r($arFields, true), true);
 						$res = BitrixRest::executeMethod('crm.product.update', $this->strModuleId, [
 							'id' => $arRemoteItem['ID'],
 							'fields' => $arFields,
 						], $intProfileID);
-//						Log::getInstance($this->strModuleId)->add('crm.product.update: ' . print_r($res, true), $intProfileID);
 					}
 					else {
 						$arFields = $this->stepExport_prepareFields($arItemData, $arFieldsInfo);
 						if ($arFields['SECTION_ID']) {
 							$arFields['SECTION_ID'] = $this->stepExport_findRemoteSection($intProfileID, $arFields['SECTION_ID']);
 						}
-//						Log::getInstance($this->strModuleId)->add('$arFields: ' . print_r($arFields, true), $intProfileID);
+						$this->addToLog('product add fields ' . print_r($arFields, true), true);
 						$res = BitrixRest::executeMethod('crm.product.add', $this->strModuleId, [
 							'fields' => $arFields
 						], $intProfileID);
-//						Log::getInstance($this->strModuleId)->add('crm.product.add: ' . print_r($res, true), $intProfileID);
 					}
 				}
 				$intIndex++;
@@ -434,15 +434,25 @@ class Bitrix24Products extends Bitrix24 {
 
 	public function stepExport_findRemoteSection($intProfileID, $strSectionName, $arRemoteFields=array()) {
 		$intRemSectionID = false;
-		$arParams = [
+		$arFilter = [
 			'order'  => ['SORT' => 'ASC'],
 			'filter' => [
 				'NAME' => $strSectionName,
 			],
 		];
-		$arRemoteSections = BitrixRest::executeMethod('crm.productsection.list', $this->strModuleId, $arParams, 
+		$arRemoteSections = BitrixRest::executeMethod('crm.productsection.list', $this->strModuleId, $arFilter,
 			$intProfileID);
-//		Log::getInstance($this->strModuleId)->add('$arRemoteSections ' . print_r($arRemoteSections, true), $intProfileID);
+		if (empty($arRemoteSections)) {
+			$this->addToLog('sections not found by filter ' . print_r($arFilter, true), true);
+			// Try again
+			$i = 0;
+			while (empty($arRemoteSections) && $i < 2) {
+				sleep(1);
+				$arRemoteSections = BitrixRest::executeMethod('crm.productsection.list', $this->strModuleId,
+					$arFilter, $intProfileID);
+				$i++;
+			}
+		}
 		// Get exist section
 		if (!empty($arRemoteSections)) {
 			$intRemSectionID = $arRemoteSections[0]['ID'];

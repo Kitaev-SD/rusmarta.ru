@@ -26,4 +26,14 @@ class ModelFactory extends TradingService\Reference\ModelFactory
 	{
 		return Model\Order::class;
 	}
+
+	public function getEntityFacadeClassName($entityType)
+	{
+		if ($entityType === TradingEntity\Registry::ENTITY_TYPE_LOGISTIC_SHIPMENT)
+		{
+			return Model\ShipmentFacade::class;
+		}
+
+		return parent::getEntityFacadeClassName($entityType);
+	}
 }

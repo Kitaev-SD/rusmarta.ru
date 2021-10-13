@@ -1554,6 +1554,8 @@ abstract class UniversalPlugin extends Plugin{
 				}
 			}
 			#
+			$this->processElement_BuildXml_CombineTagsWithAttributes($arXmlTags, $arFieldsTags, $arFieldsAttr);
+			#
 			$mDataMore = null;
 			$strXmlItem = $arElement['IS_OFFER'] ? $this->strXmlItemOffer : $this->strXmlItemElement;
 			$this->handler('onUpBuildXml', array(&$arXmlTags, &$arXmlAttr, &$strXmlItem, &$arElement, &$arFields, 
@@ -1659,6 +1661,59 @@ abstract class UniversalPlugin extends Plugin{
 		$strEval = "return isset({$strEval});";
 		$bExists = @eval($strEval) === true;
 		return $bExists;
+	}
+
+	/**
+	 * 
+	 */
+	protected function processElement_BuildXml_CombineTagsWithAttributes(&$arXmlTags, $arFieldsTags, $arFieldsAttr){
+		$arCombineTags = [];
+		foreach($arFieldsTags as $strTag => $mTagValue){
+			foreach($arFieldsAttr as $strAttr => $mAttrValue){
+				if(strpos($strAttr, $strTag.'@') === 0){
+					if(!is_array($arCombineTags[$strTag])){
+						$arCombineTags[$strTag] = [
+							'VALUE' => $mTagValue,
+							'ATTR' => [],
+						];
+					}
+					$strAttrShort = Helper::substr($strAttr, Helper::strlen($strTag) + 1);
+					$arCombineTags[$strTag]['ATTR'][$strAttrShort] = $mAttrValue;
+				}
+			}
+		}
+		if(!empty($arCombineTags)){
+			foreach($arCombineTags as $strTag => $arTagData){
+				if(count($arTagData['VALUE']) > 1){
+					$arTag = explode('.', $strTag);
+					$this->processElement_BuildXml_CombineTagsWithAttributes_($arXmlTags, $arTag, $arTagData['ATTR']);
+				}
+			}
+		}
+	}
+	protected function processElement_BuildXml_CombineTagsWithAttributes_(&$arXmlTags, &$arTag, $arTagAttr){
+		if(!is_null($strTagChain = array_shift($arTag))){
+			if(empty($arTag)){
+				$arXmlTag = &$arXmlTags[$strTagChain];
+				foreach($arXmlTag as $intIndex => &$arTagItem){
+					foreach($arTagAttr as $strAttr => $arAttributeValues){
+						if(!is_array($arTagItem['@'])){
+							$arTagItem['@'] = [];
+						}
+						$arTagItem['@'][$strAttr] = $arAttributeValues[$intIndex];
+					}
+				}
+				unset($arTagItem);
+			}
+			else{
+				if(is_array($arXmlTags[$strTagChain])){
+					foreach($arXmlTags[$strTagChain] as &$arXmlTag){
+						$this->processElement_BuildXml_CombineTagsWithAttributes_($arXmlTag['#'], $arTag, $arTagAttr);
+					}
+					unset($arXmlTag);
+				}
+			}
+		}
 	}
 	
 	/**

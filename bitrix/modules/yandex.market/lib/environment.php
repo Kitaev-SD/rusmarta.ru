@@ -44,6 +44,23 @@ class Environment
 	}
 
 	/**
+	 * Пустой объект пользователя
+	 */
+	public static function makeUserPlaceholder()
+	{
+		$globalUser = isset($GLOBALS['USER']) ? $GLOBALS['USER'] : null;
+
+		if ($globalUser instanceof \CUser) { return; }
+
+		$GLOBALS['USER'] = new Utils\DummyUser();
+
+		if (!isset(static::$globalVariablesOriginal['USER']))
+		{
+			static::$globalVariablesOriginal['USER'] = $globalUser;
+		}
+	}
+
+	/**
 	 * Сброс переменных окружения
 	 */
 	public static function reset()

@@ -2,6 +2,7 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) { die(); }
 
 use Yandex\Market;
+use Yandex\Market\Ui\UserField\Helper;
 
 Market\Ui\Library::loadConditional('jquery');
 
@@ -13,12 +14,19 @@ Market\Ui\Assets::loadPlugins([
 
 $blocks = [
 	'PROPERTIES',
+	'DELIVERY',
+	'BUYER',
 	'BASKET',
 	'SHIPMENT',
 ];
 
 ?>
-<div class="js-yamarket-order js-plugin" data-plugin="OrderView.Order" data-base-name="YAMARKET_ORDER">
+<div class="js-yamarket-order js-plugin" <?= Helper\Attributes::stringify([
+	'id' => 'YAMARKET_ORDER_VIEW',
+	'data-plugin' => 'OrderView.Order',
+	'data-base-name' => 'YAMARKET_ORDER',
+	'data-refresh-url' => $APPLICATION->GetCurPageParam(''),
+]) ?>>
 	<?php
 	foreach ($blocks as $block)
 	{

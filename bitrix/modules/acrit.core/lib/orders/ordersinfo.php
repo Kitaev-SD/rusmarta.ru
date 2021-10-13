@@ -219,7 +219,12 @@ class OrdersInfo {
 			// Hints
 			$prop['HINT'] = Loc::getMessage("SP_CI_PROP_".$prop['TYPE']."_HINT");
 			// Add to the result
-			$result[$prop['PERSON_TYPE_ID']][] = $prop;
+			$result[$prop['PERSON_TYPE_ID']][] = [
+				'ID' => $prop['ID'],
+				'NAME' => $prop['NAME'],
+				'SYNC_DIR' => $prop['SYNC_DIR'],
+				'HINT' => $prop['HINT'],
+			];
 		}
 		return $result;
 	}

@@ -19,6 +19,10 @@ class Settings
 		self::$MODULE_ID = $value;
 	}
 
+	public static function getModuleId() {
+		return self::$MODULE_ID;
+	}
+
 	public static function get($name, $serialized=false) {
 		$value = false;
 		if ($name) {

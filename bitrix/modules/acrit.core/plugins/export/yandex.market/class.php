@@ -2567,6 +2567,12 @@ class YandexMarket extends Plugin {
 									),
 								),
 							);
+							if(!Helper::strlen($arPromo['START'])){
+								unset($arXml['promo']['#']['start-date']);
+							}
+							if(!Helper::strlen($arPromo['END'])){
+								unset($arXml['promo']['#']['end-date']);
+							}
 							if($bPercent){
 								unset($arXml['promo']['#']['discount'][0]['@']['currency']);
 							}
@@ -2635,6 +2641,12 @@ class YandexMarket extends Plugin {
 					),
 				),
 			);
+			if(!Helper::strlen($arPromo['START'])){
+				unset($arXml['promo']['#']['start-date']);
+			}
+			if(!Helper::strlen($arPromo['END'])){
+				unset($arXml['promo']['#']['end-date']);
+			}
 			$strXml = rtrim(Xml::addOffset(Xml::arrayToXml($arXml), 3))."\n";
 		}
 		return $strXml;
@@ -2681,6 +2693,12 @@ class YandexMarket extends Plugin {
 					),
 				),
 			);
+			if(!Helper::strlen($arPromo['START'])){
+				unset($arXml['promo']['#']['start-date']);
+			}
+			if(!Helper::strlen($arPromo['END'])){
+				unset($arXml['promo']['#']['end-date']);
+			}
 			$strXml = rtrim(Xml::addOffset(Xml::arrayToXml($arXml), 3))."\n";
 		}
 		return $strXml;
@@ -2717,6 +2735,12 @@ class YandexMarket extends Plugin {
 					),
 				),
 			);
+			if(!Helper::strlen($arPromo['START'])){
+				unset($arXml['promo']['#']['start-date']);
+			}
+			if(!Helper::strlen($arPromo['END'])){
+				unset($arXml['promo']['#']['end-date']);
+			}
 			$strXml = rtrim(Xml::addOffset(Xml::arrayToXml($arXml), 3))."\n";
 		}
 		return $strXml;

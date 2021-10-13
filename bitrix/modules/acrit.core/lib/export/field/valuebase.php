@@ -599,7 +599,7 @@ abstract class ValueBase {
 			# Weight, length, width, height
 			elseif(preg_match('#^CATALOG_(WEIGHT|LENGTH|WIDTH|HEIGHT)_(CM|M|KG)$#', $strFieldValue, $arMatch)){
 				$arDivider = [
-					'CM' => 100,
+					'CM' => 10,
 					'M' => 1000,
 					'KG' => 1000,
 				];

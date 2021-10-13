@@ -4,6 +4,8 @@ use Bitrix\Main;
 use Bitrix\Main\Localization\Loc;
 use Yandex\Market;
 
+define('NOT_CHECK_PERMISSIONS', true); // allow from crm
+
 // prolog
 
 require $_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_admin_before.php';
@@ -16,6 +18,9 @@ if ($requestView === 'print')
 {
 	echo '<!DOCTYPE html>';
 	echo '<html><head>';
+	echo '<title>';
+	$APPLICATION->ShowTitle();
+	echo '</title>';
 	$APPLICATION->AddBufferContent([&$APPLICATION, 'GetCSS'], true, true, Main\Page\AssetShowTargetType::BODY);
 	$APPLICATION->AddBufferContent([&$APPLICATION, 'GetHeadStrings'], 'PRINT');
 	$APPLICATION->AddBufferContent([&$APPLICATION, 'GetHeadScripts'], Main\Page\AssetShowTargetType::TEMPLATE_PAGE);

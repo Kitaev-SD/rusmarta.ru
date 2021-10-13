@@ -4,6 +4,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) { die(); }
 use Bitrix\Main\Web\Json;
 use Bitrix\Main\Localization\Loc;
 use Yandex\Market;
+use Yandex\Market\Trading\Entity as TradingEntity;
 
 if (empty($arResult['BASKET']['ITEMS'])) { return; }
 
@@ -28,18 +29,49 @@ Market\Ui\Assets::loadMessages([
 	'T_TRADING_ORDER_VIEW_BASKET_ITEM_CIS_SUMMARY_READY',
 ]);
 
+$allowItemsEdit = isset($arResult['ORDER_ACTIONS'][TradingEntity\Operation\Order::ITEM]);
+$allowCisEdit = isset($arResult['ORDER_ACTIONS'][TradingEntity\Operation\Order::CIS]);
+$columns = $arResult['BASKET']['COLUMNS'];
 $columnsCount = count($arResult['BASKET']['COLUMNS']) + 1;
 $baseInputName = 'YAMARKET_ORDER[BASKET]';
 
+if ($allowItemsEdit)
+{
+	$columns['DELETE'] = Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_BASKET_ITEM_ACTION_DELETE');
+	++$columnsCount;
+}
+
+if ($allowItemsEdit && !empty($arResult['ITEMS_CHANGE_REASON']))
+{
+	Market\Ui\Assets::loadMessages([
+		'T_TRADING_ORDER_VIEW_BASKET_CONFIRM_MODAL_TITLE',
+		'T_TRADING_ORDER_VIEW_BASKET_CONFIRM_ITEM_CHANGE',
+	]);
+
+	Market\Ui\Assets::loadPlugins([
+		'OrderView.BasketConfirmSummary',
+		'OrderView.BasketConfirmForm',
+	]);
+
+	?>
+	<div class="js-yamarket-order__field" data-plugin="OrderView.BasketConfirmSummary" data-name="BASKET_CONFIRM">
+		<div class="is--hidden js-yamarket-basket-confirm-summary__modal">
+			<?php
+			include __DIR__ . '/basket-confirm.php';
+			?>
+		</div>
+	</div>
+	<?php
+}
 ?>
-<h2><?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_BASKET_TITLE'); ?></h2>
-<div class="adm-s-order-table-ddi js-yamarket-order__field" data-plugin="OrderView.Basket" data-name="BASKET">
-	<table class="yamarket-basket-table adm-s-order-table-ddi-table adm-s-bus-ordertable-option" style="width: 100%;">
+<h2 class="yamarket-section-title"><?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_BASKET_TITLE'); ?></h2>
+<div class="yamarket-basket-wrapper adm-s-order-table-ddi js-yamarket-order__field" data-plugin="OrderView.Basket" data-name="BASKET">
+	<table class="yamarket-basket-table adm-s-order-table-ddi-table adm-s-bus-ordertable-option">
 		<thead>
 			<tr>
 				<td class="tal"><?= Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_BASKET_ITEM_INDEX'); ?></td>
 				<?php
-				foreach ($arResult['BASKET']['COLUMNS'] as $columnTitle)
+				foreach ($columns as $columnTitle)
 				{
 					?>
 					<td class="tal"><?= $columnTitle; ?></td>
@@ -58,13 +90,13 @@ $baseInputName = 'YAMARKET_ORDER[BASKET]';
 				$itemInputName = sprintf($baseInputName . '[%s]', $itemIndex);
 
 				?>
-				<tr class="bdb-line js-yamarket-basket-item" data-plugin="OrderView.BasketItem" data-id="<?= $item['ID']; ?>">
+				<tr class="bdb-line yamarket-basket-item js-yamarket-basket-item" data-plugin="OrderView.BasketItem" data-id="<?= $item['ID']; ?>">
 					<td class="tal">
 						<input class="js-yamarket-basket-item__data" type="hidden" name="<?= $itemInputName . '[ID]' ?>" value="<?= htmlspecialcharsbx($item['ID']) ?>" data-name="ID" />
 						<?= $item['INDEX']; ?>
 					</td>
 					<?php
-					foreach ($arResult['BASKET']['COLUMNS'] as $column => $columnTitle)
+					foreach ($columns as $column => $columnTitle)
 					{
 						$columnValue = isset($item[$column]) ? $item[$column] : null;
 						$columnFormattedKey = $column . '_FORMATTED';
@@ -104,7 +136,7 @@ $baseInputName = 'YAMARKET_ORDER[BASKET]';
 									$itemCisStatus = 'EMPTY';
 								}
 
-								if ($itemCisStatus === 'EMPTY' && !$arResult['SHIPMENT_EDIT'])
+								if ($itemCisStatus === 'EMPTY' && !$allowCisEdit)
 								{
 									?>
 									<td class="tal for--<?= Market\Data\TextString::toLower($column); ?>">
@@ -123,12 +155,13 @@ $baseInputName = 'YAMARKET_ORDER[BASKET]';
 										<?= $hasInternalCis ? sprintf("data-copy='%s'", Json::encode($internalCis)) : ''; ?>
 										<?= $isCisRequired ? 'data-required="true"' : ''; ?>
 										data-name="CIS"
+										data-count="<?= (int)$item['COUNT'] ?>"
 									>
 										<a class="yamarket-cis-summary js-yamarket-basket-item-cis__summary" href="#" data-status="<?= $itemCisStatus; ?>"><?php
 											echo Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_BASKET_ITEM_CIS_SUMMARY_' . $itemCisStatus) ?: $itemCisStatus;
 										?></a>
 										<?php
-										if ($hasInternalCis && $arResult['SHIPMENT_EDIT'])
+										if ($hasInternalCis && $allowCisEdit)
 										{
 											?>
 											<button
@@ -161,7 +194,7 @@ $baseInputName = 'YAMARKET_ORDER[BASKET]';
 																name="<?= $cisInputName; ?>"
 																value="<?= htmlspecialcharsbx($cisValue); ?>"
 																size="45"
-																<?= $arResult['SHIPMENT_EDIT'] ? '' : 'readonly'; ?>
+																<?= $allowCisEdit ? '' : 'readonly'; ?>
 																data-name="<?= $cisIndex ?>"
 															/>
 														</td>
@@ -169,7 +202,7 @@ $baseInputName = 'YAMARKET_ORDER[BASKET]';
 													<?php
 												}
 
-												if ($hasInternalCis && $arResult['SHIPMENT_EDIT'])
+												if ($hasInternalCis && $allowCisEdit)
 												{
 													?>
 													<tr>
@@ -190,6 +223,49 @@ $baseInputName = 'YAMARKET_ORDER[BASKET]';
 							break;
 
 							case 'COUNT':
+								?>
+								<td class="tal for--<?= Market\Data\TextString::toLower($column); ?>">
+									<?php
+									if ($allowItemsEdit)
+									{
+										?>
+										<input class="js-yamarket-basket-item__data" type="hidden" name="<?= $itemInputName . '[INITIAL_COUNT]' ?>" value="<?= (float)$columnValue ?>" data-name="INITIAL_COUNT" />
+										<input
+											class="adm-input yamarket-basket-item__count js-yamarket-basket-item__data"
+											type="number"
+											name="<?= $itemInputName . '[COUNT]' ?>"
+											value="<?= (float)$columnValue ?>"
+											min="1"
+											max="<?= (float)$columnValue ?>"
+											step="1"
+											data-name="COUNT"
+										/>
+										<?php
+									}
+									else
+									{
+										echo sprintf(
+											'%s %s',
+											(float)$columnValue,
+											Loc::getMessage('YANDEX_MARKET_T_TRADING_ORDER_VIEW_BASKET_ITEM_MEASURE')
+										);
+									}
+									?>
+								</td>
+								<?php
+							break;
+
+							case 'DELETE':
+								?>
+								<td class="tal for--<?= Market\Data\TextString::toLower($column); ?>">
+									<label>
+										<input class="adm-designed-checkbox js-yamarket-basket-item__data" type="checkbox" name="<?= $itemInputName . '[DELETE]'; ?>" value="Y" data-name="DELETE">
+										<span class="adm-designed-checkbox-label"></span>
+									</label>
+								</td>
+								<?php
+							break;
+
 							case 'BOX_COUNT':
 								?>
 								<td class="tal for--<?= Market\Data\TextString::toLower($column); ?>">
@@ -243,7 +319,7 @@ $baseInputName = 'YAMARKET_ORDER[BASKET]';
 			?>
 			<tfoot>
 				<tr>
-					<td class="yamarket-basket-summary" colspan="<?= $columnsCount; ?>">
+					<td class="yamarket-basket-summary js-yamarket-order__area" data-type="basketSummary" colspan="<?= $columnsCount; ?>">
 						<?php
 						$isFirstSummaryItem = true;
 

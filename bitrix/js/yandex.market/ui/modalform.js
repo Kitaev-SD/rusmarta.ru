@@ -10,6 +10,7 @@
 			url: null,
 			data: null,
 			title: null,
+			saveTitle: null,
 			width: 400,
 			height: 250,
 		},
@@ -192,8 +193,16 @@
 		},
 
 		getModalButtons: function() {
+			let saveBtn = BX.CAdminDialog.btnSave;
+
+			if (this.options.saveTitle) {
+				saveBtn = Object.assign({}, saveBtn, {
+					title: this.options.saveTitle,
+				});
+			}
+
 			return [
-				BX.CAdminDialog.btnSave,
+				saveBtn,
 				BX.CAdminDialog.btnCancel,
 			];
 		},

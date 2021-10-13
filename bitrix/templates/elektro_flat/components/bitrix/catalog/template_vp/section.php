@@ -460,7 +460,7 @@ if (count($GLOBALS['productSlider1']) > 0){
 
     ?>
     <div class="filtered-items productSlider1">
-    <div class="h3">Похожие товары</div>
+    <div class="h3">ГЏГ®ГµГ®Г¦ГЁГҐ ГІГ®ГўГ Г°Г»</div>
     <?
     
     $APPLICATION->IncludeComponent("argit:catalog.section", $view,
@@ -557,7 +557,7 @@ if (count($GLOBALS['productSlider2']) > 0){
 
     ?>
     <div class="filtered-items productSlider2">
-    <div class="h3">Вам может понравиться</div>
+    <div class="h3">Г‚Г Г¬ Г¬Г®Г¦ГҐГІ ГЇГ®Г­Г°Г ГўГЁГІГјГ±Гї</div>
     <?
     
     $APPLICATION->IncludeComponent("argit:catalog.section", $view,
@@ -763,9 +763,9 @@ if(!empty($_REQUEST["PAGEN_1"]) && $_REQUEST["PAGEN_1"] > 1):
 
 	$page = implode($page);
 
-	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"]) . " — страница " . $page);
+	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"]) . " вЂ” Г±ГІГ°Г Г­ГЁГ¶Г  " . $page);
 	$APPLICATION->SetPageProperty("keywords", "");
-	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " Страница " . $page);
+	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " Г‘ГІГ°Г Г­ГЁГ¶Г  " . $page);
 endif;
 
 //BACKGROUND_IMAGE//
@@ -826,4 +826,16 @@ endif;
 	);
 	
 	echo '<!--###2-->';
+	$arElms = [];
+	$qrElms = CIblockElement::GetList(array("PRICE"=>"ASC"),array("IBLOCK_ID" => $arParams["IBLOCK_ID"],'SECTION_ID'=>$arSection['ID'],'INCLUDE_SUBSECTIONS'=>'Y'),false,false,array('ID','NAME'));
+	while ($arElm = $qrElms->Fetch()){
+		$arElms[] = $arElm['ID'];
+	}
+	$rsPrices = CPrice::GetList(array("PRICE"=>"ASC"),array('PRODUCT_ID' => $arElms),array('CATALOG_GROUP_ID' => 1))->Fetch();
+	$price = CCatalogProduct::GetOptimalPrice($rsPrices['PRODUCT_ID'], 1, $USER->GetUserGroupArray(), 'N');
+
+	$APPLICATION->SetPageProperty("title",str_replace('{#min_price}', (!empty($price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("title")));
+	$APPLICATION->SetPageProperty("description", str_replace('{#min_price}', (!empty($price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("description")));
+	$APPLICATION->SetPageProperty("keywords", str_replace('{#min_price}', (!empty($price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("keywords")));
+	echo "<pre style='display:none' 111111111111111111111111>";var_dump($APPLICATION->GetPageProperty("title")); var_dump($APPLICATION->GetPageProperty("description"));echo "</pre>";
 //endif;?>

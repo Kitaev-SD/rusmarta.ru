@@ -92,7 +92,13 @@ class OrderSync {
 			}
 			else {
 				$result = true;
+				$order_id = $order->getId();
 				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order '.$order->getId().' success', false, true);
+			}
+			if ($new_order) {
+				$order = Order::load($order_id);
+				$order_data = self::getOrderInfo($order);
+				Log::getInstance(Settings::getModuleId())->add('(OrderSync::runSync) created order ' . print_r($order_data, true), false, true);
 			}
 		}
 		return $result;
@@ -352,39 +358,53 @@ class OrderSync {
 		}
 		// Get store order products
 		$order_products = [];
-		foreach ($order_data['PRODUCTS'] as $item) {
-			$order_products[$item['PRODUCT_ID']] = $item;
+		foreach ($order_data['PRODUCTS'] as $item_sp) {
+			$order_products[$item_sp['PRODUCT_ID']] = $item_sp;
 		}
 		// Get external order products
 		$ext_products = [];
-		foreach ($ext_order['PRODUCTS'] as $item) {
-			$ext_products[] = $item;
+		foreach ($ext_order['PRODUCTS'] as $item_ep) {
+			$ext_products[] = $item_ep;
 		}
-		foreach ($ext_products as $product) {
+		foreach ($ext_products as $ext_product) {
 			// Find products
-			$product_id = Products::findIblockProduct($product['PRODUCT_CODE'], $profile);
-			if ($product_id) {
+			$ib_product = Products::findIblockProduct($ext_product['PRODUCT_CODE'], $profile);
+			Log::getInstance(Settings::getModuleId())->add('(updateOrderProducts) existed product ' . $ib_product['ID'], false, true);
+			if ($ib_product) {
+				// Search existed product
+				$item = false;
+				$b_items = $basket->getBasketItems();
+				if ($b_items) {
+					foreach ($b_items as $b_item) {
+						if ($b_item->getField('PRODUCT_ID') == $ib_product['ID']) {
+							$item = $b_item;
+							break;
+						}
+					}
+				}
 				// Update product
-				if ($item = $basket->getExistsItem('catalog', $product_id)) {
-					if ($item->getField('QUANTITY') && $product['QUANTITY'] && $item->getField('QUANTITY') != $product['QUANTITY']) {
-						$item->setField('QUANTITY', $product['QUANTITY']);
+				if ($item) {
+					if ($item->getField('QUANTITY') && $ext_product['QUANTITY'] && $item->getField('QUANTITY') != $ext_product['QUANTITY']) {
+						$item->setField('QUANTITY', $ext_product['QUANTITY']);
 						$has_changes = true;
 					}
-					if ($item->getField('PRICE') != $product['PRICE']) {
-						$item->setField('PRICE', $product['PRICE']);
+					if ($item->getField('PRICE') != $ext_product['PRICE']) {
+						$item->setField('PRICE', $ext_product['PRICE']);
 						$has_changes = true;
 					}
 				}
 				// Add product
 				else {
-					$item = $basket->createItem('catalog', $product_id);
+					$item = $basket->createItem('catalog', $ib_product['ID']);
 					$prod_fields = [
-						'QUANTITY'     => $product['QUANTITY'],
-						'CURRENCY'     => $product['CURRENCY'],
+						'QUANTITY'     => $ext_product['QUANTITY'],
+						'CURRENCY'     => $ext_product['CURRENCY'],
 						'LID'          => $site_id,
-						'PRICE'        => $product['PRICE'],
+						'PRODUCT_PROVIDER_CLASS' => \Bitrix\Catalog\Product\Basket::getDefaultProviderName(),
+						'PRICE'        => $ext_product['PRICE'],
 						'CUSTOM_PRICE' => 'Y',
 					];
+					Log::getInstance(Settings::getModuleId())->add('(updateOrderProducts) new product ' . print_r($prod_fields, true), false, true);
 					$item->setFields($prod_fields);
 					$has_changes = true;
 				}

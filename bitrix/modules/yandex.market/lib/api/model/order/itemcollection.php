@@ -13,6 +13,18 @@ class ItemCollection extends Market\Api\Model\Cart\ItemCollection
 		return Item::class;
 	}
 
+	public function getTotalCount()
+	{
+		$result = 0;
+
+		foreach ($this->collection as $item)
+		{
+			$result += $item->getCount();
+		}
+
+		return $result;
+	}
+
 	public function getSum()
 	{
 		$result = 0;

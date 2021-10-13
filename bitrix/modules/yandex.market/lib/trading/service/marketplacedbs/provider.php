@@ -6,16 +6,20 @@ use Yandex\Market;
 use Bitrix\Main;
 use Yandex\Market\Trading\Service as TradingService;
 
-/** @method Options getOptions() */
-/** @method Status getStatus() */
+/**
+ * @method Options getOptions()
+ * @method Status getStatus()
+ * @method Delivery getDelivery()
+ */
 class Provider extends TradingService\Marketplace\Provider
 	implements
 		TradingService\Reference\HasCancelReason,
-		TradingService\Reference\HasCancellationAccept
+		TradingService\Reference\HasCancellationAccept,
+		TradingService\Reference\HasItemsChangeReason
 {
-	protected $delivery;
 	protected $cancelReason;
 	protected $cancellationAccept;
+	protected $itemsChangeReason;
 
 	public function getBehaviorCode()
 	{
@@ -52,16 +56,6 @@ class Provider extends TradingService\Marketplace\Provider
 		return new ModelFactory($this);
 	}
 
-	public function getDelivery()
-	{
-		if ($this->delivery === null)
-		{
-			$this->delivery = $this->createDelivery();
-		}
-
-		return $this->delivery;
-	}
-
 	protected function createDelivery()
 	{
 		return new Delivery($this);
@@ -95,6 +89,21 @@ class Provider extends TradingService\Marketplace\Provider
 	protected function createCancellationAccept()
 	{
 		return new CancellationAccept($this);
+	}
+
+	public function getItemsChangeReason()
+	{
+		if ($this->itemsChangeReason === null)
+		{
+			$this->itemsChangeReason = $this->createItemsChangeReason();
+		}
+
+		return $this->itemsChangeReason;
+	}
+
+	protected function createItemsChangeReason()
+	{
+		return new ItemsChangeReason($this);
 	}
 
 	protected function createFeature()

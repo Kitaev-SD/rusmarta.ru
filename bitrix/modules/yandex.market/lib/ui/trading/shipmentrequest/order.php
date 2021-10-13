@@ -17,6 +17,11 @@ class Order extends Market\Api\Reference\Model
 		return (int)$this->getRequiredField('SETUP_ID');
 	}
 
+	public function getInternalId()
+	{
+		return (int)$this->getRequiredField('INTERNAL_ID');
+	}
+
 	public function getAccountNumber()
 	{
 		return (string)$this->getRequiredField('ACCOUNT_NUMBER');
@@ -28,6 +33,12 @@ class Order extends Market\Api\Reference\Model
 		return $this->getRequiredCollection('BASKET');
 	}
 
+	/** @return BasketConfirm */
+	public function getBasketConfirm()
+	{
+		return $this->getRequiredModel('BASKET_CONFIRM');
+	}
+
 	/** @return ShipmentCollection */
 	public function getShipments()
 	{
@@ -37,6 +48,13 @@ class Order extends Market\Api\Reference\Model
 	public function useDimensions()
 	{
 		return $this->getField('USE_DIMENSIONS') !== 'N';
+	}
+
+	protected function getChildModelReference()
+	{
+		return [
+			'BASKET_CONFIRM' => BasketConfirm::class,
+		];
 	}
 
 	protected function getChildCollectionReference()

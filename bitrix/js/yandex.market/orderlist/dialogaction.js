@@ -108,7 +108,10 @@
 		},
 
 		isUiGrid: function(adminList) {
-			return (BX.adminUiList != null && adminList instanceof BX.adminUiList);
+			return (
+				(BX.adminUiList != null && adminList instanceof BX.adminUiList)
+				|| (BX.publicUiList != null && adminList instanceof BX.publicUiList)
+			);
 		},
 
 		getUiGrid: function(adminList) {

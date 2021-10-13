@@ -147,6 +147,11 @@ class Order extends Market\Trading\Entity\Reference\Order
 		return OrderRegistry::getOrderAccountNumber($this->internalOrder);
 	}
 
+	public function getCreationDate()
+	{
+		return $this->internalOrder->getDateInsert();
+	}
+
 	public function getCurrency()
 	{
 		return $this->internalOrder->getCurrency();
@@ -318,6 +323,13 @@ class Order extends Market\Trading\Entity\Reference\Order
 			else if ($sanitizeValue instanceof Main\Type\Date)
 			{
 				$sanitizeValue = ConvertTimeStamp($sanitizeValue->getTimestamp(), 'SHORT');
+			}
+			else if ($value instanceof Market\Data\Type\EnumValue)
+			{
+				$propertyData = $property->getProperty();
+				$propertyType = isset($propertyData['TYPE']) ? $propertyData['TYPE'] : 'STRING';
+
+				$sanitizeValue = $propertyType === 'ENUM' ? $value->code : (string)$value;
 			}
 		}
 		unset($sanitizeValue);
@@ -681,6 +693,20 @@ class Order extends Market\Trading\Entity\Reference\Order
 		return $result;
 	}
 
+	public function getExistsBasketItemCodes()
+	{
+		$basket = $this->getBasket();
+		$result = [];
+
+		/** @var Sale\BasketItem $basketItem */
+		foreach ($basket as $basketItem)
+		{
+			$result[] = $basketItem->getBasketCode();
+		}
+
+		return $result;
+	}
+
 	public function getBasketItemCode($value, $field = 'PRODUCT_ID')
 	{
 		$basket = $this->getBasket();
@@ -689,7 +715,19 @@ class Order extends Market\Trading\Entity\Reference\Order
 		/** @var Sale\BasketItem $basketItem */
 		foreach ($basket as $basketItem)
 		{
-			if ((string)$basketItem->getField($field) === (string)$value)
+			$itemValue = (string)$basketItem->getField($field);
+
+			if ($field === 'XML_ID' && $itemValue !== '')
+			{
+				$hashPosition = Market\Data\TextString::getPosition($itemValue, '_R');
+
+				if ($hashPosition > 0)
+				{
+					$itemValue = Market\Data\TextString::getSubstring($itemValue, 0, $hashPosition);
+				}
+			}
+
+			if ($itemValue === (string)$value)
 			{
 				$result = $basketItem->getBasketCode();
 				break;
@@ -716,6 +754,7 @@ class Order extends Market\Trading\Entity\Reference\Order
 				'NAME' => $basketItem->getField('NAME'),
 				'PRICE' => $basketItem->getPrice(),
 				'QUANTITY' => $basketItem->canBuy() ? $basketItem->getQuantity() : 0,
+				'XML_ID' => $basketItem->getField('XML_ID'),
 				'MEASURE_NAME' => $basketItem->getField('MEASURE_NAME'),
 				'DETAIL_PAGE_URL' => $basketItem->getField('DETAIL_PAGE_URL'),
 				'VAT_RATE' => $basketItem->getVatRate() * 100,
@@ -807,6 +846,12 @@ class Order extends Market\Trading\Entity\Reference\Order
 		{
 			$basketItem->setFieldNoDemand('QUANTITY', $quantity);
 
+			Listener::addInternalChange(
+				$this->internalOrder->getId(),
+				sprintf('BASKET.%s.QUANTITY', $basketCode),
+				$quantity
+			);
+
 			if ($this->supportsShipmentItemOverheadQuantity())
 			{
 				$this->syncShipmentItemQuantity($basketItem, true);
@@ -818,6 +863,12 @@ class Order extends Market\Trading\Entity\Reference\Order
 
 			if ($setResult->isSuccess())
 			{
+				Listener::addInternalChange(
+					$this->internalOrder->getId(),
+					sprintf('BASKET.%s.QUANTITY', $basketCode),
+					$quantity
+				);
+
 				$this->syncShipmentItemQuantity($basketItem);
 			}
 			else
@@ -1012,6 +1063,34 @@ class Order extends Market\Trading\Entity\Reference\Order
 		$shipmentItem->setField('QUANTITY', $basketItem->getQuantity());
 
 		return $shipmentItem;
+	}
+
+	public function deleteBasketItem($basketCode)
+	{
+		$result = new Main\Result();
+		$basket = $this->getBasket();
+		$basketItem = $basket->getItemByBasketCode($basketCode);
+
+		if ($basketItem === null)
+		{
+			$errorMessage = static::getLang('TRADING_ENTITY_SALE_BASKET_ITEM_NOT_FOUND');
+			$result->addError(new Main\Error($errorMessage));
+		}
+		else
+		{
+			$deleteResult = $basketItem->delete();
+
+			if ($deleteResult->isSuccess())
+			{
+				Listener::addInternalChange($this->internalOrder->getId(), 'BASKET.DELETE', $basketCode);
+			}
+			else
+			{
+				$result->addErrors($deleteResult->getErrors());
+			}
+		}
+
+		return $result;
 	}
 
 	public function getBasketPrice()

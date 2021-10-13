@@ -27,6 +27,10 @@ class Printer extends TradingService\Reference\Printer
 		$result = [
 			'boxLabel' => Document\BoxLabel::class,
 			'receptionTransferAct' => Document\ReceptionTransferAct::class,
+			'pickingSheet' => Document\PickingSheet::class,
+			'firstMileShipmentsAct' => Document\FirstMileShipmentsAct::class,
+			'firstMileShipmentsBoxLabel' => Document\FirstMileShipmentsBoxLabel::class,
+			'firstMileShipmentsPickingSheet' => Document\FirstMileShipmentsPickingSheet::class,
 		];
 
 		if (Market\Config::isExpertMode())

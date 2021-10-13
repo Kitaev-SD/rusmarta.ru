@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+.adm-workarea .adm-input-calendar[readonly] {
+	opacity: 1;
+}
+
 .yamarket-btn {
 	color: #3f4b54 !important;
 	text-decoration: none !important;

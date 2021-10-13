@@ -11,10 +11,21 @@ class Delivery extends Market\Api\Model\Cart\Delivery
 		return Market\Data\Number::normalize($this->getField('price'));
 	}
 
+	public function getVat()
+	{
+		return $this->getField('vat');
+	}
+
 	/** @return ShipmentCollection */
 	public function getShipments()
 	{
 		return $this->getChildCollection('shipments');
+	}
+
+	/** @return TrackCollection|null */
+	public function getTracks()
+	{
+		return $this->getChildCollection('tracks');
 	}
 
 	/** @return Dates|null */
@@ -36,7 +47,8 @@ class Delivery extends Market\Api\Model\Cart\Delivery
 	protected function getChildCollectionReference()
 	{
 		return [
-			'shipments' => ShipmentCollection::class
+			'shipments' => ShipmentCollection::class,
+			'tracks' => TrackCollection::class,
 		];
 	}
 
