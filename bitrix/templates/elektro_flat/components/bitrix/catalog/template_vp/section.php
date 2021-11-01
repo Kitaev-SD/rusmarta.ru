@@ -802,7 +802,7 @@ endif;
 	$str = explode("?", $APPLICATION->GetCurUri());
 	$params = explode("&", $str[1]);
 	foreach ($params as $param) {
-		if (stripos($param, "PAGEN") === 0) {
+		if (stripos($param, "PAGEN_1") === 0) {
 			$pagen = $param;
 		}
 	}
