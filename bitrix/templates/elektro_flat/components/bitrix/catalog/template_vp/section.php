@@ -763,9 +763,11 @@ if(!empty($_REQUEST["PAGEN_1"]) && $_REQUEST["PAGEN_1"] > 1):
 
 	$page = implode($page);
 
-	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"]) . " â€” Ã±Ã²Ã°Ã Ã­Ã¨Ã¶Ã  " . $page);
+	$APPLICATION->SetTitle($arCurSection["NAME"] . " — ñòðàíèöà " . $page);
+
+	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"]) . " — ñòðàíèöà " . $page);
 	$APPLICATION->SetPageProperty("keywords", "");
-	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " Ã‘Ã²Ã°Ã Ã­Ã¨Ã¶Ã  " . $page);
+	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " Ñòðàíèöà " . $page . ".");
 endif;
 
 //BACKGROUND_IMAGE//
@@ -795,9 +797,22 @@ elseif(is_array($arCurSection["BANNER"]["PICTURE"])):
 endif; 
  
 //CANONICAL//
-//if(!empty($_REQUEST["sort"]) || !empty($_REQUEST["order"]) || !empty($_REQUEST["limit"]) || !empty($_REQUEST["view"]) || !empty($_REQUEST["action"]) || !empty($_REQUEST["set_filter"]) || !empty($_REQUEST["PAGEN_1"])):
-	$APPLICATION->AddHeadString('<link rel="canonical" href="https://'.SITE_SERVER_NAME.str_replace(" ", "",$APPLICATION->GetCurPage()).'">');	
-	
+	// $APPLICATION->AddHeadString('<link rel="canonical" href="https://'.SITE_SERVER_NAME.str_replace(" ", "",$APPLICATION->GetCurPage()).'">');	
+
+	$str = explode("?", $APPLICATION->GetCurUri());
+	$params = explode("&", $str[1]);
+	foreach ($params as $param) {
+		if (stripos($param, "PAGEN") === 0) {
+			$pagen = $param;
+		}
+	}
+
+	if ($pagen) {
+		$APPLICATION->AddHeadString('<link rel="canonical" href="https://'.SITE_SERVER_NAME.str_replace(" ", "",$APPLICATION->GetCurPage()).'?'.$pagen.'">');
+	} else {
+		$APPLICATION->AddHeadString('<link rel="canonical" href="https://'.SITE_SERVER_NAME.str_replace(" ", "",$APPLICATION->GetCurPage()).'">');
+	}
+		
 	echo '<!--###11-->';
 	
 	$GLOBALS['arrFilter'] = ['UF_BOTTOM_TAGS' => 1];
