@@ -460,7 +460,7 @@ if (count($GLOBALS['productSlider1']) > 0){
 
     ?>
     <div class="filtered-items productSlider1">
-    <div class="h3">ГЏГ®ГµГ®Г¦ГЁГҐ ГІГ®ГўГ Г°Г»</div>
+    <div class="h3">Похожие товары</div>
     <?
     
     $APPLICATION->IncludeComponent("argit:catalog.section", $view,
@@ -557,7 +557,7 @@ if (count($GLOBALS['productSlider2']) > 0){
 
     ?>
     <div class="filtered-items productSlider2">
-    <div class="h3">Г‚Г Г¬ Г¬Г®Г¦ГҐГІ ГЇГ®Г­Г°Г ГўГЁГІГјГ±Гї</div>
+    <div class="h3">Вам может понравиться</div>
     <?
     
     $APPLICATION->IncludeComponent("argit:catalog.section", $view,

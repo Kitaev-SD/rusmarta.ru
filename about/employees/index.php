@@ -1,4 +1,5 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("robots", "noindex, nofollow");
 $APPLICATION->SetPageProperty("title", "Сотрудники интернет-магазина Rusmarta.ru");
 $APPLICATION->SetPageProperty("description", "Сотрудники интернет-магазина Rusmarta.ru – одного из лидеров рынка систем безопасности в России.");
 $APPLICATION->SetTitle("Наши сотрудники");?><h3>ОТДЕЛ ПРОДАЖ</h3>
