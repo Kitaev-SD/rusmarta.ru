@@ -1093,6 +1093,15 @@ $arResult["PROPERTY_ACCESSORIES_ID"] = $arResult["PROPERTIES"]["ACCESSORIES"]["V
 $arResult["PRICE_MATRIX_SHOW"]["COLS"] = $arResult["PRICE_MATRIX"]["COLS"];
 $arResult["PRICE_MATRIX_SHOW"]["MATRIX"] = $arPriceMatrix;
 
+$isDetailImg = is_array($arResult["DETAIL_IMG"]);
+$arResult['JSON_LD']['name']=$arResult['NAME'];
+$arResult['JSON_LD']['brand']=$arResult['PROPERTIES']["MANUFACTURER"]["NAME"];
+$arResult['JSON_LD']['image']=($isDetailImg ? $arResult['DETAIL_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');
+$arResult['JSON_LD']['ratingValue']=round($arResult['PROPERTIES']['vote_sum']['VALUE']/$arResult['PROPERTIES']['vote_count']['VALUE'], 2);
+$arResult['JSON_LD']['ratingCount']=$arResult['PROPERTIES']['vote_count']['VALUE'];
+$arResult['JSON_LD']['price']=$arResult['MIN_PRICE']['RATIO_PRICE'];
+$arResult['JSON_LD']['priceCurrency']=$arResult['MIN_PRICE']['CURRENCY'];
+$arResult['JSON_LD']['availability']=$arResult["CAN_BUY"] ? 'InStock' : 'OutOfStock';
 
 //CACHE_KEYS//
 $this->__component->SetResultCacheKeys(
@@ -1109,6 +1118,7 @@ $this->__component->SetResultCacheKeys(
 		"CAN_BUY",		
 		"JS_OFFERS",
 		"OFFERS_IBLOCK",
-		"OFFERS_SELECTED"
+		"OFFERS_SELECTED",
+		"JSON_LD"
 	)
 );?>

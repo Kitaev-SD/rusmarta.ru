@@ -401,7 +401,7 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 							<div class="available">
 								<?if($arElement["TOTAL_OFFERS"]["QUANTITY"] > 0 || !$arElement["CHECK_QUANTITY"]) {?>	
 									<?if($arParams['SHOW_MAX_QUANTITY'] !== 'N') { ?>
-                                        <meta content="InStock" itemprop="availability"/>
+                                       <?/* <meta content="InStock" itemprop="availability"/>*/?>
                                         <div class="avl">
                                             <i class="fa fa-check-circle"></i>
                                             <span>
@@ -442,7 +442,7 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 							<div class="available">
 								<?if($arElement["CAN_BUY"]) {?>									
 									<?if($arParams['SHOW_MAX_QUANTITY'] !== 'N') { ?>
-                                        <meta content="InStock" itemprop="availability"/>
+                                        <?/*<meta content="InStock" itemprop="availability"/>*/?>
                                         <div class="avl">
                                             <i class="fa fa-check-circle"></i>
                                             <span> 
