@@ -30,9 +30,7 @@ if(isset($templateData["JS_OBJ"])) {?>
 			}
 		}));
 	</script>
-<?}
-GLOBAL $jsonLd;
-echo "<pre style='display:none' 444444444444>";var_dump($jsonLd); var_dump($arResult);echo "</pre>";?>
+<?}?>
 <script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -40,24 +38,24 @@ echo "<pre style='display:none' 444444444444>";var_dump($jsonLd); var_dump($arRe
 		"aggregateRating": {
 			"@type": "AggregateRating",
 			"bestRating": "5",
-			"ratingCount": "<?=$jsonLd['ratingCount'];?>",
-			"ratingValue": "<?=$jsonLd['ratingValue'];?>"
+			"ratingCount": "<?=$arResult['JSON_LD']['ratingCount'] ? $arResult['JSON_LD']['ratingCount'] : 0;?>",
+			"ratingValue": "<?=$arResult['JSON_LD']['ratingValue'] ? $arResult['JSON_LD']['ratingValue'] : 0;?>"
 		},
 		"brand": {
 			"@type": "Brand",
-			"name": "<?=$jsonLd['brand'];?>"
+			"name": "<?=$arResult['JSON_LD']['brand'] ? $arResult['JSON_LD']['brand'] : 'noname';?>"
 		},
 		"category": "<?=$arResult["SECTION"]["NAME"];?>",
-		"image": "https://rusmarta.ru<?=$jsonLd['image'];?>",
-		"name": "<?=$jsonLd['name'];?>",
+		"image": "https://rusmarta.ru<?=$arResult['JSON_LD']['image'];?>",
+		"name": "<?=$arResult['JSON_LD']['name'];?>",
 		"description": "<?=$arResult["IPROPERTY_VALUES"]["ELEMENT_META_DESCRIPTION"];?>",
 		"offers": [
 			{
 				"@type": "Offer",
 				"url": "https://rusmarta.ru<?=$_SERVER['REQUEST_URI'];?>",
-				"price": "<?=$jsonLd['price'];?>",
-				"priceCurrency": "<?=$jsonLd['priceCurrency'];?>",
-				"availability": "<?=$jsonLd['availability'];?>"
+				"price": "<?=$arResult['JSON_LD']['price'] ? $arResult['JSON_LD']['price'] : 0;?>",
+				"priceCurrency": "<?=$arResult['JSON_LD']['priceCurrency'] ? $arResult['JSON_LD']['priceCurrency'] : 'RUB';?>",
+				"availability": "<?=$arResult['JSON_LD']['availability'] ? $arResult['JSON_LD']['availability'] : 'OutOfStock';?>"
 			}
 		]
 	}

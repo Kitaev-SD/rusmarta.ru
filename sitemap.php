@@ -132,7 +132,7 @@ function getStaticPageList($domainName, $urlsStaticPages) {
 
 function getSectionList($iblock_id_) {
 	$arSelect = Array();
-	$arFilter = Array('IBLOCK_ID'=>$iblock_id_, 'ACTIVE'=>'Y', 'GLOBAL_ACTIVE'=>'Y');
+	$arFilter = Array('IBLOCK_ID'=>$iblock_id_, '!ID'=>483, 'ACTIVE'=>'Y', 'GLOBAL_ACTIVE'=>'Y');
 	$res = CIBlockSection::GetList(Array(), $arFilter, false, $arSelect);
 
 	$i = 0;
