@@ -1231,17 +1231,17 @@ if(!empty($arTeachers)){
 	$arHelpMenu[] = [
 		'SEPARATOR' => true,
 	];
-	$arHelpMenu[] = [
-		'TEXT' => Loc::getMessage('ACRIT_EXP_MENU_COURSES'),
-		'ONCLICK' => 'window.open("acrit_'.$strModuleCodeLower.'_new_course.php?lang='.LANGUAGE_ID.'");',
-	];
-	$arHelpMenu[] = [
-		'SEPARATOR' => true,
-	];
-	$arHelpMenu[] = [
-		'TEXT' => Loc::getMessage('ACRIT_EXP_MENU_COURSE'),
-		'ONCLICK' => 'window.open("https://sale.maed.ru/marketplace-manager/?utm_source=cpa_partner&utm_medium=offer&utm_campaign=marketplace_web_--acrit&utm_content=text_ad");',
-	];
+	// $arHelpMenu[] = [
+	// 	'TEXT' => Loc::getMessage('ACRIT_EXP_MENU_COURSES'),
+	// 	'ONCLICK' => 'window.open("acrit_'.$strModuleCodeLower.'_new_course.php?lang='.LANGUAGE_ID.'");',
+	// ];
+	// $arHelpMenu[] = [
+	// 	'SEPARATOR' => true,
+	// ];
+	// $arHelpMenu[] = [
+	// 	'TEXT' => Loc::getMessage('ACRIT_EXP_MENU_COURSE'),
+	// 	'ONCLICK' => 'window.open("https://sale.maed.ru/marketplace-manager/?utm_source=cpa_partner&utm_medium=offer&utm_campaign=marketplace_web_--acrit&utm_content=text_ad");',
+	// ];
 	$arMenu[] = array(
 		'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_HELP'),
 		'MENU' => $arHelpMenu,
@@ -1252,9 +1252,14 @@ if(!empty($arTeachers)){
 }
 if($intProfileID) {
 	if(!$bCopy){
+		$arMenu[] = array(
+			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_EXPORT_PREVIEW'),
+			'ONCLICK' => '$("input[data-role=\"preview-iblocks\"]").first().trigger("click");',
+			'ICON' => 'acrit-exp-export-preview',
+		);
 		if(is_array($arProfile['PARAMS']) && array_key_exists('EXPORT_FILE_NAME', $arProfile['PARAMS'])){
 			$arMenu[] = array(
-				'TEXT'	=> Loc::getMessage('ACRIT_EXP_GET_FILE_URL'),
+				'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_GET_FILE_URL'),
 				'ONCLICK' => 'acritExpGetFileUrl();',
 				'ICON' => 'acrit-exp-get-file-url',
 			);

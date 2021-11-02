@@ -305,6 +305,16 @@
 	vertical-align:middle;
 	width:16px;
 }
+#acrit-exp-export-preview:before {
+	background:url("images/acrit.core/button-export-preview.png") center center no-repeat;
+	content:'';
+	display:inline-block;
+	margin:-1px 10px 0 -5px;
+	height:16px;
+	opacity:0.9;
+	vertical-align:middle;
+	width:16px;
+}
 #acrit-exp-get-file-url:before {
 	background:url("images/acrit.core/button-get-file-url.png") center center no-repeat;
 	content:'';

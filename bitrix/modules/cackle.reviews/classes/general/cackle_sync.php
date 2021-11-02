@@ -1,0 +1,273 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include/mainpage.php");
+
+$site_name=CMainPage::GetSiteByHost();
+
+if (LANG_CHARSET=='windows-1251'){
+    header('Content-type:text/html; charset=cp1251');
+}
+
+$module_name='cackle.reviews';
+require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/" . $module_name . "/classes/general/cackle_api.php");
+class CackleReviewSync {
+    function CackleReviewSync() {
+        global $site_name;
+        $cackle_api = new CackleReviewAPI();
+       // var_dump("account_api_".$GLOBALS['cackle_site_name']);die();
+        $this->siteId = $cackle_api->cackle_get_param("site_id_".$GLOBALS['cackle_site_name']);
+        $this->accountApiKey = $cackle_api->cackle_get_param("account_api_".$GLOBALS['cackle_site_name']);
+        $this->siteApiKey = $cackle_api->cackle_get_param("site_api_".$GLOBALS['cackle_site_name']);
+        //var_dump("account_api_".$GLOBALS['cackle_site_name']);
+    }
+
+    function init($a = "") {
+        $apix = new CackleReviewAPI();
+        $review_last_modified = $apix->cackle_get_param("last_modified_".$GLOBALS['cackle_site_name']);
+
+        if ($a == "all_reviews") {
+            $response1 = $this->get_reviews(0);
+        }
+        else {
+            $response1 = $this->get_reviews($review_last_modified);
+        }
+        //get reviews from CackleReview Api for sync
+        if ($response1==NULL){
+            return false;
+        }
+        $response_size = $this->push_reviews($response1); // get review from array and insert it to wp db
+        $totalPages = $this->cackle_json_decodes($response1);
+        $totalPages = $totalPages['reviews']['totalPages'];
+        if ($totalPages > 1) {
+
+            for ($i=1; $i < $totalPages; $i++ ){
+
+                if ($a=="all_reviews"){
+                    $response2 = $this->get_reviews(0,$i) ;
+                }
+                else{
+
+                    $response2 = $this->get_reviews($review_last_modified,$i) ;
+                }
+                //$response2 = $apix->get_reviews(($a=="all_reviews") ? 0 : cackle_get_param("cackle_reviews_last_modified",0),$i);
+                //get reviews from CackleReview Api for sync
+                $response_size = $this->push_reviews($response2); // get review from array and insert it to wp db
+            }
+        }
+        return "success";
+    }
+
+    function get_reviews($review_last_modified, $cackle_page = 0){
+        $this->get_url = "http://cackle.me/api/2.0/review/list.json?id=$this->siteId&accountApiKey=$this->accountApiKey&siteApiKey=$this->siteApiKey";
+        $host = $this->get_url . "&modified=" . $review_last_modified . "&page=" . $cackle_page . "&size=100";
+        $result = file_get_contents($host);
+
+        return $result;
+
+    }
+
+
+
+    function to_i($number_to_format){
+        return number_format($number_to_format, 0, '', '');
+    }
+
+
+    function cackle_json_decodes($response){
+
+        $obj = json_decode($response,true);
+
+        return $obj;
+    }
+
+    function filter_cp1251($string1){
+        global $site_name;
+        $cackle_api = new CackleReviewAPI();
+        if ($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == "1"){
+            $string2 = iconv("utf-8", "CP1251",$string1);
+            //print "###33";
+        }
+        return $string2;
+    }
+	function startsWith($haystack, $needle) {
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
+    }
+    function insert_review($review,$status){
+        global $site_name;
+        /*
+         * Here you can convert $url to your post ID
+         */
+		if ($this->startsWith($review['channel'], 'http')) {
+            $url = 0;
+        } else {
+            $url = $review['channel'];
+        }
+        
+        //var_dump($review);
+        if ($review['author']!=null){
+            $author_name = isset($review['author']['name']) ? $review['author']['name'] : "";
+            $author_www = isset($review['author']['www']) ? $review['author']['www']: "" ;
+            $author_avatar = isset($review['author']['avatar']) ? $review['author']['avatar']: "" ;
+            $author_email= isset($review['author']['email']) ?  $review['author']['email'] : "";
+            $author_provider = isset($review['author']['provider']) ? $review['author']['provider']: "" ;
+            $author_anonym_name = "";
+            $anonym_email = "";
+        }
+        else{
+            $author_name = isset($review['anonym']['name']) ? $review['anonym']['name']: "" ;
+            $author_email= isset($review['anonym']['email']) ?  $review['anonym']['email'] : "";
+            $author_www = "";
+            $author_avatar = "";
+
+        }
+        $get_parent_local_id = null;
+        $review_id = $review['id'];
+        $review_modified = $review['modified'];
+        $cackle_api = new CackleReviewAPI();
+        if ($cackle_api->cackle_get_param("last_review_".$GLOBALS['cackle_site_name'])==0){
+            $cackle_api->cackle_db_prepare();
+        }
+        $date =strftime("%Y-%m-%d %H:%M:%S", $review['created']/1000);
+        $ip = ($review['ip']) ? $review['ip'] : "";
+        $comment = $review['comment'];
+        $dignity = $review['dignity'];
+        $lack = $review['lack'];
+        $stars = $review['stars'];
+        $rating = $review['rating'];
+        $user_agent = 'CackleReview:' . $review['id'];
+
+
+        $conn = $cackle_api->conn();
+        if ($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1){
+
+            $conn->Query('SET NAMES cp1251');
+        }
+		else{
+		$conn->Query('SET NAMES utf8');
+		}
+
+
+        //$sql = "insert into " . PREFIX ."_reviews (post_id,autor,email,date,ip,text,approve,user_agent) values (:url, :author_name, :author_email, :date, :ip, :message, :status, :user_agent ) ";
+	    //$q = $conn->prepare($sql);
+	    $arFields=
+                Array(
+                    'product_url'=>($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1) ? iconv("utf-8", "CP1251",$url) : $url,
+                    'autor'=>($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1) ? iconv("utf-8", "CP1251",$author_name) : $author_name,
+                    'email'=>($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1) ? iconv("utf-8", "CP1251",$author_email) : $author_email ,
+                    'date'=>$date,
+                    'ip'=>$ip,
+                    'comment'=>($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1) ? iconv("utf-8", "CP1251",$comment) : $comment,
+                    'dignity'=>($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1) ? iconv("utf-8", "CP1251",$dignity) : $dignity,
+                    'lack'=>($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1) ? iconv("utf-8", "CP1251",$lack) : $lack,
+                    'stars'=>$stars,
+                    'rating'=>$rating,
+                    'approve'=>$status,
+                    'user_agent'=>$user_agent,
+
+
+                );
+        global $DB;
+        //$err_mess = (CForm::err_mess())."<br>Function: AddResultAnswer<br>Line: ";
+        $arInsert = $DB->PrepareInsert("b_reviews", $arFields);
+        //var_dump($arFields);
+        $strSql = "INSERT INTO b_reviews (".$arInsert[0].") VALUES (".$arInsert[1].")";
+        $DB->Query($strSql, false);
+
+
+        $cackle_api->cackle_set_param("last_review_".$GLOBALS['cackle_site_name'],$review_id);
+        $get_last_modified = $cackle_api->cackle_get_param("last_modified_".$GLOBALS['cackle_site_name']);
+        $get_last_modified = (int)$get_last_modified;
+        if ($review['modified'] > $get_last_modified) {
+            $cackle_api->cackle_set_param("last_modified_".$GLOBALS['cackle_site_name'],(string)$review['modified']);
+        }
+
+    }
+
+    function review_status_decoder($review) {
+        $status;
+        if (strtolower($review['status']) == "approved") {
+            $status = 1;
+        }
+        elseif (strtolower($review['status'] == "pending") || strtolower($review['status']) == "rejected") {
+            $status = 0;
+        }
+        elseif (strtolower($review['status']) == "spam") {
+            $status = 0;
+        }
+        elseif (strtolower($review['status']) == "deleted") {
+            $status = 0;
+        }
+        return $status;
+    }
+
+    function update_review_status($review_id, $status, $modified, $review_content) {
+        global $site_name;
+        $cackle_api = new CackleReviewAPI();
+        if ($cackle_api->cackle_get_param("cackle_encoding_".$GLOBALS['cackle_site_name']) == 1){
+            $review_content1 = iconv("utf-8", "cp1251",$review_content);
+        }
+        global $DB;
+
+        $arFields = array(
+            'approve' => $status,
+            'text' => $review_content1
+        );
+        $sql = $DB->PrepareUpdate(PREFIX ."_reviews",$arFields);
+        $resFields = "'CackleReview:$review_id'";
+        $strSql = "UPDATE b_reviews SET ".$sql." WHERE `user_agent`=". $resFields;
+        $DB->Query($strSql, false);
+        $cackle_api->cackle_set_param("last_modified_".$GLOBALS['cackle_site_name'],$modified);
+
+    }
+
+    function push_reviews1 ($response){
+        global $site_name;
+        $obj = $response['reviews'];
+        if ($obj) {
+            foreach ($obj as $review) {
+                $cackle_api = new CackleReviewAPI();
+                $get_last_modified = $cackle_api->cackle_get_param("last_modified_".$GLOBALS['cackle_site_name']);
+                $get_last_review = $cackle_api->cackle_get_param("last_review_".$GLOBALS['cackle_site_name']);
+                //$get_last_review = $this->db_connect("select common_value from common where `common_name` = 'last_review'","common_value");
+                //$get_last_modified = $this->db_connect("select common_value from common where `common_name` = 'last_modified'","common_value");
+                if ($review['id'] > $get_last_review) {
+                    $this->insert_comm($review, $this->review_status_decoder($review));
+                } else {
+                    if ($get_last_modified==""){
+                        $get_last_modified == 0;
+                    }
+                    if ($review['modified'] > $get_last_modified) {
+                        $this->update_review_status($review['id'], $this->review_status_decoder($review), $review['modified'], $review['message'] );
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    function push_reviews ($response){
+        $apix = new CackleReviewAPI();
+        $get_last_modified = $apix->cackle_get_param("last_modified_".$GLOBALS['cackle_site_name']);
+        $get_last_review = $apix->cackle_get_param("last_review_".$GLOBALS['cackle_site_name']);
+        $obj = $this->cackle_json_decodes($response,true);
+        $obj = $obj['reviews']['content'];
+        if ($obj) {
+            $reviews_size = count($obj);
+            if ($reviews_size != 0){
+                foreach ($obj as $review) {
+                    if ($review['id'] > $get_last_review) {
+                        $this->insert_review($review, $this->review_status_decoder($review));
+                    } else {
+                        // if ($review['modified'] > $apix->cackle_get_param('cackle_reviews_last_modified', 0)) {
+                        $this->update_review_status($review['id'], $this->review_status_decoder($review), $review['modified'], $review['message'] );
+                        // }
+                    }
+                }
+            }
+        }
+        return $reviews_size;
+
+    }
+}
+?>

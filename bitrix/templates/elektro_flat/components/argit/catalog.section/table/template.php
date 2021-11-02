@@ -34,7 +34,7 @@ $inPriceRatio = in_array("PRICE_RATIO", $arSetting["GENERAL_SETTINGS"]["VALUE"])
 </script>
 
 <?//CATALOG//?>
-<div id="catalog" itemtype="http://schema.org/ItemList">
+<div id="catalog" <?/*itemtype="http://schema.org/ItemList"*/?>>
 
     
 <?php
@@ -69,7 +69,7 @@ if($tagsCount >= 1){
 }?>
 
 
-	<link href="<?=$curPage?>" itemprop="url" />
+	<link href="<?=$curPage?>" <?/*itemprop="url"*/?>/>
 	<div class="catalog-item-table-view">
 		<?foreach($arResult["ITEMS"] as $key => $arElement) {
 			$arItemIDs = array(
@@ -220,12 +220,12 @@ if($tagsCount >= 1){
 			$strTitle = (isset($arElement["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"]) && $arElement["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"] != "" ? $arElement["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"] : $arElement["NAME"]);
 
 			//ITEM//?>				
-			<div class="catalog-item-card<?=$class?>" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Product">
+			<div class="catalog-item-card<?=$class?>"<?/* itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Product"*/?>>
 				<div class="catalog-item-info">							
 					<?//ITEM_PREVIEW_PICTURE//?>
 					<div class="item-image-cont">
 						<div class="item-image">								
-							<meta content="<?=(is_array($arElement['PREVIEW_PICTURE']) ? $arElement['PREVIEW_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>" itemprop="image" />
+							<meta content="<?=(is_array($arElement['PREVIEW_PICTURE']) ? $arElement['PREVIEW_PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg');?>" <?/*itemprop="image"*/?> />
 							<a rel="nofollow" href="<?=$arElement['DETAIL_PAGE_URL']?>">
 								<?if(is_array($arElement["PREVIEW_PICTURE"])) {?>
 									<img class="item_img data-lazy-src" data-lazy-src="<?=$arElement['PREVIEW_PICTURE']['SRC']?>" width="<?=$arElement['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arElement['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$strAlt?>" title="<?=$strTitle?>" />
@@ -244,8 +244,8 @@ if($tagsCount >= 1){
 					</div>
 					<?//ITEM_TITLE//?>
 					<div class="item-all-title">
-						<a class="item-title" href="<?=$arElement['DETAIL_PAGE_URL']?>" title="<?=$arElement['NAME']?>" itemprop="url">
-							<span itemprop="name"><?=$arElement['NAME']?></span>
+						<a class="item-title" href="<?=$arElement['DETAIL_PAGE_URL']?>" title="<?=$arElement['NAME']?>" <?/*itemprop="url"*/?>>
+							<span <?/*itemprop="name"*/?>><?=$arElement['NAME']?></span>
 						</a>
 					</div>
 					<?//ARTICLE_RATING//
@@ -280,7 +280,7 @@ if($tagsCount >= 1){
 					<?}
 					//ITEM_PREVIEW_TEXT//
 					if($inPreviewText) {?>
-						<div class="item-desc" itemprop="description">
+						<div class="item-desc" <?/*itemprop="description"*/?>>
 
 <?/*vp*/?>
                             <?//=strip_tags($arElement["PREVIEW_TEXT"]);?>
@@ -290,7 +290,7 @@ if($tagsCount >= 1){
 						</div>
 					<?}
 					//TOTAL_OFFERS_ITEM_PRICE//?>
-					<div class="item-price-cont<?=(!$inOldPrice && !$inPercentPrice ? ' one' : '').(($inOldPrice && !$inPercentPrice) || (!$inOldPrice && $inPercentPrice) ? ' two' : '').($arSetting["REFERENCE_PRICE"]["VALUE"] == "Y" && !empty($arSetting["REFERENCE_PRICE_COEF"]["VALUE"]) ? ' reference' : '');?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+					<div class="item-price-cont<?=(!$inOldPrice && !$inPercentPrice ? ' one' : '').(($inOldPrice && !$inPercentPrice) || (!$inOldPrice && $inPercentPrice) ? ' two' : '').($arSetting["REFERENCE_PRICE"]["VALUE"] == "Y" && !empty($arSetting["REFERENCE_PRICE_COEF"]["VALUE"]) ? ' reference' : '');?>" <?///*itemprop="offers" itemscope itemtype="http://schema.org/Offer"*/?>>
 						<?//TOTAL_OFFERS_PRICE//
 						if(isset($arElement["OFFERS"]) && !empty($arElement["OFFERS"])) {
 							if($arElement["TOTAL_OFFERS"]["MIN_PRICE"]["RATIO_PRICE"] <= 0) {?>							
@@ -333,12 +333,12 @@ if($tagsCount >= 1){
 									<?}?>
 								</div>							
 							<?}?>
-							<meta itemprop="price" content="<?=$arElement["TOTAL_OFFERS"]["MIN_PRICE"]["RATIO_PRICE"]?>" />
-							<meta itemprop="priceCurrency" content="<?=$arElement["TOTAL_OFFERS"]["MIN_PRICE"]["CURRENCY"]?>" />
+							<meta <?/*itemprop="price"*/?> content="<?=$arElement["TOTAL_OFFERS"]["MIN_PRICE"]["RATIO_PRICE"]?>" />
+							<meta <?/*itemprop="priceCurrency"*/?> content="<?=$arElement["TOTAL_OFFERS"]["MIN_PRICE"]["CURRENCY"]?>" />
 							<?if($arElement["TOTAL_OFFERS"]["QUANTITY"] > 0) {?>							
-								<meta content="InStock" itemprop="availability" />									
+								<meta content="InStock" <?/*itemprop="availability"*/?> />									
 							<?} else {?>
-								<meta content="OutOfStock" itemprop="availability" />
+								<meta content="OutOfStock" <?/*itemprop="availability"*/?> />
 							<?}
 						//ITEM_PRICE//
 						} else {
@@ -385,12 +385,12 @@ if($tagsCount >= 1){
 									<?}?>
 								</div>
 							<?}?>
-							<meta itemprop="price" content="<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>" />
-							<meta itemprop="priceCurrency" content="<?=$arElement["MIN_PRICE"]["CURRENCY"]?>" />
+							<meta <?/*itemprop="price"*/?> content="<?=$arElement["MIN_PRICE"]["RATIO_PRICE"]?>" />
+							<meta <?/*itemprop="priceCurrency"*/?> content="<?=$arElement["MIN_PRICE"]["CURRENCY"]?>" />
 							<?if($arElement["CAN_BUY"]) {?>
-								<meta content="InStock" itemprop="availability" />
+								<meta content="InStock" <?/*itemprop="availability"*/?> />
 							<?} elseif(!$arElement["CAN_BUY"]) {?>
-								<meta content="OutOfStock" itemprop="availability" />									
+								<meta content="OutOfStock" <?/*itemprop="availability"*/?> />									
 							<?}
 						}?>
 					</div>

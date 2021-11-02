@@ -1,1 +1,1 @@
-<? $LICENSE_KEY = "demo"; ?>
+<? $LICENSE_KEY = "S16-NA-RL2N32SJ346J9S9U"; ?>

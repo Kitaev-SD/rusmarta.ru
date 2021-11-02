@@ -1,6 +1,7 @@
 <?php
 /**
- * Controller
+ * Controller class
+ * Class for linking all parts of the synchronization system
  */
 
 namespace Acrit\Core\Orders;
@@ -38,12 +39,18 @@ class Controller
 		//\Helper::Log('(getOrderProfile) selected profile "' . self::$profile['id'] . '"');
 	}
 
+	/**
+	 * Get a link for process of external requests
+	 */
 	public static function getAppHandler() {
 		$module_code = str_replace('acrit.', '', self::$MODULE_ID);
 		$link = str_replace('#MODULE_ID#', $module_code, self::APP_HANDLER);
 		return $link;
 	}
 
+	/**
+	 * Get plugin class for the profile
+	 */
 	public static function getPlugin($profile) {
 		$plugin = false;
 		if (strlen($profile['PLUGIN'])) {
@@ -59,6 +66,9 @@ class Controller
 		return $plugin;
 	}
 
+	/**
+	 * Flag of the bulk manual synchronization process
+	 */
 	public static function setBulkRun() {
 		self::$MANUAL_RUN = true;
 		Rest::setBulkRun();
@@ -100,7 +110,7 @@ class Controller
 	}
 
 	/**
-	 * Search of deal
+	 * Search the store order by data of the marketplace order
 	 */
 
 	public static function findOrder(array $ext_order) {
@@ -149,6 +159,9 @@ class Controller
 		Log::getInstance(self::$MODULE_ID)->add('(syncByPeriod) success');
 	}
 
+	/**
+	 * Get start date of synchronization
+	 */
 	public static function getStartDateTs() {
 		$start_date_ts = false;
 		$start_date = self::$profile['CONNECT_CRED']['start_date'];
@@ -158,6 +171,9 @@ class Controller
 		return $start_date_ts;
 	}
 
+	/**
+	 * Get default site
+	 */
 	public static function getSiteDef() {
 		$site_id = false;
 		$site_default = false;

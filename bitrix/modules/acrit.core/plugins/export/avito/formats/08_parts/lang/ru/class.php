@@ -133,6 +133,41 @@ $MESS[$strMessPrefix.'FIELD_LOAD_INDEX_NAME'] = 'Индекс нагрузки шины';
 $MESS[$strMessPrefix.'FIELD_BRAND_NAME'] = 'Производитель шин';
 	$MESS[$strMessPrefix.'FIELD_BRAND_DESC'] = 'Производитель шин - строка из списка:
 Aeolus, Aeolus Neo, Altenzo, Amtel, Antares, Aplus, Autogrip, Avatyre, Barum, Bfgoodrich, Bridgestone, Cachland, Compasal, Continental, Contyre, Cordiant, CrossLeader, Delinte, Dmack, DoubleStar, Dunlop, Effiplus, Falken, Firenza, Firestone, Forward, General Tire, Gislaved, Goodyear, GT Radial, Habilead, Hankook, Hifly, Imperial, Jinyu, Joyroad, Kama, Kleber, Kormoran, Kumho, Landsail, Laufenn, LingLong, Marshal, Matador, Maxxis, Michelin, Mickey Thompson, Minerva, Nankang, Nexen, Nitto, Nokian, Nordman, Nortec, Orium, Ovation, Pirelli, Pirelli Formula, Rapid, Roadstone, Rosava, Sailun, Satoya, Sava, Starmaxx, Sunfull, Sunny, Tigar, Toyo, Trayal, Triangle, Tunga, Tyrex, Uniroyal, Viatti, Vredestein, Windforce, Yokohama, Белшина, Волтайр.';
+$MESS[$strMessPrefix.'FIELD_ORIGINALITY_NAME'] = 'Тип Запчасти';
+	$MESS[$strMessPrefix.'FIELD_ORIGINALITY_DESC'] = 'Тип Запчасти — определяет оригинальность запчасти. Может принимать следующие значения:
+<ul>
+	<li>Оригинал</li>
+	<li>Аналог</li>
+	<li>Не знаю</li>
+</ul>
+Элемент может быть использован в подкатегориях:
+<ul>
+	<li>Запчасти / Для автомобилей</li>
+	<li>Запчасти / Для мототехники</li>
+	<li>Запчасти / Для спецтехники</li>
+</ul>
+Пример: Аналог';
+$MESS[$strMessPrefix.'FIELD_ORIGINAL_OEM_NAME'] = 'Номер оригинальной детали OEM';
+	$MESS[$strMessPrefix.'FIELD_ORIGINAL_OEM_DESC'] = 'Номер оригинальной детали OEM — строка до 50 символов (разрешены цифры, латиница и знак дефиса).<br/><br/>
+	Используется для указания номера оригинальной запчасти, если он известен. Поле доступно для ввода при указании параметра "Тип Запчасти" со значением "Аналог". <br/><br/>
+	Элемент может быть использован в подкатегориях:
+	<ul>
+		<li>Запчасти / Для автомобилей</li>
+		<li>Запчасти / Для мототехники</li>
+		<li>Запчасти / Для спецтехники</li>
+	</ul>
+	Пример: 03C121008F';
+$MESS[$strMessPrefix.'FIELD_ORIGINAL_VENDOR_NAME'] = 'Производитель оригинальной запчасти';
+	$MESS[$strMessPrefix.'FIELD_ORIGINAL_VENDOR_DESC'] = 'Используется для указания производителя оригинальной запчасти, если он известен. Поле доступно для ввода при указании параметра "Тип Запчасти" со значением "Аналог". <br/><br/>
+	Элемент может быть использован в подкатегориях:
+	<ul>
+		<li>Запчасти / Для автомобилей</li>
+		<li>Запчасти / Для мототехники</li>
+		<li>Запчасти / Для спецтехники</li>
+	</ul>
+	Пример: BMW';
+$MESS[$strMessPrefix.'FIELD_RESIDUAL_TREAD_NAME'] = 'Остаточная глубина протектора шины, мм';
+	$MESS[$strMessPrefix.'FIELD_RESIDUAL_TREAD_DESC'] = 'Остаточная глубина протектора шины. Может принимать значения от 1 до 50 включительно, измеряется в миллиметрах (мм)';
 $MESS[$strMessPrefix.'FIELD_DISPLAY_AREAS_NAME'] = 'Зоны показа объявления';
 	$MESS[$strMessPrefix.'FIELD_DISPLAY_AREAS_DESC'] = 'Зоны показа объявления - значения из <a href="https://autoload.avito.ru/format/DisplayAreas.xml" target="_blank">справочника</a>.<br/><br/>
 	Поле должно выгружаться как множественное!<br/><br/>

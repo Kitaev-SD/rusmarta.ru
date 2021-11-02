@@ -50,7 +50,7 @@ class BitrixRest {
 		if ($res) {
 			try {
 				$result = Json::decode($res);
-			} catch (Exception $e) {
+			} catch (\Exception $e) {
 			}
 		}
 		return $result;

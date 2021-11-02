@@ -5,14 +5,8 @@
 
 function AcritMansyncStartExportResetVars() {
 	run_enabled = true;
-	mansync_count = 0;
-	mansync_success = 0;
-	mansync_errors = 0;
-	mansync_skip = 0;
-	// $('#man_sync_result .start-mansync-result-all span').text(0);
-	// $('#man_sync_result .start-mansync-result-good span').text(0);
-	// $('#man_sync_result .start-mansync-result-bad span').text(0);
-	// $('#man_sync_result .start-mansync-result-skip span').text(0);
+	$('#man_sync_result .mansync-result-all span').text(0);
+	$('#man_sync_result .mansync-result-done span').text(0);
 	AcritMansyncStartExportProgress(1, 0);
 	$('#start_mansync_errors').val('');
 }
@@ -21,6 +15,7 @@ function AcritMansyncStartExportProgress(count, current) {
 	percent = 0;
 	if (current > 0) {
 		percent = current / count * 100;
+		percent = Number((percent).toFixed(2));
 	}
 	width = 50;
 	max_width = $('.adm-progress-bar-outer').width();
@@ -31,6 +26,8 @@ function AcritMansyncStartExportProgress(count, current) {
 }
 function AcritMansyncStartExport(next_item, count) {
 	if (!run_enabled) {
+		$('#man_sync_start').removeClass("adm-btn-disabled");
+		$('#man_sync_noprogress_start').removeClass("adm-btn-disabled");
 		return false;
 	}
 	acritExpAjax('man_sync_run', {
@@ -44,14 +41,8 @@ function AcritMansyncStartExport(next_item, count) {
 				});
 			}
 			AcritMansyncStartExportProgress(count, JsonResult.next_item);
-			// mansync_success += JsonResult.report.success;
-			// mansync_errors += JsonResult.report.errors;
-			// mansync_skip += JsonResult.report.skip;
-			// $('#man_sync_result .start-mansync-result-all span').text(JsonResult.exported_count);
-			// $('#man_sync_result .start-mansync-result-good span').text(mansync_success);
-			// $('#man_sync_result .start-mansync-result-bad span').text(mansync_errors);
-			// $('#man_sync_result .start-mansync-result-skip span').text(mansync_skip);
-			if (JsonResult.next_item && JsonResult.next_item < count) {
+			$('#man_sync_result .mansync-result-done span').text(JsonResult.report.done);
+			if (JsonResult.next_item && JsonResult.next_item > next_item && JsonResult.next_item < count) {
 				AcritMansyncStartExport(JsonResult.next_item, count);
 			}
 			else {
@@ -93,7 +84,7 @@ function AcritMansyncNoprogressStartExport(next_item) {
 					AcritMansyncMessageAdd(item);
 				});
 			}
-			$('#man_sync_result_count span').text(JsonResult.report.all);
+			$('#man_sync_result_count span').text(JsonResult.report.done);
 			if (JsonResult.next_item && JsonResult.next_item > next_item) {
 				AcritMansyncNoprogressStartExport(JsonResult.next_item);
 			}
@@ -131,7 +122,7 @@ $(function() {
 			// $('#man_sync_result').show();
 			acritExpAjax('man_sync_count', {}, function (JsonResult, textStatus, jqXHR) {
 				if (JsonResult.result == 'ok') {
-					mansync_count = JsonResult.count;
+					let mansync_count = JsonResult.count;
 					if (JsonResult.errors.length > 0) {
 						JsonResult.errors.forEach(function(item, i, arr) {
 							AcritMansyncMessageAdd(item);
@@ -141,6 +132,7 @@ $(function() {
 					}
 					else {
 						AcritMansyncStartExportProgress(1, 0);
+						$('#man_sync_result .mansync-result-all span').text(mansync_count);
 						AcritMansyncStartExport(0, mansync_count);
 					}
 				}
@@ -168,8 +160,6 @@ $(function() {
 	$("#man_sync_stop").click(function() {
 		if (!$(this).hasClass("adm-btn-disabled")) {
 			$('#man_sync_stop').addClass("adm-btn-disabled");
-			$('#man_sync_start').removeClass("adm-btn-disabled");
-			$('#man_sync_noprogress_start').removeClass("adm-btn-disabled");
 			run_enabled = false;
 		}
 		return false;

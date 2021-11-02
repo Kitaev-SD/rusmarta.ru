@@ -18,10 +18,10 @@ class Orders extends Request {
 	/**
 	 * Check connection
 	 */
-	public function checkConnection(&$message) {
+	public function checkConnection($token, &$message) {
 		$result = false;
 		$message = '';
-		$res = $this->execute('markets/business-types');
+		$res = $this->execute('markets/business-types', null, [], $token);
 		if ($res['error']) {
 			$message = Loc::getMessage('ACRIT_CRM_PLUGIN_ROZETKA_CHECK_ERROR') . $res['error']['message'] . ' [' . $res['error']['code'] . ']';
 		}

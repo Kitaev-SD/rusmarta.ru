@@ -1,6 +1,6 @@
 <?php
 /**
- *    Periodical synchronization
+ * Periodical synchronization by agents
  */
 
 namespace Acrit\Core\Orders;

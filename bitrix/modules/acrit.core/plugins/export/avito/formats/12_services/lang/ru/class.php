@@ -574,6 +574,105 @@ $MESS[$strMessPrefix.'FIELD_WASH_AND_CARE_NAME'] = 'Мойка и уход за авто';
 	</ul>
 	Используется в категории «Транспорт, перевозки / Автосервис / Виды работ: Мойка и уход за авто».';
 
+$MESS[$strMessPrefix.'FIELD_TRANSPORTATION_TYPE_NAME'] = 'Вид перевозок';
+	$MESS[$strMessPrefix.'FIELD_TRANSPORTATION_TYPE_DESC'] = 'Вид перевозок. Одно значение из списка
+	<ul>
+		<li>Грузоперевозки</li>
+		<li>Пассажирские перевозки</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Коммерческие перевозки».';
+$MESS[$strMessPrefix.'FIELD_DISTANCE_NAME'] = 'Расстояние поездки';
+	$MESS[$strMessPrefix.'FIELD_DISTANCE_DESC'] = 'Расстояние поездки. Несколько значений<br/><br/>
+	Для переездов, грузовых автоперевозок и пассажирских перевозок
+	<ul>
+		<li>По городу</li>
+		<li>По области</li>
+		<li>По стране</li>
+		<li>Между странами</li>
+	</ul>
+	Для железнодорожных, воздушных и водных грузоперевозок
+	<ul>
+		<li>По стране</li>
+		<li>Между странами</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Коммерческие перевозки или переезды»';
+$MESS[$strMessPrefix.'FIELD_CARGO_TRANSPORTATION_TYPE_NAME'] = 'Вид грузоперевозок';
+	$MESS[$strMessPrefix.'FIELD_CARGO_TRANSPORTATION_TYPE_DESC'] = 'Вид грузоперевозок. Одно значение из списка
+	<ul>
+		<li>Автоперевозки</li>
+		<li>Авиаперевозки</li>
+		<li>Железнодорожные</li>
+		<li>Водные</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Коммерческие перевозки / Грузоперевозки».';
+$MESS[$strMessPrefix.'FIELD_CARGO_TYPE_NAME'] = 'Вид груза';
+	$MESS[$strMessPrefix.'FIELD_CARGO_TYPE_DESC'] = 'Вид груза. Несколько значений из списка
+	<ul>
+		<li>Личные вещи</li>
+		<li>Продукты</li>
+		<li>Стройматериалы</li>
+		<li>Транспортные средства</li>
+		<li>Животные</li>
+		<li>Техника и оборудование</li>
+		<li>Сыпучие грузы</li>
+		<li>Наливные грузы</li>
+		<li>Негабаритные и тяжеловесные грузы</li>
+		<li>Контейнеры</li>
+		<li>Другой</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Коммерческие перевозки / Грузоперевозки».';
+$MESS[$strMessPrefix.'FIELD_URGENCY_NAME'] = 'Срочная подача';
+	$MESS[$strMessPrefix.'FIELD_URGENCY_DESC'] = 'Срочная подача. Да / Нет.<br/><br/>
+	Используется в категории «Транспорт, перевозки / Переезды или грузовые автоперевозки».';
+$MESS[$strMessPrefix.'FIELD_MOVERS_QUANTITY_NAME'] = 'Количество грузчиков';
+	$MESS[$strMessPrefix.'FIELD_MOVERS_QUANTITY_DESC'] = 'Количество грузчиков. Несколько значений из списка
+	<ul>
+		<li>0 (для категорий кроме "Грузчики")</li>
+		<li>1</li>
+		<li>2</li>
+		<li>Больше 2</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Грузоперевозки, переезды или грузчики».';
+$MESS[$strMessPrefix.'FIELD_PASSENGERS_QUANTITY_NAME'] = 'Количество пассажиров';
+	$MESS[$strMessPrefix.'FIELD_PASSENGERS_QUANTITY_DESC'] = 'Количество пассажиров. Одно значение из списка
+	<ul>
+		<li>1-4</li>
+		<li>5-8</li>
+		<li>9-15</li>
+		<li>15-30</li>
+		<li>Больше 30</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Коммерческие перевозки / Пассажирские перевозки (кроме санитарного транспорта)».';
+$MESS[$strMessPrefix.'FIELD_MOVE_TYPE_NAME'] = 'Вид переезда';
+	$MESS[$strMessPrefix.'FIELD_MOVE_TYPE_DESC'] = 'Вид переезда. Несколько значений из списка
+	<ul>
+		<li>Квартирный</li>
+		<li>Офисный</li>
+		<li>Дачный</li>
+		<li>Другой</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Переезды».';
+$MESS[$strMessPrefix.'FIELD_CARGO_HEIGHT_NAME'] = 'Высота груза, м';
+	$MESS[$strMessPrefix.'FIELD_CARGO_HEIGHT_DESC'] = 'Высота груза в метрах<br/><br/>
+	Используется в категории «Транспорт, перевозки / Переезды».';
+$MESS[$strMessPrefix.'FIELD_CARGO_LENGTH_NAME'] = 'лина груза, м';
+	$MESS[$strMessPrefix.'FIELD_CARGO_LENGTH_DESC'] = 'Длина груза в метрах<br/><br/>
+	Используется в категории «Транспорт, перевозки / Переезды».';
+$MESS[$strMessPrefix.'FIELD_CARGO_WIDTH_NAME'] = 'Ширина груза, м';
+	$MESS[$strMessPrefix.'FIELD_CARGO_WIDTH_DESC'] = 'Ширина груза в метрах<br/><br/>
+	Используется в категории «Транспорт, перевозки / Переезды».';
+$MESS[$strMessPrefix.'FIELD_TRANSPORT_BODY_NAME'] = 'Кузов транспорта';
+	$MESS[$strMessPrefix.'FIELD_TRANSPORT_BODY_DESC'] = 'Кузов транспорта. Одно значение из списка
+	<ul>
+		<li>Тент</li>
+		<li>Жесткий</li>
+		<li>Бортовой</li>
+	</ul>
+	Используется в категории «Транспорт, перевозки / Переезды».';
+$MESS[$strMessPrefix.'FIELD_MINIMUM_ORDER_TIME_NAME'] = 'Минимальное время заказа, ч';
+	$MESS[$strMessPrefix.'FIELD_MINIMUM_ORDER_TIME_DESC'] = 'Минимальное время заказа в часах<br/><br/>
+	Используется в категории «Транспорт, перевозки / Грузчики».';
+
 
 
 

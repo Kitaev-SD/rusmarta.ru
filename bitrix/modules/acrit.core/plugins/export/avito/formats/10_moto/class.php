@@ -122,6 +122,8 @@ class AvitoMoto extends Avito {
 			$arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
 		if(!Helper::isEmpty($arFields['CONTACT_PHONE']))
 			$arXmlTags['ContactPhone'] = Xml::addTag($arFields['CONTACT_PHONE']);
+		if(!Helper::isEmpty($arFields['CONTACT_METHOD']))
+			$arXmlTags['ContactMethod'] = Xml::addTag($arFields['CONTACT_METHOD']);
 		#
 		if(!Helper::isEmpty($arFields['DESCRIPTION']))
 			$arXmlTags['Description'] = Xml::addTag($arFields['DESCRIPTION']);

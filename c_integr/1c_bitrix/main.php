@@ -136,7 +136,6 @@ foreach ($db_orders as $ym_ord_id => $db_order) {
 	
     $b_order = @$class365api->request("get", "customerorders", ['number' => 'RM' . $order['db']['ID'] ])['result'][0];
     d($b_order, $order['db']['ID']);
-    //$printLabel = printLabel($beruAPI,$order['ym']['id'],$ym_campaign);
 
     if (isset($b_order['id'])) {
             switch (@end($order['ym']['items'])['partnerWarehouseId']) {
@@ -156,16 +155,17 @@ foreach ($db_orders as $ym_ord_id => $db_order) {
             // 'consignee_id' => '9106237', // Яндекс.Маркет Rusmarta FBS
             // 'status_id' => '567', // ЯП Обрабатывается
             //'comment' => 'Беру: ' . $order['ym']['id'],
-            '384241' => @$order['ym']['shipments'][0]['shipmentDate'],
+            '384241' => date("d.m.Y", strtotime(@$order['ym']['delivery']['shipments'][0]['shipmentDate'])),
             '6762577' => $name_sklad,
             '6762576' => $order['ym']['id'],
-            //'9115944' => 'https://rusmarta.ru/c_integr/1c_bitrix' . '/pdf/' .  $printLabel,
             '9115944' => 'https://rusmarta.ru/c_integr/1c_bitrix' . '/sticker.php?ord_id=' . $order['ym']['id'],
             'delivery_note' => $order['ym']['delivery']['serviceName'] . ' с ' . 
             @$order['ym']['delivery']['dates']['fromDate'] . ' ' . @$order['ym']['delivery']['dates']['fromTime'] .
             ' до ' . @$order['ym']['delivery']['dates']['toDate'] . ' ' . @$order['ym']['delivery']['dates']['toTime'],
             //'date' => date('Y-m-d H:i:s', strtotime($order['ym']['creationDate']))
         );
+		
+		d($orderData);
 
         $createOrderResponse = $class365api->request("put", "customerorders", $orderData);
 

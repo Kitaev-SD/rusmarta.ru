@@ -378,9 +378,10 @@ class Wildberries extends Plugin {
 	public function ajaxAction($strAction, $arParams, &$arJsonResult) {
 		switch ($strAction) {
 			case 'connection_check':
+				$token = $arParams['POST']['token'];
 				$message = '';
 				$api = $this->getApi();
-				$res = $api->checkConnection($message);
+				$res = $api->checkConnection($token, $message);
 				$arJsonResult['check'] = $res ? 'success' : 'fail';
 				$arJsonResult['message'] = $message;
 				$arJsonResult['result'] = 'ok';
@@ -404,11 +405,13 @@ class Wildberries extends Plugin {
 	public function getOrdersCount($create_from_ts) {
 		$count = false;
 	    if ($create_from_ts) {
-		    $api = $this->getApi();
-		    $filter = [
-			    'date_start' => date(Orders::DATE_FORMAT, $create_from_ts),
-		    ];
-		    $count = $api->getOrdersCount($filter);
+//		    $api = $this->getApi();
+//		    $filter = [
+//			    'date_start' => date(Orders::DATE_FORMAT, $create_from_ts),
+//		    ];
+//		    $count = $api->getOrdersCount($filter);
+            $list = $this->getOrdersIDsList($create_from_ts);
+		    $count = count($list);
 	    }
 		return $count;
 	}

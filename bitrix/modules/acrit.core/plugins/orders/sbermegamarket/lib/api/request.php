@@ -64,11 +64,12 @@ class Request {
 	/**
 	 *	Request wrapper
 	 */
-	public function request($method, $params=[]){
+	public function request($method, $params=[], $token=false){
+		$token = $token ? : $this->strAccessToken;
 		$data = [
 			"meta" => [],
 			"data" => [
-				"token" => $this->strAccessToken,
+				"token" => $token,
 			]
 		];
 		$data['data'] = array_merge($data['data'], $params);

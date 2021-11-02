@@ -50429,3 +50429,140 @@ RM97432;10582663;seo_yandex_
 RM97433;10582973;seo_yandex_
 RM97434;10464211;nomarker
 RM97435;10582250;nomarker
+RM97437;10583006;direct6_search_11199965856_lte камеры
+RM97438;10582493;seo_yandex_
+RM97439;10582909;google7_g_114081052941_495843364033_уличная wifi камера
+RM97440;nocookie;nomarker
+C6706;10515562;
+RM97442;10583635;site_m.vk.com_/
+RM97443;10583614;youtube_review_micro_sk901
+RM97444;10583369;yamarket8_21437237_adv290
+RM97445;10583782;direct6_context_11213986392_
+RM97446;10577083;yamarket8_21437237_adv9472
+RM97447;10582725;seo_google_
+RM97448;10583306;yamarket8_21437237_adv287
+RM97449;10584118;yamarket8_21437237_adv12519
+RM97450;10572740;yamarket8_21437237_adv8904
+RM97451;10583988;seo_yandex_
+RM97452;10529944;seo_yandex_
+RM97453;10497093;direct6_search_8935371881_русмарта видеонаблюдение интернет магазин
+RM97454;10583514;seo_yandex_
+RM97455;10584217;:utm:yandex_cpc_мк видеонаблюдение / 03.09 / авто=47$_11248852782_ahd камеры видеонаблюдения
+RM97456;10584615;seo_yandex_
+RM97457;10584143;nomarker
+RM97458;10585008;direct6_search_11181147071_беспроводные камеры видеонаблюдения уличные
+RM97459;10583669;direct6_search_8442349205_русмарта ру
+RM97460;10585084;direct6_search_11111842669_купить видеорегистратор для видеонаблюдения
+RM97461;10483556;google7_g_36701118406_501704060782_джсм сигнализация
+RM97462;10454653;site_carrotquest.io_/
+RM97463;10584684;seo_yandex_
+RM97464;10560888;direct6_context_11144052717_
+RM97465;10585620;yamarket8_21437237_adv767
+RM97466;10564809;merchant20_u_78353825186_online:ru:ru:14817
+RM97467;10585773;nomarker
+RM97468;10529944;seo_yandex_
+RM97469;10585970;site_away.vk.com_/
+RM97470;10585774;merchant20_u_78353825186_online:ru:ru:2383
+RM97471;10581919;direct6_context_11112042330_купить беспроводную камеру слежения
+RM97472;10586208;nomarker
+RM97473;10586152;direct6_search_9728957493_сигнализация каркам купить
+RM97474;10586483;google7_g_116851298625_496749463338_камеры видеонаблюдения для магазина
+RM97475;10586756;merchant20_u_78353825186_online:ru:ru:2418
+RM97476;10586742;seo_yandex_
+RM97477;10515774;direct6_search_8442349205_русмарта ру
+RM97478;10587100;:utm:yandex_cpc_65868026_11189915170_wi fi розетка с датчиком температуры
+RM97479;10585343;nomarker
+RM97480;10587000;yamarket8_21437237_adv3157
+RM97481;nocookie;nomarker
+RM97482;10569598;site_away.vk.com_/
+RM97483;nocookie;nomarker
+RM97484;10587221;merchant20_u_78353825186_online:ru:ru:9963
+RM97485;10441501;seo_google_
+RM97486;10588483;seo_yandex_
+RM97487;10588526;:utm:yandex_cpc_мк видеонаблюдение / 03.09 / авто=47$_11248852778_айпи видеонаблюдение
+RM97488;10588439;merchant20_u_78353825186_online:ru:ru:302
+RM97489;10588774;:utm:yandex_cpc_65844155_11186232355_---autotargeting
+RM97490;10588549;site_yandex.ru_/collections/bro/
+RM97491;10567127;direct6_context_11112042190_приобрести камеру видеонаблюдения
+RM97492;10567127;direct6_context_11112042190_приобрести камеру видеонаблюдения
+RM97493;10589437;direct6_context_11213978346_
+RM97494;10589381;direct6_context_11203431587_
+RM97495;10589437;direct6_context_11213978346_
+RM97496;10589717;nomarker
+RM97497;10579044;nomarker
+RM97498;nocookie;nomarker
+RM97499;10589879;site_away.vk.com_/
+C6707;;
+RM97500;nocookie;nomarker
+RM97501;10589437;direct6_context_11213978346_
+RM97502;10589437;direct6_context_11213978346_
+RM97503;10589437;direct6_context_11213978346_
+RM97504;10589437;direct6_context_11213978346_
+RM97505;nocookie;nomarker
+RM97506;10590748;direct6_context_11112043120_cctv camera купить
+RM97507;10590989;merchant20_u_78353825186_online:ru:ru:8904
+RM97508;10589437;direct6_context_11213978346_
+RM97509;10589437;direct6_context_11213978346_
+RM97510;10589437;direct6_context_11213978346_
+RM97512;10591724;direct6_search_11111841971_купить wi fi ip камеру
+RM97513;10591724;direct6_search_11111841971_купить wi fi ip камеру
+RM97514;10591724;direct6_search_11111841971_купить wi fi ip камеру
+RM97515;10550226;youtube_review_sa-p402a
+RM97516;10592596;yamarket8_21437237_adv287
+RM97517;10592571;seo_yandex_
+RM97518;10592656;seo_google_
+RM97519;10592672;direct6_search_11181147064_беспроводная видеокамера для видеонаблюдения
+RM97520;10592970;seo_google_
+RM97521;nocookie;nomarker
+RM97522;10584498;direct6_search_8442349205_русмарта ру
+RM97523;10538118;seo_yandex_
+RM97524;10593189;yamarket8_21437237_adv18368
+RM97525;10593197;seo_yandex_
+RM97526;10575283;nomarker
+RM97527;10587973;nomarker
+RM97528;10582725;seo_google_
+RM97529;10516011;:utm:yandex_cpc_65868026_11189915170_умная розетка с сим картой купить
+RM97530;10593618;seo_yandex_
+RM97531;10582725;seo_google_
+RM97532;10593802;google7_g_38558609460_407394831022_gsm сигнализация страж
+RM97533;10464211;nomarker
+RM97535;nocookie;nomarker
+RM97536;10593970;:utm:yandex_cpc_мк видеонаблюдение / 03.09 / авто=47$_11248852811_комплект видеонаблюдения
+RM97537;10582725;seo_google_
+RM97538;10594259;direct6_search_11181447242_видеонаблюдение для частного дома
+C6708;;
+RM97539;10454653;site_carrotquest.io_/
+RM97540;10592955;:utm:regmarkets_rusmarta_sale_model_besprovodnaya-okhrannaya-gsm-signalizatsiya-strazh-universal-dlya-doma-kvartiry-dachi-kottedzha-gara
+RM97541;10585889;:utm:yandex_cpc_65868026_11189915170_gsm розетка
+RM97542;10594624;direct6_search_11181147007_вай фай камера видеонаблюдения для улицы
+RM97543;10594604;nomarker
+RM97544;10464211;nomarker
+RM97545;10594936;:utm:yandex_cpc_65868026_11189915170_умная розетка купить в спб
+RM97546;10595032;nomarker
+RM97547;10595006;direct6_context_11213978346_
+RM97548;10594862;direct6_search_8935371881_русмарта видеонаблюдение интернет магазин
+RM97549;10595135;:utm:yandex_cpc_65866505_11262081244_система умный дом цена
+RM97550;nocookie;nomarker
+RM97551;10595135;:utm:yandex_cpc_65866505_11262081244_система умный дом цена
+RM97552;10595028;direct6_context_11213483842_
+RM97553;10595175;:utm:yandex_cpc_65841982_11249136992_сигнализация гараж
+RM97554;10510993;nomarker
+RM97556;10464211;nomarker
+RM97557;10529944;seo_yandex_
+RM97558;10587657;nomarker
+RM97559;10587657;nomarker
+RM97560;10595859;nomarker
+RM97561;10474648;nomarker
+RM97562;10595006;direct6_context_11213978346_
+RM97563;10595006;direct6_context_11213978346_
+RM97564;10596560;nomarker
+RM97565;10596651;direct6_search_11181447312_интернет видеонаблюдение
+RM97566;10596777;:utm:yandex_cpc_65844155_11186232355_ihome глазок
+RM97567;10596922;nomarker
+RM97568;10596758;merchant20_u_78353825186_online:ru:ru:344
+RM97569;10594192;nomarker
+RM97570;10596929;seo_yandex_
+RM97571;10595674;nomarker
+RM97572;10597122;direct6_context_11146816317_
+RM97573;10597145;direct6_search_9340492155_wifi розетка с датчиком температуры
+RM97574;10596984;merchant20_u_78353825186_online:ru:ru:306

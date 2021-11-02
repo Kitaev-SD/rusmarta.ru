@@ -786,24 +786,24 @@ $arContext = array(
 		'ICON' => 'btn_wizard',
 		'ONCLICK' => 'AcritExpPopupWizardQuickStart.Open();',
   ),
-  array(
-		'TEXT' => getMessage('ACRIT_EXP_TOOLBAR_HELP'),
-		'LINK' => $strModuleUnderscore.'_new_course.php?lang='.LANGUAGE_ID,
-		'ICON' => 'acrit-exp-button-teacher',
-		'MENU' => [
-			[
-				'TEXT' => getMessage('ACRIT_EXP_TOOLBAR_COURSES'),
-				'LINK' => $strModuleUnderscore.'_new_course.php?lang='.LANGUAGE_ID,
-			],
-			[
-				'SEPARATOR' => true,
-			],
-			[
-				'TEXT' => getMessage('ACRIT_EXP_TOOLBAR_COURSE'),
-				'ONCLICK' => 'window.open("https://sale.maed.ru/marketplace-manager/?utm_source=cpa_partner&utm_medium=offer&utm_campaign=marketplace_web_--acrit&utm_content=text_ad");',
-			],
-		],
-  ),
+  // array(
+	// 	'TEXT' => getMessage('ACRIT_EXP_TOOLBAR_HELP'),
+	// 	'LINK' => $strModuleUnderscore.'_new_course.php?lang='.LANGUAGE_ID,
+	// 	'ICON' => 'acrit-exp-button-teacher',
+	// 	'MENU' => [
+	// 		[
+	// 			'TEXT' => getMessage('ACRIT_EXP_TOOLBAR_COURSES'),
+	// 			'LINK' => $strModuleUnderscore.'_new_course.php?lang='.LANGUAGE_ID,
+	// 		],
+	// 		[
+	// 			'SEPARATOR' => true,
+	// 		],
+	// 		[
+	// 			'TEXT' => getMessage('ACRIT_EXP_TOOLBAR_COURSE'),
+	// 			'ONCLICK' => 'window.open("https://sale.maed.ru/marketplace-manager/?utm_source=cpa_partner&utm_medium=offer&utm_campaign=marketplace_web_--acrit&utm_content=text_ad");',
+	// 		],
+	// 	],
+  // ),
 );
 $lAdmin->AddAdminContextMenu($arContext);
 

@@ -225,6 +225,34 @@ class AvitoParts extends Avito {
           'DESCRIPTION' => static::getMessage('FIELD_BRAND_DESC'),
       ));
       $arResult[] = new Field(array(
+          'CODE' => 'ORIGINALITY',
+          'DISPLAY_CODE' => 'Originality',
+          'NAME' => static::getMessage('FIELD_ORIGINALITY_NAME'),
+          'SORT' => 1131,
+          'DESCRIPTION' => static::getMessage('FIELD_ORIGINALITY_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'ORIGINAL_OEM',
+          'DISPLAY_CODE' => 'OriginalOEM',
+          'NAME' => static::getMessage('FIELD_ORIGINAL_OEM_NAME'),
+          'SORT' => 1132,
+          'DESCRIPTION' => static::getMessage('FIELD_ORIGINAL_OEM_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'ORIGINAL_VENDOR',
+          'DISPLAY_CODE' => 'OriginalVendor',
+          'NAME' => static::getMessage('FIELD_ORIGINAL_VENDOR_NAME'),
+          'SORT' => 1133,
+          'DESCRIPTION' => static::getMessage('FIELD_ORIGINAL_VENDOR_DESC'),
+      ));
+      $arResult[] = new Field(array(
+          'CODE' => 'RESIDUAL_TREAD',
+          'DISPLAY_CODE' => 'ResidualTread',
+          'NAME' => static::getMessage('FIELD_RESIDUAL_TREAD_NAME'),
+          'SORT' => 1134,
+          'DESCRIPTION' => static::getMessage('FIELD_RESIDUAL_TREAD_DESC'),
+      ));
+      $arResult[] = new Field(array(
           'CODE' => 'AVAILABILITY',
           'DISPLAY_CODE' => 'Availability',
           'NAME' => static::getMessage('FIELD_AVAILABILITY_NAME'),
@@ -272,6 +300,8 @@ class AvitoParts extends Avito {
          $arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
       if (!Helper::isEmpty($arFields['CONTACT_PHONE']))
          $arXmlTags['ContactPhone'] = Xml::addTag($arFields['CONTACT_PHONE']);
+			if(!Helper::isEmpty($arFields['CONTACT_METHOD']))
+				$arXmlTags['ContactMethod'] = Xml::addTag($arFields['CONTACT_METHOD']);
       #
       if (!Helper::isEmpty($arFields['DESCRIPTION']))
          $arXmlTags['Description'] = Xml::addTag($arFields['DESCRIPTION']);
@@ -342,8 +372,16 @@ class AvitoParts extends Avito {
          $arXmlTags['SpeedIndex'] = Xml::addTag($arFields['SPEED_INDEX']);
       if (!Helper::isEmpty($arFields['LOAD_INDEX']))
          $arXmlTags['LoadIndex'] = Xml::addTag($arFields['LOAD_INDEX']);
+      if (!Helper::isEmpty($arFields['RESIDUAL_TREAD']))
+         $arXmlTags['ResidualTread'] = Xml::addTag($arFields['RESIDUAL_TREAD']);
       if (!Helper::isEmpty($arFields['BRAND']))
          $arXmlTags['Brand'] = Xml::addTag($arFields['BRAND']);
+      if (!Helper::isEmpty($arFields['ORIGINALITY']))
+         $arXmlTags['Originality'] = Xml::addTag($arFields['ORIGINALITY']);
+      if (!Helper::isEmpty($arFields['ORIGINAL_OEM']))
+         $arXmlTags['OriginalOEM'] = Xml::addTag($arFields['ORIGINAL_OEM']);
+      if (!Helper::isEmpty($arFields['ORIGINAL_VENDOR']))
+         $arXmlTags['OriginalVendor'] = Xml::addTag($arFields['ORIGINAL_VENDOR']);
       if (!Helper::isEmpty($arFields['AVAILABILITY']))
          $arXmlTags['Availability'] = Xml::addTag($arFields['AVAILABILITY']);
       # build XML

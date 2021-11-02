@@ -677,9 +677,10 @@ class Rozetka extends Plugin {
 	public function ajaxAction($strAction, $arParams, &$arJsonResult) {
 		switch ($strAction) {
 			case 'connection_check':
+				$token = $arParams['POST']['token'];
 				$message = '';
 				$api = $this->getApi();
-				$res = $api->checkConnection($message);
+				$res = $api->checkConnection($token, $message);
 				$arJsonResult['check'] = $res ? 'success' : 'fail';
 				$arJsonResult['message'] = $message;
 				$arJsonResult['result'] = 'ok';

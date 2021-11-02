@@ -65,15 +65,16 @@ class Request {
 	/**
 	 *	Execute http-request
 	 */
-	public function execute($strCommand, $arFields=null, $arParams=[]){
+	public function execute($strCommand, $arFields=null, $arParams=[], $token=false){
 		$bSkipErrors = false;
+		$token = $token ? : $this->strAccessToken;
 		if ($arParams['SKIP_ERRORS']) {
 			$bSkipErrors = true;
 			unset($arParams['SKIP_ERRORS']);
 		}
 		$arParams['HEADER'] = [
 			'Content-Type' => 'application/json',
-			'Authorization' => $this->strAccessToken,
+			'Authorization' => $token,
 		];
 		if (is_array($arFields)) {
 			$strCommand .= '?' . http_build_query($arFields);

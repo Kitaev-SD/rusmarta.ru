@@ -78,8 +78,8 @@ $MESS['ACRIT_EXP_TOOLBAR_BACKUP_CREATE'] = 'Скачать рез. копию выбранных профиле
 $MESS['ACRIT_EXP_TOOLBAR_BACKUP_RESTORE'] = 'Восстановить из рез. копии';
 $MESS['ACRIT_EXP_TOOLBAR_WIZARD_QUICK_START'] = 'Мастер создания профилей';
 $MESS['ACRIT_EXP_TOOLBAR_HELP'] = 'Обучение';
-$MESS['ACRIT_EXP_TOOLBAR_COURSES'] = 'Курсы обучения';
-$MESS['ACRIT_EXP_TOOLBAR_COURSE'] = 'Курс: Менеджер по маркетплейсам';
+// $MESS['ACRIT_EXP_TOOLBAR_COURSES'] = 'Курсы обучения';
+// $MESS['ACRIT_EXP_TOOLBAR_COURSE'] = 'Курс: Менеджер по маркетплейсам';
 
 // Group actions
 $MESS['ACRIT_EXP_GROUP_UNLOCK'] = 'снять блокировку';

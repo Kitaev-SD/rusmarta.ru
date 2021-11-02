@@ -22,7 +22,7 @@ $MESS['ACRIT_EXP_POPUP_CANCEL'] = 'Отменить';
 $MESS['ACRIT_EXP_POPUP_REFRESH'] = 'Обновить';
 
 // Context menu
-$MESS['ACRIT_EXP_MENU_LIST'] = 'Список профилей';
+$MESS['ACRIT_EXP_MENU_LIST'] = 'Вернуться';
 $MESS['ACRIT_EXP_MENU_CRON'] = 'Настроить автозапуск';
 $MESS['ACRIT_EXP_MENU_RUN'] = 'Запустить!';
 $MESS['ACRIT_EXP_MENU_ACTIONS'] = 'Действия';
@@ -32,9 +32,10 @@ $MESS['ACRIT_EXP_MENU_DELETE'] = 'Удалить текущий профиль';
 	$MESS['ACRIT_EXP_MENU_DELETE_CONFIRM'] = 'Вы уверены что хотите удалить текущий профиль?';
 $MESS['ACRIT_EXP_MENU_BACKUP'] = 'Скачать рез. копию профиля';
 $MESS['ACRIT_EXP_MENU_HELP'] = 'Обучение';
-$MESS['ACRIT_EXP_MENU_COURSES'] = 'Курсы обучения';
-$MESS['ACRIT_EXP_MENU_COURSE'] = 'Курс: Менеджер по маркетплейсам';
-$MESS['ACRIT_EXP_GET_FILE_URL'] = 'Ссылка на файл выгрузки';
+// $MESS['ACRIT_EXP_MENU_COURSES'] = 'Курсы обучения';
+// $MESS['ACRIT_EXP_MENU_COURSE'] = 'Курс: Менеджер по маркетплейсам';
+$MESS['ACRIT_EXP_MENU_EXPORT_PREVIEW'] = 'Предпросмотр';
+$MESS['ACRIT_EXP_MENU_GET_FILE_URL'] = 'Получить ссылку';
 
 // Tabs
 $MESS['ACRIT_EXP_TAB_GENERAL_NAME'] = 'Общие настройки';

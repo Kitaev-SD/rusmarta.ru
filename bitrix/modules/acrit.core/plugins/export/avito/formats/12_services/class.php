@@ -593,6 +593,138 @@ class AvitoServices extends Avito {
 			'PARAMS' => $arParamsCarMultiple,
 		));
 		#
+		$arResult[] = new Field(array(
+			'CODE' => 'TRANSPORTATION_TYPE',
+			'DISPLAY_CODE' => 'TransportationType',
+			'NAME' => static::getMessage('FIELD_TRANSPORTATION_TYPE_NAME'),
+			'SORT' => 1182,
+			'DESCRIPTION' => static::getMessage('FIELD_TRANSPORTATION_TYPE_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'DISTANCE',
+			'DISPLAY_CODE' => 'Distance',
+			'NAME' => static::getMessage('FIELD_DISTANCE_NAME'),
+			'SORT' => 1183,
+			'DESCRIPTION' => static::getMessage('FIELD_DISTANCE_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'CARGO_TRANSPORTATION_TYPE',
+			'DISPLAY_CODE' => 'CargoTransportationType',
+			'NAME' => static::getMessage('FIELD_CARGO_TRANSPORTATION_TYPE_NAME'),
+			'SORT' => 1184,
+			'DESCRIPTION' => static::getMessage('FIELD_CARGO_TRANSPORTATION_TYPE_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'CARGO_TYPE',
+			'DISPLAY_CODE' => 'CargoType',
+			'NAME' => static::getMessage('FIELD_CARGO_TYPE_NAME'),
+			'SORT' => 1185,
+			'DESCRIPTION' => static::getMessage('FIELD_CARGO_TYPE_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'URGENCY',
+			'DISPLAY_CODE' => 'Urgency',
+			'NAME' => static::getMessage('FIELD_URGENCY_NAME'),
+			'SORT' => 1186,
+			'DESCRIPTION' => static::getMessage('FIELD_URGENCY_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MOVERS_QUANTITY',
+			'DISPLAY_CODE' => 'MoversQuantity',
+			'NAME' => static::getMessage('FIELD_MOVERS_QUANTITY_NAME'),
+			'SORT' => 1187,
+			'DESCRIPTION' => static::getMessage('FIELD_MOVERS_QUANTITY_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'PASSENGERS_QUANTITY',
+			'DISPLAY_CODE' => 'PassengersQuantity',
+			'NAME' => static::getMessage('FIELD_PASSENGERS_QUANTITY_NAME'),
+			'SORT' => 1188,
+			'DESCRIPTION' => static::getMessage('FIELD_PASSENGERS_QUANTITY_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MOVE_TYPE',
+			'DISPLAY_CODE' => 'MoveType',
+			'NAME' => static::getMessage('FIELD_MOVE_TYPE_NAME'),
+			'SORT' => 1189,
+			'DESCRIPTION' => static::getMessage('FIELD_MOVE_TYPE_DESC'),
+			'MULTIPLE' => true,
+			'DEFAULT_VALUE' => array(
+				array(
+					'TYPE' => 'FIELD',
+					'PARAMS' => $arParamsCarMultiple,
+				),
+			),
+			'PARAMS' => $arParamsCarMultiple,
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'CARGO_HEIGHT',
+			'DISPLAY_CODE' => 'CargoHeight',
+			'NAME' => static::getMessage('FIELD_CARGO_HEIGHT_NAME'),
+			'SORT' => 1190,
+			'DESCRIPTION' => static::getMessage('FIELD_CARGO_HEIGHT_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'CARGO_LENGTH',
+			'DISPLAY_CODE' => 'CargoLength',
+			'NAME' => static::getMessage('FIELD_CARGO_LENGTH_NAME'),
+			'SORT' => 1191,
+			'DESCRIPTION' => static::getMessage('FIELD_CARGO_LENGTH_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'CARGO_WIDTH',
+			'DISPLAY_CODE' => 'CargoWidth',
+			'NAME' => static::getMessage('FIELD_CARGO_WIDTH_NAME'),
+			'SORT' => 1192,
+			'DESCRIPTION' => static::getMessage('FIELD_CARGO_WIDTH_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'TRANSPORT_BODY',
+			'DISPLAY_CODE' => 'TransportBody',
+			'NAME' => static::getMessage('FIELD_TRANSPORT_BODY_NAME'),
+			'SORT' => 1193,
+			'DESCRIPTION' => static::getMessage('FIELD_TRANSPORT_BODY_DESC'),
+		));
+		$arResult[] = new Field(array(
+			'CODE' => 'MINIMUM_ORDER_TIME',
+			'DISPLAY_CODE' => 'MinimumOrderTime',
+			'NAME' => static::getMessage('FIELD_MINIMUM_ORDER_TIME_NAME'),
+			'SORT' => 1194,
+			'DESCRIPTION' => static::getMessage('FIELD_MINIMUM_ORDER_TIME_DESC'),
+		));
+		#
 		$this->sortFields($arResult);
 		return $arResult;
 	}
@@ -627,6 +759,8 @@ class AvitoServices extends Avito {
 			$arXmlTags['ManagerName'] = Xml::addTag($arFields['MANAGER_NAME']);
 		if(!Helper::isEmpty($arFields['CONTACT_PHONE']))
 			$arXmlTags['ContactPhone'] = Xml::addTag($arFields['CONTACT_PHONE']);
+		if(!Helper::isEmpty($arFields['CONTACT_METHOD']))
+			$arXmlTags['ContactMethod'] = Xml::addTag($arFields['CONTACT_METHOD']);
 		#
 		if(!Helper::isEmpty($arFields['DESCRIPTION']))
 			$arXmlTags['Description'] = Xml::addTag($arFields['DESCRIPTION']);
@@ -751,7 +885,32 @@ class AvitoServices extends Avito {
 			$arXmlTags['GlassRepair'] = Xml::addTagWithSubtags($arFields['GLASS_REPAIR'], 'Option');
 		if(!Helper::isEmpty($arFields['WASH_AND_CARE']))
 			$arXmlTags['WashAndCare'] = Xml::addTagWithSubtags($arFields['WASH_AND_CARE'], 'Option');
-
+		if(!Helper::isEmpty($arFields['TRANSPORTATION_TYPE']))
+			$arXmlTags['TransportationType'] = Xml::addTag($arFields['TRANSPORTATION_TYPE']);
+		if(!Helper::isEmpty($arFields['DISTANCE']))
+			$arXmlTags['Distance'] = Xml::addTagWithSubtags($arFields['DISTANCE'], 'Option');
+		if(!Helper::isEmpty($arFields['CARGO_TRANSPORTATION_TYPE']))
+			$arXmlTags['CargoTransportationType'] = Xml::addTag($arFields['CARGO_TRANSPORTATION_TYPE']);
+		if(!Helper::isEmpty($arFields['CARGO_TYPE']))
+			$arXmlTags['CargoType'] = Xml::addTagWithSubtags($arFields['CARGO_TYPE'], 'Option');
+		if(!Helper::isEmpty($arFields['URGENCY']))
+			$arXmlTags['Urgency'] = Xml::addTagWithSubtags($arFields['URGENCY'], 'Option');
+		if(!Helper::isEmpty($arFields['MOVERS_QUANTITY']))
+			$arXmlTags['MoversQuantity'] = Xml::addTagWithSubtags($arFields['MOVERS_QUANTITY'], 'Option');
+		if(!Helper::isEmpty($arFields['PASSENGERS_QUANTITY']))
+			$arXmlTags['PassengersQuantity'] = Xml::addTag($arFields['PASSENGERS_QUANTITY']);
+		if(!Helper::isEmpty($arFields['MOVE_TYPE']))
+			$arXmlTags['MoveType'] = Xml::addTagWithSubtags($arFields['MOVE_TYPE'], 'Option');
+		if(!Helper::isEmpty($arFields['CARGO_HEIGHT']))
+			$arXmlTags['CargoHeight'] = Xml::addTag($arFields['CARGO_HEIGHT']);
+		if(!Helper::isEmpty($arFields['CARGO_LENGTH']))
+			$arXmlTags['CargoLength'] = Xml::addTag($arFields['CARGO_LENGTH']);
+		if(!Helper::isEmpty($arFields['CARGO_WIDTH']))
+			$arXmlTags['CargoWidth'] = Xml::addTag($arFields['CARGO_WIDTH']);
+		if(!Helper::isEmpty($arFields['TRANSPORT_BODY']))
+			$arXmlTags['TransportBody'] = Xml::addTag($arFields['TRANSPORT_BODY']);
+		if(!Helper::isEmpty($arFields['MINIMUM_ORDER_TIME']))
+			$arXmlTags['MinimumOrderTime'] = Xml::addTag($arFields['MINIMUM_ORDER_TIME']);
 
 		# build XML
 		$arXml = array(

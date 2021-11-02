@@ -23,11 +23,11 @@ $obTabControl->BeginCustomField('PROFILE[SYNC][man]', Loc::getMessage('ACRIT_CRM
 		</td>
 		<td>
             <select name="PROFILE[SYNC][man][period]" id="field_sync_man_period">
-                <option value=""<?=$arProfile['SYNC']['man']['period']==''?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_ALL');?></option>
-                <option value="3m"<?=$arProfile['SYNC']['man']['period']=='3m'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_3M');?></option>
-                <option value="1m"<?=$arProfile['SYNC']['man']['period']=='1m'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_1M');?></option>
-                <option value="1w"<?=$arProfile['SYNC']['man']['period']=='1w'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_1W');?></option>
-                <option value="1d"<?=$arProfile['SYNC']['man']['period']=='1d'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_1D');?></option>
+                <option value=""<?=$arProfile['SYNC']['man']['period']==''?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_TERM_ALL');?></option>
+                <option value="3m"<?=$arProfile['SYNC']['man']['period']=='3m'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_TERM_3M');?></option>
+                <option value="1m"<?=$arProfile['SYNC']['man']['period']=='1m'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_TERM_1M');?></option>
+                <option value="1w"<?=$arProfile['SYNC']['man']['period']=='1w'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_TERM_1W');?></option>
+                <option value="1d"<?=$arProfile['SYNC']['man']['period']=='1d'?' selected':'';?>><?=Loc::getMessage('ACRIT_CRM_TAB_SYNC_MAN_TERM_1D');?></option>
             </select>
             <p>
                 <input type="checkbox" name="PROFILE[SYNC][man][only_new]" value="y"<?=$arProfile['SYNC']['man']['only_new']=='y'?' checked':'';?> id="field_sync_man_only_new" />
@@ -59,11 +59,15 @@ $obTabControl->BeginCustomField('PROFILE[SYNC_MAN_RUN]', Loc::getMessage('ACRIT_
                     </div>
                 </div>
             </div>
+            <div class="mansync-result" id="man_sync_result">
+                <div class="mansync-result-all"><?=GetMessage("ACRIT_CRM_TAB_SYNC_MAN_ALL")?> <span>0</span></div>
+                <div class="mansync-result-done"><?=GetMessage("ACRIT_CRM_TAB_SYNC_MAN_DONE")?> <span>0</span></div>
+            </div>
             <?else:?>
             <a href="#" class="adm-btn adm-btn-save" id="man_sync_noprogress_start" style="margin-bottom: 4px;"><?=GetMessage("ACRIT_EXP_RUNNOW_START")?></a>
             <a href="#" class="adm-btn adm-btn-disabled" id="man_sync_stop" style="margin-bottom: 4px;"><?=GetMessage("ACRIT_EXP_RUNNOW_STOP")?></a><br /><br />
             <div class="acrit-crm-man-sync-result">
-                <div class="acrit-crm-man-sync-result-row" id="man_sync_result_count"><?=GetMessage("ACRIT_CRM_TAB_SYNC_MAN_COUNT")?> <span>0</span></div>
+                <div class="acrit-crm-man-sync-result-row" id="man_sync_result_count"><?=GetMessage("ACRIT_CRM_TAB_SYNC_MAN_DONE_2")?> <span>0</span></div>
             </div>
             <?endif;?>
 		</td>

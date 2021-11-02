@@ -45,15 +45,12 @@ if (!$cnt || $next_item < $cnt) {
 	$ext_orders_ids = $obPlugin->getOrdersIDsList($start_sync_ts);
 	$i = 0;
 	foreach($ext_orders_ids as $ext_order_id) {
+		// Skip processed items
 		if ($i < $next_item) {
 			$i++;
 			continue;
 		}
-		$exec_time = time() - $start_time;
-		if ($exec_time >= $step_time) {
-//			Helper::Log('(sync) break on '.$i);
-			break;
-		}
+		// Process the order
 		$ext_order = (array)$obPlugin->getOrder($ext_order_id);
 		if ($arProfile['SYNC']['man']['only_new']) {
 			$store_order_id = Controller::findOrder($ext_order);
@@ -78,6 +75,12 @@ if (!$cnt || $next_item < $cnt) {
 //				\Helper::Log('(sync) can\'t sync of order ' . $order_data['ID']);
 			}
 		}
+		// Check time limit
+		$exec_time = time() - $start_time;
+		if ($exec_time >= $step_time) {
+//			Helper::Log('(sync) break on '.$i);
+			break;
+		}
 	}
 }
 $next_item   = $i;
@@ -87,6 +90,7 @@ $arJsonResult['result'] = 'ok';
 $arJsonResult['next_item'] = (int)$next_item;
 $arJsonResult['errors'] = [];
 $arJsonResult['report'] = [
-	'all' => (int)$next_item,
+	'done' => (int)$next_item,
 ];
 $arJsonResult['sync_period_opt'] = $sync_period_opt;
+$arJsonResult['orders'] = $ext_orders_ids;

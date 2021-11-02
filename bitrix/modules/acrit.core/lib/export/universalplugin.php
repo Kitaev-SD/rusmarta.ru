@@ -226,7 +226,7 @@ abstract class UniversalPlugin extends Plugin{
 			$arEventArguments = array_merge(array($this), $arArguments);
 			foreach($arEventHandlers as $arEventHandler){
 				$mEventResult = ExecuteModuleEventEx($arEventHandler, $arEventArguments);
-				if(!$mResultSet){
+				if(!is_null($mEventResult) && !$mResultSet){
 					$mResult = $mEventResult;
 				}
 				$mResultSet = true;

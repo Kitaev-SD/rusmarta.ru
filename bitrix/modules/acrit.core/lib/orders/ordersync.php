@@ -1,4 +1,7 @@
 <?
+/**
+ * Orders data synchronization
+ */
 
 namespace Acrit\Core\Orders;
 
@@ -25,7 +28,7 @@ class OrderSync {
 	 * Run order synchronization
 	 */
 	public function runSync($order_id, $ext_order, $profile) {
-		$result = false;
+		$result = true;
 		$order_data = [];
 		// Update order
 		$order = false;
@@ -41,7 +44,7 @@ class OrderSync {
 			$currency_code = CurrencyManager::getBaseCurrency();
 			$pay_type = $profile['CONNECT_DATA']['pay_type'];
 			// Get buyer
-			$user_id = self::syncBuyer($ext_order, $profile);
+			$user_id = BuyerSync::runSync($ext_order, $profile);
 			// Create order
 			if ($user_id && $pay_type) {
 				$order = Order::create($site_id, $user_id);
@@ -63,6 +66,9 @@ class OrderSync {
 				Log::getInstance(Controller::$MODULE_ID)->add($e->getMessage() . ' [' . $e->getCode() . ']', false, true);
 			}
 			Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) order ' . $order_id . ' changed fields [status:' . $status_changed . ', props:' . $props_changed . ', params:' . $params_changed . ', other:' . $other_changed . ', products:' . $products_changed . ']', false, true);
+		}
+		else {
+			$result = false;
 		}
 		// Delivery
 		if ($new_order && $products_changed) {
@@ -86,12 +92,12 @@ class OrderSync {
 			if ($new_order || Settings::get('run_save_final_action') != 'disabled') {
 				$order->doFinalAction(true);
 			}
-			$result = $order->save();
-			if (!$result->isSuccess()) {
-				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order error: ' . print_r($result->getErrorMessages(), true), false, true);
+			$save_res = $order->save();
+			if (!$save_res->isSuccess()) {
+				$result = false;
+				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order error: ' . print_r($save_res->getErrorMessages(), true), false, true);
 			}
 			else {
-				$result = true;
 				$order_id = $order->getId();
 				Log::getInstance(Controller::$MODULE_ID)->add('(OrderSync::runSync) save order '.$order->getId().' success', false, true);
 			}
@@ -131,7 +137,8 @@ class OrderSync {
 		}
 		if ($new_e_stage && !empty($cancel_table)) {
 			if (in_array($new_e_stage, $cancel_table) && $order_data['IS_CANCELED'] != 'Y') {
-				$order->setField('CANCELED', 'Y');
+//				$order->setField('CANCELED', 'Y');
+				\CSaleOrder::CancelOrder($order_data['ID'], 'Y');
 //				if (Settings::get('cancel_pays_by_cancel_order')) {
 					$payments = $order->getPaymentCollection();
 					foreach ($payments as $payment) {
@@ -142,7 +149,8 @@ class OrderSync {
 				$has_changes = true;
 			}
 			elseif (!in_array($new_e_stage, $cancel_table) && $order_data['IS_CANCELED'] == 'Y') {
-				$order->setField('CANCELED', 'N');
+//				$order->setField('CANCELED', 'N');
+				\CSaleOrder::CancelOrder($order_data['ID'], 'N');
 				$has_changes = true;
 			}
 		}
@@ -236,113 +244,6 @@ class OrderSync {
 		}
 		return $has_changes;
 	}
-
-
-	/**
-	 * Update order contact
-	 */
-
-	public static function syncBuyer(array $ext_order, $profile) {
-		$user_id = false;
-		// User data
-		$user_fields = self::getBuyerFields($ext_order, $profile);
-		// Search user
-		if (!empty($user_fields)) {
-			$user_id = self::findBuyer($user_fields);
-		}
-		// Create user
-		if (!$user_id) {
-			$user_id = self::createBuyer($user_fields, $profile);
-		}
-		// Default buyer
-		if (!$user_id) {
-			$user_id = $profile['CONNECT_DATA']['buyer'];
-		}
-		return $user_id;
-	}
-
-
-	/**
-	 * Get fields for search or generate buyer
-	 */
-
-	public static function getBuyerFields(array $ext_order, $profile) {
-		$buyer_fields = [];
-		$user_fields = $ext_order['FIELDS'];
-		$comp_table = (array)$profile['CONTACTS']['table_compare'];
-		foreach ($comp_table as $order_f_id => $ext_f_id) {
-			// User fields
-			if ($ext_f_id) {
-				$value = $user_fields[$ext_f_id]['VALUE'][0];
-				if ($value) {
-					$buyer_fields[$order_f_id] = $value;
-				} else {
-					$buyer_fields[$order_f_id] = '';
-				}
-			}
-		}
-		// Default values
-		$buyer_fields['EMAIL'] = $buyer_fields['EMAIL'] ? : $profile['CONTACTS']['email_def'];
-		$email = $buyer_fields['EMAIL'];
-		if (!empty($buyer_fields) && $email) {
-			if ( ! $buyer_fields['LOGIN']) {
-				$buyer_fields['LOGIN'] = $email;
-			}
-		}
-		return $buyer_fields;
-	}
-
-
-	/**
-	 * Try to find a buyer by login or email
-	 */
-
-	public static function findBuyer(array $fields) {
-		$user_id = false;
-		if ($fields['LOGIN']) {
-			$db_user = \Bitrix\Main\UserTable::getList(array(
-				'select' => ['ID'],
-				'filter' => ['LOGIN' => $fields['LOGIN']]
-			));
-			if ($user_data = $db_user->fetch()) {
-				$user_id = $user_data['ID'];
-			}
-		}
-		if (!$user_id && $fields['EMAIL']) {
-			$db_user = \Bitrix\Main\UserTable::getList(array(
-				'select' => ['ID'],
-				'filter' => ['EMAIL' => $fields['EMAIL']]
-			));
-			if ($user_data = $db_user->fetch()) {
-				$user_id = $user_data['ID'];
-			}
-		}
-		return $user_id;
-	}
-
-
-	/**
-	 * Create new buyer
-	 */
-
-	public static function createBuyer(array $fields, array $profile) {
-		$user_id = false;
-		$fields['EMAIL'] = $fields['EMAIL'] ? : $profile['CONTACTS']['email_def'];
-		$email = $fields['EMAIL'];
-		if (!empty($fields) && $email) {
-			if (!$fields['LOGIN']) {
-				$fields['LOGIN'] = $email;
-			}
-			$fields['PASSWORD'] = md5($email . rand(1000, 9999));
-			$user = new \CUser;
-			$user_id = $user->Add($fields);
-			if (!intval($user_id)) {
-				Log::getInstance(Controller::$MODULE_ID)->add('(createBuyer) error ' . $user->LAST_ERROR, false, true);
-			}
-		}
-		return $user_id;
-	}
-
 
 	/**
 	 * Update order products

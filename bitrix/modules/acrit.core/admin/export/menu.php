@@ -53,11 +53,11 @@ if($APPLICATION->GetGroupRight($strModuleId) != 'D'){
 		'url' => $strModuleCode.'_crm_list.php?lang='.LANGUAGE_ID,
 		'more_url' => array($strModuleCode.'_crm_list.php', $strModuleCode.'_crm_edit.php'),
 	);
-	$arSubmenu[] = array(
-		'text' => Loc::getMessage('ACRIT_EXP_MENU_NEW_COURSE'),
-		'url' => $strModuleCode.'_new_course.php?lang='.LANGUAGE_ID,
-		'more_url' => array($strModuleCode.'_new_course.php'),
-	);
+	// $arSubmenu[] = array(
+	// 	'text' => Loc::getMessage('ACRIT_EXP_MENU_NEW_COURSE'),
+	// 	'url' => $strModuleCode.'_new_course.php?lang='.LANGUAGE_ID,
+	// 	'more_url' => array($strModuleCode.'_new_course.php'),
+	// );
 	$arSubmenu[] = array(
 		'text' => Loc::getMessage('ACRIT_EXP_MENU_NEW_SUPPORT'),
 		'url' => $strModuleCode.'_new_support.php?lang='.LANGUAGE_ID,

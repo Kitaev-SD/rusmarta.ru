@@ -24,7 +24,7 @@ use
 
 class WildberriesV2 extends UniversalPlugin {
 	
-	const DATE_UPDATED = '2021-04-09';
+	const DATE_UPDATED = '2021-10-09';
 	const ATTRIBUTE_ID = 'attribute_%s';
 
 	const ADDIN_TYPE_CARD = 'C';
@@ -72,10 +72,16 @@ class WildberriesV2 extends UniversalPlugin {
 		# Add common attributes
 		$arResult['HEADER_GENERAL'] = [];
 		$arResult['object'] = ['CONST' => '', 'REQUIRED' => true];
-		if(!$bOffer || $this->isOffersNewMode()){
+		if(!$bOffer || $this->isOffersNewMode() == 'Y'){
 			$arResult['vendorCode'] = ['FIELD' => 'PROPERTY_ARTNUMBER', 'REQUIRED' => true];
 			$arResult['countryProduction'] = ['FIELD' => $bOffer ? 'PARENT.PROPERTY_COUNTRY' : 'PROPERTY_COUNTRY', 
 				'REQUIRED' => true, 'ALLOWED_VALUES_CUSTOM' => true];
+		}
+		elseif($this->isOffersNewMode() == 'X'){
+			$arResult['vendorCode'] = ['FIELD' => 'PROPERTY_ARTNUMBER', 'REQUIRED' => true];
+			if(!$bOffer){
+				$arResult['countryProduction'] = ['FIELD' => 'PROPERTY_COUNTRY', 'REQUIRED' => true, 'ALLOWED_VALUES_CUSTOM' => true];
+			}
 		}
 		$arResult['barcode'] = ['FIELD' => 'CATALOG_BARCODE'];
 		if($this->arParams['EXPORT_STOCKS'] == 'Y'){
@@ -127,17 +133,21 @@ class WildberriesV2 extends UniversalPlugin {
 	}
 
 	/**
-	 *	Is it need to offers preprocess? (see plugin 'sorokonogka')
+	 *	Is it need to offers preprocess?
 	 */
 	public function isOffersPreprocess(){
-		return !$this->isOffersNewMode();
+		$bPreprocess = !$this->isOffersNewMode() || $this->isOffersNewMode() == 'X';
+		return $bPreprocess;
 	}
 	
 	/**
 	 *	Check plugin use new mode for offers (each offer as a product)
 	 */
 	public function isOffersNewMode(){
-		return $this->arParams['OFFERS_NEW_MODE'] == 'Y';
+		if(!in_array($this->arParams['OFFERS_NEW_MODE'], ['Y', 'X'])){
+			return false;
+		}
+		return $this->arParams['OFFERS_NEW_MODE'];
 	}
 
 	/**
@@ -195,9 +205,6 @@ class WildberriesV2 extends UniversalPlugin {
 			if($bOffer && !$this->isOffersNewMode()){
 				$arFilter['TYPE'] = static::ADDIN_TYPE_VARIATION;
 			}
-			// else{
-			// 	$arFilter['TYPE'] = [static::ADDIN_TYPE_CARD, static::ADDIN_TYPE_NOMENCLATURE];
-			// }
 			$resAttributes = Attribute::getList([
 				'order' => $arSort,
 				'filter' => $arFilter,
@@ -210,11 +217,8 @@ class WildberriesV2 extends UniversalPlugin {
 				if($arAttribute['USE_ONLY_DICTIONARY_VALUES'] == 'Y'){
 					$arAttribute['NAME_SUFFIX'] .= static::getMessage('REF');
 				}
-				// if($arAttribute['TYPE'] == static::ADDIN_TYPE_NOMENCLATURE){
-				// 	$arAttribute['NAME_SUFFIX'] .= static::getMessage('FIELD_FOR_NOMENCLATURE');
-				// }
 				if($arAttribute['TYPE'] == static::ADDIN_TYPE_VARIATION){
-					if(!$bOffer || $bOffer && $this->isOffersNewMode()){
+					if(!$bOffer || $bOffer && $this->isOffersNewMode() == 'Y'){
 						$arAttribute['CUSTOM_REQUIRED'] = $arAttribute['IS_REQUIRED'] == 'Y' ? 'Y' : 'N';
 						$arAttribute['IS_REQUIRED'] = 'N';
 						$arAttribute['NAME'] .= static::getMessage('FOR_VARIATION');
@@ -856,8 +860,11 @@ class WildberriesV2 extends UniversalPlugin {
 		# Process attributes
 		$this->processItemAttributes($arResult, $arElement, $arDataMore, $strCategoryName, $bOffer);
 		# Process nomenclature
-		if($this->isOffersNewMode()){
-			$this->processNomenclature_NewMode($arResult, $bOffer);
+		if($this->isOffersNewMode() == 'Y'){
+			$this->processNomenclature_NewMode_Y($arResult, $bOffer);
+		}
+		elseif($this->isOffersNewMode() == 'X'){
+			$this->processNomenclature_NewMode_X($arResult, $bOffer);
 		}
 		else{
 			$this->processNomenclature_Default($arResult, $bOffer);
@@ -876,7 +883,7 @@ class WildberriesV2 extends UniversalPlugin {
 	 * Move all fields stock_*** to $arMoreData
 	 */
 	protected function moveStocksFromJsonToMoreData(&$arItem, &$arDataMore, $bOffer){
-		if(!$bOffer || $this->isOffersNewMode()){
+		if(!$bOffer || $this->isOffersNewMode() == 'Y'){
 			# Move stocks from card to variations, stocks are available only in variations
 			foreach($arItem as $key => $value){
 				if(preg_match('#^stock_(\d+)$#', $key, $arMatch)){
@@ -1084,7 +1091,7 @@ class WildberriesV2 extends UniversalPlugin {
 					if($arAttribute['TYPE'] == static::ADDIN_TYPE_NOMENCLATURE){
 						$arAddinNomenklature[] = $arAddinItem;
 					}
-					elseif($arAttribute['TYPE'] == static::ADDIN_TYPE_VARIATION && (!$bOffer || $this->isOffersNewMode())){
+					elseif($arAttribute['TYPE'] == static::ADDIN_TYPE_VARIATION && (!$bOffer || $this->isOffersNewMode() == 'Y')){
 						$arAddinVariantions[] = $arAddinItem;
 					}
 					else{
@@ -1103,7 +1110,7 @@ class WildberriesV2 extends UniversalPlugin {
 			unset($arItem['object']);
 		}
 		# If product export in variations too
-		if($this->bOriginalProcessElement && !$bOffer || $this->isOffersNewMode()){
+		if($this->bOriginalProcessElement && !$bOffer || $this->isOffersNewMode() == 'Y'){
 			$arVariation = [];
 			if($arItem['barcode']){
 				$arVariation['barcode'] = $arItem['barcode'];
@@ -1174,7 +1181,7 @@ class WildberriesV2 extends UniversalPlugin {
 		}
 	}
 
-	protected function processNomenclature_NewMode(array &$arItem, $bOffer=false){
+	protected function processNomenclature_NewMode_Y(array &$arItem, $bOffer=false){
 		# Init nomenclature
 		$arNomenclature = [];
 		$arCopyFromItem = ['vendorCode'];
@@ -1201,6 +1208,46 @@ class WildberriesV2 extends UniversalPlugin {
 		# Remove trash
 		unset($arItem['vendorCode']);
 		unset($arItem['barcode']);
+	}
+
+	protected function processNomenclature_NewMode_X(array &$arItem, $bOffer=false){
+		if($bOffer){
+			$arNomenclature = [];
+			$arVariation = $arItem;
+			unset($arVariation['_id'], $arVariation['object']);
+			if(array_key_exists('vendorCode', $arVariation)){
+				$arNomenclature['vendorCode'] = $arVariation['vendorCode'];
+				unset($arVariation['vendorCode']);
+			}
+			#
+			if(is_array($arVariation[static::TMP_NOMENCLATURE_ADDIN])){
+				$arNomenclature['addin'] = $arVariation[static::TMP_NOMENCLATURE_ADDIN];
+				unset($arVariation[static::TMP_NOMENCLATURE_ADDIN]);
+			}
+			#
+			$arNomenclature['variations'] = [$arVariation];
+			#
+			$arItem = $arNomenclature;
+		}
+		else{
+			if(is_array($arItem[static::TMP_NOMENCLATURE_ADDIN])){
+				unset($arItem[static::TMP_NOMENCLATURE_ADDIN]);
+			}
+			#
+			$arOffers = [];
+			if(array_key_exists('_OFFER_PREPROCESS', $arItem)){
+				if(!empty($arItem['_OFFER_PREPROCESS'])){
+					foreach($arItem['_OFFER_PREPROCESS'] as $arOffer){
+						try{
+							$arOffers[] = Json::decode($arOffer['DATA']);
+						}
+						catch(\Exception $obError){}
+					}
+				}
+				$arItem['nomenclatures'] = $arOffers;
+				unset($arItem['_OFFER_PREPROCESS']);
+			}
+		}
 	}
 	
 	/**
@@ -1635,7 +1682,7 @@ class WildberriesV2 extends UniversalPlugin {
 			$arResult = array_merge(['supplierVendorCode' => $supplierVendorCode], $arResult);
 		}
 		# Prepare, actualize data from server
-		if(!$bOffer || $this->isOffersNewMode()){
+		if(!$bOffer || $this->isOffersNewMode() == 'Y'){
 			$this->getCardBySupplierVendorCode($arResult['supplierVendorCode'], $arElement['ID']);
 		}
 		# Load externals id by values
@@ -1648,7 +1695,7 @@ class WildberriesV2 extends UniversalPlugin {
 			$externalData = $arExistExternalId['EXTERNAL_DATA'];
 			$externalData = strlen($externalData) ? Json::decode($externalData) : [];
 			# New offers mode
-			if($this->isOffersNewMode()){
+			if($this->isOffersNewMode() == 'Y'){
 				if($externalData['imtId'] > 0){
 					$arResult = array_merge([
 						'id' => $externalData['id'],

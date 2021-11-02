@@ -16,7 +16,7 @@ class Orders extends Request {
 	/**
 	 * Check connection
 	 */
-	public function checkConnection(&$message) {
+	public function checkConnection($token, &$message) {
 		$result = false;
 		$res = $this->execute('/api/v2/orders', [
 			'date_start' => date(self::DATE_FORMAT, strtotime('2020-01-01 10:00:00')),
@@ -24,13 +24,18 @@ class Orders extends Request {
 			'skip' => 0,
 		], [
 			'METHOD' => 'GET'
-		]);
-		if ($res['error']) {
-			$message = Loc::getMessage('ACRIT_CRM_PLUGIN_WB_CHECK_ERROR') . $res['errorText'] . ' [' . $res['error'] . ']';
-		}
-		elseif (isset($res['orders'])) {
+		], $token);
+		if (isset($res['orders'])) {
 			$message = Loc::getMessage('ACRIT_CRM_PLUGIN_WB_CHECK_SUCCESS');
 			$result = true;
+		}
+		else {
+			if (isset($res['error'])) {
+				$message = Loc::getMessage('ACRIT_CRM_PLUGIN_WB_CHECK_ERROR') . $res['errorText'] . ' [' . $res['error'] . ']';
+			}
+			else {
+				$message = Loc::getMessage('ACRIT_CRM_PLUGIN_WB_CHECK_ERROR') . $res;
+			}
 		}
 		return $result;
 	}

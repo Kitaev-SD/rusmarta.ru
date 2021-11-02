@@ -80,7 +80,7 @@ class ValueSimple extends ValueBase {
 										<tr>
 											<td>
 												<div class="acrit-exp-field-value-input">
-													<input type="text" class="acrit-exp-input-value-title" name="<?=static::INPUTNAME_DEFAULT;?>[<?=$this->intIBlockID;?>][<?=$this->strFieldCode;?>][title][<?=$this->strValueSuffix;?>][]" value="<?=(isset($arValue['TITLE'])?$arValue['TITLE']:'');?>" data-role="field-simple--value-title" readonly="readonly" placeholder="<?=static::getMessage('TYPE_FIELD_PLACEHOLDER');?>" />
+													<input type="text" class="acrit-exp-input-value-title" name="<?=static::INPUTNAME_DEFAULT;?>[<?=$this->intIBlockID;?>][<?=$this->strFieldCode;?>][title][<?=$this->strValueSuffix;?>][]" value="<?=(isset($arValue['TITLE'])?htmlspecialcharsbx($arValue['TITLE']):'');?>" data-role="field-simple--value-title" readonly="readonly" placeholder="<?=static::getMessage('TYPE_FIELD_PLACEHOLDER');?>" />
 													<a href="#" class="acrit-exp-button-value-clear" data-role="field-simple--value-clear">&times;</a>
 												</div>
 											</td>

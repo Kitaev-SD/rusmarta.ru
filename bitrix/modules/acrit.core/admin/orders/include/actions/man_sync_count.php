@@ -28,7 +28,6 @@ if ($start_date_ts) {
 }
 $cnt = $obPlugin->getOrdersCount($start_sync_ts);
 // Result
-$count = 0;
 $arJsonResult['result'] = 'ok';
 $arJsonResult['count'] = (int)$cnt;
 $arJsonResult['errors'] = [];

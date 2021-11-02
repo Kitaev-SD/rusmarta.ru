@@ -22,7 +22,7 @@ Loc::loadMessages(__FILE__);
 
 class Avito extends Plugin {
 
-	CONST DATE_UPDATED = '2021-03-05';
+	CONST DATE_UPDATED = '2021-10-277';
 	CONST CATEGORIES_PARSE_URL = 'https://www.avito.ru/map';
 	CONST CATEGORIES_PARSE_NODE = '';
 	CONST CATEGORIES_FILENAME = 'categories.txt';
@@ -328,6 +328,19 @@ class Avito extends Plugin {
 							array(
 									'TYPE' => 'CONST',
 									'CONST' => '',
+							),
+					),
+			));
+			$arResult[] = new Field(array(
+					'CODE' => 'CONTACT_METHOD',
+					'DISPLAY_CODE' => 'ContactMethod',
+					'NAME' => static::getMessage('FIELD_CONTACT_METHOD_NAME'),
+					'SORT' => 221,
+					'DESCRIPTION' => static::getMessage('FIELD_CONTACT_METHOD_DESC'),
+					'DEFAULT_VALUE' => array(
+							array(
+									'TYPE' => 'CONST',
+									'CONST' => static::getMessage('FIELD_CONTACT_METHOD_DEFAULT'),
 							),
 					),
 			));

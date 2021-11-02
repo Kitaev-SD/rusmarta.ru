@@ -284,6 +284,7 @@ class AliExpress extends Plugin {
 		switch ($strAction) {
 			case 'connection_check':
 			    $token = $arParams['POST']['token'];
+				$message = '';
 				$res = $this->checkConnection($token, $message);
 				$arJsonResult['check'] = $res ? 'success' : 'fail';
 				$arJsonResult['message'] = $message;

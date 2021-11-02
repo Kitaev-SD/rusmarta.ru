@@ -331,19 +331,19 @@ if(count($vendorIds) > 0) {
 	
 }
 
-    //prefixes
-	if ($arResult['NAV_RESULT']->PAGEN == 1) {
-        $section_list = CIblockSection::GetList(Array(),Array("ID" => $arResult['ID'], "IBLOCK_ID" => $arParams['IBLOCK_ID']), false, Array("ID", "IBLOCK_ID","UF_PREFIXES"));
-        if ($section = $section_list->GetNext()) {
-            $arResult['prefixes'] = explode("\n",$section["UF_PREFIXES"]);
-        }
+//prefixes
+if ($arResult['NAV_RESULT']->PAGEN == 1) {
+    $section_list = CIblockSection::GetList(Array(),Array("ID" => $arResult['ID'], "IBLOCK_ID" => $arParams['IBLOCK_ID']), false, Array("ID", "IBLOCK_ID","UF_PREFIXES"));
+    if ($section = $section_list->GetNext()) {
+        $arResult['prefixes'] = explode("\n",$section["UF_PREFIXES"]);
     }
-	foreach($arResult["ITEMS"] as $key => &$arElement) {
-        if (isset($arResult['prefixes'][$key]) && $arResult['prefixes'][$key]!=''){
-            if ($arElement['PROPERTIES']['BRAND']['VALUE'] != '')
-                $arElement['NAME'] = $arResult['prefixes'][$key].' '.$arElement['PROPERTIES']['BRAND']['VALUE'];
-            else
-                $arElement['NAME'] = $arResult['prefixes'][$key].' '.ucfirst($arElement['NAME']);
-        }
+}
+foreach($arResult["ITEMS"] as $key => &$arElement) {
+    if (isset($arResult['prefixes'][$key]) && $arResult['prefixes'][$key]!=''){
+        if ($arElement['PROPERTIES']['BRAND']['VALUE'] != '')
+            $arElement['NAME'] = $arResult['prefixes'][$key].' '.$arElement['PROPERTIES']['BRAND']['VALUE'];
+        else
+            $arElement['NAME'] = $arResult['prefixes'][$key].' '.ucfirst($arElement['NAME']);
     }
+}
 ?>

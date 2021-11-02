@@ -7,12 +7,17 @@ use
 ?>
 
 <div>
-	<input type="hidden" name="PROFILE[PARAMS][OFFERS_NEW_MODE]" value="N" />
-	<label>
-		<input type="checkbox" name="PROFILE[PARAMS][OFFERS_NEW_MODE]" value="Y"
-			<?if($this->arParams['OFFERS_NEW_MODE'] == 'Y'):?> checked="Y"<?endif?>
-			data-role="acrit_exp_wildberries_offers_new_mode" />
-		<span><?=static::getMessage('OFFERS_NEW_MODE_CHECKBOX');?></span>
-		<?=Helper::showHint(static::getMessage('OFFERS_NEW_MODE_HINT'));?>
-	</label>
+	<?
+	$arOffersMode = [
+		'N' => static::getMessage('OFFERS_NEW_MODE_GENERAL'),
+		'Y' => static::getMessage('OFFERS_NEW_MODE_PRODUCT'),
+		'X' => static::getMessage('OFFERS_NEW_MODE_NOMENCLATURE'),
+	];
+	$arOffersMode = array(
+		'REFERENCE' => array_values($arOffersMode),
+		'REFERENCE_ID' => array_keys($arOffersMode),
+	);
+	print SelectBoxFromArray('PROFILE[PARAMS][OFFERS_NEW_MODE]', $arOffersMode,
+		$this->arProfile['PARAMS']['OFFERS_NEW_MODE'], '', 'id="acrit_exp_plugin_new_offers_mode"');
+	?>
 </div>

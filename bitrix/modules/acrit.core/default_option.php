@@ -12,7 +12,7 @@ $acrit_core_default_option = array(
 	'log_debug' => 'N',
 	'log_max_size' => '10',
 	#
-	'check_updates' => 'Y',
+	'check_updates' => 'N',
 	'check_updates_regular' => 'Y',
 	'updates_timeout' => '5',
 	#

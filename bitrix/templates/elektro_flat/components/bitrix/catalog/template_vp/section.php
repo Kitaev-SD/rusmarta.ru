@@ -312,6 +312,7 @@ if($_REQUEST["view"] == "price") {
 </div>
 <div class="clr"></div>
 
+<? echo "<pre style='display:none' 111111111111111111111111>";var_dump($view);echo "</pre>"; ?>
 <?//SECTION//?>
 <?$intSectionID = $APPLICATION->IncludeComponent("argit:catalog.section", $view,
 	array(
@@ -847,10 +848,29 @@ endif;
 		$arElms[] = $arElm['ID'];
 	}
 	$rsPrices = CPrice::GetList(array("PRICE"=>"ASC"),array('PRODUCT_ID' => $arElms),array('CATALOG_GROUP_ID' => 1))->Fetch();
-	$price = CCatalogProduct::GetOptimalPrice($rsPrices['PRODUCT_ID'], 1, $USER->GetUserGroupArray(), 'N');
+	$min_price = CCatalogProduct::GetOptimalPrice($rsPrices['PRODUCT_ID'], 1, $USER->GetUserGroupArray(), 'N');
+	$rsPrices = CPrice::GetList(array("PRICE"=>"DESC"),array('PRODUCT_ID' => $arElms),array('CATALOG_GROUP_ID' => 1))->Fetch();
+	$max_price = CCatalogProduct::GetOptimalPrice($rsPrices['PRODUCT_ID'], 1, $USER->GetUserGroupArray(), 'N');
 
-	$APPLICATION->SetPageProperty("title",str_replace('{#min_price}', (!empty($price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("title")));
-	$APPLICATION->SetPageProperty("description", str_replace('{#min_price}', (!empty($price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("description")));
-	$APPLICATION->SetPageProperty("keywords", str_replace('{#min_price}', (!empty($price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("keywords")));
-	echo "<pre style='display:none' 111111111111111111111111>";var_dump($APPLICATION->GetPageProperty("title")); var_dump($APPLICATION->GetPageProperty("description"));echo "</pre>";
+	$APPLICATION->SetPageProperty("title",str_replace('{#min_price}', (!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("title")));
+	$APPLICATION->SetPageProperty("description", str_replace('{#min_price}', (!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("description")));
+	$APPLICATION->SetPageProperty("keywords", str_replace('{#min_price}', (!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("keywords")));
 //endif;?>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Product",
+		"image": "https://rusmarta.ru<?=(is_array($arCurSection["PICTURE"]) ? $arCurSection['PICTURE']['SRC'] : SITE_TEMPLATE_PATH.'/images/no-photo.jpg')?>",
+		"name": "<?=$arCurSection['NAME'];?>",
+		"description": "<?=$APPLICATION->GetPageProperty("description");?>",
+		"offers": [
+			{
+				"@type": "AggregateOffer",
+			    "highPrice": "<?=(!empty($max_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$max_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$max_price["RESULT_PRICE"]["BASE_PRICE"])?>",
+			    "lowPrice": "<?=(!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"])?>",
+			    "offerCount": "<?=count($arElms)?>",
+			    "priceCurrency ": "RUB"
+			}
+		]
+	}
+</script>

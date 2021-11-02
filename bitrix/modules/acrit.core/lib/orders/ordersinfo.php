@@ -1,4 +1,7 @@
 <?
+/**
+ * Info for a profile fields
+ */
 
 namespace Acrit\Core\Orders;
 

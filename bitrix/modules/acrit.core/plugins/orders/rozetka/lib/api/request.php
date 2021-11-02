@@ -77,9 +77,9 @@ class Request {
 	/**
 	 *	Execute http-request
 	 */
-	public function execute($strCommand, $arJson=null, $arParams=[]){
-		$result = $this->request($strCommand, $arJson, $arParams);
-		if ($result['errors']['message'] == 'incorrect_access_token' || $result['errors']['message'] == 'invalid_credentials') {
+	public function execute($strCommand, $arJson=null, $arParams=[], $token=false){
+		$result = $this->request($strCommand, $arJson, $arParams, $token);
+		if (!$token && ($result['errors']['message'] == 'incorrect_access_token' || $result['errors']['message'] == 'invalid_credentials')) {
 			// Get new token
 			$res = $this->getToken();
 			if ($res['success'] && $res['content']['access_token']) {
@@ -87,17 +87,18 @@ class Request {
 				$this->strAccessToken = $res['content']['access_token'];
 				$this->obPlugin->setOption('access_token', $this->strAccessToken);
 				// Repeat the request
-				$result = $this->request($strCommand, $arJson, $arParams);
+				$result = $this->request($strCommand, $arJson, $arParams, $token);
 			}
 		}
 		return $result;
 	}
-	public function request($strCommand, $arJson=null, array $arUrlParams=[]){
+	public function request($strCommand, $arJson=null, array $arUrlParams=[], $token=false){
 		$strUri = static::URL;
+		$token = $token ? : $this->strAccessToken;
 		$bSkipErrors = false;
 		$strUri .= $strCommand;
 		$arParams['HEADER'] = [
-			'Authorization' => 'Bearer ' . $this->strAccessToken,
+			'Authorization' => 'Bearer ' . $token,
 			'Content-Type' => 'application/json',
 			'Content-Language' => $this->strClientLang,
 		];

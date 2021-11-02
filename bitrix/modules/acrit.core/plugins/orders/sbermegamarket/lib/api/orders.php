@@ -16,12 +16,12 @@ class Orders extends Request {
 	/**
 	 * Check connection
 	 */
-	public function checkConnection(&$message) {
+	public function checkConnection($token, &$message) {
 		$result = false;
 		$res = $this->request('/order/search', [
 //			'dateFrom' => date(self::DATE_FORMAT, strtotime('today')),
 			'count' => 1,
-		]);
+		], $token);
 		if (!$res['success']) {
 			$message = Loc::getMessage('ACRIT_CRM_PLUGIN_WB_CHECK_ERROR') . implode('. ', $res['error']);
 		}
@@ -47,7 +47,7 @@ class Orders extends Request {
 			if ($res['data']['shipments']) {
 				$list = $res['data']['shipments'];
 			}
-		} 
+		}
 		return $list;
 	}
 

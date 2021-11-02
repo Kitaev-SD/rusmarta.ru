@@ -2255,7 +2255,7 @@ $(document).delegate('input[data-role="console-execute"]', 'click', function(e){
 		height = $('textarea[data-role="console-text"]').outerHeight(),
 		text = $('input[data-role="console-type"]').is(':checked') ? 'Y' : 'N';
 		data = 'iblock_id='+iblockId+
-						'&command='+command+
+						'&command='+encodeURIComponent(command)+
 						'&height='+height+
 						'&text='+text;
 	acritExpAjax('console_execute', data, function(JsonResult){

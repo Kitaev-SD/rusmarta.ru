@@ -16,18 +16,6 @@ $result['status'] = 'error';
 $result['log'] = [];
 
 switch ($action) {
-	// Reset connection
-	case 'options_connect_reset':
-		//// Reset placements and event handlers
-		//$sync_active = Settings::get('active');
-		//if ($sync_active) {
-		//	Controller::removePortalPlacements();
-		//	Controller::unregCrmHandlers();
-		//}
-		// Reset connection
-		Rest::saveAuthInfo('');
-		$result['status'] = 'ok';
-		break;
 	// Users search
 	case 'find_users':
 		$result = [];

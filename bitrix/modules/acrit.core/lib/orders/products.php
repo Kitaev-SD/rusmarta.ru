@@ -1,4 +1,7 @@
 <?
+/**
+ * Products data synchronization
+ */
 
 namespace Acrit\Core\Orders;
 
@@ -93,27 +96,28 @@ class Products {
 	}
 
 	/**
-	 * Order data
+	 * Search for a store product by its identification code
 	 */
-
 	public static function findIblockProduct($find_code, array $profile) {
 		$product = false;
-		$iblock_list = self::getIblockList(true);
-		$comp_table = $profile['PRODUCTS']['search_fields'];
-		foreach ($iblock_list as $iblock) {
-			if ($comp_table[$iblock['id']]) {
-				$filter = [
-					'IBLOCK_ID' => $iblock['id'],
-					$comp_table[$iblock['id']] => $find_code,
-				];
-				Log::getInstance(Settings::getModuleId())->add('(findIblockProduct) search filter ' . print_r($filter, true), false, true);
-				$res = \CIBlockElement::GetList(['SORT' => 'ASC'], $filter, false, ['nTopCount' => 1], ['ID']);
-				while ($ob = $res->GetNextElement()) {
-					$fields = $ob->GetFields();
-					Log::getInstance(Settings::getModuleId())->add('(findIblockProduct) found variant ' . print_r($fields, true), false, true);
-//					$fields['PROPERTIES'] = $ob->GetProperties();
-					$product = $fields;
-					break 2;
+		if ($find_code) {
+			$iblock_list = self::getIblockList(true);
+			$comp_table = $profile['PRODUCTS']['search_fields'];
+			foreach ($iblock_list as $iblock) {
+				if ($comp_table[$iblock['id']]) {
+					$filter = [
+						'IBLOCK_ID'                => $iblock['id'],
+						$comp_table[$iblock['id']] => $find_code,
+					];
+					Log::getInstance(Settings::getModuleId())->add('(findIblockProduct) search filter ' . print_r($filter, true), false, true);
+					$res = \CIBlockElement::GetList(['SORT' => 'ASC'], $filter, false, ['nTopCount' => 1], ['ID']);
+					while ($ob = $res->GetNextElement()) {
+						$fields = $ob->GetFields();
+						Log::getInstance(Settings::getModuleId())->add('(findIblockProduct) found variant ' . print_r($fields, true), false, true);
+//					    $fields['PROPERTIES'] = $ob->GetProperties();
+						$product = $fields;
+						break 2;
+					}
 				}
 			}
 		}

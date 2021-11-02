@@ -15,19 +15,21 @@ $strGetParam = 'subaction';
 $strGetValue = 'find_categories';
 
 if($arParams['GET'][$strGetParam] == $strGetValue){
-	#$obApi = new Api($this->intProfileId, $this->strModuleId);
-	$strUrl = '/ns/characteristics-configurator-api/content-configurator/api/v1/config/get/object/list';
+	$strUrl = '/api/v1/config/get/object/list';
 	$strQuery = $arParams['POST']['q'];
 	$arGet = [
 		'pattern' => $strQuery,
 		'lang' => 'ru',
 	];
 	$strUrl = $strUrl.'?'.http_build_query($arGet);
-	$arQueryResult = $this->API->execute($strUrl, $arJsonRequest, [
+	$arRequestParams = [
 		'METHOD' => 'GET',
 		'SKIP_ERRORS' => true,
-		'HOST' => 'https://content-suppliers.wildberries.ru',
-	]);
+		'HEADER' => [
+			'Authorization' => $this->getAuthToken(),
+		],
+	];
+	$arQueryResult = $this->API->execute($strUrl, [], $arRequestParams);
 	$arSearchResults = [];
 	if(is_array($arQueryResult['data'])){
 		foreach($arQueryResult['data'] as $arCategory){

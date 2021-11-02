@@ -10,12 +10,12 @@ require_once __DIR__.'/lib/api/orders.php';
 
 use \Bitrix\Main\Localization\Loc,
 	\Acrit\Core\Helper,
+	\Acrit\Core\HttpRequest,
+	\Acrit\Core\Json,
 	\Acrit\Core\Orders\Plugin,
 	\Acrit\Core\Orders\Settings,
 	\Acrit\Core\Orders\Controller,
 	\Acrit\Core\Orders\Plugins\SbermegamarketHelpers\Orders,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Json,
 	\Acrit\Core\Log;
 
 Loc::loadMessages(__FILE__);
@@ -253,7 +253,7 @@ class Sbermegamarket extends Plugin {
 	 */
 	public function getSettingsPeriodSyncBlock() {
 		$arValues = [];
-//	    PeriodSync::setModuleId($this->strModuleId);
+//	    PeriodSync::setModuleId($this->getModuleId());
 //	    PeriodSync::set($this->intProfileId);
 //		Controller::syncStoreToCRM(14400 * 60);
 		$arValues[1]['period'] = $this->arProfile['SYNC']['add']['1']['period'] ? $this->arProfile['SYNC']['add']['1']['period'] : 10;
@@ -307,9 +307,10 @@ class Sbermegamarket extends Plugin {
 	public function ajaxAction($strAction, $arParams, &$arJsonResult) {
 		switch ($strAction) {
 			case 'connection_check':
+				$token = $arParams['POST']['token'];
 				$message = '';
 				$api = $this->getApi();
-				$res = $api->checkConnection($message);
+				$res = $api->checkConnection($token, $message);
 				$arJsonResult['check'] = $res ? 'success' : 'fail';
 				$arJsonResult['message'] = $message;
 				$arJsonResult['result'] = 'ok';
@@ -482,20 +483,29 @@ class Sbermegamarket extends Plugin {
 			];
 			// Products
 			$order['PRODUCTS'] = [];
-			$products_list = $mp_order['items'];
+			$products_list = [];
+			foreach ($mp_order['items'] as $item) {
+                // Unite same products
+                if (isset($products_list[$item['offerId']])) {
+	                $products_list[$item['offerId']]['QUANTITY'] += $item['quantity'];
+                }
+                else {
+	                $products_list[$item['offerId']] = [
+		                'PRODUCT_NAME'     => $item['goodsData']['name'],
+		                'PRODUCT_CODE'     => $item['offerId'],
+		                'PRICE'            => $item['finalPrice'],
+		                'CURRENCY'         => 'RUB',
+		                'QUANTITY'         => $item['quantity'],
+		                'DISCOUNT_TYPE_ID' => 1,
+		                'DISCOUNT_SUM'     => ($item['price'] - $item['finalPrice']),
+		                'MEASURE_CODE'     => 0,
+		                'TAX_RATE'         => 0,
+		                'TAX_INCLUDED'     => 'Y',
+	                ];
+                }
+			}
 			foreach ($products_list as $item) {
-				$order['PRODUCTS'][] = [
-					'PRODUCT_NAME'     => $item['goodsData']['name'],
-					'PRODUCT_CODE'     => $item['offerId'],
-					'PRICE'            => $item['finalPrice'],
-					'CURRENCY'         => 'RUB',
-					'QUANTITY'         => $item['quantity'],
-					'DISCOUNT_TYPE_ID' => 1,
-					'DISCOUNT_SUM'     => ($item['price'] - $item['finalPrice']),
-					'MEASURE_CODE'     => 0,
-					'TAX_RATE'         => 0,
-					'TAX_INCLUDED'     => 'Y',
-				];
+				$order['PRODUCTS'][] = $item;
 			}
             $order = self::formatOrder($order);
 		}

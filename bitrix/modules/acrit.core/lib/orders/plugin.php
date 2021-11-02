@@ -4,6 +4,7 @@
  * @package acrit.core
  * @copyright 2018 Acrit
  */
+
 namespace Acrit\Core\Orders;
 
 use \Bitrix\Main\Localization\Loc,
