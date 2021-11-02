@@ -766,7 +766,7 @@ if(!empty($_REQUEST["PAGEN_1"]) && $_REQUEST["PAGEN_1"] > 1):
 
 	$APPLICATION->SetTitle($arCurSection["NAME"] . " Ч страница " . $page);
 
-	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"]) . " Ч страница " . $page);
+	$APPLICATION->SetPageProperty("title", (!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_META_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_META_TITLE"] : $arCurSection["NAME"]) . " Ч страница " . $page);
 	$APPLICATION->SetPageProperty("keywords", "");
 	$APPLICATION->SetPageProperty("description", $APPLICATION->GetProperty('description') . " —траница " . $page . ".");
 endif;
@@ -780,7 +780,7 @@ if(isset($arCurSection["BACKGROUND_IMAGE"]) && is_array($arCurSection["BACKGROUN
 endif;
 
 //META_PROPERTY//
-$APPLICATION->AddHeadString("<meta property='og:title' content='".(!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_PAGE_TITLE"] : $arCurSection["NAME"])."' />", true);
+$APPLICATION->AddHeadString("<meta property='og:title' content='".(!empty($arCurSection["IPROPERTY_VALUES"]["SECTION_META_TITLE"]) ? $arCurSection["IPROPERTY_VALUES"]["SECTION_META_TITLE"] : $arCurSection["NAME"]). " Ч страница " . $page . "' />", true);
 if(!empty($arCurSection["PREVIEW"])):
 	$APPLICATION->AddHeadString("<meta property='og:description' content='".strip_tags($arCurSection["PREVIEW"])."' />", true);
 endif;
