@@ -96,6 +96,9 @@ Loc::loadMessages(__FILE__); ?>
 	$APPLICATION->ShowMeta("description");
 	$APPLICATION->ShowCSS();
 	$APPLICATION->ShowHeadStrings();
+	if ($APPLICATION->GetCurPage() == '/about/employees/') {
+		$APPLICATION->SetPageProperty("robots", "noindex, nofollow");
+	}
 	?>
 	<? if (CModule::IncludeModule("altop.elektroinstrument")) {
 		CElektroinstrument::getBackground(SITE_ID);
