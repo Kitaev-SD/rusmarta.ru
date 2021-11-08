@@ -129,12 +129,29 @@ $(function() {
 });
 $(document).ready(function() {
     var num = 1;
-$('img').each(function() {
-    if($(this).attr('alt') == '' || $(this).attr('alt') === undefined) {
-        $(this).attr('alt', $('#pagetitle').text() + ' описание - image ' + num);
-        $(this).attr('title', $('#pagetitle').text() + ' описание - image ' + num);
-        num++;
-	}
+	$('img').each(function() {
+		if($(this).attr('alt') == '' || $(this).attr('alt') === undefined) {
+			$(this).attr('alt', $('#pagetitle').text() + ' описание - image ' + num);
+			$(this).attr('title', $('#pagetitle').text() + ' описание - image ' + num);
+			num++;
+		}
 
+	});
+
+	// Удаляем лишние заголовки h1 от антисоветника - начало
+	function del() {
+		$('#a12345').remove();
+
+		let titles;
+		titles = document.querySelectorAll('#pagetitle');
+		for (let title of titles) {
+			if (title.innerHTML == '') {
+				console.log(title.innerHTML);
+				title.remove();
+			}
+		}
+	}
+	setTimeout(del, 3000);
+	// Удаляем лишние заголовки h1 от антисоветника - конец
 });
-});
+

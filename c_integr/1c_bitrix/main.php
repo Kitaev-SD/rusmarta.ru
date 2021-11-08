@@ -117,10 +117,13 @@ foreach ($db_res as $ym_order) {
 }
 
 $beruAPI = new BeruAPI($client_id, $token, $ym_campaign, 'business');
-$response = $beruAPI->get("/campaigns/" . $ym_campaign . "/orders.json?fromDate=" . date('d-m-Y') . "&page=1");
+$response_ = array();
+$response_ = array_merge($response_, $beruAPI->get("/campaigns/" . $ym_campaign . "/orders.json?fromDate=" . date('d-m-Y') . "&page=1")['orders']);
+$response_ = array_merge($response_, $beruAPI->get("/campaigns/" . $ym_campaign . "/orders.json?fake=true&fromDate=" . date('d-m-Y') . "&page=1")['orders']);
+$response['orders'] = $response_;
 
 foreach ($db_orders as $ym_ord_id => $db_order) {
-	//d($db_order);
+
     $check = @mysqli_fetch_all(mysqli_query($db, "select id from ci_ym_orders where ym_id='$ym_ord_id'"), MYSQLI_ASSOC);
 
     if ($check == true) { echo 'check c'; continue; }
@@ -165,8 +168,6 @@ foreach ($db_orders as $ym_ord_id => $db_order) {
             //'date' => date('Y-m-d H:i:s', strtotime($order['ym']['creationDate']))
         );
 		
-		d($orderData);
-
         $createOrderResponse = $class365api->request("put", "customerorders", $orderData);
 
         if ($createOrderResponse['result']['id'] && isset($order['ym']['shipments'][0]['shipmentDate'])) {

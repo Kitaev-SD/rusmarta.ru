@@ -116,7 +116,7 @@ Loc::loadMessages(__FILE__); ?>
 </head>
 
 <body <?= $APPLICATION->ShowProperty("bgClass") ?><?= $APPLICATION->ShowProperty("backgroundColor") ?><?= $APPLICATION->ShowProperty("backgroundImage") ?>>
-
+	<div id="catalog-reviews-to" style="display: none;"></div>
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M32PPZL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->

@@ -1792,7 +1792,10 @@ $strTitle = (isset($arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_TI
                         </div>
                     <?}
                     //REVIEWS_TAB//?>
-                    <div class="tabs__box" id="catalog-reviews-to"></div>
+                    <div class="tabs__box" id="catalog-reviews" <?/*Стандартный вывод отзывов шаблона битрикс id="catalog-reviews-to"*/?>>
+                        <?#Вывод отзовов через модуль cracle?>
+                        <?$APPLICATION-> IncludeComponent( "cackle.reviews", ".default", array( "CHANNEL_ID" => $arResult["ID"] ), false);?>
+                    </div>
                     <?//STORES_TAB//
                     if($arParams["USE_STORE"] == "Y" && ((isset($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) && $arSetting["OFFERS_VIEW"]["VALUE"] != "LIST") || (!isset($arResult["OFFERS"]) || empty($arResult["OFFERS"])))) {?>
                         <div class="tabs__box">

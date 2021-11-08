@@ -18,7 +18,7 @@ for($index = 0; $index < $itemSize; $index++) {
 	} else {
 		$strReturn .= "<div class='breadcrumb__item'>".$arrow.($index == 0 ? "<i class='fa fa-home breadcrumb__icon_main'></i>" : "")."<span class='".($index == 0 ? "breadcrumb__title_main" : "breadcrumb__title")."'>".$title."</span></div>";
 	}
-	$strItems[] = '{"@type": "ListItem","item": "https://rusmarta.ru'.$arResult[$index]["LINK"].'","name": "'.$title.'","position": "'.($index+1).'"}';
+	$strItems[] = '{"@type": "ListItem","item": "https://rusmarta.ru'.(!empty($arResult[$index]["LINK"]) ? $arResult[$index]["LINK"] : $_SERVER['REQUEST_URI']).'","name": "'.$title.'","position": "'.($index+1).'"}';
 }
 if (!empty($strItems)){
 	$strReturn .= '<script type="application/ld+json">

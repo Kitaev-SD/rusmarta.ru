@@ -312,7 +312,6 @@ if($_REQUEST["view"] == "price") {
 </div>
 <div class="clr"></div>
 
-<? echo "<pre style='display:none' 111111111111111111111111>";var_dump($view);echo "</pre>"; ?>
 <?//SECTION//?>
 <?$intSectionID = $APPLICATION->IncludeComponent("argit:catalog.section", $view,
 	array(
@@ -842,19 +841,16 @@ endif;
 	);
 	
 	echo '<!--###2-->';
-	$arElms = [];
-	$qrElms = CIblockElement::GetList(array("PRICE"=>"ASC"),array("IBLOCK_ID" => $arParams["IBLOCK_ID"],'SECTION_ID'=>$arSection['ID'],'INCLUDE_SUBSECTIONS'=>'Y'),false,false,array('ID','NAME'));
-	while ($arElm = $qrElms->Fetch()){
-		$arElms[] = $arElm['ID'];
-	}
-	$rsPrices = CPrice::GetList(array("PRICE"=>"ASC"),array('PRODUCT_ID' => $arElms),array('CATALOG_GROUP_ID' => 1))->Fetch();
-	$min_price = CCatalogProduct::GetOptimalPrice($rsPrices['PRODUCT_ID'], 1, $USER->GetUserGroupArray(), 'N');
-	$rsPrices = CPrice::GetList(array("PRICE"=>"DESC"),array('PRODUCT_ID' => $arElms),array('CATALOG_GROUP_ID' => 1))->Fetch();
-	$max_price = CCatalogProduct::GetOptimalPrice($rsPrices['PRODUCT_ID'], 1, $USER->GetUserGroupArray(), 'N');
+	$qrElms = CIblockElement::GetList(array("CATALOG_PRICE_1"=>"ASC"),array("IBLOCK_ID" => $arParams["IBLOCK_ID"],'SECTION_ID'=>$arSection['ID'],'INCLUDE_SUBSECTIONS'=>'Y', 'ACTIVE'=>'Y'),false,false,array('ID','NAME',"PRICE"));
+	$arElm = $qrElms->Fetch();
+	$min_price = (int) $arElm["CATALOG_PRICE_1"];
+	$qrElms = CIblockElement::GetList(array("CATALOG_PRICE_1"=>"DESC"),array("IBLOCK_ID" => $arParams["IBLOCK_ID"],'SECTION_ID'=>$arSection['ID'],'INCLUDE_SUBSECTIONS'=>'Y', 'ACTIVE'=>'Y'),false,false,array('ID','NAME',"PRICE"));
+	$arElm = $qrElms->Fetch();
+	$max_price = (int) $arElm["CATALOG_PRICE_1"];
 
-	$APPLICATION->SetPageProperty("title",str_replace('{#min_price}', (!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("title")));
-	$APPLICATION->SetPageProperty("description", str_replace('{#min_price}', (!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("description")));
-	$APPLICATION->SetPageProperty("keywords", str_replace('{#min_price}', (!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"]).' руб.', $APPLICATION->GetPageProperty("keywords")));
+	$APPLICATION->SetPageProperty("title",str_replace('{#min_price}', $min_price.' руб.', $APPLICATION->GetPageProperty("title")));
+	$APPLICATION->SetPageProperty("description", str_replace('{#min_price}', $min_price.' руб.', $APPLICATION->GetPageProperty("description")));
+	$APPLICATION->SetPageProperty("keywords", str_replace('{#min_price}', $min_price.' руб.', $APPLICATION->GetPageProperty("keywords")));
 //endif;?>
 <script type="application/ld+json">
 	{
@@ -866,9 +862,9 @@ endif;
 		"offers": [
 			{
 				"@type": "AggregateOffer",
-			    "highPrice": "<?=(!empty($max_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$max_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$max_price["RESULT_PRICE"]["BASE_PRICE"])?>",
-			    "lowPrice": "<?=(!empty($min_price["RESULT_PRICE"]["DISCOUNT_PRICE"])?$min_price["RESULT_PRICE"]["DISCOUNT_PRICE"]:$min_price["RESULT_PRICE"]["BASE_PRICE"])?>",
-			    "offerCount": "<?=count($arElms)?>",
+			    "highPrice": "<?=$max_price?>",
+			    "lowPrice": "<?=$min_price?>",
+			    "offerCount": "<?=$qrElms->result->field_count?>",
 			    "priceCurrency ": "RUB"
 			}
 		]
