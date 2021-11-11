@@ -107,11 +107,11 @@ if($tagsCount >= 1){
 				if(array_key_exists("FREEDOST", $arElement["PROPERTIES"]) && !$arElement["PROPERTIES"]["FREEDOST"]["VALUE"] == false):
 					$sticker .= "<span class='freedost'>".GetMessage("CATALOG_ELEMENT_FREEDOST")."</span>";
 				endif;
-				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½//
+				//˜˜˜˜˜˜˜˜ 1 ˜˜˜//
 				if(array_key_exists("GARANT1", $arElement["PROPERTIES"]) && !$arElement["PROPERTIES"]["GARANT1"]["VALUE"] == false):
 					$sticker .= "<span class='gar1'>".GetMessage("CATALOG_ELEMENT_GARANT1")."</span>";
 				endif;
-				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3 ï¿½ï¿½ï¿½ï¿½//
+				//˜˜˜˜˜˜˜˜ 3 ˜˜˜˜//
 				if(array_key_exists("GARANT3", $arElement["PROPERTIES"]) && !$arElement["PROPERTIES"]["GARANT3"]["VALUE"] == false):
 					$sticker .= "<span class='gar3'>".GetMessage("CATALOG_ELEMENT_GARANT3")."</span>";
 				endif;
@@ -220,7 +220,7 @@ if($tagsCount >= 1){
 			$strTitle = (isset($arElement["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"]) && $arElement["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"] != "" ? $arElement["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"] : $arElement["NAME"]);
 
 			//ITEM//?>				
-			<div class="catalog-item-card<?=$class?>"<?/* itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Product"*/?>>
+			<div class="<?php print_r($arParams['FOR_SHOW_MORE']); ?> catalog-item-card<?=$class?>"<?/* itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Product"*/?>>
 				<div class="catalog-item-info">							
 					<?//ITEM_PREVIEW_PICTURE//?>
 					<div class="item-image-cont">

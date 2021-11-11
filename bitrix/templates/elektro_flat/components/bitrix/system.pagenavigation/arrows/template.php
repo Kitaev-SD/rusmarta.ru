@@ -134,7 +134,8 @@ if(!$arResult["NavShowAlways"]) {
 	                $(".ajax_loading_btn").addClass('__loading').show();
 	            },
 				success: function(data) {
-					items = $(data).find('.catalog-item-card');
+					// items = $(data).find('.catalog-item-card');
+					items = $(data).find('.yes_show_more');
 					items.each(function(i,e){
 						$(this).find('[data-lazy-src]').each(function(){
 							$(this).attr('src', $(this).attr('data-lazy-src')).removeClass('data-lazy-src');

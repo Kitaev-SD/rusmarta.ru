@@ -395,7 +395,8 @@ if($_REQUEST["view"] == "price") {
 		"DISABLE_INIT_JS_IN_COMPONENT" => (isset($arParams["DISABLE_INIT_JS_IN_COMPONENT"]) ? $arParams["DISABLE_INIT_JS_IN_COMPONENT"] : ""),
 		"DISPLAY_IMG_WIDTH"	 =>	$arParams["DISPLAY_IMG_WIDTH"],
 		"DISPLAY_IMG_HEIGHT" =>	$arParams["DISPLAY_IMG_HEIGHT"],
-		"PROPERTY_CODE_MOD" => $arParams["PROPERTY_CODE_MOD"]
+		"PROPERTY_CODE_MOD" => $arParams["PROPERTY_CODE_MOD"],
+		"FOR_SHOW_MORE" => "yes_show_more"
 	),
 	false,
 	array("HIDE_ICONS" => "Y")
@@ -544,7 +545,8 @@ if (count($GLOBALS['productSlider1']) > 0){
             "DISABLE_INIT_JS_IN_COMPONENT" => (isset($arParams["DISABLE_INIT_JS_IN_COMPONENT"]) ? $arParams["DISABLE_INIT_JS_IN_COMPONENT"] : ""),
             "DISPLAY_IMG_WIDTH"	 =>	$arParams["DISPLAY_IMG_WIDTH"],
             "DISPLAY_IMG_HEIGHT" =>	$arParams["DISPLAY_IMG_HEIGHT"],
-            "PROPERTY_CODE_MOD" => $arParams["PROPERTY_CODE_MOD"]
+            "PROPERTY_CODE_MOD" => $arParams["PROPERTY_CODE_MOD"],
+			"FOR_SHOW_MORE" => "not_show_more"
         ),
         false,
         array("HIDE_ICONS" => "Y")
@@ -641,7 +643,8 @@ if (count($GLOBALS['productSlider2']) > 0){
             "DISABLE_INIT_JS_IN_COMPONENT" => (isset($arParams["DISABLE_INIT_JS_IN_COMPONENT"]) ? $arParams["DISABLE_INIT_JS_IN_COMPONENT"] : ""),
             "DISPLAY_IMG_WIDTH"	 =>	$arParams["DISPLAY_IMG_WIDTH"],
             "DISPLAY_IMG_HEIGHT" =>	$arParams["DISPLAY_IMG_HEIGHT"],
-            "PROPERTY_CODE_MOD" => $arParams["PROPERTY_CODE_MOD"]
+            "PROPERTY_CODE_MOD" => $arParams["PROPERTY_CODE_MOD"],
+			"FOR_SHOW_MORE" => "not_show_more"
         ),
         false,
         array("HIDE_ICONS" => "Y")
