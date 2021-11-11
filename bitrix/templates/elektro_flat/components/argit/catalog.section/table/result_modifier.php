@@ -338,12 +338,12 @@ if ($arResult['NAV_RESULT']->PAGEN == 1) {
         $arResult['prefixes'] = explode("\n",$section["UF_PREFIXES"]);
     }
 }
-// foreach($arResult["ITEMS"] as $key => &$arElement) {
-//     if (isset($arResult['prefixes'][$key]) && $arResult['prefixes'][$key]!=''){
-//         if ($arElement['PROPERTIES']['BRAND']['VALUE'] != '')
-//             $arElement['NAME'] = $arResult['prefixes'][$key].' '.$arElement['PROPERTIES']['BRAND']['VALUE'];
-//         else
-//             $arElement['NAME'] = $arResult['prefixes'][$key].' '.ucfirst($arElement['NAME']);
-//     }
-// }
+foreach($arResult["ITEMS"] as $key => &$arElement) {
+    if (isset($arResult['prefixes'][$key]) && $arResult['prefixes'][$key]!=''){
+        if ($arElement['PROPERTIES']['BRAND']['VALUE'] != '')
+            $arElement['NAME'] = $arResult['prefixes'][$key].' '.$arElement['PROPERTIES']['BRAND']['VALUE'];
+        else
+            $arElement['NAME'] = $arResult['prefixes'][$key].' '.ucfirst($arElement['NAME']);
+    }
+}
 ?>
