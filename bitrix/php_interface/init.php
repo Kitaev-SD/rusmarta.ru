@@ -259,4 +259,29 @@ function onPagenMeta()
         }
     }
 }
+AddEventHandler('catalog', 'OnProductUpdate', 'updateStore3');
+AddEventHandler('catalog', 'OnProductAdd', 'updateStore3');
+function updateStore3($intID, &$arFields){
+    $arFilter = Array("PRODUCT_ID"=>$intID);
+    $rsStore = CCatalogStoreProduct::GetList(Array(),$arFilter,false,false,Array());
+    $arStore3 = array();
+    $amount = 0;
+    while($arStore = $rsStore->Fetch())
+    {
+        if ($arStore['STORE_ID'] == 1) {
+            $arStore3['arFields'] = array('PRODUCT_ID' => $arStore['PRODUCT_ID'],'STORE_ID' => 3,'AMOUNT' => $arStore['AMOUNT']);
+        }
+        if ($arStore['STORE_ID'] == 3) {
+            $arStore3['ID'] = $arStore['ID'];
+            $amount=$arStore['AMOUNT'];
+        }
+    }
+    if (isset($arStore3['ID']) && isset($arStore3['arFields']) && $amount != $arStore3['arFields']['AMOUNT']){
+       if (isset($arStore3['ID']) && isset($arStore3['arFields'])){
+            CCatalogStoreProduct::Update($arStore3['ID'],$arStore3['arFields']);
+        } else if (isset($arStore3['arFields'])){
+            CCatalogStoreProduct::Add($arStore3['arFields']);
+        } 
+    }
+}
 ?>

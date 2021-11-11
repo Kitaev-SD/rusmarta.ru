@@ -120,7 +120,7 @@ $arUrlRewrite=array (
     'PATH' => '/support/index.php',
     'SORT' => 100,
   ),
-  49 => 
+  52 => 
   array (
     'CONDITION' => '#^/market/#',
     'RULE' => '',

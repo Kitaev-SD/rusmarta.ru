@@ -865,7 +865,7 @@ endif;
 			    "highPrice": "<?=$max_price?>",
 			    "lowPrice": "<?=$min_price?>",
 			    "offerCount": "<?=$qrElms->result->field_count?>",
-			    "priceCurrency ": "RUB"
+			    "priceCurrency": "RUB"
 			}
 		]
 	}

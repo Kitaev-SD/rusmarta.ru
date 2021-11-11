@@ -1,10 +1,43 @@
-<?//exit;
+<?exit;
 use Bitrix\Main\Application;
 
 $_SERVER["DOCUMENT_ROOT"]="/var/www/rusmarta.ru";
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 echo "<pre>";
+
+/*$arSelect = Array("ID");
+$arFilter = Array('IBLOCK_ID' => 16, 'INCLUDE_SUBSECTIONS'=> 'Y','ACTIVE' => 'Y', 'GLOBAL_ACTIVE' => 'Y');
+$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+while($ob = $res->GetNext()) { 
+    $start = microtime(true);
+    $arFilter = Array("PRODUCT_ID"=>array($ob['ID']));
+    $rsStore = CCatalogStoreProduct::GetList(Array(),$arFilter,false,false,Array());
+    $arStore3 = array();
+    $amount = 0;
+    while($arStore = $rsStore->Fetch())
+    {
+        if ($arStore['STORE_ID'] == 1) {
+            $arStore3['arFields'] = array('PRODUCT_ID' => $arStore['PRODUCT_ID'],'STORE_ID' => 3,'AMOUNT' => $arStore['AMOUNT']);
+        }
+        if ($arStore['STORE_ID'] == 3) {
+            $arStore3['ID'] = $arStore['ID'];
+            $amount=$arStore['AMOUNT'];
+        }
+    }
+    if (isset($arStore3['ID']) && isset($arStore3['arFields']) && $amount == $arStore3['arFields']['AMOUNT']) continue;
+    if (isset($arStore3['ID']) && isset($arStore3['arFields'])){
+        CCatalogStoreProduct::Update($arStore3['ID'],$arStore3['arFields']);
+    } else if (isset($arStore3['arFields'])){
+        CCatalogStoreProduct::Add($arStore3['arFields']);
+    }
+}
+exit;*/
+
+
+
+
+
 $arSelect = Array('ID','NAME','DETAIL_TEXT','DATE_CREATE_UNIX','PROPERTY_OBJECT_ID','PROPERTY_USER_ID','PROPERTY_USER_IP','PROPERTY_COMMENT_URL');
 //$arSelect = Array();
 $arFilter = Array('IBLOCK_ID' => 18, 'ACTIVE' => 'Y');
@@ -20,7 +53,7 @@ while($ob = $res->Fetch()) {
 																    'comment'=> iconv("windows-1251","utf-8", strip_tags($ob['DETAIL_TEXT'])),
 																    'created' => $ob['DATE_CREATE_UNIX']*1000,
 																    'name' => iconv("windows-1251","utf-8",  $ob['PROPERTY_USER_ID_VALUE']),
-																    //'email' => 'info@rusmarta.ru'
+																    'email' => 'info@rusmarta.ru'
 																    );
 	} else {
 		$comments[$ob['PROPERTY_OBJECT_ID_VALUE']]=array(
@@ -35,15 +68,18 @@ while($ob = $res->Fetch()) {
 								    'comment'=> iconv("windows-1251","utf-8", strip_tags($ob['DETAIL_TEXT'])),
 								    'created' => $ob['DATE_CREATE_UNIX']*1000,
 								    'name' => iconv("windows-1251","utf-8",  $ob['PROPERTY_USER_ID_VALUE']),
-								    //'email' => 'info@rusmarta.ru'
+								    'email' => 'info@rusmarta.ru'
 							    ))
 		);
 		
 	}
 	
 }
-//var_dump($comments);exit;
-//var_dump(json_encode($comments[9963]));//exit;
+$comments[290]['url']='https://rusmarta.ru/market/umnyj-dom/kontrollery-upravleniya-pitaniem/rozetki/gsm-rozetki/gsm-kontroler-upravleniya-pitaniem-na-din-reyku-simpal-d210/';
+//$comments['290-1']=$comments[290];
+//$comments['290-1']['reviews']=array_splice($comments[290]['reviews'], 0,1);
+//var_dump(json_encode($comments[290]));exit;
+//var_dump($comments['290-1']); var_dump($comments[290]);
 /*file_put_contents('/var/www/rusmarta.ru/comments.json',);
 exit;*/
 function sendReviewsRequest($fields){
@@ -54,7 +90,7 @@ function sendReviewsRequest($fields){
         'siteApiKey' => 'yuP7gBA67pbFyz37nrWKuoshOJyZIBxfJbXU5hNmEmg9ek7YcA9DlrVKEvmZICaa',
         'reviews' => $postfields
     );
-    //var_dump(http_build_query($curl_fields));
+    echo http_build_query($curl_fields);
 	$curl=curl_init('http://cackle.me/api/3.0/review/post.json');
 	curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
 	curl_setopt($curl,CURLOPT_POST,true);
@@ -64,10 +100,11 @@ function sendReviewsRequest($fields){
 	curl_close($curl);
 	return $result;
 }
-/*var_dump(sendReviewsRequest($comments[9963]));
-exit;*/
+var_dump(sendReviewsRequest($comments[290]));
+exit;
 foreach ($comments as $key => $comment) {
-	sendReviewsRequest($comment);
+	var_dump($comment);
+	var_dump(sendReviewsRequest($comment));
 	sleep(5);
 }
 echo 'done!';
