@@ -284,4 +284,7 @@ function updateStore3($intID, &$arFields){
         } 
     }
 }
+
+// лечим конские отступы в меню админки
+if (defined('ADMIN_SECTION'))    $APPLICATION->SetAdditionalCSS('/fix_adm.css');   // поправьте путь к файлу
 ?>
